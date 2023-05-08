@@ -18,7 +18,7 @@ class _CategoryPageState extends State<CategoryPage> {
         child: Stack(
           children: const [
             Center(
-              child: Text("category"),
+              child: Text("category", style: TextStyle(fontSize: 24, color: Colors.red)),
             )
           ],
         ),

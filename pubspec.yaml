@@ -71,6 +71,11 @@ flutter:
     - images/ic_category_active.png
     - images/ic_cart_active.png
     - images/ic_mine_active.png
+    - images/ic_message_white.png
+    - images/ic_pet.png
+    - images/ic_scan.png
+    - images/ic_camera.png
+    - images/ic_search.png
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware
 

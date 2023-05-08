@@ -18,7 +18,7 @@ class _MinePageState extends State<MinePage> {
         child: Stack(
           children: const [
             Center(
-              child: Text("mine"),
+              child: Text("mine", style: TextStyle(fontSize: 24, color: Colors.red)),
             )
           ],
         ),

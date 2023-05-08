@@ -3,6 +3,7 @@ import 'package:jd_mall_flutter/page/welcome/welcome_page.dart';
 import 'package:jd_mall_flutter/page/category/category_page.dart';
 import 'package:jd_mall_flutter/page/cart/cart_page.dart';
 import 'package:jd_mall_flutter/page/mine/mine_page.dart';
+import 'package:jd_mall_flutter/common/widget/image/icon_image.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -35,25 +36,25 @@ class _TabPageState extends State<HomePage> {
         selectedItemColor: Colors.red,
         selectedLabelStyle: const TextStyle( fontSize: 14 ),
         unselectedLabelStyle: const TextStyle( fontSize: 14 ),
-        items: const [
+        items: [
           BottomNavigationBarItem(
-            icon: Image(image: AssetImage('images/ic_home.png'), width: 30, height: 30, fit: BoxFit.cover),
-            activeIcon: Image(image: AssetImage('images/ic_home_active.png'), width: 30, height: 30, fit: BoxFit.cover),
+            icon: iconImage('images/ic_home.png', 30, 30),
+            activeIcon: iconImage('images/ic_home_active.png', 30, 30),
             label: '首页',
           ),
           BottomNavigationBarItem(
-            icon: Image(image: AssetImage('images/ic_category.png'), width: 30, height: 30, fit: BoxFit.cover),
-            activeIcon: Image(image: AssetImage('images/ic_category_active.png'), width: 30, height: 30, fit: BoxFit.cover),
+            icon: iconImage('images/ic_category.png', 30, 30),
+            activeIcon: iconImage('images/ic_category_active.png', 30, 30),
             label: '分类',
           ),
           BottomNavigationBarItem(
-            icon: Image(image: AssetImage('images/ic_cart.png'), width: 30, height: 30, fit: BoxFit.cover),
-            activeIcon: Image(image: AssetImage('images/ic_cart_active.png'), width: 30, height: 30, fit: BoxFit.cover),
+            icon: iconImage('images/ic_cart.png', 30, 30),
+            activeIcon: iconImage('images/ic_cart_active.png', 30, 30),
             label: '购物车',
           ),
           BottomNavigationBarItem(
-            icon: Image(image: AssetImage('images/ic_mine.png'), width: 30, height: 30, fit: BoxFit.cover),
-            activeIcon: Image(image: AssetImage('images/ic_mine_active.png'), width: 30, height: 30, fit: BoxFit.cover),
+            icon: iconImage('images/ic_mine.png', 30, 30),
+            activeIcon: iconImage("images/ic_mine_active.png", 30, 30),
             label: '我的',
           )
         ],

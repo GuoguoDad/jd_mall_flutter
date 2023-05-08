@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_redux/flutter_redux.dart';
+import 'package:jd_mall_flutter/redux/app_state.dart';
+import 'package:jd_mall_flutter/redux/app_store.dart';
 import 'package:jd_mall_flutter/page/home/home_page.dart';
 
 void main() {
-  runApp(const RootApp());
+  runApp(StoreProvider<AppState>(store: store, child: const RootApp()));
 }
 
 class RootApp extends StatelessWidget {
