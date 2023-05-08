@@ -5,7 +5,12 @@ import 'package:jd_mall_flutter/redux/app_store.dart';
 import 'package:jd_mall_flutter/page/home/home_page.dart';
 
 void main() {
-  runApp(StoreProvider<AppState>(store: store, child: const RootApp()));
+  runApp(
+    StoreProvider<AppState>(
+      store: store,
+      child: const RootApp()
+    )
+  );
 }
 
 class RootApp extends StatelessWidget {

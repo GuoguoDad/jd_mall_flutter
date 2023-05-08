@@ -19,37 +19,37 @@ class _WelcomePageState extends State<WelcomePage> {
   Widget build(BuildContext context) {
     return
       StoreBuilder<AppState>(
-          builder: (context, store) {
-            return NotificationListener<ScrollNotification>(
-                onNotification: (ScrollNotification notification) {
-                  double distance = notification.metrics.pixels;
+        builder: (context, store) {
+          return NotificationListener<ScrollNotification>(
+            onNotification: (ScrollNotification notification) {
+              double distance = notification.metrics.pixels;
 
-                  store.dispatch(ChangePageScrollYAction(distance));
-                  return false;
-                },
-                child: CustomScrollView(
-                  slivers: [
-                    SliverPersistentHeader(
-                      pinned: true,
-                      delegate: SliverHeaderDelegate(//有最大和最小高度
-                        maxHeight: 88 + MediaQueryData.fromWindow(window).padding.top,
-                        minHeight: 44 + MediaQueryData.fromWindow(window).padding.top,
-                        child: searchHeader(context),
-                      ),
-                    ),
-                    buildSliverList(5),
-                    SliverPersistentHeader(
-                      pinned: true,
-                      delegate: SliverHeaderDelegate.fixedHeight( //固定高度
-                        height: 50,
-                        child: buildHeader(2),
-                      ),
-                    ),
-                    buildSliverList(20),
-                  ],
-                )
-            );
-          }
+              store.dispatch(ChangePageScrollYAction(distance));
+              return false;
+            },
+            child: CustomScrollView(
+              slivers: [
+                SliverPersistentHeader(
+                  pinned: true,
+                  delegate: SliverHeaderDelegate(//有最大和最小高度
+                    maxHeight: 88 + MediaQueryData.fromWindow(window).padding.top,
+                    minHeight: 44 + MediaQueryData.fromWindow(window).padding.top,
+                    child: searchHeader(context),
+                  ),
+                ),
+                buildSliverList(5),
+                SliverPersistentHeader(
+                  pinned: true,
+                  delegate: SliverHeaderDelegate.fixedHeight( //固定高度
+                    height: 50,
+                    child: buildHeader(2),
+                  ),
+                ),
+                buildSliverList(20),
+              ],
+            )
+          );
+        }
       );
   }
 

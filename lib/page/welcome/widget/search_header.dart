@@ -27,51 +27,51 @@ Widget searchHeader(BuildContext context) {
             child: iconImage('images/ic_scan.png', 28, 28),
           ),
           StoreConnector<AppState, WelPageState>(
-              converter: (store) {
-                return store.state.welPageState;
-              },
-              builder: (context, state) {
-                return
-                  Positioned(
-                    top: calc2Top(state.pageScrollY),
-                    child: Container(
-                      height: 34,
-                      width: MediaQuery.of(context).size.width - calcWidth(state.pageScrollY),
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(12),
-                        color: Colors.white,
-                      ),
-                      child: Row(
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        children: <Widget>[
-                          SizedBox(
-                              width: 40,
-                              height: 34,
-                              child: UnconstrainedBox(
-                                child: iconImage('images/ic_search.png', 20, 20),
-                              )
-                          ),
-                          Expanded(
-                            flex: 1,
-                            child: Container(
-                              height: 34.0,
-                              alignment: Alignment.centerLeft,
-                              child: Text('跑步鞋', style: TextStyle(
-                                color: ColorUtil('#818286'),
-                              )),
-                            ),
-                          ),
-                          SizedBox(
-                              width: 40,
-                              height: 34,
-                              child: UnconstrainedBox(
-                                child: iconImage('images/ic_camera.png', 20, 20),
-                              )
+            converter: (store) {
+              return store.state.welPageState;
+            },
+            builder: (context, state) {
+              return
+                Positioned(
+                  top: calc2Top(state.pageScrollY),
+                  child: Container(
+                    height: 34,
+                    width: MediaQuery.of(context).size.width - calcWidth(state.pageScrollY),
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(12),
+                      color: Colors.white,
+                    ),
+                    child: Row(
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: <Widget>[
+                        SizedBox(
+                          width: 40,
+                          height: 34,
+                          child: UnconstrainedBox(
+                            child: iconImage('images/ic_search.png', 20, 20),
                           )
-                        ],
-                      ),
-                    )
-                  );
+                        ),
+                        Expanded(
+                          flex: 1,
+                          child: Container(
+                            height: 34.0,
+                            alignment: Alignment.centerLeft,
+                            child: Text('跑步鞋', style: TextStyle(
+                              color: ColorUtil('#818286'),
+                            )),
+                          ),
+                        ),
+                        SizedBox(
+                          width: 40,
+                          height: 34,
+                          child: UnconstrainedBox(
+                            child: iconImage('images/ic_camera.png', 20, 20),
+                          )
+                        )
+                      ],
+                    ),
+                  )
+                );
               },
             )
         ],

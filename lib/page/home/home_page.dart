@@ -5,6 +5,8 @@ import 'package:jd_mall_flutter/page/cart/cart_page.dart';
 import 'package:jd_mall_flutter/page/mine/mine_page.dart';
 import 'package:jd_mall_flutter/common/widget/image/icon_image.dart';
 
+const pages = [WelcomePage(), CategoryPage(), CartPage(), MinePage()];
+
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
   static const String name = "/home";
@@ -25,7 +27,7 @@ class _TabPageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: _getContent(_selectedIndex),
+      body: pages[_selectedIndex],
       bottomNavigationBar: BottomNavigationBar(
         iconSize: 24,
         enableFeedback: false,
@@ -62,24 +64,5 @@ class _TabPageState extends State<HomePage> {
         onTap: _onItemTapped,
       ),
     );
-  }
-
-  _getContent(int selectIndex) {
-    StatefulWidget content = const WelcomePage();
-    switch(selectIndex){
-      case 0:
-        content = const WelcomePage();
-        break;
-      case 1:
-        content = const CategoryPage();
-        break;
-      case 2:
-        content = const CartPage();
-        break;
-      case 3:
-        content = const MinePage();
-        break;
-    }
-    return content;
   }
 }
