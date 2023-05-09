@@ -38,6 +38,7 @@ dependencies:
   dio: 5.1.1
   bruno: ^3.2.0
   flutter_redux: 0.10.0
+  getwidget: ^3.1.1
 
 dev_dependencies:
   flutter_test:

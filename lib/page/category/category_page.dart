@@ -19,7 +19,7 @@ class _CategoryPageState extends State<CategoryPage> {
           children: const [
             Center(
               child: Text("category", style: TextStyle(fontSize: 24, color: Colors.red)),
-            )
+            ),
           ],
         ),
       ),
