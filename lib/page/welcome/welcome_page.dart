@@ -1,6 +1,7 @@
 import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:flutter_redux/flutter_redux.dart';
+import 'package:pull_to_refresh/pull_to_refresh.dart';
 import 'package:jd_mall_flutter/common/util/color_util.dart';
 import 'package:jd_mall_flutter/common/widget/persistentHeader/sliver_header_builder.dart';
 import 'package:jd_mall_flutter/page/welcome/widget/adv_img.dart';
@@ -20,6 +21,9 @@ class WelcomePage extends StatefulWidget {
 }
 
 class _WelcomePageState extends State<WelcomePage> {
+
+  final RefreshController _refreshController = RefreshController();
+
   @override
   Widget build(BuildContext context) {
     return
@@ -40,31 +44,42 @@ class _WelcomePageState extends State<WelcomePage> {
                 return store.state.welPageState;
               },
               builder: (context, state) {
-                return  Container(
-                  color: ColorUtil( state.pageScrollY <= 44 ? '#FE0F22' : '#FFFFFF'),
-                  child: CustomScrollView(
-                    slivers: [
-                      SliverPersistentHeader(
-                        pinned: true,
-                        delegate: SliverHeaderDelegate(//有最大和最小高度
-                          maxHeight: 88 + MediaQueryData.fromWindow(window).padding.top,
-                          minHeight: 44 + MediaQueryData.fromWindow(window).padding.top,
-                          child: searchHeader(context),
+                return
+                  SmartRefresher(
+                    controller: _refreshController,
+                    enablePullUp: true,
+                    onRefresh: () async {
+                      await Future.delayed(const Duration(milliseconds: 500));
+                      _refreshController.refreshFailed();
+                    },
+                    onLoading: () async {
+                      await Future.delayed(const Duration(milliseconds: 500));
+                      // _refreshController.loadComplete();
+                      _refreshController.loadNoData();
+                    },
+                    child: CustomScrollView(
+                      slivers: [
+                        SliverPersistentHeader(
+                          pinned: true,
+                          delegate: SliverHeaderDelegate(//有最大和最小高度
+                            maxHeight: 88 + MediaQueryData.fromWindow(window).padding.top,
+                            minHeight: 44 + MediaQueryData.fromWindow(window).padding.top,
+                            child: searchHeader(context),
+                          ),
                         ),
-                      ),
-                      galleryList(context),
-                      advBanner(context),
-                      menuSlider(context),
-                      SliverPersistentHeader(
-                        pinned: true,
-                        delegate: SliverHeaderDelegate.fixedHeight( //固定高度
-                          height: 50,
-                          child: buildHeader(2),
+                        galleryList(context),
+                        advBanner(context),
+                        menuSlider(context),
+                        SliverPersistentHeader(
+                          pinned: true,
+                          delegate: SliverHeaderDelegate.fixedHeight( //固定高度
+                            height: 50,
+                            child: buildHeader(2),
+                          ),
                         ),
-                      ),
-                      buildSliverList(20),
-                    ],
-                  ),
+                        buildSliverList(20),
+                      ],
+                    ),
                 );
               }
             )

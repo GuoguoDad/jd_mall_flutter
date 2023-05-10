@@ -40,10 +40,18 @@ dependencies:
   flutter_redux: ^0.10.0
   getwidget: ^3.1.1
   json_annotation: ^4.8.1
-  connectivity: 3.0.6
+  connectivity: ^3.0.6
+  shared_preferences: ^2.0.10
+  pull_to_refresh: ^2.0.0
+
+
+
 
 dev_dependencies:
   flutter_test:
+    sdk: flutter
+
+  flutter_localizations:
     sdk: flutter
 
   # The "flutter_lints" package below contains a set of recommended lints to
