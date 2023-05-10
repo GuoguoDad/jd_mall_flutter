@@ -1,5 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_redux/flutter_redux.dart';
 import 'package:jd_mall_flutter/common/util/color_util.dart';
+import 'package:jd_mall_flutter/redux/action/wel_page_action.dart';
+import 'package:jd_mall_flutter/redux/app_state.dart';
+
+import '../../../redux/state/wel_page_state.dart';
 
 final List<Map<String, dynamic>> menuData = [
   {
@@ -98,7 +103,6 @@ final List<Map<String, dynamic>> menuData = [
     "menuCode": "m20"
   }
 ];
-int pageIndex = 0;
 
 const rowNum = 5;
 const pageNum = rowNum * 2;
@@ -113,7 +117,7 @@ Widget menuSlider(BuildContext context) {
             children: [
               Expanded(
                 flex: 1,
-                child: menuPageList()
+                child: menuPageList(context)
               ),
               Container(
                 height: 15,
@@ -128,15 +132,22 @@ Widget menuSlider(BuildContext context) {
                         alignment: const Alignment(0, .5),
                         height: 10,
                         width: 10,
-                        child: CircleAvatar(
-                          radius: 3,
-                          backgroundColor: pageIndex == index ? ColorUtil('#FE0F22') : Colors.grey,
-                          child: Container(
-                            alignment: const Alignment(0, .5),
-                            width: 10,
-                            height: 10,
-                          ),
-                        ),
+                        child:  StoreConnector<AppState, WelPageState>(
+                            converter: (store) {
+                            return store.state.welPageState;
+                          },
+                          builder: (context, state) {
+                              return CircleAvatar(
+                                radius: 3,
+                                backgroundColor: state.menuSliderIndex == index ? ColorUtil('#FE0F22') : Colors.grey,
+                                child: Container(
+                                  alignment: const Alignment(0, .5),
+                                  width: 10,
+                                  height: 10,
+                                ),
+                              );
+                          }
+                        )
                       );
                     }),
               )
@@ -146,41 +157,46 @@ Widget menuSlider(BuildContext context) {
   );
 }
 
-Widget menuPageList() {
-  return PageView.builder(
-    itemCount: (menuData.length % pageNum ) > 0 ? (menuData.length ~/ pageNum) + 1 : (menuData.length ~/ pageNum),
-    onPageChanged: (index) {
-      pageIndex = index;
-    },
-    itemBuilder: (BuildContext context, int index) {
-      return GridView.builder(
-          padding: const EdgeInsets.fromLTRB(0, 8, 0, 0),
-          physics: const NeverScrollableScrollPhysics(),
-          itemCount: (index < (menuData.length ~/ pageNum)) ? pageNum : (menuData.length % pageNum),
-          gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-            crossAxisCount: rowNum,
-            crossAxisSpacing: 10,
-            mainAxisSpacing: 2,
-          ),
-          itemBuilder: (context, position){
-            return Column(
-              mainAxisAlignment: MainAxisAlignment.start,
-              children: [
-                Image.network(menuData[index * pageNum + position]['menuIcon'].toString(),
-                  width: 40,
-                  height: 40,
+Widget menuPageList(BuildContext context) {
+  return
+    StoreBuilder<AppState>(
+      builder: (context, store) {
+        return PageView.builder(
+          itemCount: (menuData.length % pageNum ) > 0 ? (menuData.length ~/ pageNum) + 1 : (menuData.length ~/ pageNum),
+          onPageChanged: (index) {
+            store.dispatch(SetMenuSliderIndex(index));
+          },
+          itemBuilder: (BuildContext context, int index) {
+            return GridView.builder(
+                padding: const EdgeInsets.fromLTRB(0, 8, 0, 0),
+                physics: const NeverScrollableScrollPhysics(),
+                itemCount: (index < (menuData.length ~/ pageNum)) ? pageNum : (menuData.length % pageNum),
+                gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                  crossAxisCount: rowNum,
+                  crossAxisSpacing: 10,
+                  mainAxisSpacing: 2,
                 ),
-                Container(
-                  margin: const EdgeInsets.only(top: 4),
-                  child: Text(
-                    menuData[index * pageNum + position]['menuName'].toString(),
-                    style: const TextStyle(fontSize: 12),
-                  ),
-                )
-              ],
+                itemBuilder: (context, position){
+                  return Column(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: [
+                      Image.network(menuData[index * pageNum + position]['menuIcon'].toString(),
+                        width: 40,
+                        height: 40,
+                      ),
+                      Container(
+                        margin: const EdgeInsets.only(top: 4),
+                        child: Text(
+                          menuData[index * pageNum + position]['menuName'].toString(),
+                          style: const TextStyle(fontSize: 12),
+                        ),
+                      )
+                    ],
+                  );
+                }
             );
-          }
+          },
         );
-    },
-  );
+      }
+    );
 }

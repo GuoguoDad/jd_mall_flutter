@@ -8,13 +8,13 @@ void main() {
   runApp(
     StoreProvider<AppState>(
       store: store,
-      child: const RootApp()
+      child: const MallApp()
     )
   );
 }
 
-class RootApp extends StatelessWidget {
-  const RootApp({super.key});
+class MallApp extends StatelessWidget {
+  const MallApp({super.key});
 
   @override
   Widget build(BuildContext context) {
