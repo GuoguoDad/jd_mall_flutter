@@ -7,6 +7,6 @@ import 'package:jd_mall_flutter/model/HomePageInfo.dart';
 final store = Store<AppState>(
   reducers,
   initialState: AppState(
-    WelPageState(0, 0, HomePageInfo(''))
+    WelPageState(0, 0, HomePageInfo.empty())
   ),
 );
