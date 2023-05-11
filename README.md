@@ -16,7 +16,6 @@
 | **connectivity**           | **网络链接**       |
 | **json_annotation**        | **json模板**     |
 | **json_serializable**      | **json模板**     |
-| **flutter_webview_plugin** | **全屏的webview** |
 | **photo_view**             | **图片预览**       |
 | **path_provider**          | **本地路径**       |
 | **permission_handler**     | **权限**         |
