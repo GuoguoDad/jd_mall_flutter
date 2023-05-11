@@ -21,7 +21,6 @@ class WelcomePage extends StatefulWidget {
 }
 
 class _WelcomePageState extends State<WelcomePage> {
-
   final RefreshController _refreshController = RefreshController();
 
   @override
@@ -50,7 +49,8 @@ class _WelcomePageState extends State<WelcomePage> {
                     enablePullUp: true,
                     onRefresh: () async {
                       await Future.delayed(const Duration(milliseconds: 500));
-                      _refreshController.refreshFailed();
+                      // _refreshController.refreshFailed();
+                      _refreshController.refreshCompleted();
                     },
                     onLoading: () async {
                       await Future.delayed(const Duration(milliseconds: 500));
@@ -93,8 +93,7 @@ class _WelcomePageState extends State<WelcomePage> {
   Widget buildSliverList([int count = 5]) {
     return SliverFixedExtentList(
       itemExtent: 50,
-      delegate: SliverChildBuilderDelegate(
-            (context, index) {
+      delegate: SliverChildBuilderDelegate((context, index) {
           return Container(
             color: Colors.white,
             child: ListTile(title: Text('$index')),

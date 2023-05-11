@@ -1,4 +1,4 @@
-import 'package:jd_mall_flutter/model/HomePageInfo.dart';
+import 'package:jd_mall_flutter/models/HomePageInfo.dart';
 
 class WelPageState {
   //首页页面滚动条位置

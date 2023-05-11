@@ -1,3 +1,4 @@
+import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:flutter_redux/flutter_redux.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
@@ -24,17 +25,16 @@ class MallApp extends StatelessWidget {
       RefreshConfiguration(
         footerTriggerDistance: 15,
         dragSpeedRatio: 0.91,
-        headerTriggerDistance: 88,
-        headerBuilder: () => const ClassicHeader(),
+        headerTriggerDistance: 88 + MediaQueryData.fromWindow(window).padding.top,
+        headerBuilder: () => ClassicHeader(
+          spacing: 10,
+          height: 68 + MediaQueryData.fromWindow(window).padding.top,
+        ),
         footerBuilder: () => const ClassicFooter(),
         enableLoadingWhenNoData: false,
         enableRefreshVibrate: false,
         enableLoadMoreVibrate: false,
         enableBallisticLoad: true,
-        shouldFooterFollowWhenNotFull: (state) {
-          // If you want load more with noMoreData state ,may be you should return false
-          return true;
-        },
         child: MaterialApp(
           theme: ThemeData(
             brightness: Brightness.light,
@@ -55,8 +55,8 @@ class MallApp extends StatelessWidget {
             GlobalCupertinoLocalizations.delegate
           ],
           supportedLocales: const [
-            Locale('en'),
             Locale('zh'),
+            Locale('ch'),
           ],
         )
       );

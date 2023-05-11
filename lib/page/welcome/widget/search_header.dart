@@ -14,7 +14,7 @@ Widget searchHeader(BuildContext context) {
       padding: EdgeInsets.fromLTRB(0, MediaQueryData.fromWindow(window).padding.top, 0, 0),
       child: Stack(
         alignment:Alignment.center ,
-        fit: StackFit.expand, //未定位widget占满Stack整个空间
+        fit: StackFit.expand,
         children: <Widget>[
           Positioned(
             top: 0,
