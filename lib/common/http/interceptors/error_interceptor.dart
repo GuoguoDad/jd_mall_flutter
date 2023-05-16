@@ -14,7 +14,11 @@ class ErrorInterceptors extends InterceptorsWrapper {
           type: DioErrorType.unknown,
           response: Response(
               requestOptions: options,
-              data: BaseResponse(Code.NETWORK_ERROR,Code.errorHandleFunction(Code.NETWORK_ERROR, "", false),'')
+              data: BaseResponse(
+                  code: Code.NETWORK_ERROR.toString(),
+                  msg: Code.errorHandleFunction(Code.NETWORK_ERROR, "", false),
+                  data: null
+              )
           )
       ));
     }

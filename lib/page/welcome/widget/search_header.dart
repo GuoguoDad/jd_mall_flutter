@@ -4,13 +4,13 @@ import 'package:flutter_redux/flutter_redux.dart';
 import 'package:jd_mall_flutter/common/util/color_util.dart';
 import 'package:jd_mall_flutter/common/widget/image/icon_image.dart';
 import 'package:jd_mall_flutter/redux/app_state.dart';
-import 'package:jd_mall_flutter/redux/state/wel_page_state.dart';
+import 'package:jd_mall_flutter/page/welcome/redux/wel_page_state.dart';
 
 import '../util.dart';
 
 Widget searchHeader(BuildContext context) {
   return Container(
-      color: ColorUtil('#FE0F22'),
+      color: ColorUtil.hex2Color('#FE0F22'),
       padding: EdgeInsets.fromLTRB(0, MediaQueryData.fromWindow(window).padding.top, 0, 0),
       child: Stack(
         alignment:Alignment.center ,
@@ -57,7 +57,7 @@ Widget searchHeader(BuildContext context) {
                             height: 34.0,
                             alignment: Alignment.centerLeft,
                             child: Text('跑步鞋', style: TextStyle(
-                              color: ColorUtil('#818286'),
+                              color: ColorUtil.hex2Color('#818286'),
                             )),
                           ),
                         ),

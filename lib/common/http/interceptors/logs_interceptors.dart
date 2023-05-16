@@ -42,10 +42,10 @@ class LogsInterceptors extends InterceptorsWrapper {
 
   @override
   onResponse(Response response, handler) async {
-    print('返回参数: $response');
+    print('返回结果: $response');
     if (response.data is Map || response.data is List) {
       try {
-        var data = Map<String, dynamic>();
+        var data = <String, dynamic>{};
         data["data"] = response.data;
         addLogic(sResponsesHttpUrl, response.requestOptions.uri.toString());
         addLogic(sHttpResponses, data);
@@ -54,7 +54,7 @@ class LogsInterceptors extends InterceptorsWrapper {
       }
     } else if (response.data is String) {
       try {
-        var data = Map<String, dynamic>();
+        var data = <String, dynamic>{};
         data["data"] = response.data;
         addLogic(sResponsesHttpUrl, response.requestOptions.uri.toString());
         addLogic(sHttpResponses, data);

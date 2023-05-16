@@ -39,19 +39,23 @@ class HttpManager {
       if (err.type == DioErrorType.connectionTimeout || err.type == DioErrorType.receiveTimeout) {
         errResponse!.statusCode = Code.NETWORK_TIMEOUT;
       }
-      return BaseResponse(errResponse?.statusCode, '', Code.errorHandleFunction(errResponse!.statusCode, err.message, noTip));
+      return BaseResponse(
+          code: errResponse?.statusCode.toString() ?? "",
+          msg: err.message,
+          data: null
+      );
     }
 
     Response response;
     try {
-      response = await _dio.request<T>(url, data: params, options: option);
+      response = await _dio.request(url, data: params, options: option);
     } on DioError catch(e) {
       return exceptionHandler(e);
     }
     if (response.data is DioError) {
-      return exceptionHandler(response.data);
+      return exceptionHandler(response.data as DioError);
     }
-    return response.data;
+    return BaseResponse<T>.fromJson(response.data?.data as Map<String, dynamic>);
   }
 
   ///get发起网络请求

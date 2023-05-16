@@ -9,5 +9,5 @@ class ColorUtil extends Color {
     return int.parse(hexColor, radix: 16);
   }
 
-  ColorUtil(final String hexColor) : super(_getColorFromHex(hexColor));
+  ColorUtil.hex2Color(final String hexColor) : super(_getColorFromHex(hexColor));
 }

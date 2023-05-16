@@ -1,0 +1,14 @@
+{
+  "name": "mock",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "mock": "mock-server --watch --port 8090 --api-base-path ./api"
+  },
+  "author": "liuhui",
+  "license": "ISC",
+  "devDependencies": {
+    "webpack-plugin-mock": "^1.1.1"
+  }
+}

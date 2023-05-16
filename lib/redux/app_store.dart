@@ -1,12 +1,17 @@
 import 'package:redux/redux.dart';
 import 'package:jd_mall_flutter/redux/app_reducer.dart';
 import 'package:jd_mall_flutter/redux/app_state.dart';
-import 'package:jd_mall_flutter/redux/state/wel_page_state.dart';
-import 'package:jd_mall_flutter/models/HomePageInfo.dart';
+import 'package:jd_mall_flutter/page/welcome/redux/wel_page_state.dart';
+import 'package:jd_mall_flutter/models/home_page_info.dart';
+
+import '../page/welcome/redux/wel_page_middleware.dart';
 
 final store = Store<AppState>(
   reducers,
   initialState: AppState(
-    WelPageState(0, 0, HomePageInfo.empty())
+    WelPageState(false, 0, 0, "", HomePageInfo.fromJson({}))
   ),
+  middleware: [
+    WelPageMiddleware()
+  ]
 );

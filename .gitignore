@@ -42,3 +42,6 @@ app.*.map.json
 /android/app/debug
 /android/app/profile
 /android/app/release
+
+/mock_server/node_modules
+/mock_server/package-lock.json
