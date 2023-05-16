@@ -5,6 +5,8 @@ import 'package:jd_mall_flutter/page/welcome/redux/wel_page_action.dart';
 import 'package:jd_mall_flutter/redux/app_state.dart';
 import 'package:jd_mall_flutter/page/welcome/redux/wel_page_state.dart';
 
+import '../../../common/constant/img.dart';
+
 const rowNum = 5;
 const pageNum = rowNum * 2;
 
@@ -92,7 +94,7 @@ Widget menuPageList(BuildContext context) {
                   return Column(
                     mainAxisAlignment: MainAxisAlignment.start,
                     children: [
-                      Image.network(menuData?[index * pageNum + position]?.menuIcon.toString() ?? "",
+                      Image.network(menuData?[index * pageNum + position]?.menuIcon.toString() ?? defaultImg,
                         width: 40,
                         height: 40,
                       ),

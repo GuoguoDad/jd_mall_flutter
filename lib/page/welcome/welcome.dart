@@ -1,6 +1,7 @@
 import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:flutter_redux/flutter_redux.dart';
+import 'package:jd_mall_flutter/page/welcome/widget/goods_list.dart';
 import 'package:jd_mall_flutter/page/welcome/widget/tab_list.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
 import 'package:jd_mall_flutter/common/widget/persistentHeader/sliver_header_builder.dart';
@@ -48,7 +49,7 @@ class _WelcomePageState extends State<WelcomePage> {
                 return
                   SmartRefresher(
                     controller: _refreshController,
-                    enablePullUp: false,
+                    enablePullUp: true,
                     onRefresh: () async {
                       await Future.delayed(const Duration(milliseconds: 500));
                       // _refreshController.refreshFailed();
@@ -79,7 +80,7 @@ class _WelcomePageState extends State<WelcomePage> {
                             child: tabList(context),
                           ),
                         ),
-                        buildSliverList(20),
+                        goodsList(context),
                       ],
                     ),
                 );
@@ -88,21 +89,5 @@ class _WelcomePageState extends State<WelcomePage> {
           );
         }
       );
-  }
-
-
-// 构建固定高度的SliverList，count为列表项属相
-  Widget buildSliverList([int count = 5]) {
-    return SliverFixedExtentList(
-      itemExtent: 50,
-      delegate: SliverChildBuilderDelegate((context, index) {
-          return Container(
-            color: Colors.white,
-            child: ListTile(title: Text('$index')),
-          );
-        },
-        childCount: count,
-      ),
-    );
   }
 }

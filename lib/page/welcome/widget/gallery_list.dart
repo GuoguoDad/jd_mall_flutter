@@ -5,6 +5,8 @@ import 'package:jd_mall_flutter/common/util/color_util.dart';
 import 'package:jd_mall_flutter/redux/app_state.dart';
 import 'package:jd_mall_flutter/page/welcome/redux/wel_page_state.dart';
 
+import '../../../common/constant/img.dart';
+
 Widget galleryList(BuildContext context) {
   return SliverToBoxAdapter(
     child: Container(
@@ -41,7 +43,7 @@ Widget galleryList(BuildContext context) {
                       child: ClipRRect(
                         borderRadius: const BorderRadius.all(Radius.circular(6.0)),
                         child: Image.network(
-                            item.imgUrl ?? "",
+                            item.imgUrl ?? defaultImg,
                             fit: BoxFit.fill,
                             width: MediaQuery.of(context).size.width
                         ),
