@@ -22,7 +22,7 @@ class _TabPageState extends State<HomePage> {
     });
   }
 
-  List<Widget> pages = [WelcomePage(), CategoryPage(), CartPage(), MinePage()];
+  List<Widget> pages = [const WelcomePage(), const CategoryPage(), const CartPage(), const MinePage()];
 
   @override
   Widget build(BuildContext context) {

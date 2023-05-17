@@ -24,12 +24,17 @@ class WelcomePage extends StatefulWidget {
 class _WelcomePageState extends State<WelcomePage>{
   final RefreshController _refreshController = RefreshController();
 
+  void refreshSuccess() { _refreshController.refreshCompleted(); _refreshController.resetNoData(); }
+  void refreshFail() { _refreshController.refreshFailed(); _refreshController.resetNoData();}
+  void loadMoreSuccess() { _refreshController.loadComplete();}
+  void loadMoreFail() { _refreshController.loadNoData();}
+
   @override
   Widget build(BuildContext context) {
     return
       StoreBuilder<AppState>(
         onInit:  (store){
-          store.dispatch(LoadAction(true));
+          store.dispatch(InitDataAction());
         },
         builder: (context, store) {
           return NotificationListener<ScrollNotification>(
@@ -51,14 +56,10 @@ class _WelcomePageState extends State<WelcomePage>{
                     controller: _refreshController,
                     enablePullUp: true,
                     onRefresh: () async {
-                      await Future.delayed(const Duration(milliseconds: 500));
-                      // _refreshController.refreshFailed();
-                      _refreshController.refreshCompleted();
+                      store.dispatch(RefreshAction(refreshSuccess, refreshFail));
                     },
                     onLoading: () async {
-                      await Future.delayed(const Duration(milliseconds: 500));
-                      // _refreshController.loadComplete();
-                      _refreshController.loadNoData();
+                      store.dispatch(LoadMoreAction(store.state.welPageState.pageNum + 1, loadMoreSuccess, loadMoreFail));
                     },
                     child: CustomScrollView(
                       slivers: [

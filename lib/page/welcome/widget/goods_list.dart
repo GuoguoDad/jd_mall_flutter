@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_redux/flutter_redux.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
@@ -97,25 +96,28 @@ Widget goodsItem(GoodsList item){
                   overflow: TextOverflow.ellipsis,
                   style: TextStyle(color: ColorUtil.hex2Color('#737473'), fontSize: 14)
               ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Text(
-                      "￥${item.price.toString()}",
-                      maxLines: 2,
-                      overflow: TextOverflow.ellipsis,
-                      style: TextStyle(color: ColorUtil.hex2Color('#ED4637'), fontSize: 14)
-                  ),
-                  Container(
-                    margin: const EdgeInsets.only(top: 2),
-                    padding: const EdgeInsets.only(left: 2, right: 2),
-                    decoration: BoxDecoration(
-                      color: ColorUtil.hex2Color('#F4F4F5'),
-                      borderRadius: const BorderRadius.only(topLeft: Radius.circular(6), bottomLeft: Radius.circular(6)),
+              Container(
+                margin: const EdgeInsets.only(top: 6),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text(
+                        "￥${item.price.toString()}",
+                        maxLines: 2,
+                        overflow: TextOverflow.ellipsis,
+                        style: TextStyle(color: ColorUtil.hex2Color('#ED4637'), fontSize: 14)
                     ),
-                    child: Text("看相似", style: TextStyle(color: ColorUtil.hex2Color('#A4A5A4'), fontSize: 12)),
-                  )
-                ],
+                    Container(
+                      margin: const EdgeInsets.only(top: 2),
+                      padding: const EdgeInsets.only(left: 2, right: 2),
+                      decoration: BoxDecoration(
+                        color: ColorUtil.hex2Color('#F4F4F5'),
+                        borderRadius: const BorderRadius.only(topLeft: Radius.circular(6), bottomLeft: Radius.circular(6)),
+                      ),
+                      child: Text("看相似", style: TextStyle(color: ColorUtil.hex2Color('#A4A5A4'), fontSize: 12)),
+                    )
+                  ],
+                )
               )
             ],
           )

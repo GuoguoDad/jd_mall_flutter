@@ -6,7 +6,7 @@ import 'package:jd_mall_flutter/page/welcome/redux/wel_page_action.dart';
 import 'package:jd_mall_flutter/redux/app_state.dart';
 import 'package:jd_mall_flutter/page/welcome/redux/wel_page_state.dart';
 
-import '../../../common/constant/img.dart';
+import '../../../common/constant/index.dart';
 import '../../../common/widget/image/asset_image.dart';
 
 const rowNum = 5;

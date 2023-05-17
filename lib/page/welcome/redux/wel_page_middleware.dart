@@ -1,16 +1,36 @@
 import 'package:redux/redux.dart';
 import 'package:jd_mall_flutter/page/welcome/redux/wel_page_action.dart';
 import 'package:jd_mall_flutter/page/welcome/service.dart';
+import 'package:jd_mall_flutter/common/constant/index.dart';
 
-const pageSize = 16;
+Future initData = Future.wait([WelcomeApi.queryHomeInfo(), WelcomeApi.queryGoodsListByPage(1, pageSize)]);
 
 class WelPageMiddleware<WelPageState> implements MiddlewareClass<WelPageState> {
   @override
   call(Store<WelPageState> store, action, NextDispatcher next) {
-    if(action is LoadAction) {
-      Future.wait([WelcomeApi.queryHomeInfo(), WelcomeApi.queryGoodsListByPage(1, pageSize)]).then((res) => {
+    if(action is InitDataAction) {
+      initData.then((res) => {
         store.dispatch(SetHomePageInfoAction(res[0])),
-        store.dispatch(SetGoodsPageAction(2, res[1]))
+        store.dispatch(InitGoodsPageAction(1, res[1]))
+      });
+    }
+    if(action is RefreshAction) {
+      initData.then((res) => {
+        store.dispatch(SetHomePageInfoAction(res[0])),
+        store.dispatch(InitGoodsPageAction(2, res[1])),
+        action.freshSuccess()
+      });
+    }
+    if(action is LoadMoreAction) {
+      WelcomeApi.queryGoodsListByPage(action.currentPage, pageSize).then((res) {
+        var totalPage = res.totalPageCount;
+
+        if(totalPage >= action.currentPage) {
+          store.dispatch(MoreGoodsPageAction(action.currentPage, res));
+          action.loadMoreSuccess();
+        } else {
+          action.loadMoreFail();
+        }
       });
     }
     next(action);
