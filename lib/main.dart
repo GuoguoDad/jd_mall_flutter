@@ -25,10 +25,10 @@ class MallApp extends StatelessWidget {
       RefreshConfiguration(
         footerTriggerDistance: 15,
         dragSpeedRatio: 0.91,
-        headerTriggerDistance: 88 + MediaQueryData.fromWindow(window).padding.top,
+        headerTriggerDistance: 88 + MediaQueryData.fromView(View.of(context)).padding.top,
         headerBuilder: () => ClassicHeader(
           spacing: 10,
-          height: 68 + MediaQueryData.fromWindow(window).padding.top,
+          height: 68 + MediaQueryData.fromView(View.of(context)).padding.top,
         ),
         footerBuilder: () => const ClassicFooter(),
         enableLoadingWhenNoData: false,

@@ -19,7 +19,7 @@ publish_to: 'none' # Remove this line if you wish to publish to pub.dev
 version: 1.0.0+1
 
 environment:
-  sdk: '>=2.19.6 <3.0.0'
+  sdk: '>=2.19.6 <3.10.0'
 
 # Dependencies specify other packages that your package needs in order to work.
 # To automatically upgrade your package dependencies to the latest versions
@@ -36,6 +36,7 @@ dependencies:
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.2
   dio: ^5.1.2
+  redux: ^5.0.0
   flutter_redux: ^0.10.0
   getwidget: ^3.1.1
   json_annotation: ^4.8.1
@@ -89,6 +90,7 @@ flutter:
     - images/ic_camera.png
     - images/ic_search.png
     - images/default.png
+    - images/ic_back_top.png
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware
 

@@ -1,4 +1,3 @@
-import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:flutter_redux/flutter_redux.dart';
 import 'package:jd_mall_flutter/common/util/color_util.dart';
@@ -10,7 +9,7 @@ import 'package:jd_mall_flutter/page/welcome/util.dart';
 Widget searchHeader(BuildContext context) {
   return Container(
       color: ColorUtil.hex2Color('#FE0F22'),
-      padding: EdgeInsets.fromLTRB(0, MediaQueryData.fromWindow(window).padding.top, 0, 0),
+      padding: EdgeInsets.fromLTRB(0, MediaQueryData.fromView(View.of(context)).padding.top, 0, 0),
       child: Stack(
         alignment:Alignment.center ,
         fit: StackFit.expand,

@@ -1,6 +1,6 @@
-import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:flutter_redux/flutter_redux.dart';
+import 'package:jd_mall_flutter/common/widget/image/asset_image.dart';
 import 'package:jd_mall_flutter/page/welcome/widget/goods_list.dart';
 import 'package:jd_mall_flutter/page/welcome/widget/tab_list.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
@@ -22,6 +22,7 @@ class WelcomePage extends StatefulWidget {
 }
 
 class _WelcomePageState extends State<WelcomePage>{
+  final ScrollController _scrollController = ScrollController();
   final RefreshController _refreshController = RefreshController();
 
   void refreshSuccess() { _refreshController.refreshCompleted(); _refreshController.resetNoData(); }
@@ -51,8 +52,8 @@ class _WelcomePageState extends State<WelcomePage>{
                 return store.state.welPageState;
               },
               builder: (context, state) {
-                return
-                  SmartRefresher(
+                return Scaffold(
+                  body: SmartRefresher(
                     controller: _refreshController,
                     enablePullUp: true,
                     onRefresh: () async {
@@ -62,12 +63,13 @@ class _WelcomePageState extends State<WelcomePage>{
                       store.dispatch(LoadMoreAction(store.state.welPageState.pageNum + 1, loadMoreSuccess, loadMoreFail));
                     },
                     child: CustomScrollView(
+                      controller: _scrollController,
                       slivers: [
                         SliverPersistentHeader(
                           pinned: true,
                           delegate: SliverHeaderDelegate(//有最大和最小高度
-                            maxHeight: 88 + MediaQueryData.fromWindow(window).padding.top,
-                            minHeight: 44 + MediaQueryData.fromWindow(window).padding.top,
+                            maxHeight: 88 + MediaQueryData.fromView(View.of(context)).padding.top,
+                            minHeight: 44 + MediaQueryData.fromView(View.of(context)).padding.top,
                             child: searchHeader(context),
                           ),
                         ),
@@ -84,6 +86,23 @@ class _WelcomePageState extends State<WelcomePage>{
                         goodsList(context),
                       ],
                     ),
+                  ),
+                  floatingActionButton: Visibility(
+                    visible: _scrollController.offset > MediaQuery.of(context).size.height,
+                    child: SizedBox(
+                      width: 48,
+                      height: 48,
+                      child:  FloatingActionButton(
+                        onPressed: () {
+                          _scrollController.animateTo(0,
+                              duration: const Duration(milliseconds: 500), //动画持续时长
+                              curve: Curves.easeInCubic); //以哪种动画的方式滑动
+                        },
+                        backgroundColor: Colors.white,
+                        child: assetImage('images/ic_back_top.png', 32, 32),
+                      )
+                    )
+                  ),
                 );
               }
             )
