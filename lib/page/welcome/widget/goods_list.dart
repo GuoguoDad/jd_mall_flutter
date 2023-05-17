@@ -3,36 +3,38 @@ import 'package:flutter/material.dart';
 import 'package:flutter_redux/flutter_redux.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'package:cached_network_image/cached_network_image.dart';
-import 'package:jd_mall_flutter/common/constant/img.dart';
 
 import '../../../common/util/color_util.dart';
+import '../../../common/widget/image/asset_image.dart';
 import '../../../models/goods_page_info.dart';
 import '../../../redux/app_state.dart';
 import '../redux/wel_page_state.dart';
 
+double width = 0;
 Widget goodsList(BuildContext context) {
+  width = (MediaQuery.of(context).size.width - 20) / 2;
+
   return StoreConnector<AppState, WelPageState>(
       converter: (store) {
         return store.state.welPageState;
       },
       builder: (context, state) {
         var goodsList = state.goodsPageInfo.goodsList ?? [];
-
         return SliverMasonryGrid.count(
           childCount: goodsList.length,
           crossAxisCount: 2,
           mainAxisSpacing: 10,
-          crossAxisSpacing: 10,
-          itemBuilder: (context, index) => goodsItem(goodsList[index], index),
+          crossAxisSpacing: 0,
+          itemBuilder: (context, index) => goodsItem(goodsList[index]),
         );
       },
     );
 }
 
-Widget goodsItem(GoodsList item, int index){
+Widget goodsItem(GoodsList item){
   return Container(
-    margin: EdgeInsets.only(left: index % 2 == 0 ? 10 : 0, right: index % 2 != 0 ? 10 : 0),
     padding: const EdgeInsets.only(bottom: 10),
+    margin: const EdgeInsets.only(left: 5, right: 5),
     decoration: BoxDecoration(
       color: Colors.white,
       borderRadius: BorderRadius.circular(6)
@@ -42,8 +44,8 @@ Widget goodsItem(GoodsList item, int index){
       children: [
         CachedNetworkImage(
           imageUrl: item.imgUrl!,
-          placeholder: (context, url) => const CircularProgressIndicator(backgroundColor: Colors.grey,),
-          errorWidget: (context, url, error) => CachedNetworkImage(imageUrl: defaultImg),
+          placeholder: (context, url) => assetImage("images/default.png", width, width),
+          errorWidget: (context, url, error) => assetImage("images/default.png", width, width),
           fit: BoxFit.fill,
         ),
         item.type == "2" ?

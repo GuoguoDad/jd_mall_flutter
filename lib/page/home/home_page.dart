@@ -3,7 +3,7 @@ import 'package:jd_mall_flutter/page/welcome/welcome.dart';
 import 'package:jd_mall_flutter/page/category/category_page.dart';
 import 'package:jd_mall_flutter/page/cart/cart_page.dart';
 import 'package:jd_mall_flutter/page/mine/mine_page.dart';
-import 'package:jd_mall_flutter/common/widget/image/icon_image.dart';
+import 'package:jd_mall_flutter/common/widget/image/asset_image.dart';
 
 const pages = [WelcomePage(), CategoryPage(), CartPage(), MinePage()];
 
@@ -40,23 +40,23 @@ class _TabPageState extends State<HomePage> {
         unselectedLabelStyle: const TextStyle( fontSize: 14 ),
         items: [
           BottomNavigationBarItem(
-            icon: iconImage('images/ic_home.png', 30, 30),
-            activeIcon: iconImage('images/ic_home_active.png', 30, 30),
+            icon: assetImage('images/ic_home.png', 30, 30),
+            activeIcon: assetImage('images/ic_home_active.png', 30, 30),
             label: '首页',
           ),
           BottomNavigationBarItem(
-            icon: iconImage('images/ic_category.png', 30, 30),
-            activeIcon: iconImage('images/ic_category_active.png', 30, 30),
+            icon: assetImage('images/ic_category.png', 30, 30),
+            activeIcon: assetImage('images/ic_category_active.png', 30, 30),
             label: '分类',
           ),
           BottomNavigationBarItem(
-            icon: iconImage('images/ic_cart.png', 30, 30),
-            activeIcon: iconImage('images/ic_cart_active.png', 30, 30),
+            icon: assetImage('images/ic_cart.png', 30, 30),
+            activeIcon: assetImage('images/ic_cart_active.png', 30, 30),
             label: '购物车',
           ),
           BottomNavigationBarItem(
-            icon: iconImage('images/ic_mine.png', 30, 30),
-            activeIcon: iconImage("images/ic_mine_active.png", 30, 30),
+            icon: assetImage('images/ic_mine.png', 30, 30),
+            activeIcon: assetImage("images/ic_mine_active.png", 30, 30),
             label: '我的',
           )
         ],

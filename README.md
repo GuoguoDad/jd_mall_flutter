@@ -20,6 +20,12 @@
 6. 触发
 
 
+# 启动mock_server
+1. cd mock_server
+2. 执行 npm i 安装依赖
+3. npm run mock
+
+
 # 效果
 ## 首页
 <img src="images/shot/home.gif" title="" alt="image" width="350">

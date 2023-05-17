@@ -2,11 +2,10 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:flutter_redux/flutter_redux.dart';
 import 'package:jd_mall_flutter/common/util/color_util.dart';
-import 'package:jd_mall_flutter/common/widget/image/icon_image.dart';
+import 'package:jd_mall_flutter/common/widget/image/asset_image.dart';
 import 'package:jd_mall_flutter/redux/app_state.dart';
 import 'package:jd_mall_flutter/page/welcome/redux/wel_page_state.dart';
-
-import '../util.dart';
+import 'package:jd_mall_flutter/page/welcome/util.dart';
 
 Widget searchHeader(BuildContext context) {
   return Container(
@@ -19,12 +18,12 @@ Widget searchHeader(BuildContext context) {
           Positioned(
             top: 0,
             left: 16,
-            child: iconImage('images/ic_pet.png', 38, 38),
+            child: assetImage('images/ic_pet.png', 38, 38),
           ),
           Positioned(
             top: 7,
             right: 18,
-            child: iconImage('images/ic_scan.png', 28, 28),
+            child: assetImage('images/ic_scan.png', 28, 28),
           ),
           StoreConnector<AppState, WelPageState>(
             converter: (store) {
@@ -48,7 +47,7 @@ Widget searchHeader(BuildContext context) {
                           width: 40,
                           height: 34,
                           child: UnconstrainedBox(
-                            child: iconImage('images/ic_search.png', 20, 20),
+                            child: assetImage('images/ic_search.png', 20, 20),
                           )
                         ),
                         Expanded(
@@ -65,7 +64,7 @@ Widget searchHeader(BuildContext context) {
                           width: 40,
                           height: 34,
                           child: UnconstrainedBox(
-                            child: iconImage('images/ic_camera.png', 20, 20),
+                            child: assetImage('images/ic_camera.png', 20, 20),
                           )
                         )
                       ],

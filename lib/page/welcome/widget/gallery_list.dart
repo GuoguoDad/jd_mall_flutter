@@ -1,11 +1,11 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_redux/flutter_redux.dart';
 import 'package:getwidget/getwidget.dart';
 import 'package:jd_mall_flutter/common/util/color_util.dart';
+import 'package:jd_mall_flutter/common/widget/image/asset_image.dart';
 import 'package:jd_mall_flutter/redux/app_state.dart';
 import 'package:jd_mall_flutter/page/welcome/redux/wel_page_state.dart';
-
-import '../../../common/constant/img.dart';
 
 Widget galleryList(BuildContext context) {
   return SliverToBoxAdapter(
@@ -24,7 +24,8 @@ Widget galleryList(BuildContext context) {
               return store.state.welPageState;
             },
             builder: (context, state) {
-              int bannerLength = state.homePageInfo.bannerList?.length ?? 0;
+              var bannerList = state.homePageInfo.bannerList ?? [];
+              int bannerLength = bannerList?.length ?? 0;
               if(bannerLength == 0) {
                 return Container();
               }
@@ -37,16 +38,17 @@ Widget galleryList(BuildContext context) {
                   viewportFraction: 1.0,
                   passiveIndicator: Colors.grey,
                   activeIndicator: ColorUtil.hex2Color('#FE0F22'),
-                  items: (state.homePageInfo.bannerList ??[]).map((item) {
+                  items: bannerList.map((item) {
                     return Container(
                       margin: const EdgeInsets.fromLTRB(12, 10, 12, 2),
-                      child: ClipRRect(
-                        borderRadius: const BorderRadius.all(Radius.circular(6.0)),
-                        child: Image.network(
-                            item.imgUrl ?? defaultImg,
-                            fit: BoxFit.fill,
-                            width: MediaQuery.of(context).size.width
-                        ),
+                      decoration: const BoxDecoration(
+                        borderRadius: BorderRadius.all( Radius.circular(6)),
+                      ),
+                      child: CachedNetworkImage(
+                        imageUrl: item.imgUrl!,
+                        fit: BoxFit.cover,
+                        placeholder: (context, url) => assetImage("images/default.png", MediaQuery.of(context).size.width - 24, 168),
+                        errorWidget: (context, url, error) => assetImage("images/default.png", MediaQuery.of(context).size.width - 24, 168),
                       ),
                     );
                   }).toList(),

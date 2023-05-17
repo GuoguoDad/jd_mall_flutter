@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_redux/flutter_redux.dart';
 import 'package:jd_mall_flutter/common/util/color_util.dart';
@@ -6,6 +7,7 @@ import 'package:jd_mall_flutter/redux/app_state.dart';
 import 'package:jd_mall_flutter/page/welcome/redux/wel_page_state.dart';
 
 import '../../../common/constant/img.dart';
+import '../../../common/widget/image/asset_image.dart';
 
 const rowNum = 5;
 const pageNum = rowNum * 2;
@@ -94,9 +96,13 @@ Widget menuPageList(BuildContext context) {
                   return Column(
                     mainAxisAlignment: MainAxisAlignment.start,
                     children: [
-                      Image.network(menuData?[index * pageNum + position]?.menuIcon.toString() ?? defaultImg,
+                      CachedNetworkImage(
                         width: 40,
                         height: 40,
+                        fit: BoxFit.cover,
+                        imageUrl: menuData[index * pageNum + position].menuIcon.toString()!,
+                        placeholder: (context, url) => assetImage("images/default.png", 40, 40),
+                        errorWidget: (context, url, error) => assetImage("images/default.png", 40, 40),
                       ),
                       Container(
                         margin: const EdgeInsets.only(top: 4),
