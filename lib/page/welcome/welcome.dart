@@ -88,7 +88,7 @@ class _WelcomePageState extends State<WelcomePage>{
                     ),
                   ),
                   floatingActionButton: Visibility(
-                    visible: _scrollController.offset > MediaQuery.of(context).size.height,
+                    visible:  _scrollController.hasClients && _scrollController.offset > MediaQuery.of(context).size.height,
                     child: SizedBox(
                       width: 48,
                       height: 48,
