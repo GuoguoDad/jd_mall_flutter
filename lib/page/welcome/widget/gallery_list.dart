@@ -9,28 +9,24 @@ import 'package:jd_mall_flutter/page/welcome/redux/wel_page_state.dart';
 
 Widget galleryList(BuildContext context) {
   return SliverToBoxAdapter(
-    child: Container(
-      color: ColorUtil.hex2Color('#FE0F22'),
-      padding: const EdgeInsets.fromLTRB(0, 5, 0, 0),
       child: Container(
-        padding: const EdgeInsets.fromLTRB(0, 4, 0, 0),
-        decoration: const BoxDecoration(
-          color: Colors.white,
-          borderRadius: BorderRadius.only(topLeft: Radius.circular(8), topRight: Radius.circular(8)),
-        ),
-        child:
-          StoreConnector<AppState, WelPageState>(
-            converter: (store) {
-              return store.state.welPageState;
-            },
-            builder: (context, state) {
-              var bannerList = state.homePageInfo.bannerList ?? [];
-              int bannerLength = bannerList?.length ?? 0;
-              if(bannerLength == 0) {
-                return Container();
-              }
-              return
-                GFCarousel(
+          color: ColorUtil.hex2Color('#FE0F22'),
+          padding: const EdgeInsets.fromLTRB(0, 5, 0, 0),
+          child: Container(
+              padding: const EdgeInsets.fromLTRB(0, 4, 0, 0),
+              decoration: const BoxDecoration(
+                color: Colors.white,
+                borderRadius: BorderRadius.only(topLeft: Radius.circular(8), topRight: Radius.circular(8)),
+              ),
+              child: StoreConnector<AppState, WelPageState>(converter: (store) {
+                return store.state.welPageState;
+              }, builder: (context, state) {
+                var bannerList = state.homePageInfo.bannerList ?? [];
+                int bannerLength = bannerList?.length ?? 0;
+                if (bannerLength == 0) {
+                  return Container();
+                }
+                return GFCarousel(
                   height: 180,
                   autoPlay: false,
                   hasPagination: true,
@@ -42,7 +38,7 @@ Widget galleryList(BuildContext context) {
                     return Container(
                       margin: const EdgeInsets.fromLTRB(12, 10, 12, 2),
                       decoration: const BoxDecoration(
-                        borderRadius: BorderRadius.all( Radius.circular(6)),
+                        borderRadius: BorderRadius.all(Radius.circular(6)),
                       ),
                       child: CachedNetworkImage(
                         imageUrl: item.imgUrl!,
@@ -53,9 +49,5 @@ Widget galleryList(BuildContext context) {
                     );
                   }).toList(),
                 );
-            }
-          )
-      )
-    )
-  );
+              }))));
 }

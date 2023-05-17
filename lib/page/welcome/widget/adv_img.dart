@@ -9,22 +9,21 @@ import 'package:jd_mall_flutter/page/welcome/redux/wel_page_state.dart';
 Widget advBanner(BuildContext context) {
   return SliverToBoxAdapter(
       child: StoreConnector<AppState, WelPageState>(
-        converter: (store) {
-          return store.state.welPageState;
-        },
-        builder: (context, state) {
-          return Container(
-              color: ColorUtil.hex2Color('#FFFFFF'),
-              padding: const EdgeInsets.fromLTRB(0, 0, 0, 0),
-              child: CachedNetworkImage(
-                height: 90,
-                imageUrl: state.homePageInfo?.adUrl ?? "",
-                placeholder: (context, url) => assetImage("images/default.png", MediaQuery.of(context).size.width - 24, 90),
-                errorWidget: (context, url, error) => assetImage("images/default.png", MediaQuery.of(context).size.width - 24, 90),
-                fit: BoxFit.fill,
-              ),
-          );
-        },
-      )
-  );
+    converter: (store) {
+      return store.state.welPageState;
+    },
+    builder: (context, state) {
+      return Container(
+        color: ColorUtil.hex2Color('#FFFFFF'),
+        padding: const EdgeInsets.fromLTRB(0, 0, 0, 0),
+        child: CachedNetworkImage(
+          height: 90,
+          imageUrl: state.homePageInfo?.adUrl ?? "",
+          placeholder: (context, url) => assetImage("images/default.png", MediaQuery.of(context).size.width - 24, 90),
+          errorWidget: (context, url, error) => assetImage("images/default.png", MediaQuery.of(context).size.width - 24, 90),
+          fit: BoxFit.fill,
+        ),
+      );
+    },
+  ));
 }

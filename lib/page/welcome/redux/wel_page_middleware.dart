@@ -8,24 +8,18 @@ Future initData = Future.wait([WelcomeApi.queryHomeInfo(), WelcomeApi.queryGoods
 class WelPageMiddleware<WelPageState> implements MiddlewareClass<WelPageState> {
   @override
   call(Store<WelPageState> store, action, NextDispatcher next) {
-    if(action is InitDataAction) {
-      initData.then((res) => {
-        store.dispatch(SetHomePageInfoAction(res[0])),
-        store.dispatch(InitGoodsPageAction(1, res[1]))
-      });
+    if (action is InitDataAction) {
+      initData.then((res) => {store.dispatch(SetHomePageInfoAction(res[0])), store.dispatch(InitGoodsPageAction(1, res[1]))});
     }
-    if(action is RefreshAction) {
-      initData.then((res) => {
-        store.dispatch(SetHomePageInfoAction(res[0])),
-        store.dispatch(InitGoodsPageAction(2, res[1])),
-        action.freshSuccess()
-      });
+    if (action is RefreshAction) {
+      initData.then(
+          (res) => {store.dispatch(SetHomePageInfoAction(res[0])), store.dispatch(InitGoodsPageAction(2, res[1])), action.freshSuccess()});
     }
-    if(action is LoadMoreAction) {
+    if (action is LoadMoreAction) {
       WelcomeApi.queryGoodsListByPage(action.currentPage, pageSize).then((res) {
         var totalPage = res.totalPageCount;
 
-        if(totalPage >= action.currentPage) {
+        if (totalPage >= action.currentPage) {
           store.dispatch(MoreGoodsPageAction(action.currentPage, res));
           action.loadMoreSuccess();
         } else {

@@ -1,4 +1,3 @@
-import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:flutter_redux/flutter_redux.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
@@ -8,12 +7,7 @@ import 'package:jd_mall_flutter/redux/app_store.dart';
 import 'package:jd_mall_flutter/page/home/home_page.dart';
 
 void main() {
-  runApp(
-    StoreProvider<AppState>(
-      store: store,
-      child: const MallApp()
-    )
-  );
+  runApp(StoreProvider<AppState>(store: store, child: const MallApp()));
 }
 
 class MallApp extends StatelessWidget {
@@ -21,15 +15,14 @@ class MallApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return
-      RefreshConfiguration(
+    return RefreshConfiguration(
         footerTriggerDistance: 15,
         dragSpeedRatio: 0.91,
         headerTriggerDistance: 88 + MediaQueryData.fromView(View.of(context)).padding.top,
         headerBuilder: () => ClassicHeader(
-          spacing: 10,
-          height: 68 + MediaQueryData.fromView(View.of(context)).padding.top,
-        ),
+              spacing: 10,
+              height: 68 + MediaQueryData.fromView(View.of(context)).padding.top,
+            ),
         footerBuilder: () => const ClassicFooter(),
         enableLoadingWhenNoData: false,
         enableRefreshVibrate: false,
@@ -42,9 +35,7 @@ class MallApp extends StatelessWidget {
             highlightColor: Colors.transparent,
           ),
           initialRoute: HomePage.name,
-          routes: {
-            HomePage.name: (context) => const HomePage()
-          },
+          routes: {HomePage.name: (context) => const HomePage()},
           home: const HomePage(),
           debugShowCheckedModeBanner: false,
           localizationsDelegates: const [
@@ -58,7 +49,6 @@ class MallApp extends StatelessWidget {
             Locale('zh'),
             Locale('ch'),
           ],
-        )
-      );
+        ));
   }
 }

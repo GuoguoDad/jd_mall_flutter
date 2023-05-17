@@ -39,8 +39,8 @@ class _TabPageState extends State<HomePage> {
         type: BottomNavigationBarType.fixed,
         unselectedItemColor: Colors.black87,
         selectedItemColor: Colors.red,
-        selectedLabelStyle: const TextStyle( fontSize: 14 ),
-        unselectedLabelStyle: const TextStyle( fontSize: 14 ),
+        selectedLabelStyle: const TextStyle(fontSize: 14),
+        unselectedLabelStyle: const TextStyle(fontSize: 14),
         items: [
           BottomNavigationBarItem(
             icon: assetImage('images/ic_home.png', 30, 30),

@@ -10,7 +10,8 @@ class WelcomeApi {
   }
 
   static Future queryGoodsListByPage(int currentPage, int pageSize) async {
-    var res = await httpManager.post('${config.host}/welcome/queryGoodsListByPage', {"currentPage": currentPage, "pageSize": pageSize}, null, null);
+    var res = await httpManager.post(
+        '${config.host}/welcome/queryGoodsListByPage', {"currentPage": currentPage, "pageSize": pageSize}, null, null);
     return GoodsPageInfo.fromJson(res?.data);
   }
 }
