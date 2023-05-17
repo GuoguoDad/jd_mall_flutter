@@ -5,8 +5,6 @@ import 'package:jd_mall_flutter/page/cart/cart_page.dart';
 import 'package:jd_mall_flutter/page/mine/mine_page.dart';
 import 'package:jd_mall_flutter/common/widget/image/asset_image.dart';
 
-const pages = [WelcomePage(), CategoryPage(), CartPage(), MinePage()];
-
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
   static const String name = "/home";
@@ -24,10 +22,15 @@ class _TabPageState extends State<HomePage> {
     });
   }
 
+  List<Widget> pages = [WelcomePage(), CategoryPage(), CartPage(), MinePage()];
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: pages[_selectedIndex],
+      body: IndexedStack(
+        index: _selectedIndex,
+        children: pages,
+      ),
       bottomNavigationBar: BottomNavigationBar(
         iconSize: 24,
         enableFeedback: false,
