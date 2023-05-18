@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:jd_mall_flutter/page/category/widget/header.dart';
+import 'package:jd_mall_flutter/page/category/widget/left_cate.dart';
 
 class CategoryPage extends StatefulWidget {
   const CategoryPage({super.key});
+
   static const String name = "/category";
 
   @override
@@ -9,20 +12,17 @@ class CategoryPage extends StatefulWidget {
 }
 
 class _CategoryPageState extends State<CategoryPage> {
-
   @override
   Widget build(BuildContext context) {
-    return Material(
-      child: Container(
-        color: Colors.white70,
-        child: Stack(
-          children: const [
-            Center(
-              child: Text("category", style: TextStyle(fontSize: 24, color: Colors.red)),
-            ),
-          ],
-        ),
-      ),
+    return Column(
+      children: [
+        header(context),
+        Expanded(
+            child: Flex(
+          direction: Axis.horizontal,
+          children: [Expanded(flex: 1, child: leftCate(context)), Expanded(flex: 2, child: Container())],
+        ))
+      ],
     );
   }
 }

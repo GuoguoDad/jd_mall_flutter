@@ -31,6 +31,7 @@ Widget galleryList(BuildContext context) {
                   height: 180,
                   autoPlay: true,
                   hasPagination: true,
+                  viewportFraction: 1.0,
                   autoPlayInterval: const Duration(seconds: 8),
                   passiveIndicator: Colors.grey,
                   activeIndicator: ColorUtil.hex2Color('#FE0F22'),

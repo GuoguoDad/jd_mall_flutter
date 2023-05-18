@@ -16,7 +16,7 @@ class HomePage extends StatefulWidget {
 }
 
 class _TabPageState extends State<HomePage> {
-  int _selectedIndex = 0;
+  int _selectedIndex = 1;
 
   void _onItemTapped(int index) {
     setState(() {
@@ -29,7 +29,7 @@ class _TabPageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return AnnotatedRegion<SystemUiOverlayStyle>(
-      value: [0].contains(_selectedIndex) ? SystemUiOverlayStyle.light : SystemUiOverlayStyle.dark,
+      value: [0, 1].contains(_selectedIndex) ? SystemUiOverlayStyle.light : SystemUiOverlayStyle.dark,
       child: Material(
           child: Scaffold(
         body: IndexedStack(

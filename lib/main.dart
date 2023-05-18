@@ -53,8 +53,8 @@ class MallApp extends StatelessWidget {
             GlobalCupertinoLocalizations.delegate
           ],
           supportedLocales: const [
-            Locale('zh'),
-            Locale('ch'),
+            Locale('en', 'US'), // 美国英语
+            Locale('zh', 'CN'), // 中文简体
           ],
         ));
   }
