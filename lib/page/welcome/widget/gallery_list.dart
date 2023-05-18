@@ -8,6 +8,7 @@ import 'package:jd_mall_flutter/redux/app_state.dart';
 import 'package:jd_mall_flutter/page/welcome/redux/wel_page_state.dart';
 
 Widget galleryList(BuildContext context) {
+  double carouselWidth = MediaQuery.of(context).size.width - 24;
   return SliverToBoxAdapter(
       child: Container(
           color: ColorUtil.hex2Color('#FE0F22'),
@@ -28,25 +29,23 @@ Widget galleryList(BuildContext context) {
                 }
                 return GFCarousel(
                   height: 180,
-                  autoPlay: false,
+                  autoPlay: true,
                   hasPagination: true,
-                  enlargeMainPage: false,
-                  viewportFraction: 1.0,
+                  autoPlayInterval: const Duration(seconds: 8),
                   passiveIndicator: Colors.grey,
                   activeIndicator: ColorUtil.hex2Color('#FE0F22'),
                   items: bannerList.map((item) {
                     return Container(
-                      margin: const EdgeInsets.fromLTRB(12, 10, 12, 2),
-                      decoration: const BoxDecoration(
-                        borderRadius: BorderRadius.all(Radius.circular(6)),
-                      ),
-                      child: CachedNetworkImage(
-                        imageUrl: item.imgUrl!,
-                        fit: BoxFit.cover,
-                        placeholder: (context, url) => assetImage("images/default.png", MediaQuery.of(context).size.width - 24, 168),
-                        errorWidget: (context, url, error) => assetImage("images/default.png", MediaQuery.of(context).size.width - 24, 168),
-                      ),
-                    );
+                        margin: const EdgeInsets.fromLTRB(12, 10, 12, 2),
+                        child: ClipRRect(
+                          borderRadius: const BorderRadius.all(Radius.circular(6)),
+                          child: CachedNetworkImage(
+                            imageUrl: item.imgUrl!,
+                            fit: BoxFit.cover,
+                            placeholder: (context, url) => assetImage("images/default.png", carouselWidth, 168),
+                            errorWidget: (context, url, error) => assetImage("images/default.png", carouselWidth, 168),
+                          ),
+                        ));
                   }).toList(),
                 );
               }))));
