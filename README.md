@@ -33,11 +33,15 @@
 
 ## 首页
 
-<img src="images/shot/home.gif" title="" alt="image" width="350">
+![1](<img src="images/shot/home1.gif" title="" alt="image" width="250">) |
+![2](<img src="images/shot/home2.gif" title="" alt="image" width="250">) |
+![3](<img src="images/shot/home3.gif" title="" alt="image" width="250">) |
+![4](<img src="images/shot/home4.gif" title="" alt="image" width="250">) |
+![5](<img src="images/shot/home5.gif" title="" alt="image" width="250">)
 
 ## 分类
 
-<img src="images/shot/category1.gif" title="" alt="image" width="350">
+![1](<img src="images/shot/category1.gif" title="" alt="image" width="250">) |
 
 # 第三方框架
 
