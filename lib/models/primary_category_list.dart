@@ -25,7 +25,7 @@ class CategoryInfo {
     this.code,
   });
 
-  factory CategoryInfo.fromJson(Map<String, dynamic> json) => _$CategoryListFromJson(json);
+  factory CategoryInfo.fromJson(Map<String, dynamic> json) => _$CategoryInfoFromJson(json);
 
-  Map<String, dynamic> toJson() => _$CategoryListToJson(this);
+  Map<String, dynamic> toJson() => _$CategoryInfoToJson(this);
 }

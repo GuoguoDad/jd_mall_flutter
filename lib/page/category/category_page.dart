@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:jd_mall_flutter/page/category/widget/header.dart';
 import 'package:jd_mall_flutter/page/category/widget/left_cate.dart';
+import 'package:jd_mall_flutter/page/category/widget/right_group.dart';
 
 class CategoryPage extends StatefulWidget {
   const CategoryPage({super.key});
@@ -20,7 +21,7 @@ class _CategoryPageState extends State<CategoryPage> {
         Expanded(
             child: Flex(
           direction: Axis.horizontal,
-          children: [Expanded(flex: 1, child: leftCate(context)), Expanded(flex: 2, child: Container())],
+          children: [Expanded(flex: 1, child: leftCate(context)), Expanded(flex: 2, child: rightGroupList(context))],
         ))
       ],
     );

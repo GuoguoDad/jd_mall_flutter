@@ -1,6 +1,6 @@
 import 'package:jd_mall_flutter/common/http/http.dart';
-import 'package:jd_mall_flutter/models/goods_page_info.dart';
 import 'package:jd_mall_flutter/common/config/config.dart';
+import 'package:jd_mall_flutter/models/second_group_category_info.dart';
 import '../../models/primary_category_list.dart';
 
 class CategoryApi {
@@ -9,9 +9,8 @@ class CategoryApi {
     return PrimaryCategoryList.fromJson(res?.data);
   }
 
-  static Future queryGoodsListByPage(int currentPage, int pageSize) async {
-    var res = await httpManager.post(
-        '${config.host}/welcome/queryGoodsListByPage', {"currentPage": currentPage, "pageSize": pageSize}, null, null);
-    return GoodsPageInfo.fromJson(res?.data);
+  static Future querySecondGroupCategoryInfo(String categoryId) async {
+    var res = await httpManager.post('${config.host}/category/queryContentByCategory', {"categoryId": categoryId}, null, null);
+    return SecondGroupCategoryInfo.fromJson(res?.data);
   }
 }
