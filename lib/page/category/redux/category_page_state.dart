@@ -20,7 +20,7 @@ class CategoryPageState {
   SecondGroupCategoryInfo? secondGroupCategoryInfo;
 
   //二级分类默认选中的信息
-  CateList? selectSecondCategoryInfo;
+  SecondCateList? selectSecondCategoryInfo;
 
   CategoryPageState(this.selectedCategoryInfo, this.categoryList, this.secondGroupCategoryInfo, this.selectSecondCategoryInfo);
 }

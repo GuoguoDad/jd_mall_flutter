@@ -11,7 +11,7 @@ class InitCategoryPageAction {
   List<CategoryInfo>? categoryList;
   SecondGroupCategoryInfo? secondGroupCategoryInfo;
 
-  CateList? selectSecondCategoryInfo;
+  SecondCateList? selectSecondCategoryInfo;
 
   InitCategoryPageAction(this.selectedCategoryInfo, this.categoryList, this.secondGroupCategoryInfo, this.selectSecondCategoryInfo);
 }
@@ -23,7 +23,7 @@ class SelectCategoryAction {
 }
 
 class SelectSecondCategoryAction {
-  CateList? selectSecondCategoryInfo;
+  SecondCateList? selectSecondCategoryInfo;
 
   SelectSecondCategoryAction(this.selectSecondCategoryInfo);
 }

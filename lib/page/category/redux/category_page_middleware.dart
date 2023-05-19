@@ -13,7 +13,8 @@ class CategoryPageMiddleware<CategoryPageState> implements MiddlewareClass<Categ
         List<CategoryInfo> list = res.categoryList;
         CategoryApi.querySecondGroupCategoryInfo(list[0].code!).then((result) {
           //默认选中第一个分类
-          CateList selectSecondCategoryInfo = result.cateList.length > 0 ? result.cateList[0] : CateList.fromJson({});
+          SecondCateList selectSecondCategoryInfo =
+              result.secondCateList.length > 0 ? result.secondCateList[0] : SecondCateList.fromJson({});
           store.dispatch(InitCategoryPageAction(SelectedCategoryInfo(null, list[0], list[1]), list, result, selectSecondCategoryInfo));
         });
       });

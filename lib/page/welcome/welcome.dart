@@ -4,7 +4,6 @@ import 'package:jd_mall_flutter/common/widget/image/asset_image.dart';
 import 'package:jd_mall_flutter/page/welcome/widget/goods_list.dart';
 import 'package:jd_mall_flutter/page/welcome/widget/tab_list.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
-import 'package:jd_mall_flutter/common/widget/persistentHeader/sliver_header_builder.dart';
 import 'package:jd_mall_flutter/page/welcome/widget/adv_img.dart';
 import 'package:jd_mall_flutter/page/welcome/widget/gallery_list.dart';
 import 'package:jd_mall_flutter/page/welcome/widget/menu_slider.dart';
@@ -15,6 +14,7 @@ import 'package:jd_mall_flutter/page/welcome/redux/wel_page_state.dart';
 
 class WelcomePage extends StatefulWidget {
   const WelcomePage({super.key});
+
   static const String name = "/welcome";
 
   @override
@@ -73,26 +73,11 @@ class _WelcomePageState extends State<WelcomePage> {
                 child: CustomScrollView(
                   controller: _scrollController,
                   slivers: [
-                    SliverPersistentHeader(
-                      pinned: true,
-                      delegate: SliverHeaderDelegate(
-                        //有最大和最小高度
-                        maxHeight: 88 + MediaQueryData.fromView(View.of(context)).padding.top,
-                        minHeight: 44 + MediaQueryData.fromView(View.of(context)).padding.top,
-                        child: searchHeader(context),
-                      ),
-                    ),
+                    searchHeader(context),
                     galleryList(context),
                     advBanner(context),
                     menuSlider(context),
-                    SliverPersistentHeader(
-                      pinned: true,
-                      delegate: SliverHeaderDelegate.fixedHeight(
-                        //固定高度
-                        height: 58,
-                        child: tabList(context),
-                      ),
-                    ),
+                    tabList(context),
                     goodsList(context),
                   ],
                 ),

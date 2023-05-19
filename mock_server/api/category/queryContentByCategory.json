@@ -3,7 +3,7 @@
   "msg": "",
   "data": {
     "bannerUrl": "http://oss.suning.com/srcfews/lsypc/imgs/20220228111221231.jpg",
-    "cateList": [
+    "secondCateList": [
       {
         "categoryName": "专场推荐",
         "categoryCode": "01",
