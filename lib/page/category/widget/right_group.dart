@@ -6,13 +6,19 @@ import 'package:jd_mall_flutter/page/category/redux/category_page_action.dart';
 import 'package:jd_mall_flutter/common/widget/group_grid_view.dart';
 import 'package:jd_mall_flutter/common/widget/image/asset_image.dart';
 import 'package:jd_mall_flutter/models/second_group_category_info.dart';
+import 'package:widgets_visibility_provider/widgets_visibility_provider.dart';
 import '../../../redux/app_state.dart';
 
+double bannerHeight = 100;
 //二级分类item宽度
 double scrollTabItemWidth = 82;
 //二级分类item间距
 double tabItemMarginRight = 8;
 late double rWidth, bWidth;
+//gridview的item宽和高一样
+double thirdCateItemHeight = 0;
+//groupGridview的分组头高度
+double sectionHeight = 30;
 
 Widget rightGroupList(BuildContext context) {
   ScrollController leftScrollController = ScrollController();
@@ -21,10 +27,12 @@ Widget rightGroupList(BuildContext context) {
   //右侧占屏幕三分之二
   rWidth = MediaQuery.of(context).size.width * 2 / 3;
 
-  double thirdCateItemWidth = (MediaQuery.of(context).size.width - 24) / 3;
+  //gridview的item宽和高一样
+  double thirdCateItemWidth = rWidth / 3;
+  thirdCateItemHeight = thirdCateItemWidth;
+
   //右侧内容宽度
   bWidth = rWidth - 28;
-  double bannerHeight = 100;
 
   return StoreBuilder<AppState>(
     onInit: (store) {
@@ -36,91 +44,118 @@ Widget rightGroupList(BuildContext context) {
       String headUrl = secondGroupCategoryInfo?.bannerUrl ?? "";
       List<SecondCateList> secondCateList = secondGroupCategoryInfo?.secondCateList ?? [];
 
+      var topBanImg = headUrl != ""
+          ? CachedNetworkImage(
+              width: bWidth,
+              height: bannerHeight,
+              imageUrl: headUrl,
+              placeholder: (context, url) => assetImage("images/default.png", bWidth, bannerHeight),
+              errorWidget: (context, url, error) => assetImage("images/default.png", bWidth, bannerHeight),
+              fit: BoxFit.cover,
+            )
+          : Container();
+
+      var secondScrollTabCategory = Container(
+          width: bWidth,
+          height: 32,
+          margin: const EdgeInsets.only(top: 10, bottom: 10),
+          child: ListView.builder(
+              controller: leftScrollController,
+              itemCount: secondCateList.length,
+              scrollDirection: Axis.horizontal,
+              itemBuilder: (BuildContext context, int index) {
+                bool isSelect = selectSecondCategoryInfo?.categoryCode == secondCateList[index].categoryCode;
+
+                return GestureDetector(
+                    onTap: () {
+                      // store.dispatch(SelectSecondCategoryAction(secondCateList[index]));
+                      //滚动当前选中的item至中间
+                      leftScrollController.animateTo(calc2Left(context, index, secondCateList.length),
+                          duration: const Duration(milliseconds: 200), curve: Curves.linear);
+                      //滚动分组三级分类
+                      gridViewController.animateTo(calc2top(context, index, secondCateList),
+                          duration: const Duration(milliseconds: 200), curve: Curves.linear);
+                    },
+                    child: Container(
+                      height: 32,
+                      width: scrollTabItemWidth,
+                      alignment: Alignment.center,
+                      margin: EdgeInsets.only(right: index + 1 != secondCateList.length ? tabItemMarginRight : 0),
+                      decoration: BoxDecoration(
+                        color: ColorUtil.hex2Color(isSelect ? "#F2E9E2" : "#F1F1F2"),
+                        borderRadius: const BorderRadius.all(Radius.circular(14)),
+                        border: Border.all(color: ColorUtil.hex2Color(isSelect ? "#AD1440" : "#EFEFF0"), width: 1),
+                      ),
+                      child: Text(
+                        secondCateList[index].categoryName!,
+                        style: TextStyle(color: ColorUtil.hex2Color(isSelect ? "#AD1440" : "#3E3F40")),
+                      ),
+                    ));
+              }));
+
+      //使用WidgetsVisibilityProvider 、WidgetsVisibilityListener和VisibleNotifierWidget组合监听得到第一个可见元素 firstVisibleItem
+      var groupThirdCategoryList = WidgetsVisibilityProvider(
+          child: Expanded(
+              child: WidgetsVisibilityListener(
+                  listener: (BuildContext context, WidgetsVisibilityEvent event) {
+                    int firstVisibleIndex = event.positionDataList!.isNotEmpty ? event.positionDataList[0].data : 0;
+                    SecondCateList firstVisibleItem = secondCateList[firstVisibleIndex];
+
+                    //如果不是当前选中的二级分类
+                    if (firstVisibleItem.categoryCode != selectSecondCategoryInfo?.categoryCode) {
+                      // print("=================firstVisibleIndex:${firstVisibleIndex}");
+
+                      store.dispatch(SelectSecondCategoryAction(firstVisibleItem));
+                      leftScrollController.animateTo(calc2Left(context, firstVisibleIndex, secondCateList.length),
+                          duration: const Duration(milliseconds: 200), curve: Curves.linear);
+                    }
+                  },
+                  child: GroupGridView(
+                      controller: gridViewController,
+                      padding: EdgeInsets.zero,
+                      gridDelegate:
+                          const SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 3, mainAxisSpacing: 0, crossAxisSpacing: 0),
+                      sectionCount: secondCateList.length,
+                      itemInSectionCount: (int section) => secondCateList[section].cateList!.length!,
+                      itemInSectionBuilder: (BuildContext context, IndexPath indexPath) {
+                        return Container(
+                          width: thirdCateItemWidth,
+                          height: thirdCateItemHeight,
+                          child: Column(
+                            children: [
+                              CachedNetworkImage(
+                                width: 58,
+                                height: 58,
+                                imageUrl: secondCateList[indexPath.section].cateList![indexPath.index].iconUrl!,
+                                placeholder: (context, url) => assetImage("images/default.png", bWidth, bannerHeight),
+                                errorWidget: (context, url, error) => assetImage("images/default.png", bWidth, bannerHeight),
+                                fit: BoxFit.fill,
+                              ),
+                              Container(
+                                  height: 24,
+                                  margin: const EdgeInsets.only(top: 6),
+                                  child: Text(
+                                    secondCateList[indexPath.section].cateList![indexPath.index].categoryName!,
+                                    style: TextStyle(fontSize: 12, color: ColorUtil.hex2Color("#777677")),
+                                  ))
+                            ],
+                          ),
+                        );
+                      },
+                      headerForSection: (section) => VisibleNotifierWidget(
+                          data: section,
+                          child: Container(
+                              height: sectionHeight,
+                              alignment: Alignment.centerLeft,
+                              padding: const EdgeInsets.only(left: 16),
+                              child: Text(secondCateList[section].categoryName!,
+                                  style: const TextStyle(fontSize: 16, fontWeight: FontWeight.w600))))))));
+
       return Container(
         color: Colors.white,
         padding: const EdgeInsets.only(top: 10),
         child: Column(
-          children: [
-            headUrl != ""
-                ? CachedNetworkImage(
-                    width: bWidth,
-                    height: bannerHeight,
-                    imageUrl: headUrl,
-                    placeholder: (context, url) => assetImage("images/default.png", bWidth, bannerHeight),
-                    errorWidget: (context, url, error) => assetImage("images/default.png", bWidth, bannerHeight),
-                    fit: BoxFit.cover,
-                  )
-                : Container(),
-            Container(
-                width: bWidth,
-                height: 32,
-                margin: const EdgeInsets.only(top: 10, bottom: 10),
-                child: ListView.builder(
-                    controller: leftScrollController,
-                    itemCount: secondCateList.length,
-                    scrollDirection: Axis.horizontal,
-                    itemBuilder: (BuildContext context, int index) {
-                      bool isSelect = selectSecondCategoryInfo?.categoryCode == secondCateList[index].categoryCode;
-
-                      return GestureDetector(
-                          onTap: () {
-                            store.dispatch(SelectSecondCategoryAction(secondCateList[index]));
-                            leftScrollController.animateTo(calc2Left(context, index, secondCateList.length),
-                                duration: const Duration(milliseconds: 200), curve: Curves.linear);
-                          },
-                          child: Container(
-                            height: 32,
-                            width: scrollTabItemWidth,
-                            alignment: Alignment.center,
-                            margin: EdgeInsets.only(right: index + 1 != secondCateList.length ? tabItemMarginRight : 0),
-                            decoration: BoxDecoration(
-                              color: ColorUtil.hex2Color(isSelect ? "#F2E9E2" : "#F1F1F2"),
-                              borderRadius: const BorderRadius.all(Radius.circular(14)),
-                              border: Border.all(color: ColorUtil.hex2Color(isSelect ? "#AD1440" : "#EFEFF0"), width: 1),
-                            ),
-                            child: Text(
-                              secondCateList[index].categoryName!,
-                              style: TextStyle(color: ColorUtil.hex2Color(isSelect ? "#AD1440" : "#3E3F40")),
-                            ),
-                          ));
-                    })),
-            Expanded(
-                child: GroupGridView(
-              controller: gridViewController,
-              padding: EdgeInsets.zero,
-              gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 3, mainAxisSpacing: 5, crossAxisSpacing: 5),
-              sectionCount: secondCateList.length,
-              itemInSectionCount: (int section) => secondCateList[section].cateList!.length!,
-              itemInSectionBuilder: (BuildContext context, IndexPath indexPath) {
-                return SizedBox(
-                  width: thirdCateItemWidth,
-                  height: 120,
-                  child: Column(
-                    children: [
-                      CachedNetworkImage(
-                        width: 58,
-                        height: 58,
-                        imageUrl: secondCateList[indexPath.section].cateList![indexPath.index].iconUrl!,
-                        placeholder: (context, url) => assetImage("images/default.png", bWidth, bannerHeight),
-                        errorWidget: (context, url, error) => assetImage("images/default.png", bWidth, bannerHeight),
-                        fit: BoxFit.fill,
-                      ),
-                      Container(
-                          margin: const EdgeInsets.only(top: 6),
-                          child: Text(
-                            secondCateList[indexPath.section].cateList![indexPath.index].categoryName!,
-                            style: TextStyle(fontSize: 12, color: ColorUtil.hex2Color("#777677")),
-                          ))
-                    ],
-                  ),
-                );
-              },
-              headerForSection: (section) => Container(
-                  padding: const EdgeInsets.symmetric(vertical: 8),
-                  margin: const EdgeInsets.only(left: 16),
-                  child: Text(secondCateList[section].categoryName!, style: const TextStyle(fontSize: 16, fontWeight: FontWeight.w600))),
-            ))
-          ],
+          children: [topBanImg, secondScrollTabCategory, groupThirdCategoryList],
         ),
       );
     },
@@ -142,4 +177,36 @@ double calc2Left(BuildContext context, int index, int total) {
     toLeft = totalItemWidth - displayWidth;
   }
   return toLeft;
+}
+
+double calc2top(BuildContext context, int index, List<SecondCateList> secondCateList) {
+  EdgeInsets mfp = MediaQueryData.fromView(View.of(context)).padding;
+  //展示高度，即GroupGridView展示高度
+  double displayHeight = MediaQuery.of(context).size.height - 50 - mfp.top - 56 - mfp.bottom - bannerHeight - 52;
+
+  //groupGridview 所有item总高度
+  double totalHeight = 0;
+  for (var element in secondCateList) {
+    int cateChildren = element.cateList!.length;
+    int rowNum = cateChildren ~/ 3 + (cateChildren % 3 > 0 ? 1 : 0);
+
+    totalHeight += rowNum * thirdCateItemHeight + sectionHeight;
+  }
+  //需要向上滚动距离
+  double toTop = 0;
+  List<SecondCateList> secondCate = secondCateList.sublist(0, index);
+  for (var element in secondCate) {
+    int totalChildren = element.cateList!.length;
+    int rowNum = totalChildren ~/ 3 + (totalChildren % 3 > 0 ? 1 : 0);
+
+    toTop += rowNum * thirdCateItemHeight + sectionHeight;
+  }
+  if (toTop < 0) {
+    toTop = 0;
+  }
+  if (toTop > totalHeight - displayHeight - sectionHeight) {
+    toTop = totalHeight - displayHeight - sectionHeight;
+  }
+
+  return toTop;
 }
