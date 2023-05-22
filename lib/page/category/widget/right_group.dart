@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_redux/flutter_redux.dart';
 import 'package:cached_network_image/cached_network_image.dart';
-import 'package:jd_mall_flutter/common/util/color_util.dart';
+import 'package:jd_mall_flutter/common/style/common_style.dart';
 import 'package:jd_mall_flutter/page/category/redux/category_page_action.dart';
 import 'package:jd_mall_flutter/common/widget/group_grid_view.dart';
 import 'package:jd_mall_flutter/common/widget/image/asset_image.dart';
@@ -82,13 +82,13 @@ Widget rightGroupList(BuildContext context) {
                       alignment: Alignment.center,
                       margin: EdgeInsets.only(right: index + 1 != secondCateList.length ? tabItemMarginRight : 0),
                       decoration: BoxDecoration(
-                        color: ColorUtil.hex2Color(isSelect ? "#F2E9E2" : "#F1F1F2"),
+                        color: isSelect ? CommonStyle.selectBgColor : CommonStyle.greyBgColor2,
                         borderRadius: const BorderRadius.all(Radius.circular(14)),
-                        border: Border.all(color: ColorUtil.hex2Color(isSelect ? "#AD1440" : "#EFEFF0"), width: 1),
+                        border: Border.all(color: isSelect ? CommonStyle.themeColor : CommonStyle.greyBgColor2, width: 1),
                       ),
                       child: Text(
                         secondCateList[index].categoryName!,
-                        style: TextStyle(color: ColorUtil.hex2Color(isSelect ? "#AD1440" : "#3E3F40")),
+                        style: TextStyle(color: isSelect ? CommonStyle.themeColor : CommonStyle.primaryColor),
                       ),
                     ));
               }));
@@ -118,7 +118,7 @@ Widget rightGroupList(BuildContext context) {
                       sectionCount: secondCateList.length,
                       itemInSectionCount: (int section) => secondCateList[section].cateList!.length!,
                       itemInSectionBuilder: (BuildContext context, IndexPath indexPath) {
-                        return Container(
+                        return SizedBox(
                           width: thirdCateItemWidth,
                           height: thirdCateItemHeight,
                           child: Column(
@@ -136,7 +136,7 @@ Widget rightGroupList(BuildContext context) {
                                   margin: const EdgeInsets.only(top: 6),
                                   child: Text(
                                     secondCateList[indexPath.section].cateList![indexPath.index].categoryName!,
-                                    style: TextStyle(fontSize: 12, color: ColorUtil.hex2Color("#777677")),
+                                    style: TextStyle(fontSize: 12, color: CommonStyle.color777677),
                                   ))
                             ],
                           ),

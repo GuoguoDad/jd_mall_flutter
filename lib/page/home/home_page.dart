@@ -6,6 +6,8 @@ import 'package:jd_mall_flutter/page/cart/cart_page.dart';
 import 'package:jd_mall_flutter/page/mine/mine_page.dart';
 import 'package:jd_mall_flutter/common/widget/image/asset_image.dart';
 
+import '../../common/style/common_style.dart';
+
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
 
@@ -43,7 +45,7 @@ class _TabPageState extends State<HomePage> {
           backgroundColor: Colors.white,
           type: BottomNavigationBarType.fixed,
           unselectedItemColor: Colors.black87,
-          selectedItemColor: Colors.red,
+          selectedItemColor: CommonStyle.themeColor,
           selectedLabelStyle: const TextStyle(fontSize: 14),
           unselectedLabelStyle: const TextStyle(fontSize: 14),
           items: [

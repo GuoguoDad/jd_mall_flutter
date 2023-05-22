@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_redux/flutter_redux.dart';
-import 'package:jd_mall_flutter/common/util/color_util.dart';
 import 'package:jd_mall_flutter/common/widget/image/asset_image.dart';
 import 'package:jd_mall_flutter/redux/app_state.dart';
 import 'package:jd_mall_flutter/page/welcome/redux/wel_page_state.dart';
 import 'package:jd_mall_flutter/page/welcome/util.dart';
+import '../../../common/style/common_style.dart';
 import '../../../common/widget/persistentHeader/sliver_header_builder.dart';
 
 Widget searchHeader(BuildContext context) {
@@ -15,7 +15,7 @@ Widget searchHeader(BuildContext context) {
       maxHeight: 88 + MediaQueryData.fromView(View.of(context)).padding.top,
       minHeight: 44 + MediaQueryData.fromView(View.of(context)).padding.top,
       child: Container(
-          color: ColorUtil.hex2Color('#FE0F22'),
+          color: CommonStyle.themeColor,
           padding: EdgeInsets.fromLTRB(0, MediaQueryData.fromView(View.of(context)).padding.top, 0, 0),
           child: Stack(
             alignment: Alignment.center,
@@ -61,7 +61,7 @@ Widget searchHeader(BuildContext context) {
                                 alignment: Alignment.centerLeft,
                                 child: Text('跑步鞋',
                                     style: TextStyle(
-                                      color: ColorUtil.hex2Color('#818286'),
+                                      color: CommonStyle.placeholderColor,
                                     )),
                               ),
                             ),

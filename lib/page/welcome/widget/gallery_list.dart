@@ -2,16 +2,17 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_redux/flutter_redux.dart';
 import 'package:getwidget/getwidget.dart';
-import 'package:jd_mall_flutter/common/util/color_util.dart';
 import 'package:jd_mall_flutter/common/widget/image/asset_image.dart';
 import 'package:jd_mall_flutter/redux/app_state.dart';
 import 'package:jd_mall_flutter/page/welcome/redux/wel_page_state.dart';
+
+import '../../../common/style/common_style.dart';
 
 Widget galleryList(BuildContext context) {
   double carouselWidth = MediaQuery.of(context).size.width - 24;
   return SliverToBoxAdapter(
       child: Container(
-          color: ColorUtil.hex2Color('#FE0F22'),
+          color: CommonStyle.themeColor,
           padding: const EdgeInsets.fromLTRB(0, 5, 0, 0),
           child: Container(
               padding: const EdgeInsets.fromLTRB(0, 4, 0, 0),
@@ -34,7 +35,7 @@ Widget galleryList(BuildContext context) {
                   viewportFraction: 1.0,
                   autoPlayInterval: const Duration(seconds: 8),
                   passiveIndicator: Colors.grey,
-                  activeIndicator: ColorUtil.hex2Color('#FE0F22'),
+                  activeIndicator: CommonStyle.themeColor,
                   items: bannerList.map((item) {
                     return Container(
                         margin: const EdgeInsets.fromLTRB(12, 10, 12, 2),

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_redux/flutter_redux.dart';
-import 'package:jd_mall_flutter/common/util/color_util.dart';
+import 'package:jd_mall_flutter/common/style/common_style.dart';
 import 'package:jd_mall_flutter/page/category/redux/category_page_action.dart';
 
 import '../../../models/primary_category_list.dart';
@@ -40,7 +40,7 @@ Widget leftCate(BuildContext context) {
                 child: Container(
                   height: itemHeight,
                   decoration: BoxDecoration(
-                      color: ColorUtil.hex2Color(isSelect ? "#FFFFFF" : "#EAEDEE"),
+                      color: isSelect ? Colors.white : CommonStyle.greyBgColor3,
                       borderRadius:
                           BorderRadius.only(bottomRight: Radius.circular(isPrev ? 20 : 0), topRight: Radius.circular(isNext ? 20 : 0))),
                   child: Center(

@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_redux/flutter_redux.dart';
 import 'package:cached_network_image/cached_network_image.dart';
-import 'package:jd_mall_flutter/common/util/color_util.dart';
 import 'package:jd_mall_flutter/redux/app_state.dart';
 import 'package:jd_mall_flutter/common/widget/image/asset_image.dart';
 import 'package:jd_mall_flutter/page/welcome/redux/wel_page_state.dart';
@@ -14,7 +13,7 @@ Widget advBanner(BuildContext context) {
     },
     builder: (context, state) {
       return Container(
-        color: ColorUtil.hex2Color('#FFFFFF'),
+        color: Colors.white,
         padding: const EdgeInsets.fromLTRB(0, 0, 0, 0),
         child: CachedNetworkImage(
           height: 90,

@@ -1,12 +1,11 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_redux/flutter_redux.dart';
-import 'package:jd_mall_flutter/common/util/color_util.dart';
+import 'package:jd_mall_flutter/common/style/common_style.dart';
 import 'package:jd_mall_flutter/page/welcome/redux/wel_page_action.dart';
 import 'package:jd_mall_flutter/redux/app_state.dart';
 import 'package:jd_mall_flutter/page/welcome/redux/wel_page_state.dart';
 
-import '../../../common/constant/index.dart';
 import '../../../common/widget/image/asset_image.dart';
 
 const rowNum = 5;
@@ -45,7 +44,7 @@ Widget menuSlider(BuildContext context) {
                                 }, builder: (context, state) {
                                   return CircleAvatar(
                                     radius: 3,
-                                    backgroundColor: state.menuSliderIndex == index ? ColorUtil.hex2Color('#FE0F22') : Colors.grey,
+                                    backgroundColor: state.menuSliderIndex == index ? CommonStyle.themeColor : Colors.grey,
                                     child: Container(
                                       alignment: const Alignment(0, .5),
                                       width: 10,
