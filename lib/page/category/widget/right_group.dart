@@ -74,7 +74,6 @@ Widget rightGroupList(BuildContext context) {
 
                 return GestureDetector(
                     onTap: () {
-                      // store.dispatch(SelectSecondCategoryAction(secondCateList[index]));
                       //滚动当前选中的item至中间
                       leftScrollController.animateTo(calc2Left(context, index, secondCateList.length),
                           duration: const Duration(milliseconds: 200), curve: Curves.easeIn);
@@ -86,10 +85,8 @@ Widget rightGroupList(BuildContext context) {
                       //滚动分组三级分类
                       final keyRenderObject = keys[index].currentContext?.findAncestorRenderObjectOfType<RenderSliverToBoxAdapter>();
                       if (keyRenderObject != null) {
-                        // 点击的时候不让滚动影响tab
                         gridViewController.position
-                            .ensureVisible(keyRenderObject, duration: const Duration(milliseconds: 300), curve: Curves.easeIn)
-                            .then((value) {});
+                            .ensureVisible(keyRenderObject, duration: const Duration(milliseconds: 200), curve: Curves.easeIn);
                       }
                     },
                     child: Container(
