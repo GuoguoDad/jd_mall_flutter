@@ -5,7 +5,7 @@
 1. 使用flutter_redux状态管理
 2. 网络使用dio进行了简单的封装
 3. 使用node项目mock服务端接口(mock_server目录)
-4. 目前只实现了首页、部分分类页，持续更新中...
+4. 目前只实现了首页、分类页，持续更新中...
 
 * ### 同款Android Kotlin版本（ https://github.com/GuoguoDad/jd_mall.git ）
 
