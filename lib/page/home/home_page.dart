@@ -18,7 +18,7 @@ class HomePage extends StatefulWidget {
 }
 
 class _TabPageState extends State<HomePage> {
-  int _selectedIndex = 1;
+  int _selectedIndex = 2;
 
   void _onItemTapped(int index) {
     setState(() {

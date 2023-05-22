@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
 import 'package:flutter_redux/flutter_redux.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:jd_mall_flutter/common/style/common_style.dart';
@@ -44,6 +45,11 @@ Widget rightGroupList(BuildContext context) {
       String headUrl = secondGroupCategoryInfo?.bannerUrl ?? "";
       List<SecondCateList> secondCateList = secondGroupCategoryInfo?.secondCateList ?? [];
 
+      final keys = <GlobalKey>[];
+      for (var element in secondCateList) {
+        keys.add(GlobalKey(debugLabel: 'section_${element.categoryCode}'));
+      }
+
       var topBanImg = headUrl != ""
           ? CachedNetworkImage(
               width: bWidth,
@@ -71,10 +77,20 @@ Widget rightGroupList(BuildContext context) {
                       // store.dispatch(SelectSecondCategoryAction(secondCateList[index]));
                       //滚动当前选中的item至中间
                       leftScrollController.animateTo(calc2Left(context, index, secondCateList.length),
-                          duration: const Duration(milliseconds: 200), curve: Curves.linear);
+                          duration: const Duration(milliseconds: 200), curve: Curves.easeIn);
+
+                      // //滚动分组三级分类
+                      // gridViewController.animateTo(calc2top(context, index, secondCateList),
+                      //     duration: const Duration(milliseconds: 200), curve: Curves.linear);
+
                       //滚动分组三级分类
-                      gridViewController.animateTo(calc2top(context, index, secondCateList),
-                          duration: const Duration(milliseconds: 200), curve: Curves.linear);
+                      final keyRenderObject = keys[index].currentContext?.findAncestorRenderObjectOfType<RenderSliverToBoxAdapter>();
+                      if (keyRenderObject != null) {
+                        // 点击的时候不让滚动影响tab
+                        gridViewController.position
+                            .ensureVisible(keyRenderObject, duration: const Duration(milliseconds: 300), curve: Curves.easeIn)
+                            .then((value) {});
+                      }
                     },
                     child: Container(
                       height: 32,
@@ -103,11 +119,9 @@ Widget rightGroupList(BuildContext context) {
 
                     //如果不是当前选中的二级分类
                     if (firstVisibleItem.categoryCode != selectSecondCategoryInfo?.categoryCode) {
-                      // print("=================firstVisibleIndex:${firstVisibleIndex}");
-
                       store.dispatch(SelectSecondCategoryAction(firstVisibleItem));
                       leftScrollController.animateTo(calc2Left(context, firstVisibleIndex, secondCateList.length),
-                          duration: const Duration(milliseconds: 200), curve: Curves.linear);
+                          duration: const Duration(milliseconds: 200), curve: Curves.easeIn);
                     }
                   },
                   child: GroupGridView(
@@ -145,6 +159,7 @@ Widget rightGroupList(BuildContext context) {
                       headerForSection: (section) => VisibleNotifierWidget(
                           data: section,
                           child: Container(
+                              key: keys[section],
                               height: sectionHeight,
                               alignment: Alignment.centerLeft,
                               padding: const EdgeInsets.only(left: 16),
@@ -179,34 +194,34 @@ double calc2Left(BuildContext context, int index, int total) {
   return toLeft;
 }
 
-double calc2top(BuildContext context, int index, List<SecondCateList> secondCateList) {
-  EdgeInsets mfp = MediaQueryData.fromView(View.of(context)).padding;
-  //展示高度，即GroupGridView展示高度
-  double displayHeight = MediaQuery.of(context).size.height - 50 - mfp.top - 56 - mfp.bottom - bannerHeight - 52;
-
-  //groupGridview 所有item总高度
-  double totalHeight = 0;
-  for (var element in secondCateList) {
-    int cateChildren = element.cateList!.length;
-    int rowNum = cateChildren ~/ 3 + (cateChildren % 3 > 0 ? 1 : 0);
-
-    totalHeight += rowNum * thirdCateItemHeight + sectionHeight;
-  }
-  //需要向上滚动距离
-  double toTop = 0;
-  List<SecondCateList> secondCate = secondCateList.sublist(0, index);
-  for (var element in secondCate) {
-    int totalChildren = element.cateList!.length;
-    int rowNum = totalChildren ~/ 3 + (totalChildren % 3 > 0 ? 1 : 0);
-
-    toTop += rowNum * thirdCateItemHeight + sectionHeight;
-  }
-  if (toTop < 0) {
-    toTop = 0;
-  }
-  if (toTop > totalHeight - displayHeight - sectionHeight) {
-    toTop = totalHeight - displayHeight - sectionHeight;
-  }
-
-  return toTop;
-}
+// double calc2top(BuildContext context, int index, List<SecondCateList> secondCateList) {
+//   EdgeInsets mfp = MediaQueryData.fromView(View.of(context)).padding;
+//   //展示高度，即GroupGridView展示高度
+//   double displayHeight = MediaQuery.of(context).size.height - 50 - mfp.top - 56 - mfp.bottom - bannerHeight - 52;
+//
+//   //groupGridview 所有item总高度
+//   double totalHeight = 0;
+//   for (var element in secondCateList) {
+//     int cateChildren = element.cateList!.length;
+//     int rowNum = cateChildren ~/ 3 + (cateChildren % 3 > 0 ? 1 : 0);
+//
+//     totalHeight += rowNum * thirdCateItemHeight + sectionHeight;
+//   }
+//   //需要向上滚动距离
+//   double toTop = 0;
+//   List<SecondCateList> secondCate = secondCateList.sublist(0, index);
+//   for (var element in secondCate) {
+//     int totalChildren = element.cateList!.length;
+//     int rowNum = totalChildren ~/ 3 + (totalChildren % 3 > 0 ? 1 : 0);
+//
+//     toTop += rowNum * thirdCateItemHeight + sectionHeight;
+//   }
+//   if (toTop < 0) {
+//     toTop = 0;
+//   }
+//   if (toTop > totalHeight - displayHeight - sectionHeight) {
+//     toTop = totalHeight - displayHeight - sectionHeight;
+//   }
+//
+//   return toTop;
+// }
