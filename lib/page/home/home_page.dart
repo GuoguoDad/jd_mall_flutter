@@ -6,6 +6,7 @@ import 'package:jd_mall_flutter/page/cart/cart_page.dart';
 import 'package:jd_mall_flutter/page/mine/mine_page.dart';
 import 'package:jd_mall_flutter/common/widget/image/asset_image.dart';
 
+import '../../common/localization/default_localizations.dart';
 import '../../common/style/common_style.dart';
 
 class HomePage extends StatefulWidget {
@@ -52,22 +53,22 @@ class _TabPageState extends State<HomePage> {
             BottomNavigationBarItem(
               icon: assetImage('images/ic_home.png', 30, 30),
               activeIcon: assetImage('images/ic_home_active.png', 30, 30),
-              label: '首页',
+              label: MallLocalizations.i18n(context).tab_main_home,
             ),
             BottomNavigationBarItem(
               icon: assetImage('images/ic_category.png', 30, 30),
               activeIcon: assetImage('images/ic_category_active.png', 30, 30),
-              label: '分类',
+              label: MallLocalizations.i18n(context).tab_main_category,
             ),
             BottomNavigationBarItem(
               icon: assetImage('images/ic_cart.png', 30, 30),
               activeIcon: assetImage('images/ic_cart_active.png', 30, 30),
-              label: '购物车',
+              label: MallLocalizations.i18n(context).tab_main_cart,
             ),
             BottomNavigationBarItem(
               icon: assetImage('images/ic_mine.png', 30, 30),
               activeIcon: assetImage("images/ic_mine_active.png", 30, 30),
-              label: '我的',
+              label: MallLocalizations.i18n(context).tab_main_mine,
             )
           ],
           currentIndex: _selectedIndex,

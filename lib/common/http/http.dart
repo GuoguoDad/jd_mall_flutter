@@ -14,7 +14,7 @@ class HttpManager {
 
   final Dio _dio = Dio(); // 使用默认配置
 
-  HttpManager(){
+  HttpManager() {
     _dio.interceptors.add(TokenInterceptors());
     _dio.interceptors.add(LogsInterceptors());
     _dio.interceptors.add(ErrorInterceptors());
@@ -29,27 +29,26 @@ class HttpManager {
     option.headers!['connectTimeout'] = 30000;
     option.headers!['receiveTimeout'] = 30000;
 
-    exceptionHandler(DioError err){
+    exceptionHandler(DioError err) {
       Response? errResponse;
       if (err.response != null) {
         errResponse = err?.response;
       } else {
-        errResponse = Response(statusCode: 666, requestOptions: RequestOptions(path: url));
+        errResponse = Response(statusCode: err.response?.statusCode, requestOptions: RequestOptions(path: url));
       }
       if (err.type == DioErrorType.connectionTimeout || err.type == DioErrorType.receiveTimeout) {
         errResponse!.statusCode = Code.NETWORK_TIMEOUT;
       }
       return BaseResponse(
-          code: errResponse?.statusCode.toString() ?? "",
+          code: Code.errorHandleFunction(errResponse?.statusCode, err.response?.toString() ?? err.error.toString(), false),
           msg: err.message,
-          data: null
-      );
+          data: null);
     }
 
     Response response;
     try {
       response = await _dio.request(url, data: params, options: option);
-    } on DioError catch(e) {
+    } on DioError catch (e) {
       return exceptionHandler(e);
     }
     if (response.data is DioError) {

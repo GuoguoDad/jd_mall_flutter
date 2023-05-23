@@ -1,7 +1,5 @@
 import 'dart:convert';
 import 'package:dio/dio.dart';
-import 'package:flutter/material.dart';
-import 'package:fluttertoast/fluttertoast.dart';
 
 class LogsInterceptors extends InterceptorsWrapper {
   static List<Map?> sHttpResponses = [];
@@ -79,13 +77,6 @@ class LogsInterceptors extends InterceptorsWrapper {
   onError(DioError err, handler) async {
     print('请求异常: $err');
     print('请求异常信息: ${err.response?.toString() ?? err.error.toString()}');
-    Fluttertoast.showToast(
-        msg: err.response?.toString() ?? err.error.toString(),
-        toastLength: Toast.LENGTH_LONG,
-        gravity: ToastGravity.CENTER,
-        backgroundColor: Colors.grey,
-        textColor: Colors.white,
-        fontSize: 16.0);
     try {
       addLogic(sHttpErrorUrl, err.requestOptions.path);
       var errors = <String, dynamic>{};

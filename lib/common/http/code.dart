@@ -1,5 +1,5 @@
-import 'package:flutter/material.dart';
-import 'package:fluttertoast/fluttertoast.dart';
+import '../event/http_error_event.dart';
+import '../event/index.dart';
 
 ///错误编码
 class Code {
@@ -12,19 +12,20 @@ class Code {
   ///网络返回数据格式化一次
   static const NETWORK_JSON_EXCEPTION = -3;
 
-  ///Github APi Connection refused
-  static const GITHUB_API_REFUSED = -4;
+  ///Connection refused
+  static const CONNECTION_REFUSED = -4;
 
   static const SUCCESS = 200;
 
-  static errorHandleFunction(code, message, noTip) {
-    // if (!noTip) {
-    //   return message;
-    // }
-    if (message != null && message is String && (message.contains("Connection refused") || message.contains("Connection reset"))) {
-      code = GITHUB_API_REFUSED;
+  static errorHandleFunction(code, message, hideToast) {
+    print("========code:${code}");
+    if (hideToast) {
+      return message;
     }
-    // eventBus.fire(new HttpErrorEvent(code, message));
+    if (message != null && message is String && (message.contains("Connection refused") || message.contains("Connection reset"))) {
+      code = CONNECTION_REFUSED;
+    }
+    eventBus.fire(HttpErrorEvent(code, message));
     return message;
   }
 }
