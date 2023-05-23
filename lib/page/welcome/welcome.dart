@@ -10,7 +10,6 @@ import 'package:jd_mall_flutter/page/welcome/widget/menu_slider.dart';
 import 'package:jd_mall_flutter/page/welcome/widget/search_header.dart';
 import 'package:jd_mall_flutter/page/welcome/redux/wel_page_action.dart';
 import 'package:jd_mall_flutter/redux/app_state.dart';
-import 'package:jd_mall_flutter/page/welcome/redux/wel_page_state.dart';
 
 class WelcomePage extends StatefulWidget {
   const WelcomePage({super.key});
@@ -48,6 +47,19 @@ class _WelcomePageState extends State<WelcomePage> {
     return StoreBuilder<AppState>(onInit: (store) {
       store.dispatch(InitDataAction());
     }, builder: (context, store) {
+      Widget back2Top = Visibility(
+          visible: _scrollController.hasClients && _scrollController.offset > MediaQuery.of(context).size.height,
+          child: SizedBox(
+              width: 48,
+              height: 48,
+              child: FloatingActionButton(
+                onPressed: () {
+                  _scrollController.animateTo(0, duration: const Duration(milliseconds: 500), curve: Curves.easeInCubic);
+                },
+                backgroundColor: Colors.white,
+                child: assetImage('images/ic_back_top.png', 32, 32),
+              )));
+
       return NotificationListener<ScrollNotification>(
           onNotification: (ScrollNotification notification) {
             // depth 0 表示child包裹的第一个Widget
@@ -57,45 +69,30 @@ class _WelcomePageState extends State<WelcomePage> {
             }
             return false;
           },
-          child: StoreConnector<AppState, WelPageState>(converter: (store) {
-            return store.state.welPageState;
-          }, builder: (context, state) {
-            return Scaffold(
-              body: SmartRefresher(
-                controller: _refreshController,
-                enablePullUp: true,
-                onRefresh: () async {
-                  store.dispatch(RefreshAction(refreshSuccess, refreshFail));
-                },
-                onLoading: () async {
-                  store.dispatch(LoadMoreAction(store.state.welPageState.pageNum + 1, loadMoreSuccess, loadMoreFail));
-                },
-                child: CustomScrollView(
-                  controller: _scrollController,
-                  slivers: [
-                    searchHeader(context),
-                    galleryList(context),
-                    advBanner(context),
-                    menuSlider(context),
-                    tabList(context),
-                    goodsList(context),
-                  ],
-                ),
+          child: Scaffold(
+            body: SmartRefresher(
+              controller: _refreshController,
+              enablePullUp: true,
+              onRefresh: () async {
+                store.dispatch(RefreshAction(refreshSuccess, refreshFail));
+              },
+              onLoading: () async {
+                store.dispatch(LoadMoreAction(store.state.welPageState.pageNum + 1, loadMoreSuccess, loadMoreFail));
+              },
+              child: CustomScrollView(
+                controller: _scrollController,
+                slivers: [
+                  searchHeader(context),
+                  galleryList(context),
+                  advBanner(context),
+                  menuSlider(context),
+                  tabList(context),
+                  goodsList(context),
+                ],
               ),
-              floatingActionButton: Visibility(
-                  visible: _scrollController.hasClients && _scrollController.offset > MediaQuery.of(context).size.height,
-                  child: SizedBox(
-                      width: 48,
-                      height: 48,
-                      child: FloatingActionButton(
-                        onPressed: () {
-                          _scrollController.animateTo(0, duration: const Duration(milliseconds: 500), curve: Curves.easeInCubic);
-                        },
-                        backgroundColor: Colors.white,
-                        child: assetImage('images/ic_back_top.png', 32, 32),
-                      ))),
-            );
-          }));
+            ),
+            floatingActionButton: back2Top,
+          ));
     });
   }
 }

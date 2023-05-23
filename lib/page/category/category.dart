@@ -15,14 +15,16 @@ class CategoryPage extends StatefulWidget {
 class _CategoryPageState extends State<CategoryPage> {
   @override
   Widget build(BuildContext context) {
+    Widget bodyContent = Expanded(
+        child: Flex(
+      direction: Axis.horizontal,
+      children: [leftCate(context), rightGroupList(context)],
+    ));
+
     return Column(
       children: [
         header(context),
-        Expanded(
-            child: Flex(
-          direction: Axis.horizontal,
-          children: [Expanded(flex: 1, child: leftCate(context)), Expanded(flex: 2, child: rightGroupList(context))],
-        ))
+        bodyContent,
       ],
     );
   }

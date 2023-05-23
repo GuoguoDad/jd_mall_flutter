@@ -10,13 +10,15 @@ class CategoryPageMiddleware<CategoryPageState> implements MiddlewareClass<Categ
   call(Store<CategoryPageState> store, action, NextDispatcher next) {
     if (action is InitDataAction) {
       CategoryApi.queryCategoryInfo().then((res) {
-        List<CategoryInfo> list = res.categoryList;
-        CategoryApi.querySecondGroupCategoryInfo(list[0].code!).then((result) {
-          //默认选中第一个分类
-          SecondCateList selectSecondCategoryInfo =
-              result.secondCateList.length > 0 ? result.secondCateList[0] : SecondCateList.fromJson({});
-          store.dispatch(InitCategoryPageAction(SelectedCategoryInfo(null, list[0], list[1]), list, result, selectSecondCategoryInfo));
-        });
+        List<CategoryInfo> list = res?.categoryList ?? [];
+        if (list.isNotEmpty) {
+          CategoryApi.querySecondGroupCategoryInfo(list[0].code!).then((result) {
+            //默认选中第一个分类
+            SecondCateList selectSecondCategoryInfo =
+                result.secondCateList.length > 0 ? result.secondCateList[0] : SecondCateList.fromJson({});
+            store.dispatch(InitCategoryPageAction(SelectedCategoryInfo(null, list[0], list[1]), list, result, selectSecondCategoryInfo));
+          });
+        }
       });
     }
     next(action);

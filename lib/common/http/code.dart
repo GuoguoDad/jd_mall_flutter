@@ -1,3 +1,6 @@
+import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
+
 ///错误编码
 class Code {
   ///网络错误
@@ -15,10 +18,10 @@ class Code {
   static const SUCCESS = 200;
 
   static errorHandleFunction(code, message, noTip) {
-    if (!noTip) {
-      return message;
-    }
-    if(message != null && message is String && (message.contains("Connection refused") || message.contains("Connection reset"))) {
+    // if (!noTip) {
+    //   return message;
+    // }
+    if (message != null && message is String && (message.contains("Connection refused") || message.contains("Connection reset"))) {
       code = GITHUB_API_REFUSED;
     }
     // eventBus.fire(new HttpErrorEvent(code, message));

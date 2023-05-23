@@ -166,13 +166,15 @@ Widget rightGroupList(BuildContext context) {
                               child: Text(secondCateList[section].categoryName!,
                                   style: const TextStyle(fontSize: 16, fontWeight: FontWeight.w600))))))));
 
-      return Container(
-        color: Colors.white,
-        padding: const EdgeInsets.only(top: 10),
-        child: Column(
-          children: [topBanImg, secondScrollTabCategory, groupThirdCategoryList],
-        ),
-      );
+      return Expanded(
+          flex: 2,
+          child: Container(
+            color: Colors.white,
+            padding: const EdgeInsets.only(top: 10),
+            child: Column(
+              children: [topBanImg, secondScrollTabCategory, groupThirdCategoryList],
+            ),
+          ));
     },
   );
 }

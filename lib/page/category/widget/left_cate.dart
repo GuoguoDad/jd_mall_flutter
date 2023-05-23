@@ -20,7 +20,7 @@ Widget leftCate(BuildContext context) {
       SelectedCategoryInfo? selectedCategoryInfo = store.state.categoryPageState.selectedCategoryInfo;
       List<CategoryInfo> list = store.state.categoryPageState.categoryList ?? [];
 
-      return ListView.builder(
+      Widget scrollTabList = ListView.builder(
           controller: scrollController,
           itemCount: list.length,
           shrinkWrap: true,
@@ -48,6 +48,8 @@ Widget leftCate(BuildContext context) {
                   ),
                 ));
           });
+
+      return Expanded(flex: 1, child: scrollTabList);
     },
   );
 }
