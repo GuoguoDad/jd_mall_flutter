@@ -5,7 +5,7 @@ class WelPageState {
   bool isLoading = true;
 
   //首页页面滚动条位置
-  late final double pageScrollY;
+  double pageScrollY;
 
   //横向滚动菜单PageView索引
   int menuSliderIndex = 0;
@@ -14,12 +14,12 @@ class WelPageState {
   String currentTab = "1";
 
   //首页数据
-  late final HomePageInfo homePageInfo;
+  HomePageInfo homePageInfo;
 
   int pageNum = 1;
 
   //商品数据
-  late final GoodsPageInfo goodsPageInfo;
+  GoodsPageInfo goodsPageInfo;
 
   WelPageState(
       this.isLoading, this.pageScrollY, this.menuSliderIndex, this.currentTab, this.homePageInfo, this.pageNum, this.goodsPageInfo);

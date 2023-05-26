@@ -3,10 +3,15 @@ import 'package:jd_mall_flutter/page/category/redux/category_page_state.dart';
 import 'category_page_action.dart';
 
 final categoryPageReducer = combineReducers<CategoryPageState>([
-  TypedReducer<CategoryPageState, InitCategoryPageAction>((state, action) =>
-      CategoryPageState(action.selectedCategoryInfo, action.categoryList, action.secondGroupCategoryInfo, action.selectSecondCategoryInfo)),
-  TypedReducer<CategoryPageState, SelectCategoryAction>((state, action) =>
-      CategoryPageState(action.selectedCategoryInfo, state.categoryList, state.secondGroupCategoryInfo, state.selectSecondCategoryInfo)),
-  TypedReducer<CategoryPageState, SelectSecondCategoryAction>((state, action) =>
-      CategoryPageState(state.selectedCategoryInfo, state.categoryList, state.secondGroupCategoryInfo, action.selectSecondCategoryInfo)),
+  //页面初始化数据
+  TypedReducer<CategoryPageState, InitCategoryPageAction>((state, action) => state
+    ..selectedCategoryInfo = action.selectedCategoryInfo
+    ..categoryList = action.categoryList
+    ..secondGroupCategoryInfo = action.secondGroupCategoryInfo
+    ..selectSecondCategoryInfo = action.selectSecondCategoryInfo),
+  //选中一级分类
+  TypedReducer<CategoryPageState, SelectCategoryAction>((state, action) => state..selectedCategoryInfo = action.selectedCategoryInfo),
+  //选中二级分类
+  TypedReducer<CategoryPageState, SelectSecondCategoryAction>(
+      (state, action) => state..selectSecondCategoryInfo = action.selectSecondCategoryInfo),
 ]);
