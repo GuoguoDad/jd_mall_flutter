@@ -19,15 +19,13 @@ final welPageReducer = combineReducers<WelPageState>([
     ..pageNum = action.pageNum
     ..goodsPageInfo = action.value),
   //加载更多
-  TypedReducer<WelPageState, MoreGoodsPageAction>((state, action) => _onLoadMore(state, action)),
+  TypedReducer<WelPageState, MoreGoodsPageAction>((state, action) {
+    List<GoodsList> goods = state.goodsPageInfo.goodsList ?? [];
+    List<GoodsList>? goodsList = [...goods, ...?action.value.goodsList];
+
+    return state
+      ..pageNum = action.pageNum
+      ..goodsPageInfo = GoodsPageInfo(
+          goodsList: goodsList, totalCount: state.goodsPageInfo.totalCount, totalPageCount: state.goodsPageInfo.totalPageCount);
+  }),
 ]);
-
-WelPageState _onLoadMore(WelPageState state, MoreGoodsPageAction action) {
-  List<GoodsList> goods = state.goodsPageInfo.goodsList ?? [];
-  List<GoodsList>? goodsList = [...goods, ...?action.value.goodsList];
-
-  return state
-    ..pageNum = action.pageNum
-    ..goodsPageInfo =
-        GoodsPageInfo(goodsList: goodsList, totalCount: state.goodsPageInfo.totalCount, totalPageCount: state.goodsPageInfo.totalPageCount);
-}
