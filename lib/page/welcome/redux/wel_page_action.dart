@@ -1,9 +1,12 @@
 import 'package:jd_mall_flutter/models/goods_page_info.dart';
 import 'package:jd_mall_flutter/models/home_page_info.dart';
 
+typedef VoidCallback = void Function();
+
 //记录页面滚动距离
 class SetLoadingAction {
   final bool value;
+
   SetLoadingAction(this.value);
 }
 
@@ -34,12 +37,9 @@ class InitDataAction {
 }
 
 //页面刷新
-typedef OnFreshSuccess = void Function();
-typedef OnFreshFail = void Function();
-
 class RefreshAction {
-  late OnFreshSuccess freshSuccess;
-  late OnFreshFail freshFail;
+  late VoidCallback freshSuccess;
+  late VoidCallback freshFail;
 
   RefreshAction(this.freshSuccess, this.freshFail);
 }
@@ -68,13 +68,10 @@ class MoreGoodsPageAction {
 }
 
 //商品瀑布流列表加载更多
-typedef OnLoadMoreSuccess = void Function();
-typedef OnLoadMoreFail = void Function();
-
 class LoadMoreAction {
   late int currentPage;
-  late OnLoadMoreSuccess loadMoreSuccess;
-  late OnLoadMoreFail loadMoreFail;
+  late VoidCallback loadMoreSuccess;
+  late VoidCallback loadMoreFail;
 
   LoadMoreAction(this.currentPage, this.loadMoreSuccess, this.loadMoreFail);
 }

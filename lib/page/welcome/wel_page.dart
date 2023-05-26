@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_redux/flutter_redux.dart';
-import 'package:jd_mall_flutter/common/widget/image/asset_image.dart';
 import 'package:jd_mall_flutter/page/welcome/widget/wel_skeleton.dart';
 import 'package:jd_mall_flutter/page/welcome/widget/goods_list.dart';
 import 'package:jd_mall_flutter/page/welcome/widget/tab_list.dart';
@@ -11,6 +10,8 @@ import 'package:jd_mall_flutter/page/welcome/widget/menu_slider.dart';
 import 'package:jd_mall_flutter/page/welcome/widget/search_header.dart';
 import 'package:jd_mall_flutter/page/welcome/redux/wel_page_action.dart';
 import 'package:jd_mall_flutter/redux/app_state.dart';
+import 'package:jd_mall_flutter/common/util/refresh_util.dart';
+import 'package:jd_mall_flutter/common/widget/back_to_top.dart';
 
 class WelcomePage extends StatefulWidget {
   const WelcomePage({super.key});
@@ -25,42 +26,11 @@ class _WelcomePageState extends State<WelcomePage> {
   final ScrollController _scrollController = ScrollController();
   final RefreshController _refreshController = RefreshController();
 
-  void refreshSuccess() {
-    _refreshController.refreshCompleted();
-    _refreshController.resetNoData();
-  }
-
-  void refreshFail() {
-    _refreshController.refreshFailed();
-    _refreshController.resetNoData();
-  }
-
-  void loadMoreSuccess() {
-    _refreshController.loadComplete();
-  }
-
-  void loadMoreFail() {
-    _refreshController.loadNoData();
-  }
-
   @override
   Widget build(BuildContext context) {
     return StoreBuilder<AppState>(onInit: (store) {
       store.dispatch(InitDataAction());
     }, builder: (context, store) {
-      Widget back2Top = Visibility(
-          visible: _scrollController.hasClients && _scrollController.offset > MediaQuery.of(context).size.height,
-          child: SizedBox(
-              width: 48,
-              height: 48,
-              child: FloatingActionButton(
-                onPressed: () {
-                  _scrollController.animateTo(0, duration: const Duration(milliseconds: 500), curve: Curves.easeInCubic);
-                },
-                backgroundColor: Colors.white,
-                child: assetImage('images/ic_back_top.png', 32, 32),
-              )));
-
       if (store.state.welPageState.isLoading) {
         return welSkeleton(context);
       }
@@ -79,10 +49,11 @@ class _WelcomePageState extends State<WelcomePage> {
               controller: _refreshController,
               enablePullUp: true,
               onRefresh: () async {
-                store.dispatch(RefreshAction(refreshSuccess, refreshFail));
+                store.dispatch(RefreshAction(() => refreshSuccess(_refreshController), () => refreshFail(_refreshController)));
               },
               onLoading: () async {
-                store.dispatch(LoadMoreAction(store.state.welPageState.pageNum + 1, loadMoreSuccess, loadMoreFail));
+                store.dispatch(LoadMoreAction(store.state.welPageState.pageNum + 1, () => loadMoreSuccess(_refreshController),
+                    () => loadMoreFail(_refreshController)));
               },
               child: CustomScrollView(
                 controller: _scrollController,
@@ -96,7 +67,12 @@ class _WelcomePageState extends State<WelcomePage> {
                 ],
               ),
             ),
-            floatingActionButton: back2Top,
+            floatingActionButton: BackToTop(
+              show: _scrollController.hasClients && _scrollController.offset > MediaQuery.of(context).size.height,
+              onTap: () {
+                _scrollController.animateTo(0, duration: const Duration(milliseconds: 500), curve: Curves.easeInCubic);
+              },
+            ),
           ));
     });
   }
