@@ -7,8 +7,7 @@ import 'package:jd_mall_flutter/page/category/redux/category_page_action.dart';
 import 'package:jd_mall_flutter/common/widget/group_grid_view.dart';
 import 'package:jd_mall_flutter/common/widget/image/asset_image.dart';
 import 'package:jd_mall_flutter/models/second_group_category_info.dart';
-import 'package:widgets_visibility_provider/widgets_visibility_provider.dart';
-import '../../../redux/app_state.dart';
+import 'package:jd_mall_flutter/redux/app_state.dart';
 
 late double rWidth, bWidth;
 //gridview的item宽和高一样
@@ -27,6 +26,7 @@ Widget rightGroupList(BuildContext context) {
 
   //右侧内容宽度
   bWidth = rWidth - 28;
+  bool isTabClicked = false;
 
   return StoreBuilder<AppState>(
     onInit: (store) {
@@ -48,6 +48,29 @@ Widget rightGroupList(BuildContext context) {
         keys.add(GlobalKey(debugLabel: 'section_${element.categoryCode}'));
       }
 
+      void tabScrollToMiddle(int index) {
+        double toLeft = 0;
+        double total = 0;
+        if (index != 0) {
+          int newIndex = index - 1;
+          for (int i = 0; i < secondCateList.length; i++) {
+            RenderBox? box = secondKeys[i].currentContext?.findAncestorRenderObjectOfType<RenderBox>();
+            if (box != null) {
+              //水平范围
+              double w = box.size.width;
+              total += w;
+              if (i <= newIndex) {
+                toLeft += w;
+              }
+            }
+          }
+          toLeft = toLeft - bWidth / 2;
+          if (toLeft < 0) toLeft = 0;
+          if (toLeft > total - bWidth) toLeft = total - bWidth;
+        }
+        scrollController.animateTo(toLeft, duration: const Duration(milliseconds: 300), curve: Curves.linear);
+      }
+
       Widget topBanImg = headUrl != ""
           ? CachedNetworkImage(
               width: bWidth,
@@ -67,15 +90,28 @@ Widget rightGroupList(BuildContext context) {
               controller: scrollController,
               itemCount: secondCateList.length,
               scrollDirection: Axis.horizontal,
+              shrinkWrap: true,
               itemBuilder: (BuildContext context, int index) {
                 bool isSelect = selectSecondCategoryInfo?.categoryCode == secondCateList[index].categoryCode;
 
                 return GestureDetector(
                     onTap: () {
-                      final keyRenderObject = keys[index].currentContext?.findAncestorRenderObjectOfType<RenderSliverToBoxAdapter>();
-                      if (keyRenderObject != null) {
-                        gridViewController.position
-                            .ensureVisible(keyRenderObject, duration: const Duration(milliseconds: 300), curve: Curves.easeIn);
+                      //如果不是当前选中的二级分类
+                      if (selectSecondCategoryInfo?.categoryCode != secondCateList[index].categoryCode) {
+                        isTabClicked = true;
+                        //滚动二级分类至中间
+                        tabScrollToMiddle(index);
+                        //选中二级分类
+                        store.dispatch(SelectSecondCategoryAction(secondCateList[index]));
+
+                        //滚动三级分类
+                        RenderSliverToBoxAdapter? keyRenderObject =
+                            keys[index].currentContext?.findAncestorRenderObjectOfType<RenderSliverToBoxAdapter>();
+                        if (keyRenderObject != null) {
+                          gridViewController.position
+                              .ensureVisible(keyRenderObject, duration: const Duration(milliseconds: 300), curve: Curves.linear)
+                              .then((value) => isTabClicked = false);
+                        }
                       }
                     },
                     child: Container(
@@ -97,74 +133,73 @@ Widget rightGroupList(BuildContext context) {
               }));
 
       //使用WidgetsVisibilityProvider 、WidgetsVisibilityListener和VisibleNotifierWidget组合监听得到第一个可见元素 firstVisibleItem
-      Widget groupThirdCategoryList = WidgetsVisibilityProvider(
-          child: Expanded(
-              child: WidgetsVisibilityListener(
-                  listener: (BuildContext context, WidgetsVisibilityEvent event) {
-                    int firstVisibleIndex = event.positionDataList!.isNotEmpty ? event.positionDataList[0].data : 0;
-                    SecondCateList firstVisibleItem = secondCateList[firstVisibleIndex];
+      Widget groupThirdCategoryList = Expanded(
+          child: NotificationListener<ScrollNotification>(
+              onNotification: (ScrollNotification notification) {
+                if (notification.depth == 0) {
+                  if (isTabClicked) return false;
 
-                    //如果不是当前选中的二级分类
-                    if (firstVisibleItem.categoryCode != selectSecondCategoryInfo?.categoryCode) {
-                      store.dispatch(SelectSecondCategoryAction(firstVisibleItem));
-
-                      RenderBox? box = secondKeys[firstVisibleIndex].currentContext?.findAncestorRenderObjectOfType<RenderBox>();
-                      if (box != null) {
-                        Offset os = box.localToGlobal(Offset.zero);
-                        double w = box.size.width;
-                        //相对于父组件的x距离
-                        double x = os.dx - MediaQuery.of(context).size.width / 3 - 14;
-
-                        double rlOffset = bWidth / 2 - (x + w / 2);
-                        double offset = scrollController.offset - rlOffset;
-                        if (offset < 0) {
-                          offset = 0;
-                        }
-                        scrollController.animateTo(offset, duration: const Duration(milliseconds: 300), curve: Curves.easeIn);
+                  int i = 0;
+                  for (; i < keys.length; i++) {
+                    //滚动三级分类
+                    RenderSliverToBoxAdapter? keyRenderObject =
+                        keys[i].currentContext?.findAncestorRenderObjectOfType<RenderSliverToBoxAdapter>();
+                    if (keyRenderObject != null) {
+                      //距离CustomScrollView顶部距离， 上滚出可视区域变为0
+                      final offsetY = (keyRenderObject.parentData as SliverPhysicalParentData).paintOffset.dy;
+                      if (offsetY > 10) {
+                        break;
                       }
                     }
-                  },
-                  child: GroupGridView(
-                      controller: gridViewController,
-                      padding: EdgeInsets.zero,
-                      gridDelegate:
-                          const SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 3, mainAxisSpacing: 0, crossAxisSpacing: 0),
-                      sectionCount: secondCateList.length,
-                      itemInSectionCount: (int section) => secondCateList[section].cateList!.length!,
-                      itemInSectionBuilder: (BuildContext context, IndexPath indexPath) {
-                        return SizedBox(
-                          width: thirdCateItemWidth,
-                          height: thirdCateItemHeight,
-                          child: Column(
-                            children: [
-                              CachedNetworkImage(
-                                width: 58,
-                                height: 58,
-                                imageUrl: secondCateList[indexPath.section].cateList![indexPath.index].iconUrl!,
-                                placeholder: (context, url) => assetImage("images/default.png", 58, 58),
-                                errorWidget: (context, url, error) => assetImage("images/default.png", 58, 58),
-                                fit: BoxFit.fill,
-                              ),
-                              Container(
-                                  height: 24,
-                                  margin: const EdgeInsets.only(top: 6),
-                                  child: Text(
-                                    secondCateList[indexPath.section].cateList![indexPath.index].categoryName!,
-                                    style: TextStyle(fontSize: 12, color: CommonStyle.color777677),
-                                  ))
-                            ],
+                  }
+                  final newIndex = i == 0 ? 0 : i - 1;
+                  if (selectSecondCategoryInfo?.categoryCode != secondCateList[newIndex].categoryCode) {
+                    //滚动二级分类至中间
+                    tabScrollToMiddle(newIndex);
+                    //选中二级分类
+                    store.dispatch(SelectSecondCategoryAction(secondCateList[newIndex]));
+                  }
+                }
+                return false;
+              },
+              child: GroupGridView(
+                  controller: gridViewController,
+                  padding: EdgeInsets.zero,
+                  gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 3, mainAxisSpacing: 0, crossAxisSpacing: 0),
+                  sectionCount: secondCateList.length,
+                  itemInSectionCount: (int section) => secondCateList[section].cateList!.length!,
+                  itemInSectionBuilder: (BuildContext context, IndexPath indexPath) {
+                    return SizedBox(
+                      width: thirdCateItemWidth,
+                      height: thirdCateItemHeight,
+                      child: Column(
+                        children: [
+                          CachedNetworkImage(
+                            width: 58,
+                            height: 58,
+                            imageUrl: secondCateList[indexPath.section].cateList![indexPath.index].iconUrl!,
+                            placeholder: (context, url) => assetImage("images/default.png", 58, 58),
+                            errorWidget: (context, url, error) => assetImage("images/default.png", 58, 58),
+                            fit: BoxFit.fill,
                           ),
-                        );
-                      },
-                      headerForSection: (section) => VisibleNotifierWidget(
-                          data: section,
-                          child: Container(
-                              key: keys[section],
-                              height: 30,
-                              alignment: Alignment.centerLeft,
-                              padding: const EdgeInsets.only(left: 16),
-                              child: Text(secondCateList[section].categoryName!,
-                                  style: const TextStyle(fontSize: 16, fontWeight: FontWeight.w600))))))));
+                          Container(
+                              height: 24,
+                              margin: const EdgeInsets.only(top: 6),
+                              child: Text(
+                                secondCateList[indexPath.section].cateList![indexPath.index].categoryName!,
+                                style: TextStyle(fontSize: 12, color: CommonStyle.color777677),
+                              ))
+                        ],
+                      ),
+                    );
+                  },
+                  headerForSection: (section) => Container(
+                      key: keys[section],
+                      height: 30,
+                      alignment: Alignment.centerLeft,
+                      padding: const EdgeInsets.only(left: 16),
+                      child: Text(secondCateList[section].categoryName!,
+                          style: const TextStyle(fontSize: 16, fontWeight: FontWeight.w600))))));
 
       return Expanded(
           flex: 2,

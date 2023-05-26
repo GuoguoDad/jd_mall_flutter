@@ -6,11 +6,17 @@ import '../../models/primary_category_list.dart';
 class CategoryApi {
   static Future queryCategoryInfo() async {
     var res = await httpManager.get('${config.host}/category/list', {}, null, null);
+    if (res?.code != '0') {
+      return null;
+    }
     return PrimaryCategoryList.fromJson(res?.data ?? {});
   }
 
   static Future querySecondGroupCategoryInfo(String categoryId) async {
     var res = await httpManager.post('${config.host}/category/queryContentByCategory', {"categoryId": categoryId}, null, null);
+    if (res?.code != '0') {
+      return null;
+    }
     return SecondGroupCategoryInfo.fromJson(res?.data ?? {});
   }
 }

@@ -1,3 +1,4 @@
+import 'dart:math';
 import 'package:redux/redux.dart';
 import 'package:jd_mall_flutter/page/welcome/redux/wel_page_action.dart';
 import 'package:jd_mall_flutter/page/welcome/service.dart';
@@ -9,7 +10,15 @@ class WelPageMiddleware<WelPageState> implements MiddlewareClass<WelPageState> {
   @override
   call(Store<WelPageState> store, action, NextDispatcher next) {
     if (action is InitDataAction) {
-      initData.then((res) => {store.dispatch(SetHomePageInfoAction(res[0])), store.dispatch(InitGoodsPageAction(1, res[1]))});
+      store.dispatch(SetLoadingAction(true));
+      initData.then((res) => {
+            if (res[0] != null && res[1] != null)
+              {
+                store.dispatch(SetLoadingAction(false)),
+                store.dispatch(SetHomePageInfoAction(res[0])),
+                store.dispatch(InitGoodsPageAction(1, res[1]))
+              }
+          });
     }
     if (action is RefreshAction) {
       initData.then(

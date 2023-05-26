@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_redux/flutter_redux.dart';
 import 'package:jd_mall_flutter/common/widget/image/asset_image.dart';
+import 'package:jd_mall_flutter/page/welcome/widget/wel_skeleton.dart';
 import 'package:jd_mall_flutter/page/welcome/widget/goods_list.dart';
 import 'package:jd_mall_flutter/page/welcome/widget/tab_list.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
@@ -59,6 +60,10 @@ class _WelcomePageState extends State<WelcomePage> {
                 backgroundColor: Colors.white,
                 child: assetImage('images/ic_back_top.png', 32, 32),
               )));
+
+      if (store.state.welPageState.isLoading) {
+        return welSkeleton(context);
+      }
 
       return NotificationListener<ScrollNotification>(
           onNotification: (ScrollNotification notification) {

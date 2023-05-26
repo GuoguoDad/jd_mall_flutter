@@ -13,7 +13,7 @@ import '../page/welcome/redux/wel_page_middleware.dart';
 
 final store = Store<AppState>(reducers,
     initialState: AppState(
-        WelPageState(0, 0, "1", HomePageInfo.fromJson({}), 1, GoodsPageInfo.fromJson({})),
+        WelPageState(true, 0, 0, "1", HomePageInfo.fromJson({}), 1, GoodsPageInfo.fromJson({})),
         CategoryPageState(SelectedCategoryInfo(CategoryInfo.fromJson({}), CategoryInfo.fromJson({}), CategoryInfo.fromJson({})),
             PrimaryCategoryList.fromJson({}).categoryList, SecondGroupCategoryInfo.fromJson({}), SecondCateList.fromJson({}))),
     middleware: [WelPageMiddleware(), CategoryPageMiddleware()]);

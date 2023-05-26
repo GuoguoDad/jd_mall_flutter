@@ -1,6 +1,4 @@
 import 'dart:async';
-
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:fluttertoast/fluttertoast.dart';
@@ -73,8 +71,6 @@ mixin HttpErrorListener on State<MallApp> {
   @override
   void initState() {
     super.initState();
-
-    ///Stream演示event bus
     stream = eventBus.on<HttpErrorEvent>().listen((event) {
       errorHandleFunction(event.code, event.message);
     });
@@ -93,28 +89,28 @@ mixin HttpErrorListener on State<MallApp> {
     var context = navKey.currentContext!;
     switch (code) {
       case Code.NETWORK_ERROR:
-        showToast(MallLocalizations.i18n(context)!.network_error);
+        showToast(MallLocalizations.i18n(context).network_error);
         break;
       case 401:
-        showToast(MallLocalizations.i18n(context)!.network_error_401);
+        showToast(MallLocalizations.i18n(context).network_error_401);
         break;
       case 403:
-        showToast(MallLocalizations.i18n(context)!.network_error_403);
+        showToast(MallLocalizations.i18n(context).network_error_403);
         break;
       case 404:
-        showToast(MallLocalizations.i18n(context)!.network_error_404);
+        showToast(MallLocalizations.i18n(context).network_error_404);
         break;
       case 422:
-        showToast(MallLocalizations.i18n(context)!.network_error_422);
+        showToast(MallLocalizations.i18n(context).network_error_422);
         break;
       case Code.NETWORK_TIMEOUT:
-        showToast(MallLocalizations.i18n(context)!.network_error_timeout);
+        showToast(MallLocalizations.i18n(context).network_error_timeout);
         break;
       case Code.CONNECTION_REFUSED:
-        showToast(MallLocalizations.i18n(context)!.connnect_refused);
+        showToast(MallLocalizations.i18n(context).connnect_refused);
         break;
       default:
-        showToast("${MallLocalizations.i18n(context)!.network_error_unknown} " + message);
+        showToast("${MallLocalizations.i18n(context).network_error_unknown} $message");
         break;
     }
   }

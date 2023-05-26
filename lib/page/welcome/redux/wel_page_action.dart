@@ -2,6 +2,12 @@ import 'package:jd_mall_flutter/models/goods_page_info.dart';
 import 'package:jd_mall_flutter/models/home_page_info.dart';
 
 //记录页面滚动距离
+class SetLoadingAction {
+  final bool value;
+  SetLoadingAction(this.value);
+}
+
+//记录页面滚动距离
 class ChangePageScrollYAction {
   final double value;
 
