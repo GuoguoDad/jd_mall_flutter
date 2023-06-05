@@ -25,56 +25,47 @@ class _CartPageState extends State<CartPage> {
   final ScrollController _scrollController = ScrollController();
   final RefreshController _refreshController = RefreshController();
 
-  bool show2Top = false;
-
   @override
   Widget build(BuildContext context) {
     return StoreBuilder<AppState>(onInit: (store) {
       store.dispatch(InitAction());
     }, builder: (context, store) {
+      // if (store.state.cartPageState.isLoading) {
+      //   return Container(
+      //     width: MediaQuery.of(context).size.width,
+      //     height: MediaQuery.of(context).size.height,
+      //     color: Colors.grey,
+      //   );
+      // }
+
       return Column(
         children: [
+          cartHeader(context),
           Expanded(
-            child: NotificationListener<ScrollNotification>(
-                onNotification: (ScrollNotification notification) {
-                  if (notification.depth == 0) {
-                    double distance = notification.metrics.pixels;
-                    setState(() {
-                      show2Top = distance > MediaQuery.of(context).size.height;
-                    });
-                  }
-                  return false;
+            child: Scaffold(
+              backgroundColor: CommonStyle.colorF3F3F3,
+              body: SmartRefresher(
+                controller: _refreshController,
+                enablePullUp: true,
+                onRefresh: () async {
+                  store.dispatch(RefreshAction(() => refreshSuccess(_refreshController), () => refreshFail(_refreshController)));
                 },
-                child: Scaffold(
-                  backgroundColor: CommonStyle.colorF3F3F3,
-                  body: SmartRefresher(
-                    controller: _refreshController,
-                    enablePullUp: true,
-                    onRefresh: () async {
-                      store.dispatch(RefreshAction(() => refreshSuccess(_refreshController), () => refreshFail(_refreshController)));
-                    },
-                    onLoading: () async {
-                      store.dispatch(LoadMoreAction(store.state.cartPageState.pageNum + 1, () => loadMoreSuccess(_refreshController),
-                          () => loadMoreFail(_refreshController)));
-                    },
-                    child: CustomScrollView(
-                      controller: _scrollController,
-                      slivers: [
-                        cartHeader(context),
-                        condition(context),
-                        cartGoods(context),
-                        probablyLikeImage(context),
-                        goodsList(context)
-                      ],
-                    ),
-                  ),
-                  floatingActionButton: BackToTop(
-                    show: show2Top,
-                    onTap: () {
-                      _scrollController.animateTo(0, duration: const Duration(milliseconds: 500), curve: Curves.easeInCubic);
-                    },
-                  ),
-                )),
+                onLoading: () async {
+                  store.dispatch(LoadMoreAction(store.state.cartPageState.pageNum + 1, () => loadMoreSuccess(_refreshController),
+                      () => loadMoreFail(_refreshController)));
+                },
+                child: CustomScrollView(
+                  controller: _scrollController,
+                  slivers: [condition(context), cartGoods(context), probablyLikeImage(context), goodsList(context)],
+                ),
+              ),
+              floatingActionButton: BackToTop(
+                show: _scrollController.hasClients && _scrollController.offset > MediaQuery.of(context).size.height,
+                onTap: () {
+                  _scrollController.animateTo(0, duration: const Duration(milliseconds: 500), curve: Curves.easeInCubic);
+                },
+              ),
+            ),
           ),
           Container(
             height: 58,

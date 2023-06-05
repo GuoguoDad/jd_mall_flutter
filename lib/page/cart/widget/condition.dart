@@ -4,7 +4,7 @@ import '../../../common/widget/persistentHeader/sliver_header_builder.dart';
 
 Widget condition(BuildContext context) {
   return SliverPersistentHeader(
-      pinned: true,
+      pinned: false,
       delegate: SliverHeaderDelegate.fixedHeight(
           //固定高度
           height: 40,

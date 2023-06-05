@@ -10,9 +10,14 @@ class CartPageMiddleware<CartPageState> implements MiddlewareClass<CartPageState
   @override
   call(Store<CartPageState> store, action, NextDispatcher next) {
     if (action is InitAction) {
+      store.dispatch(SetLoadingAction(true));
       initData.then((res) => {
             if (res[0] != null && res[1] != null)
-              {store.dispatch(InitCartGoodsAction(res[0])), store.dispatch(InitGoodsPageAction(1, res[1]))}
+              {
+                store.dispatch(SetLoadingAction(false)),
+                store.dispatch(InitCartGoodsAction(res[0])),
+                store.dispatch(InitGoodsPageAction(1, res[1]))
+              }
           });
     }
     if (action is RefreshAction) {

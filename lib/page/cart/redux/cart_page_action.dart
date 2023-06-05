@@ -7,6 +7,13 @@ class InitAction {
   InitAction();
 }
 
+//记录页面滚动距离
+class SetLoadingAction {
+  final bool value;
+
+  SetLoadingAction(this.value);
+}
+
 class InitCartGoodsAction {
   List<CartGoods> cartGoods;
 

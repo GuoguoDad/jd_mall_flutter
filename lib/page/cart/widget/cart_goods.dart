@@ -102,7 +102,7 @@ Widget cartGoods(BuildContext context) {
                                     style: const TextStyle(fontSize: 20, color: Colors.red, fontWeight: FontWeight.w500),
                                   ),
                                   StepperInt(
-                                    value: 1,
+                                    value: cartGoods[indexPath.section].goodsList![indexPath.index].num!,
                                     size: 25,
                                     style: StepperStyle(
                                       foregroundColor: Colors.black87,

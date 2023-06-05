@@ -1,9 +1,11 @@
-import 'package:jd_mall_flutter/models/goods_page_info.dart';
-import 'package:jd_mall_flutter/page/cart/redux/cart_page_state.dart';
 import 'package:redux/redux.dart';
 import 'package:jd_mall_flutter/page/cart/redux/cart_page_action.dart';
+import 'package:jd_mall_flutter/models/goods_page_info.dart';
+import 'package:jd_mall_flutter/page/cart/redux/cart_page_state.dart';
 
 final cartPageReducer = combineReducers<CartPageState>([
+  //修改loading状态
+  TypedReducer<CartPageState, SetLoadingAction>((state, action) => state..isLoading = action.value),
   //初始化购物车商品数据
   TypedReducer<CartPageState, InitCartGoodsAction>((state, action) => state..cartGoods = action.cartGoods),
   //初始化商品数据
