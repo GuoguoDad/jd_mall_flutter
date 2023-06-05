@@ -6,6 +6,7 @@ import 'package:jd_mall_flutter/page/cart/widget/cart_goods.dart';
 import 'package:jd_mall_flutter/page/cart/widget/cart_header.dart';
 import 'package:jd_mall_flutter/page/cart/widget/condition.dart';
 import 'package:jd_mall_flutter/page/cart/widget/probably_like.dart';
+import 'package:jd_mall_flutter/page/cart/widget/total_settlement.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
 import '../../common/util/refresh_util.dart';
 import '../../common/widget/back_to_top.dart';
@@ -67,10 +68,7 @@ class _CartPageState extends State<CartPage> {
               ),
             ),
           ),
-          Container(
-            height: 58,
-            color: Colors.grey,
-          )
+          totalSettlement(context)
         ],
       );
     });

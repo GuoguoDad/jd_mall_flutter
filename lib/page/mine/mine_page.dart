@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:jd_mall_flutter/common/style/common_style.dart';
 import 'package:shimmer/shimmer.dart';
 import '../../common/skeleton/placeholders.dart';
 
@@ -14,42 +15,27 @@ class MinePage extends StatefulWidget {
 class _MinePageState extends State<MinePage> {
   @override
   Widget build(BuildContext context) {
-    return Shimmer.fromColors(
-        baseColor: Colors.grey.shade300,
-        highlightColor: Colors.grey.shade100,
-        enabled: true,
-        child: const SingleChildScrollView(
-          physics: NeverScrollableScrollPhysics(),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            mainAxisSize: MainAxisSize.max,
-            children: [
-              SearchPlaceholder(),
-              BannerPlaceholder(),
-              BoxPlaceholder(
-                width: double.infinity,
-                height: 90,
-                margin: EdgeInsets.only(left: 16, right: 16),
-              ),
-              LineMenuPlaceholder(lineType: LineMenuType.twoLine),
-              SizedBox(height: 16.0),
-              ContentPlaceholder(
-                lineType: ContentLineType.fiveLines,
-              ),
-              SizedBox(height: 16.0),
-              ContentPlaceholder(
-                lineType: ContentLineType.fiveLines,
-              ),
-              SizedBox(height: 16.0),
-              ContentPlaceholder(
-                lineType: ContentLineType.fiveLines,
-              ),
-              SizedBox(height: 16.0),
-              ContentPlaceholder(
-                lineType: ContentLineType.fiveLines,
-              ),
-            ],
+    return Scaffold(
+        body: Center(
+            child: Ink(
+      width: 100,
+      height: 42,
+      decoration: const BoxDecoration(
+          gradient: LinearGradient(begin: Alignment.topLeft, end: Alignment.bottomRight, colors: [Color(0xFFDE2F21), Color(0xFFEC592F)]),
+          borderRadius: BorderRadius.all(Radius.circular(20))),
+      child: InkWell(
+        borderRadius: const BorderRadius.all(Radius.circular(20)),
+        highlightColor: CommonStyle.themeColor,
+        child: Container(
+          padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 20),
+          alignment: Alignment.center,
+          child: const Text(
+            '去结算',
+            style: TextStyle(color: Colors.white),
           ),
-        ));
+        ),
+        onTap: () {},
+      ),
+    )));
   }
 }
