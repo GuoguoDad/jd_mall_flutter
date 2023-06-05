@@ -26,13 +26,13 @@ class StringZh extends StringBase {
   String load_more_text = "正在加载更多";
 
   @override
-  String tab_main_cart = "首页";
+  String tab_main_home = "首页";
 
   @override
   String tab_main_category = "分类";
 
   @override
-  String tab_main_home = "购物车";
+  String tab_main_cart = "购物车";
 
   @override
   String tab_main_mine = "我的";

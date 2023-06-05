@@ -318,6 +318,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "3.3.0"
+  flutter_group_list_view:
+    dependency: "direct main"
+    description:
+      name: flutter_group_list_view
+      sha256: "7504d513bbc46da0021b65003e253c0cbc1a221fc5973b6db00c9b92c167fd04"
+      url: "https://pub.dev"
+    source: hosted
+    version: "1.0.3"
   flutter_lints:
     dependency: "direct dev"
     description:
@@ -939,5 +947,5 @@ packages:
     source: hosted
     version: "3.1.2"
 sdks:
-  dart: ">=3.0.0-0 <3.10.0"
+  dart: ">=3.0.0 <3.10.0"
   flutter: ">=3.3.0"

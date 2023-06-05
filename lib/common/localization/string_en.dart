@@ -26,13 +26,13 @@ class StringEn extends StringBase {
   String load_more_text = "loading";
 
   @override
-  String tab_main_cart = "home";
+  String tab_main_home = "home";
 
   @override
   String tab_main_category = "category";
 
   @override
-  String tab_main_home = "cart";
+  String tab_main_cart = "cart";
 
   @override
   String tab_main_mine = "mine";

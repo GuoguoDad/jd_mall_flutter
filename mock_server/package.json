@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "mock": "mock-server --watch --port 8090 --api-base-path ./api"
+    "mock": "mock-server --watch --port 8091 --api-base-path ./api"
   },
   "author": "liuhui",
   "license": "ISC",
