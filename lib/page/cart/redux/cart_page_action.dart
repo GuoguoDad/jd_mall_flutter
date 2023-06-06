@@ -52,3 +52,21 @@ class LoadMoreAction {
 
   LoadMoreAction(this.currentPage, this.loadMoreSuccess, this.loadMoreFail);
 }
+
+class SelectCartGoodsAction {
+  final String goodsCode;
+
+  SelectCartGoodsAction(this.goodsCode);
+}
+
+class SelectStoreGoodsAction {
+  final String storeCode;
+  final bool value;
+  SelectStoreGoodsAction(this.storeCode, this.value);
+}
+
+class SelectAllAction {
+  bool selectAll;
+
+  SelectAllAction(this.selectAll);
+}

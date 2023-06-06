@@ -6,10 +6,12 @@ class CartPageState {
 
   List<CartGoods> cartGoods;
 
+  List<String> selectCartGoodsList;
+
   int pageNum = 1;
 
   //商品数据
   GoodsPageInfo goodsPageInfo;
 
-  CartPageState(this.isLoading, this.cartGoods, this.pageNum, this.goodsPageInfo);
+  CartPageState(this.isLoading, this.cartGoods, this.pageNum, this.goodsPageInfo, this.selectCartGoodsList);
 }

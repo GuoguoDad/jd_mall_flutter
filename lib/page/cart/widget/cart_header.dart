@@ -9,7 +9,7 @@ import '../../../common/style/common_style.dart';
 import '../../../common/widget/persistentHeader/sliver_header_builder.dart';
 
 Widget cartHeader(BuildContext context) {
-  return Container(
+  return SizedBox(
     height: 44 + MediaQueryData.fromView(View.of(context)).padding.top,
     child: Container(
         padding: EdgeInsets.fromLTRB(0, MediaQueryData.fromView(View.of(context)).padding.top, 0, 0),

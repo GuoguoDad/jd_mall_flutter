@@ -18,5 +18,5 @@ final store = Store<AppState>(reducers,
         WelPageState(true, 0, 0, "1", HomePageInfo.fromJson({}), 1, GoodsPageInfo.fromJson({})),
         CategoryPageState(SelectedCategoryInfo(CategoryInfo.fromJson({}), CategoryInfo.fromJson({}), CategoryInfo.fromJson({})),
             PrimaryCategoryList.fromJson({}).categoryList, SecondGroupCategoryInfo.fromJson({}), SecondCateList.fromJson({})),
-        CartPageState(true, [], 1, GoodsPageInfo.fromJson({}))),
+        CartPageState(true, [], 1, GoodsPageInfo.fromJson({}), [])),
     middleware: [WelPageMiddleware(), CategoryPageMiddleware(), CartPageMiddleware()]);

@@ -9,10 +9,12 @@ import '../../../common/widget/image/asset_image.dart';
 import '../../../common/widget/stepper/style.dart';
 import '../../../models/cart_goods.dart';
 import '../../../redux/app_state.dart';
+import '../redux/cart_page_action.dart';
 
 Widget cartGoods(BuildContext context) {
   return StoreBuilder<AppState>(builder: (context, store) {
     List<CartGoods> cartGoods = store.state.cartPageState.cartGoods;
+    List<String> selectList = store.state.cartPageState.selectCartGoodsList;
 
     return GroupSliverListView(
       sectionCount: cartGoods.length ?? 0,
@@ -20,6 +22,9 @@ Widget cartGoods(BuildContext context) {
         return cartGoods[section].goodsList?.length ?? 0;
       },
       headerForSectionBuilder: (int section) {
+        List<String> sList = selectList.where((element) => element.contains(cartGoods[section].storeCode!)).toList();
+        bool isSelectAll = sList.length == cartGoods[section].goodsList?.length;
+
         return Container(
           height: 50,
           margin: const EdgeInsets.only(left: 12, right: 12),
@@ -34,7 +39,13 @@ Widget cartGoods(BuildContext context) {
               Container(
                 width: 28,
                 margin: const EdgeInsets.only(left: 12),
-                child: Checkbox(value: true, shape: const CircleBorder(), activeColor: Colors.red, onChanged: (bool? va) {}),
+                child: Checkbox(
+                    value: isSelectAll,
+                    shape: const CircleBorder(),
+                    activeColor: Colors.red,
+                    onChanged: (bool? va) {
+                      store.dispatch(SelectStoreGoodsAction(cartGoods[section].storeCode!, !isSelectAll));
+                    }),
               ),
               assetImage("images/ic_store.png", 24, 24),
               Container(
@@ -55,7 +66,13 @@ Widget cartGoods(BuildContext context) {
               Container(
                 width: 28,
                 margin: const EdgeInsets.only(left: 12),
-                child: Checkbox(value: true, shape: const CircleBorder(), activeColor: Colors.red, onChanged: (bool? va) {}),
+                child: Checkbox(
+                    value: selectList.contains(cartGoods[indexPath.section].goodsList![indexPath.index].code!),
+                    shape: const CircleBorder(),
+                    activeColor: Colors.red,
+                    onChanged: (bool? va) {
+                      store.dispatch(SelectCartGoodsAction(cartGoods[indexPath.section].goodsList![indexPath.index].code!));
+                    }),
               ),
               Container(
                 width: 92,
