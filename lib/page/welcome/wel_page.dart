@@ -67,12 +67,7 @@ class _WelcomePageState extends State<WelcomePage> {
                 ],
               ),
             ),
-            floatingActionButton: BackToTop(
-              show: _scrollController.hasClients && _scrollController.offset > MediaQuery.of(context).size.height,
-              onTap: () {
-                _scrollController.animateTo(0, duration: const Duration(milliseconds: 500), curve: Curves.easeInCubic);
-              },
-            ),
+            floatingActionButton: BackToTop(_scrollController),
           ));
     });
   }

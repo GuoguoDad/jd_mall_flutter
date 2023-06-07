@@ -150,7 +150,7 @@ Widget cartGoods(BuildContext context) {
         );
       },
       footerForSectionBuilder: (int section) {
-        double marginBottom = section + 1 != cartGoods?.length ? 10 : 0.0;
+        double marginBottom = section + 1 != cartGoods.length ? 10 : 0.0;
         return Container(
           height: 10,
           margin: EdgeInsets.only(left: 12, right: 12, bottom: marginBottom),
