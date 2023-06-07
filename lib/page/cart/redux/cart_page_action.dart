@@ -53,18 +53,30 @@ class LoadMoreAction {
   LoadMoreAction(this.currentPage, this.loadMoreSuccess, this.loadMoreFail);
 }
 
+//单独选中购物车中商品
 class SelectCartGoodsAction {
   final String goodsCode;
 
   SelectCartGoodsAction(this.goodsCode);
 }
 
+//购物车修改商品数量
+class ChangeCartGoodsNumAction {
+  final String goodsCode;
+  final int num;
+
+  ChangeCartGoodsNumAction(this.goodsCode, this.num);
+}
+
+//选中店铺
 class SelectStoreGoodsAction {
   final String storeCode;
   final bool value;
+
   SelectStoreGoodsAction(this.storeCode, this.value);
 }
 
+//全选
 class SelectAllAction {
   bool selectAll;
 

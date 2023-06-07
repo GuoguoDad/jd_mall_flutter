@@ -25,9 +25,9 @@ class GoodsInfo {
   final String? imgUrl;
   final String? description;
   final String? price;
-  final int? num;
+  int? num;
 
-  const GoodsInfo({
+  GoodsInfo({
     this.code,
     this.imgUrl,
     this.description,

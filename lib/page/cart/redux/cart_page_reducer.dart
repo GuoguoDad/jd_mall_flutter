@@ -61,4 +61,19 @@ final cartPageReducer = combineReducers<CartPageState>([
     }
     return state..selectCartGoodsList = selectList;
   }),
+  //修改购物车商品数量
+  TypedReducer<CartPageState, ChangeCartGoodsNumAction>((state, action) {
+    List<CartGoods> cartGoods = state.cartGoods;
+    List<CartGoods> list = cartGoods.map((element) {
+      List<GoodsInfo>? filterList = element.goodsList?.where((goods) => goods.code == action.goodsCode).toList();
+      if (filterList!.isNotEmpty) {
+        int? index = element.goodsList?.indexWhere((goods) => goods.code == action.goodsCode);
+        filterList[0].num = action.num;
+        element.goodsList?[index!] = filterList[0];
+      }
+      return element;
+    }).toList();
+
+    return state..cartGoods = list;
+  }),
 ]);

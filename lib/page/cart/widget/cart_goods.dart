@@ -129,7 +129,10 @@ Widget cartGoods(BuildContext context) {
                                       elevation: 0,
                                       buttonAspectRatio: 1.5,
                                     ),
-                                    didChangeCount: (int value) {},
+                                    didChangeCount: (int value) {
+                                      store.dispatch(
+                                          ChangeCartGoodsNumAction(cartGoods[indexPath.section].goodsList![indexPath.index].code!, value));
+                                    },
                                   )
                                 ],
                               ))

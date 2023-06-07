@@ -11,6 +11,8 @@ Widget totalSettlement(BuildContext context) {
     List<String> selectList = store.state.cartPageState.selectCartGoodsList;
     bool isSelect = isSelectAll(cartGoods, selectList);
 
+    TotalInfo totalInfo = calcPrice(cartGoods, selectList);
+
     return Container(
       height: 58,
       width: MediaQuery.of(context).size.width,
@@ -39,7 +41,7 @@ Widget totalSettlement(BuildContext context) {
                     margin: const EdgeInsets.only(left: 5),
                     child: const Text("合计:"),
                   ),
-                  const Text("￥3376.00", style: TextStyle(fontWeight: FontWeight.bold))
+                  Text("￥${totalInfo.price}", style: const TextStyle(fontWeight: FontWeight.bold))
                 ],
               )),
           Container(
@@ -60,7 +62,7 @@ Widget totalSettlement(BuildContext context) {
                   padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 20),
                   alignment: Alignment.center,
                   child: Text(
-                    '去结算(${selectList.length})',
+                    '去结算(${totalInfo.num})',
                     style: const TextStyle(color: Colors.white, fontSize: 16, fontWeight: FontWeight.bold),
                   ),
                 ),
@@ -82,4 +84,28 @@ bool isSelectAll(List<CartGoods> cartGoods, List<String> selectList) {
   }).toList();
 
   return list.length == cartGoods.length;
+}
+
+TotalInfo calcPrice(List<CartGoods> cartGoods, List<String> selectList) {
+  double totalPrice = 0;
+  int num = 0;
+  for (var element in selectList) {
+    GoodsInfo? goodsInfo = getGoodsInfo(cartGoods, element);
+    num += goodsInfo!.num!;
+    double money = goodsInfo!.num! * double.parse(goodsInfo!.price!);
+    totalPrice += money;
+  }
+  return TotalInfo(totalPrice, num);
+}
+
+GoodsInfo? getGoodsInfo(List<CartGoods> cartGoods, String goodsCode) {
+  CartGoods cGoods = cartGoods.firstWhere((element) => goodsCode.contains(element.storeCode!));
+  return cGoods.goodsList?.firstWhere((element) => element.code == goodsCode);
+}
+
+class TotalInfo {
+  double price;
+  int num;
+
+  TotalInfo(this.price, this.num);
 }
