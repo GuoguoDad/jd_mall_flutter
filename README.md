@@ -5,7 +5,7 @@
 1. 使用flutter_redux状态管理
 2. 网络使用dio进行了简单的封装
 3. 使用node项目mock服务端接口(mock_server目录)
-4. 目前只实现了首页、分类页，持续更新中...
+4. 目前只实现了首页、分类、购物车，持续更新中...
 
 * ### 同款Android Kotlin版本（ https://github.com/GuoguoDad/jd_mall.git ）
 
@@ -46,6 +46,10 @@
 ![1](https://p1-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/ad30d8e0cdaf49df98380c640f693a29~tplv-k3u1fbpfcp-watermark.image)
 |
 ![2](https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/4e223b084780400a9c5436425573003b~tplv-k3u1fbpfcp-watermark.image)
+
+## 购物车
+
+[1](https://p1-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/b01bf300da3c496a8e896383cfd13122~tplv-k3u1fbpfcp-watermark.image)
 
 # 第三方框架
 
