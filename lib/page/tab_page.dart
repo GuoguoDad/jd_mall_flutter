@@ -6,19 +6,19 @@ import 'package:jd_mall_flutter/page/cart/cart_page.dart';
 import 'package:jd_mall_flutter/page/mine/mine_page.dart';
 import 'package:jd_mall_flutter/common/widget/image/asset_image.dart';
 
-import '../../common/localization/default_localizations.dart';
-import '../../common/style/common_style.dart';
+import '../common/localization/default_localizations.dart';
+import '../common/style/common_style.dart';
 
-class HomePage extends StatefulWidget {
-  const HomePage({super.key});
+class TabPage extends StatefulWidget {
+  const TabPage({super.key});
 
   static const String name = "/home";
 
   @override
-  State<HomePage> createState() => _TabPageState();
+  State<TabPage> createState() => _TabPageState();
 }
 
-class _TabPageState extends State<HomePage> {
+class _TabPageState extends State<TabPage> {
   int _selectedIndex = 0;
 
   void _onItemTapped(int index) {

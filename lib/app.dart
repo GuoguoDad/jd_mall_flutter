@@ -2,7 +2,7 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:fluttertoast/fluttertoast.dart';
-import 'package:jd_mall_flutter/page/home/home_page.dart';
+import 'package:jd_mall_flutter/page/tab_page.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
 
 import 'common/event/http_error_event.dart';
@@ -43,9 +43,9 @@ class _FlutterReduxMallApp extends State<MallApp> with HttpErrorListener {
             splashColor: Colors.transparent,
             highlightColor: Colors.transparent,
           ),
-          initialRoute: HomePage.name,
-          routes: {HomePage.name: (context) => const HomePage()},
-          home: const HomePage(),
+          initialRoute: TabPage.name,
+          routes: {TabPage.name: (context) => const TabPage()},
+          home: const TabPage(),
           debugShowCheckedModeBanner: false,
           localizationsDelegates: [
             // this line is important
