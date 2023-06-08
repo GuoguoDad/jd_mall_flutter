@@ -2,7 +2,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_redux/flutter_redux.dart';
 import 'package:jd_mall_flutter/common/style/common_style.dart';
-import 'package:jd_mall_flutter/redux/app_state.dart';
+import 'package:jd_mall_flutter/store/app_state.dart';
 
 import 'package:jd_mall_flutter/common/widget/image/asset_image.dart';
 import 'package:jd_mall_flutter/page/mine/redux/mine_page_action.dart';

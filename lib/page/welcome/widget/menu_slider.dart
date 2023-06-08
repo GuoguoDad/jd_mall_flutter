@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_redux/flutter_redux.dart';
 import 'package:jd_mall_flutter/common/style/common_style.dart';
 import 'package:jd_mall_flutter/page/welcome/redux/wel_page_action.dart';
-import 'package:jd_mall_flutter/redux/app_state.dart';
+import 'package:jd_mall_flutter/store/app_state.dart';
 import 'package:jd_mall_flutter/page/welcome/redux/wel_page_state.dart';
 
 import '../../../common/widget/image/asset_image.dart';

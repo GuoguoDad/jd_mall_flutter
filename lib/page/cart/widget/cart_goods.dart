@@ -8,7 +8,7 @@ import 'package:jd_mall_flutter/common/widget/stepper/stepper.dart';
 import '../../../common/widget/image/asset_image.dart';
 import '../../../common/widget/stepper/style.dart';
 import '../../../models/cart_goods.dart';
-import '../../../redux/app_state.dart';
+import '../../../store/app_state.dart';
 import '../redux/cart_page_action.dart';
 
 Widget cartGoods(BuildContext context) {

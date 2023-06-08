@@ -10,7 +10,7 @@ import 'package:jd_mall_flutter/page/cart/widget/total_settlement.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
 import '../../common/util/refresh_util.dart';
 import '../../common/widget/back_to_top.dart';
-import '../../redux/app_state.dart';
+import '../../store/app_state.dart';
 import './widget/goods_list.dart';
 
 class CartPage extends StatefulWidget {

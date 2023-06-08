@@ -9,7 +9,7 @@ import 'package:jd_mall_flutter/page/welcome/widget/gallery_list.dart';
 import 'package:jd_mall_flutter/page/welcome/widget/menu_slider.dart';
 import 'package:jd_mall_flutter/page/welcome/widget/search_header.dart';
 import 'package:jd_mall_flutter/page/welcome/redux/wel_page_action.dart';
-import 'package:jd_mall_flutter/redux/app_state.dart';
+import 'package:jd_mall_flutter/store/app_state.dart';
 import 'package:jd_mall_flutter/common/util/refresh_util.dart';
 import 'package:jd_mall_flutter/common/widget/back_to_top.dart';
 

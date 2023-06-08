@@ -7,7 +7,7 @@ import 'package:jd_mall_flutter/page/category/redux/category_page_action.dart';
 import 'package:jd_mall_flutter/common/widget/group_grid_view.dart';
 import 'package:jd_mall_flutter/common/widget/image/asset_image.dart';
 import 'package:jd_mall_flutter/models/second_group_category_info.dart';
-import 'package:jd_mall_flutter/redux/app_state.dart';
+import 'package:jd_mall_flutter/store/app_state.dart';
 
 late double rWidth, bWidth;
 //gridview的item宽和高一样

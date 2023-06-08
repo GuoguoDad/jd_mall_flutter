@@ -7,7 +7,7 @@ import 'package:jd_mall_flutter/page/mine/widget/single_line_menu.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
 import 'package:jd_mall_flutter/common/util/refresh_util.dart';
 import 'package:jd_mall_flutter/common/widget/back_to_top.dart';
-import 'package:jd_mall_flutter/redux/app_state.dart';
+import 'package:jd_mall_flutter/store/app_state.dart';
 import 'package:jd_mall_flutter/page/mine/redux/mine_page_action.dart';
 import 'package:jd_mall_flutter/page/mine/widget/tab_list.dart';
 import 'package:jd_mall_flutter/page/mine/widget/goods_list.dart';

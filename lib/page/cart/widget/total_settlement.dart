@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_redux/flutter_redux.dart';
 import '../../../common/style/common_style.dart';
 import '../../../models/cart_goods.dart';
-import '../../../redux/app_state.dart';
+import '../../../store/app_state.dart';
 import '../redux/cart_page_action.dart';
 
 Widget totalSettlement(BuildContext context) {

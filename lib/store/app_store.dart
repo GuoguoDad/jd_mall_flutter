@@ -1,8 +1,8 @@
 import 'package:jd_mall_flutter/page/mine/redux/mine_page_middleware.dart';
 import 'package:jd_mall_flutter/page/mine/redux/mine_page_state.dart';
 import 'package:redux/redux.dart';
-import 'package:jd_mall_flutter/redux/app_reducer.dart';
-import 'package:jd_mall_flutter/redux/app_state.dart';
+import 'package:jd_mall_flutter/store/app_reducer.dart';
+import 'package:jd_mall_flutter/store/app_state.dart';
 import 'package:jd_mall_flutter/page/welcome/redux/wel_page_state.dart';
 import 'package:jd_mall_flutter/models/home_page_info.dart';
 import 'package:jd_mall_flutter/models/goods_page_info.dart';
