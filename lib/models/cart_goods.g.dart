@@ -9,7 +9,9 @@ part of 'cart_goods.dart';
 CartGoods _$CartGoodsFromJson(Map<String, dynamic> json) => CartGoods(
       storeName: json['storeName'] as String?,
       storeCode: json['storeCode'] as String?,
-      goodsList: (json['goodsList'] as List<dynamic>?)?.map((e) => GoodsInfo.fromJson(e as Map<String, dynamic>)).toList(),
+      goodsList: (json['goodsList'] as List<dynamic>?)
+          ?.map((e) => GoodsInfo.fromJson(e as Map<String, dynamic>))
+          .toList(),
     );
 
 Map<String, dynamic> _$CartGoodsToJson(CartGoods instance) => <String, dynamic>{

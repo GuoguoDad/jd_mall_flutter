@@ -3,11 +3,12 @@ import 'package:flutter_redux/flutter_redux.dart';
 import 'package:jd_mall_flutter/common/style/common_style.dart';
 import 'package:jd_mall_flutter/page/mine/widget/info_header.dart';
 import 'package:jd_mall_flutter/page/mine/widget/order-card.dart';
+import 'package:jd_mall_flutter/page/mine/widget/single_line_menu.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
-import '../../common/util/refresh_util.dart';
-import '../../common/widget/back_to_top.dart';
-import '../../redux/app_state.dart';
-import '../mine/redux/mine_page_action.dart';
+import 'package:jd_mall_flutter/common/util/refresh_util.dart';
+import 'package:jd_mall_flutter/common/widget/back_to_top.dart';
+import 'package:jd_mall_flutter/redux/app_state.dart';
+import 'package:jd_mall_flutter/page/mine/redux/mine_page_action.dart';
 
 class MinePage extends StatefulWidget {
   const MinePage({super.key});
@@ -25,7 +26,7 @@ class _MinePageState extends State<MinePage> {
   @override
   Widget build(BuildContext context) {
     return StoreBuilder<AppState>(onInit: (store) {
-      // store.dispatch(InitDataAction());
+      store.dispatch(InitPageAction());
     }, builder: (context, store) {
       return NotificationListener<ScrollNotification>(
           onNotification: (ScrollNotification notification) {
@@ -49,7 +50,7 @@ class _MinePageState extends State<MinePage> {
                   },
                   child: CustomScrollView(
                     controller: _scrollController,
-                    slivers: [infoHeader(context), orderCard(context)],
+                    slivers: [infoHeader(context), orderCard(context), singleLineMenu(context)],
                   ),
                 ),
                 floatingActionButton: BackToTop(_scrollController),

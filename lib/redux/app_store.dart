@@ -1,3 +1,4 @@
+import 'package:jd_mall_flutter/page/mine/redux/mine_page_middleware.dart';
 import 'package:jd_mall_flutter/page/mine/redux/mine_page_state.dart';
 import 'package:redux/redux.dart';
 import 'package:jd_mall_flutter/redux/app_reducer.dart';
@@ -10,6 +11,7 @@ import 'package:jd_mall_flutter/models/second_group_category_info.dart';
 import 'package:jd_mall_flutter/page/cart/redux/cart_page_state.dart';
 import 'package:jd_mall_flutter/page/category/redux/category_page_state.dart';
 
+import '../models/mine_menu_tab_info.dart';
 import '../page/cart/redux/cart_page_middleware.dart';
 import '../page/category/redux/category_page_middleware.dart';
 import '../page/welcome/redux/wel_page_middleware.dart';
@@ -20,5 +22,5 @@ final store = Store<AppState>(reducers,
         CategoryPageState(SelectedCategoryInfo(CategoryInfo.fromJson({}), CategoryInfo.fromJson({}), CategoryInfo.fromJson({})),
             PrimaryCategoryList.fromJson({}).categoryList, SecondGroupCategoryInfo.fromJson({}), SecondCateList.fromJson({})),
         CartPageState(true, [], 1, GoodsPageInfo.fromJson({}), []),
-        MinePageState(0)),
-    middleware: [WelPageMiddleware(), CategoryPageMiddleware(), CartPageMiddleware()]);
+        MinePageState(0, 0, MineMenuTabInfo.fromJson({}))),
+    middleware: [WelPageMiddleware(), CategoryPageMiddleware(), CartPageMiddleware(), MinePageMiddleware()]);
