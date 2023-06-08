@@ -5,7 +5,7 @@
 1. 使用flutter_redux状态管理
 2. 网络使用dio进行了简单的封装
 3. 使用node项目mock服务端接口(mock_server目录)
-4. 目前只实现了首页、分类、购物车，持续更新中...
+4. 目前只实现了首页、分类、购物车、我的，持续更新中...
 
 * ### 同款Android Kotlin版本（ https://github.com/GuoguoDad/jd_mall.git ）
 
@@ -13,8 +13,6 @@
 
 <img src="images/shot/flutter_redux.png" title="" alt="image" width="450">
 <img src="images/shot/f_redux.png" title="" alt="image" width="450">
-
-## 使用
 
 1. 封装需要共享的数据
 2. 封装需要发送的消息（同时也有区分动作的作用）
@@ -35,10 +33,6 @@
 
 ![1](https://p9-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/f8b7b1357f064737a988f021acbe8d2c~tplv-k3u1fbpfcp-watermark.image)
 |
-![2](https://p9-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/8d202c9349634f1592459eea59b4557e~tplv-k3u1fbpfcp-watermark.image)
-
-![3](https://p9-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/33a1833aa808432eaa2f4863348118e4~tplv-k3u1fbpfcp-watermark.image)
-|
 ![4](https://p1-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/a0ddaa2068be4e4196d63fa3c96d48e0~tplv-k3u1fbpfcp-watermark.image)
 
 ## 分类
@@ -50,6 +44,10 @@
 ## 购物车
 
 [1](https://p1-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/b01bf300da3c496a8e896383cfd13122~tplv-k3u1fbpfcp-watermark.image)
+
+## 我的
+
+![mine.gif](https://p9-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/f2c3876a2e294dff930f2ab172332122~tplv-k3u1fbpfcp-watermark.image?)
 
 # 第三方框架
 
