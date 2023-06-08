@@ -36,4 +36,7 @@ class StringEn extends StringBase {
 
   @override
   String tab_main_mine = "mine";
+
+  @override
+  String author = "GuoguoDad";
 }

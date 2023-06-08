@@ -35,12 +35,12 @@ class SearchPlaceholder extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
         height: 44 + MediaQueryData.fromView(View.of(context)).padding.top,
-        margin: const EdgeInsets.only(left: 16.0, right: 16),
+        margin: const EdgeInsets.only(left: 12.0, right: 12),
         padding: EdgeInsets.fromLTRB(0, MediaQueryData.fromView(View.of(context)).padding.top, 0, 0),
         child: Stack(
             alignment: Alignment.center,
             fit: StackFit.expand,
-            children: <Widget>[Positioned(top: 5, child: BoxPlaceholder(width: MediaQuery.of(context).size.width - 48, height: 38))]));
+            children: <Widget>[Positioned(top: 5, child: BoxPlaceholder(width: MediaQuery.of(context).size.width - 32, height: 38))]));
   }
 }
 
@@ -94,15 +94,15 @@ class TitlePlaceholder extends StatelessWidget {
   }
 }
 
-enum ContentLineType {
+enum LineOneType {
   fourLines,
   fiveLines,
 }
 
-class ContentPlaceholder extends StatelessWidget {
-  final ContentLineType lineType;
+class LineOnePlaceholder extends StatelessWidget {
+  final LineOneType lineType;
 
-  const ContentPlaceholder({
+  const LineOnePlaceholder({
     Key? key,
     required this.lineType,
   }) : super(key: key);
@@ -141,7 +141,7 @@ class ContentPlaceholder extends StatelessWidget {
                   color: Colors.white,
                   margin: const EdgeInsets.only(bottom: 8.0),
                 ),
-                if (lineType == ContentLineType.fiveLines)
+                if (lineType == LineOneType.fiveLines)
                   Container(
                     width: double.infinity,
                     height: 10.0,
@@ -212,6 +212,72 @@ class LineMenuPlaceholder extends StatelessWidget {
                   BoxPlaceholder(width: 40, height: 40)
                 ],
               ),
+          ],
+        ));
+  }
+}
+
+class LineTwoPlaceholder extends StatelessWidget {
+  const LineTwoPlaceholder({
+    Key? key,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    double itemWidth = MediaQuery.of(context).size.width / 2 - 24;
+    return Container(
+        padding: const EdgeInsets.symmetric(horizontal: 16.0),
+        width: MediaQuery.of(context).size.width,
+        child: Column(
+          children: [
+            Row(
+              mainAxisSize: MainAxisSize.max,
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                Container(
+                  width: itemWidth,
+                  height: itemWidth,
+                  margin: const EdgeInsets.only(bottom: 12),
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(12.0),
+                    color: Colors.white,
+                  ),
+                ),
+                Container(
+                  width: itemWidth,
+                  height: itemWidth,
+                  margin: const EdgeInsets.only(bottom: 12),
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(12.0),
+                    color: Colors.white,
+                  ),
+                ),
+              ],
+            ),
+            Row(
+              mainAxisSize: MainAxisSize.max,
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                Container(
+                  width: itemWidth,
+                  height: itemWidth,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(12.0),
+                    color: Colors.white,
+                  ),
+                ),
+                Container(
+                  width: itemWidth,
+                  height: itemWidth,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(12.0),
+                    color: Colors.white,
+                  ),
+                ),
+              ],
+            ),
           ],
         ));
   }

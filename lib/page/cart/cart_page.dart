@@ -48,6 +48,10 @@ class _CartPageState extends State<CartPage> {
               body: SmartRefresher(
                 controller: _refreshController,
                 enablePullUp: true,
+                header: const ClassicHeader(
+                  spacing: 10,
+                  height: 58,
+                ),
                 onRefresh: () async {
                   store.dispatch(RefreshAction(() => refreshSuccess(_refreshController), () => refreshFail(_refreshController)));
                 },

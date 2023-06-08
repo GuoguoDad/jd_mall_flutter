@@ -1,5 +1,5 @@
-import 'package:jd_mall_flutter/models/cart_goods.dart';
 import 'package:redux/redux.dart';
+import 'package:jd_mall_flutter/models/cart_goods.dart';
 import 'package:jd_mall_flutter/page/cart/redux/cart_page_action.dart';
 import 'package:jd_mall_flutter/page/cart/service.dart';
 import 'package:jd_mall_flutter/common/constant/index.dart';
@@ -23,7 +23,7 @@ class CartPageMiddleware<CartPageState> implements MiddlewareClass<CartPageState
     if (action is RefreshAction) {
       initData.then((res) => {
             store.dispatch(InitCartGoodsAction(res[0].cast<CartGoods>())),
-            store.dispatch(InitGoodsPageAction(2, res[1])),
+            store.dispatch(InitGoodsPageAction(1, res[1])),
             action.freshSuccess()
           });
     }

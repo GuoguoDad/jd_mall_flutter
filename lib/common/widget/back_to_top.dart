@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'image/asset_image.dart';
 
-typedef VoidCallback = void Function();
-
 class BackToTop extends StatefulWidget {
   final ScrollController controller;
 

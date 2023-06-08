@@ -22,21 +22,19 @@ Widget welSkeleton(BuildContext context) {
             ),
             LineMenuPlaceholder(lineType: LineMenuType.twoLine),
             SizedBox(height: 16.0),
-            ContentPlaceholder(
-              lineType: ContentLineType.fiveLines,
-            ),
-            SizedBox(height: 16.0),
-            ContentPlaceholder(
-              lineType: ContentLineType.fiveLines,
-            ),
-            SizedBox(height: 16.0),
-            ContentPlaceholder(
-              lineType: ContentLineType.fiveLines,
-            ),
-            SizedBox(height: 16.0),
-            ContentPlaceholder(
-              lineType: ContentLineType.fiveLines,
-            ),
+            LineTwoPlaceholder(),
+            // SizedBox(height: 16.0),
+            // LineOnePlaceholder(
+            //   lineType: LineOneType.fiveLines,
+            // ),
+            // SizedBox(height: 16.0),
+            // LineOnePlaceholder(
+            //   lineType: LineOneType.fiveLines,
+            // ),
+            // SizedBox(height: 16.0),
+            // LineOnePlaceholder(
+            //   lineType: LineOneType.fiveLines,
+            // ),
           ],
         ),
       ));

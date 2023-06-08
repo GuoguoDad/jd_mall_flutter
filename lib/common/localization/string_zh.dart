@@ -36,4 +36,7 @@ class StringZh extends StringBase {
 
   @override
   String tab_main_mine = "我的";
+
+  @override
+  String author = "GuoguoDad";
 }

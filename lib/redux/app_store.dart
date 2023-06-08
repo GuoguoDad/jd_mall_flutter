@@ -1,3 +1,4 @@
+import 'package:jd_mall_flutter/page/mine/redux/mine_page_state.dart';
 import 'package:redux/redux.dart';
 import 'package:jd_mall_flutter/redux/app_reducer.dart';
 import 'package:jd_mall_flutter/redux/app_state.dart';
@@ -18,5 +19,6 @@ final store = Store<AppState>(reducers,
         WelPageState(true, 0, 0, "1", HomePageInfo.fromJson({}), 1, GoodsPageInfo.fromJson({})),
         CategoryPageState(SelectedCategoryInfo(CategoryInfo.fromJson({}), CategoryInfo.fromJson({}), CategoryInfo.fromJson({})),
             PrimaryCategoryList.fromJson({}).categoryList, SecondGroupCategoryInfo.fromJson({}), SecondCateList.fromJson({})),
-        CartPageState(true, [], 1, GoodsPageInfo.fromJson({}), [])),
+        CartPageState(true, [], 1, GoodsPageInfo.fromJson({}), []),
+        MinePageState(0)),
     middleware: [WelPageMiddleware(), CategoryPageMiddleware(), CartPageMiddleware()]);

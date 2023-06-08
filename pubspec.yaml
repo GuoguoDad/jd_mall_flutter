@@ -52,7 +52,7 @@ dependencies:
   flutter_staggered_grid_view: ^0.6.2
   widgets_visibility_provider: ^3.0.1
   flutter_group_list_view: ^1.0.3
-  
+
 dev_dependencies:
   flutter_test:
     sdk: flutter
@@ -103,6 +103,18 @@ flutter:
     - images/selector_check_false.png
     - images/selector_check_true.png
     - images/ic_arrow_right.png
+    - images/ic_friend.png
+    - images/ic_message.png
+    - images/ic_setting.png
+    - images/ic_goods_star.png
+    - images/ic_look_history.png
+    - images/ic_store_focus.png
+    - images/ic_todo_evaluate.png
+    - images/ic_todo_exchange.png
+    - images/ic_todo_get.png
+    - images/ic_todo_pay.png
+    - images/mine_top_bg.png
+    - images/header.png
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware
 

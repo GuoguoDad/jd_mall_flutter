@@ -28,4 +28,6 @@ abstract class StringBase {
   String get load_more_not;
 
   String get load_more_text;
+
+  String get author;
 }

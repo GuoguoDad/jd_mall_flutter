@@ -31,9 +31,9 @@ class _WelcomePageState extends State<WelcomePage> {
     return StoreBuilder<AppState>(onInit: (store) {
       store.dispatch(InitDataAction());
     }, builder: (context, store) {
-      if (store.state.welPageState.isLoading) {
-        return welSkeleton(context);
-      }
+      // if (store.state.welPageState.isLoading) {
+      //   return welSkeleton(context);
+      // }
 
       return NotificationListener<ScrollNotification>(
           onNotification: (ScrollNotification notification) {
