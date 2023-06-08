@@ -43,7 +43,7 @@
 
 ## 购物车
 
-[1](https://p1-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/b01bf300da3c496a8e896383cfd13122~tplv-k3u1fbpfcp-watermark.image)
+![1](https://p1-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/b01bf300da3c496a8e896383cfd13122~tplv-k3u1fbpfcp-watermark.image)
 
 ## 我的
 
