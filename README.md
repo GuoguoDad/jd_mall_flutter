@@ -33,19 +33,19 @@
 
 ## 首页
 
-<img src="images/shot/home1.gif" title="" alt="image" width="400">
+<img src="images/shot/home1.gif" title="" alt="image" width="300">
 
 ## 分类
 
-<img src="images/shot/category2.gif" title="" alt="image" width="400">
+<img src="images/shot/category2.gif" title="" alt="image" width="300">
 
 ## 购物车
 
-<img src="images/shot/cart.gif" title="" alt="image" width="400">
+<img src="images/shot/cart.gif" title="" alt="image" width="300">
 
 ## 我的
 
-<img src="images/shot/mine.gif" title="" alt="image" width="400">
+<img src="images/shot/mine.gif" title="" alt="image" width="300">
 
 # 第三方框架
 
