@@ -14,9 +14,9 @@ class MineApi {
     return MineMenuTabInfo.fromJson(res?.data ?? {});
   }
 
-  static Future queryGoodsListByPage(int currentPage, int pageSize) async {
-    var res = await httpManager.post(
-        '${config.host}/welcome/queryGoodsListByPage', {"currentPage": currentPage, "pageSize": pageSize}, null, null);
+  static Future queryRecommendList(int currentPage, int pageSize) async {
+    var res =
+        await httpManager.post('${config.host}/mine/queryRecommendList', {"currentPage": currentPage, "pageSize": pageSize}, null, null);
     if (res?.code != '0') {
       return null;
     }

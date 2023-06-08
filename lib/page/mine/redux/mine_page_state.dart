@@ -1,3 +1,4 @@
+import '../../../models/goods_page_info.dart';
 import '../../../models/mine_menu_tab_info.dart';
 
 class MinePageState {
@@ -7,7 +8,15 @@ class MinePageState {
   //横向滚动菜单PageView索引
   int menuIndex;
 
+  //当前选中的分类tab
+  String currentTab = "1";
+
   MineMenuTabInfo menuTabInfo;
 
-  MinePageState(this.pageScrollY, this.menuIndex, this.menuTabInfo);
+  int pageNum = 1;
+
+  //商品数据
+  GoodsPageInfo goodsPageInfo;
+
+  MinePageState(this.pageScrollY, this.menuIndex, this.currentTab, this.menuTabInfo, this.pageNum, this.goodsPageInfo);
 }

@@ -9,6 +9,8 @@ import 'package:jd_mall_flutter/common/util/refresh_util.dart';
 import 'package:jd_mall_flutter/common/widget/back_to_top.dart';
 import 'package:jd_mall_flutter/redux/app_state.dart';
 import 'package:jd_mall_flutter/page/mine/redux/mine_page_action.dart';
+import 'package:jd_mall_flutter/page/mine/widget/tab_list.dart';
+import 'package:jd_mall_flutter/page/mine/widget/goods_list.dart';
 
 class MinePage extends StatefulWidget {
   const MinePage({super.key});
@@ -43,14 +45,15 @@ class _MinePageState extends State<MinePage> {
                   controller: _refreshController,
                   enablePullUp: true,
                   onRefresh: () async {
-                    refreshSuccess(_refreshController);
+                    store.dispatch(RefreshAction(() => refreshSuccess(_refreshController), () => refreshFail(_refreshController)));
                   },
                   onLoading: () async {
-                    loadMoreSuccess(_refreshController);
+                    store.dispatch(LoadMoreAction(store.state.minePageState.pageNum + 1, () => loadMoreSuccess(_refreshController),
+                        () => loadMoreFail(_refreshController)));
                   },
                   child: CustomScrollView(
                     controller: _scrollController,
-                    slivers: [infoHeader(context), orderCard(context), singleLineMenu(context)],
+                    slivers: [infoHeader(context), orderCard(context), singleLineMenu(context), tabList(context), goodsList(context)],
                   ),
                 ),
                 floatingActionButton: BackToTop(_scrollController),
