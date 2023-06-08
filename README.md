@@ -37,8 +37,6 @@
 
 ## 分类
 
-![1](https://p1-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/ad30d8e0cdaf49df98380c640f693a29~tplv-k3u1fbpfcp-watermark.image)
-|
 ![2](https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/4e223b084780400a9c5436425573003b~tplv-k3u1fbpfcp-watermark.image)
 
 ## 购物车
@@ -47,7 +45,7 @@
 
 ## 我的
 
-![mine.gif](https://p9-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/f2c3876a2e294dff930f2ab172332122~tplv-k3u1fbpfcp-watermark.image?)
+![mine.gif](https://p9-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/f2c3876a2e294dff930f2ab172332122~tplv-k3u1fbpfcp-watermark.image)
 
 # 第三方框架
 
