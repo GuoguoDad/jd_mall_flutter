@@ -33,21 +33,19 @@
 
 ## 首页
 
-![1](https://p9-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/f8b7b1357f064737a988f021acbe8d2c~tplv-k3u1fbpfcp-watermark.image)
-|
-![4](https://p1-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/a0ddaa2068be4e4196d63fa3c96d48e0~tplv-k3u1fbpfcp-watermark.image)
+<img src="images/shot/home1.gif" title="" alt="image" width="400">
 
 ## 分类
 
-![2](https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/4e223b084780400a9c5436425573003b~tplv-k3u1fbpfcp-watermark.image)
+<img src="images/shot/category2.gif" title="" alt="image" width="400">
 
 ## 购物车
 
-![1](https://p1-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/b01bf300da3c496a8e896383cfd13122~tplv-k3u1fbpfcp-watermark.image)
+<img src="images/shot/cart.gif" title="" alt="image" width="400">
 
 ## 我的
 
-![mine.gif](https://p9-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/f2c3876a2e294dff930f2ab172332122~tplv-k3u1fbpfcp-watermark.image)
+<img src="images/shot/mine.gif" title="" alt="image" width="400">
 
 # 第三方框架
 
