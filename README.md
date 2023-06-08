@@ -8,6 +8,8 @@
 4. 目前只实现了首页、分类、购物车、我的，持续更新中...
 
 * ### 同款Android Kotlin版本（ https://github.com/GuoguoDad/jd_mall.git ）
+* ### 参考学习书籍《Flutter实战·第二版》（ https://book.flutterchina.club/ ）
+*
 
 # flutter_redux
 
