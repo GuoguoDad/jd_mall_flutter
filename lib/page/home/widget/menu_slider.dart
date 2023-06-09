@@ -2,9 +2,9 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_redux/flutter_redux.dart';
 import 'package:jd_mall_flutter/common/style/common_style.dart';
-import 'package:jd_mall_flutter/page/welcome/redux/wel_page_action.dart';
+import 'package:jd_mall_flutter/page/home/redux/home_page_action.dart';
 import 'package:jd_mall_flutter/store/app_state.dart';
-import 'package:jd_mall_flutter/page/welcome/redux/wel_page_state.dart';
+import 'package:jd_mall_flutter/page/home/redux/home_page_state.dart';
 
 import '../../../common/widget/image/asset_image.dart';
 
@@ -26,9 +26,9 @@ Widget menuSlider(BuildContext context) {
 }
 
 Widget indicator(BuildContext context) {
-  return StoreConnector<AppState, WelPageState>(
+  return StoreConnector<AppState, HomePageState>(
     converter: (store) {
-      return store.state.welPageState;
+      return store.state.homePageState;
     },
     builder: (context, state) {
       int menuLength = state.homePageInfo.nineMenuList?.length ?? 1;
@@ -58,7 +58,7 @@ Widget indicator(BuildContext context) {
 
 Widget menuPageList(BuildContext context) {
   return StoreBuilder<AppState>(builder: (context, store) {
-    var menuData = store.state.welPageState.homePageInfo.nineMenuList ?? [];
+    var menuData = store.state.homePageState.homePageInfo.nineMenuList ?? [];
     int menuLength = menuData?.length ?? -1;
 
     return PageView.builder(

@@ -4,16 +4,16 @@ import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 
 import '../../../common/widget/goods_item.dart';
 import '../../../store/app_state.dart';
-import '../redux/wel_page_state.dart';
+import '../redux/home_page_state.dart';
 
 double width = 0;
 
 Widget goodsList(BuildContext context) {
   width = (MediaQuery.of(context).size.width - 20) / 2;
 
-  return StoreConnector<AppState, WelPageState>(
+  return StoreConnector<AppState, HomePageState>(
     converter: (store) {
-      return store.state.welPageState;
+      return store.state.homePageState;
     },
     builder: (context, state) {
       var goodsList = state.goodsPageInfo.goodsList ?? [];

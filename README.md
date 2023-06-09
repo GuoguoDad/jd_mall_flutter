@@ -3,16 +3,27 @@
 高仿京东商城flutter版本，个人学习flutter项目
 
 1. 使用flutter_redux状态管理
-2. 网络使用dio进行了简单的封装
+2. 网络使用dio进行封装
 3. 使用node项目mock服务端接口(mock_server目录)
-4. 目前只实现了首页、分类、购物车、我的，持续更新中...
+4. 目前实现了首页、分类、购物车、我的，持续更新中...
 
 * ### 同款Android Kotlin版本（ https://github.com/GuoguoDad/jd_mall.git ）
 * ### 参考学习书籍《Flutter实战·第二版》（ https://book.flutterchina.club/ ）
 
+# flutter 简介
+
+Flutter 是 Google 推出并开源的移动应用开发框架，主打跨平台、高保真、高性能。一套代码同时运行在 iOS 和 Android平台。
+Flutter 提供了丰富的组件、接口，开发者可以很快地为 Flutter 添加 Native（即原生开发，指基于平台原生语言来开发应用，flutter可以和平台原生语言混合开发）
+扩展。
+
+主要特点
+
+1. 跨平台自绘引擎
+2. 高性能
+3. 采用Dart语言开发
+
 # flutter_redux
 
-<img src="images/shot/flutter_redux.png" title="" alt="image" width="450">
 <img src="images/shot/f_redux.png" title="" alt="image" width="450">
 
 1. 封装需要共享的数据

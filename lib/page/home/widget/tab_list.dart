@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_redux/flutter_redux.dart';
 import 'package:jd_mall_flutter/common/style/common_style.dart';
 import 'package:jd_mall_flutter/store/app_state.dart';
-import 'package:jd_mall_flutter/page/welcome/redux/wel_page_action.dart';
+import 'package:jd_mall_flutter/page/home/redux/home_page_action.dart';
 
 import '../../../common/widget/persistentHeader/sliver_header_builder.dart';
 
@@ -15,8 +15,8 @@ Widget tabList(BuildContext context) {
         child: Container(
             color: CommonStyle.greyBgColor,
             child: StoreBuilder<AppState>(builder: (context, store) {
-              var tabs = store.state.welPageState.homePageInfo.tabList;
-              String currentTab = store.state.welPageState.currentTab;
+              var tabs = store.state.homePageState.homePageInfo.tabList;
+              String currentTab = store.state.homePageState.currentTab;
               int totalCount = tabs?.length ?? 0;
 
               return ListView.builder(

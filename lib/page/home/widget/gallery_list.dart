@@ -4,7 +4,7 @@ import 'package:flutter_redux/flutter_redux.dart';
 import 'package:getwidget/getwidget.dart';
 import 'package:jd_mall_flutter/common/widget/image/asset_image.dart';
 import 'package:jd_mall_flutter/store/app_state.dart';
-import 'package:jd_mall_flutter/page/welcome/redux/wel_page_state.dart';
+import 'package:jd_mall_flutter/page/home/redux/home_page_state.dart';
 
 import '../../../common/style/common_style.dart';
 
@@ -20,8 +20,8 @@ Widget galleryList(BuildContext context) {
                 color: Colors.white,
                 borderRadius: BorderRadius.only(topLeft: Radius.circular(8), topRight: Radius.circular(8)),
               ),
-              child: StoreConnector<AppState, WelPageState>(converter: (store) {
-                return store.state.welPageState;
+              child: StoreConnector<AppState, HomePageState>(converter: (store) {
+                return store.state.homePageState;
               }, builder: (context, state) {
                 var bannerList = state.homePageInfo.bannerList ?? [];
                 int bannerLength = bannerList?.length ?? 0;

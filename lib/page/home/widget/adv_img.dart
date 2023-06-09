@@ -3,13 +3,13 @@ import 'package:flutter_redux/flutter_redux.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:jd_mall_flutter/store/app_state.dart';
 import 'package:jd_mall_flutter/common/widget/image/asset_image.dart';
-import 'package:jd_mall_flutter/page/welcome/redux/wel_page_state.dart';
+import 'package:jd_mall_flutter/page/home/redux/home_page_state.dart';
 
 Widget advBanner(BuildContext context) {
   return SliverToBoxAdapter(
-      child: StoreConnector<AppState, WelPageState>(
+      child: StoreConnector<AppState, HomePageState>(
     converter: (store) {
-      return store.state.welPageState;
+      return store.state.homePageState;
     },
     builder: (context, state) {
       return Container(

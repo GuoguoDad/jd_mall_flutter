@@ -1,28 +1,28 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_redux/flutter_redux.dart';
-import 'package:jd_mall_flutter/page/welcome/widget/wel_skeleton.dart';
-import 'package:jd_mall_flutter/page/welcome/widget/goods_list.dart';
-import 'package:jd_mall_flutter/page/welcome/widget/tab_list.dart';
+import 'package:jd_mall_flutter/page/home/widget/home_skeleton.dart';
+import 'package:jd_mall_flutter/page/home/widget/goods_list.dart';
+import 'package:jd_mall_flutter/page/home/widget/tab_list.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
-import 'package:jd_mall_flutter/page/welcome/widget/adv_img.dart';
-import 'package:jd_mall_flutter/page/welcome/widget/gallery_list.dart';
-import 'package:jd_mall_flutter/page/welcome/widget/menu_slider.dart';
-import 'package:jd_mall_flutter/page/welcome/widget/search_header.dart';
-import 'package:jd_mall_flutter/page/welcome/redux/wel_page_action.dart';
+import 'package:jd_mall_flutter/page/home/widget/adv_img.dart';
+import 'package:jd_mall_flutter/page/home/widget/gallery_list.dart';
+import 'package:jd_mall_flutter/page/home/widget/menu_slider.dart';
+import 'package:jd_mall_flutter/page/home/widget/search_header.dart';
+import 'package:jd_mall_flutter/page/home/redux/home_page_action.dart';
 import 'package:jd_mall_flutter/store/app_state.dart';
 import 'package:jd_mall_flutter/common/util/refresh_util.dart';
 import 'package:jd_mall_flutter/common/widget/back_to_top.dart';
 
-class WelcomePage extends StatefulWidget {
-  const WelcomePage({super.key});
+class HomePage extends StatefulWidget {
+  const HomePage({super.key});
 
   static const String name = "/welcome";
 
   @override
-  State<WelcomePage> createState() => _WelcomePageState();
+  State<HomePage> createState() => _HomePageState();
 }
 
-class _WelcomePageState extends State<WelcomePage> {
+class _HomePageState extends State<HomePage> {
   final ScrollController _scrollController = ScrollController();
   final RefreshController _refreshController = RefreshController();
 
@@ -31,10 +31,6 @@ class _WelcomePageState extends State<WelcomePage> {
     return StoreBuilder<AppState>(onInit: (store) {
       store.dispatch(InitDataAction());
     }, builder: (context, store) {
-      // if (store.state.welPageState.isLoading) {
-      //   return welSkeleton(context);
-      // }
-
       return NotificationListener<ScrollNotification>(
           onNotification: (ScrollNotification notification) {
             // depth 0 表示child包裹的第一个Widget
@@ -52,7 +48,7 @@ class _WelcomePageState extends State<WelcomePage> {
                 store.dispatch(RefreshAction(() => refreshSuccess(_refreshController), () => refreshFail(_refreshController)));
               },
               onLoading: () async {
-                store.dispatch(LoadMoreAction(store.state.welPageState.pageNum + 1, () => loadMoreSuccess(_refreshController),
+                store.dispatch(LoadMoreAction(store.state.homePageState.pageNum + 1, () => loadMoreSuccess(_refreshController),
                     () => loadMoreFail(_refreshController)));
               },
               child: CustomScrollView(

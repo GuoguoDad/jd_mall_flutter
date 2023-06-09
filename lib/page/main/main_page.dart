@@ -1,24 +1,23 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:jd_mall_flutter/page/welcome/wel_page.dart';
+import 'package:jd_mall_flutter/page/home/home_page.dart';
 import 'package:jd_mall_flutter/page/category/category.dart';
 import 'package:jd_mall_flutter/page/cart/cart_page.dart';
 import 'package:jd_mall_flutter/page/mine/mine_page.dart';
 import 'package:jd_mall_flutter/common/widget/image/asset_image.dart';
+import 'package:jd_mall_flutter/common/localization/default_localizations.dart';
+import 'package:jd_mall_flutter/common/style/common_style.dart';
 
-import '../common/localization/default_localizations.dart';
-import '../common/style/common_style.dart';
-
-class TabPage extends StatefulWidget {
-  const TabPage({super.key});
+class MainPage extends StatefulWidget {
+  const MainPage({super.key});
 
   static const String name = "/home";
 
   @override
-  State<TabPage> createState() => _TabPageState();
+  State<MainPage> createState() => _MainPageState();
 }
 
-class _TabPageState extends State<TabPage> {
+class _MainPageState extends State<MainPage> {
   int _selectedIndex = 0;
 
   void _onItemTapped(int index) {
@@ -27,7 +26,7 @@ class _TabPageState extends State<TabPage> {
     });
   }
 
-  List<Widget> pages = [const WelcomePage(), const CategoryPage(), const CartPage(), const MinePage()];
+  List<Widget> pages = [const HomePage(), const CategoryPage(), const CartPage(), const MinePage()];
 
   @override
   Widget build(BuildContext context) {

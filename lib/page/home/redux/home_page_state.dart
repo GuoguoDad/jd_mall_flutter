@@ -1,7 +1,7 @@
 import 'package:jd_mall_flutter/models/home_page_info.dart';
 import 'package:jd_mall_flutter/models/goods_page_info.dart';
 
-class WelPageState {
+class HomePageState {
   bool isLoading = true;
 
   //首页页面滚动条位置
@@ -21,6 +21,6 @@ class WelPageState {
   //商品数据
   GoodsPageInfo goodsPageInfo;
 
-  WelPageState(
+  HomePageState(
       this.isLoading, this.pageScrollY, this.menuSliderIndex, this.currentTab, this.homePageInfo, this.pageNum, this.goodsPageInfo);
 }

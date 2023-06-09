@@ -4,7 +4,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:jd_mall_flutter/common/style/common_style.dart';
 import 'package:jd_mall_flutter/store/app_state.dart';
 import 'package:jd_mall_flutter/common/widget/image/asset_image.dart';
-import 'package:jd_mall_flutter/page/welcome/redux/wel_page_state.dart';
+import 'package:jd_mall_flutter/page/home/redux/home_page_state.dart';
 
 import '../redux/mine_page_state.dart';
 

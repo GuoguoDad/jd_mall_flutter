@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_redux/flutter_redux.dart';
 import 'package:jd_mall_flutter/common/widget/image/asset_image.dart';
 import 'package:jd_mall_flutter/store/app_state.dart';
-import 'package:jd_mall_flutter/page/welcome/util.dart';
+import 'package:jd_mall_flutter/page/home/util.dart';
 import '../../../common/localization/default_localizations.dart';
 import '../../../common/style/common_style.dart';
 import '../../../common/widget/persistentHeader/sliver_header_builder.dart';

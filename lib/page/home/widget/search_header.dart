@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_redux/flutter_redux.dart';
 import 'package:jd_mall_flutter/common/widget/image/asset_image.dart';
 import 'package:jd_mall_flutter/store/app_state.dart';
-import 'package:jd_mall_flutter/page/welcome/redux/wel_page_state.dart';
-import 'package:jd_mall_flutter/page/welcome/util.dart';
+import 'package:jd_mall_flutter/page/home/redux/home_page_state.dart';
+import 'package:jd_mall_flutter/page/home/util.dart';
 import '../../../common/style/common_style.dart';
 import '../../../common/widget/persistentHeader/sliver_header_builder.dart';
 
@@ -31,9 +31,9 @@ Widget searchHeader(BuildContext context) {
                 right: 18,
                 child: assetImage('images/ic_scan.png', 28, 28),
               ),
-              StoreConnector<AppState, WelPageState>(
+              StoreConnector<AppState, HomePageState>(
                 converter: (store) {
-                  return store.state.welPageState;
+                  return store.state.homePageState;
                 },
                 builder: (context, state) {
                   return Positioned(
