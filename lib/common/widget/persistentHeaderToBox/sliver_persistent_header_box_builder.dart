@@ -3,10 +3,10 @@ import 'package:flutter/rendering.dart';
 import 'extra_info_constraints.dart';
 
 typedef SliverPersistentHeaderToBoxBuilder = Widget Function(
-    BuildContext context,
-    double maxExtent,
-    bool fixed,
-    );
+  BuildContext context,
+  double maxExtent,
+  bool fixed,
+);
 
 /// A sliver like [SliverPersistentHeader], the difference is [SliverPersistentHeaderToBox]
 /// can contain a box widget and use the height of its child directly.
