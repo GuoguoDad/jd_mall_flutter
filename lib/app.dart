@@ -2,7 +2,7 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:fluttertoast/fluttertoast.dart';
-import 'package:jd_mall_flutter/page/main/main_page.dart';
+import 'package:jd_mall_flutter/view/main/main_page.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
 
 import 'common/event/http_error_event.dart';
