@@ -21,7 +21,7 @@ Widget goodsList(BuildContext context) {
         crossAxisCount: 2,
         mainAxisSpacing: 10,
         crossAxisSpacing: 0,
-        itemBuilder: (context, index) => goodsItem(goodsList[index], width),
+        itemBuilder: (context, index) => goodsItem(context, goodsList[index], width),
       );
     },
   );

@@ -1,0 +1,1 @@
+enum CenterPageEnlargeStrategy { scale, height }

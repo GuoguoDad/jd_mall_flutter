@@ -42,7 +42,6 @@ dependencies:
   shimmer: ^3.0.0
   redux: ^5.0.0
   flutter_redux: ^0.10.0
-  getwidget: ^3.1.1
   json_annotation: ^4.8.1
   connectivity: ^3.0.6
   shared_preferences: ^2.0.10
@@ -115,6 +114,12 @@ flutter:
     - images/ic_todo_pay.png
     - images/mine_top_bg.png
     - images/header.png
+    - images/ic_back_black.png
+    - images/ic_back_grey.png
+    - images/ic_ellipsis_black.png
+    - images/ic_ellipsis_grey.png
+    - images/ic_share_black.png
+    - images/ic_share_grey.png
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware
 

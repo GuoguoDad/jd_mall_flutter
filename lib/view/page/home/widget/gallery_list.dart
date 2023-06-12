@@ -1,12 +1,13 @@
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_redux/flutter_redux.dart';
-import 'package:getwidget/getwidget.dart';
 import 'package:jd_mall_flutter/common/widget/image/asset_image.dart';
 import 'package:jd_mall_flutter/store/app_state.dart';
 import 'package:jd_mall_flutter/view/page/home/redux/home_page_state.dart';
-
-import '../../../../common/style/common_style.dart';
+import 'package:jd_mall_flutter/common/style/common_style.dart';
+import 'package:cached_network_image/cached_network_image.dart';
+import 'package:jd_mall_flutter/common/widget/carousel/carousel_widget.dart';
+import 'package:jd_mall_flutter/common/widget/carousel/helpers/flutter_carousel_options.dart';
+import 'package:jd_mall_flutter/common/widget/carousel/indicators/circular_wave_slide_indicator.dart';
 
 Widget galleryList(BuildContext context) {
   double carouselWidth = MediaQuery.of(context).size.width - 24;
@@ -28,14 +29,22 @@ Widget galleryList(BuildContext context) {
                 if (bannerLength == 0) {
                   return Container();
                 }
-                return GFCarousel(
-                  height: 180,
-                  autoPlay: true,
-                  hasPagination: true,
-                  viewportFraction: 1.0,
-                  autoPlayInterval: const Duration(seconds: 8),
-                  passiveIndicator: Colors.grey,
-                  activeIndicator: CommonStyle.themeColor,
+
+                return Carousel(
+                  options: CarouselOptions(
+                    height: 180,
+                    viewportFraction: 1.0,
+                    enlargeCenterPage: false,
+                    autoPlay: true,
+                    enableInfiniteScroll: true,
+                    autoPlayInterval: const Duration(seconds: 8),
+                    slideIndicator: CircularWaveSlideIndicator(
+                        itemSpacing: 13,
+                        indicatorRadius: 4,
+                        indicatorBorderWidth: 0,
+                        currentIndicatorColor: CommonStyle.themeColor,
+                        indicatorBackgroundColor: Colors.grey),
+                  ),
                   items: bannerList.map((item) {
                     return Container(
                         margin: const EdgeInsets.fromLTRB(12, 10, 12, 2),
