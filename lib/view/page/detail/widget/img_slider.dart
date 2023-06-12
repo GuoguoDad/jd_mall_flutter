@@ -19,10 +19,10 @@ Widget imgSlider(BuildContext context) {
     List<String> imgList = state.selectInfo.imgList ?? [];
 
     final List<Widget> sliders = imgList
-        .map((item) => CachedNetworkImage(
+        .map((url) => CachedNetworkImage(
               height: imgHeight,
               width: MediaQuery.of(context).size.width,
-              imageUrl: item,
+              imageUrl: url,
               placeholder: (context, url) => assetImage("images/default.png", MediaQuery.of(context).size.width, imgHeight),
               errorWidget: (context, url, error) => assetImage("images/default.png", MediaQuery.of(context).size.width, imgHeight),
               fit: BoxFit.fill,
@@ -38,9 +38,9 @@ Widget imgSlider(BuildContext context) {
             height: imgHeight,
             viewportFraction: 1.0,
             enlargeCenterPage: false,
-            autoPlay: false,
+            autoPlay: true,
             enableInfiniteScroll: true,
-            autoPlayInterval: const Duration(seconds: 8),
+            autoPlayInterval: const Duration(seconds: 12),
             slideIndicator: CircularWaveSlideIndicator(
                 itemSpacing: 14,
                 indicatorRadius: 4,

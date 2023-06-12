@@ -7,6 +7,12 @@ class InitPageAction {
   InitPageAction();
 }
 
+class ChangeTopTabIndexAction {
+  final int index;
+
+  ChangeTopTabIndexAction(this.index);
+}
+
 class InitCurrentGoodsInfoAction {
   final GoodsDetailRes goodsDetailRes;
 
