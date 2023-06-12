@@ -29,9 +29,9 @@ class FunctionInfo {
     this.menuCode,
   });
 
-  factory FunctionInfo.fromJson(Map<String, dynamic> json) => _$FunctionListFromJson(json);
+  factory FunctionInfo.fromJson(Map<String, dynamic> json) => _$FunctionInfoFromJson(json);
 
-  Map<String, dynamic> toJson() => _$FunctionListToJson(this);
+  Map<String, dynamic> toJson() => _$FunctionInfoToJson(this);
 }
 
 @JsonSerializable()
@@ -44,7 +44,7 @@ class TabInfo {
     this.code,
   });
 
-  factory TabInfo.fromJson(Map<String, dynamic> json) => _$TabListFromJson(json);
+  factory TabInfo.fromJson(Map<String, dynamic> json) => _$TabInfoFromJson(json);
 
-  Map<String, dynamic> toJson() => _$TabListToJson(this);
+  Map<String, dynamic> toJson() => _$TabInfoToJson(this);
 }

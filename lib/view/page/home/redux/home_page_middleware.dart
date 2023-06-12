@@ -21,7 +21,7 @@ class HomePageMiddleware<WelPageState> implements MiddlewareClass<WelPageState> 
     }
     if (action is RefreshAction) {
       initData.then(
-          (res) => {store.dispatch(SetHomePageInfoAction(res[0])), store.dispatch(InitGoodsPageAction(2, res[1])), action.freshSuccess()});
+          (res) => {store.dispatch(SetHomePageInfoAction(res[0])), store.dispatch(InitGoodsPageAction(1, res[1])), action.freshSuccess()});
     }
     if (action is LoadMoreAction) {
       WelcomeApi.queryGoodsListByPage(action.currentPage, pageSize).then((res) {

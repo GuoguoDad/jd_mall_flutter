@@ -16,7 +16,7 @@ class MinePageMiddleware<MinePageState> implements MiddlewareClass<MinePageState
     }
     if (action is RefreshAction) {
       initData.then((res) =>
-          {store.dispatch(InitMineMenuTabInfoAction(res[0])), store.dispatch(InitGoodsPageAction(2, res[1])), action.freshSuccess()});
+          {store.dispatch(InitMineMenuTabInfoAction(res[0])), store.dispatch(InitGoodsPageAction(1, res[1])), action.freshSuccess()});
     }
     if (action is LoadMoreAction) {
       MineApi.queryRecommendList(action.currentPage, pageSize).then((res) {

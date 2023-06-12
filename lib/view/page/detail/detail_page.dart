@@ -8,7 +8,7 @@ import 'package:pull_to_refresh/pull_to_refresh.dart';
 import 'package:jd_mall_flutter/common/util/refresh_util.dart';
 import 'package:jd_mall_flutter/common/widget/back_to_top.dart';
 import 'package:jd_mall_flutter/store/app_state.dart';
-import 'package:jd_mall_flutter/view/page/mine/redux/mine_page_action.dart';
+import 'package:jd_mall_flutter/view/page/detail/redux/detail_page_action.dart';
 
 class DetailPage extends StatefulWidget {
   const DetailPage({super.key});
@@ -25,6 +25,8 @@ class _DetailPageState extends State<DetailPage> {
 
   @override
   Widget build(BuildContext context) {
+    double space = MediaQueryData.fromView(View.of(context)).padding.bottom;
+
     return StoreBuilder<AppState>(onInit: (store) {
       store.dispatch(InitPageAction());
     }, builder: (context, store) {
@@ -42,17 +44,28 @@ class _DetailPageState extends State<DetailPage> {
                   Container(
                       color: CommonStyle.colorF5F5F5,
                       child: Scaffold(
-                        body: SmartRefresher(
-                          controller: _refreshController,
-                          enablePullUp: true,
-                          enablePullDown: false,
-                          onLoading: () async {
-                            // store.dispatch(LoadMoreAction(store.state.minePageState.pageNum + 1, () => loadMoreSuccess(_refreshController),
-                            //     () => loadMoreFail(_refreshController)));
-                          },
-                          child: ListView(
-                            children: [imgSlider(context)],
-                          ),
+                        body: Column(
+                          children: [
+                            Expanded(
+                                flex: 1,
+                                child: SmartRefresher(
+                                  controller: _refreshController,
+                                  enablePullUp: true,
+                                  enablePullDown: false,
+                                  onLoading: () async {
+                                    // store.dispatch(LoadMoreAction(store.state.minePageState.pageNum + 1, () => loadMoreSuccess(_refreshController),
+                                    //     () => loadMoreFail(_refreshController)));
+                                  },
+                                  child: ListView(
+                                    children: [imgSlider(context)],
+                                  ),
+                                )),
+                            Container(
+                              height: 54 + space,
+                              padding: EdgeInsets.only(bottom: space),
+                              decoration: BoxDecoration(color: Colors.white, border: Border.all(color: Colors.grey, width: 0.2)),
+                            )
+                          ],
                         ),
                         floatingActionButton: BackToTop(_scrollController),
                       )),
