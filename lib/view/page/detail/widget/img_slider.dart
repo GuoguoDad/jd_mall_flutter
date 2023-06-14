@@ -8,10 +8,11 @@ import 'package:jd_mall_flutter/common/widget/image/asset_image.dart';
 import 'package:jd_mall_flutter/common/widget/carousel/indicators/circular_wave_slide_indicator.dart';
 import 'package:jd_mall_flutter/store/app_state.dart';
 import 'package:jd_mall_flutter/view/page/detail/redux/detail_page_state.dart';
+import 'package:jd_mall_flutter/common/util/screen_util.dart';
 
 Widget imgSlider(BuildContext context) {
-  double statusHeight = MediaQueryData.fromView(View.of(context)).padding.top;
-  double imgHeight = MediaQuery.of(context).size.height / 2 - statusHeight - MediaQueryData.fromView(View.of(context)).padding.bottom;
+  double statusHeight = getStatusHeight(context);
+  double imgHeight = getScreenHeight(context) / 2 - statusHeight - getBottomSpace(context);
 
   return StoreConnector<AppState, DetailPageState>(converter: (store) {
     return store.state.detailPageState;

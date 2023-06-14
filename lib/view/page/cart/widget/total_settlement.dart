@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_redux/flutter_redux.dart';
-import '../../../../common/style/common_style.dart';
-import '../../../../models/cart_goods.dart';
-import '../../../../store/app_state.dart';
-import '../redux/cart_page_action.dart';
+import 'package:jd_mall_flutter/common/util/screen_util.dart';
+import 'package:jd_mall_flutter/common/style/common_style.dart';
+import 'package:jd_mall_flutter/models/cart_goods.dart';
+import 'package:jd_mall_flutter/store/app_state.dart';
+import 'package:jd_mall_flutter/view/page/cart/redux/cart_page_action.dart';
 
 Widget totalSettlement(BuildContext context) {
   return StoreBuilder<AppState>(builder: (context, store) {
@@ -15,7 +16,7 @@ Widget totalSettlement(BuildContext context) {
 
     return Container(
       height: 58,
-      width: MediaQuery.of(context).size.width,
+      width: getScreenWidth(context),
       decoration: BoxDecoration(
           border: Border(
               top: BorderSide(color: CommonStyle.colorE6E6E6, width: 0.5), bottom: BorderSide(color: CommonStyle.colorE6E6E6, width: 0.5))),

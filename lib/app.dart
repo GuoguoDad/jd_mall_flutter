@@ -11,6 +11,7 @@ import 'common/event/index.dart';
 import 'common/http/code.dart';
 import 'common/localization/default_localizations.dart';
 import 'common/localization/localizations_delegate.dart';
+import 'common/util/screen_util.dart';
 
 class MallApp extends StatefulWidget {
   const MallApp({super.key});
@@ -27,10 +28,10 @@ class _FlutterReduxMallApp extends State<MallApp> with HttpErrorListener {
     return RefreshConfiguration(
         footerTriggerDistance: 15,
         dragSpeedRatio: 0.91,
-        headerTriggerDistance: 88 + MediaQueryData.fromView(View.of(context)).padding.top,
+        headerTriggerDistance: 88 + getStatusHeight(context),
         headerBuilder: () => ClassicHeader(
               spacing: 10,
-              height: 68 + MediaQueryData.fromView(View.of(context)).padding.top,
+              height: 68 + getStatusHeight(context),
             ),
         footerBuilder: () => const ClassicFooter(),
         enableLoadingWhenNoData: false,

@@ -5,8 +5,7 @@ import 'package:jd_mall_flutter/common/style/common_style.dart';
 import 'package:jd_mall_flutter/view/page/home/redux/home_page_action.dart';
 import 'package:jd_mall_flutter/store/app_state.dart';
 import 'package:jd_mall_flutter/view/page/home/redux/home_page_state.dart';
-
-import '../../../../common/widget/image/asset_image.dart';
+import 'package:jd_mall_flutter/common/widget/image/asset_image.dart';
 
 const rowNum = 5;
 const pageNum = rowNum * 2;
@@ -16,7 +15,7 @@ Widget menuSlider(BuildContext context) {
       child: Container(
           color: Colors.white,
           height: 185,
-          padding: const EdgeInsets.fromLTRB(0, 0, 0, 10),
+          padding: const EdgeInsets.only(bottom: 10),
           child: Column(
             children: [
               Expanded(flex: 1, child: menuPageList(context)),

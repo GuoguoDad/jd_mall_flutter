@@ -8,15 +8,17 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:jd_mall_flutter/common/widget/carousel/carousel_widget.dart';
 import 'package:jd_mall_flutter/common/widget/carousel/helpers/flutter_carousel_options.dart';
 import 'package:jd_mall_flutter/common/widget/carousel/indicators/circular_wave_slide_indicator.dart';
+import 'package:jd_mall_flutter/common/util/screen_util.dart';
 
 Widget galleryList(BuildContext context) {
-  double carouselWidth = MediaQuery.of(context).size.width - 24;
+  double carouselWidth = getScreenWidth(context) - 24;
+
   return SliverToBoxAdapter(
       child: Container(
           color: CommonStyle.themeColor,
-          padding: const EdgeInsets.fromLTRB(0, 5, 0, 0),
+          padding: const EdgeInsets.only(top: 5),
           child: Container(
-              padding: const EdgeInsets.fromLTRB(0, 4, 0, 0),
+              padding: const EdgeInsets.only(top: 4),
               decoration: const BoxDecoration(
                 color: Colors.white,
                 borderRadius: BorderRadius.only(topLeft: Radius.circular(8), topRight: Radius.circular(8)),

@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_redux/flutter_redux.dart';
 import 'package:jd_mall_flutter/common/style/common_style.dart';
+import 'package:jd_mall_flutter/common/util/screen_util.dart';
 import 'package:jd_mall_flutter/view/page/category/redux/category_page_action.dart';
-
-import '../../../../models/primary_category_list.dart';
-import '../../../../store/app_state.dart';
-import '../redux/category_page_state.dart';
+import 'package:jd_mall_flutter/models/primary_category_list.dart';
+import 'package:jd_mall_flutter/store/app_state.dart';
+import 'package:jd_mall_flutter/view/page/category/redux/category_page_state.dart';
 
 double itemHeight = 62.0;
 
@@ -55,9 +55,8 @@ Widget leftCate(BuildContext context) {
 }
 
 double calc2Top(BuildContext context, int index, int total) {
-  EdgeInsets mfp = MediaQueryData.fromView(View.of(context)).padding;
   //展示高度，即ListView展示高度
-  double displayHeight = MediaQuery.of(context).size.height - 50 - mfp.top - 56 - mfp.bottom;
+  double displayHeight = getScreenHeight(context) - 50 - getStatusHeight(context) - 56 - getBottomSpace(context);
   //item距离ListView顶部距离
   double item2Top = itemHeight * index;
   //item总高度

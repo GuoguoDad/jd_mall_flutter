@@ -3,6 +3,7 @@ import 'package:flutter/rendering.dart';
 import 'package:flutter_redux/flutter_redux.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:jd_mall_flutter/common/style/common_style.dart';
+import 'package:jd_mall_flutter/common/util/screen_util.dart';
 import 'package:jd_mall_flutter/view/page/category/redux/category_page_action.dart';
 import 'package:jd_mall_flutter/common/widget/group_grid_view.dart';
 import 'package:jd_mall_flutter/common/widget/image/asset_image.dart';
@@ -18,7 +19,7 @@ Widget rightGroupList(BuildContext context) {
   ScrollController gridViewController = ScrollController();
 
   //右侧占屏幕三分之二
-  rWidth = MediaQuery.of(context).size.width * 2 / 3;
+  rWidth = getScreenWidth(context) * 2 / 3;
 
   //gridview的item宽和高一样
   double thirdCateItemWidth = rWidth / 3;

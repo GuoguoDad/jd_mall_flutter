@@ -19,7 +19,7 @@ Widget condition(BuildContext context) {
                   style: TextStyle(fontSize: 16, fontWeight: FontWeight.w500, color: CommonStyle.themeColor),
                 ),
                 Text("降价 0", style: TextStyle(fontSize: 16, fontWeight: FontWeight.w500, color: CommonStyle.colorD0D0D0)),
-                Text("筛选", style: TextStyle(fontSize: 16, fontWeight: FontWeight.w500)),
+                const Text("筛选", style: TextStyle(fontSize: 16, fontWeight: FontWeight.w500)),
               ],
             ),
           )));

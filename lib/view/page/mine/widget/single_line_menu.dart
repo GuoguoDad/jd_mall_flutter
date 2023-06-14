@@ -32,7 +32,7 @@ Widget indicator(BuildContext context) {
       return store.state.minePageState;
     },
     builder: (context, state) {
-      int menuLength = state?.menuTabInfo?.functionList?.length ?? 1;
+      int menuLength = state.menuTabInfo.functionList?.length ?? 1;
       int currentIndex = state.menuIndex;
 
       return ListView.builder(

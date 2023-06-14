@@ -1,15 +1,14 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_group_list_view/flutter_group_list_view.dart';
 import 'package:flutter_redux/flutter_redux.dart';
 import 'package:jd_mall_flutter/common/style/common_style.dart';
 import 'package:jd_mall_flutter/common/widget/stepper/stepper.dart';
-
-import '../../../../common/widget/image/asset_image.dart';
-import '../../../../common/widget/stepper/style.dart';
-import '../../../../models/cart_goods.dart';
-import '../../../../store/app_state.dart';
-import '../redux/cart_page_action.dart';
+import 'package:jd_mall_flutter/common/widget/image/asset_image.dart';
+import 'package:jd_mall_flutter/common/widget/stepper/style.dart';
+import 'package:jd_mall_flutter/models/cart_goods.dart';
+import 'package:jd_mall_flutter/store/app_state.dart';
+import 'package:flutter_group_list_view/flutter_group_list_view.dart';
+import 'package:jd_mall_flutter/view/page/cart/redux/cart_page_action.dart';
 
 Widget cartGoods(BuildContext context) {
   return StoreBuilder<AppState>(builder: (context, store) {

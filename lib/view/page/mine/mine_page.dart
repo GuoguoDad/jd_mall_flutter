@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_redux/flutter_redux.dart';
 import 'package:jd_mall_flutter/common/style/common_style.dart';
 import 'package:jd_mall_flutter/view/page/mine/widget/info_header.dart';
-import 'package:jd_mall_flutter/view/page/mine/widget/order-card.dart';
+import 'package:jd_mall_flutter/view/page/mine/widget/order_card.dart';
 import 'package:jd_mall_flutter/view/page/mine/widget/single_line_menu.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
 import 'package:jd_mall_flutter/common/util/refresh_util.dart';

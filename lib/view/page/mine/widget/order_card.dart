@@ -1,12 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_redux/flutter_redux.dart';
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:jd_mall_flutter/common/style/common_style.dart';
+import 'package:jd_mall_flutter/common/util/screen_util.dart';
 import 'package:jd_mall_flutter/store/app_state.dart';
 import 'package:jd_mall_flutter/common/widget/image/asset_image.dart';
-import 'package:jd_mall_flutter/view/page/home/redux/home_page_state.dart';
-
-import '../redux/mine_page_state.dart';
+import 'package:jd_mall_flutter/view/page/mine/redux/mine_page_state.dart';
 
 Widget orderCard(BuildContext context) {
   return SliverToBoxAdapter(
@@ -17,7 +15,7 @@ Widget orderCard(BuildContext context) {
     builder: (context, state) {
       return Container(
           height: 142,
-          width: MediaQuery.of(context).size.width - 20,
+          width: getScreenWidth(context) - 20,
           margin: const EdgeInsets.all(10),
           decoration: const BoxDecoration(color: Colors.white, borderRadius: BorderRadius.all(Radius.circular(10))),
           child: Column(
@@ -32,7 +30,7 @@ Widget orderCard(BuildContext context) {
                   horizontalItem("images/ic_look_history.png", "浏览记录20")
                 ],
               ),
-              line(MediaQuery.of(context).size.width - 50, 1),
+              line(getScreenWidth(context) - 50, 1),
               Flex(direction: Axis.horizontal, children: [
                 verticalItem("images/ic_todo_pay.png", "待付款"),
                 verticalItem("images/ic_todo_get.png", "待收货"),

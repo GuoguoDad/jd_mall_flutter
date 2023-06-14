@@ -1,18 +1,14 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_redux/flutter_redux.dart';
+import 'package:jd_mall_flutter/common/util/screen_util.dart';
 import 'package:jd_mall_flutter/common/widget/image/asset_image.dart';
-import 'package:jd_mall_flutter/store/app_state.dart';
-import 'package:jd_mall_flutter/view/page/home/redux/home_page_state.dart';
-import 'package:jd_mall_flutter/view/page/home/util.dart';
-import '../../../../common/localization/default_localizations.dart';
-import '../../../../common/style/common_style.dart';
-import '../../../../common/widget/persistentHeader/sliver_header_builder.dart';
+import 'package:jd_mall_flutter/common/localization/default_localizations.dart';
+import 'package:jd_mall_flutter/common/style/common_style.dart';
 
 Widget cartHeader(BuildContext context) {
   return SizedBox(
-    height: 44 + MediaQueryData.fromView(View.of(context)).padding.top,
+    height: 44 + getStatusHeight(context),
     child: Container(
-        padding: EdgeInsets.fromLTRB(0, MediaQueryData.fromView(View.of(context)).padding.top, 0, 0),
+        padding: EdgeInsets.only(top: getStatusHeight(context)),
         color: CommonStyle.colorF1F1F1,
         child: Stack(
           fit: StackFit.expand,
@@ -27,7 +23,7 @@ Widget cartHeader(BuildContext context) {
                 left: 100,
                 child: Container(
                   height: 24,
-                  width: MediaQuery.of(context).size.width - 160,
+                  width: getScreenWidth(context) - 160,
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(12),
                     color: CommonStyle.colorECEDEC,

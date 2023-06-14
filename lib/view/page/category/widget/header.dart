@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:jd_mall_flutter/common/util/color_util.dart';
+import 'package:jd_mall_flutter/common/util/screen_util.dart';
 import 'package:jd_mall_flutter/common/widget/image/asset_image.dart';
 
 Widget header(BuildContext context) {
   return Container(
       color: ColorUtil.hex2Color('#FE0F22'),
-      height: 50 + MediaQueryData.fromView(View.of(context)).padding.top,
-      padding: EdgeInsets.only(top: MediaQueryData.fromView(View.of(context)).padding.top),
+      height: 50 + getStatusHeight(context),
+      padding: EdgeInsets.only(top: getStatusHeight(context)),
       child: Stack(
         alignment: Alignment.center,
         fit: StackFit.expand,
@@ -39,7 +40,7 @@ Widget header(BuildContext context) {
               top: 1,
               child: Container(
                 height: 38,
-                width: MediaQuery.of(context).size.width - 120,
+                width: getScreenWidth(context) - 120,
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(12),
                   color: ColorUtil.hex2Color("#F0F1ED"),

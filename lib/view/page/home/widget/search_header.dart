@@ -6,17 +6,18 @@ import 'package:jd_mall_flutter/view/page/home/redux/home_page_state.dart';
 import 'package:jd_mall_flutter/view/page/home/util.dart';
 import 'package:jd_mall_flutter/common/style/common_style.dart';
 import 'package:jd_mall_flutter/common/widget/persistentHeader/sliver_header_builder.dart';
+import 'package:jd_mall_flutter/common/util/screen_util.dart';
 
 Widget searchHeader(BuildContext context) {
   return SliverPersistentHeader(
     pinned: true,
     delegate: SliverHeaderDelegate(
       //有最大和最小高度
-      maxHeight: 88 + MediaQueryData.fromView(View.of(context)).padding.top,
-      minHeight: 44 + MediaQueryData.fromView(View.of(context)).padding.top,
+      maxHeight: 88 + getStatusHeight(context),
+      minHeight: 44 + getStatusHeight(context),
       child: Container(
           color: CommonStyle.themeColor,
-          padding: EdgeInsets.fromLTRB(0, MediaQueryData.fromView(View.of(context)).padding.top, 0, 0),
+          padding: EdgeInsets.only(top: getStatusHeight(context)),
           child: Stack(
             alignment: Alignment.center,
             fit: StackFit.expand,

@@ -3,8 +3,7 @@ import 'package:flutter_redux/flutter_redux.dart';
 import 'package:jd_mall_flutter/common/style/common_style.dart';
 import 'package:jd_mall_flutter/store/app_state.dart';
 import 'package:jd_mall_flutter/view/page/home/redux/home_page_action.dart';
-
-import '../../../../common/widget/persistentHeader/sliver_header_builder.dart';
+import 'package:jd_mall_flutter/common/widget/persistentHeader/sliver_header_builder.dart';
 
 Widget tabList(BuildContext context) {
   return SliverPersistentHeader(

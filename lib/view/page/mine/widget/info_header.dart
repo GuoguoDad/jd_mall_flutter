@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_redux/flutter_redux.dart';
+import 'package:jd_mall_flutter/common/util/screen_util.dart';
 import 'package:jd_mall_flutter/common/widget/image/asset_image.dart';
 import 'package:jd_mall_flutter/store/app_state.dart';
 import 'package:jd_mall_flutter/common/localization/default_localizations.dart';
@@ -14,7 +15,7 @@ Widget infoHeader(BuildContext context) {
 
     Widget title = Positioned(
       top: 0,
-      left: (MediaQuery.of(context).size.width - 100) / 2,
+      left: (getScreenWidth(context) - 100) / 2,
       child: Container(
         width: 100,
         height: 36,
@@ -43,7 +44,7 @@ Widget infoHeader(BuildContext context) {
       top: headerSize.name2Top,
       left: 100,
       child: SizedBox(
-          width: MediaQuery.of(context).size.width - 100,
+          width: getScreenWidth(context) - 100,
           height: 60,
           child: Opacity(
             opacity: 1 - headerSize.opacity,
@@ -70,10 +71,10 @@ Widget infoHeader(BuildContext context) {
       pinned: true,
       delegate: SliverHeaderDelegate(
         //有最大和最小高度
-        maxHeight: 130 + MediaQueryData.fromView(View.of(context)).padding.top,
-        minHeight: 48 + MediaQueryData.fromView(View.of(context)).padding.top,
+        maxHeight: 130 + getStatusHeight(context),
+        minHeight: 48 + getStatusHeight(context),
         child: Container(
-            padding: EdgeInsets.fromLTRB(0, MediaQueryData.fromView(View.of(context)).padding.top, 0, 0),
+            padding: EdgeInsets.only(top: getStatusHeight(context)),
             decoration: const BoxDecoration(
                 image: DecorationImage(
               fit: BoxFit.cover,
