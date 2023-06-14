@@ -55,6 +55,7 @@ AppraiseInfo _$AppraiseInfoFromJson(Map<String, dynamic> json) => AppraiseInfo(
       type: json['type'] as int?,
       color: json['color'] as String?,
       size: json['size'] as String?,
+      imgList: (json['imgList'] as List<dynamic>?)?.map((e) => e as String).toList(),
     );
 
 Map<String, dynamic> _$AppraiseInfoToJson(AppraiseInfo instance) => <String, dynamic>{
@@ -64,6 +65,7 @@ Map<String, dynamic> _$AppraiseInfoToJson(AppraiseInfo instance) => <String, dyn
       'type': instance.type,
       'color': instance.color,
       'size': instance.size,
+      'imgList': instance.imgList
     };
 
 DetailInfo _$DetailInfoFromJson(Map<String, dynamic> json) => DetailInfo(

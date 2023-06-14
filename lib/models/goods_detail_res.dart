@@ -67,6 +67,7 @@ class AppraiseInfo {
   final int? type;
   final String? color;
   final String? size;
+  final List<String>? imgList;
 
   const AppraiseInfo({
     this.headerUrl,
@@ -75,6 +76,7 @@ class AppraiseInfo {
     this.type,
     this.color,
     this.size,
+    this.imgList,
   });
 
   factory AppraiseInfo.fromJson(Map<String, dynamic> json) => _$AppraiseInfoFromJson(json);

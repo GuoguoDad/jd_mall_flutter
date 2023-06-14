@@ -5,7 +5,7 @@
     "bannerList": [
       {
         "colorId": "color1",
-        "colorName" : "黑灰色/红色",
+        "colorName": "黑灰色/红色",
         "thumb": "https://m.360buyimg.com/n2/jfs/t1/212471/24/17530/169099/625d9642Eadb21db3/f5c28554c39fee6d.jpg",
         "imgList": [
           "https://m.360buyimg.com/mobilecms/s1080x1080_jfs/t1/212471/24/17530/169099/625d9642Eadb21db3/f5c28554c39fee6d.jpg!q70.jpg.webp",
@@ -19,7 +19,7 @@
       },
       {
         "colorId": "color2",
-        "colorName" : "蓝色/黄色",
+        "colorName": "蓝色/黄色",
         "thumb": "https://m.360buyimg.com/mobilecms/s1080x1080_jfs/t1/185796/23/23365/154983/625d9644E96e93807/0e30192ad676f8a8.jpg!q70.jpg.webp",
         "imgList": [
           "https://m.360buyimg.com/mobilecms/s1080x1080_jfs/t1/185796/23/23365/154983/625d9644E96e93807/0e30192ad676f8a8.jpg!q70.jpg.webp",
@@ -35,7 +35,11 @@
     "goodsInfo": {
       "originalPrice": "890.00",
       "specialPrice": "810",
-      "tagList": ["买满300减40", "满199减20", "满49减1"],
+      "tagList": [
+        "买满300减40",
+        "满199减20",
+        "满49减1"
+      ],
       "goodsName": "ASICS亚瑟士 2022春夏男鞋稳定支持经典跑鞋舒适回弹运动鞋 GT-2000 10 蓝色/黄色",
       "appraiseList": [
         {
@@ -44,11 +48,10 @@
           "content": "外观颜值:外形很好看 别具一格再增加点颜色选择就更好了",
           "type": 1,
           "color": "蓝色/黄色",
-          "size": "44"
-        },
-        {
-          "url": "https://oss.suning.com/srcfews/lsypc/test/iShot2022-04-22_11.00.41.png",
-          "type": 2
+          "size": "44",
+          "imgList": [
+            "https://oss.suning.com/srcfews/lsypc/test/iShot2022-04-22_11.00.41.png"
+          ]
         },
         {
           "headerUrl": "https://oss.suning.com/srcfews/lsypc/test/header.jpg",
@@ -56,15 +59,11 @@
           "content": "第一次买亚瑟士的跑鞋，可以说很惊喜了，穿着很舒服，回弹也很到位，跑鞋非常专业！",
           "type": 1,
           "color": "黑灰色/红色",
-          "size": "42"
-        },
-        {
-          "url": "https://oss.suning.com/srcfews/lsypc/test/iShot2022-04-22_11.01.00.png",
-          "type": 2
-        },
-        {
-          "url": "https://oss.suning.com/srcfews/lsypc/test/iShot2022-04-22_11.01.00.png",
-          "type": 2
+          "size": "42",
+          "imgList": [
+            "https://oss.suning.com/srcfews/lsypc/test/iShot2022-04-22_11.01.00.png",
+            "https://oss.suning.com/srcfews/lsypc/test/iShot2022-04-22_11.01.00.png"
+          ]
         }
       ]
     },

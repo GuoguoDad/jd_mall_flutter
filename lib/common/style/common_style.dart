@@ -18,9 +18,11 @@ class CommonStyle {
   static ColorUtil color777677 = ColorUtil.hex2Color("#777677");
   static ColorUtil colorF3F3F3 = ColorUtil.hex2Color("#F3F3F3");
   static ColorUtil colorF1F1F1 = ColorUtil.hex2Color("#F1F1F1");
+  static ColorUtil color8B8C8A = ColorUtil.hex2Color("#8B8C8A");
   static ColorUtil colorF5F5F5 = ColorUtil.hex2Color("#F5F5F5");
   static ColorUtil colorECEDEC = ColorUtil.hex2Color("#ECEDEC");
   static ColorUtil colorE6E6E6 = ColorUtil.hex2Color("#E6E6E6");
   static ColorUtil colorD0D0D0 = ColorUtil.hex2Color("#D0D0D0");
   static ColorUtil color969798 = ColorUtil.hex2Color("#969798");
+  static ColorUtil color545454 = ColorUtil.hex2Color("#545454");
 }

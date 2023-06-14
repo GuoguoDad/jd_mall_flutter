@@ -120,6 +120,10 @@ flutter:
     - images/ic_ellipsis_grey.png
     - images/ic_share_black.png
     - images/ic_share_grey.png
+    - images/detail/ic_arrow_right.png
+    - images/detail/ic_cart.png
+    - images/detail/ic_customer_service.png
+    - images/detail/ic_store_red.png
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware
 

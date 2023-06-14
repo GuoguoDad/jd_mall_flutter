@@ -13,6 +13,7 @@ import 'package:jd_mall_flutter/common/util/screen_util.dart';
 Widget imgSlider(BuildContext context) {
   double statusHeight = getStatusHeight(context);
   double imgHeight = getScreenHeight(context) / 2 - statusHeight - getBottomSpace(context);
+  double screenWidth = getScreenWidth(context);
 
   return StoreConnector<AppState, DetailPageState>(converter: (store) {
     return store.state.detailPageState;
@@ -22,17 +23,17 @@ Widget imgSlider(BuildContext context) {
     final List<Widget> sliders = imgList
         .map((url) => CachedNetworkImage(
               height: imgHeight,
-              width: MediaQuery.of(context).size.width,
+              width: screenWidth,
               imageUrl: url,
-              placeholder: (context, url) => assetImage("images/default.png", MediaQuery.of(context).size.width, imgHeight),
-              errorWidget: (context, url, error) => assetImage("images/default.png", MediaQuery.of(context).size.width, imgHeight),
+              placeholder: (context, url) => assetImage("images/default.png", screenWidth, imgHeight),
+              errorWidget: (context, url, error) => assetImage("images/default.png", screenWidth, imgHeight),
               fit: BoxFit.fill,
             ))
         .toList();
 
     return Container(
         height: imgHeight,
-        width: MediaQuery.of(context).size.width,
+        width: getScreenWidth(context),
         margin: EdgeInsets.only(top: statusHeight),
         child: Carousel(
           options: CarouselOptions(

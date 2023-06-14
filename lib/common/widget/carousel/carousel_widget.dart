@@ -148,6 +148,7 @@ class FlutterCarouselState extends State<Carousel> with TickerProviderStateMixin
 
         var previousReason = mode;
         _changeMode(CarouselPageChangedReason.timed);
+
         var nextPage = _carouselState!.pageController!.page!.round() + 1;
         var itemCount = widget.itemCount ?? widget.items!.length;
 
