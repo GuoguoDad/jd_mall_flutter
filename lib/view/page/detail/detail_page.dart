@@ -3,15 +3,16 @@ import 'package:flutter/services.dart';
 import 'package:flutter_redux/flutter_redux.dart';
 import 'package:jd_mall_flutter/common/style/common_style.dart';
 import 'package:jd_mall_flutter/common/util/screen_util.dart';
-import 'package:jd_mall_flutter/view/page/detail/appraise_info.dart';
-import 'package:jd_mall_flutter/view/page/detail/store_goods.dart';
+import 'package:jd_mall_flutter/view/page/detail/widget/appraise_info.dart';
+import 'package:jd_mall_flutter/view/page/detail/widget/detail_card.dart';
+import 'package:jd_mall_flutter/view/page/detail/widget/store_goods.dart';
 import 'package:jd_mall_flutter/view/page/detail/widget/tab_header.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
 import 'package:jd_mall_flutter/common/util/refresh_util.dart';
 import 'package:jd_mall_flutter/common/widget/back_to_top.dart';
 import 'package:jd_mall_flutter/store/app_state.dart';
 import 'package:jd_mall_flutter/view/page/detail/redux/detail_page_action.dart';
-import 'goods_info.dart';
+import 'widget/goods_info.dart';
 
 class DetailPage extends StatefulWidget {
   const DetailPage({super.key});
@@ -37,6 +38,7 @@ class _DetailPageState extends State<DetailPage> {
           onNotification: (ScrollNotification notification) {
             if (notification.depth == 0) {
               double distance = notification.metrics.pixels;
+              store.dispatch(ChangePageScrollYAction(distance));
             }
             return false;
           },
@@ -56,12 +58,12 @@ class _DetailPageState extends State<DetailPage> {
                               enablePullUp: true,
                               enablePullDown: false,
                               onLoading: () async {
-                                store.dispatch(LoadMoreAction(store.state.minePageState.pageNum + 1,
+                                store.dispatch(LoadMoreAction(store.state.detailPageState.pageNum + 1,
                                     () => loadMoreSuccess(_refreshController), () => loadMoreFail(_refreshController)));
                               },
                               child: CustomScrollView(
                                 controller: _scrollController,
-                                slivers: [goodsInfo(context), appraiseInfo(context), storeGoods(context)],
+                                slivers: [goodsInfo(context), appraiseInfo(context), detailCard(context), storeGoods(context)],
                               ),
                             ),
                           ),

@@ -17,7 +17,6 @@ class DetailPageMiddleware<MinePageState> implements MiddlewareClass<MinePageSta
     if (action is LoadMoreAction) {
       DetailApi.queryStoreGoodsListByPage(action.currentPage, pageSize).then((res) {
         var totalPage = res.totalPageCount;
-
         if (totalPage >= action.currentPage) {
           store.dispatch(MoreGoodsPageAction(action.currentPage, res));
           action.loadMoreSuccess();

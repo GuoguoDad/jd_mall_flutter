@@ -7,7 +7,7 @@ import 'package:jd_mall_flutter/store/app_state.dart';
 import 'package:jd_mall_flutter/common/widget/image/asset_image.dart';
 import 'package:jd_mall_flutter/common/widget/group_grid_view.dart';
 
-import '../../../common/style/common_style.dart';
+import '../../../../common/style/common_style.dart';
 
 double imgWidth = 60;
 double headWidth = 40;
@@ -101,9 +101,9 @@ Widget appraiseInfo(BuildContext context) {
                   child: appraiseList,
                 ),
                 Container(
-                  width: 180,
+                  width: 160,
                   height: 42,
-                  margin: EdgeInsets.only(left: getScreenWidth(context) / 2 - 90),
+                  margin: EdgeInsets.only(left: getScreenWidth(context) / 2 - 80),
                   alignment: Alignment.center,
                   decoration: BoxDecoration(
                       borderRadius: const BorderRadius.all(Radius.circular(30)), border: Border.all(color: Colors.grey, width: 1)),
