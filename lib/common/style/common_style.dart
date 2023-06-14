@@ -25,4 +25,5 @@ class CommonStyle {
   static ColorUtil colorD0D0D0 = ColorUtil.hex2Color("#D0D0D0");
   static ColorUtil color969798 = ColorUtil.hex2Color("#969798");
   static ColorUtil color545454 = ColorUtil.hex2Color("#545454");
+  static ColorUtil colorF2C54B = ColorUtil.hex2Color("#F2C54B");
 }

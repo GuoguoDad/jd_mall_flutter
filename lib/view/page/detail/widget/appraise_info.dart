@@ -6,8 +6,7 @@ import 'package:jd_mall_flutter/models/goods_detail_res.dart';
 import 'package:jd_mall_flutter/store/app_state.dart';
 import 'package:jd_mall_flutter/common/widget/image/asset_image.dart';
 import 'package:jd_mall_flutter/common/widget/group_grid_view.dart';
-
-import '../../../../common/style/common_style.dart';
+import 'package:jd_mall_flutter/common/style/common_style.dart';
 
 double imgWidth = 60;
 double headWidth = 40;

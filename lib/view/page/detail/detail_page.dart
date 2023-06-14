@@ -4,6 +4,7 @@ import 'package:flutter_redux/flutter_redux.dart';
 import 'package:jd_mall_flutter/common/style/common_style.dart';
 import 'package:jd_mall_flutter/common/util/screen_util.dart';
 import 'package:jd_mall_flutter/view/page/detail/widget/appraise_info.dart';
+import 'package:jd_mall_flutter/view/page/detail/widget/bedienfeld.dart';
 import 'package:jd_mall_flutter/view/page/detail/widget/detail_card.dart';
 import 'package:jd_mall_flutter/view/page/detail/widget/store_goods.dart';
 import 'package:jd_mall_flutter/view/page/detail/widget/tab_header.dart';
@@ -72,11 +73,7 @@ class _DetailPageState extends State<DetailPage> {
                       ),
                       floatingActionButton: BackToTop(_scrollController),
                     )),
-                Container(
-                  height: 54 + space,
-                  padding: EdgeInsets.only(bottom: space),
-                  decoration: BoxDecoration(color: Colors.white, border: Border.all(color: Colors.grey, width: 0.2)),
-                )
+                bedienfeld(context)
               ],
             ),
           ));
