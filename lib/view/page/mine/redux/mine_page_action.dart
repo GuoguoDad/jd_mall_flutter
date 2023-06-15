@@ -1,6 +1,6 @@
 import 'package:jd_mall_flutter/models/mine_menu_tab_info.dart';
 
-import '../../../../models/goods_page_info.dart';
+import 'package:jd_mall_flutter/models/goods_page_info.dart';
 
 import 'package:jd_mall_flutter/types/common.dart';
 

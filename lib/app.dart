@@ -5,13 +5,12 @@ import 'package:fluttertoast/fluttertoast.dart';
 import 'package:jd_mall_flutter/view/main/main_page.dart';
 import 'package:jd_mall_flutter/view/page/detail/detail_page.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
-
-import 'common/event/http_error_event.dart';
-import 'common/event/index.dart';
-import 'common/http/code.dart';
-import 'common/localization/default_localizations.dart';
-import 'common/localization/localizations_delegate.dart';
-import 'common/util/screen_util.dart';
+import 'package:jd_mall_flutter/common/event/http_error_event.dart';
+import 'package:jd_mall_flutter/common/event/index.dart';
+import 'package:jd_mall_flutter/common/http/code.dart';
+import 'package:jd_mall_flutter/common/localization/default_localizations.dart';
+import 'package:jd_mall_flutter/common/localization/localizations_delegate.dart';
+import 'package:jd_mall_flutter/common/util/screen_util.dart';
 
 class MallApp extends StatefulWidget {
   const MallApp({super.key});

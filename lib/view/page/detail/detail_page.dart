@@ -15,7 +15,7 @@ import 'package:jd_mall_flutter/common/util/refresh_util.dart';
 import 'package:jd_mall_flutter/common/widget/back_to_top.dart';
 import 'package:jd_mall_flutter/store/app_state.dart';
 import 'package:jd_mall_flutter/view/page/detail/redux/detail_page_action.dart';
-import 'widget/goods_info.dart';
+import 'package:jd_mall_flutter/view/page/detail/widget/goods_info.dart';
 
 class DetailPage extends StatefulWidget {
   const DetailPage({super.key});

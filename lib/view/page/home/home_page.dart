@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_redux/flutter_redux.dart';
-import 'package:jd_mall_flutter/view/page/home/widget/home_skeleton.dart';
 import 'package:jd_mall_flutter/view/page/home/widget/goods_list.dart';
 import 'package:jd_mall_flutter/view/page/home/widget/tab_list.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';

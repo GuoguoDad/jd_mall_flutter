@@ -4,8 +4,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_redux/flutter_redux.dart';
 import 'package:jd_mall_flutter/store/app_state.dart';
 import 'package:jd_mall_flutter/store/app_store.dart';
-
-import 'app.dart';
+import 'package:jd_mall_flutter/app.dart';
 
 void main() {
   runApp(StoreProvider<AppState>(store: store, child: const MallApp()));

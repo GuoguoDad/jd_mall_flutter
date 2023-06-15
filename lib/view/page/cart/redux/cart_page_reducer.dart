@@ -3,7 +3,7 @@ import 'package:jd_mall_flutter/view/page/cart/redux/cart_page_action.dart';
 import 'package:jd_mall_flutter/models/goods_page_info.dart';
 import 'package:jd_mall_flutter/view/page/cart/redux/cart_page_state.dart';
 
-import '../../../../models/cart_goods.dart';
+import 'package:jd_mall_flutter/models/cart_goods.dart';
 
 final cartPageReducer = combineReducers<CartPageState>([
   //修改loading状态

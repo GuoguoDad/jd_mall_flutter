@@ -1,6 +1,6 @@
 import 'package:redux/redux.dart';
 import 'package:jd_mall_flutter/view/page/category/redux/category_page_state.dart';
-import 'category_page_action.dart';
+import 'package:jd_mall_flutter/view/page/category/redux/category_page_action.dart';
 
 final categoryPageReducer = combineReducers<CategoryPageState>([
   //页面初始化数据

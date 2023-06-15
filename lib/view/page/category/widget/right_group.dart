@@ -140,20 +140,7 @@ Widget rightGroupList(BuildContext context) {
                 if (notification.depth == 0) {
                   if (isTabClicked) return false;
 
-                  int i = 0;
-                  for (; i < keys.length; i++) {
-                    //滚动三级分类
-                    RenderSliverToBoxAdapter? keyRenderObject =
-                        keys[i].currentContext?.findAncestorRenderObjectOfType<RenderSliverToBoxAdapter>();
-                    if (keyRenderObject != null) {
-                      //距离CustomScrollView顶部距离， 上滚出可视区域变为0
-                      final offsetY = (keyRenderObject.parentData as SliverPhysicalParentData).paintOffset.dy;
-                      if (offsetY > 10) {
-                        break;
-                      }
-                    }
-                  }
-                  final newIndex = i == 0 ? 0 : i - 1;
+                  int newIndex = findFirstVisibleItemIndex(keys);
                   if (selectSecondCategoryInfo?.categoryCode != secondCateList[newIndex].categoryCode) {
                     //滚动二级分类至中间
                     tabScrollToMiddle(newIndex);
@@ -213,4 +200,21 @@ Widget rightGroupList(BuildContext context) {
           ));
     },
   );
+}
+
+int findFirstVisibleItemIndex(List<GlobalKey<State<StatefulWidget>>> keys) {
+  int i = 0;
+  for (; i < keys.length; i++) {
+    //滚动三级分类
+    RenderSliverToBoxAdapter? keyRenderObject = keys[i].currentContext?.findAncestorRenderObjectOfType<RenderSliverToBoxAdapter>();
+    if (keyRenderObject != null) {
+      //距离CustomScrollView顶部距离， 上滚出可视区域变为0
+      final offsetY = (keyRenderObject.parentData as SliverPhysicalParentData).paintOffset.dy;
+      if (offsetY > 10) {
+        break;
+      }
+    }
+  }
+  final newIndex = i == 0 ? 0 : i - 1;
+  return newIndex;
 }

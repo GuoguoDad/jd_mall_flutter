@@ -1,5 +1,5 @@
 import 'package:jd_mall_flutter/models/cart_goods.dart';
-import '../../../../models/goods_page_info.dart';
+import 'package:jd_mall_flutter/models/goods_page_info.dart';
 
 class CartPageState {
   bool isLoading = true;
