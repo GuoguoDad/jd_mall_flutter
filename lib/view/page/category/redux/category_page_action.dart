@@ -1,5 +1,5 @@
-import '../../../../models/primary_category_list.dart';
-import '../../../../models/second_group_category_info.dart';
+import 'package:jd_mall_flutter/models/primary_category_list.dart';
+import 'package:jd_mall_flutter/models/second_group_category_info.dart';
 import 'category_page_state.dart';
 
 class InitDataAction {

@@ -2,7 +2,7 @@ import 'package:jd_mall_flutter/models/mine_menu_tab_info.dart';
 
 import '../../../../models/goods_page_info.dart';
 
-typedef VoidCallback = void Function();
+import 'package:jd_mall_flutter/types/common.dart';
 
 //记录页面滚动距离
 class ChangePageScrollYAction {

@@ -71,17 +71,10 @@ class _DetailPageState extends State<DetailPage> {
           Positioned(
               top: 0,
               left: 0,
-              child: tabHeader(context, (index) {
+              child: tabHeader(context, onChange: (index) {
                 isTabClicked = true;
                 store.dispatch(ChangeTopTabIndexAction(index));
-
-                RenderSliverToBoxAdapter? keyRenderObject =
-                    cardKeys[index].currentContext?.findAncestorRenderObjectOfType<RenderSliverToBoxAdapter>();
-                if (keyRenderObject != null) {
-                  _scrollController.position
-                      .ensureVisible(keyRenderObject, duration: const Duration(milliseconds: 300), curve: Curves.linear)
-                      .then((value) => isTabClicked = false);
-                }
+                scroll2PositionByTabIndex(cardKeys, index);
               }))
         ],
       );
@@ -93,19 +86,7 @@ class _DetailPageState extends State<DetailPage> {
               store.dispatch(ChangePageScrollYAction(distance));
               //监听滚动，选中对应的tab
               if (isTabClicked) return false;
-              int i = 0;
-              for (; i < cardKeys.length; i++) {
-                RenderSliverToBoxAdapter? keyRenderObject =
-                    cardKeys[i].currentContext?.findAncestorRenderObjectOfType<RenderSliverToBoxAdapter>();
-                if (keyRenderObject != null) {
-                  //距离CustomScrollView顶部距离， 上滚出可视区域变为0
-                  final offsetY = (keyRenderObject.parentData as SliverPhysicalParentData).paintOffset.dy;
-                  if (offsetY > 42 + getStatusHeight(context)) {
-                    break;
-                  }
-                }
-              }
-              final newIndex = i == 0 ? 0 : i - 1;
+              int newIndex = findFirstVisibleItemIndex(cardKeys, context);
               store.dispatch(ChangeTopTabIndexAction(newIndex));
             }
             return false;
@@ -125,5 +106,30 @@ class _DetailPageState extends State<DetailPage> {
             ),
           ));
     });
+  }
+
+  void scroll2PositionByTabIndex(List<GlobalKey<State<StatefulWidget>>> cardKeys, int index) {
+    RenderSliverToBoxAdapter? keyRenderObject = cardKeys[index].currentContext?.findAncestorRenderObjectOfType<RenderSliverToBoxAdapter>();
+    if (keyRenderObject != null) {
+      _scrollController.position
+          .ensureVisible(keyRenderObject, duration: const Duration(milliseconds: 300), curve: Curves.linear)
+          .then((value) => isTabClicked = false);
+    }
+  }
+
+  int findFirstVisibleItemIndex(List<GlobalKey<State<StatefulWidget>>> cardKeys, BuildContext context) {
+    int i = 0;
+    for (; i < cardKeys.length; i++) {
+      RenderSliverToBoxAdapter? keyRenderObject = cardKeys[i].currentContext?.findAncestorRenderObjectOfType<RenderSliverToBoxAdapter>();
+      if (keyRenderObject != null) {
+        //距离CustomScrollView顶部距离， 上滚出可视区域变为0
+        final offsetY = (keyRenderObject.parentData as SliverPhysicalParentData).paintOffset.dy;
+        if (offsetY > 42 + getStatusHeight(context)) {
+          break;
+        }
+      }
+    }
+    final newIndex = i == 0 ? 0 : i - 1;
+    return newIndex;
   }
 }

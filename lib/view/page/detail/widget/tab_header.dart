@@ -6,7 +6,7 @@ import 'package:jd_mall_flutter/common/widget/image/asset_image.dart';
 import 'package:jd_mall_flutter/store/app_state.dart';
 import 'package:jd_mall_flutter/types/common.dart';
 
-Widget tabHeader(BuildContext context, ValueCallback<int> onChange) {
+Widget tabHeader(BuildContext context, {required ValueCallback<int> onChange}) {
   double statusHeight = getStatusHeight(context);
 
   return StoreBuilder<AppState>(builder: (context, store) {

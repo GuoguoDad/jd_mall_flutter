@@ -5,7 +5,7 @@
 1. 使用flutter_redux状态管理
 2. 网络使用dio进行封装
 3. 使用node项目mock服务端接口(mock_server目录)
-4. 目前实现了首页、分类、购物车、我的，持续更新中...
+4. 目前实现了首页、分类、购物车、我的，商品详情...
 
 * ### 同款Android Kotlin版本（ https://github.com/GuoguoDad/jd_mall.git ）
 * ### 参考学习书籍《Flutter实战·第二版》（ https://book.flutterchina.club/ ）
@@ -61,6 +61,10 @@ Flutter框架具有如下的一些特点：
 ## 我的
 
 <img src="images/shot/mine.gif" title="" alt="image" width="300">
+
+## 商品详情
+
+<img src="images/shot/detail.gif" title="" alt="image" width="300">
 
 # 第三方框架
 
