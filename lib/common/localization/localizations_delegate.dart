@@ -1,7 +1,7 @@
 import 'dart:async';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'default_localizations.dart';
+import 'package:jd_mall_flutter/common/localization/default_localizations.dart';
 
 /// 多语言代理
 class MallLocalizationsDelegate extends LocalizationsDelegate<MallLocalizations> {

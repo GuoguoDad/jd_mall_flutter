@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'image/asset_image.dart';
+import 'package:jd_mall_flutter/common/widget/image/asset_image.dart';
 
 class BackToTop extends StatefulWidget {
   final ScrollController controller;

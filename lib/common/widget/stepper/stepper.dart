@@ -5,7 +5,7 @@ import 'dart:math' as math;
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-import 'style.dart';
+import 'package:jd_mall_flutter/common/widget/stepper/style.dart';
 
 const _animateDuration = Duration(milliseconds: 300);
 

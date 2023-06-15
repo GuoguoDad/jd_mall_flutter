@@ -3,8 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:jd_mall_flutter/view/page/detail/detail_page.dart';
 
 import 'package:jd_mall_flutter/models/goods_page_info.dart';
-import '../util/color_util.dart';
-import 'image/asset_image.dart';
+import 'package:jd_mall_flutter/common/util/color_util.dart';
+import 'package:jd_mall_flutter/common/widget/image/asset_image.dart';
 
 Widget goodsItem(BuildContext context, GoodsList item, double width) {
   return GestureDetector(

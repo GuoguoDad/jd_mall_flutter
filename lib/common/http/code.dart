@@ -1,5 +1,5 @@
-import '../event/http_error_event.dart';
-import '../event/index.dart';
+import 'package:jd_mall_flutter/common/event/http_error_event.dart';
+import 'package:jd_mall_flutter/common/event/index.dart';
 
 ///错误编码
 class Code {
