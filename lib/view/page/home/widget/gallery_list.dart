@@ -27,7 +27,7 @@ Widget galleryList(BuildContext context) {
                 return store.state.homePageState;
               }, builder: (context, state) {
                 var bannerList = state.homePageInfo.bannerList ?? [];
-                int bannerLength = bannerList?.length ?? 0;
+                int bannerLength = bannerList.length;
                 if (bannerLength == 0) {
                   return Container();
                 }

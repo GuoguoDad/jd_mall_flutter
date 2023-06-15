@@ -77,7 +77,7 @@ Widget verticalItem(String iconPath, String text) {
           children: [
             assetImage(iconPath, 42, 42),
             Container(
-              margin: EdgeInsets.only(top: 2),
+              margin: const EdgeInsets.only(top: 2),
               child: Text(
                 text,
                 style: const TextStyle(fontSize: 16),

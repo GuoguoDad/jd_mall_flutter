@@ -46,7 +46,6 @@ class _FlutterReduxMallApp extends State<MallApp> with HttpErrorListener {
           ),
           initialRoute: MainPage.name,
           routes: {MainPage.name: (context) => const MainPage(), DetailPage.name: (context) => const DetailPage()},
-          home: const MainPage(),
           debugShowCheckedModeBanner: false,
           localizationsDelegates: [
             // this line is important

@@ -94,7 +94,7 @@ Widget menuPageList(BuildContext context) {
                   Container(
                     margin: const EdgeInsets.only(top: 4),
                     child: Text(
-                      menuData[index * pageNum + position].menuName.toString() ?? "",
+                      menuData[index * pageNum + position].menuName.toString(),
                       style: const TextStyle(fontSize: 12),
                     ),
                   )

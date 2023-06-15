@@ -18,7 +18,7 @@ Widget advBanner(BuildContext context) {
         padding: const EdgeInsets.all(0),
         child: CachedNetworkImage(
           height: 90,
-          imageUrl: state.homePageInfo?.adUrl ?? "",
+          imageUrl: state.homePageInfo.adUrl ?? "",
           placeholder: (context, url) => assetImage("images/default.png", getScreenWidth(context) - 24, 90),
           errorWidget: (context, url, error) => assetImage("images/default.png", getScreenWidth(context) - 24, 90),
           fit: BoxFit.fill,

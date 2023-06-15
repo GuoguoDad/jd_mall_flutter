@@ -16,7 +16,7 @@ Widget cartGoods(BuildContext context) {
     List<String> selectList = store.state.cartPageState.selectCartGoodsList;
 
     return GroupSliverListView(
-      sectionCount: cartGoods.length ?? 0,
+      sectionCount: cartGoods.length,
       itemInSectionCount: (int section) {
         return cartGoods[section].goodsList?.length ?? 0;
       },

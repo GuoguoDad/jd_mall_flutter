@@ -58,7 +58,7 @@ Widget indicator(BuildContext context) {
 Widget menuPageList(BuildContext context) {
   return StoreBuilder<AppState>(builder: (context, store) {
     var menuData = store.state.homePageState.homePageInfo.nineMenuList ?? [];
-    int menuLength = menuData?.length ?? -1;
+    int menuLength = menuData.length;
 
     return PageView.builder(
       itemCount: (menuLength % pageNum) > 0 ? (menuLength ~/ pageNum) + 1 : (menuLength ~/ pageNum),
@@ -83,14 +83,14 @@ Widget menuPageList(BuildContext context) {
                     width: 40,
                     height: 40,
                     fit: BoxFit.cover,
-                    imageUrl: menuData[index * pageNum + position].menuIcon.toString()!,
+                    imageUrl: menuData[index * pageNum + position].menuIcon.toString(),
                     placeholder: (context, url) => assetImage("images/default.png", 40, 40),
                     errorWidget: (context, url, error) => assetImage("images/default.png", 40, 40),
                   ),
                   Container(
                     margin: const EdgeInsets.only(top: 4),
                     child: Text(
-                      menuData?[index * pageNum + position]?.menuName.toString() ?? "",
+                      menuData[index * pageNum + position].menuName.toString(),
                       style: const TextStyle(fontSize: 12),
                     ),
                   )

@@ -155,7 +155,7 @@ Widget rightGroupList(BuildContext context) {
                   padding: EdgeInsets.zero,
                   gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 3, mainAxisSpacing: 0, crossAxisSpacing: 0),
                   sectionCount: secondCateList.length,
-                  itemInSectionCount: (int section) => secondCateList[section].cateList!.length!,
+                  itemInSectionCount: (int section) => secondCateList[section].cateList!.length,
                   itemInSectionBuilder: (BuildContext context, IndexPath indexPath) {
                     return SizedBox(
                       width: thirdCateItemWidth,

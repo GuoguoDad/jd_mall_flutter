@@ -14,19 +14,19 @@ Widget tabList(BuildContext context) {
         child: Container(
             color: CommonStyle.greyBgColor,
             child: StoreBuilder<AppState>(builder: (context, store) {
-              var tabs = store.state.homePageState.homePageInfo.tabList;
+              var tabs = store.state.homePageState.homePageInfo.tabList ?? [];
               String currentTab = store.state.homePageState.currentTab;
-              int totalCount = tabs?.length ?? 0;
+              int totalCount = tabs.length;
 
               return ListView.builder(
                   scrollDirection: Axis.horizontal,
                   itemCount: totalCount,
                   itemExtent: 86.0,
                   itemBuilder: (BuildContext context, int index) {
-                    bool isSelect = currentTab == tabs?[index].code;
+                    bool isSelect = currentTab == tabs[index].code;
 
                     return GestureDetector(
-                        onTap: () => store.dispatch(SetCurrentTab(tabs![index].code!)),
+                        onTap: () => store.dispatch(SetCurrentTab(tabs[index].code!)),
                         child: Flex(
                           direction: Axis.vertical,
                           crossAxisAlignment: CrossAxisAlignment.center,
@@ -39,7 +39,7 @@ Widget tabList(BuildContext context) {
                                   alignment: Alignment.bottomCenter,
                                   padding: const EdgeInsets.only(bottom: 6),
                                   child: Text(
-                                    tabs?[index].name ?? "",
+                                    tabs[index].name ?? "",
                                     style: TextStyle(color: isSelect ? CommonStyle.selectedTabColor : CommonStyle.unSelectedTabColor),
                                   ),
                                 )),
