@@ -31,14 +31,6 @@ class _CartPageState extends State<CartPage> {
     return StoreBuilder<AppState>(onInit: (store) {
       store.dispatch(InitAction());
     }, builder: (context, store) {
-      // if (store.state.cartPageState.isLoading) {
-      //   return Container(
-      //     width: MediaQuery.of(context).size.width,
-      //     height: MediaQuery.of(context).size.height,
-      //     color: Colors.grey,
-      //   );
-      // }
-
       return Column(
         children: [
           cartHeader(context),

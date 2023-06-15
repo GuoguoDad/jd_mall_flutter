@@ -7,7 +7,7 @@ import 'package:jd_mall_flutter/store/app_state.dart';
 import 'package:jd_mall_flutter/common/style/common_style.dart';
 import 'package:jd_mall_flutter/common/widget/image/asset_image.dart';
 
-Widget detailCard(BuildContext context) {
+Widget detailCard(BuildContext context, Key key) {
   double screenWidth = getScreenWidth(context);
 
   return SliverToBoxAdapter(
@@ -17,6 +17,7 @@ Widget detailCard(BuildContext context) {
     List<String>? introductionList = state.goodsDetailRes.detailInfo?.introductionList ?? [];
 
     return Container(
+      key: key,
       margin: const EdgeInsets.all(10),
       padding: const EdgeInsets.all(10),
       decoration: const BoxDecoration(

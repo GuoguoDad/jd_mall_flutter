@@ -12,7 +12,7 @@ double imgWidth = 60;
 double headWidth = 40;
 double screenWidth = 0;
 
-Widget appraiseInfo(BuildContext context) {
+Widget appraiseInfo(BuildContext context, Key key) {
   screenWidth = getScreenWidth(context);
 
   return StoreBuilder<AppState>(builder: (context, store) {
@@ -88,6 +88,7 @@ Widget appraiseInfo(BuildContext context) {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Container(
+                  key: key,
                   margin: const EdgeInsets.only(bottom: 10),
                   child: const Text(
                     "评价",

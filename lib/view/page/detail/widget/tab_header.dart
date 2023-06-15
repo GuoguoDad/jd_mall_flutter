@@ -4,9 +4,9 @@ import 'package:jd_mall_flutter/common/style/common_style.dart';
 import 'package:jd_mall_flutter/common/util/screen_util.dart';
 import 'package:jd_mall_flutter/common/widget/image/asset_image.dart';
 import 'package:jd_mall_flutter/store/app_state.dart';
-import 'package:jd_mall_flutter/view/page/detail/redux/detail_page_action.dart';
+import 'package:jd_mall_flutter/types/common.dart';
 
-Widget tabHeader(BuildContext context) {
+Widget tabHeader(BuildContext context, ValueCallback<int> onChange) {
   double statusHeight = getStatusHeight(context);
 
   return StoreBuilder<AppState>(builder: (context, store) {
@@ -18,7 +18,9 @@ Widget tabHeader(BuildContext context) {
 
     Widget tabItem(String name, int index) {
       return GestureDetector(
-          onTap: () => store.dispatch(ChangeTopTabIndexAction(index)),
+          onTap: () => {
+                if (currentIndex != index) {onChange(index)}
+              },
           child: Opacity(
               opacity: opacity,
               child: Container(
