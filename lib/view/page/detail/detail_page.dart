@@ -36,6 +36,8 @@ class _DetailPageState extends State<DetailPage> {
   Widget build(BuildContext context) {
     return StoreBuilder<AppState>(onInit: (store) {
       store.dispatch(InitPageAction());
+    }, onDispose: (store) {
+      store.dispatch(ChangeTopTabIndexAction(0));
     }, builder: (context, store) {
       //
       //商品、评论、详情、同店好货锚点key

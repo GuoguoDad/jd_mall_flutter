@@ -4,6 +4,7 @@ import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:jd_mall_flutter/view/main/main_page.dart';
 import 'package:jd_mall_flutter/view/page/detail/detail_page.dart';
+import 'package:jd_mall_flutter/view/page/test/test.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
 import 'package:jd_mall_flutter/common/event/http_error_event.dart';
 import 'package:jd_mall_flutter/common/event/index.dart';
@@ -45,7 +46,11 @@ class _FlutterReduxMallApp extends State<MallApp> with HttpErrorListener {
             highlightColor: Colors.transparent,
           ),
           initialRoute: MainPage.name,
-          routes: {MainPage.name: (context) => const MainPage(), DetailPage.name: (context) => const DetailPage()},
+          routes: {
+            MainPage.name: (context) => const MainPage(),
+            DetailPage.name: (context) => const DetailPage(),
+            TestPage.name: (context) => const TestPage()
+          },
           debugShowCheckedModeBanner: false,
           localizationsDelegates: [
             // this line is important

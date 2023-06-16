@@ -9,6 +9,7 @@ import 'package:jd_mall_flutter/common/widget/carousel/carousel_widget.dart';
 import 'package:jd_mall_flutter/common/widget/carousel/helpers/flutter_carousel_options.dart';
 import 'package:jd_mall_flutter/common/widget/carousel/indicators/circular_wave_slide_indicator.dart';
 import 'package:jd_mall_flutter/common/util/screen_util.dart';
+import 'package:jd_mall_flutter/view/page/detail/detail_page.dart';
 
 Widget galleryList(BuildContext context) {
   double carouselWidth = getScreenWidth(context) - 24;
@@ -48,17 +49,19 @@ Widget galleryList(BuildContext context) {
                         indicatorBackgroundColor: Colors.grey),
                   ),
                   items: bannerList.map((item) {
-                    return Container(
-                        margin: const EdgeInsets.fromLTRB(12, 10, 12, 2),
-                        child: ClipRRect(
-                          borderRadius: const BorderRadius.all(Radius.circular(6)),
-                          child: CachedNetworkImage(
-                            imageUrl: item.imgUrl!,
-                            fit: BoxFit.cover,
-                            placeholder: (context, url) => assetImage("images/default.png", carouselWidth, 168),
-                            errorWidget: (context, url, error) => assetImage("images/default.png", carouselWidth, 168),
-                          ),
-                        ));
+                    return GestureDetector(
+                        onTap: () => Navigator.of(context).pushNamed(DetailPage.name),
+                        child: Container(
+                            margin: const EdgeInsets.fromLTRB(12, 10, 12, 2),
+                            child: ClipRRect(
+                              borderRadius: const BorderRadius.all(Radius.circular(6)),
+                              child: CachedNetworkImage(
+                                imageUrl: item.imgUrl!,
+                                fit: BoxFit.cover,
+                                placeholder: (context, url) => assetImage("images/default.png", carouselWidth, 168),
+                                errorWidget: (context, url, error) => assetImage("images/default.png", carouselWidth, 168),
+                              ),
+                            )));
                   }).toList(),
                 );
               }))));
