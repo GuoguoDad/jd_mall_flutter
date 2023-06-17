@@ -12,7 +12,8 @@
 
 # flutter 简介
 
-Flutter 是 Google 推出的一款开源的 UI 工具包，用于构建高性能、高保真度的移动、Web 和桌面应用程序。Flutter 使用自己的渲染引擎来绘制
+Flutter 是 Google 推出的一款开源的 UI 工具包，用于构建高性能、高保真度的移动、Web 和桌面应用程序。Flutter
+使用自己的渲染引擎来绘制
 UI，从而提供更快的性能和更好的用户体验。Flutter 还提供了丰富的构建工具、库和插件，使得开发者可以更快速地构建应用程序。
 
 <img src="images/shot/flutter.png" title="" alt="image" width="650">
@@ -43,6 +44,26 @@ Flutter框架具有如下的一些特点：
 1. cd mock_server
 2. 执行 npm i 安装依赖
 3. npm run mock
+
+# 运行
+
+## 运行开发环境应用程序
+
+      flutter run -t lib/main_dev.dart
+
+## 运行生产环境应用程序
+
+      flutter run -t lib/main_prd.dart
+
+## 打包开发环境应用程序
+
+      flutter build apk -t lib/main_dev.dart
+      flutter build ios -t lib/main_dev.dart
+
+## 打包生产环境应用程序
+
+      flutter build apk -t lib/main_prd.dart
+      flutter build ios -t lib/main_prd.dart
 
 # 效果
 

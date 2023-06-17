@@ -54,6 +54,7 @@ dependencies:
   sentry_flutter: ^7.7.0
   extended_nested_scroll_view: ^6.1.0
   easy_refresh: ^3.3.2+1
+  gato: ^0.0.5+1
 
 dev_dependencies:
   flutter_test:

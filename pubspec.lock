@@ -397,6 +397,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "3.2.0"
+  gato:
+    dependency: "direct main"
+    description:
+      name: gato
+      sha256: "03fa3a33d50f71a912e30827ddf47c89e06e9acfd2b6b178aff0e1aa2f1e8b90"
+      url: "https://pub.dev"
+    source: hosted
+    version: "0.0.5+1"
   glob:
     dependency: transitive
     description:

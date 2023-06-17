@@ -1,11 +1,11 @@
 import 'package:jd_mall_flutter/common/http/http.dart';
 import 'package:jd_mall_flutter/models/goods_page_info.dart';
-import 'package:jd_mall_flutter/common/config/config.dart';
 import 'package:jd_mall_flutter/models/goods_detail_res.dart';
+import 'package:jd_mall_flutter/config/global_configs.dart';
 
 class DetailApi {
   static Future queryDetailInfo() async {
-    var res = await httpManager.get('${config.host}/detail/queryGoodsDetail', {}, null, null);
+    var res = await httpManager.get('${GlobalConfigs().get("host")}/detail/queryGoodsDetail', {}, null, null);
     if (res?.code != '0') {
       return null;
     }
@@ -13,8 +13,8 @@ class DetailApi {
   }
 
   static Future queryStoreGoodsListByPage(int currentPage, int pageSize) async {
-    var res =
-        await httpManager.post('${config.host}/detail/queryStoreGoodsList', {"currentPage": currentPage, "pageSize": pageSize}, null, null);
+    var res = await httpManager.post(
+        '${GlobalConfigs().get("host")}/detail/queryStoreGoodsList', {"currentPage": currentPage, "pageSize": pageSize}, null, null);
     if (res?.code != '0') {
       return null;
     }
