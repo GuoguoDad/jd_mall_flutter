@@ -42,7 +42,7 @@ class GlobalConfigs {
   /// ```dart
   /// await GlobalConfigs().loadJsonFromDir(dir, 'assets/cofig.json');
   /// ```
-  Future<GlobalConfigs> loadJsonFromdir(String dir, {String? path}) async {
+  Future<GlobalConfigs> loadJsonFromDir(String dir, {String? path}) async {
     String content = await rootBundle.loadString(dir);
     Map<String, dynamic> res = json.decode(content);
     path == null ? configs.addAll(res) : set(path, res);
