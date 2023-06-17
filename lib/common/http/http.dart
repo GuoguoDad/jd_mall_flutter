@@ -1,5 +1,6 @@
 import 'dart:collection';
 import 'package:dio/dio.dart';
+import 'package:flutter/foundation.dart';
 import 'package:jd_mall_flutter/common/http/base_response.dart';
 import 'package:jd_mall_flutter/common/http/code.dart';
 import 'package:jd_mall_flutter/common/http/interceptors/error_interceptor.dart';
@@ -16,7 +17,9 @@ class HttpManager {
 
   HttpManager() {
     _dio.interceptors.add(TokenInterceptors());
-    _dio.interceptors.add(LogsInterceptors());
+    if (kDebugMode) {
+      _dio.interceptors.add(LogsInterceptors());
+    }
     _dio.interceptors.add(ErrorInterceptors());
     _dio.interceptors.add(ResponseInterceptors());
   }

@@ -1,5 +1,6 @@
 import 'dart:async';
 import 'dart:io';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:sentry_flutter/sentry_flutter.dart';
@@ -10,8 +11,6 @@ import 'package:jd_mall_flutter/app.dart';
 import 'package:jd_mall_flutter/common/constant/index.dart';
 
 Future<void> main() async {
-  const bool inProduction = bool.fromEnvironment("dart.vm.product");
-
   void initApp() {
     runApp(StoreProvider<AppState>(store: store, child: const MallApp()));
     if (Platform.isAndroid) {
@@ -21,7 +20,7 @@ Future<void> main() async {
     }
   }
 
-  if (inProduction) {
+  if (kReleaseMode) {
     runZonedGuarded(() async {
       await SentryFlutter.init(
         (options) {
