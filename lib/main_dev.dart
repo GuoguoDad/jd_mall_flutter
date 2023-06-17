@@ -4,7 +4,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_redux/flutter_redux.dart';
 import 'package:jd_mall_flutter/store/app_state.dart';
 import 'package:jd_mall_flutter/store/app_store.dart';
-import 'package:jd_mall_flutter/app.dart';
+import 'package:jd_mall_flutter/view/app.dart';
 import 'package:jd_mall_flutter/config/env_config.dart' as configs;
 import 'package:jd_mall_flutter/config/global_configs.dart';
 
