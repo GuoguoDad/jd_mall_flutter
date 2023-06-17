@@ -5,7 +5,9 @@ import 'package:jd_mall_flutter/store/app_state.dart';
 import 'package:jd_mall_flutter/view/page/home/redux/home_page_action.dart';
 import 'package:jd_mall_flutter/common/widget/persistentHeader/sliver_header_builder.dart';
 
-Widget tabList(BuildContext context) {
+import '../../../../types/common.dart';
+
+Widget tabList(BuildContext context, {required ValueCallback<String> onTabChange}) {
   return SliverPersistentHeader(
     pinned: true,
     delegate: SliverHeaderDelegate.fixedHeight(
@@ -26,7 +28,7 @@ Widget tabList(BuildContext context) {
                     bool isSelect = currentTab == tabs[index].code;
 
                     return GestureDetector(
-                        onTap: () => store.dispatch(SetCurrentTab(tabs[index].code!)),
+                        onTap: () => onTabChange(tabs[index].code!),
                         child: Flex(
                           direction: Axis.vertical,
                           crossAxisAlignment: CrossAxisAlignment.center,

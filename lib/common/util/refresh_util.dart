@@ -1,3 +1,4 @@
+import 'package:easy_refresh/easy_refresh.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
 
 void refreshSuccess(RefreshController refreshController) {
@@ -16,4 +17,12 @@ void loadMoreSuccess(RefreshController refreshController) {
 
 void loadMoreFail(RefreshController refreshController) {
   refreshController.loadNoData();
+}
+
+void easyRefreshSuccess(EasyRefreshController easyRefreshController) {
+  easyRefreshController.finishRefresh(IndicatorResult.success);
+}
+
+void easyRefreshFail(EasyRefreshController easyRefreshController) {
+  easyRefreshController.finishRefresh(IndicatorResult.fail);
 }

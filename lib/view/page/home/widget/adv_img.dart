@@ -8,8 +8,7 @@ import 'package:jd_mall_flutter/common/util/screen_util.dart';
 import 'package:jd_mall_flutter/view/page/test/test.dart';
 
 Widget advBanner(BuildContext context) {
-  return SliverToBoxAdapter(
-      child: StoreConnector<AppState, HomePageState>(
+  return StoreConnector<AppState, HomePageState>(
     converter: (store) {
       return store.state.homePageState;
     },
@@ -28,5 +27,5 @@ Widget advBanner(BuildContext context) {
             ),
           ));
     },
-  ));
+  );
 }

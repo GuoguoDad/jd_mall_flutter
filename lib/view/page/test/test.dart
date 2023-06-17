@@ -1,4 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:jd_mall_flutter/common/style/common_style.dart';
+import 'package:jd_mall_flutter/common/widget/persistentHeader/sliver_header_builder.dart';
+
+import 'package:jd_mall_flutter/view/page/test/widget/search_header.dart';
+
+import 'package:jd_mall_flutter/view/page/test/widget/adv_img.dart';
 
 class TestPage extends StatefulWidget {
   const TestPage({super.key});
@@ -9,67 +15,70 @@ class TestPage extends StatefulWidget {
   State<TestPage> createState() => _TestPageState();
 }
 
-class _TestPageState extends State<TestPage> {
+class _TestPageState extends State<TestPage> with SingleTickerProviderStateMixin {
+  late TabController _tabController;
+
+  @override
+  void initState() {
+    super.initState();
+    _tabController = TabController(vsync: this, length: 2);
+  }
+
   @override
   Widget build(BuildContext context) {
-    final _tabs = <String>['猜你喜欢', '今日特价', '发现更多'];
-
-    return DefaultTabController(
-      length: _tabs.length, // tab的数量.
-      child: Scaffold(
-        body: NestedScrollView(
-          floatHeaderSlivers: true,
+    return Scaffold(
+      body: NestedScrollView(
           headerSliverBuilder: (BuildContext context, bool innerBoxIsScrolled) {
-            return <Widget>[
-              SliverOverlapAbsorber(
-                handle: NestedScrollView.sliverOverlapAbsorberHandleFor(context),
-                sliver: SliverAppBar(
-                  title: const Text('商城'),
-                  floating: true,
-                  snap: true,
-                  forceElevated: innerBoxIsScrolled,
-                  bottom: TabBar(
-                    tabs: _tabs.map((String name) => Tab(text: name)).toList(),
-                  ),
-                ),
+            return [
+              searchHeader(context),
+              SliverList(
+                delegate: SliverChildListDelegate([advBanner(context)]),
               ),
+              SliverPersistentHeader(
+                  pinned: true,
+                  delegate: SliverHeaderDelegate.fixedHeight(
+                      //固定高度
+                      height: 58,
+                      child: Container(
+                        color: Colors.grey,
+                        child: TabBar(
+                          labelColor: Colors.black,
+                          controller: _tabController,
+                          tabs: const [
+                            Tab(
+                              text: '资讯',
+                            ),
+                            Tab(
+                              text: '技术',
+                            ),
+                          ],
+                        ),
+                      )))
             ];
           },
-          body: TabBarView(
-            children: _tabs.map((String name) {
-              return Builder(
-                builder: (BuildContext context) {
-                  return CustomScrollView(
-                    key: PageStorageKey<String>(name),
-                    slivers: <Widget>[
-                      SliverOverlapInjector(
-                        handle: NestedScrollView.sliverOverlapAbsorberHandleFor(context),
-                      ),
-                      SliverPadding(
-                        padding: const EdgeInsets.all(8.0),
-                        sliver: buildSliverList(50),
-                      ),
-                    ],
-                  );
-                },
-              );
-            }).toList(),
-          ),
-        ),
-      ),
+          body: TabBarView(controller: _tabController, children: [_buildTabNewsList('----技术类----'), _buildTabNewsList('----技术类----')])),
     );
   }
+}
 
-  // 构建固定高度的SliverList，count为列表项属相
-  Widget buildSliverList([int count = 5]) {
-    return SliverFixedExtentList(
-      itemExtent: 50,
-      delegate: SliverChildBuilderDelegate(
-        (context, index) {
-          return ListTile(title: Text('$index'));
-        },
-        childCount: count,
-      ),
-    );
-  }
+//构建newstlist列表
+_buildTabNewsList(String name) {
+  return ListView.separated(
+      padding: EdgeInsets.zero,
+      itemBuilder: (context, int index) {
+        return Column(
+          children: [
+            Text(
+              '$name $index 通过scrollDirection和reverse参数控制其滚动方向，用法如下：',
+              style: TextStyle(fontSize: 18),
+            ),
+            Text(
+              '作者 csdn账号 ',
+              style: TextStyle(fontSize: 12, color: Colors.grey),
+            ),
+          ],
+        );
+      },
+      separatorBuilder: (context, index) => Divider(),
+      itemCount: 50);
 }

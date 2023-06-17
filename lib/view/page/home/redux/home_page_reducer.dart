@@ -4,6 +4,7 @@ import 'package:jd_mall_flutter/view/page/home/redux/home_page_action.dart';
 import 'package:jd_mall_flutter/view/page/home/redux/home_page_state.dart';
 
 final homePageReducer = combineReducers<HomePageState>([
+  TypedReducer<HomePageState, ChangeBackTopAction>((state, action) => state..showBackTop = action.value),
   //修改loading状态
   TypedReducer<HomePageState, SetLoadingAction>((state, action) => state..isLoading = action.value),
   //记录页面滚动距离
@@ -14,18 +15,4 @@ final homePageReducer = combineReducers<HomePageState>([
   TypedReducer<HomePageState, SetCurrentTab>((state, action) => state..currentTab = action.value),
   //设置页面数据
   TypedReducer<HomePageState, SetHomePageInfoAction>((state, action) => state..homePageInfo = action.value),
-  //初始化商品数据
-  TypedReducer<HomePageState, InitGoodsPageAction>((state, action) => state
-    ..pageNum = action.pageNum
-    ..goodsPageInfo = action.value),
-  //加载更多
-  TypedReducer<HomePageState, MoreGoodsPageAction>((state, action) {
-    List<GoodsList> goods = state.goodsPageInfo.goodsList ?? [];
-    List<GoodsList>? goodsList = [...goods, ...?action.value.goodsList];
-
-    return state
-      ..pageNum = action.pageNum
-      ..goodsPageInfo = GoodsPageInfo(
-          goodsList: goodsList, totalCount: state.goodsPageInfo.totalCount, totalPageCount: state.goodsPageInfo.totalPageCount);
-  }),
 ]);

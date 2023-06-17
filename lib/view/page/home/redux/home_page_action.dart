@@ -3,6 +3,13 @@ import 'package:jd_mall_flutter/models/home_page_info.dart';
 
 import 'package:jd_mall_flutter/types/common.dart';
 
+//是否显示返回顶部
+class ChangeBackTopAction {
+  final bool value;
+
+  ChangeBackTopAction(this.value);
+}
+
 //记录页面滚动距离
 class SetLoadingAction {
   final bool value;
@@ -49,29 +56,4 @@ class SetHomePageInfoAction {
   final HomePageInfo value;
 
   SetHomePageInfoAction(this.value);
-}
-
-//商品数据
-class InitGoodsPageAction {
-  final int pageNum;
-  final GoodsPageInfo value;
-
-  InitGoodsPageAction(this.pageNum, this.value);
-}
-
-//商品数据
-class MoreGoodsPageAction {
-  final int pageNum;
-  final GoodsPageInfo value;
-
-  MoreGoodsPageAction(this.pageNum, this.value);
-}
-
-//商品瀑布流列表加载更多
-class LoadMoreAction {
-  late int currentPage;
-  late VoidCallback loadMoreSuccess;
-  late VoidCallback loadMoreFail;
-
-  LoadMoreAction(this.currentPage, this.loadMoreSuccess, this.loadMoreFail);
 }

@@ -20,7 +20,7 @@ import 'package:jd_mall_flutter/view/page/detail/redux/detail_page_state.dart';
 
 final store = Store<AppState>(reducers,
     initialState: AppState(
-        HomePageState(true, 0, 0, "1", HomePageInfo.fromJson({}), 1, GoodsPageInfo.fromJson({})),
+        HomePageState(false, true, 0, 0, "1", HomePageInfo.fromJson({})),
         CategoryPageState(SelectedCategoryInfo(CategoryInfo.fromJson({}), CategoryInfo.fromJson({}), CategoryInfo.fromJson({})),
             PrimaryCategoryList.fromJson({}).categoryList, SecondGroupCategoryInfo.fromJson({}), SecondCateList.fromJson({})),
         CartPageState(true, [], 1, GoodsPageInfo.fromJson({}), []),
