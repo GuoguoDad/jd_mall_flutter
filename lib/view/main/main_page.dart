@@ -11,7 +11,7 @@ import 'package:jd_mall_flutter/common/style/common_style.dart';
 class MainPage extends StatefulWidget {
   const MainPage({super.key});
 
-  static const String name = "/home";
+  static const String name = "/mainPage";
 
   @override
   State<MainPage> createState() => _MainPageState();
