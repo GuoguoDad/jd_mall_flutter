@@ -12,18 +12,17 @@ const rowNum = 5;
 const pageNum = rowNum * 1;
 
 Widget singleLineMenu(BuildContext context) {
-  return SliverToBoxAdapter(
-      child: Container(
-          height: 105,
-          padding: const EdgeInsets.fromLTRB(0, 0, 0, 10),
-          margin: const EdgeInsets.only(left: 10, right: 10),
-          decoration: const BoxDecoration(color: Colors.white, borderRadius: BorderRadius.all(Radius.circular(20))),
-          child: Column(
-            children: [
-              Expanded(flex: 1, child: menuPageList(context)),
-              Container(height: 10, alignment: Alignment.center, child: indicator(context))
-            ],
-          )));
+  return Container(
+      height: 105,
+      padding: const EdgeInsets.fromLTRB(0, 0, 0, 10),
+      margin: const EdgeInsets.only(left: 10, right: 10),
+      decoration: const BoxDecoration(color: Colors.white, borderRadius: BorderRadius.all(Radius.circular(20))),
+      child: Column(
+        children: [
+          Expanded(flex: 1, child: menuPageList(context)),
+          Container(height: 10, alignment: Alignment.center, child: indicator(context))
+        ],
+      ));
 }
 
 Widget indicator(BuildContext context) {

@@ -2,8 +2,6 @@ import 'package:easy_refresh/easy_refresh.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_redux/flutter_redux.dart';
 import 'package:jd_mall_flutter/common/util/screen_util.dart';
-import 'package:jd_mall_flutter/view/page/home/util.dart';
-import 'package:jd_mall_flutter/view/page/home/widget/back_top.dart';
 import 'package:jd_mall_flutter/view/page/home/widget/tab_list.dart';
 import 'package:jd_mall_flutter/view/page/home/widget/adv_img.dart';
 import 'package:jd_mall_flutter/view/page/home/widget/gallery_list.dart';
@@ -13,8 +11,10 @@ import 'package:jd_mall_flutter/view/page/home/redux/home_page_action.dart';
 import 'package:jd_mall_flutter/store/app_state.dart';
 import 'package:jd_mall_flutter/common/util/refresh_util.dart';
 import 'package:jd_mall_flutter/models/home_page_info.dart';
-import 'package:jd_mall_flutter/view/page/home/widget/page_goods_list.dart';
-import 'package:redux/src/store.dart';
+import 'package:jd_mall_flutter/common/widget/page_goods_list.dart';
+import 'package:jd_mall_flutter/common/util/easy_refresh_util.dart';
+import 'package:redux/redux.dart';
+import 'package:jd_mall_flutter/common/widget/back_top.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -38,6 +38,7 @@ class _HomePageState extends State<HomePage> {
       store.dispatch(InitDataAction());
     }, builder: (context, store) {
       List<TabList> tabs = store.state.homePageState.homePageInfo.tabList ?? [];
+      bool showTop = store.state.homePageState.showBackTop;
 
       return Scaffold(
           body: NotificationListener<ScrollNotification>(
@@ -82,7 +83,7 @@ class _HomePageState extends State<HomePage> {
                   );
                 }),
           ),
-          floatingActionButton: backTop(_scrollController));
+          floatingActionButton: backTop(showTop, _scrollController));
     });
   }
 

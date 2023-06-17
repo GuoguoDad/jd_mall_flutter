@@ -5,7 +5,7 @@ import 'package:jd_mall_flutter/common/widget/goods_item.dart';
 import 'package:jd_mall_flutter/common/util/screen_util.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
 import 'package:jd_mall_flutter/common/constant/index.dart';
-import 'package:jd_mall_flutter/view/page/home/service.dart';
+import 'package:jd_mall_flutter/common/widget/common_service.dart';
 
 class PageGoodsList extends StatefulWidget {
   final String code;
@@ -32,7 +32,7 @@ class _PageGoodsListState extends State<PageGoodsList> {
   }
 
   queryGoodsListByPage(int currentPage) {
-    HomeApi.queryGoodsListByPage(widget.code, currentPage, pageSize).then((value) {
+    CommonServiceApi.queryGoodsListByPage(widget.code, currentPage, pageSize).then((value) {
       if (value != null) {
         List<GoodsList> goods = goodsPageInfo.goodsList ?? [];
         List<GoodsList>? goodsList = [...goods, ...value.goodsList];

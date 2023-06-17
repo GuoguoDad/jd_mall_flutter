@@ -2,6 +2,8 @@ import 'package:jd_mall_flutter/models/goods_page_info.dart';
 import 'package:jd_mall_flutter/models/mine_menu_tab_info.dart';
 
 class MinePageState {
+  bool showBackTop;
+
   //滚动条位置
   double pageScrollY;
 
@@ -13,10 +15,5 @@ class MinePageState {
 
   MineMenuTabInfo menuTabInfo;
 
-  int pageNum = 1;
-
-  //商品数据
-  GoodsPageInfo goodsPageInfo;
-
-  MinePageState(this.pageScrollY, this.menuIndex, this.currentTab, this.menuTabInfo, this.pageNum, this.goodsPageInfo);
+  MinePageState(this.showBackTop, this.pageScrollY, this.menuIndex, this.currentTab, this.menuTabInfo);
 }

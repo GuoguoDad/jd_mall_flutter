@@ -5,7 +5,6 @@ import 'package:jd_mall_flutter/store/app_state.dart';
 import 'package:jd_mall_flutter/common/widget/image/asset_image.dart';
 import 'package:jd_mall_flutter/view/page/home/redux/home_page_state.dart';
 import 'package:jd_mall_flutter/common/util/screen_util.dart';
-import 'package:jd_mall_flutter/view/page/test/test.dart';
 
 Widget advBanner(BuildContext context) {
   return StoreConnector<AppState, HomePageState>(
@@ -14,7 +13,7 @@ Widget advBanner(BuildContext context) {
     },
     builder: (context, state) {
       return GestureDetector(
-          onTap: () => Navigator.of(context).pushNamed(TestPage.name),
+          onTap: () => {},
           child: Container(
             color: Colors.white,
             padding: const EdgeInsets.all(0),

@@ -4,6 +4,13 @@ import 'package:jd_mall_flutter/models/goods_page_info.dart';
 
 import 'package:jd_mall_flutter/types/common.dart';
 
+//是否显示返回顶部
+class ChangeBackTopAction {
+  final bool value;
+
+  ChangeBackTopAction(this.value);
+}
+
 //记录页面滚动距离
 class ChangePageScrollYAction {
   final double value;

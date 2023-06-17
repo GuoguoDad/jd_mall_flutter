@@ -7,8 +7,7 @@ import 'package:jd_mall_flutter/common/widget/image/asset_image.dart';
 import 'package:jd_mall_flutter/view/page/mine/redux/mine_page_state.dart';
 
 Widget orderCard(BuildContext context) {
-  return SliverToBoxAdapter(
-      child: StoreConnector<AppState, MinePageState>(
+  return StoreConnector<AppState, MinePageState>(
     converter: (store) {
       return store.state.minePageState;
     },
@@ -40,7 +39,7 @@ Widget orderCard(BuildContext context) {
             ],
           ));
     },
-  ));
+  );
 }
 
 Widget horizontalItem(String iconPath, String text) {
