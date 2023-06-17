@@ -32,7 +32,7 @@ class _PageGoodsListState extends State<PageGoodsList> {
   }
 
   queryGoodsListByPage(int currentPage) {
-    WelcomeApi.queryGoodsListByPage(currentPage, pageSize).then((value) {
+    HomeApi.queryGoodsListByPage(widget.code, currentPage, pageSize).then((value) {
       if (value != null) {
         List<GoodsList> goods = goodsPageInfo.goodsList ?? [];
         List<GoodsList>? goodsList = [...goods, ...value.goodsList];

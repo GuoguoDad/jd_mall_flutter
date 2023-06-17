@@ -2,7 +2,7 @@ import 'package:redux/redux.dart';
 import 'package:jd_mall_flutter/view/page/home/redux/home_page_action.dart';
 import 'package:jd_mall_flutter/view/page/home/service.dart';
 
-Future initData = Future.wait([WelcomeApi.queryHomeInfo()]);
+Future initData = Future.wait([HomeApi.queryHomeInfo()]);
 
 class HomePageMiddleware<WelPageState> implements MiddlewareClass<WelPageState> {
   @override
