@@ -8,8 +8,9 @@ class MinePageMiddleware<MinePageState> implements MiddlewareClass<MinePageState
   @override
   call(Store<MinePageState> store, action, NextDispatcher next) {
     if (action is InitPageAction) {
+      store.dispatch(SetLoadingAction(true));
       initData.then((res) => {
-            if (res[0] != null) {store.dispatch(InitMineMenuTabInfoAction(res[0]))}
+            if (res[0] != null) {store.dispatch(SetLoadingAction(false)), store.dispatch(InitMineMenuTabInfoAction(res[0]))}
           });
     }
     if (action is RefreshAction) {

@@ -16,6 +16,7 @@ import 'package:jd_mall_flutter/common/widget/back_to_top.dart';
 import 'package:jd_mall_flutter/store/app_state.dart';
 import 'package:jd_mall_flutter/view/page/detail/redux/detail_page_action.dart';
 import 'package:jd_mall_flutter/view/page/detail/widget/goods_info.dart';
+import 'package:jd_mall_flutter/common/skeleton/loading_skeleton.dart';
 
 class DetailPage extends StatefulWidget {
   const DetailPage({super.key});
@@ -52,41 +53,45 @@ class _DetailPageState extends State<DetailPage> {
     }, onDispose: (store) {
       store.dispatch(ChangeTopTabIndexAction(0));
     }, builder: (context, store) {
+      bool isLoading = store.state.detailPageState.isLoading;
+
       //
-      Widget scrollView = NotificationListener<ScrollNotification>(
-          onNotification: (ScrollNotification notification) {
-            if (notification.depth == 0) {
-              double distance = notification.metrics.pixels;
-              store.dispatch(ChangePageScrollYAction(distance));
-              //监听滚动，选中对应的tab
-              if (isTabClicked) return false;
-              int newIndex = findFirstVisibleItemIndex(cardKeys, context);
-              store.dispatch(ChangeTopTabIndexAction(newIndex));
-            }
-            return false;
-          },
-          child: Container(
-            color: CommonStyle.colorF5F5F5,
-            child: SmartRefresher(
-              controller: _refreshController,
-              enablePullUp: true,
-              enablePullDown: false,
-              onLoading: () async {
-                store.dispatch(LoadMoreAction(store.state.detailPageState.pageNum + 1, () => loadMoreSuccess(_refreshController),
-                    () => loadMoreFail(_refreshController)));
+      Widget scrollView = isLoading
+          ? loadingSkeleton(context)
+          : NotificationListener<ScrollNotification>(
+              onNotification: (ScrollNotification notification) {
+                if (notification.depth == 0) {
+                  double distance = notification.metrics.pixels;
+                  store.dispatch(ChangePageScrollYAction(distance));
+                  //监听滚动，选中对应的tab
+                  if (isTabClicked) return false;
+                  int newIndex = findFirstVisibleItemIndex(cardKeys, context);
+                  store.dispatch(ChangeTopTabIndexAction(newIndex));
+                }
+                return false;
               },
-              child: CustomScrollView(
-                controller: _scrollController,
-                slivers: [
-                  goodsInfo(context, cardKeys[0]),
-                  appraiseInfo(context, cardKeys[1]),
-                  detailCard(context, cardKeys[2]),
-                  storeGoodsHeader(context, cardKeys[3]),
-                  storeGoods(context)
-                ],
-              ),
-            ),
-          ));
+              child: Container(
+                color: CommonStyle.colorF5F5F5,
+                child: SmartRefresher(
+                  controller: _refreshController,
+                  enablePullUp: true,
+                  enablePullDown: false,
+                  onLoading: () async {
+                    store.dispatch(LoadMoreAction(store.state.detailPageState.pageNum + 1, () => loadMoreSuccess(_refreshController),
+                        () => loadMoreFail(_refreshController)));
+                  },
+                  child: CustomScrollView(
+                    controller: _scrollController,
+                    slivers: [
+                      goodsInfo(context, cardKeys[0]),
+                      appraiseInfo(context, cardKeys[1]),
+                      detailCard(context, cardKeys[2]),
+                      storeGoodsHeader(context, cardKeys[3]),
+                      storeGoods(context)
+                    ],
+                  ),
+                ),
+              ));
       //
       Widget floatingHeader = Positioned(
           top: 0,

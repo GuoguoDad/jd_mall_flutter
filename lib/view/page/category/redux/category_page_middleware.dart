@@ -9,7 +9,9 @@ class CategoryPageMiddleware<CategoryPageState> implements MiddlewareClass<Categ
   @override
   call(Store<CategoryPageState> store, action, NextDispatcher next) {
     if (action is InitDataAction) {
+      store.dispatch(SetLoadingAction(true));
       CategoryApi.queryCategoryInfo().then((res) {
+        store.dispatch(SetLoadingAction(false));
         List<CategoryInfo> list = res?.categoryList ?? [];
         if (list.isNotEmpty) {
           CategoryApi.querySecondGroupCategoryInfo(list[0].code!).then((result) {

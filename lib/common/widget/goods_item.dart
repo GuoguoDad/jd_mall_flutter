@@ -1,7 +1,6 @@
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:jd_mall_flutter/view/page/detail/detail_page.dart';
-
 import 'package:jd_mall_flutter/models/goods_page_info.dart';
 import 'package:jd_mall_flutter/common/util/color_util.dart';
 import 'package:jd_mall_flutter/common/widget/image/asset_image.dart';
@@ -16,11 +15,14 @@ Widget goodsItem(BuildContext context, GoodsList item, double width) {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            CachedNetworkImage(
-              imageUrl: item.imgUrl!,
-              placeholder: (context, url) => assetImage("images/default.png", width, width),
-              errorWidget: (context, url, error) => assetImage("images/default.png", width, width),
-              fit: BoxFit.fill,
+            ClipRRect(
+              borderRadius: BorderRadius.circular(10.0),
+              child: CachedNetworkImage(
+                imageUrl: item.imgUrl!,
+                placeholder: (context, url) => assetImage("images/default.png", width, width),
+                errorWidget: (context, url, error) => assetImage("images/default.png", width, width),
+                fit: BoxFit.fill,
+              ),
             ),
             item.type == "2"
                 ? Column(

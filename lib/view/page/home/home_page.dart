@@ -15,6 +15,7 @@ import 'package:jd_mall_flutter/common/widget/page_goods_list.dart';
 import 'package:jd_mall_flutter/common/util/easy_refresh_util.dart';
 import 'package:redux/redux.dart';
 import 'package:jd_mall_flutter/common/widget/back_top.dart';
+import 'package:jd_mall_flutter/common/skeleton/loading_skeleton.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -39,6 +40,9 @@ class _HomePageState extends State<HomePage> {
     }, builder: (context, store) {
       List<TabList> tabs = store.state.homePageState.homePageInfo.tabList ?? [];
       bool showTop = store.state.homePageState.showBackTop;
+      bool isLoading = store.state.homePageState.isLoading;
+
+      if (isLoading) return loadingSkeleton(context);
 
       return Scaffold(
           body: NotificationListener<ScrollNotification>(

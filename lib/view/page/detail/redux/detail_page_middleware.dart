@@ -9,9 +9,14 @@ class DetailPageMiddleware<MinePageState> implements MiddlewareClass<MinePageSta
   @override
   call(Store<MinePageState> store, action, NextDispatcher next) {
     if (action is InitPageAction) {
+      store.dispatch(SetLoadingAction(true));
       initData.then((res) => {
             if (res[0] != null && res[0].bannerList.length > 0 && res[1] != null)
-              {store.dispatch(InitCurrentGoodsInfoAction(res[0], res[0].bannerList[0])), store.dispatch(InitGoodsPageAction(1, res[1]))}
+              {
+                store.dispatch(SetLoadingAction(false)),
+                store.dispatch(InitCurrentGoodsInfoAction(res[0], res[0].bannerList[0])),
+                store.dispatch(InitGoodsPageAction(1, res[1]))
+              }
           });
     }
     if (action is LoadMoreAction) {

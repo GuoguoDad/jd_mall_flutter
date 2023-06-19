@@ -1,8 +1,12 @@
 import 'package:jd_mall_flutter/models/mine_menu_tab_info.dart';
-
 import 'package:jd_mall_flutter/models/goods_page_info.dart';
-
 import 'package:jd_mall_flutter/types/common.dart';
+
+class SetLoadingAction {
+  final bool value;
+
+  SetLoadingAction(this.value);
+}
 
 //是否显示返回顶部
 class ChangeBackTopAction {

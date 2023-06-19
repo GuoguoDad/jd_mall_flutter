@@ -7,6 +7,12 @@ class InitPageAction {
   InitPageAction();
 }
 
+class SetLoadingAction {
+  final bool value;
+
+  SetLoadingAction(this.value);
+}
+
 //记录页面滚动距离
 class ChangePageScrollYAction {
   final double value;

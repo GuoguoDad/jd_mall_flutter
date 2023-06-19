@@ -190,7 +190,7 @@ class LineMenuPlaceholder extends StatelessWidget {
             const SizedBox(height: 15),
             const Row(
               mainAxisSize: MainAxisSize.max,
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
                 BoxPlaceholder(width: 40, height: 40),
                 BoxPlaceholder(width: 40, height: 40),
@@ -203,7 +203,7 @@ class LineMenuPlaceholder extends StatelessWidget {
             if (lineType == LineMenuType.twoLine)
               const Row(
                 mainAxisSize: MainAxisSize.max,
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
                   BoxPlaceholder(width: 40, height: 40),
                   BoxPlaceholder(width: 40, height: 40),

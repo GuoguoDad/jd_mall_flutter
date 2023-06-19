@@ -6,6 +6,12 @@ class InitDataAction {
   InitDataAction();
 }
 
+class SetLoadingAction {
+  final bool value;
+
+  SetLoadingAction(this.value);
+}
+
 class InitCategoryPageAction {
   SelectedCategoryInfo? selectedCategoryInfo;
   List<CategoryInfo>? categoryList;

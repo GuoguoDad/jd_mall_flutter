@@ -8,7 +8,6 @@ class ChangeBackTopAction {
   ChangeBackTopAction(this.value);
 }
 
-//记录页面滚动距离
 class SetLoadingAction {
   final bool value;
 

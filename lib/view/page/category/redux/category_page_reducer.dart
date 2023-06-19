@@ -3,6 +3,8 @@ import 'package:jd_mall_flutter/view/page/category/redux/category_page_state.dar
 import 'package:jd_mall_flutter/view/page/category/redux/category_page_action.dart';
 
 final categoryPageReducer = combineReducers<CategoryPageState>([
+  //修改loading状态
+  TypedReducer<CategoryPageState, SetLoadingAction>((state, action) => state..isLoading = action.value),
   //页面初始化数据
   TypedReducer<CategoryPageState, InitCategoryPageAction>((state, action) => state
     ..selectedCategoryInfo = action.selectedCategoryInfo
