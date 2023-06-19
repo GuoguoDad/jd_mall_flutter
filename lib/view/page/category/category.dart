@@ -6,6 +6,7 @@ import 'package:jd_mall_flutter/view/page/category/widget/left_cate.dart';
 import 'package:jd_mall_flutter/view/page/category/widget/right_group.dart';
 import 'package:jd_mall_flutter/store/app_state.dart';
 import 'package:jd_mall_flutter/common/skeleton/loading_skeleton.dart';
+import 'package:jd_mall_flutter/view/page/category/redux/category_page_action.dart';
 
 class CategoryPage extends StatefulWidget {
   const CategoryPage({super.key});
@@ -19,14 +20,9 @@ class CategoryPage extends StatefulWidget {
 class _CategoryPageState extends State<CategoryPage> {
   @override
   Widget build(BuildContext context) {
-    //
-    Widget bodyContent = Expanded(
-        child: Flex(
-      direction: Axis.horizontal,
-      children: [leftCate(context), rightGroupList(context)],
-    ));
-
-    return StoreConnector<AppState, CategoryPageState>(converter: (store) {
+    return StoreConnector<AppState, CategoryPageState>(onInit: (store) {
+      store.dispatch(InitDataAction());
+    }, converter: (store) {
       return store.state.categoryPageState;
     }, builder: (context, state) {
       bool isLoading = state.isLoading;
@@ -35,7 +31,11 @@ class _CategoryPageState extends State<CategoryPage> {
       return Column(
         children: [
           header(context),
-          bodyContent,
+          Expanded(
+              child: Flex(
+            direction: Axis.horizontal,
+            children: [leftCate(context), rightGroupList(context)],
+          )),
         ],
       );
     });

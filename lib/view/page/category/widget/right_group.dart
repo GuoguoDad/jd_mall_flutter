@@ -30,9 +30,6 @@ Widget rightGroupList(BuildContext context) {
   bool isTabClicked = false;
 
   return StoreBuilder<AppState>(
-    onInit: (store) {
-      store.dispatch(InitDataAction());
-    },
     builder: (context, store) {
       SecondCateList? selectSecondCategoryInfo = store.state.categoryPageState.selectSecondCategoryInfo;
       SecondGroupCategoryInfo? secondGroupCategoryInfo = store.state.categoryPageState.secondGroupCategoryInfo;
