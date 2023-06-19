@@ -18,7 +18,7 @@ Widget detailCard(BuildContext context, Key key) {
 
     return Container(
       key: key,
-      margin: const EdgeInsets.all(10),
+      margin: const EdgeInsets.only(left: 10, top: 10, right: 10),
       padding: const EdgeInsets.all(10),
       decoration: const BoxDecoration(
         color: Colors.white,

@@ -8,7 +8,7 @@ Widget storeGoodsHeader(BuildContext context, Key key) {
     key: key,
     height: 48,
     width: getScreenWidth(context) - 10,
-    margin: const EdgeInsets.only(left: 5),
+    margin: const EdgeInsets.only(left: 5, top: 10),
     padding: const EdgeInsets.all(10),
     alignment: Alignment.centerLeft,
     decoration: const BoxDecoration(
