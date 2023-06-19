@@ -1,7 +1,4 @@
-library global_configs;
-
 import 'dart:convert';
-
 import 'package:flutter/services.dart' show rootBundle;
 import 'package:gato/gato.dart' as gato;
 
@@ -40,7 +37,7 @@ class GlobalConfigs {
   /// It will create new key if the [path] doesn't exist
   ///
   /// ```dart
-  /// await GlobalConfigs().loadJsonFromDir(dir, 'assets/cofig.json');
+  /// await GlobalConfigs().loadJsonFromDir(dir, 'assets/config.json');
   /// ```
   Future<GlobalConfigs> loadJsonFromDir(String dir, {String? path}) async {
     String content = await rootBundle.loadString(dir);

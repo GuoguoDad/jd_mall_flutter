@@ -1,12 +1,12 @@
 import 'dart:collection';
 import 'package:dio/dio.dart';
 import 'package:flutter/foundation.dart';
-import 'package:jd_mall_flutter/common/http/base_response.dart';
-import 'package:jd_mall_flutter/common/http/code.dart';
-import 'package:jd_mall_flutter/common/http/interceptors/error_interceptor.dart';
-import 'package:jd_mall_flutter/common/http/interceptors/logs_interceptors.dart';
-import 'package:jd_mall_flutter/common/http/interceptors/response_interceptor.dart';
-import 'package:jd_mall_flutter/common/http/interceptors/token_Interceptor.dart';
+import 'package:jd_mall_flutter/http/base_response.dart';
+import 'package:jd_mall_flutter/http/code.dart';
+import 'package:jd_mall_flutter/http/interceptors/error_interceptor.dart';
+import 'package:jd_mall_flutter/http/interceptors/logs_interceptors.dart';
+import 'package:jd_mall_flutter/http/interceptors/response_interceptor.dart';
+import 'package:jd_mall_flutter/http/interceptors/token_Interceptor.dart';
 
 class HttpManager {
   static const CONTENT_TYPE_JSON = "application/json";

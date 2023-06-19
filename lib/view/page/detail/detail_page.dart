@@ -125,8 +125,8 @@ class _DetailPageState extends State<DetailPage> {
       RenderSliverToBoxAdapter? keyRenderObject = cardKeys[i].currentContext?.findAncestorRenderObjectOfType<RenderSliverToBoxAdapter>();
       if (keyRenderObject != null) {
         //距离CustomScrollView顶部距离， 上滚出可视区域变为0
-        final offsetY = (keyRenderObject.parentData as SliverPhysicalParentData).paintOffset.dy;
-        if (offsetY > 42 + getStatusHeight(context)) {
+        final dy = (keyRenderObject.parentData as SliverPhysicalParentData).paintOffset.dy;
+        if (dy > 42 + getStatusHeight(context)) {
           break;
         }
       }

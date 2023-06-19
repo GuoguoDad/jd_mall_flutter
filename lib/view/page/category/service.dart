@@ -1,4 +1,4 @@
-import 'package:jd_mall_flutter/common/http/http.dart';
+import 'package:jd_mall_flutter/http/http.dart';
 import 'package:jd_mall_flutter/models/second_group_category_info.dart';
 import 'package:jd_mall_flutter/config/global_configs.dart';
 import 'package:jd_mall_flutter/models/primary_category_list.dart';

@@ -48,7 +48,7 @@ Widget tabHeader(BuildContext context, {required ValueCallback<int> onChange}) {
     return Container(
       height: 42 + statusHeight,
       color: opacity == 1 ? Colors.white : Colors.transparent,
-      width: MediaQuery.of(context).size.width,
+      width: getScreenWidth(context),
       padding: EdgeInsets.only(top: statusHeight),
       child: Row(
         children: [

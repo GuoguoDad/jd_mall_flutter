@@ -33,14 +33,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "2.11.0"
-  bloc:
-    dependency: transitive
-    description:
-      name: bloc
-      sha256: "6f1b87b6eca9041d5672b6e29273cd1594db48ebb66fd2471066e9f3c3a516bd"
-      url: "https://pub.dev"
-    source: hosted
-    version: "7.2.1"
   boolean_selector:
     dependency: transitive
     description:
@@ -257,22 +249,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "3.3.2+1"
-  equatable:
-    dependency: transitive
-    description:
-      name: equatable
-      sha256: c2b87cb7756efdf69892005af546c56c0b5037f54d2a88269b4f347a505e3ca2
-      url: "https://pub.dev"
-    source: hosted
-    version: "2.0.5"
-  extended_nested_scroll_view:
-    dependency: "direct main"
-    description:
-      name: extended_nested_scroll_view
-      sha256: adb98e3a92c16245789699f9ddd3cbaa47f14f744b5bbd8d7fef54b7e86089a2
-      url: "https://pub.dev"
-    source: hosted
-    version: "6.1.0"
   fake_async:
     dependency: transitive
     description:
@@ -310,14 +286,6 @@ packages:
     description: flutter
     source: sdk
     version: "0.0.0"
-  flutter_bloc:
-    dependency: transitive
-    description:
-      name: flutter_bloc
-      sha256: cdd1351ced09eeb46cfa7946e095b7679344af927415ca9cd972928fa6d5b23f
-      url: "https://pub.dev"
-    source: hosted
-    version: "7.3.3"
   flutter_blurhash:
     dependency: transitive
     description:
@@ -533,14 +501,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.0.4"
-  nested:
-    dependency: transitive
-    description:
-      name: nested
-      sha256: "03bac4c528c64c95c722ec99280375a6f2fc708eec17c7b3f07253b626cd2a20"
-      url: "https://pub.dev"
-    source: hosted
-    version: "1.0.0"
   octo_image:
     dependency: transitive
     description:
@@ -685,14 +645,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "4.2.4"
-  provider:
-    dependency: transitive
-    description:
-      name: provider
-      sha256: cdbe7530b12ecd9eb455bdaa2fcb8d4dad22e80b8afb4798b41479d5ce26847f
-      url: "https://pub.dev"
-    source: hosted
-    version: "6.0.5"
   pub_semver:
     dependency: transitive
     description:
@@ -962,14 +914,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "2.1.4"
-  visibility_detector:
-    dependency: transitive
-    description:
-      name: visibility_detector
-      sha256: "15c54a459ec2c17b4705450483f3d5a2858e733aee893dcee9d75fd04814940d"
-      url: "https://pub.dev"
-    source: hosted
-    version: "0.3.3"
   watcher:
     dependency: transitive
     description:
@@ -986,14 +930,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "2.4.0"
-  widgets_visibility_provider:
-    dependency: "direct main"
-    description:
-      name: widgets_visibility_provider
-      sha256: "8f34fee5b34954d706f936dc5ed8ac42eb2a134f3cc1507ed596ab9a9165a9a5"
-      url: "https://pub.dev"
-    source: hosted
-    version: "3.0.1"
   win32:
     dependency: transitive
     description:
@@ -1020,4 +956,4 @@ packages:
     version: "3.1.2"
 sdks:
   dart: ">=3.0.0 <3.10.0"
-  flutter: ">=3.10.0"
+  flutter: ">=3.3.0"

@@ -1,7 +1,7 @@
 import 'package:connectivity/connectivity.dart';
 import 'package:dio/dio.dart';
-import 'package:jd_mall_flutter/common/http/base_response.dart';
-import 'package:jd_mall_flutter/common/http/code.dart';
+import 'package:jd_mall_flutter/http/base_response.dart';
+import 'package:jd_mall_flutter/http/code.dart';
 
 class ErrorInterceptors extends InterceptorsWrapper {
   @override

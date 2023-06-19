@@ -7,7 +7,7 @@ import 'package:jd_mall_flutter/view/page/detail/detail_page.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
 import 'package:jd_mall_flutter/common/event/http_error_event.dart';
 import 'package:jd_mall_flutter/common/event/index.dart';
-import 'package:jd_mall_flutter/common/http/code.dart';
+import 'package:jd_mall_flutter/http/code.dart';
 import 'package:jd_mall_flutter/common/localization/default_localizations.dart';
 import 'package:jd_mall_flutter/common/localization/localizations_delegate.dart';
 import 'package:jd_mall_flutter/common/util/screen_util.dart';
@@ -51,7 +51,6 @@ class _FlutterReduxMallApp extends State<MallApp> with HttpErrorListener {
           },
           debugShowCheckedModeBanner: false,
           localizationsDelegates: [
-            // this line is important
             RefreshLocalizations.delegate,
             GlobalWidgetsLocalizations.delegate,
             GlobalMaterialLocalizations.delegate,
