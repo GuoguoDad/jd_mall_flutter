@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:jd_mall_flutter/common/util/screen_util.dart';
 import 'package:jd_mall_flutter/component/image/asset_image.dart';
 import 'package:jd_mall_flutter/common/util/color_util.dart';
+import 'package:jd_mall_flutter/component/linear_button.dart';
 
 Widget fixedBottom(BuildContext context) {
   double space = getBottomSpace(context);
@@ -13,7 +14,7 @@ Widget fixedBottom(BuildContext context) {
     child: Row(
       children: [
         Expanded(
-            flex: 1,
+            flex: 3,
             child: Row(
               crossAxisAlignment: CrossAxisAlignment.center,
               mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -24,13 +25,27 @@ Widget fixedBottom(BuildContext context) {
               ],
             )),
         Expanded(
-            flex: 1,
+            flex: 4,
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                btnItem("加入购物车", ColorUtil.hex2Color("#F2CD4A"), ColorUtil.hex2Color("#F2C54B")),
-                btnItem("领券购买", ColorUtil.hex2Color("#E54B4E"), ColorUtil.hex2Color("#E34439"))
+                LinearButton(
+                    width: 110,
+                    height: 48,
+                    btnName: "加入购物车",
+                    highlightColor: Colors.yellow,
+                    colors: [ColorUtil.hex2Color("#F2CD4A"), ColorUtil.hex2Color("#F2C54B")],
+                    borderRadius: const BorderRadius.all(Radius.circular(50)),
+                    onTap: () => print("=======")),
+                LinearButton(
+                    width: 110,
+                    height: 48,
+                    btnName: "领券购买",
+                    highlightColor: Colors.red,
+                    colors: [ColorUtil.hex2Color("#E54B4E"), ColorUtil.hex2Color("#E34439")],
+                    borderRadius: const BorderRadius.all(Radius.circular(50)),
+                    onTap: () => print("======="))
               ],
             ))
       ],
@@ -41,7 +56,7 @@ Widget fixedBottom(BuildContext context) {
 Widget columnItem(String icon, String name) {
   return SizedBox(
     height: 54,
-    width: 54,
+    width: 56,
     child: Column(
       mainAxisAlignment: MainAxisAlignment.center,
       crossAxisAlignment: CrossAxisAlignment.center,
@@ -54,15 +69,4 @@ Widget columnItem(String icon, String name) {
       ],
     ),
   );
-}
-
-Widget btnItem(String btnName, Color begColor, Color endColor) {
-  return Container(
-      width: 100,
-      height: 48,
-      alignment: Alignment.center,
-      decoration: BoxDecoration(
-          gradient: LinearGradient(begin: Alignment.topLeft, end: Alignment.bottomRight, colors: [begColor, endColor]),
-          borderRadius: const BorderRadius.all(Radius.circular(30))),
-      child: Text(btnName, style: const TextStyle(fontSize: 16, color: Colors.white, decoration: TextDecoration.none)));
 }
