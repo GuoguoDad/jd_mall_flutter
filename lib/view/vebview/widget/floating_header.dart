@@ -2,15 +2,15 @@ import 'package:flutter/material.dart';
 import 'package:jd_mall_flutter/common/util/screen_util.dart';
 import 'package:jd_mall_flutter/component/image/asset_image.dart';
 
-Widget floatingHeader(BuildContext context, {required bool isWhite, required String title}) {
+Widget floatingHeader(BuildContext context, {required String title}) {
   double statusHeight = getStatusHeight(context);
 
   return Positioned(
       top: 0,
       left: 0,
       child: Container(
-        height: 42 + statusHeight,
-        color: isWhite ? Colors.white : Colors.transparent,
+        height: 40 + statusHeight,
+        color: Colors.white,
         width: getScreenWidth(context),
         padding: EdgeInsets.only(top: statusHeight),
         child: Row(

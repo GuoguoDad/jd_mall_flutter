@@ -18,7 +18,6 @@ class _WebViewPageState extends State<WebViewPage> {
 
   bool isInit = false;
   bool isLoading = true;
-  bool isWhite = false;
   String title = '';
 
   void initView() {
@@ -30,26 +29,16 @@ class _WebViewPageState extends State<WebViewPage> {
       ..setBackgroundColor(const Color(0x00000000))
       ..addJavaScriptChannel("ARTICLE_SCROLL_CHANNEL", onMessageReceived: (msg) {
         if (double.parse(msg.message) > 100) {
-          setState(() {
-            isWhite = true;
-          });
-          if (title == '') {
-            controller.getTitle().then((value) => setState(() {
-                  title = value!;
-                }));
-          }
-        } else {
-          setState(() {
-            isWhite = false;
-            title = '';
-          });
-        }
+        } else {}
       })
       ..setNavigationDelegate(
         NavigationDelegate(
           onProgress: (int progress) {},
           onPageStarted: (String url) {},
           onPageFinished: (String url) {
+            controller.getTitle().then((value) => setState(() {
+                  title = value!.replaceAll("京东", "");
+                }));
             controller.runJavaScript(
               '''
               window.addEventListener('scroll', function() {
@@ -76,11 +65,11 @@ class _WebViewPageState extends State<WebViewPage> {
     initView();
 
     Widget floatingLoading = Stack(
-      children: [Positioned(top: 0, left: 0, child: loadingSkeleton(context)), floatingHeader(context, isWhite: false, title: title)],
+      children: [Positioned(top: 0, left: 0, child: loadingSkeleton(context)), floatingHeader(context, title: title)],
     );
 
     Widget webView = Stack(
-      children: [WebViewWidget(controller: controller), floatingHeader(context, isWhite: isWhite, title: title)],
+      children: [WebViewWidget(controller: controller), floatingHeader(context, title: title)],
     );
 
     return Scaffold(body: isLoading ? floatingLoading : webView);
