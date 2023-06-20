@@ -13,9 +13,6 @@ Widget leftCate(BuildContext context) {
   ScrollController scrollController = ScrollController();
 
   return StoreBuilder<AppState>(
-    onInit: (store) {
-      store.dispatch(InitDataAction());
-    },
     builder: (context, store) {
       SelectedCategoryInfo? selectedCategoryInfo = store.state.categoryPageState.selectedCategoryInfo;
       List<CategoryInfo> list = store.state.categoryPageState.categoryList ?? [];

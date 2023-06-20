@@ -5,6 +5,7 @@ import 'package:jd_mall_flutter/common/style/common_style.dart';
 import 'package:jd_mall_flutter/models/cart_goods.dart';
 import 'package:jd_mall_flutter/store/app_state.dart';
 import 'package:jd_mall_flutter/view/page/cart/redux/cart_page_action.dart';
+import 'package:jd_mall_flutter/component/linear_button.dart';
 
 Widget totalSettlement(BuildContext context) {
   return StoreBuilder<AppState>(builder: (context, store) {
@@ -18,6 +19,7 @@ Widget totalSettlement(BuildContext context) {
       height: 58,
       width: getScreenWidth(context),
       decoration: BoxDecoration(
+          color: Colors.white,
           border: Border(
               top: BorderSide(color: CommonStyle.colorE6E6E6, width: 0.5), bottom: BorderSide(color: CommonStyle.colorE6E6E6, width: 0.5))),
       child: Row(
@@ -49,27 +51,7 @@ Widget totalSettlement(BuildContext context) {
             width: 150,
             height: 58,
             alignment: Alignment.center,
-            child: Ink(
-              width: 130,
-              height: 42,
-              decoration: const BoxDecoration(
-                  gradient:
-                      LinearGradient(begin: Alignment.topLeft, end: Alignment.bottomRight, colors: [Color(0xFFDE2F21), Color(0xFFEC592F)]),
-                  borderRadius: BorderRadius.all(Radius.circular(20))),
-              child: InkWell(
-                borderRadius: const BorderRadius.all(Radius.circular(20)),
-                highlightColor: CommonStyle.themeColor,
-                child: Container(
-                  padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 20),
-                  alignment: Alignment.center,
-                  child: Text(
-                    '去结算(${totalInfo.num})',
-                    style: const TextStyle(color: Colors.white, fontSize: 16, fontWeight: FontWeight.bold),
-                  ),
-                ),
-                onTap: () {},
-              ),
-            ),
+            child: LinearButton(width: 130, height: 42, btnName: '去结算(${totalInfo.num})', onTap: () => print("=====go order====")),
           )
         ],
       ),
@@ -93,7 +75,7 @@ TotalInfo calcPrice(List<CartGoods> cartGoods, List<String> selectList) {
   for (var element in selectList) {
     GoodsInfo? goodsInfo = getGoodsInfo(cartGoods, element);
     num += goodsInfo!.num!;
-    double money = goodsInfo!.num! * double.parse(goodsInfo!.price!);
+    double money = goodsInfo.num! * double.parse(goodsInfo.price!);
     totalPrice += money;
   }
   return TotalInfo(totalPrice, num);

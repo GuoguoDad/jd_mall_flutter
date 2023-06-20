@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:jd_mall_flutter/common/widget/image/asset_image.dart';
+import 'package:jd_mall_flutter/common/util/screen_util.dart';
+import 'package:jd_mall_flutter/component/image/asset_image.dart';
 
 class BackToTop extends StatefulWidget {
   final ScrollController controller;
@@ -27,7 +28,7 @@ class _BackToTopState extends State<BackToTop> {
 
   void onScroll() {
     setState(() {
-      show = widget.controller.offset > MediaQuery.of(context).size.height;
+      show = widget.controller.offset > getScreenHeight(context);
     });
   }
 

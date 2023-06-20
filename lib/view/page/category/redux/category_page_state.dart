@@ -11,6 +11,9 @@ class SelectedCategoryInfo {
 
 class CategoryPageState {
   bool isLoading;
+
+  bool isTabClicked;
+
   //左侧一级分类默认选中信息
   SelectedCategoryInfo? selectedCategoryInfo;
 
@@ -23,6 +26,6 @@ class CategoryPageState {
   //二级分类默认选中的信息
   SecondCateList? selectSecondCategoryInfo;
 
-  CategoryPageState(
-      this.isLoading, this.selectedCategoryInfo, this.categoryList, this.secondGroupCategoryInfo, this.selectSecondCategoryInfo);
+  CategoryPageState(this.isLoading, this.isTabClicked, this.selectedCategoryInfo, this.categoryList, this.secondGroupCategoryInfo,
+      this.selectSecondCategoryInfo);
 }

@@ -12,6 +12,12 @@ class SetLoadingAction {
   SetLoadingAction(this.value);
 }
 
+class ChangeTabClickAction {
+  final bool value;
+
+  ChangeTabClickAction(this.value);
+}
+
 class InitCategoryPageAction {
   SelectedCategoryInfo? selectedCategoryInfo;
   List<CategoryInfo>? categoryList;
@@ -30,6 +36,7 @@ class SelectCategoryAction {
 
 class SelectSecondCategoryAction {
   SecondCateList? selectSecondCategoryInfo;
+  bool? isTabClicked;
 
-  SelectSecondCategoryAction(this.selectSecondCategoryInfo);
+  SelectSecondCategoryAction(this.selectSecondCategoryInfo, this.isTabClicked);
 }

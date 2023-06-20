@@ -1,10 +1,10 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
-import 'package:jd_mall_flutter/common/widget/carousel/enums/carousel_page_changed_reason.dart';
-import 'package:jd_mall_flutter/common/widget/carousel/enums/center_page_enlarge_strategy.dart';
-import 'package:jd_mall_flutter/common/widget/carousel/helpers/flutter_carousel_controller.dart';
-import 'package:jd_mall_flutter/common/widget/carousel/indicators/circular_slide_indicator.dart';
-import 'package:jd_mall_flutter/common/widget/carousel/indicators/slide_indicator.dart';
+import 'package:jd_mall_flutter/component/carousel/enums/carousel_page_changed_reason.dart';
+import 'package:jd_mall_flutter/component/carousel/enums/center_page_enlarge_strategy.dart';
+import 'package:jd_mall_flutter/component/carousel/helpers/flutter_carousel_controller.dart';
+import 'package:jd_mall_flutter/component/carousel/indicators/circular_slide_indicator.dart';
+import 'package:jd_mall_flutter/component/carousel/indicators/slide_indicator.dart';
 
 class CarouselOptions {
   CarouselOptions({

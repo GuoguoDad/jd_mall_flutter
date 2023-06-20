@@ -2,13 +2,13 @@ import 'dart:async';
 
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
-import 'package:jd_mall_flutter/common/widget/carousel/components/overflow_page.dart';
-import 'package:jd_mall_flutter/common/widget/carousel/enums/carousel_page_changed_reason.dart';
-import 'package:jd_mall_flutter/common/widget/carousel/helpers/flutter_carousel_controller.dart';
-import 'package:jd_mall_flutter/common/widget/carousel/helpers/flutter_carousel_options.dart';
-import 'package:jd_mall_flutter/common/widget/carousel/helpers/flutter_carousel_state.dart';
-import 'package:jd_mall_flutter/common/widget/carousel/typedefs/widget_builder.dart';
-import 'package:jd_mall_flutter/common/widget/carousel/utils/flutter_carousel_utils.dart';
+import 'package:jd_mall_flutter/component/carousel/components/overflow_page.dart';
+import 'package:jd_mall_flutter/component/carousel/enums/carousel_page_changed_reason.dart';
+import 'package:jd_mall_flutter/component/carousel/helpers/flutter_carousel_controller.dart';
+import 'package:jd_mall_flutter/component/carousel/helpers/flutter_carousel_options.dart';
+import 'package:jd_mall_flutter/component/carousel/helpers/flutter_carousel_state.dart';
+import 'package:jd_mall_flutter/component/carousel/typedefs/widget_builder.dart';
+import 'package:jd_mall_flutter/component/carousel/utils/flutter_carousel_utils.dart';
 
 class ExpandableCarousel extends StatefulWidget {
   /// The default constructor

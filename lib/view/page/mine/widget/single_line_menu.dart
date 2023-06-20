@@ -4,7 +4,7 @@ import 'package:flutter_redux/flutter_redux.dart';
 import 'package:jd_mall_flutter/common/style/common_style.dart';
 import 'package:jd_mall_flutter/store/app_state.dart';
 
-import 'package:jd_mall_flutter/common/widget/image/asset_image.dart';
+import 'package:jd_mall_flutter/component/image/asset_image.dart';
 import 'package:jd_mall_flutter/view/page/mine/redux/mine_page_action.dart';
 import 'package:jd_mall_flutter/view/page/mine/redux/mine_page_state.dart';
 

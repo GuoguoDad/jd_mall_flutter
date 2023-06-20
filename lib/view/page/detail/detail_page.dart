@@ -12,11 +12,11 @@ import 'package:jd_mall_flutter/view/page/detail/widget/store_goods_header.dart'
 import 'package:jd_mall_flutter/view/page/detail/widget/tab_header.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
 import 'package:jd_mall_flutter/common/util/refresh_util.dart';
-import 'package:jd_mall_flutter/common/widget/back_to_top.dart';
+import 'package:jd_mall_flutter/component/back_to_top.dart';
 import 'package:jd_mall_flutter/store/app_state.dart';
 import 'package:jd_mall_flutter/view/page/detail/redux/detail_page_action.dart';
 import 'package:jd_mall_flutter/view/page/detail/widget/goods_info.dart';
-import 'package:jd_mall_flutter/common/skeleton/loading_skeleton.dart';
+import 'package:jd_mall_flutter/component/skeleton/loading_skeleton.dart';
 
 class DetailPage extends StatefulWidget {
   const DetailPage({super.key});

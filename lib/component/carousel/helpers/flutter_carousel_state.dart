@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:jd_mall_flutter/common/widget/carousel/enums/carousel_page_changed_reason.dart';
-import 'package:jd_mall_flutter/common/widget/carousel/helpers/flutter_carousel_options.dart';
+import 'package:jd_mall_flutter/component/carousel/enums/carousel_page_changed_reason.dart';
+import 'package:jd_mall_flutter/component/carousel/helpers/flutter_carousel_options.dart';
 
 class CarouselState {
   CarouselState(

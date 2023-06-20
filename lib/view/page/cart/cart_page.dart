@@ -9,10 +9,10 @@ import 'package:jd_mall_flutter/view/page/cart/widget/probably_like.dart';
 import 'package:jd_mall_flutter/view/page/cart/widget/total_settlement.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
 import 'package:jd_mall_flutter/common/util/refresh_util.dart';
-import 'package:jd_mall_flutter/common/widget/back_to_top.dart';
+import 'package:jd_mall_flutter/component/back_to_top.dart';
 import 'package:jd_mall_flutter/store/app_state.dart';
 import 'package:jd_mall_flutter/view/page/cart/widget/goods_list.dart';
-import 'package:jd_mall_flutter/common/skeleton/loading_skeleton.dart';
+import 'package:jd_mall_flutter/component/skeleton/loading_skeleton.dart';
 
 class CartPage extends StatefulWidget {
   const CartPage({super.key});
@@ -34,36 +34,36 @@ class _CartPageState extends State<CartPage> {
     }, builder: (context, store) {
       bool isLoading = store.state.cartPageState.isLoading;
 
-      if (isLoading) return loadingSkeleton(context);
-
       return Column(
         children: [
           cartHeader(context),
-          Expanded(
-            child: Scaffold(
-              backgroundColor: CommonStyle.colorF3F3F3,
-              body: SmartRefresher(
-                controller: _refreshController,
-                enablePullUp: true,
-                header: const ClassicHeader(
-                  spacing: 10,
-                  height: 58,
+          isLoading
+              ? loadingSkeleton(context)
+              : Expanded(
+                  child: Scaffold(
+                    backgroundColor: CommonStyle.colorF3F3F3,
+                    body: SmartRefresher(
+                      controller: _refreshController,
+                      enablePullUp: true,
+                      header: const ClassicHeader(
+                        spacing: 10,
+                        height: 58,
+                      ),
+                      onRefresh: () async {
+                        store.dispatch(RefreshAction(() => refreshSuccess(_refreshController), () => refreshFail(_refreshController)));
+                      },
+                      onLoading: () async {
+                        store.dispatch(LoadMoreAction(store.state.cartPageState.pageNum + 1, () => loadMoreSuccess(_refreshController),
+                            () => loadMoreFail(_refreshController)));
+                      },
+                      child: CustomScrollView(
+                        controller: _scrollController,
+                        slivers: [condition(context), cartGoods(context), probablyLikeImage(context), goodsList(context)],
+                      ),
+                    ),
+                    floatingActionButton: BackToTop(_scrollController),
+                  ),
                 ),
-                onRefresh: () async {
-                  store.dispatch(RefreshAction(() => refreshSuccess(_refreshController), () => refreshFail(_refreshController)));
-                },
-                onLoading: () async {
-                  store.dispatch(LoadMoreAction(store.state.cartPageState.pageNum + 1, () => loadMoreSuccess(_refreshController),
-                      () => loadMoreFail(_refreshController)));
-                },
-                child: CustomScrollView(
-                  controller: _scrollController,
-                  slivers: [condition(context), cartGoods(context), probablyLikeImage(context), goodsList(context)],
-                ),
-              ),
-              floatingActionButton: BackToTop(_scrollController),
-            ),
-          ),
           totalSettlement(context)
         ],
       );

@@ -11,11 +11,11 @@ import 'package:jd_mall_flutter/view/page/home/redux/home_page_action.dart';
 import 'package:jd_mall_flutter/store/app_state.dart';
 import 'package:jd_mall_flutter/common/util/refresh_util.dart';
 import 'package:jd_mall_flutter/models/home_page_info.dart';
-import 'package:jd_mall_flutter/common/widget/page_goods_list.dart';
+import 'package:jd_mall_flutter/component/page_goods_list.dart';
 import 'package:jd_mall_flutter/common/util/easy_refresh_util.dart';
 import 'package:redux/redux.dart';
-import 'package:jd_mall_flutter/common/widget/back_top.dart';
-import 'package:jd_mall_flutter/common/skeleton/loading_skeleton.dart';
+import 'package:jd_mall_flutter/component/back_top.dart';
+import 'package:jd_mall_flutter/component/skeleton/loading_skeleton.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});

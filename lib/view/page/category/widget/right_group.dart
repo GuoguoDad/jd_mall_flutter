@@ -5,8 +5,8 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:jd_mall_flutter/common/style/common_style.dart';
 import 'package:jd_mall_flutter/common/util/screen_util.dart';
 import 'package:jd_mall_flutter/view/page/category/redux/category_page_action.dart';
-import 'package:jd_mall_flutter/common/widget/group_grid_view.dart';
-import 'package:jd_mall_flutter/common/widget/image/asset_image.dart';
+import 'package:jd_mall_flutter/component/group_grid_view.dart';
+import 'package:jd_mall_flutter/component/image/asset_image.dart';
 import 'package:jd_mall_flutter/models/second_group_category_info.dart';
 import 'package:jd_mall_flutter/store/app_state.dart';
 
@@ -27,10 +27,10 @@ Widget rightGroupList(BuildContext context) {
 
   //右侧内容宽度
   bWidth = rWidth - 28;
-  bool isTabClicked = false;
 
   return StoreBuilder<AppState>(
     builder: (context, store) {
+      bool isTabClicked = store.state.categoryPageState.isTabClicked;
       SecondCateList? selectSecondCategoryInfo = store.state.categoryPageState.selectSecondCategoryInfo;
       SecondGroupCategoryInfo? secondGroupCategoryInfo = store.state.categoryPageState.secondGroupCategoryInfo;
       String headUrl = secondGroupCategoryInfo?.bannerUrl ?? "";
@@ -96,11 +96,10 @@ Widget rightGroupList(BuildContext context) {
                     onTap: () {
                       //如果不是当前选中的二级分类
                       if (selectSecondCategoryInfo?.categoryCode != secondCateList[index].categoryCode) {
-                        isTabClicked = true;
                         //滚动二级分类至中间
                         tabScrollToMiddle(index);
                         //选中二级分类
-                        store.dispatch(SelectSecondCategoryAction(secondCateList[index]));
+                        store.dispatch(SelectSecondCategoryAction(secondCateList[index], true));
 
                         //滚动三级分类
                         RenderSliverToBoxAdapter? keyRenderObject =
@@ -108,7 +107,7 @@ Widget rightGroupList(BuildContext context) {
                         if (keyRenderObject != null) {
                           gridViewController.position
                               .ensureVisible(keyRenderObject, duration: const Duration(milliseconds: 300), curve: Curves.linear)
-                              .then((value) => isTabClicked = false);
+                              .then((value) => store.dispatch(ChangeTabClickAction(false)));
                         }
                       }
                     },
@@ -142,7 +141,7 @@ Widget rightGroupList(BuildContext context) {
                     //滚动二级分类至中间
                     tabScrollToMiddle(newIndex);
                     //选中二级分类
-                    store.dispatch(SelectSecondCategoryAction(secondCateList[newIndex]));
+                    store.dispatch(SelectSecondCategoryAction(secondCateList[newIndex], null));
                   }
                 }
                 return false;

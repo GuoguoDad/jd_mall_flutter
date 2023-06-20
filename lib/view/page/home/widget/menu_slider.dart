@@ -5,7 +5,7 @@ import 'package:jd_mall_flutter/common/style/common_style.dart';
 import 'package:jd_mall_flutter/view/page/home/redux/home_page_action.dart';
 import 'package:jd_mall_flutter/store/app_state.dart';
 import 'package:jd_mall_flutter/view/page/home/redux/home_page_state.dart';
-import 'package:jd_mall_flutter/common/widget/image/asset_image.dart';
+import 'package:jd_mall_flutter/component/image/asset_image.dart';
 
 const rowNum = 5;
 const pageNum = rowNum * 2;

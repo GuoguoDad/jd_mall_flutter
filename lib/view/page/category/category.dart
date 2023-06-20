@@ -1,12 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_redux/flutter_redux.dart';
-import 'package:jd_mall_flutter/view/page/category/redux/category_page_state.dart';
+import 'package:jd_mall_flutter/component/skeleton/loading_skeleton.dart';
 import 'package:jd_mall_flutter/view/page/category/widget/header.dart';
 import 'package:jd_mall_flutter/view/page/category/widget/left_cate.dart';
 import 'package:jd_mall_flutter/view/page/category/widget/right_group.dart';
-import 'package:jd_mall_flutter/store/app_state.dart';
-import 'package:jd_mall_flutter/common/skeleton/loading_skeleton.dart';
 import 'package:jd_mall_flutter/view/page/category/redux/category_page_action.dart';
+import 'package:jd_mall_flutter/store/app_state.dart';
 
 class CategoryPage extends StatefulWidget {
   const CategoryPage({super.key});
@@ -20,22 +19,21 @@ class CategoryPage extends StatefulWidget {
 class _CategoryPageState extends State<CategoryPage> {
   @override
   Widget build(BuildContext context) {
-    return StoreConnector<AppState, CategoryPageState>(onInit: (store) {
+    return StoreBuilder<AppState>(onInit: (store) {
       store.dispatch(InitDataAction());
-    }, converter: (store) {
-      return store.state.categoryPageState;
-    }, builder: (context, state) {
-      bool isLoading = state.isLoading;
-      if (isLoading) return loadingSkeleton(context);
+    }, builder: (context, store) {
+      bool isLoading = store.state.categoryPageState.isLoading;
 
       return Column(
         children: [
           header(context),
-          Expanded(
-              child: Flex(
-            direction: Axis.horizontal,
-            children: [leftCate(context), rightGroupList(context)],
-          )),
+          isLoading
+              ? loadingSkeleton(context)
+              : Expanded(
+                  child: Flex(
+                  direction: Axis.horizontal,
+                  children: [leftCate(context), rightGroupList(context)],
+                )),
         ],
       );
     });
