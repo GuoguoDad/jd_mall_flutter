@@ -33,7 +33,8 @@ Widget goodsItem(BuildContext context, GoodsList item, double width) {
                         padding: const EdgeInsets.only(left: 5, right: 6),
                         decoration: BoxDecoration(
                           color: ColorUtil.hex2Color('#ED4637'),
-                          borderRadius: const BorderRadius.all(Radius.circular(6)),
+                          gradient: LinearGradient(colors: [ColorUtil.hex2Color("#E44746"), ColorUtil.hex2Color("#E3909B")]),
+                          borderRadius: const BorderRadius.all(Radius.circular(12)),
                         ),
                         child: Text(item.tag.toString(), style: const TextStyle(color: Colors.white, fontSize: 14)),
                       ),

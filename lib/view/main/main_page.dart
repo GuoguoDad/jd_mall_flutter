@@ -50,25 +50,21 @@ class _MainPageState extends State<MainPage> {
           unselectedLabelStyle: const TextStyle(fontSize: 14),
           items: [
             BottomNavigationBarItem(
-              icon: assetImage('images/ic_home.png', 30, 30),
-              activeIcon: assetImage('images/ic_home_active.png', 30, 30),
-              label: MallLocalizations.i18n(context).tab_main_home,
-            ),
+                icon: assetImage('images/ic_home.png', 30, 30),
+                activeIcon: assetImage('images/ic_home_active.png', 30, 30),
+                label: MallLocalizations.i18n(context).tab_main_home),
             BottomNavigationBarItem(
-              icon: assetImage('images/ic_category.png', 30, 30),
-              activeIcon: assetImage('images/ic_category_active.png', 30, 30),
-              label: MallLocalizations.i18n(context).tab_main_category,
-            ),
+                icon: assetImage('images/ic_category.png', 30, 30),
+                activeIcon: assetImage('images/ic_category_active.png', 30, 30),
+                label: MallLocalizations.i18n(context).tab_main_category),
             BottomNavigationBarItem(
-              icon: assetImage('images/ic_cart.png', 30, 30),
-              activeIcon: assetImage('images/ic_cart_active.png', 30, 30),
-              label: MallLocalizations.i18n(context).tab_main_cart,
-            ),
+                icon: assetImage('images/ic_cart.png', 30, 30),
+                activeIcon: assetImage('images/ic_cart_active.png', 30, 30),
+                label: MallLocalizations.i18n(context).tab_main_cart),
             BottomNavigationBarItem(
-              icon: assetImage('images/ic_mine.png', 30, 30),
-              activeIcon: assetImage("images/ic_mine_active.png", 30, 30),
-              label: MallLocalizations.i18n(context).tab_main_mine,
-            )
+                icon: assetImage('images/ic_mine.png', 30, 30),
+                activeIcon: assetImage("images/ic_mine_active.png", 30, 30),
+                label: MallLocalizations.i18n(context).tab_main_mine)
           ],
           currentIndex: _selectedIndex,
           onTap: _onItemTapped,

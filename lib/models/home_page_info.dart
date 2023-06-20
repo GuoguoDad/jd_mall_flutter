@@ -16,8 +16,7 @@ class HomePageInfo {
     this.tabList,
   });
 
-  factory HomePageInfo.fromJson(Map<String, dynamic> json) =>
-      _$HomePageInfoFromJson(json);
+  factory HomePageInfo.fromJson(Map<String, dynamic> json) => _$HomePageInfoFromJson(json);
 
   Map<String, dynamic> toJson() => _$HomePageInfoToJson(this);
 }
@@ -32,8 +31,7 @@ class BannerList {
     this.type,
   });
 
-  factory BannerList.fromJson(Map<String, dynamic> json) =>
-      _$BannerListFromJson(json);
+  factory BannerList.fromJson(Map<String, dynamic> json) => _$BannerListFromJson(json);
 
   Map<String, dynamic> toJson() => _$BannerListToJson(this);
 }
@@ -43,15 +41,11 @@ class NineMenuList {
   final String? menuIcon;
   final String? menuName;
   final String? menuCode;
+  final String? h5url;
 
-  const NineMenuList({
-    this.menuIcon,
-    this.menuName,
-    this.menuCode,
-  });
+  const NineMenuList({this.menuIcon, this.menuName, this.menuCode, this.h5url});
 
-  factory NineMenuList.fromJson(Map<String, dynamic> json) =>
-      _$NineMenuListFromJson(json);
+  factory NineMenuList.fromJson(Map<String, dynamic> json) => _$NineMenuListFromJson(json);
 
   Map<String, dynamic> toJson() => _$NineMenuListToJson(this);
 }
@@ -66,8 +60,7 @@ class TabList {
     this.code,
   });
 
-  factory TabList.fromJson(Map<String, dynamic> json) =>
-      _$TabListFromJson(json);
+  factory TabList.fromJson(Map<String, dynamic> json) => _$TabListFromJson(json);
 
   Map<String, dynamic> toJson() => _$TabListToJson(this);
 }

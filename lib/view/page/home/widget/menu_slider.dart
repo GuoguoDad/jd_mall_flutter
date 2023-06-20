@@ -7,6 +7,9 @@ import 'package:jd_mall_flutter/store/app_state.dart';
 import 'package:jd_mall_flutter/view/page/home/redux/home_page_state.dart';
 import 'package:jd_mall_flutter/component/image/asset_image.dart';
 
+import 'package:jd_mall_flutter/view/vebview/webview_page.dart';
+import 'package:jd_mall_flutter/view/vebview/webview_type.dart';
+
 const rowNum = 5;
 const pageNum = rowNum * 2;
 
@@ -75,26 +78,33 @@ Widget menuPageList(BuildContext context) {
               mainAxisSpacing: 2,
             ),
             itemBuilder: (context, position) {
-              return Column(
-                mainAxisAlignment: MainAxisAlignment.start,
-                children: [
-                  CachedNetworkImage(
-                    width: 40,
-                    height: 40,
-                    fit: BoxFit.cover,
-                    imageUrl: menuData[index * pageNum + position].menuIcon.toString(),
-                    placeholder: (context, url) => assetImage("images/default.png", 40, 40),
-                    errorWidget: (context, url, error) => assetImage("images/default.png", 40, 40),
-                  ),
-                  Container(
-                    margin: const EdgeInsets.only(top: 4),
-                    child: Text(
-                      menuData[index * pageNum + position].menuName.toString(),
-                      style: const TextStyle(fontSize: 12),
-                    ),
-                  )
-                ],
-              );
+              return GestureDetector(
+                  onTap: () {
+                    if (menuData[index * pageNum + position].h5url != null) {
+                      Navigator.of(context).pushNamed(WebViewPage.name,
+                          arguments: WebViewPageArguments(menuData[index * pageNum + position].h5url.toString()));
+                    }
+                  },
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: [
+                      CachedNetworkImage(
+                        width: 40,
+                        height: 40,
+                        fit: BoxFit.cover,
+                        imageUrl: menuData[index * pageNum + position].menuIcon.toString(),
+                        placeholder: (context, url) => assetImage("images/default.png", 40, 40),
+                        errorWidget: (context, url, error) => assetImage("images/default.png", 40, 40),
+                      ),
+                      Container(
+                        margin: const EdgeInsets.only(top: 4),
+                        child: Text(
+                          menuData[index * pageNum + position].menuName.toString(),
+                          style: const TextStyle(fontSize: 12),
+                        ),
+                      )
+                    ],
+                  ));
             });
       },
     );

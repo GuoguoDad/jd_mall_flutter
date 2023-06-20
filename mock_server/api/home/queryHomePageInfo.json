@@ -25,12 +25,14 @@
       {
         "menuIcon": "https://m15.360buyimg.com/mobilecms/jfs/t1/102632/18/20350/13255/61e131feE788947ef/c391b8590cdf427e.png!q70.jpg",
         "menuName": "超市",
-        "menuCode": "m01"
+        "menuCode": "m01",
+        "h5url": "https://prodev.m.jd.com/mall/active/3xhqjGH1wMz5FaMgrfYhR22sFvqz/index.html"
       },
       {
         "menuIcon": "https://m15.360buyimg.com/mobilecms/jfs/t1/172178/32/9487/10851/609d18e0Ed273eec1/a1e099f1601c8cc2.png!q70.jpg",
         "menuName": "服饰",
-        "menuCode": "m03"
+        "menuCode": "m03",
+        "h5url": "https://h5.m.jd.com/pb/014076750/48qPXkwvatBBCAhdeTXG5WQam4yq/index.html"
       },
       {
         "menuIcon": "https://m15.360buyimg.com/mobilecms/jfs/t1/193038/4/3881/13295/60a4b6a7E4124dc9e/fdd2934e97eab3ac.png!q70.jpg",
