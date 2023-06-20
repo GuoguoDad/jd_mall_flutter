@@ -2,10 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:jd_mall_flutter/common/util/screen_util.dart';
 import 'package:shimmer/shimmer.dart';
 
-Widget loadingSkeleton(BuildContext context) {
+Widget loadingSkeleton(BuildContext context, {double? width, double? height}) {
   return Container(
-    width: getScreenWidth(context),
-    height: getScreenHeight(context),
+    width: width ?? getScreenWidth(context),
+    height: height ?? getScreenHeight(context),
     color: Colors.white,
     child: Center(
       child: Shimmer.fromColors(

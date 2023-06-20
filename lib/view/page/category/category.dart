@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_redux/flutter_redux.dart';
+import 'package:jd_mall_flutter/common/util/screen_util.dart';
 import 'package:jd_mall_flutter/component/skeleton/loading_skeleton.dart';
 import 'package:jd_mall_flutter/view/page/category/widget/header.dart';
 import 'package:jd_mall_flutter/view/page/category/widget/left_cate.dart';
@@ -23,17 +24,16 @@ class _CategoryPageState extends State<CategoryPage> {
       store.dispatch(InitDataAction());
     }, builder: (context, store) {
       bool isLoading = store.state.categoryPageState.isLoading;
+      if (isLoading) return loadingSkeleton(context);
 
       return Column(
         children: [
           header(context),
-          isLoading
-              ? loadingSkeleton(context)
-              : Expanded(
-                  child: Flex(
-                  direction: Axis.horizontal,
-                  children: [leftCate(context), rightGroupList(context)],
-                )),
+          Expanded(
+              child: Flex(
+            direction: Axis.horizontal,
+            children: [leftCate(context), rightGroupList(context)],
+          )),
         ],
       );
     });

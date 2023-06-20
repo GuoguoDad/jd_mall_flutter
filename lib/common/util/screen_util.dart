@@ -1,19 +1,26 @@
-import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 
 double getScreenHeight(BuildContext context) {
-  //更新你的 MediaQuery.of 到对应参数的 MediaQuery.*****of 提升应用性能
   return MediaQuery.sizeOf(context).height;
 }
 
 double getScreenWidth(BuildContext context) {
-  //更新你的 MediaQuery.of 到对应参数的 MediaQuery.*****of 提升应用性能
   return MediaQuery.sizeOf(context).width;
 }
 
 double getStatusHeight(BuildContext context) {
-  return MediaQueryData.fromView(View.of(context)).padding.top;
+  return MediaQuery.viewPaddingOf(context).top;
 }
 
 double getBottomSpace(BuildContext context) {
-  return MediaQueryData.fromView(View.of(context)).padding.bottom;
+  return MediaQuery.viewPaddingOf(context).bottom;
+}
+
+double getSafeAreaHeight(BuildContext context) {
+  return getScreenHeight(context) - getStatusHeight(context) - getBottomSpace(context);
+}
+
+/// 获取底部getBottomNavigationBarHeight高度 包含 bottomSpace
+double getBottomNavigationBarHeight(BuildContext context) {
+  return kBottomNavigationBarHeight + getBottomSpace(context);
 }
