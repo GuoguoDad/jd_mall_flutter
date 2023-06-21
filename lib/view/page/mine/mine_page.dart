@@ -14,7 +14,7 @@ import 'package:jd_mall_flutter/common/util/easy_refresh_util.dart';
 import 'package:jd_mall_flutter/models/mine_menu_tab_info.dart';
 import 'package:jd_mall_flutter/component/page_goods_list.dart';
 import 'package:jd_mall_flutter/component/back_top.dart';
-import 'package:jd_mall_flutter/component/skeleton/loading_skeleton.dart';
+import 'package:jd_mall_flutter/component/loading_widget.dart';
 
 class MinePage extends StatefulWidget {
   const MinePage({super.key});
@@ -41,7 +41,7 @@ class _MinePageState extends State<MinePage> {
       bool showTop = store.state.minePageState.showBackTop;
       bool isLoading = store.state.minePageState.isLoading;
 
-      if (isLoading) return loadingSkeleton(context);
+      if (isLoading) return loadingWidget(context);
 
       return Scaffold(
           body: NotificationListener<ScrollNotification>(

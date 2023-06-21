@@ -12,7 +12,7 @@ import 'package:jd_mall_flutter/common/util/refresh_util.dart';
 import 'package:jd_mall_flutter/component/back_to_top.dart';
 import 'package:jd_mall_flutter/store/app_state.dart';
 import 'package:jd_mall_flutter/view/page/cart/widget/goods_list.dart';
-import 'package:jd_mall_flutter/component/skeleton/loading_skeleton.dart';
+import 'package:jd_mall_flutter/component/loading_widget.dart';
 import 'package:jd_mall_flutter/common/util/screen_util.dart';
 
 class CartPage extends StatefulWidget {
@@ -34,7 +34,7 @@ class _CartPageState extends State<CartPage> {
       store.dispatch(InitAction());
     }, builder: (context, store) {
       bool isLoading = store.state.cartPageState.isLoading;
-      if (isLoading) return loadingSkeleton(context);
+      if (isLoading) return loadingWidget(context);
 
       return Column(
         children: [

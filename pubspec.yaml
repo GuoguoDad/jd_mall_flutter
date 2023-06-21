@@ -54,6 +54,7 @@ dependencies:
   easy_refresh: ^3.3.2+1
   gato: ^0.0.5+1
   webview_flutter: ^4.2.2
+  loading_indicator: ^3.1.0
 
 dev_dependencies:
   flutter_test:

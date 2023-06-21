@@ -15,7 +15,7 @@ import 'package:jd_mall_flutter/component/page_goods_list.dart';
 import 'package:jd_mall_flutter/common/util/easy_refresh_util.dart';
 import 'package:redux/redux.dart';
 import 'package:jd_mall_flutter/component/back_top.dart';
-import 'package:jd_mall_flutter/component/skeleton/loading_skeleton.dart';
+import 'package:jd_mall_flutter/component/loading_widget.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -42,7 +42,7 @@ class _HomePageState extends State<HomePage> {
       bool showTop = store.state.homePageState.showBackTop;
       bool isLoading = store.state.homePageState.isLoading;
 
-      if (isLoading) return loadingSkeleton(context);
+      if (isLoading) return loadingWidget(context);
 
       return Scaffold(
           body: NotificationListener<ScrollNotification>(
