@@ -9,10 +9,10 @@ Widget loadingWidget(BuildContext context, {double? width, double? height}) {
     color: Colors.white,
     child: const Center(
       child: SizedBox(
-          width: 60,
-          height: 60,
+          width: 120,
+          height: 120,
           child: LoadingIndicator(
-              indicatorType: Indicator.ballSpinFadeLoader, colors: [Colors.grey], strokeWidth: 0, backgroundColor: Colors.transparent)),
+              indicatorType: Indicator.ballClipRotateMultiple, colors: [Colors.grey], strokeWidth: 3, backgroundColor: Colors.transparent)),
     ),
   );
 }
