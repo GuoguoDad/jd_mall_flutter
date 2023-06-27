@@ -33,7 +33,9 @@ class _WebViewPageState extends State<WebViewPage> {
       })
       ..setNavigationDelegate(
         NavigationDelegate(
-          onProgress: (int progress) {},
+          onProgress: (int progress) {
+            debugPrint('WebView is loading (progress : $progress%)');
+          },
           onPageStarted: (String url) {},
           onPageFinished: (String url) {
             controller.getTitle().then((value) => setState(() {
@@ -50,7 +52,15 @@ class _WebViewPageState extends State<WebViewPage> {
               isLoading = false;
             });
           },
-          onWebResourceError: (WebResourceError error) {},
+          onWebResourceError: (WebResourceError error) {
+            debugPrint('''
+              Page resource error:
+              code: ${error.errorCode}
+              description: ${error.description}
+              errorType: ${error.errorType}
+              isForMainFrame: ${error.isForMainFrame}
+          ''');
+          },
           onNavigationRequest: (NavigationRequest request) {
             return NavigationDecision.navigate;
           },

@@ -13,7 +13,6 @@ import 'package:jd_mall_flutter/component/back_to_top.dart';
 import 'package:jd_mall_flutter/store/app_state.dart';
 import 'package:jd_mall_flutter/view/page/cart/widget/goods_list.dart';
 import 'package:jd_mall_flutter/component/loading_widget.dart';
-import 'package:jd_mall_flutter/common/util/screen_util.dart';
 
 class CartPage extends StatefulWidget {
   const CartPage({super.key});

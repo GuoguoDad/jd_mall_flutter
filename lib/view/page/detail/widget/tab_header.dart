@@ -59,7 +59,7 @@ Widget tabHeader(BuildContext context, {required ValueCallback<int> onChange}) {
                 child: Container(
                   alignment: Alignment.centerLeft,
                   padding: const EdgeInsets.only(left: 16),
-                  child: assetImage("images/ic_back_black.png", 38, 38),
+                  child: assetImage("images/ic_back_black.png", 34, 34),
                 )),
           ),
           Expanded(
@@ -81,11 +81,12 @@ Widget tabHeader(BuildContext context, {required ValueCallback<int> onChange}) {
               flex: 1,
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                  assetImage("images/ic_share_black.png", 28, 28),
+                  assetImage("images/ic_share_black.png", 24, 24),
                   Container(
                     margin: const EdgeInsets.only(left: 14),
-                    child: assetImage("images/ic_ellipsis_black.png", 28, 28),
+                    child: assetImage("images/ic_ellipsis_black.png", 24, 24),
                   )
                 ],
               ))

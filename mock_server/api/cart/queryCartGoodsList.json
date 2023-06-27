@@ -5,7 +5,8 @@
     {
       "storeName": "ASICS 旗舰店",
       "storeCode": "s01",
-      "goodsList" :[
+      "h5url": "https://shop.m.jd.com/shop/home?shopId=17529",
+      "goodsList": [
         {
           "code": "s01g01",
           "imgUrl": "https://m.360buyimg.com/mobilecms/s714x714_jfs/t1/223778/18/6959/168828/622cc318E47c3b663/753cd44c08858430.jpg!q70.dpg.webp",
@@ -25,7 +26,8 @@
     {
       "storeName": "SALOMON 官方旗舰店",
       "storeCode": "s02",
-      "goodsList" :[
+      "h5url": "https://shop.m.jd.com/shop/home?shopId=133306",
+      "goodsList": [
         {
           "code": "s02g01",
           "imgUrl": "https://m.360buyimg.com/mobilecms/s714x714_jfs/t1/174007/12/4609/59798/607947f3Ed185a0e8/339959c1bb02c110.jpg",

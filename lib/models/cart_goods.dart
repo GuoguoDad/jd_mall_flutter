@@ -6,11 +6,13 @@ part 'cart_goods.g.dart';
 class CartGoods {
   final String? storeName;
   final String? storeCode;
+  final String? h5url;
   final List<GoodsInfo>? goodsList;
 
   const CartGoods({
     this.storeName,
     this.storeCode,
+    this.h5url,
     this.goodsList,
   });
 

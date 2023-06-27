@@ -9,14 +9,14 @@ part of 'cart_goods.dart';
 CartGoods _$CartGoodsFromJson(Map<String, dynamic> json) => CartGoods(
       storeName: json['storeName'] as String?,
       storeCode: json['storeCode'] as String?,
-      goodsList: (json['goodsList'] as List<dynamic>?)
-          ?.map((e) => GoodsInfo.fromJson(e as Map<String, dynamic>))
-          .toList(),
+      h5url: json['h5url'] as String?,
+      goodsList: (json['goodsList'] as List<dynamic>?)?.map((e) => GoodsInfo.fromJson(e as Map<String, dynamic>)).toList(),
     );
 
 Map<String, dynamic> _$CartGoodsToJson(CartGoods instance) => <String, dynamic>{
       'storeName': instance.storeName,
       'storeCode': instance.storeCode,
+      'h5url': instance.h5url,
       'goodsList': instance.goodsList,
     };
 

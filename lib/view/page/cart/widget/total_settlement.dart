@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_redux/flutter_redux.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:jd_mall_flutter/common/util/screen_util.dart';
 import 'package:jd_mall_flutter/common/style/common_style.dart';
 import 'package:jd_mall_flutter/models/cart_goods.dart';
 import 'package:jd_mall_flutter/store/app_state.dart';
 import 'package:jd_mall_flutter/view/page/cart/redux/cart_page_action.dart';
 import 'package:jd_mall_flutter/component/linear_button.dart';
+import 'package:jd_mall_flutter/view/page/order/generate/generate_order.dart';
 
 Widget totalSettlement(BuildContext context) {
   return StoreBuilder<AppState>(builder: (context, store) {
@@ -51,7 +53,17 @@ Widget totalSettlement(BuildContext context) {
             width: 150,
             height: 58,
             alignment: Alignment.center,
-            child: LinearButton(width: 130, height: 42, btnName: '去结算(${totalInfo.num})', onTap: () => print("=====go order====")),
+            child: LinearButton(
+                width: 130,
+                height: 42,
+                btnName: '去结算(${totalInfo.num})',
+                onTap: () {
+                  if (selectList.isEmpty) {
+                    Fluttertoast.showToast(msg: "您还没有选择商品哦", gravity: ToastGravity.CENTER, toastLength: Toast.LENGTH_LONG);
+                    return;
+                  }
+                  Navigator.of(context).pushNamed(GenerateOrder.name);
+                }),
           )
         ],
       ),

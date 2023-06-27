@@ -128,6 +128,7 @@ flutter:
     - images/detail/ic_cart.png
     - images/detail/ic_customer_service.png
     - images/detail/ic_store_red.png
+    - images/ic_arrow_right_grey.png
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware
 

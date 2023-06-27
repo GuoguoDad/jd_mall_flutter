@@ -10,6 +10,9 @@ import 'package:jd_mall_flutter/store/app_state.dart';
 import 'package:flutter_group_list_view/flutter_group_list_view.dart';
 import 'package:jd_mall_flutter/view/page/cart/redux/cart_page_action.dart';
 
+import '../../../vebview/webview_page.dart';
+import '../../../vebview/webview_type.dart';
+
 Widget cartGoods(BuildContext context) {
   return StoreBuilder<AppState>(builder: (context, store) {
     List<CartGoods> cartGoods = store.state.cartPageState.cartGoods;
@@ -49,7 +52,14 @@ Widget cartGoods(BuildContext context) {
               assetImage("images/ic_store.png", 24, 24),
               Container(
                   margin: const EdgeInsets.only(left: 6), child: Text(cartGoods[section].storeName!, style: const TextStyle(fontSize: 16))),
-              assetImage("images/ic_arrow_right.png", 20, 20)
+              GestureDetector(
+                  onTap: () {
+                    if (cartGoods[section].h5url != null) {
+                      Navigator.of(context)
+                          .pushNamed(WebViewPage.name, arguments: WebViewPageArguments(cartGoods[section].h5url.toString()));
+                    }
+                  },
+                  child: assetImage("images/ic_arrow_right.png", 20, 20))
             ],
           ),
         );
