@@ -59,9 +59,7 @@ class _HomePageState extends State<HomePage> {
             child: EasyRefresh.builder(
                 controller: freshController,
                 header: classicHeader,
-                onRefresh: () async {
-                  store.dispatch(RefreshAction(() => easyRefreshSuccess(freshController), () => easyRefreshFail(freshController)));
-                },
+                onRefresh: () async => store.dispatch(RefreshAction(() => easyRefreshSuccess(freshController), () => easyRefreshFail(freshController))),
                 childBuilder: (context, physics) {
                   return NestedScrollView(
                     controller: _scrollController,
@@ -77,10 +75,7 @@ class _HomePageState extends State<HomePage> {
                             menuSlider(context),
                           ]),
                         ),
-                        tabList(
-                          context,
-                          onTabChange: (code) => handleTabChange(store, code, tabs),
-                        )
+                        tabList(context, onTabChange: (code) => handleTabChange(store, code, tabs))
                       ];
                     },
                     body: PageView(
@@ -103,8 +98,6 @@ class _HomePageState extends State<HomePage> {
     store.dispatch(SetCurrentTab(code));
 
     int tabIndex = tabs.indexWhere((element) => element.code == code);
-    _pageController
-        .animateToPage(tabIndex, duration: const Duration(milliseconds: 200), curve: Curves.linear)
-        .then((value) => isTabClick = false);
+    _pageController.animateToPage(tabIndex, duration: const Duration(milliseconds: 200), curve: Curves.linear).then((value) => isTabClick = false);
   }
 }

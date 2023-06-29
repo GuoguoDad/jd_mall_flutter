@@ -16,6 +16,10 @@ double getBottomSpace(BuildContext context) {
   return MediaQuery.viewPaddingOf(context).bottom;
 }
 
+double getKeyboardHeight(BuildContext context) {
+  return MediaQuery.viewInsetsOf(context).bottom;
+}
+
 double getSafeAreaHeight(BuildContext context) {
   return getScreenHeight(context) - getStatusHeight(context) - getBottomSpace(context);
 }

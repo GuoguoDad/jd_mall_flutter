@@ -1,7 +1,7 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
-import 'package:fluttertoast/fluttertoast.dart';
+import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:jd_mall_flutter/view/main/main_page.dart';
 import 'package:jd_mall_flutter/view/page/detail/detail_page.dart';
 import 'package:jd_mall_flutter/view/page/order/generate/generate_order.dart';
@@ -47,6 +47,7 @@ class _FlutterReduxMallApp extends State<MallApp> with HttpErrorListener {
             highlightColor: Colors.transparent,
           ),
           initialRoute: MainPage.name,
+          builder: EasyLoading.init(),
           routes: {
             MainPage.name: (context) => const MainPage(),
             DetailPage.name: (context) => const DetailPage(),
@@ -122,6 +123,6 @@ mixin HttpErrorListener on State<MallApp> {
   }
 
   showToast(String message) {
-    Fluttertoast.showToast(msg: message, gravity: ToastGravity.CENTER, toastLength: Toast.LENGTH_LONG);
+    EasyLoading.showInfo(message, duration: const Duration(seconds: 3));
   }
 }

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_redux/flutter_redux.dart';
-import 'package:fluttertoast/fluttertoast.dart';
+import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:jd_mall_flutter/common/util/screen_util.dart';
 import 'package:jd_mall_flutter/common/style/common_style.dart';
 import 'package:jd_mall_flutter/models/cart_goods.dart';
@@ -22,8 +22,7 @@ Widget totalSettlement(BuildContext context) {
       width: getScreenWidth(context),
       decoration: BoxDecoration(
           color: Colors.white,
-          border: Border(
-              top: BorderSide(color: CommonStyle.colorE6E6E6, width: 0.5), bottom: BorderSide(color: CommonStyle.colorE6E6E6, width: 0.5))),
+          border: Border(top: BorderSide(color: CommonStyle.colorE6E6E6, width: 0.5), bottom: BorderSide(color: CommonStyle.colorE6E6E6, width: 0.5))),
       child: Row(
         children: [
           Expanded(
@@ -59,7 +58,7 @@ Widget totalSettlement(BuildContext context) {
                 btnName: '去结算(${totalInfo.num})',
                 onTap: () {
                   if (selectList.isEmpty) {
-                    Fluttertoast.showToast(msg: "您还没有选择商品哦", gravity: ToastGravity.CENTER, toastLength: Toast.LENGTH_LONG);
+                    EasyLoading.showInfo("您还没有选择商品哦", duration: const Duration(seconds: 2));
                     return;
                   }
                   Navigator.of(context).pushNamed(GenerateOrder.name);
