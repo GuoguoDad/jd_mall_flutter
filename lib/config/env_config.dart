@@ -1,3 +1,15 @@
-final Map<String, dynamic> dev = {"host": "http://127.0.0.1:8091"};
+enum EnvKey {
+  host("host");
 
-final Map<String, dynamic> prd = {"host": "https://api.example.com"};
+  const EnvKey(this.value);
+
+  final String value;
+}
+
+final Map<String, dynamic> dev = {
+  EnvKey.host.value: "http://127.0.0.1:8091",
+};
+
+final Map<String, dynamic> prd = {
+  EnvKey.host.value: "https://api.example.com",
+};

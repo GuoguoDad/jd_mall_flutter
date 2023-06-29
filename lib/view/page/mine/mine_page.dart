@@ -70,7 +70,10 @@ class _MinePageState extends State<MinePage> {
                           const HeaderLocator.sliver(clearExtent: false),
                           infoHeader(context),
                           SliverList(
-                            delegate: SliverChildListDelegate([orderCard(context), singleLineMenu(context)]),
+                            delegate: SliverChildListDelegate([
+                              orderCard(context),
+                              singleLineMenu(context),
+                            ]),
                           ),
                           tabList(context, onTabChange: (code) => handleTabChange(store, code, tabs))
                         ];

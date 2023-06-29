@@ -57,7 +57,12 @@ class _CartPageState extends State<CartPage> {
                 },
                 child: CustomScrollView(
                   controller: _scrollController,
-                  slivers: [condition(context), cartGoods(context), probablyLikeImage(context), goodsList(context)],
+                  slivers: [
+                    condition(context),
+                    cartGoods(context),
+                    probablyLikeImage(context),
+                    goodsList(context),
+                  ],
                 ),
               ),
               floatingActionButton: BackToTop(_scrollController),

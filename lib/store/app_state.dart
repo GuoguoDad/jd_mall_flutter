@@ -11,5 +11,11 @@ class AppState {
   final MinePageState minePageState;
   final DetailPageState detailPageState;
 
-  AppState(this.homePageState, this.categoryPageState, this.cartPageState, this.minePageState, this.detailPageState);
+  AppState(
+    this.homePageState,
+    this.categoryPageState,
+    this.cartPageState,
+    this.minePageState,
+    this.detailPageState,
+  );
 }

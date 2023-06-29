@@ -71,9 +71,16 @@ class _HomePageState extends State<HomePage> {
                         const HeaderLocator.sliver(clearExtent: false),
                         searchHeader(context),
                         SliverList(
-                          delegate: SliverChildListDelegate([galleryList(context), advBanner(context), menuSlider(context)]),
+                          delegate: SliverChildListDelegate([
+                            galleryList(context),
+                            advBanner(context),
+                            menuSlider(context),
+                          ]),
                         ),
-                        tabList(context, onTabChange: (code) => handleTabChange(store, code, tabs))
+                        tabList(
+                          context,
+                          onTabChange: (code) => handleTabChange(store, code, tabs),
+                        )
                       ];
                     },
                     body: PageView(

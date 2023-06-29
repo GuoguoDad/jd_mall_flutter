@@ -7,9 +7,10 @@ import 'package:jd_mall_flutter/view/page/detail/redux/detail_page_reducer.dart'
 
 AppState reducers(AppState state, action) {
   return AppState(
-      homePageReducer(state.homePageState, action),
-      categoryPageReducer(state.categoryPageState, action),
-      cartPageReducer(state.cartPageState, action),
-      minePageReducer(state.minePageState, action),
-      detailPageReducer(state.detailPageState, action));
+    homePageReducer(state.homePageState, action),
+    categoryPageReducer(state.categoryPageState, action),
+    cartPageReducer(state.cartPageState, action),
+    minePageReducer(state.minePageState, action),
+    detailPageReducer(state.detailPageState, action),
+  );
 }

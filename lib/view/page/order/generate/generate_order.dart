@@ -25,13 +25,16 @@ class _GenerateOrderState extends State<GenerateOrder> {
       children: [
         commonHeader(context, title: "填写订单"),
         Expanded(
-            flex: 1,
-            child: Container(
-              color: CommonStyle.colorF5F5F5,
-              child: CustomScrollView(
-                slivers: [defaultAddress(context)],
-              ),
-            )),
+          flex: 1,
+          child: Container(
+            color: CommonStyle.colorF5F5F5,
+            child: CustomScrollView(
+              slivers: [
+                defaultAddress(context),
+              ],
+            ),
+          ),
+        ),
         fixedBottom(context)
       ],
     );
