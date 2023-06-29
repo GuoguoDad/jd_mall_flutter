@@ -4,19 +4,30 @@ import 'package:jd_mall_flutter/view/page/detail/detail_page.dart';
 import 'package:jd_mall_flutter/models/goods_page_info.dart';
 import 'package:jd_mall_flutter/common/util/color_util.dart';
 import 'package:jd_mall_flutter/component/image/asset_image.dart';
+import 'package:jd_mall_flutter/view/vebview/webview_page.dart';
+import 'package:jd_mall_flutter/view/vebview/webview_type.dart';
 
 Widget goodsItem(BuildContext context, GoodsList item, double width) {
   return GestureDetector(
-      onTap: () => Navigator.of(context).pushNamed(DetailPage.name),
+      onTap: () {
+        if (item.type == '1') Navigator.of(context).pushNamed(DetailPage.name);
+        if (item.type == '2') Navigator.of(context).pushNamed(WebViewPage.name, arguments: WebViewPageArguments(item.h5url!));
+      },
       child: Container(
         padding: const EdgeInsets.only(bottom: 10),
         margin: const EdgeInsets.only(left: 5, right: 5),
-        decoration: BoxDecoration(color: Colors.white, borderRadius: BorderRadius.circular(6)),
+        decoration: BoxDecoration(color: Colors.white, borderRadius: BorderRadius.circular(10), boxShadow: [
+          BoxShadow(
+            color: Colors.grey.shade300,
+            offset: const Offset(0, 0), // 偏移量
+            blurRadius: 10,
+          )
+        ]),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             ClipRRect(
-              borderRadius: BorderRadius.circular(10.0),
+              borderRadius: const BorderRadius.only(topLeft: Radius.circular(10.0), topRight: Radius.circular(10.0)),
               child: CachedNetworkImage(
                 imageUrl: item.imgUrl!,
                 placeholder: (context, url) => assetImage("images/default.png", width, width),

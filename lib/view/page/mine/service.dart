@@ -5,7 +5,7 @@ import 'package:jd_mall_flutter/config/global_configs.dart';
 
 class MineApi {
   static Future queryInfo() async {
-    var res = await httpManager.get('${GlobalConfigs().get("host")}/mine/queryMineInfo', {}, null, null);
+    var res = await httpManager.get('${GlobalConfigs().get("host")}/mine/queryMineInfo');
     if (res?.code != '0') {
       return null;
     }
@@ -13,8 +13,8 @@ class MineApi {
   }
 
   static Future queryRecommendList(int currentPage, int pageSize) async {
-    var res = await httpManager.post(
-        '${GlobalConfigs().get("host")}/mine/queryRecommendList', {"currentPage": currentPage, "pageSize": pageSize}, null, null);
+    var res = await httpManager
+        .post('${GlobalConfigs().get("host")}/mine/queryRecommendList', params: {"currentPage": currentPage, "pageSize": pageSize});
     if (res?.code != '0') {
       return null;
     }

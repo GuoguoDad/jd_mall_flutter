@@ -5,7 +5,7 @@ import 'package:jd_mall_flutter/config/global_configs.dart';
 class CommonServiceApi {
   static Future queryGoodsListByPage(String code, int currentPage, int pageSize) async {
     var res = await httpManager.post('${GlobalConfigs().get("host")}/common/queryGoodsListByPage',
-        {"code": code, "currentPage": currentPage, "pageSize": pageSize}, null, null);
+        params: {"code": code, "currentPage": currentPage, "pageSize": pageSize});
     if (res?.code != '0') {
       return null;
     }

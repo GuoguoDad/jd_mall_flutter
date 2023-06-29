@@ -14,8 +14,7 @@ class GoodsPageInfo {
     this.totalPageCount,
   });
 
-  factory GoodsPageInfo.fromJson(Map<String, dynamic> json) =>
-      _$GoodsPageInfoFromJson(json);
+  factory GoodsPageInfo.fromJson(Map<String, dynamic> json) => _$GoodsPageInfoFromJson(json);
 
   Map<String, dynamic> toJson() => _$GoodsPageInfoToJson(this);
 }
@@ -29,19 +28,11 @@ class GoodsList {
   final String? des1;
   final String? des2;
   final String? type;
+  final String? h5url;
 
-  const GoodsList({
-    this.imgUrl,
-    this.tag,
-    this.description,
-    this.price,
-    this.des1,
-    this.des2,
-    this.type,
-  });
+  const GoodsList({this.imgUrl, this.tag, this.description, this.price, this.des1, this.des2, this.type, this.h5url});
 
-  factory GoodsList.fromJson(Map<String, dynamic> json) =>
-      _$GoodsListFromJson(json);
+  factory GoodsList.fromJson(Map<String, dynamic> json) => _$GoodsListFromJson(json);
 
   Map<String, dynamic> toJson() => _$GoodsListToJson(this);
 }

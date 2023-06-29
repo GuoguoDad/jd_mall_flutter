@@ -5,7 +5,7 @@ import 'package:jd_mall_flutter/config/global_configs.dart';
 
 class CartApi {
   static Future queryCartGoods() async {
-    var res = await httpManager.post('${GlobalConfigs().get("host")}/cart/queryCartGoodsList', null, null, null);
+    var res = await httpManager.post('${GlobalConfigs().get("host")}/cart/queryCartGoodsList');
     if (res?.code != '0') {
       return null;
     }
@@ -13,8 +13,8 @@ class CartApi {
   }
 
   static Future queryGoodsListByPage(int currentPage, int pageSize) async {
-    var res = await httpManager.post(
-        '${GlobalConfigs().get("host")}/cart/queryMaybeLikeList', {"currentPage": currentPage, "pageSize": pageSize}, null, null);
+    var res = await httpManager
+        .post('${GlobalConfigs().get("host")}/cart/queryMaybeLikeList', params: {"currentPage": currentPage, "pageSize": pageSize});
     if (res?.code != '0') {
       return null;
     }

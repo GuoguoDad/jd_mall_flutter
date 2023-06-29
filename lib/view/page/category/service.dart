@@ -5,7 +5,7 @@ import 'package:jd_mall_flutter/models/primary_category_list.dart';
 
 class CategoryApi {
   static Future queryCategoryInfo() async {
-    var res = await httpManager.get('${GlobalConfigs().get("host")}/category/list', {}, null, null);
+    var res = await httpManager.get('${GlobalConfigs().get("host")}/category/list');
     if (res?.code != '0') {
       return null;
     }
@@ -13,8 +13,7 @@ class CategoryApi {
   }
 
   static Future querySecondGroupCategoryInfo(String categoryId) async {
-    var res =
-        await httpManager.post('${GlobalConfigs().get("host")}/category/queryContentByCategory', {"categoryId": categoryId}, null, null);
+    var res = await httpManager.post('${GlobalConfigs().get("host")}/category/queryContentByCategory', params: {"categoryId": categoryId});
     if (res?.code != '0') {
       return null;
     }

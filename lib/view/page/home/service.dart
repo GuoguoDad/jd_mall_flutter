@@ -5,7 +5,7 @@ import 'package:jd_mall_flutter/config/global_configs.dart';
 
 class HomeApi {
   static Future queryHomeInfo() async {
-    var res = await httpManager.get('${GlobalConfigs().get("host")}/home/queryHomePageInfo', {}, null, null);
+    var res = await httpManager.get('${GlobalConfigs().get("host")}/home/queryHomePageInfo');
     if (res?.code != '0') {
       return null;
     }
@@ -14,7 +14,7 @@ class HomeApi {
 
   static Future queryGoodsListByPage(String code, int currentPage, int pageSize) async {
     var res = await httpManager.post('${GlobalConfigs().get("host")}/home/queryGoodsListByPage',
-        {"code": code, "currentPage": currentPage, "pageSize": pageSize}, null, null);
+        params: {"code": code, "currentPage": currentPage, "pageSize": pageSize});
     if (res?.code != '0') {
       return null;
     }

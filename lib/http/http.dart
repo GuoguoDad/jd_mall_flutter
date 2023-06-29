@@ -35,7 +35,7 @@ class HttpManager {
     exceptionHandler(DioError err) {
       Response? errResponse;
       if (err.response != null) {
-        errResponse = err?.response;
+        errResponse = err.response;
       } else {
         errResponse = Response(statusCode: err.response?.statusCode, requestOptions: RequestOptions(path: url));
       }
@@ -64,7 +64,7 @@ class HttpManager {
   ///[ url] 请求url
   ///[ params] 请求参数
   ///[ option] 配置
-  Future<BaseResponse?> get<T>(String url, params, Options? option, bool? noTip) async {
+  Future<BaseResponse?> get<T>(String url, {Object? params, Options? option, bool? noTip}) async {
     option ??= Options();
     option.method = "get";
     return await request<T>(url, params, option, noTip);
@@ -74,7 +74,7 @@ class HttpManager {
   ///[ url] 请求url
   ///[ params] 请求参数
   ///[ option] 配置
-  Future<BaseResponse?> post<T>(String url, params, Options? option, bool? noTip) async {
+  Future<BaseResponse?> post<T>(String url, {Object? params, Options? option, bool? noTip}) async {
     option ??= Options();
     option.method = "post";
     return await request<T>(url, params, option, noTip);

@@ -2,13 +2,14 @@
   "code": "0",
   "msg": null,
   "data": {
-    "goodsList" :[
+    "goodsList": [
       {
         "imgUrl": "https://m.360buyimg.com/mobilecms/s714x714_jfs/t1/223778/18/6959/168828/622cc318E47c3b663/753cd44c08858430.jpg!q70.dpg.webp",
         "tag": "时尚运动",
         "des1": "活动惊爆价",
         "des2": "实惠好货等你抢",
-        "type": "2"
+        "type": "2",
+        "h5url": "https://shop.m.jd.com/shop/home?shopId=17529"
       },
       {
         "imgUrl": "https://m.360buyimg.com/mobilecms/s714x714_jfs/t1/208465/36/8682/93776/618a6339E208f6217/44fbee25f6b7d872.jpg",
@@ -21,7 +22,8 @@
         "tag": "好物集市",
         "des1": "专业运动装备",
         "des2": "运动与你相伴",
-        "type": "2"
+        "type": "2",
+        "h5url": "https://shop.m.jd.com/shop/home?shopId=17529"
       },
       {
         "imgUrl": "https://m.360buyimg.com/mobilecms/s714x714_jfs/t1/106053/8/25901/375428/622cc43dE7be3f2c7/8de7c9f9f9691068.jpg",

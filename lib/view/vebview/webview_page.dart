@@ -41,13 +41,11 @@ class _WebViewPageState extends State<WebViewPage> {
             controller.getTitle().then((value) => setState(() {
                   title = value!.replaceAll("京东", "");
                 }));
-            controller.runJavaScript(
-              '''
+            controller.runJavaScript('''
               window.addEventListener('scroll', function() {
                 window.ARTICLE_SCROLL_CHANNEL.postMessage(this.scrollY);
               });
-              ''',
-            );
+              ''');
             setState(() {
               isLoading = false;
             });
