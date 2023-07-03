@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:jd_mall_flutter/common/util/screen_util.dart';
 import 'package:jd_mall_flutter/component/loading_widget.dart';
 import 'package:jd_mall_flutter/view/vebview/webview_type.dart';
 import 'package:jd_mall_flutter/view/vebview/widget/floating_header.dart';
@@ -75,7 +76,18 @@ class _WebViewPageState extends State<WebViewPage> {
     initView();
 
     Widget floatingLoading = Stack(
-      children: [Positioned(top: 0, left: 0, child: loadingWidget(context)), floatingHeader(context, title: title)],
+      children: [
+        Positioned(
+          top: 0,
+          left: 0,
+          child: SizedBox(
+            width: getScreenWidth(context),
+            height: getScreenHeight(context),
+            child: loadingWidget(context),
+          ),
+        ),
+        floatingHeader(context, title: title)
+      ],
     );
 
     Widget webView = Stack(

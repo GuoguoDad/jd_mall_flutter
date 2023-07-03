@@ -6,6 +6,8 @@ import 'package:jd_mall_flutter/store/app_state.dart';
 import 'package:jd_mall_flutter/common/localization/default_localizations.dart';
 import 'package:jd_mall_flutter/component/persistentHeader/sliver_header_builder.dart';
 import 'package:jd_mall_flutter/view/page/mine/redux/mine_page_state.dart';
+import 'package:jd_mall_flutter/view/page/example/Interlaced_animation.dart';
+import 'package:jd_mall_flutter/view/page/example/breathing_method.dart';
 
 Widget infoHeader(BuildContext context) {
   return StoreConnector<AppState, MinePageState>(converter: (store) {
@@ -37,8 +39,7 @@ Widget infoHeader(BuildContext context) {
             width: headerSize.size,
             height: headerSize.size,
             margin: const EdgeInsets.only(left: 16),
-            decoration: const ShapeDecoration(
-                shape: CircleBorder(), image: DecorationImage(fit: BoxFit.contain, image: AssetImage("images/header.png")))));
+            decoration: const ShapeDecoration(shape: CircleBorder(), image: DecorationImage(fit: BoxFit.contain, image: AssetImage("images/header.png")))));
 
     Widget userInfo = Positioned(
       top: headerSize.name2Top,
@@ -92,12 +93,18 @@ Widget infoHeader(BuildContext context) {
                 Positioned(
                   top: 4,
                   right: 66,
-                  child: assetImage('images/ic_setting.png', 28, 28),
+                  child: GestureDetector(
+                    onTap: () => Navigator.of(context).pushNamed(InterlacedAnimationDemo.name),
+                    child: assetImage('images/ic_setting.png', 28, 28),
+                  ),
                 ),
                 Positioned(
                   top: 4,
                   right: 18,
-                  child: assetImage('images/ic_message.png', 28, 28),
+                  child: GestureDetector(
+                    onTap: () => Navigator.of(context).pushNamed(BreathingMethod.name),
+                    child: assetImage('images/ic_message.png', 28, 28),
+                  ),
                 ),
                 title,
                 header,

@@ -33,40 +33,41 @@ class _CartPageState extends State<CartPage> {
       store.dispatch(InitAction());
     }, builder: (context, store) {
       bool isLoading = store.state.cartPageState.isLoading;
-      if (isLoading) return loadingWidget(context);
 
       return Column(
         children: [
           cartHeader(context),
           Expanded(
-            child: Scaffold(
-              backgroundColor: CommonStyle.colorF3F3F3,
-              body: SmartRefresher(
-                controller: _refreshController,
-                enablePullUp: true,
-                header: const ClassicHeader(
-                  spacing: 10,
-                  height: 58,
-                ),
-                onRefresh: () async {
-                  store.dispatch(RefreshAction(() => refreshSuccess(_refreshController), () => refreshFail(_refreshController)));
-                },
-                onLoading: () async {
-                  store.dispatch(LoadMoreAction(store.state.cartPageState.pageNum + 1, () => loadMoreSuccess(_refreshController),
-                      () => loadMoreFail(_refreshController)));
-                },
-                child: CustomScrollView(
-                  controller: _scrollController,
-                  slivers: [
-                    condition(context),
-                    cartGoods(context),
-                    probablyLikeImage(context),
-                    goodsList(context),
-                  ],
-                ),
-              ),
-              floatingActionButton: BackToTop(_scrollController),
-            ),
+            child: isLoading
+                ? loadingWidget(context)
+                : Scaffold(
+                    backgroundColor: CommonStyle.colorF3F3F3,
+                    body: SmartRefresher(
+                      controller: _refreshController,
+                      enablePullUp: true,
+                      header: const ClassicHeader(
+                        spacing: 10,
+                        height: 58,
+                      ),
+                      onRefresh: () async {
+                        store.dispatch(RefreshAction(() => refreshSuccess(_refreshController), () => refreshFail(_refreshController)));
+                      },
+                      onLoading: () async {
+                        store.dispatch(LoadMoreAction(
+                            store.state.cartPageState.pageNum + 1, () => loadMoreSuccess(_refreshController), () => loadMoreFail(_refreshController)));
+                      },
+                      child: CustomScrollView(
+                        controller: _scrollController,
+                        slivers: [
+                          condition(context),
+                          cartGoods(context),
+                          probablyLikeImage(context),
+                          goodsList(context),
+                        ],
+                      ),
+                    ),
+                    floatingActionButton: BackToTop(_scrollController),
+                  ),
           ),
           totalSettlement(context)
         ],

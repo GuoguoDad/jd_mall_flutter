@@ -24,16 +24,17 @@ class _CategoryPageState extends State<CategoryPage> {
       store.dispatch(InitDataAction());
     }, builder: (context, store) {
       bool isLoading = store.state.categoryPageState.isLoading;
-      if (isLoading) return loadingWidget(context);
 
       return Column(
         children: [
           header(context),
           Expanded(
-              child: Flex(
-            direction: Axis.horizontal,
-            children: [leftCate(context), rightGroupList(context)],
-          )),
+              child: isLoading
+                  ? loadingWidget(context)
+                  : Flex(
+                      direction: Axis.horizontal,
+                      children: [leftCate(context), rightGroupList(context)],
+                    )),
         ],
       );
     });
