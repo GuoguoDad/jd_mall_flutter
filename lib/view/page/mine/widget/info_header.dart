@@ -9,6 +9,8 @@ import 'package:jd_mall_flutter/view/page/mine/redux/mine_page_state.dart';
 import 'package:jd_mall_flutter/view/page/example/Interlaced_animation.dart';
 import 'package:jd_mall_flutter/view/page/example/breathing_method.dart';
 
+import '../../example/snow_man.dart';
+
 Widget infoHeader(BuildContext context) {
   return StoreConnector<AppState, MinePageState>(converter: (store) {
     return store.state.minePageState;
@@ -88,7 +90,10 @@ Widget infoHeader(BuildContext context) {
                 Positioned(
                   top: 4,
                   right: 116,
-                  child: assetImage('images/ic_friend.png', 26, 26),
+                  child: GestureDetector(
+                    onTap: () => Navigator.of(context).pushNamed(SnowManDemo.name),
+                    child: assetImage('images/ic_friend.png', 26, 26),
+                  ),
                 ),
                 Positioned(
                   top: 4,
