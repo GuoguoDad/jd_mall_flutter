@@ -16,17 +16,17 @@ double screenWidth = 0;
 double screenHeight = 0;
 
 class _SnowManDemoState extends State<SnowManDemo> with SingleTickerProviderStateMixin {
-  late AnimationController container;
+  late AnimationController _container;
 
   @override
   void initState() {
-    container = AnimationController(duration: const Duration(milliseconds: 100), vsync: this)..repeat();
+    _container = AnimationController(duration: const Duration(milliseconds: 100), vsync: this)..repeat();
     super.initState();
   }
 
   @override
   void dispose() {
-    container.dispose();
+    _container.dispose();
     super.dispose();
   }
 
@@ -42,27 +42,28 @@ class _SnowManDemoState extends State<SnowManDemo> with SingleTickerProviderStat
         children: [
           commonHeader(context, title: "CustomPointer Demo"),
           Expanded(
-              flex: 1,
-              child: Container(
-                width: screenWidth,
-                decoration: const BoxDecoration(
-                  gradient: LinearGradient(
-                    begin: Alignment.topCenter,
-                    end: Alignment.bottomCenter,
-                    colors: [Colors.blue, Colors.white],
-                    stops: [0.0, 0.95],
-                  ),
+            flex: 1,
+            child: Container(
+              width: screenWidth,
+              decoration: const BoxDecoration(
+                gradient: LinearGradient(
+                  begin: Alignment.topCenter,
+                  end: Alignment.bottomCenter,
+                  colors: [Colors.blue, Colors.white],
+                  stops: [0.0, 0.95],
                 ),
-                child: AnimatedBuilder(
-                  animation: container,
-                  builder: (BuildContext context, Widget? child) {
-                    return CustomPaint(
-                      size: Size(screenWidth, 300), //指定画布大小
-                      painter: MyPainter(snowflakes),
-                    );
-                  },
-                ),
-              ))
+              ),
+              child: AnimatedBuilder(
+                animation: _container,
+                builder: (BuildContext context, Widget? child) {
+                  return CustomPaint(
+                    size: Size(screenWidth, 300), //指定画布大小
+                    painter: MyPainter(snowflakes),
+                  );
+                },
+              ),
+            ),
+          )
         ],
       ),
     );
