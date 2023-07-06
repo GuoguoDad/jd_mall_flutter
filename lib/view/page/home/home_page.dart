@@ -27,7 +27,7 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  EasyRefreshController freshController = EasyRefreshController(controlFinishRefresh: true);
+  final EasyRefreshController _freshController = EasyRefreshController(controlFinishRefresh: true);
   final ScrollController _scrollController = ScrollController();
   final PageController _pageController = PageController();
 
@@ -35,16 +35,18 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
-    return StoreBuilder<AppState>(onInit: (store) {
-      store.dispatch(InitDataAction());
-    }, builder: (context, store) {
-      List<TabList> tabs = store.state.homePageState.homePageInfo.tabList ?? [];
-      bool showTop = store.state.homePageState.showBackTop;
-      bool isLoading = store.state.homePageState.isLoading;
+    return StoreBuilder<AppState>(
+      onInit: (store) {
+        store.dispatch(InitDataAction());
+      },
+      builder: (context, store) {
+        List<TabList> tabs = store.state.homePageState.homePageInfo.tabList ?? [];
+        bool showTop = store.state.homePageState.showBackTop;
+        bool isLoading = store.state.homePageState.isLoading;
 
-      if (isLoading) return loadingWidget(context);
+        if (isLoading) return loadingWidget(context);
 
-      return Scaffold(
+        return Scaffold(
           body: NotificationListener<ScrollNotification>(
             onNotification: (ScrollNotification notification) {
               double distance = notification.metrics.pixels;
@@ -57,40 +59,44 @@ class _HomePageState extends State<HomePage> {
               return false;
             },
             child: EasyRefresh.builder(
-                controller: freshController,
-                header: classicHeader,
-                onRefresh: () async => store.dispatch(RefreshAction(() => easyRefreshSuccess(freshController), () => easyRefreshFail(freshController))),
-                childBuilder: (context, physics) {
-                  return NestedScrollView(
-                    controller: _scrollController,
-                    physics: physics,
-                    headerSliverBuilder: (BuildContext context, bool innerBoxIsScrolled) {
-                      return [
-                        const HeaderLocator.sliver(clearExtent: false),
-                        searchHeader(context),
-                        SliverList(
-                          delegate: SliverChildListDelegate([
-                            galleryList(context),
-                            advBanner(context),
-                            menuSlider(context),
-                          ]),
-                        ),
-                        tabList(context, onTabChange: (code) => handleTabChange(store, code, tabs))
-                      ];
+              controller: _freshController,
+              header: classicHeader,
+              clipBehavior: Clip.none,
+              onRefresh: () async => store.dispatch(RefreshAction(() => easyRefreshSuccess(_freshController), () => easyRefreshFail(_freshController))),
+              childBuilder: (context, physics) {
+                return NestedScrollView(
+                  controller: _scrollController,
+                  physics: physics,
+                  headerSliverBuilder: (BuildContext context, bool innerBoxIsScrolled) {
+                    return [
+                      const HeaderLocator.sliver(clearExtent: false),
+                      searchHeader(context),
+                      SliverList(
+                        delegate: SliverChildListDelegate([
+                          galleryList(context),
+                          advBanner(context),
+                          menuSlider(context),
+                        ]),
+                      ),
+                      tabList(context, onTabChange: (code) => handleTabChange(store, code, tabs))
+                    ];
+                  },
+                  body: PageView(
+                    controller: _pageController,
+                    onPageChanged: (index) {
+                      if (isTabClick) return;
+                      store.dispatch(SetCurrentTab(tabs[index].code!));
                     },
-                    body: PageView(
-                      controller: _pageController,
-                      onPageChanged: (index) {
-                        if (isTabClick) return;
-                        store.dispatch(SetCurrentTab(tabs[index].code!));
-                      },
-                      children: tabs.map((e) => PageGoodsList(e.code!, physics)).toList(),
-                    ),
-                  );
-                }),
+                    children: tabs.map((e) => PageGoodsList(e.code!, physics)).toList(),
+                  ),
+                );
+              },
+            ),
           ),
-          floatingActionButton: backTop(showTop, _scrollController));
-    });
+          floatingActionButton: backTop(showTop, _scrollController),
+        );
+      },
+    );
   }
 
   void handleTabChange(Store<AppState> store, String code, List<TabList> tabs) {

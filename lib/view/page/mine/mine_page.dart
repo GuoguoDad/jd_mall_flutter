@@ -26,7 +26,7 @@ class MinePage extends StatefulWidget {
 }
 
 class _MinePageState extends State<MinePage> {
-  EasyRefreshController freshController = EasyRefreshController(controlFinishRefresh: true);
+  final EasyRefreshController _freshController = EasyRefreshController(controlFinishRefresh: true);
   final ScrollController _scrollController = ScrollController();
   final PageController _pageController = PageController();
 
@@ -34,62 +34,68 @@ class _MinePageState extends State<MinePage> {
 
   @override
   Widget build(BuildContext context) {
-    return StoreBuilder<AppState>(onInit: (store) {
-      store.dispatch(InitPageAction());
-    }, builder: (context, store) {
-      List<TabInfo> tabs = store.state.minePageState.menuTabInfo.tabList ?? [];
-      bool showTop = store.state.minePageState.showBackTop;
-      bool isLoading = store.state.minePageState.isLoading;
+    return StoreBuilder<AppState>(
+      onInit: (store) {
+        store.dispatch(InitPageAction());
+      },
+      builder: (context, store) {
+        List<TabInfo> tabs = store.state.minePageState.menuTabInfo.tabList ?? [];
+        bool showTop = store.state.minePageState.showBackTop;
+        bool isLoading = store.state.minePageState.isLoading;
 
-      if (isLoading) return loadingWidget(context);
+        if (isLoading) return loadingWidget(context);
 
-      return Scaffold(
+        return Scaffold(
           body: NotificationListener<ScrollNotification>(
-              onNotification: (ScrollNotification notification) {
-                double distance = notification.metrics.pixels;
-                if (notification.depth == 0) {
-                  store.dispatch(ChangePageScrollYAction(distance));
-                }
-                if (notification.depth == 2) {
-                  store.dispatch(ChangeBackTopAction(distance > getScreenHeight(context)));
-                }
-                return false;
+            onNotification: (ScrollNotification notification) {
+              double distance = notification.metrics.pixels;
+              if (notification.depth == 0) {
+                store.dispatch(ChangePageScrollYAction(distance));
+              }
+              if (notification.depth == 2) {
+                store.dispatch(ChangeBackTopAction(distance > getScreenHeight(context)));
+              }
+              return false;
+            },
+            child: EasyRefresh.builder(
+              controller: _freshController,
+              header: classicHeader,
+              onRefresh: () async {
+                store.dispatch(RefreshAction(() => easyRefreshSuccess(_freshController), () => easyRefreshFail(_freshController)));
               },
-              child: EasyRefresh.builder(
-                  controller: freshController,
-                  header: classicHeader,
-                  onRefresh: () async {
-                    store.dispatch(RefreshAction(() => easyRefreshSuccess(freshController), () => easyRefreshFail(freshController)));
-                  },
-                  childBuilder: (context, physics) {
-                    return NestedScrollView(
-                      controller: _scrollController,
-                      physics: physics,
-                      headerSliverBuilder: (BuildContext context, bool innerBoxIsScrolled) {
-                        return [
-                          const HeaderLocator.sliver(clearExtent: false),
-                          infoHeader(context),
-                          SliverList(
-                            delegate: SliverChildListDelegate([
-                              orderCard(context),
-                              singleLineMenu(context),
-                            ]),
-                          ),
-                          tabList(context, onTabChange: (code) => handleTabChange(store, code, tabs))
-                        ];
-                      },
-                      body: PageView(
-                        controller: _pageController,
-                        onPageChanged: (index) {
-                          if (isTabClick) return;
-                          store.dispatch(SetCurrentTab(tabs[index].code!));
-                        },
-                        children: tabs.map((e) => PageGoodsList(e.code!, physics)).toList(),
+              childBuilder: (context, physics) {
+                return NestedScrollView(
+                  controller: _scrollController,
+                  physics: physics,
+                  headerSliverBuilder: (BuildContext context, bool innerBoxIsScrolled) {
+                    return [
+                      const HeaderLocator.sliver(clearExtent: false),
+                      infoHeader(context),
+                      SliverList(
+                        delegate: SliverChildListDelegate([
+                          orderCard(context),
+                          singleLineMenu(context),
+                        ]),
                       ),
-                    );
-                  })),
-          floatingActionButton: backTop(showTop, _scrollController));
-    });
+                      tabList(context, onTabChange: (code) => handleTabChange(store, code, tabs))
+                    ];
+                  },
+                  body: PageView(
+                    controller: _pageController,
+                    onPageChanged: (index) {
+                      if (isTabClick) return;
+                      store.dispatch(SetCurrentTab(tabs[index].code!));
+                    },
+                    children: tabs.map((e) => PageGoodsList(e.code!, physics)).toList(),
+                  ),
+                );
+              },
+            ),
+          ),
+          floatingActionButton: backTop(showTop, _scrollController),
+        );
+      },
+    );
   }
 
   void handleTabChange(Store<AppState> store, String code, List<TabInfo> tabs) {
@@ -97,8 +103,6 @@ class _MinePageState extends State<MinePage> {
     store.dispatch(SetCurrentTab(code));
 
     int tabIndex = tabs.indexWhere((element) => element.code == code);
-    _pageController
-        .animateToPage(tabIndex, duration: const Duration(milliseconds: 200), curve: Curves.linear)
-        .then((value) => isTabClick = false);
+    _pageController.animateToPage(tabIndex, duration: const Duration(milliseconds: 200), curve: Curves.linear).then((value) => isTabClick = false);
   }
 }
