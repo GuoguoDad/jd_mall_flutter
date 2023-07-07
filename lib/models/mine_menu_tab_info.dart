@@ -22,11 +22,13 @@ class FunctionInfo {
   final String? menuIcon;
   final String? menuName;
   final String? menuCode;
+  final String? h5url;
 
   const FunctionInfo({
     this.menuIcon,
     this.menuName,
     this.menuCode,
+    this.h5url,
   });
 
   factory FunctionInfo.fromJson(Map<String, dynamic> json) => _$FunctionInfoFromJson(json);
