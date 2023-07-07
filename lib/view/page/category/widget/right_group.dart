@@ -14,10 +14,7 @@ late double rWidth, bWidth;
 //gridview的item宽和高一样
 double thirdCateItemHeight = 0;
 
-Widget rightGroupList(BuildContext context) {
-  ScrollController scrollController = ScrollController();
-  ScrollController gridViewController = ScrollController();
-
+Widget rightGroupList(BuildContext context, ScrollController scrollController, ScrollController gridViewController) {
   //右侧占屏幕三分之二
   rWidth = getScreenWidth(context) * 2 / 3;
 
@@ -168,12 +165,13 @@ Widget rightGroupList(BuildContext context) {
                       fit: BoxFit.fill,
                     ),
                     Container(
-                        height: 24,
-                        margin: const EdgeInsets.only(top: 6),
-                        child: Text(
-                          secondCateList[indexPath.section].cateList![indexPath.index].categoryName!,
-                          style: TextStyle(fontSize: 12, color: CommonStyle.color777677),
-                        ))
+                      height: 24,
+                      margin: const EdgeInsets.only(top: 6),
+                      child: Text(
+                        secondCateList[indexPath.section].cateList![indexPath.index].categoryName!,
+                        style: TextStyle(fontSize: 12, color: CommonStyle.color777677),
+                      ),
+                    )
                   ],
                 ),
               );
@@ -198,7 +196,11 @@ Widget rightGroupList(BuildContext context) {
           color: Colors.white,
           padding: const EdgeInsets.only(top: 10),
           child: Column(
-            children: [topBanImg, secondScrollTabCategory, groupThirdCategoryList],
+            children: [
+              topBanImg,
+              secondScrollTabCategory,
+              groupThirdCategoryList,
+            ],
           ),
         ),
       );

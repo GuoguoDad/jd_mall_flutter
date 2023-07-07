@@ -24,8 +24,22 @@ class CartPage extends StatefulWidget {
 }
 
 class _CartPageState extends State<CartPage> {
-  final ScrollController _scrollController = ScrollController();
-  final RefreshController _refreshController = RefreshController();
+  late final ScrollController _scrollController;
+  late final RefreshController _refreshController;
+
+  @override
+  void initState() {
+    _scrollController = ScrollController();
+    _refreshController = RefreshController();
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    _scrollController.dispose();
+    _refreshController.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {

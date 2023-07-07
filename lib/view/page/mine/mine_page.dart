@@ -26,11 +26,27 @@ class MinePage extends StatefulWidget {
 }
 
 class _MinePageState extends State<MinePage> {
-  final EasyRefreshController _freshController = EasyRefreshController(controlFinishRefresh: true);
-  final ScrollController _scrollController = ScrollController();
-  final PageController _pageController = PageController();
+  late final EasyRefreshController _freshController;
+  late final ScrollController _scrollController;
+  late final PageController _pageController;
 
   bool isTabClick = false;
+
+  @override
+  void initState() {
+    _freshController = EasyRefreshController(controlFinishRefresh: true);
+    _scrollController = ScrollController();
+    _pageController = PageController();
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    _freshController.dispose();
+    _scrollController.dispose();
+    _pageController.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -77,7 +93,10 @@ class _MinePageState extends State<MinePage> {
                           singleLineMenu(context),
                         ]),
                       ),
-                      tabList(context, onTabChange: (code) => handleTabChange(store, code, tabs))
+                      tabList(
+                        context,
+                        onTabChange: (code) => handleTabChange(store, code, tabs),
+                      )
                     ];
                   },
                   body: PageView(

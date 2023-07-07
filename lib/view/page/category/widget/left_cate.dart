@@ -9,42 +9,41 @@ import 'package:jd_mall_flutter/view/page/category/redux/category_page_state.dar
 
 double itemHeight = 62.0;
 
-Widget leftCate(BuildContext context) {
-  ScrollController scrollController = ScrollController();
-
+Widget leftCate(BuildContext context, ScrollController _scrollController) {
   return StoreBuilder<AppState>(
     builder: (context, store) {
       SelectedCategoryInfo? selectedCategoryInfo = store.state.categoryPageState.selectedCategoryInfo;
       List<CategoryInfo> list = store.state.categoryPageState.categoryList ?? [];
 
       Widget scrollTabList = ListView.builder(
-          controller: scrollController,
-          itemCount: list.length,
-          shrinkWrap: true,
-          padding: EdgeInsets.zero,
-          itemBuilder: (BuildContext context, int index) {
-            bool isPrev = selectedCategoryInfo?.previous?.code == list[index].code;
-            bool isSelect = selectedCategoryInfo?.current?.code == list[index].code;
-            bool isNext = selectedCategoryInfo?.next?.code == list[index].code;
+        controller: _scrollController,
+        itemCount: list.length,
+        shrinkWrap: true,
+        padding: EdgeInsets.zero,
+        itemBuilder: (BuildContext context, int index) {
+          bool isPrev = selectedCategoryInfo?.previous?.code == list[index].code;
+          bool isSelect = selectedCategoryInfo?.current?.code == list[index].code;
+          bool isNext = selectedCategoryInfo?.next?.code == list[index].code;
 
-            return GestureDetector(
-                onTap: () {
-                  store.dispatch(SelectCategoryAction(SelectedCategoryInfo(
-                      index - 1 >= 0 ? list[index - 1] : null, list[index], index + 1 <= list.length - 1 ? list[index + 1] : null)));
-                  scrollController.animateTo(calc2Top(context, index, list.length),
-                      duration: const Duration(milliseconds: 200), curve: Curves.linear);
-                },
-                child: Container(
-                  height: itemHeight,
-                  decoration: BoxDecoration(
-                      color: isSelect ? Colors.white : CommonStyle.greyBgColor3,
-                      borderRadius:
-                          BorderRadius.only(bottomRight: Radius.circular(isPrev ? 20 : 0), topRight: Radius.circular(isNext ? 20 : 0))),
-                  child: Center(
-                    child: Text(list[index].name!, style: const TextStyle(fontSize: 16, fontWeight: FontWeight.w500)),
-                  ),
-                ));
-          });
+          return GestureDetector(
+            onTap: () {
+              store.dispatch(SelectCategoryAction(
+                  SelectedCategoryInfo(index - 1 >= 0 ? list[index - 1] : null, list[index], index + 1 <= list.length - 1 ? list[index + 1] : null)));
+              _scrollController.animateTo(calc2Top(context, index, list.length), duration: const Duration(milliseconds: 200), curve: Curves.linear);
+            },
+            child: Container(
+              height: itemHeight,
+              decoration: BoxDecoration(
+                color: isSelect ? Colors.white : CommonStyle.greyBgColor3,
+                borderRadius: BorderRadius.only(bottomRight: Radius.circular(isPrev ? 20 : 0), topRight: Radius.circular(isNext ? 20 : 0)),
+              ),
+              child: Center(
+                child: Text(list[index].name!, style: const TextStyle(fontSize: 16, fontWeight: FontWeight.w500)),
+              ),
+            ),
+          );
+        },
+      );
 
       return Expanded(flex: 1, child: scrollTabList);
     },
