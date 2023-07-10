@@ -166,7 +166,7 @@ Widget rightGroupList(BuildContext context, ScrollController scrollController, S
                     ),
                     Container(
                       height: 24,
-                      margin: const EdgeInsets.only(top: 6),
+                      margin: const EdgeInsets.only(top: 4),
                       child: Text(
                         secondCateList[indexPath.section].cateList![indexPath.index].categoryName!,
                         style: TextStyle(fontSize: 12, color: CommonStyle.color777677),

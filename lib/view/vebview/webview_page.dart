@@ -91,7 +91,10 @@ class _WebViewPageState extends State<WebViewPage> {
     );
 
     Widget webView = Stack(
-      children: [WebViewWidget(controller: controller), floatingHeader(context, title: title)],
+      children: [
+        WebViewWidget(controller: controller),
+        floatingHeader(context, title: title),
+      ],
     );
 
     return Scaffold(body: isLoading ? floatingLoading : webView);

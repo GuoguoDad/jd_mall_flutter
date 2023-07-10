@@ -18,7 +18,7 @@ class PageGoodsList extends StatefulWidget {
 }
 
 class _PageGoodsListState extends State<PageGoodsList> {
-  final RefreshController _refreshController = RefreshController();
+  late final RefreshController _refreshController;
 
   int pageNum = 1;
 
@@ -27,8 +27,15 @@ class _PageGoodsListState extends State<PageGoodsList> {
 
   @override
   void initState() {
+    _refreshController = RefreshController();
     super.initState();
     queryGoodsListByPage(1);
+  }
+
+  @override
+  void dispose() {
+    _refreshController.dispose();
+    super.dispose();
   }
 
   queryGoodsListByPage(int currentPage) {
@@ -56,24 +63,25 @@ class _PageGoodsListState extends State<PageGoodsList> {
   @override
   Widget build(BuildContext context) {
     double width = (getScreenWidth(context) - 20) / 2;
-    var goodsList = goodsPageInfo.goodsList ?? [];
+    List<GoodsList> goodsList = goodsPageInfo.goodsList ?? [];
 
     return SmartRefresher(
-        key: Key("MasonryGridView_${widget.code}"),
-        controller: _refreshController,
-        enablePullDown: false,
-        enablePullUp: true,
-        onLoading: () async {
-          queryGoodsListByPage(pageNum + 1);
-        },
-        child: MasonryGridView.count(
-          physics: widget.physics,
-          padding: EdgeInsets.zero,
-          itemCount: goodsList.length,
-          crossAxisCount: 2,
-          mainAxisSpacing: 10,
-          crossAxisSpacing: 0,
-          itemBuilder: (context, index) => goodsItem(context, goodsList[index], width),
-        ));
+      key: Key("MasonryGridView_${widget.code}"),
+      controller: _refreshController,
+      enablePullDown: false,
+      enablePullUp: true,
+      onLoading: () async {
+        queryGoodsListByPage(pageNum + 1);
+      },
+      child: MasonryGridView.count(
+        physics: widget.physics,
+        padding: EdgeInsets.zero,
+        itemCount: goodsList.length,
+        crossAxisCount: 2,
+        mainAxisSpacing: 10,
+        crossAxisSpacing: 0,
+        itemBuilder: (context, index) => goodsItem(context, goodsList[index], width),
+      ),
+    );
   }
 }
