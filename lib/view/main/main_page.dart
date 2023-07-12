@@ -19,6 +19,7 @@ class MainPage extends StatefulWidget {
 
 class _MainPageState extends State<MainPage> {
   int _selectedIndex = 0;
+  double iconSize = 30;
 
   void _onItemTapped(int index) {
     setState(() {
@@ -30,46 +31,43 @@ class _MainPageState extends State<MainPage> {
 
   @override
   Widget build(BuildContext context) {
+    List<Map> barItems = [
+      {"iconPath": "images/ic_home.png", "activeIconPath": "images/ic_home_active.png", "label": MallLocalizations.i18n(context).tab_main_home},
+      {"iconPath": "images/ic_category.png", "activeIconPath": "images/ic_category_active.png", "label": MallLocalizations.i18n(context).tab_main_category},
+      {"iconPath": "images/ic_cart.png", "activeIconPath": "images/ic_cart_active.png", "label": MallLocalizations.i18n(context).tab_main_cart},
+      {"iconPath": "images/ic_mine.png", "activeIconPath": "images/ic_mine_active.png", "label": MallLocalizations.i18n(context).tab_main_mine},
+    ];
+
     return AnnotatedRegion<SystemUiOverlayStyle>(
       value: [0, 1].contains(_selectedIndex) ? SystemUiOverlayStyle.light : SystemUiOverlayStyle.dark,
       child: Material(
-          child: Scaffold(
-        body: IndexedStack(
-          index: _selectedIndex,
-          children: pages,
+        child: Scaffold(
+          body: IndexedStack(
+            index: _selectedIndex,
+            children: pages,
+          ),
+          bottomNavigationBar: BottomNavigationBar(
+            iconSize: 24,
+            enableFeedback: false,
+            showUnselectedLabels: true,
+            backgroundColor: Colors.white,
+            type: BottomNavigationBarType.fixed,
+            unselectedItemColor: Colors.black87,
+            selectedItemColor: CommonStyle.themeColor,
+            selectedLabelStyle: const TextStyle(fontSize: 14),
+            unselectedLabelStyle: const TextStyle(fontSize: 14),
+            currentIndex: _selectedIndex,
+            onTap: _onItemTapped,
+            items: barItems
+                .map((item) => BottomNavigationBarItem(
+                      icon: assetImage(item["iconPath"], iconSize, iconSize),
+                      activeIcon: assetImage(item["activeIconPath"], iconSize, iconSize),
+                      label: item["label"],
+                    ))
+                .toList(),
+          ),
         ),
-        bottomNavigationBar: BottomNavigationBar(
-          iconSize: 24,
-          enableFeedback: false,
-          showUnselectedLabels: true,
-          backgroundColor: Colors.white,
-          type: BottomNavigationBarType.fixed,
-          unselectedItemColor: Colors.black87,
-          selectedItemColor: CommonStyle.themeColor,
-          selectedLabelStyle: const TextStyle(fontSize: 14),
-          unselectedLabelStyle: const TextStyle(fontSize: 14),
-          items: [
-            BottomNavigationBarItem(
-                icon: assetImage('images/ic_home.png', 30, 30),
-                activeIcon: assetImage('images/ic_home_active.png', 30, 30),
-                label: MallLocalizations.i18n(context).tab_main_home),
-            BottomNavigationBarItem(
-                icon: assetImage('images/ic_category.png', 30, 30),
-                activeIcon: assetImage('images/ic_category_active.png', 30, 30),
-                label: MallLocalizations.i18n(context).tab_main_category),
-            BottomNavigationBarItem(
-                icon: assetImage('images/ic_cart.png', 30, 30),
-                activeIcon: assetImage('images/ic_cart_active.png', 30, 30),
-                label: MallLocalizations.i18n(context).tab_main_cart),
-            BottomNavigationBarItem(
-                icon: assetImage('images/ic_mine.png', 30, 30),
-                activeIcon: assetImage("images/ic_mine_active.png", 30, 30),
-                label: MallLocalizations.i18n(context).tab_main_mine)
-          ],
-          currentIndex: _selectedIndex,
-          onTap: _onItemTapped,
-        ),
-      )),
+      ),
     );
   }
 }

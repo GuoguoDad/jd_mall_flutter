@@ -6,7 +6,7 @@ import 'package:jd_mall_flutter/config/env_config.dart';
 
 class MineApi {
   static Future queryInfo() async {
-    var res = await httpManager.get('${GlobalConfigs().get(EnvKey.host.value)}/mine/queryMineInfo');
+    var res = await httpManager.get('${GlobalConfigs().get(EnvEnum.host.value)}/mine/queryMineInfo');
     if (res?.code != '0') {
       return null;
     }
@@ -14,8 +14,8 @@ class MineApi {
   }
 
   static Future queryRecommendList(int currentPage, int pageSize) async {
-    var res = await httpManager.post('${GlobalConfigs().get(EnvKey.host.value)}/mine/queryRecommendList',
-        params: {"currentPage": currentPage, "pageSize": pageSize});
+    var res = await httpManager
+        .post('${GlobalConfigs().get(EnvEnum.host.value)}/mine/queryRecommendList', params: {"currentPage": currentPage, "pageSize": pageSize});
     if (res?.code != '0') {
       return null;
     }

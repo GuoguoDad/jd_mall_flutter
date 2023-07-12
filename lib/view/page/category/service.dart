@@ -6,7 +6,7 @@ import 'package:jd_mall_flutter/config/env_config.dart';
 
 class CategoryApi {
   static Future queryCategoryInfo() async {
-    var res = await httpManager.get('${GlobalConfigs().get(EnvKey.host.value)}/category/list');
+    var res = await httpManager.get('${GlobalConfigs().get(EnvEnum.host.value)}/category/list');
     if (res?.code != '0') {
       return null;
     }
@@ -14,8 +14,7 @@ class CategoryApi {
   }
 
   static Future querySecondGroupCategoryInfo(String categoryId) async {
-    var res = await httpManager
-        .post('${GlobalConfigs().get(EnvKey.host.value)}/category/queryContentByCategory', params: {"categoryId": categoryId});
+    var res = await httpManager.post('${GlobalConfigs().get(EnvEnum.host.value)}/category/queryContentByCategory', params: {"categoryId": categoryId});
     if (res?.code != '0') {
       return null;
     }

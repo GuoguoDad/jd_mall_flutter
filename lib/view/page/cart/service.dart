@@ -6,7 +6,7 @@ import 'package:jd_mall_flutter/config/env_config.dart';
 
 class CartApi {
   static Future queryCartGoods() async {
-    var res = await httpManager.post('${GlobalConfigs().get(EnvKey.host.value)}/cart/queryCartGoodsList');
+    var res = await httpManager.post('${GlobalConfigs().get(EnvEnum.host.value)}/cart/queryCartGoodsList');
     if (res?.code != '0') {
       return null;
     }
@@ -14,8 +14,8 @@ class CartApi {
   }
 
   static Future queryGoodsListByPage(int currentPage, int pageSize) async {
-    var res = await httpManager.post('${GlobalConfigs().get(EnvKey.host.value)}/cart/queryMaybeLikeList',
-        params: {"currentPage": currentPage, "pageSize": pageSize});
+    var res = await httpManager
+        .post('${GlobalConfigs().get(EnvEnum.host.value)}/cart/queryMaybeLikeList', params: {"currentPage": currentPage, "pageSize": pageSize});
     if (res?.code != '0') {
       return null;
     }

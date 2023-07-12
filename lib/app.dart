@@ -2,13 +2,8 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
+import 'package:jd_mall_flutter/routes.dart';
 import 'package:jd_mall_flutter/view/main/main_page.dart';
-import 'package:jd_mall_flutter/view/page/detail/detail_page.dart';
-import 'package:jd_mall_flutter/view/page/example/Interlaced_animation.dart';
-import 'package:jd_mall_flutter/view/page/example/breathing_method.dart';
-import 'package:jd_mall_flutter/view/page/example/snow_man.dart';
-import 'package:jd_mall_flutter/view/page/order/generate/generate_order.dart';
-import 'package:jd_mall_flutter/view/vebview/webview_page.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
 import 'package:jd_mall_flutter/common/event/http_error_event.dart';
 import 'package:jd_mall_flutter/common/event/index.dart';
@@ -21,59 +16,49 @@ class MallApp extends StatefulWidget {
   const MallApp({super.key});
 
   @override
-  State<StatefulWidget> createState() {
-    return _FlutterReduxMallApp();
-  }
+  State<StatefulWidget> createState() => _FlutterReduxMallApp();
 }
 
 class _FlutterReduxMallApp extends State<MallApp> with HttpErrorListener {
   @override
   Widget build(BuildContext context) {
     return RefreshConfiguration(
-        footerTriggerDistance: 15,
-        dragSpeedRatio: 0.91,
-        headerTriggerDistance: 88 + getStatusHeight(context),
-        headerBuilder: () => ClassicHeader(
-              spacing: 10,
-              height: 68 + getStatusHeight(context),
-            ),
-        footerBuilder: () => const ClassicFooter(),
-        enableLoadingWhenNoData: false,
-        enableRefreshVibrate: false,
-        enableLoadMoreVibrate: false,
-        enableBallisticLoad: true,
-        child: MaterialApp(
-          navigatorKey: navKey,
-          theme: ThemeData(
-            brightness: Brightness.light,
-            splashColor: Colors.transparent,
-            highlightColor: Colors.transparent,
-          ),
-          initialRoute: MainPage.name,
-          builder: EasyLoading.init(),
-          routes: {
-            MainPage.name: (context) => const MainPage(),
-            DetailPage.name: (context) => const DetailPage(),
-            GenerateOrder.name: (context) => const GenerateOrder(),
-            WebViewPage.name: (context) => const WebViewPage(),
-            //example
-            InterlacedAnimationDemo.name: (context) => const InterlacedAnimationDemo(),
-            BreathingMethod.name: (context) => const BreathingMethod(),
-            SnowManDemo.name: (context) => const SnowManDemo(),
-          },
-          debugShowCheckedModeBanner: false,
-          localizationsDelegates: [
-            RefreshLocalizations.delegate,
-            GlobalWidgetsLocalizations.delegate,
-            GlobalMaterialLocalizations.delegate,
-            GlobalCupertinoLocalizations.delegate,
-            MallLocalizationsDelegate.delegate
-          ],
-          supportedLocales: const [
-            Locale('en', 'US'), // 美国英语
-            Locale('zh', 'CN'), // 中文简体
-          ],
-        ));
+      footerTriggerDistance: 15,
+      dragSpeedRatio: 0.91,
+      headerTriggerDistance: 88 + getStatusHeight(context),
+      headerBuilder: () => ClassicHeader(
+        spacing: 10,
+        height: 68 + getStatusHeight(context),
+      ),
+      footerBuilder: () => const ClassicFooter(),
+      enableLoadingWhenNoData: false,
+      enableRefreshVibrate: false,
+      enableLoadMoreVibrate: false,
+      enableBallisticLoad: true,
+      child: MaterialApp(
+        navigatorKey: navKey,
+        theme: ThemeData(
+          brightness: Brightness.light,
+          splashColor: Colors.transparent,
+          highlightColor: Colors.transparent,
+        ),
+        initialRoute: MainPage.name,
+        builder: EasyLoading.init(),
+        routes: routesMap,
+        debugShowCheckedModeBanner: false,
+        localizationsDelegates: [
+          RefreshLocalizations.delegate,
+          GlobalWidgetsLocalizations.delegate,
+          GlobalMaterialLocalizations.delegate,
+          GlobalCupertinoLocalizations.delegate,
+          MallLocalizationsDelegate.delegate
+        ],
+        supportedLocales: const [
+          // Locale('en', 'US'), // 美国英语
+          Locale('zh', 'CN'), // 中文简体
+        ],
+      ),
+    );
   }
 }
 
