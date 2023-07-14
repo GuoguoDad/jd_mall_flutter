@@ -22,12 +22,38 @@ class MessageLookup extends MessageLookupByLibrary {
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
+        "activityZone": MessageLookupByLibrary.simpleMessage("activity zone"),
+        "add2Cart": MessageLookupByLibrary.simpleMessage("add to cart"),
+        "all": MessageLookupByLibrary.simpleMessage("all"),
+        "allEvaluations":
+            MessageLookupByLibrary.simpleMessage("all evaluations"),
+        "amountTo": MessageLookupByLibrary.simpleMessage("amount to"),
         "appName": MessageLookupByLibrary.simpleMessage("Mall"),
         "author": MessageLookupByLibrary.simpleMessage("GuoguoDad"),
+        "browsingHistory":
+            MessageLookupByLibrary.simpleMessage("Browsing History"),
+        "carriage": MessageLookupByLibrary.simpleMessage("carriage"),
+        "colorToChoose":
+            MessageLookupByLibrary.simpleMessage("colors to choose"),
+        "commodity": MessageLookupByLibrary.simpleMessage("commodity"),
         "connectRefused": MessageLookupByLibrary.simpleMessage(
             "[Connection refused]. Please switch networks or try again later "),
+        "couponPurchase":
+            MessageLookupByLibrary.simpleMessage("coupon purchase"),
+        "creditValue": MessageLookupByLibrary.simpleMessage("Credit Value"),
+        "customerService":
+            MessageLookupByLibrary.simpleMessage("customer service"),
+        "defaultAddress": MessageLookupByLibrary.simpleMessage(
+            "delivery to: jiang shu sheng nan jin shi jiang ning qu fen zhe lu xxx hao xxx xiao qu"),
+        "defaultSpecifications": MessageLookupByLibrary.simpleMessage(
+            "black/silvery，42，choose service"),
+        "detail": MessageLookupByLibrary.simpleMessage("detail"),
+        "evaluate": MessageLookupByLibrary.simpleMessage("evaluate"),
+        "filter": MessageLookupByLibrary.simpleMessage("filter"),
+        "integral": MessageLookupByLibrary.simpleMessage("integral"),
         "loadMoreNot": MessageLookupByLibrary.simpleMessage("nothing"),
         "loadMoreText": MessageLookupByLibrary.simpleMessage("loading"),
+        "message": MessageLookupByLibrary.simpleMessage("message"),
         "networkError": MessageLookupByLibrary.simpleMessage("network error"),
         "networkError401": MessageLookupByLibrary.simpleMessage("Http 401"),
         "networkError403": MessageLookupByLibrary.simpleMessage("Http 403"),
@@ -38,9 +64,29 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Http timeout"),
         "networkErrorUnknown":
             MessageLookupByLibrary.simpleMessage("Http unknown error"),
+        "priceReduction": MessageLookupByLibrary.simpleMessage("reduction"),
+        "productCollection":
+            MessageLookupByLibrary.simpleMessage("Product Collection"),
+        "recommend": MessageLookupByLibrary.simpleMessage("recommend"),
+        "returnAfterSales":
+            MessageLookupByLibrary.simpleMessage("return/after sales"),
+        "scan": MessageLookupByLibrary.simpleMessage("scan"),
+        "searchInputTip":
+            MessageLookupByLibrary.simpleMessage("this is a search box"),
+        "select": MessageLookupByLibrary.simpleMessage("select"),
+        "selectAll": MessageLookupByLibrary.simpleMessage("select all"),
+        "sendTo": MessageLookupByLibrary.simpleMessage("send to"),
+        "store": MessageLookupByLibrary.simpleMessage("store"),
+        "storeFollow": MessageLookupByLibrary.simpleMessage("Store Follow"),
+        "storeSelection":
+            MessageLookupByLibrary.simpleMessage("store selection"),
         "tabMainCart": MessageLookupByLibrary.simpleMessage("cart"),
         "tabMainCategory": MessageLookupByLibrary.simpleMessage("category"),
         "tabMainHome": MessageLookupByLibrary.simpleMessage("home"),
-        "tabMainMine": MessageLookupByLibrary.simpleMessage("mine")
+        "tabMainMine": MessageLookupByLibrary.simpleMessage("mine"),
+        "toBeEvaluated": MessageLookupByLibrary.simpleMessage("unEvaluated"),
+        "toBeReceived": MessageLookupByLibrary.simpleMessage("unReceived"),
+        "toSettle": MessageLookupByLibrary.simpleMessage("to settle"),
+        "unpaid": MessageLookupByLibrary.simpleMessage("unpaid")
       };
 }

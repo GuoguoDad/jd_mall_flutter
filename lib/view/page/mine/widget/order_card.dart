@@ -6,6 +6,8 @@ import 'package:jd_mall_flutter/store/app_state.dart';
 import 'package:jd_mall_flutter/component/image/asset_image.dart';
 import 'package:jd_mall_flutter/view/page/mine/redux/mine_page_state.dart';
 
+import 'package:jd_mall_flutter/generated/l10n.dart';
+
 Widget orderCard(BuildContext context) {
   return StoreConnector<AppState, MinePageState>(
     converter: (store) {
@@ -22,19 +24,19 @@ Widget orderCard(BuildContext context) {
               Flex(
                 direction: Axis.horizontal,
                 children: [
-                  horizontalItem("images/ic_goods_star.png", "商品收藏0"),
+                  horizontalItem("images/ic_goods_star.png", "${S.of(context).productCollection}0"),
                   line(1, 12),
-                  horizontalItem("images/ic_store_focus.png", "店铺关注16"),
+                  horizontalItem("images/ic_store_focus.png", "${S.of(context).storeFollow}16"),
                   line(1, 12),
-                  horizontalItem("images/ic_look_history.png", "浏览记录20")
+                  horizontalItem("images/ic_look_history.png", "${S.of(context).browsingHistory}20")
                 ],
               ),
               line(getScreenWidth(context) - 50, 1),
               Flex(direction: Axis.horizontal, children: [
-                verticalItem("images/ic_todo_pay.png", "待付款"),
-                verticalItem("images/ic_todo_get.png", "待收货"),
-                verticalItem("images/ic_todo_evaluate.png", "待评价"),
-                verticalItem("images/ic_todo_exchange.png", "退换/售后")
+                verticalItem("images/ic_todo_pay.png", S.of(context).unpaid),
+                verticalItem("images/ic_todo_get.png", S.of(context).toBeReceived),
+                verticalItem("images/ic_todo_evaluate.png", S.of(context).toBeEvaluated),
+                verticalItem("images/ic_todo_exchange.png", S.of(context).returnAfterSales)
               ])
             ],
           ));

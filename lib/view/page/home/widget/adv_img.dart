@@ -7,7 +7,7 @@ import 'package:jd_mall_flutter/view/page/home/redux/home_page_state.dart';
 import 'package:jd_mall_flutter/common/util/screen_util.dart';
 
 import 'package:jd_mall_flutter/view/vebview/webview_page.dart';
-import 'package:jd_mall_flutter/view/vebview/webview_type.dart';
+import 'package:jd_mall_flutter/view/vebview/type.dart';
 
 Widget advBanner(BuildContext context) {
   return StoreConnector<AppState, HomePageState>(
@@ -16,8 +16,8 @@ Widget advBanner(BuildContext context) {
     },
     builder: (context, state) {
       return GestureDetector(
-          onTap: () => Navigator.of(context).pushNamed(WebViewPage.name,
-              arguments: WebViewPageArguments("https://pro.m.jd.com/mall/active/2WrXYwmYpiy7EpWjDETSVyhXfLCb/index.html")),
+          onTap: () => Navigator.of(context)
+              .pushNamed(WebViewPage.name, arguments: WebViewPageArguments("https://pro.m.jd.com/mall/active/2WrXYwmYpiy7EpWjDETSVyhXfLCb/index.html")),
           child: Container(
             color: Colors.white,
             padding: const EdgeInsets.all(0),

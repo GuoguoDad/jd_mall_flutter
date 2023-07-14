@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:jd_mall_flutter/common/util/screen_util.dart';
 import 'package:jd_mall_flutter/component/loading_widget.dart';
-import 'package:jd_mall_flutter/view/vebview/webview_type.dart';
+import 'package:jd_mall_flutter/view/vebview/type.dart';
 import 'package:jd_mall_flutter/view/vebview/widget/floating_header.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 

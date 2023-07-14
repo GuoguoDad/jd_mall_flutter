@@ -9,9 +9,9 @@ import 'package:jd_mall_flutter/models/cart_goods.dart';
 import 'package:jd_mall_flutter/store/app_state.dart';
 import 'package:flutter_group_list_view/flutter_group_list_view.dart';
 import 'package:jd_mall_flutter/view/page/cart/redux/cart_page_action.dart';
-
-import '../../../vebview/webview_page.dart';
-import '../../../vebview/webview_type.dart';
+import 'package:jd_mall_flutter/view/vebview/webview_page.dart';
+import 'package:jd_mall_flutter/view/vebview/type.dart';
+import 'package:jd_mall_flutter/generated/l10n.dart';
 
 Widget cartGoods(BuildContext context) {
   return StoreBuilder<AppState>(builder: (context, store) {
@@ -42,24 +42,24 @@ Widget cartGoods(BuildContext context) {
                 width: 28,
                 margin: const EdgeInsets.only(left: 12),
                 child: Checkbox(
-                    value: isSelectAll,
-                    shape: const CircleBorder(),
-                    activeColor: Colors.red,
-                    onChanged: (bool? va) {
-                      store.dispatch(SelectStoreGoodsAction(cartGoods[section].storeCode!, !isSelectAll));
-                    }),
+                  value: isSelectAll,
+                  shape: const CircleBorder(),
+                  activeColor: Colors.red,
+                  onChanged: (bool? va) {
+                    store.dispatch(SelectStoreGoodsAction(cartGoods[section].storeCode!, !isSelectAll));
+                  },
+                ),
               ),
               assetImage("images/ic_store.png", 24, 24),
-              Container(
-                  margin: const EdgeInsets.only(left: 6), child: Text(cartGoods[section].storeName!, style: const TextStyle(fontSize: 16))),
+              Container(margin: const EdgeInsets.only(left: 6), child: Text(cartGoods[section].storeName!, style: const TextStyle(fontSize: 16))),
               GestureDetector(
-                  onTap: () {
-                    if (cartGoods[section].h5url != null) {
-                      Navigator.of(context)
-                          .pushNamed(WebViewPage.name, arguments: WebViewPageArguments(cartGoods[section].h5url.toString()));
-                    }
-                  },
-                  child: assetImage("images/ic_arrow_right.png", 20, 20))
+                onTap: () {
+                  if (cartGoods[section].h5url != null) {
+                    Navigator.of(context).pushNamed(WebViewPage.name, arguments: WebViewPageArguments(cartGoods[section].h5url.toString()));
+                  }
+                },
+                child: assetImage("images/ic_arrow_right.png", 20, 20),
+              )
             ],
           ),
         );
@@ -76,12 +76,13 @@ Widget cartGoods(BuildContext context) {
                 width: 28,
                 margin: const EdgeInsets.only(left: 12),
                 child: Checkbox(
-                    value: selectList.contains(cartGoods[indexPath.section].goodsList![indexPath.index].code!),
-                    shape: const CircleBorder(),
-                    activeColor: Colors.red,
-                    onChanged: (bool? va) {
-                      store.dispatch(SelectCartGoodsAction(cartGoods[indexPath.section].goodsList![indexPath.index].code!));
-                    }),
+                  value: selectList.contains(cartGoods[indexPath.section].goodsList![indexPath.index].code!),
+                  shape: const CircleBorder(),
+                  activeColor: Colors.red,
+                  onChanged: (bool? va) {
+                    store.dispatch(SelectCartGoodsAction(cartGoods[indexPath.section].goodsList![indexPath.index].code!));
+                  },
+                ),
               ),
               Container(
                 width: 92,
@@ -95,58 +96,59 @@ Widget cartGoods(BuildContext context) {
                 ),
               ),
               Expanded(
-                  child: Container(
-                      padding: const EdgeInsets.all(10),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(
-                            cartGoods[indexPath.section].goodsList![indexPath.index].description!,
-                            maxLines: 2,
-                            overflow: TextOverflow.ellipsis,
-                            style: TextStyle(color: CommonStyle.color777677),
-                          ),
-                          Container(
-                            padding: const EdgeInsets.only(left: 5, right: 5, top: 2, bottom: 2),
-                            margin: const EdgeInsets.only(top: 4),
-                            decoration: BoxDecoration(
-                              color: CommonStyle.colorF1F1F1,
-                              borderRadius: const BorderRadius.all(Radius.circular(6)),
-                            ),
-                            child: Text(
-                              "黑色/银色，42，选服务",
-                              style: TextStyle(fontSize: 12, color: CommonStyle.color969798),
-                            ),
-                          ),
-                          Container(
-                              margin: const EdgeInsets.only(top: 4),
-                              child: Row(
-                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                children: [
-                                  Text(
-                                    "￥${cartGoods[indexPath.section].goodsList![indexPath.index].price!}",
-                                    style: const TextStyle(fontSize: 20, color: Colors.red, fontWeight: FontWeight.w500),
-                                  ),
-                                  StepperInt(
-                                    value: cartGoods[indexPath.section].goodsList![indexPath.index].num!,
-                                    size: 25,
-                                    style: StepperStyle(
-                                      foregroundColor: Colors.black87,
-                                      activeForegroundColor: Colors.black87,
-                                      activeBackgroundColor: Colors.white,
-                                      border: Border.all(color: Colors.grey),
-                                      elevation: 0,
-                                      buttonAspectRatio: 1.5,
-                                    ),
-                                    didChangeCount: (int value) {
-                                      store.dispatch(
-                                          ChangeCartGoodsNumAction(cartGoods[indexPath.section].goodsList![indexPath.index].code!, value));
-                                    },
-                                  )
-                                ],
-                              ))
-                        ],
-                      )))
+                child: Container(
+                  padding: const EdgeInsets.all(10),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        cartGoods[indexPath.section].goodsList![indexPath.index].description!,
+                        maxLines: 2,
+                        overflow: TextOverflow.ellipsis,
+                        style: TextStyle(color: CommonStyle.color777677),
+                      ),
+                      Container(
+                        padding: const EdgeInsets.only(left: 5, right: 5, top: 2, bottom: 2),
+                        margin: const EdgeInsets.only(top: 4),
+                        decoration: BoxDecoration(
+                          color: CommonStyle.colorF1F1F1,
+                          borderRadius: const BorderRadius.all(Radius.circular(6)),
+                        ),
+                        child: Text(
+                          S.of(context).defaultSpecifications,
+                          style: TextStyle(fontSize: 12, color: CommonStyle.color969798),
+                        ),
+                      ),
+                      Container(
+                          margin: const EdgeInsets.only(top: 4),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Text(
+                                "￥${cartGoods[indexPath.section].goodsList![indexPath.index].price!}",
+                                style: const TextStyle(fontSize: 20, color: Colors.red, fontWeight: FontWeight.w500),
+                              ),
+                              StepperInt(
+                                value: cartGoods[indexPath.section].goodsList![indexPath.index].num!,
+                                size: 25,
+                                style: StepperStyle(
+                                  foregroundColor: Colors.black87,
+                                  activeForegroundColor: Colors.black87,
+                                  activeBackgroundColor: Colors.white,
+                                  border: Border.all(color: Colors.grey),
+                                  elevation: 0,
+                                  buttonAspectRatio: 1.5,
+                                ),
+                                didChangeCount: (int value) {
+                                  store.dispatch(ChangeCartGoodsNumAction(cartGoods[indexPath.section].goodsList![indexPath.index].code!, value));
+                                },
+                              )
+                            ],
+                          ))
+                    ],
+                  ),
+                ),
+              )
             ],
           ),
         );

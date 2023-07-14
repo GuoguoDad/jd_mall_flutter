@@ -7,6 +7,7 @@ import 'package:jd_mall_flutter/store/app_state.dart';
 import 'package:jd_mall_flutter/component/image/asset_image.dart';
 import 'package:jd_mall_flutter/component/group_grid_view.dart';
 import 'package:jd_mall_flutter/common/style/common_style.dart';
+import 'package:jd_mall_flutter/generated/l10n.dart';
 
 double imgWidth = 60;
 double headWidth = 40;
@@ -20,57 +21,62 @@ Widget appraiseInfo(BuildContext context, Key key) {
     DetailInfo? detailInfo = store.state.detailPageState.goodsDetailRes.detailInfo;
 
     Widget appraiseList = GroupGridView(
-        padding: EdgeInsets.zero,
-        physics: const NeverScrollableScrollPhysics(),
-        gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 4, mainAxisSpacing: 5, crossAxisSpacing: 5),
-        sectionCount: list.length,
-        itemInSectionCount: (int section) => list[section].imgList!.length,
-        headerForSection: (section) => Container(
-            margin: const EdgeInsets.only(top: 10, bottom: 10),
-            child: Column(
+      padding: EdgeInsets.zero,
+      physics: const NeverScrollableScrollPhysics(),
+      gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 4, mainAxisSpacing: 5, crossAxisSpacing: 5),
+      sectionCount: list.length,
+      itemInSectionCount: (int section) => list[section].imgList!.length,
+      headerForSection: (section) => Container(
+        margin: const EdgeInsets.only(top: 10, bottom: 10),
+        child: Column(
+          children: [
+            Row(
+              mainAxisAlignment: MainAxisAlignment.start,
               children: [
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  children: [
-                    ClipRRect(
-                        borderRadius: BorderRadius.circular(40),
-                        child: CachedNetworkImage(
-                          height: headWidth,
-                          width: headWidth,
-                          imageUrl: list[section].headerUrl!,
-                          placeholder: (context, url) => assetImage("images/default.png", headWidth, headWidth),
-                          errorWidget: (context, url, error) => assetImage("images/default.png", headWidth, headWidth),
-                          fit: BoxFit.fill,
-                        )),
-                    Container(
-                        margin: const EdgeInsets.only(left: 10), child: Text(list[section].userName!, style: const TextStyle(fontSize: 16)))
-                  ],
+                ClipRRect(
+                  borderRadius: BorderRadius.circular(40),
+                  child: CachedNetworkImage(
+                    height: headWidth,
+                    width: headWidth,
+                    imageUrl: list[section].headerUrl!,
+                    placeholder: (context, url) => assetImage("images/default.png", headWidth, headWidth),
+                    errorWidget: (context, url, error) => assetImage("images/default.png", headWidth, headWidth),
+                    fit: BoxFit.fill,
+                  ),
                 ),
                 Container(
-                  alignment: Alignment.centerLeft,
-                  margin: EdgeInsets.only(top: 10),
-                  child: Text(list[section].content!, style: TextStyle(fontSize: 16)),
+                  margin: const EdgeInsets.only(left: 10),
+                  child: Text(list[section].userName!, style: const TextStyle(fontSize: 16)),
                 )
               ],
-            )),
-        itemInSectionBuilder: (BuildContext context, IndexPath indexPath) {
-          return SizedBox(
-            width: imgWidth,
-            height: imgWidth,
-            child: CachedNetworkImage(
-              height: imgWidth,
-              width: imgWidth,
-              imageUrl: list[indexPath.section].imgList![indexPath.index],
-              placeholder: (context, url) => assetImage("images/default.png", imgWidth, imgWidth),
-              errorWidget: (context, url, error) => assetImage("images/default.png", imgWidth, imgWidth),
-              fit: BoxFit.fill,
             ),
-          );
-        },
-        footerForSection: (section) => Container(
-              margin: const EdgeInsets.only(top: 5, bottom: 5),
-              child: Text(list[section].color!, style: const TextStyle(fontSize: 16)),
-            ));
+            Container(
+              alignment: Alignment.centerLeft,
+              margin: const EdgeInsets.only(top: 10),
+              child: Text(list[section].content!, style: const TextStyle(fontSize: 16)),
+            )
+          ],
+        ),
+      ),
+      itemInSectionBuilder: (BuildContext context, IndexPath indexPath) {
+        return SizedBox(
+          width: imgWidth,
+          height: imgWidth,
+          child: CachedNetworkImage(
+            height: imgWidth,
+            width: imgWidth,
+            imageUrl: list[indexPath.section].imgList![indexPath.index],
+            placeholder: (context, url) => assetImage("images/default.png", imgWidth, imgWidth),
+            errorWidget: (context, url, error) => assetImage("images/default.png", imgWidth, imgWidth),
+            fit: BoxFit.fill,
+          ),
+        );
+      },
+      footerForSection: (section) => Container(
+        margin: const EdgeInsets.only(top: 5, bottom: 5),
+        child: Text(list[section].color!, style: const TextStyle(fontSize: 16)),
+      ),
+    );
 
     return SliverToBoxAdapter(
       child: Container(
@@ -90,9 +96,9 @@ Widget appraiseInfo(BuildContext context, Key key) {
                 Container(
                   key: key,
                   margin: const EdgeInsets.only(bottom: 10),
-                  child: const Text(
-                    "评价",
-                    style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                  child: Text(
+                    S.of(context).evaluate,
+                    style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
                   ),
                 ),
                 SizedBox(
@@ -106,19 +112,21 @@ Widget appraiseInfo(BuildContext context, Key key) {
                   margin: EdgeInsets.only(left: getScreenWidth(context) / 2 - 80),
                   alignment: Alignment.center,
                   decoration: BoxDecoration(
-                      borderRadius: const BorderRadius.all(Radius.circular(30)), border: Border.all(color: Colors.grey, width: 1)),
-                  child: const Text("查看全部评价"),
+                    borderRadius: const BorderRadius.all(Radius.circular(30)),
+                    border: Border.all(color: Colors.grey, width: 1),
+                  ),
+                  child: Text(S.of(context).allEvaluations),
                 )
               ],
             ),
           ),
-          itemCard("活动专区", detailInfo?.hdzq ?? "", 260),
+          itemCard(S.of(context).activityZone, detailInfo?.hdzq ?? "", 260),
           Container(
             height: 10,
             width: screenWidth,
             color: CommonStyle.colorF5F5F5,
           ),
-          itemCard("店内优选", detailInfo?.dnyx ?? "", 500)
+          itemCard(S.of(context).storeSelection, detailInfo?.dnyx ?? "", 500)
         ]),
       ),
     );
@@ -127,30 +135,31 @@ Widget appraiseInfo(BuildContext context, Key key) {
 
 Widget itemCard(String title, String url, double imgHeight) {
   return Container(
-      width: screenWidth - 20,
-      padding: const EdgeInsets.all(10),
-      decoration: const BoxDecoration(
-        color: Colors.white,
-        borderRadius: BorderRadius.all(Radius.circular(8)),
-      ),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Container(
-            margin: const EdgeInsets.only(bottom: 5),
-            child: Text(
-              title,
-              style: TextStyle(color: CommonStyle.color545454),
-            ),
+    width: screenWidth - 20,
+    padding: const EdgeInsets.all(10),
+    decoration: const BoxDecoration(
+      color: Colors.white,
+      borderRadius: BorderRadius.all(Radius.circular(8)),
+    ),
+    child: Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Container(
+          margin: const EdgeInsets.only(bottom: 5),
+          child: Text(
+            title,
+            style: TextStyle(color: CommonStyle.color545454),
           ),
-          CachedNetworkImage(
-            height: imgHeight,
-            width: screenWidth - 40,
-            imageUrl: url,
-            placeholder: (context, url) => assetImage("images/default.png", imgWidth, imgWidth),
-            errorWidget: (context, url, error) => assetImage("images/default.png", imgWidth, imgWidth),
-            fit: BoxFit.fill,
-          )
-        ],
-      ));
+        ),
+        CachedNetworkImage(
+          height: imgHeight,
+          width: screenWidth - 40,
+          imageUrl: url,
+          placeholder: (context, url) => assetImage("images/default.png", imgWidth, imgWidth),
+          errorWidget: (context, url, error) => assetImage("images/default.png", imgWidth, imgWidth),
+          fit: BoxFit.fill,
+        )
+      ],
+    ),
+  );
 }

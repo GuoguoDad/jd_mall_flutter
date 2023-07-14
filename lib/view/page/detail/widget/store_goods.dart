@@ -11,16 +11,18 @@ double screenWidth = 0;
 Widget storeGoods(BuildContext context) {
   screenWidth = getScreenWidth(context);
 
-  return StoreBuilder<AppState>(builder: (context, store) {
-    double width = (getScreenWidth(context) - 20) / 2;
-    List<GoodsList>? goodsList = store.state.detailPageState.goodsPageInfo.goodsList ?? [];
+  return StoreBuilder<AppState>(
+    builder: (context, store) {
+      double width = (getScreenWidth(context) - 20) / 2;
+      List<GoodsList>? goodsList = store.state.detailPageState.goodsPageInfo.goodsList ?? [];
 
-    return SliverMasonryGrid.count(
-      childCount: goodsList.length,
-      crossAxisCount: 2,
-      mainAxisSpacing: 10,
-      crossAxisSpacing: 0,
-      itemBuilder: (context, index) => goodsItem(context, goodsList[index], width),
-    );
-  });
+      return SliverMasonryGrid.count(
+        childCount: goodsList.length,
+        crossAxisCount: 2,
+        mainAxisSpacing: 10,
+        crossAxisSpacing: 0,
+        itemBuilder: (context, index) => goodsItem(context, goodsList[index], width),
+      );
+    },
+  );
 }

@@ -15,23 +15,25 @@ Widget imgSlider(BuildContext context) {
   double imgHeight = getScreenHeight(context) / 2 - statusHeight - getBottomSpace(context);
   double screenWidth = getScreenWidth(context);
 
-  return StoreConnector<AppState, DetailPageState>(converter: (store) {
-    return store.state.detailPageState;
-  }, builder: (context, state) {
-    List<String> imgList = state.selectInfo.imgList ?? [];
+  return StoreConnector<AppState, DetailPageState>(
+    converter: (store) {
+      return store.state.detailPageState;
+    },
+    builder: (context, state) {
+      List<String> imgList = state.selectInfo.imgList ?? [];
 
-    final List<Widget> sliders = imgList
-        .map((url) => CachedNetworkImage(
-              height: imgHeight,
-              width: screenWidth,
-              imageUrl: url,
-              placeholder: (context, url) => assetImage("images/default.png", screenWidth, imgHeight),
-              errorWidget: (context, url, error) => assetImage("images/default.png", screenWidth, imgHeight),
-              fit: BoxFit.fill,
-            ))
-        .toList();
+      final List<Widget> sliders = imgList
+          .map((url) => CachedNetworkImage(
+                height: imgHeight,
+                width: screenWidth,
+                imageUrl: url,
+                placeholder: (context, url) => assetImage("images/default.png", screenWidth, imgHeight),
+                errorWidget: (context, url, error) => assetImage("images/default.png", screenWidth, imgHeight),
+                fit: BoxFit.fill,
+              ))
+          .toList();
 
-    return Container(
+      return Container(
         height: imgHeight,
         width: getScreenWidth(context),
         margin: EdgeInsets.only(top: statusHeight),
@@ -44,13 +46,16 @@ Widget imgSlider(BuildContext context) {
             enableInfiniteScroll: true,
             autoPlayInterval: const Duration(seconds: 12),
             slideIndicator: CircularWaveSlideIndicator(
-                itemSpacing: 14,
-                indicatorRadius: 4,
-                indicatorBorderWidth: 0,
-                currentIndicatorColor: CommonStyle.themeColor,
-                indicatorBackgroundColor: Colors.grey),
+              itemSpacing: 14,
+              indicatorRadius: 4,
+              indicatorBorderWidth: 0,
+              currentIndicatorColor: CommonStyle.themeColor,
+              indicatorBackgroundColor: Colors.grey,
+            ),
           ),
           items: sliders,
-        ));
-  });
+        ),
+      );
+    },
+  );
 }

@@ -3,6 +3,7 @@ import 'package:jd_mall_flutter/common/util/screen_util.dart';
 import 'package:jd_mall_flutter/component/image/asset_image.dart';
 import 'package:jd_mall_flutter/common/util/color_util.dart';
 import 'package:jd_mall_flutter/component/linear_button.dart';
+import 'package:jd_mall_flutter/generated/l10n.dart';
 
 Widget fixedBottom(BuildContext context) {
   double space = getBottomSpace(context);
@@ -19,9 +20,9 @@ Widget fixedBottom(BuildContext context) {
               crossAxisAlignment: CrossAxisAlignment.center,
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
-                columnItem("images/detail/ic_store_red.png", "店铺"),
-                columnItem("images/detail/ic_customer_service.png", "客服"),
-                columnItem("images/detail/ic_cart.png", "购物车")
+                columnItem("images/detail/ic_store_red.png", S.of(context).store),
+                columnItem("images/detail/ic_customer_service.png", S.of(context).customerService),
+                columnItem("images/detail/ic_cart.png", S.of(context).tabMainCart)
               ],
             )),
         Expanded(
@@ -31,21 +32,23 @@ Widget fixedBottom(BuildContext context) {
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 LinearButton(
-                    width: 110,
-                    height: 48,
-                    btnName: "加入购物车",
-                    highlightColor: Colors.yellow,
-                    colors: [ColorUtil.hex2Color("#F2CD4A"), ColorUtil.hex2Color("#F2C54B")],
-                    borderRadius: const BorderRadius.all(Radius.circular(50)),
-                    onTap: () => print("=======")),
+                  width: 110,
+                  height: 48,
+                  btnName: S.of(context).add2Cart,
+                  highlightColor: Colors.yellow,
+                  colors: [ColorUtil.hex2Color("#F2CD4A"), ColorUtil.hex2Color("#F2C54B")],
+                  borderRadius: const BorderRadius.all(Radius.circular(50)),
+                  onTap: () => print("======="),
+                ),
                 LinearButton(
-                    width: 110,
-                    height: 48,
-                    btnName: "领券购买",
-                    highlightColor: Colors.red,
-                    colors: [ColorUtil.hex2Color("#E54B4E"), ColorUtil.hex2Color("#E34439")],
-                    borderRadius: const BorderRadius.all(Radius.circular(50)),
-                    onTap: () => print("======="))
+                  width: 110,
+                  height: 48,
+                  btnName: S.of(context).couponPurchase,
+                  highlightColor: Colors.red,
+                  colors: [ColorUtil.hex2Color("#E54B4E"), ColorUtil.hex2Color("#E34439")],
+                  borderRadius: const BorderRadius.all(Radius.circular(50)),
+                  onTap: () => print("======="),
+                )
               ],
             ))
       ],

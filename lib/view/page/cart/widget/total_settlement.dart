@@ -8,24 +8,30 @@ import 'package:jd_mall_flutter/store/app_state.dart';
 import 'package:jd_mall_flutter/view/page/cart/redux/cart_page_action.dart';
 import 'package:jd_mall_flutter/component/linear_button.dart';
 import 'package:jd_mall_flutter/view/page/order/generate/generate_order.dart';
+import 'package:jd_mall_flutter/generated/l10n.dart';
 
 Widget totalSettlement(BuildContext context) {
-  return StoreBuilder<AppState>(builder: (context, store) {
-    List<CartGoods> cartGoods = store.state.cartPageState.cartGoods;
-    List<String> selectList = store.state.cartPageState.selectCartGoodsList;
-    bool isSelect = isSelectAll(cartGoods, selectList);
+  return StoreBuilder<AppState>(
+    builder: (context, store) {
+      List<CartGoods> cartGoods = store.state.cartPageState.cartGoods;
+      List<String> selectList = store.state.cartPageState.selectCartGoodsList;
+      bool isSelect = isSelectAll(cartGoods, selectList);
 
-    TotalInfo totalInfo = calcPrice(cartGoods, selectList);
+      TotalInfo totalInfo = calcPrice(cartGoods, selectList);
 
-    return Container(
-      height: 58,
-      width: getScreenWidth(context),
-      decoration: BoxDecoration(
+      return Container(
+        height: 58,
+        width: getScreenWidth(context),
+        decoration: BoxDecoration(
           color: Colors.white,
-          border: Border(top: BorderSide(color: CommonStyle.colorE6E6E6, width: 0.5), bottom: BorderSide(color: CommonStyle.colorE6E6E6, width: 0.5))),
-      child: Row(
-        children: [
-          Expanded(
+          border: Border(
+            top: BorderSide(color: CommonStyle.colorE6E6E6, width: 0.5),
+            bottom: BorderSide(color: CommonStyle.colorE6E6E6, width: 0.5),
+          ),
+        ),
+        child: Row(
+          children: [
+            Expanded(
               flex: 1,
               child: Row(
                 children: [
@@ -33,41 +39,48 @@ Widget totalSettlement(BuildContext context) {
                     width: 28,
                     margin: const EdgeInsets.only(left: 12),
                     child: Checkbox(
-                        value: isSelect,
-                        shape: const CircleBorder(),
-                        activeColor: Colors.red,
-                        onChanged: (bool? va) {
-                          store.dispatch(SelectAllAction(!isSelect));
-                        }),
+                      value: isSelect,
+                      shape: const CircleBorder(),
+                      activeColor: Colors.red,
+                      onChanged: (bool? va) {
+                        store.dispatch(SelectAllAction(!isSelect));
+                      },
+                    ),
                   ),
-                  const Text("全选"),
+                  Text(S.of(context).selectAll),
                   Container(
                     margin: const EdgeInsets.only(left: 5),
-                    child: const Text("合计:"),
+                    child: Text("${S.of(context).amountTo}:"),
                   ),
-                  Text("￥${totalInfo.price}", style: const TextStyle(fontWeight: FontWeight.bold))
+                  Text(
+                    "￥${totalInfo.price}",
+                    style: const TextStyle(fontWeight: FontWeight.bold),
+                  )
                 ],
-              )),
-          Container(
-            width: 150,
-            height: 58,
-            alignment: Alignment.center,
-            child: LinearButton(
+              ),
+            ),
+            Container(
+              width: 150,
+              height: 58,
+              alignment: Alignment.center,
+              child: LinearButton(
                 width: 130,
                 height: 42,
-                btnName: '去结算(${totalInfo.num})',
+                btnName: '${S.of(context).toSettle}(${totalInfo.num})',
                 onTap: () {
                   if (selectList.isEmpty) {
                     EasyLoading.showInfo("您还没有选择商品哦", duration: const Duration(seconds: 2));
                     return;
                   }
                   Navigator.of(context).pushNamed(GenerateOrder.name);
-                }),
-          )
-        ],
-      ),
-    );
-  });
+                },
+              ),
+            )
+          ],
+        ),
+      );
+    },
+  );
 }
 
 bool isSelectAll(List<CartGoods> cartGoods, List<String> selectList) {

@@ -5,8 +5,9 @@ import 'package:jd_mall_flutter/common/style/common_style.dart';
 
 Widget probablyLikeImage(BuildContext context) {
   return SliverToBoxAdapter(
-      child: Container(
-    color: CommonStyle.colorF3F3F3,
-    child: assetImage('images/probably_like.png', getScreenWidth(context), 60),
-  ));
+    child: Container(
+      color: CommonStyle.colorF3F3F3,
+      child: assetImage('images/probably_like.png', getScreenWidth(context), 60),
+    ),
+  );
 }

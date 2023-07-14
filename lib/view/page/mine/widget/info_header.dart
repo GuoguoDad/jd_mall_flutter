@@ -34,39 +34,54 @@ Widget infoHeader(BuildContext context) {
     );
 
     Widget header = Positioned(
-        top: headerSize.top,
-        left: 0,
-        child: Container(
-            width: headerSize.size,
-            height: headerSize.size,
-            margin: const EdgeInsets.only(left: 16),
-            decoration: const ShapeDecoration(shape: CircleBorder(), image: DecorationImage(fit: BoxFit.contain, image: AssetImage("images/header.png")))));
+      top: headerSize.top,
+      left: 0,
+      child: Container(
+        width: headerSize.size,
+        height: headerSize.size,
+        margin: const EdgeInsets.only(left: 16),
+        decoration: const ShapeDecoration(
+          shape: CircleBorder(),
+          image: DecorationImage(
+            fit: BoxFit.contain,
+            image: AssetImage("images/header.png"),
+          ),
+        ),
+      ),
+    );
 
     Widget userInfo = Positioned(
       top: headerSize.name2Top,
       left: 100,
       child: SizedBox(
-          width: getScreenWidth(context) - 100,
-          height: 60,
-          child: Opacity(
-            opacity: 1 - headerSize.opacity,
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              mainAxisAlignment: MainAxisAlignment.spaceAround,
-              children: [
-                Text(
-                  S.of(context).author,
-                  style: const TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
-                ),
-                Row(
-                  children: [
-                    const Text("积分: 200", style: TextStyle(fontSize: 16)),
-                    Container(margin: const EdgeInsets.only(left: 20), child: const Text("信用值: 1200", style: TextStyle(fontSize: 16)))
-                  ],
-                )
-              ],
-            ),
-          )),
+        width: getScreenWidth(context) - 100,
+        height: 60,
+        child: Opacity(
+          opacity: 1 - headerSize.opacity,
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            mainAxisAlignment: MainAxisAlignment.spaceAround,
+            children: [
+              Text(
+                S.of(context).author,
+                style: const TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+              ),
+              Row(
+                children: [
+                  Text("${S.of(context).integral}: 200", style: const TextStyle(fontSize: 16)),
+                  Container(
+                    margin: const EdgeInsets.only(left: 20),
+                    child: Text(
+                      "${S.of(context).creditValue}: 1200",
+                      style: const TextStyle(fontSize: 16),
+                    ),
+                  )
+                ],
+              )
+            ],
+          ),
+        ),
+      ),
     );
 
     return SliverPersistentHeader(

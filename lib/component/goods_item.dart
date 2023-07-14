@@ -5,7 +5,7 @@ import 'package:jd_mall_flutter/models/goods_page_info.dart';
 import 'package:jd_mall_flutter/common/util/color_util.dart';
 import 'package:jd_mall_flutter/component/image/asset_image.dart';
 import 'package:jd_mall_flutter/view/vebview/webview_page.dart';
-import 'package:jd_mall_flutter/view/vebview/webview_type.dart';
+import 'package:jd_mall_flutter/view/vebview/type.dart';
 
 Widget goodsItem(BuildContext context, GoodsList item, double width) {
   return GestureDetector(
@@ -79,18 +79,14 @@ Widget goodsItem(BuildContext context, GoodsList item, double width) {
                 : Column(
                     children: [
                       Text(item.description.toString(),
-                          maxLines: 2,
-                          overflow: TextOverflow.ellipsis,
-                          style: TextStyle(color: ColorUtil.hex2Color('#737473'), fontSize: 14)),
+                          maxLines: 2, overflow: TextOverflow.ellipsis, style: TextStyle(color: ColorUtil.hex2Color('#737473'), fontSize: 14)),
                       Container(
                           margin: const EdgeInsets.only(top: 6),
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
                               Text("￥${item.price.toString()}",
-                                  maxLines: 2,
-                                  overflow: TextOverflow.ellipsis,
-                                  style: TextStyle(color: ColorUtil.hex2Color('#ED4637'), fontSize: 14)),
+                                  maxLines: 2, overflow: TextOverflow.ellipsis, style: TextStyle(color: ColorUtil.hex2Color('#ED4637'), fontSize: 14)),
                               Container(
                                 margin: const EdgeInsets.only(top: 2),
                                 padding: const EdgeInsets.only(left: 2, right: 2),
