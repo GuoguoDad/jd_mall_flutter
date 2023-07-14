@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:jd_mall_flutter/common/util/screen_util.dart';
 import 'package:jd_mall_flutter/component/image/asset_image.dart';
-import 'package:jd_mall_flutter/common/localization/default_localizations.dart';
 import 'package:jd_mall_flutter/common/style/common_style.dart';
+import 'package:jd_mall_flutter/generated/l10n.dart';
 
 Widget cartHeader(BuildContext context) {
   return SizedBox(
@@ -16,7 +16,7 @@ Widget cartHeader(BuildContext context) {
             Positioned(
               top: 0,
               left: 24,
-              child: Text(MallLocalizations.i18n(context).tab_main_cart, style: const TextStyle(fontSize: 22, fontWeight: FontWeight.bold)),
+              child: Text(S.of(context).tabMainCart, style: const TextStyle(fontSize: 22, fontWeight: FontWeight.bold)),
             ),
             Positioned(
                 top: 4,
@@ -44,9 +44,7 @@ Widget cartHeader(BuildContext context) {
                           alignment: Alignment.centerLeft,
                           padding: const EdgeInsets.only(right: 2),
                           child: Text('配送至: 江苏省南京市江宁区丰泽路xxx号xxx小区',
-                              maxLines: 1,
-                              overflow: TextOverflow.ellipsis,
-                              style: TextStyle(color: CommonStyle.placeholderColor, fontSize: 14)),
+                              maxLines: 1, overflow: TextOverflow.ellipsis, style: TextStyle(color: CommonStyle.placeholderColor, fontSize: 14)),
                         ),
                       )
                     ],

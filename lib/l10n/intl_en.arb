@@ -1,0 +1,19 @@
+{
+  "@@locale": "en",
+  "appName": "Mall",
+  "networkError401": "Http 401",
+  "networkError403": "Http 403",
+  "networkError404": "Http 404",
+  "networkError422": "Request Body Error，Please Check Github ClientId or Account/PW",
+  "networkErrorTimeout": "Http timeout",
+  "networkErrorUnknown": "Http unknown error",
+  "networkError": "network error",
+  "connectRefused": "[Connection refused]. Please switch networks or try again later ",
+  "loadMoreNot": "nothing",
+  "loadMoreText": "loading",
+  "tabMainHome": "home",
+  "tabMainCategory": "category",
+  "tabMainCart": "cart",
+  "tabMainMine": "mine",
+  "author": "GuoguoDad"
+}

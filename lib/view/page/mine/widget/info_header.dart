@@ -3,13 +3,12 @@ import 'package:flutter_redux/flutter_redux.dart';
 import 'package:jd_mall_flutter/common/util/screen_util.dart';
 import 'package:jd_mall_flutter/component/image/asset_image.dart';
 import 'package:jd_mall_flutter/store/app_state.dart';
-import 'package:jd_mall_flutter/common/localization/default_localizations.dart';
 import 'package:jd_mall_flutter/component/persistentHeader/sliver_header_builder.dart';
 import 'package:jd_mall_flutter/view/page/mine/redux/mine_page_state.dart';
 import 'package:jd_mall_flutter/view/page/example/Interlaced_animation.dart';
 import 'package:jd_mall_flutter/view/page/example/breathing_method.dart';
-
-import '../../example/snow_man.dart';
+import 'package:jd_mall_flutter/generated/l10n.dart';
+import 'package:jd_mall_flutter/view/page/example/snow_man.dart';
 
 Widget infoHeader(BuildContext context) {
   return StoreConnector<AppState, MinePageState>(converter: (store) {
@@ -27,7 +26,7 @@ Widget infoHeader(BuildContext context) {
         child: Opacity(
           opacity: headerSize.opacity,
           child: Text(
-            MallLocalizations.i18n(context).tab_main_mine,
+            S.of(context).tabMainMine,
             style: const TextStyle(color: Colors.black, fontSize: 22),
           ),
         ),
@@ -56,7 +55,7 @@ Widget infoHeader(BuildContext context) {
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
                 Text(
-                  MallLocalizations.i18n(context).author,
+                  S.of(context).author,
                   style: const TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
                 ),
                 Row(

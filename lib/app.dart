@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:jd_mall_flutter/generated/l10n.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:jd_mall_flutter/routes.dart';
 import 'package:jd_mall_flutter/view/main/main_page.dart';
@@ -8,8 +9,6 @@ import 'package:pull_to_refresh/pull_to_refresh.dart';
 import 'package:jd_mall_flutter/common/event/http_error_event.dart';
 import 'package:jd_mall_flutter/common/event/index.dart';
 import 'package:jd_mall_flutter/http/code.dart';
-import 'package:jd_mall_flutter/common/localization/default_localizations.dart';
-import 'package:jd_mall_flutter/common/localization/localizations_delegate.dart';
 import 'package:jd_mall_flutter/common/util/screen_util.dart';
 
 class MallApp extends StatefulWidget {
@@ -46,15 +45,16 @@ class _FlutterReduxMallApp extends State<MallApp> with HttpErrorListener {
         builder: EasyLoading.init(),
         routes: routesMap,
         debugShowCheckedModeBanner: false,
-        localizationsDelegates: [
+        localizationsDelegates: const [
+          S.delegate,
           RefreshLocalizations.delegate,
           GlobalWidgetsLocalizations.delegate,
           GlobalMaterialLocalizations.delegate,
-          GlobalCupertinoLocalizations.delegate,
-          MallLocalizationsDelegate.delegate
+          GlobalCupertinoLocalizations.delegate
         ],
+        locale: const Locale('zh', 'CN'),
         supportedLocales: const [
-          // Locale('en', 'US'), // 美国英语
+          Locale('en', 'US'), // 美国英语
           Locale('zh', 'CN'), // 中文简体
         ],
       ),
@@ -88,28 +88,28 @@ mixin HttpErrorListener on State<MallApp> {
     var context = navKey.currentContext!;
     switch (code) {
       case Code.NETWORK_ERROR:
-        showToast(MallLocalizations.i18n(context).network_error);
+        showToast(S.of(context).networkError);
         break;
       case 401:
-        showToast(MallLocalizations.i18n(context).network_error_401);
+        showToast(S.of(context).networkError401);
         break;
       case 403:
-        showToast(MallLocalizations.i18n(context).network_error_403);
+        showToast(S.of(context).networkError403);
         break;
       case 404:
-        showToast(MallLocalizations.i18n(context).network_error_404);
+        showToast(S.of(context).networkError404);
         break;
       case 422:
-        showToast(MallLocalizations.i18n(context).network_error_422);
+        showToast(S.of(context).networkError422);
         break;
       case Code.NETWORK_TIMEOUT:
-        showToast(MallLocalizations.i18n(context).network_error_timeout);
+        showToast(S.of(context).networkErrorTimeout);
         break;
       case Code.CONNECTION_REFUSED:
-        showToast(MallLocalizations.i18n(context).connnect_refused);
+        showToast(S.of(context).connectRefused);
         break;
       default:
-        showToast("${MallLocalizations.i18n(context).network_error_unknown} $message");
+        showToast("${S.of(context).networkErrorUnknown} $message");
         break;
     }
   }

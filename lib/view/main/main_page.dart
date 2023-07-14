@@ -5,8 +5,8 @@ import 'package:jd_mall_flutter/view/page/category/category.dart';
 import 'package:jd_mall_flutter/view/page/cart/cart_page.dart';
 import 'package:jd_mall_flutter/view/page/mine/mine_page.dart';
 import 'package:jd_mall_flutter/component/image/asset_image.dart';
-import 'package:jd_mall_flutter/common/localization/default_localizations.dart';
 import 'package:jd_mall_flutter/common/style/common_style.dart';
+import 'package:jd_mall_flutter/generated/l10n.dart';
 
 class MainPage extends StatefulWidget {
   const MainPage({super.key});
@@ -32,10 +32,10 @@ class _MainPageState extends State<MainPage> {
   @override
   Widget build(BuildContext context) {
     List<Map> barItems = [
-      {"iconPath": "images/ic_home.png", "activeIconPath": "images/ic_home_active.png", "label": MallLocalizations.i18n(context).tab_main_home},
-      {"iconPath": "images/ic_category.png", "activeIconPath": "images/ic_category_active.png", "label": MallLocalizations.i18n(context).tab_main_category},
-      {"iconPath": "images/ic_cart.png", "activeIconPath": "images/ic_cart_active.png", "label": MallLocalizations.i18n(context).tab_main_cart},
-      {"iconPath": "images/ic_mine.png", "activeIconPath": "images/ic_mine_active.png", "label": MallLocalizations.i18n(context).tab_main_mine},
+      {"iconPath": "images/ic_home.png", "activeIconPath": "images/ic_home_active.png", "label": S.of(context).tabMainHome},
+      {"iconPath": "images/ic_category.png", "activeIconPath": "images/ic_category_active.png", "label": S.of(context).tabMainCategory},
+      {"iconPath": "images/ic_cart.png", "activeIconPath": "images/ic_cart_active.png", "label": S.of(context).tabMainCart},
+      {"iconPath": "images/ic_mine.png", "activeIconPath": "images/ic_mine_active.png", "label": S.of(context).tabMainMine},
     ];
 
     return AnnotatedRegion<SystemUiOverlayStyle>(

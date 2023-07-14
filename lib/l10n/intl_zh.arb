@@ -1,0 +1,19 @@
+{
+  "@@locale": "zh",
+  "appName": "商城",
+  "networkError401": "[401错误可能: 未授权 \\\\ 授权登录失败 \\\\ 登录过期]",
+  "networkError403": "403权限错误",
+  "networkError404": "404错误",
+  "networkError422": "请求实体异常，请确保 Github ClientId 、账号秘密等信息正确。",
+  "networkErrorTimeout": "请求超时",
+  "networkErrorUnknown": "其他异常",
+  "networkError": "网络错误",
+  "connectRefused": "[Connection refused]. Please switch networks or try again later ",
+  "loadMoreNot": "nothing",
+  "loadMoreText": "加载中",
+  "tabMainHome": "首页",
+  "tabMainCategory": "分类",
+  "tabMainCart": "购物车",
+  "tabMainMine": "我的",
+  "author": "GuoguoDad"
+}
