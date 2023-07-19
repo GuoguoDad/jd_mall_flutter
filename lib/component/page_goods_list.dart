@@ -73,14 +73,16 @@ class _PageGoodsListState extends State<PageGoodsList> {
       onLoading: () async {
         queryGoodsListByPage(pageNum + 1);
       },
-      child: MasonryGridView.count(
+      child: MasonryGridView.builder(
         physics: widget.physics,
         padding: EdgeInsets.zero,
         itemCount: goodsList.length,
-        crossAxisCount: 2,
+        gridDelegate: const SliverSimpleGridDelegateWithFixedCrossAxisCount(
+          crossAxisCount: 2,
+        ),
         mainAxisSpacing: 10,
         crossAxisSpacing: 0,
-        itemBuilder: (context, index) => goodsItem(context, goodsList[index], width),
+        itemBuilder: (BuildContext context, int index) => goodsItem(context, goodsList[index], width),
       ),
     );
   }

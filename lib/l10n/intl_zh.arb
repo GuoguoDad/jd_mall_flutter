@@ -9,7 +9,7 @@
   "networkErrorUnknown": "其他异常",
   "networkError": "网络错误",
   "connectRefused": "[Connection refused]，建议换个网络环境或者稍后再试",
-  "loadMoreNot": "nothing",
+  "loadMoreNot": "没有更多了",
   "loadMoreText": "加载中",
   "tabMainHome": "首页",
   "tabMainCategory": "分类",

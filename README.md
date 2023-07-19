@@ -65,6 +65,10 @@ Flutter框架具有如下的一些特点：
       flutter build apk -t lib/main_prd.dart
       flutter build ios -t lib/main_prd.dart
 
+## 性能分析
+
+      flutter run --profile lib/main_prd.dart
+
 # 效果
 
 ## 首页

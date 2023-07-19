@@ -11,5 +11,5 @@ final Map<String, dynamic> dev = {
 };
 
 final Map<String, dynamic> prd = {
-  EnvEnum.host.value: "https://mock-server-guoguodad.vercel.app",
+  EnvEnum.host.value: "https://server.guoguodad.cn",
 };
