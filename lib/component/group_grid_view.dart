@@ -2,30 +2,31 @@ import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 
 class GroupGridView extends StatefulWidget {
-  const GroupGridView(
-      {required this.gridDelegate,
-      required this.sectionCount,
-      required this.itemInSectionBuilder,
-      required this.itemInSectionCount,
-      this.headerForSection,
-      this.footerForSection,
-      this.scrollDirection = Axis.vertical,
-      this.reverse = false,
-      this.controller,
-      this.primary,
-      this.physics,
-      this.shrinkWrap = false,
-      this.padding,
-      this.findChildIndexCallback,
-      this.addAutomaticKeepAlive = true,
-      this.addRepaintBoundaries = true,
-      this.addSemanticIndexes = true,
-      this.cacheExtent,
-      this.dragStartBehavior = DragStartBehavior.start,
-      this.keyboardDismissBehavior = ScrollViewKeyboardDismissBehavior.manual,
-      this.restorationId,
-      this.clipBehavior = Clip.hardEdge,
-      super.key});
+  const GroupGridView({
+    required this.gridDelegate,
+    required this.sectionCount,
+    required this.itemInSectionBuilder,
+    required this.itemInSectionCount,
+    this.headerForSection,
+    this.footerForSection,
+    this.scrollDirection = Axis.vertical,
+    this.reverse = false,
+    this.controller,
+    this.primary,
+    this.physics,
+    this.shrinkWrap = false,
+    this.padding,
+    this.findChildIndexCallback,
+    this.addAutomaticKeepAlive = true,
+    this.addRepaintBoundaries = true,
+    this.addSemanticIndexes = true,
+    this.cacheExtent,
+    this.dragStartBehavior = DragStartBehavior.start,
+    this.keyboardDismissBehavior = ScrollViewKeyboardDismissBehavior.manual,
+    this.restorationId,
+    this.clipBehavior = Clip.hardEdge,
+    super.key,
+  });
 
   final SliverGridDelegate gridDelegate;
   final int sectionCount;
@@ -60,20 +61,22 @@ class _GroupGridViewState extends State<GroupGridView> {
   @override
   Widget build(BuildContext context) {
     return Padding(
-        padding: widget.padding ?? EdgeInsets.zero,
-        child: CustomScrollView(
-            scrollDirection: widget.scrollDirection,
-            reverse: widget.reverse,
-            controller: widget.controller,
-            primary: widget.primary,
-            physics: widget.physics,
-            shrinkWrap: widget.shrinkWrap,
-            cacheExtent: widget.cacheExtent,
-            dragStartBehavior: widget.dragStartBehavior,
-            keyboardDismissBehavior: widget.keyboardDismissBehavior,
-            restorationId: widget.restorationId,
-            clipBehavior: widget.clipBehavior,
-            slivers: _listSliver));
+      padding: widget.padding ?? EdgeInsets.zero,
+      child: CustomScrollView(
+        scrollDirection: widget.scrollDirection,
+        reverse: widget.reverse,
+        controller: widget.controller,
+        primary: widget.primary,
+        physics: widget.physics,
+        shrinkWrap: widget.shrinkWrap,
+        cacheExtent: widget.cacheExtent,
+        dragStartBehavior: widget.dragStartBehavior,
+        keyboardDismissBehavior: widget.keyboardDismissBehavior,
+        restorationId: widget.restorationId,
+        clipBehavior: widget.clipBehavior,
+        slivers: _listSliver,
+      ),
+    );
   }
 
   List<Widget> get _listSliver {

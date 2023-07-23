@@ -35,14 +35,16 @@ class _BackToTopState extends State<BackToTop> {
   @override
   Widget build(BuildContext context) {
     return Visibility(
-        visible: show,
-        child: SizedBox(
-            width: 48,
-            height: 48,
-            child: FloatingActionButton(
-              onPressed: () => widget.controller.animateTo(0, duration: const Duration(milliseconds: 500), curve: Curves.linear),
-              backgroundColor: Colors.white,
-              child: assetImage('images/ic_back_top.png', 32, 32),
-            )));
+      visible: show,
+      child: SizedBox(
+        width: 48,
+        height: 48,
+        child: FloatingActionButton(
+          onPressed: () => widget.controller.animateTo(0, duration: const Duration(milliseconds: 500), curve: Curves.linear),
+          backgroundColor: Colors.white,
+          child: assetImage('images/ic_back_top.png', 28, 28),
+        ),
+      ),
+    );
   }
 }
