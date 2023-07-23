@@ -54,8 +54,8 @@ class _MainPageState extends State<MainPage> {
             type: BottomNavigationBarType.fixed,
             unselectedItemColor: Colors.black87,
             selectedItemColor: CommonStyle.themeColor,
-            selectedLabelStyle: const TextStyle(fontSize: 14),
-            unselectedLabelStyle: const TextStyle(fontSize: 14),
+            selectedLabelStyle: const TextStyle(fontSize: 12),
+            unselectedLabelStyle: const TextStyle(fontSize: 12),
             currentIndex: _selectedIndex,
             onTap: _onItemTapped,
             items: barItems

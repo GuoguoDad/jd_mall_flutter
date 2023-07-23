@@ -10,7 +10,7 @@ Widget tabList(BuildContext context, {required ValueCallback<String> onTabChange
     pinned: true,
     delegate: SliverHeaderDelegate.fixedHeight(
       //固定高度
-      height: 58,
+      height: 54,
       child: Container(
         color: CommonStyle.greyBgColor,
         child: StoreBuilder<AppState>(
@@ -22,7 +22,7 @@ Widget tabList(BuildContext context, {required ValueCallback<String> onTabChange
             return ListView.builder(
               scrollDirection: Axis.horizontal,
               itemCount: totalCount,
-              itemExtent: 86.0,
+              itemExtent: 84.0,
               itemBuilder: (BuildContext context, int index) {
                 bool isSelect = currentTab == tabs[index].code;
 
@@ -35,13 +35,16 @@ Widget tabList(BuildContext context, {required ValueCallback<String> onTabChange
                       Expanded(
                         flex: 1,
                         child: Container(
-                          width: 86,
+                          width: 84,
                           color: CommonStyle.greyBgColor,
                           alignment: Alignment.bottomCenter,
                           padding: const EdgeInsets.only(bottom: 6),
                           child: Text(
                             tabs[index].name ?? "",
-                            style: TextStyle(color: isSelect ? CommonStyle.selectedTabColor : CommonStyle.unSelectedTabColor),
+                            style: TextStyle(
+                              fontSize: 14,
+                              color: isSelect ? CommonStyle.selectedTabColor : CommonStyle.unSelectedTabColor,
+                            ),
                           ),
                         ),
                       ),

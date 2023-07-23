@@ -18,46 +18,47 @@ Widget cartHeader(BuildContext context) {
             left: 24,
             child: Text(
               S.of(context).tabMainCart,
-              style: const TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
+              style: const TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
             ),
           ),
           Positioned(
-              top: 4,
-              left: 100,
-              child: Container(
-                height: 24,
-                width: getScreenWidth(context) - 160,
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(12),
-                  color: CommonStyle.colorECEDEC,
-                ),
-                child: Row(
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: <Widget>[
-                    SizedBox(
-                      width: 24,
-                      height: 24,
-                      child: UnconstrainedBox(
-                        child: assetImage('images/ic_address.png', 16, 16),
+            top: 4,
+            left: 100,
+            child: Container(
+              height: 24,
+              width: getScreenWidth(context) - 160,
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(12),
+                color: CommonStyle.colorECEDEC,
+              ),
+              child: Row(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: <Widget>[
+                  SizedBox(
+                    width: 24,
+                    height: 24,
+                    child: UnconstrainedBox(
+                      child: assetImage('images/ic_address.png', 16, 16),
+                    ),
+                  ),
+                  Expanded(
+                    flex: 1,
+                    child: Container(
+                      height: 24.0,
+                      alignment: Alignment.centerLeft,
+                      padding: const EdgeInsets.only(right: 2),
+                      child: Text(
+                        S.of(context).defaultAddress,
+                        maxLines: 1,
+                        overflow: TextOverflow.ellipsis,
+                        style: TextStyle(color: CommonStyle.placeholderColor, fontSize: 14),
                       ),
                     ),
-                    Expanded(
-                      flex: 1,
-                      child: Container(
-                        height: 24.0,
-                        alignment: Alignment.centerLeft,
-                        padding: const EdgeInsets.only(right: 2),
-                        child: Text(
-                          S.of(context).defaultAddress,
-                          maxLines: 1,
-                          overflow: TextOverflow.ellipsis,
-                          style: TextStyle(color: CommonStyle.placeholderColor, fontSize: 14),
-                        ),
-                      ),
-                    )
-                  ],
-                ),
-              )),
+                  )
+                ],
+              ),
+            ),
+          ),
           Positioned(
             top: 2,
             right: 18,

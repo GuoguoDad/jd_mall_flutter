@@ -39,7 +39,7 @@ class _PageMenuState extends State<PageMenu> {
     int pageCount = (menuLength % pageItemCount) > 0 ? (menuLength ~/ pageItemCount) + 1 : (menuLength ~/ pageItemCount);
 
     return Container(
-      height: rowCount * 90 + 10,
+      height: rowCount * 74 + 20,
       padding: const EdgeInsets.only(bottom: 10),
       margin: const EdgeInsets.only(left: 10, right: 10),
       decoration: const BoxDecoration(color: Colors.white, borderRadius: BorderRadius.all(Radius.circular(20))),

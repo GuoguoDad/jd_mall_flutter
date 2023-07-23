@@ -35,7 +35,7 @@ Widget tabHeader(BuildContext context, {required ValueCallback<int> onChange}) {
                   Text(
                     name,
                     style: const TextStyle(
-                      fontSize: 18,
+                      fontSize: 16,
                       fontWeight: FontWeight.w400,
                       color: Colors.black87,
                       decoration: TextDecoration.none,
@@ -68,12 +68,12 @@ Widget tabHeader(BuildContext context, {required ValueCallback<int> onChange}) {
                 child: Container(
                   alignment: Alignment.centerLeft,
                   padding: const EdgeInsets.only(left: 16),
-                  child: assetImage("images/ic_back_black.png", 34, 34),
+                  child: assetImage("images/ic_back_black.png", 32, 32),
                 ),
               ),
             ),
             Expanded(
-              flex: 2,
+              flex: 3,
               child: Container(
                 alignment: Alignment.center,
                 child: ListView(
@@ -94,10 +94,10 @@ Widget tabHeader(BuildContext context, {required ValueCallback<int> onChange}) {
                 mainAxisAlignment: MainAxisAlignment.center,
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                  assetImage("images/ic_share_black.png", 24, 24),
+                  assetImage("images/ic_share_black.png", 22, 22),
                   Container(
-                    margin: const EdgeInsets.only(left: 14),
-                    child: assetImage("images/ic_ellipsis_black.png", 24, 24),
+                    margin: const EdgeInsets.only(left: 10, right: 5),
+                    child: assetImage("images/ic_ellipsis_black.png", 22, 22),
                   )
                 ],
               ),

@@ -25,7 +25,7 @@ Widget searchHeader(BuildContext context) {
             Positioned(
               top: 0,
               left: 16,
-              child: assetImage('images/ic_pet.png', 38, 38),
+              child: assetImage('images/ic_pet.png', 36, 36),
             ),
             Positioned(
               top: 7,
@@ -64,6 +64,7 @@ Widget searchHeader(BuildContext context) {
                             child: Text(
                               '跑步鞋',
                               style: TextStyle(
+                                fontSize: 14,
                                 color: CommonStyle.placeholderColor,
                               ),
                             ),

@@ -14,36 +14,38 @@ Widget header(BuildContext context) {
       fit: StackFit.expand,
       children: <Widget>[
         Positioned(
-            top: 0,
-            left: 16,
-            child: Column(
-              children: [
-                assetImage('images/scan.png', 24, 24),
-                Text(
-                  S.of(context).scan,
-                  style: const TextStyle(color: Colors.white, fontSize: 12),
-                )
-              ],
-            )),
+          top: 0,
+          left: 16,
+          child: Column(
+            children: [
+              assetImage('images/scan.png', 24, 24),
+              Text(
+                S.of(context).scan,
+                style: const TextStyle(color: Colors.white, fontSize: 11),
+              )
+            ],
+          ),
+        ),
         Positioned(
-            top: 2,
-            right: 16,
-            child: Column(
-              children: [
-                assetImage('images/message.png', 24, 24),
-                Text(
-                  S.of(context).message,
-                  style: const TextStyle(color: Colors.white, fontSize: 12),
-                )
-              ],
-            )),
+          top: 0,
+          right: 16,
+          child: Column(
+            children: [
+              assetImage('images/message.png', 24, 24),
+              Text(
+                S.of(context).message,
+                style: const TextStyle(color: Colors.white, fontSize: 11),
+              )
+            ],
+          ),
+        ),
         Positioned(
             top: 1,
             child: Container(
-              height: 38,
+              height: 36,
               width: getScreenWidth(context) - 120,
               decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(12),
+                borderRadius: BorderRadius.circular(14),
                 color: ColorUtil.hex2Color("#F0F1ED"),
               ),
               child: Row(
@@ -64,6 +66,7 @@ Widget header(BuildContext context) {
                       child: Text(
                         S.of(context).searchInputTip,
                         style: TextStyle(
+                          fontSize: 14,
                           color: ColorUtil.hex2Color('#818286'),
                         ),
                       ),

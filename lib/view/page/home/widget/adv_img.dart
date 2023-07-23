@@ -16,19 +16,20 @@ Widget advBanner(BuildContext context) {
     },
     builder: (context, state) {
       return GestureDetector(
-          onTap: () => Navigator.of(context)
-              .pushNamed(WebViewPage.name, arguments: WebViewPageArguments("https://pro.m.jd.com/mall/active/2WrXYwmYpiy7EpWjDETSVyhXfLCb/index.html")),
-          child: Container(
-            color: Colors.white,
-            padding: const EdgeInsets.all(0),
-            child: CachedNetworkImage(
-              height: 90,
-              imageUrl: state.homePageInfo.adUrl ?? "",
-              placeholder: (context, url) => assetImage("images/default.png", getScreenWidth(context) - 24, 90),
-              errorWidget: (context, url, error) => assetImage("images/default.png", getScreenWidth(context) - 24, 90),
-              fit: BoxFit.fill,
-            ),
-          ));
+        onTap: () => Navigator.of(context)
+            .pushNamed(WebViewPage.name, arguments: WebViewPageArguments("https://pro.m.jd.com/mall/active/2WrXYwmYpiy7EpWjDETSVyhXfLCb/index.html")),
+        child: Container(
+          color: Colors.white,
+          padding: const EdgeInsets.all(0),
+          child: CachedNetworkImage(
+            height: 90,
+            imageUrl: state.homePageInfo.adUrl ?? "",
+            placeholder: (context, url) => assetImage("images/default.png", getScreenWidth(context) - 24, 90),
+            errorWidget: (context, url, error) => assetImage("images/default.png", getScreenWidth(context) - 24, 90),
+            fit: BoxFit.fill,
+          ),
+        ),
+      );
     },
   );
 }

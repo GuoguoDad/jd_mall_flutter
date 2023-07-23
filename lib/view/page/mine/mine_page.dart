@@ -61,26 +61,26 @@ class _MinePageState extends State<MinePage> {
 
         if (isLoading) return loadingWidget(context);
 
-        return Scaffold(
-          body: NotificationListener<ScrollNotification>(
-            onNotification: (ScrollNotification notification) {
-              double distance = notification.metrics.pixels;
-              if (notification.depth == 0) {
-                store.dispatch(ChangePageScrollYAction(distance));
-              }
-              if (notification.depth == 2) {
-                store.dispatch(ChangeBackTopAction(distance > getScreenHeight(context)));
-              }
-              return false;
+        return NotificationListener<ScrollNotification>(
+          onNotification: (ScrollNotification notification) {
+            double distance = notification.metrics.pixels;
+            if (notification.depth == 0) {
+              store.dispatch(ChangePageScrollYAction(distance));
+            }
+            if (notification.depth == 2) {
+              store.dispatch(ChangeBackTopAction(distance > getScreenHeight(context)));
+            }
+            return false;
+          },
+          child: EasyRefresh.builder(
+            controller: _freshController,
+            header: classicHeader,
+            onRefresh: () async {
+              store.dispatch(RefreshAction(() => easyRefreshSuccess(_freshController), () => easyRefreshFail(_freshController)));
             },
-            child: EasyRefresh.builder(
-              controller: _freshController,
-              header: classicHeader,
-              onRefresh: () async {
-                store.dispatch(RefreshAction(() => easyRefreshSuccess(_freshController), () => easyRefreshFail(_freshController)));
-              },
-              childBuilder: (context, physics) {
-                return NestedScrollView(
+            childBuilder: (context, physics) {
+              return Scaffold(
+                body: NestedScrollView(
                   controller: _scrollController,
                   physics: physics,
                   headerSliverBuilder: (BuildContext context, bool innerBoxIsScrolled) {
@@ -107,11 +107,11 @@ class _MinePageState extends State<MinePage> {
                     },
                     children: tabs.map((e) => PageGoodsList(e.code!, physics)).toList(),
                   ),
-                );
-              },
-            ),
+                ),
+                floatingActionButton: backTop(showTop, _scrollController),
+              );
+            },
           ),
-          floatingActionButton: backTop(showTop, _scrollController),
         );
       },
     );

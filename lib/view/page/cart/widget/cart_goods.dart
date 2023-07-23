@@ -120,31 +120,32 @@ Widget cartGoods(BuildContext context) {
                         ),
                       ),
                       Container(
-                          margin: const EdgeInsets.only(top: 4),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              Text(
-                                "￥${cartGoods[indexPath.section].goodsList![indexPath.index].price!}",
-                                style: const TextStyle(fontSize: 20, color: Colors.red, fontWeight: FontWeight.w500),
+                        margin: const EdgeInsets.only(top: 4),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Text(
+                              "￥${cartGoods[indexPath.section].goodsList![indexPath.index].price!}",
+                              style: const TextStyle(fontSize: 20, color: Colors.red, fontWeight: FontWeight.w500),
+                            ),
+                            StepperInt(
+                              value: cartGoods[indexPath.section].goodsList![indexPath.index].num!,
+                              size: 25,
+                              style: StepperStyle(
+                                foregroundColor: Colors.black87,
+                                activeForegroundColor: Colors.black87,
+                                activeBackgroundColor: Colors.white,
+                                border: Border.all(color: Colors.grey),
+                                elevation: 0,
+                                buttonAspectRatio: 1.5,
                               ),
-                              StepperInt(
-                                value: cartGoods[indexPath.section].goodsList![indexPath.index].num!,
-                                size: 25,
-                                style: StepperStyle(
-                                  foregroundColor: Colors.black87,
-                                  activeForegroundColor: Colors.black87,
-                                  activeBackgroundColor: Colors.white,
-                                  border: Border.all(color: Colors.grey),
-                                  elevation: 0,
-                                  buttonAspectRatio: 1.5,
-                                ),
-                                didChangeCount: (int value) {
-                                  store.dispatch(ChangeCartGoodsNumAction(cartGoods[indexPath.section].goodsList![indexPath.index].code!, value));
-                                },
-                              )
-                            ],
-                          ))
+                              didChangeCount: (int value) {
+                                store.dispatch(ChangeCartGoodsNumAction(cartGoods[indexPath.section].goodsList![indexPath.index].code!, value));
+                              },
+                            )
+                          ],
+                        ),
+                      )
                     ],
                   ),
                 ),

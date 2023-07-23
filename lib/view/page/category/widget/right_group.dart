@@ -65,125 +65,131 @@ Widget rightGroupList(BuildContext context, ScrollController scrollController, S
         scrollController.animateTo(toLeft, duration: const Duration(milliseconds: 300), curve: Curves.linear);
       }
 
-      Widget topBanImg = headUrl != ""
-          ? CachedNetworkImage(
-              width: bWidth,
-              height: 100,
-              imageUrl: headUrl,
-              placeholder: (context, url) => assetImage("images/default.png", bWidth, 100),
-              errorWidget: (context, url, error) => assetImage("images/default.png", bWidth, 100),
-              fit: BoxFit.cover,
-            )
-          : Container();
+      List<Widget> widgets = [];
+      if (headUrl != "") {
+        widgets.add(
+          CachedNetworkImage(
+            width: bWidth,
+            height: 100,
+            imageUrl: headUrl,
+            placeholder: (context, url) => assetImage("images/default.png", bWidth, 100),
+            errorWidget: (context, url, error) => assetImage("images/default.png", bWidth, 100),
+            fit: BoxFit.cover,
+          ),
+        );
+      }
 
-      Widget secondScrollTabCategory = Container(
-        width: bWidth,
-        height: 32,
-        margin: const EdgeInsets.only(top: 10, bottom: 10),
-        child: ListView.builder(
-          controller: scrollController,
-          itemCount: secondCateList.length,
-          scrollDirection: Axis.horizontal,
-          shrinkWrap: true,
-          itemBuilder: (BuildContext context, int index) {
-            bool isSelect = selectSecondCategoryInfo?.categoryCode == secondCateList[index].categoryCode;
+      widgets.add(
+        Container(
+          width: bWidth,
+          height: 32,
+          margin: const EdgeInsets.only(top: 10, bottom: 10),
+          child: ListView.builder(
+            controller: scrollController,
+            itemCount: secondCateList.length,
+            scrollDirection: Axis.horizontal,
+            shrinkWrap: true,
+            itemBuilder: (BuildContext context, int index) {
+              bool isSelect = selectSecondCategoryInfo?.categoryCode == secondCateList[index].categoryCode;
 
-            return GestureDetector(
-              onTap: () {
-                //如果不是当前选中的二级分类
-                if (selectSecondCategoryInfo?.categoryCode != secondCateList[index].categoryCode) {
-                  //滚动二级分类至中间
-                  tabScrollToMiddle(index);
-                  //选中二级分类
-                  store.dispatch(SelectSecondCategoryAction(secondCateList[index], true));
+              return GestureDetector(
+                onTap: () {
+                  //如果不是当前选中的二级分类
+                  if (selectSecondCategoryInfo?.categoryCode != secondCateList[index].categoryCode) {
+                    //滚动二级分类至中间
+                    tabScrollToMiddle(index);
+                    //选中二级分类
+                    store.dispatch(SelectSecondCategoryAction(secondCateList[index], true));
 
-                  //滚动三级分类
-                  RenderSliverToBoxAdapter? keyRenderObject = keys[index].currentContext?.findAncestorRenderObjectOfType<RenderSliverToBoxAdapter>();
-                  if (keyRenderObject != null) {
-                    gridViewController.position
-                        .ensureVisible(keyRenderObject, duration: const Duration(milliseconds: 300), curve: Curves.linear)
-                        .then((value) => store.dispatch(ChangeTabClickAction(false)));
+                    //滚动三级分类
+                    RenderSliverToBoxAdapter? keyRenderObject = keys[index].currentContext?.findAncestorRenderObjectOfType<RenderSliverToBoxAdapter>();
+                    if (keyRenderObject != null) {
+                      gridViewController.position
+                          .ensureVisible(keyRenderObject, duration: const Duration(milliseconds: 300), curve: Curves.linear)
+                          .then((value) => store.dispatch(ChangeTabClickAction(false)));
+                    }
                   }
-                }
-              },
-              child: Container(
-                height: 32,
-                key: secondKeys[index],
-                alignment: Alignment.center,
-                padding: const EdgeInsets.only(left: 15, right: 15),
-                margin: EdgeInsets.only(right: index + 1 != secondCateList.length ? 8 : 0),
-                decoration: BoxDecoration(
-                  color: isSelect ? CommonStyle.selectBgColor : CommonStyle.greyBgColor2,
-                  borderRadius: const BorderRadius.all(Radius.circular(14)),
-                  border: Border.all(color: isSelect ? CommonStyle.themeColor : CommonStyle.greyBgColor2, width: 1),
-                ),
-                child: Text(
-                  secondCateList[index].categoryName!,
-                  style: TextStyle(color: isSelect ? CommonStyle.themeColor : CommonStyle.primaryColor),
-                ),
-              ),
-            );
-          },
-        ),
-      );
-
-      //使用WidgetsVisibilityProvider 、WidgetsVisibilityListener和VisibleNotifierWidget组合监听得到第一个可见元素 firstVisibleItem
-      Widget groupThirdCategoryList = Expanded(
-        child: NotificationListener<ScrollNotification>(
-          onNotification: (ScrollNotification notification) {
-            if (notification.depth == 0) {
-              if (isTabClicked) return false;
-
-              int newIndex = findFirstVisibleItemIndex(keys);
-              if (selectSecondCategoryInfo?.categoryCode != secondCateList[newIndex].categoryCode) {
-                //滚动二级分类至中间
-                tabScrollToMiddle(newIndex);
-                //选中二级分类
-                store.dispatch(SelectSecondCategoryAction(secondCateList[newIndex], null));
-              }
-            }
-            return false;
-          },
-          child: GroupGridView(
-            controller: gridViewController,
-            padding: EdgeInsets.zero,
-            gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 3, mainAxisSpacing: 0, crossAxisSpacing: 0),
-            sectionCount: secondCateList.length,
-            itemInSectionCount: (int section) => secondCateList[section].cateList!.length,
-            itemInSectionBuilder: (BuildContext context, IndexPath indexPath) {
-              return SizedBox(
-                width: thirdCateItemWidth,
-                height: thirdCateItemHeight,
-                child: Column(
-                  children: [
-                    CachedNetworkImage(
-                      width: 58,
-                      height: 58,
-                      imageUrl: secondCateList[indexPath.section].cateList![indexPath.index].iconUrl!,
-                      placeholder: (context, url) => assetImage("images/default.png", 58, 58),
-                      errorWidget: (context, url, error) => assetImage("images/default.png", 58, 58),
-                      fit: BoxFit.fill,
-                    ),
-                    Container(
-                      height: 24,
-                      margin: const EdgeInsets.only(top: 4),
-                      child: Text(
-                        secondCateList[indexPath.section].cateList![indexPath.index].categoryName!,
-                        style: TextStyle(fontSize: 12, color: CommonStyle.color777677),
-                      ),
-                    )
-                  ],
+                },
+                child: Container(
+                  height: 32,
+                  key: secondKeys[index],
+                  alignment: Alignment.center,
+                  padding: const EdgeInsets.only(left: 15, right: 15),
+                  margin: EdgeInsets.only(right: index + 1 != secondCateList.length ? 8 : 0),
+                  decoration: BoxDecoration(
+                    color: isSelect ? CommonStyle.selectBgColor : CommonStyle.greyBgColor2,
+                    borderRadius: const BorderRadius.all(Radius.circular(14)),
+                    border: Border.all(color: isSelect ? CommonStyle.themeColor : CommonStyle.greyBgColor2, width: 1),
+                  ),
+                  child: Text(
+                    secondCateList[index].categoryName!,
+                    style: TextStyle(color: isSelect ? CommonStyle.themeColor : CommonStyle.primaryColor),
+                  ),
                 ),
               );
             },
-            headerForSection: (section) => Container(
-              key: keys[section],
-              height: 30,
-              alignment: Alignment.centerLeft,
-              padding: const EdgeInsets.only(left: 16),
-              child: Text(
-                secondCateList[section].categoryName!,
-                style: const TextStyle(fontSize: 16, fontWeight: FontWeight.w600),
+          ),
+        ),
+      );
+
+      widgets.add(
+        Expanded(
+          child: NotificationListener<ScrollNotification>(
+            onNotification: (ScrollNotification notification) {
+              if (notification.depth == 0) {
+                if (isTabClicked) return false;
+
+                int newIndex = findFirstVisibleItemIndex(keys);
+                if (selectSecondCategoryInfo?.categoryCode != secondCateList[newIndex].categoryCode) {
+                  //滚动二级分类至中间
+                  tabScrollToMiddle(newIndex);
+                  //选中二级分类
+                  store.dispatch(SelectSecondCategoryAction(secondCateList[newIndex], null));
+                }
+              }
+              return false;
+            },
+            child: GroupGridView(
+              controller: gridViewController,
+              padding: EdgeInsets.zero,
+              gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 3, mainAxisSpacing: 0, crossAxisSpacing: 0),
+              sectionCount: secondCateList.length,
+              itemInSectionCount: (int section) => secondCateList[section].cateList!.length,
+              itemInSectionBuilder: (BuildContext context, IndexPath indexPath) {
+                return SizedBox(
+                  width: thirdCateItemWidth,
+                  height: thirdCateItemHeight,
+                  child: Column(
+                    children: [
+                      CachedNetworkImage(
+                        width: 58,
+                        height: 58,
+                        imageUrl: secondCateList[indexPath.section].cateList![indexPath.index].iconUrl!,
+                        placeholder: (context, url) => assetImage("images/default.png", 58, 58),
+                        errorWidget: (context, url, error) => assetImage("images/default.png", 58, 58),
+                        fit: BoxFit.fill,
+                      ),
+                      Container(
+                        height: 24,
+                        margin: const EdgeInsets.only(top: 4),
+                        child: Text(
+                          secondCateList[indexPath.section].cateList![indexPath.index].categoryName!,
+                          style: TextStyle(fontSize: 12, color: CommonStyle.color777677),
+                        ),
+                      )
+                    ],
+                  ),
+                );
+              },
+              headerForSection: (section) => Container(
+                key: keys[section],
+                height: 30,
+                alignment: Alignment.centerLeft,
+                padding: const EdgeInsets.only(left: 16),
+                child: Text(
+                  secondCateList[section].categoryName!,
+                  style: const TextStyle(fontSize: 16, fontWeight: FontWeight.w600),
+                ),
               ),
             ),
           ),
@@ -196,11 +202,7 @@ Widget rightGroupList(BuildContext context, ScrollController scrollController, S
           color: Colors.white,
           padding: const EdgeInsets.only(top: 10),
           child: Column(
-            children: [
-              topBanImg,
-              secondScrollTabCategory,
-              groupThirdCategoryList,
-            ],
+            children: widgets,
           ),
         ),
       );

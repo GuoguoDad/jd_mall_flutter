@@ -81,7 +81,7 @@ Widget tabList(BuildContext context, {required ValueCallback<String> onTabChange
                           child: Text(
                             tabs[index].name ?? "",
                             style: TextStyle(
-                                fontSize: 16,
+                                fontSize: 14,
                                 color: isSelect ? CommonStyle.selectedTabColor : CommonStyle.unSelectedTabColor,
                                 fontWeight: isSelect ? FontWeight.bold : FontWeight.w500,
                                 decoration: TextDecoration.none),

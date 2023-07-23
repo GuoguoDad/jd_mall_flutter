@@ -1,5 +1,6 @@
-import 'package:easy_refresh/easy_refresh.dart';
 import 'package:flutter/material.dart';
+import 'package:redux/redux.dart';
+import 'package:easy_refresh/easy_refresh.dart';
 import 'package:flutter_redux/flutter_redux.dart';
 import 'package:jd_mall_flutter/common/util/screen_util.dart';
 import 'package:jd_mall_flutter/view/page/home/widget/tab_list.dart';
@@ -13,7 +14,6 @@ import 'package:jd_mall_flutter/common/util/refresh_util.dart';
 import 'package:jd_mall_flutter/models/home_page_info.dart';
 import 'package:jd_mall_flutter/component/page_goods_list.dart';
 import 'package:jd_mall_flutter/common/util/easy_refresh_util.dart';
-import 'package:redux/redux.dart';
 import 'package:jd_mall_flutter/component/back_top.dart';
 import 'package:jd_mall_flutter/component/loading_widget.dart';
 
@@ -62,25 +62,26 @@ class _HomePageState extends State<HomePage> {
 
         if (isLoading) return loadingWidget(context);
 
-        return Scaffold(
-          body: NotificationListener<ScrollNotification>(
-            onNotification: (ScrollNotification notification) {
-              double distance = notification.metrics.pixels;
-              if (notification.depth == 0) {
-                store.dispatch(ChangePageScrollYAction(distance));
-              }
-              if (notification.depth == 2) {
-                store.dispatch(ChangeBackTopAction(distance > getScreenHeight(context)));
-              }
-              return false;
-            },
-            child: EasyRefresh.builder(
-              controller: _freshController,
-              header: classicHeader,
-              clipBehavior: Clip.none,
-              onRefresh: () async => store.dispatch(RefreshAction(() => easyRefreshSuccess(_freshController), () => easyRefreshFail(_freshController))),
-              childBuilder: (context, physics) {
-                return NestedScrollView(
+        return NotificationListener<ScrollNotification>(
+          onNotification: (ScrollNotification notification) {
+            int depth = notification.depth;
+            double distance = notification.metrics.pixels;
+            if (depth == 0) {
+              store.dispatch(ChangePageScrollYAction(distance));
+            }
+            if (depth == 2) {
+              store.dispatch(ChangeBackTopAction(distance > getScreenHeight(context)));
+            }
+            return false;
+          },
+          child: EasyRefresh.builder(
+            controller: _freshController,
+            header: classicHeader,
+            clipBehavior: Clip.none,
+            onRefresh: () async => store.dispatch(RefreshAction(() => easyRefreshSuccess(_freshController), () => easyRefreshFail(_freshController))),
+            childBuilder: (context, physics) {
+              return Scaffold(
+                body: NestedScrollView(
                   controller: _scrollController,
                   physics: physics,
                   headerSliverBuilder: (BuildContext context, bool innerBoxIsScrolled) {
@@ -108,11 +109,11 @@ class _HomePageState extends State<HomePage> {
                     },
                     children: tabs.map((e) => PageGoodsList(e.code!, physics)).toList(),
                   ),
-                );
-              },
-            ),
+                ),
+                floatingActionButton: backTop(showTop, _scrollController),
+              );
+            },
           ),
-          floatingActionButton: backTop(showTop, _scrollController),
         );
       },
     );

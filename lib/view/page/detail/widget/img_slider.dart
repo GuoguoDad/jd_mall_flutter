@@ -22,17 +22,6 @@ Widget imgSlider(BuildContext context) {
     builder: (context, state) {
       List<String> imgList = state.selectInfo.imgList ?? [];
 
-      final List<Widget> sliders = imgList
-          .map((url) => CachedNetworkImage(
-                height: imgHeight,
-                width: screenWidth,
-                imageUrl: url,
-                placeholder: (context, url) => assetImage("images/default.png", screenWidth, imgHeight),
-                errorWidget: (context, url, error) => assetImage("images/default.png", screenWidth, imgHeight),
-                fit: BoxFit.fill,
-              ))
-          .toList();
-
       return Container(
         height: imgHeight,
         width: getScreenWidth(context),
@@ -53,7 +42,16 @@ Widget imgSlider(BuildContext context) {
               indicatorBackgroundColor: Colors.grey,
             ),
           ),
-          items: sliders,
+          items: imgList
+              .map((url) => CachedNetworkImage(
+                    height: imgHeight,
+                    width: screenWidth,
+                    imageUrl: url,
+                    placeholder: (context, url) => assetImage("images/default.png", screenWidth, imgHeight),
+                    errorWidget: (context, url, error) => assetImage("images/default.png", screenWidth, imgHeight),
+                    fit: BoxFit.fill,
+                  ))
+              .toList(),
         ),
       );
     },

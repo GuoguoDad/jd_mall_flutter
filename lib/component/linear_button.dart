@@ -14,17 +14,18 @@ class LinearButton extends StatefulWidget {
   final BorderRadius? borderRadius;
   final GestureTapCallback? onTap;
 
-  const LinearButton(
-      {super.key,
-      required this.width,
-      required this.height,
-      required this.btnName,
-      this.highlightColor,
-      this.linearBegin = Alignment.topLeft,
-      this.linearEnd = Alignment.bottomRight,
-      this.colors,
-      this.borderRadius,
-      this.onTap});
+  const LinearButton({
+    super.key,
+    required this.width,
+    required this.height,
+    required this.btnName,
+    this.highlightColor,
+    this.linearBegin = Alignment.topLeft,
+    this.linearEnd = Alignment.bottomRight,
+    this.colors,
+    this.borderRadius,
+    this.onTap,
+  });
 
   @override
   State<StatefulWidget> createState() => _LinearButtonState();
@@ -40,8 +41,9 @@ class _LinearButtonState extends State<LinearButton> {
         width: widget.width,
         height: widget.height,
         decoration: BoxDecoration(
-            gradient: LinearGradient(begin: widget.linearBegin, end: widget.linearEnd, colors: widget.colors ?? defaultColors),
-            borderRadius: bRadius),
+          gradient: LinearGradient(begin: widget.linearBegin, end: widget.linearEnd, colors: widget.colors ?? defaultColors),
+          borderRadius: bRadius,
+        ),
         child: InkWell(
           borderRadius: bRadius,
           highlightColor: widget.highlightColor ?? CommonStyle.themeColor,
@@ -50,7 +52,7 @@ class _LinearButtonState extends State<LinearButton> {
             alignment: Alignment.center,
             child: Text(
               widget.btnName,
-              style: const TextStyle(color: Colors.white, fontSize: 16, fontWeight: FontWeight.bold),
+              style: const TextStyle(color: Colors.white, fontSize: 14, fontWeight: FontWeight.bold),
             ),
           ),
         ),

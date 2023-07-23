@@ -36,10 +36,10 @@ class _DetailPageState extends State<DetailPage> {
 
   //商品、评论、详情、同店好货锚点key
   final cardKeys = <GlobalKey>[
-    GlobalKey(debugLabel: 'card_0'),
-    GlobalKey(debugLabel: 'card_1'),
-    GlobalKey(debugLabel: 'card_2'),
-    GlobalKey(debugLabel: 'card_3')
+    GlobalKey(debugLabel: 'detail_card_0'),
+    GlobalKey(debugLabel: 'detail_card_1'),
+    GlobalKey(debugLabel: 'detail_card_2'),
+    GlobalKey(debugLabel: 'detail_card_3')
   ];
 
   //缓存商品、评论、详情、同店好货4个模块的y坐标
@@ -64,7 +64,7 @@ class _DetailPageState extends State<DetailPage> {
     return StoreBuilder<AppState>(
       onInit: (store) async {
         await store.dispatch(InitPageAction());
-        Future.delayed(const Duration(seconds: 1), () => cacheChildrenOffset());
+        Future.delayed(const Duration(milliseconds: 500), () => cacheChildrenOffset());
       },
       onDispose: (store) {
         store.dispatch(ChangeTopTabIndexAction(0));
@@ -111,26 +111,31 @@ class _DetailPageState extends State<DetailPage> {
               );
         //
         Widget floatingHeader = Positioned(
-            top: 0,
-            left: 0,
-            child: tabHeader(context, onChange: (index) {
+          top: 0,
+          left: 0,
+          child: tabHeader(
+            context,
+            onChange: (index) {
               isTabClicked = true;
               store.dispatch(ChangeTopTabIndexAction(index));
               scroll2PositionByTabIndex(index);
-            }));
+            },
+          ),
+        );
 
         return AnnotatedRegion<SystemUiOverlayStyle>(
           value: SystemUiOverlayStyle.dark,
           child: Column(
             children: [
               Expanded(
-                  flex: 1,
-                  child: Scaffold(
-                    body: Stack(
-                      children: [scrollView, floatingHeader],
-                    ),
-                    floatingActionButton: BackToTop(_scrollController),
-                  )),
+                flex: 1,
+                child: Scaffold(
+                  body: Stack(
+                    children: [scrollView, floatingHeader],
+                  ),
+                  floatingActionButton: BackToTop(_scrollController),
+                ),
+              ),
               fixedBottom(context)
             ],
           ),

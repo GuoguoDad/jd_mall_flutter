@@ -47,14 +47,14 @@ Widget totalSettlement(BuildContext context) {
                       },
                     ),
                   ),
-                  Text(S.of(context).selectAll),
+                  Text(S.of(context).selectAll, style: const TextStyle(fontSize: 13)),
                   Container(
                     margin: const EdgeInsets.only(left: 5),
-                    child: Text("${S.of(context).amountTo}:"),
+                    child: Text("${S.of(context).amountTo}:", style: const TextStyle(fontSize: 13)),
                   ),
                   Text(
                     "￥${totalInfo.price}",
-                    style: const TextStyle(fontWeight: FontWeight.bold),
+                    style: const TextStyle(fontSize: 14, fontWeight: FontWeight.bold),
                   )
                 ],
               ),
