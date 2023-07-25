@@ -1,7 +1,10 @@
+// Flutter imports:
 import 'package:flutter/material.dart';
 
+// Package imports:
 import 'package:flutter_redux/flutter_redux.dart';
 
+// Project imports:
 import 'package:jd_mall_flutter/common/style/common_style.dart';
 import 'package:jd_mall_flutter/common/util/screen_util.dart';
 import 'package:jd_mall_flutter/models/primary_category_list.dart';

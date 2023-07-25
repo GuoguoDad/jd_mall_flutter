@@ -1,13 +1,17 @@
+// Dart imports:
 import 'dart:async';
 import 'dart:io';
 
+// Flutter imports:
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
+// Package imports:
 import 'package:flutter_redux/flutter_redux.dart';
 import 'package:sentry_flutter/sentry_flutter.dart';
 
+// Project imports:
 import 'package:jd_mall_flutter/app.dart';
 import 'package:jd_mall_flutter/common/constant/index.dart';
 import 'package:jd_mall_flutter/config/env_config.dart' as configs;

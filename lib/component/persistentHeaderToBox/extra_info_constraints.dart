@@ -1,3 +1,4 @@
+// Flutter imports:
 import 'package:flutter/widgets.dart';
 
 /// A box constraints with extra information.

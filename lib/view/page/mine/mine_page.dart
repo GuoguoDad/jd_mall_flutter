@@ -1,9 +1,12 @@
+// Flutter imports:
 import 'package:flutter/material.dart';
 
+// Package imports:
 import 'package:easy_refresh/easy_refresh.dart';
 import 'package:flutter_redux/flutter_redux.dart';
 import 'package:redux/redux.dart';
 
+// Project imports:
 import 'package:jd_mall_flutter/common/util/easy_refresh_util.dart';
 import 'package:jd_mall_flutter/common/util/refresh_util.dart';
 import 'package:jd_mall_flutter/common/util/screen_util.dart';

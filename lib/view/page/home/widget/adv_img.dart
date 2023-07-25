@@ -1,8 +1,11 @@
+// Flutter imports:
 import 'package:flutter/material.dart';
 
+// Package imports:
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter_redux/flutter_redux.dart';
 
+// Project imports:
 import 'package:jd_mall_flutter/common/util/screen_util.dart';
 import 'package:jd_mall_flutter/component/image/asset_image.dart';
 import 'package:jd_mall_flutter/store/app_state.dart';

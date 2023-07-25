@@ -1,3 +1,4 @@
+// Package imports:
 import 'package:json_annotation/json_annotation.dart';
 
 part 'cart_goods.g.dart';

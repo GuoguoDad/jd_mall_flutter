@@ -1,5 +1,7 @@
+// Flutter imports:
 import 'package:flutter/material.dart';
 
+// Project imports:
 import 'package:jd_mall_flutter/common/style/common_style.dart';
 import 'package:jd_mall_flutter/component/common_header.dart';
 import 'package:jd_mall_flutter/view/page/order/generate/widget/bottom.dart';

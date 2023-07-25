@@ -1,7 +1,10 @@
+// Dart imports:
 import 'dart:math';
 
+// Flutter imports:
 import 'package:flutter/material.dart';
 
+// Project imports:
 import 'package:jd_mall_flutter/common/util/screen_util.dart';
 import 'package:jd_mall_flutter/component/common_header.dart';
 

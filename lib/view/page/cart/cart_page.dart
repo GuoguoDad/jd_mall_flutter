@@ -1,8 +1,11 @@
+// Flutter imports:
 import 'package:flutter/material.dart';
 
+// Package imports:
 import 'package:flutter_redux/flutter_redux.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
 
+// Project imports:
 import 'package:jd_mall_flutter/common/style/common_style.dart';
 import 'package:jd_mall_flutter/common/util/refresh_util.dart';
 import 'package:jd_mall_flutter/component/back_to_top.dart';

@@ -1,3 +1,4 @@
+// Package imports:
 import 'package:json_annotation/json_annotation.dart';
 
 part 'second_group_category_info.g.dart';

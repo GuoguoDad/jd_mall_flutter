@@ -1,5 +1,7 @@
+// Flutter imports:
 import 'package:flutter/material.dart';
 
+// Project imports:
 import 'package:jd_mall_flutter/common/style/common_style.dart';
 import 'package:jd_mall_flutter/common/util/screen_util.dart';
 

@@ -1,7 +1,10 @@
+// Dart imports:
 import 'dart:convert';
 
+// Flutter imports:
 import 'package:flutter/services.dart' show rootBundle;
 
+// Package imports:
 import 'package:gato/gato.dart' as gato;
 
 /// A singleton class to set and get global configs.

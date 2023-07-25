@@ -1,10 +1,13 @@
 library flutter_stepper;
 
+// Dart imports:
 import 'dart:math' as math;
 
+// Flutter imports:
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
+// Project imports:
 import 'package:jd_mall_flutter/component/stepper/style.dart';
 
 const _animateDuration = Duration(milliseconds: 300);

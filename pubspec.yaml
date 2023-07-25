@@ -159,5 +159,5 @@ flutter_intl:
   enabled: true
 
 import_sorter:
-  emojis: true # Optional, defaults to false
-  comments: false # Optional, defaults to true
+  emojis: false # Optional, defaults to false
+  comments: true # Optional, defaults to true

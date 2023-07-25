@@ -1,7 +1,10 @@
+// Flutter imports:
 import 'package:flutter/material.dart';
 
+// Package imports:
 import 'package:shimmer/shimmer.dart';
 
+// Project imports:
 import 'package:jd_mall_flutter/component/skeleton/placeholders.dart';
 
 Widget homeSkeleton(BuildContext context) {

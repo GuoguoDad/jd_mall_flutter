@@ -1,5 +1,7 @@
+// Flutter imports:
 import 'package:flutter/cupertino.dart';
 
+// Project imports:
 import 'package:jd_mall_flutter/view/main/main_page.dart';
 import 'package:jd_mall_flutter/view/page/detail/detail_page.dart';
 import 'package:jd_mall_flutter/view/page/example/Interlaced_animation.dart';

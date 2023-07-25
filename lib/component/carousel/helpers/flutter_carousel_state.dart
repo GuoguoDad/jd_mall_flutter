@@ -1,5 +1,7 @@
+// Flutter imports:
 import 'package:flutter/material.dart';
 
+// Project imports:
 import 'package:jd_mall_flutter/component/carousel/enums/carousel_page_changed_reason.dart';
 import 'package:jd_mall_flutter/component/carousel/helpers/flutter_carousel_options.dart';
 

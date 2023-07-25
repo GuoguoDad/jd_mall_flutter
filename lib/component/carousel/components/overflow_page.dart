@@ -1,5 +1,7 @@
+// Flutter imports:
 import 'package:flutter/material.dart';
 
+// Project imports:
 import 'package:jd_mall_flutter/component/carousel/components/size_reporting_widget.dart';
 
 class OverflowPage extends StatelessWidget {

@@ -1,5 +1,7 @@
+// Flutter imports:
 import 'package:flutter/material.dart';
 
+// Project imports:
 import 'package:jd_mall_flutter/common/style/common_style.dart';
 import 'package:jd_mall_flutter/component/persistentHeader/sliver_header_builder.dart';
 import 'package:jd_mall_flutter/generated/l10n.dart';

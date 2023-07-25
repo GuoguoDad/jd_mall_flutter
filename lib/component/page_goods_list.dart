@@ -1,8 +1,11 @@
+// Flutter imports:
 import 'package:flutter/material.dart';
 
+// Package imports:
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
 
+// Project imports:
 import 'package:jd_mall_flutter/common/constant/index.dart';
 import 'package:jd_mall_flutter/common/util/screen_util.dart';
 import 'package:jd_mall_flutter/component/common_service.dart';

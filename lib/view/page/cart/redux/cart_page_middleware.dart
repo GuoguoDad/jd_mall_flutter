@@ -1,5 +1,7 @@
+// Package imports:
 import 'package:redux/redux.dart';
 
+// Project imports:
 import 'package:jd_mall_flutter/common/constant/index.dart';
 import 'package:jd_mall_flutter/models/cart_goods.dart';
 import 'package:jd_mall_flutter/view/page/cart/redux/cart_page_action.dart';

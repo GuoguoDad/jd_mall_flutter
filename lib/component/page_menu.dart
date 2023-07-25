@@ -1,5 +1,7 @@
+// Flutter imports:
 import 'package:flutter/material.dart';
 
+// Project imports:
 import 'package:jd_mall_flutter/component/common_indicator.dart';
 import 'package:jd_mall_flutter/component/menu_item.dart';
 import 'package:jd_mall_flutter/models/mine_menu_tab_info.dart';

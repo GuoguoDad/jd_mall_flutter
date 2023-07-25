@@ -1,5 +1,7 @@
+// Flutter imports:
 import 'package:flutter/cupertino.dart';
 
+// Package imports:
 import 'package:easy_refresh/easy_refresh.dart';
 
 Header classicHeader = const ClassicHeader(

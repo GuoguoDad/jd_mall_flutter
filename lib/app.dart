@@ -1,11 +1,15 @@
+// Dart imports:
 import 'dart:async';
 
+// Flutter imports:
 import 'package:flutter/material.dart';
 
+// Package imports:
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
 
+// Project imports:
 import 'package:jd_mall_flutter/common/event/http_error_event.dart';
 import 'package:jd_mall_flutter/common/event/index.dart';
 import 'package:jd_mall_flutter/common/util/screen_util.dart';

@@ -1,9 +1,12 @@
+// Flutter imports:
 import 'package:flutter/material.dart';
 
+// Package imports:
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter_group_list_view/flutter_group_list_view.dart';
 import 'package:flutter_redux/flutter_redux.dart';
 
+// Project imports:
 import 'package:jd_mall_flutter/common/style/common_style.dart';
 import 'package:jd_mall_flutter/component/image/asset_image.dart';
 import 'package:jd_mall_flutter/component/stepper/stepper.dart';

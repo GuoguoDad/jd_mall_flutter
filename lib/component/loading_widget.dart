@@ -1,5 +1,7 @@
+// Flutter imports:
 import 'package:flutter/material.dart';
 
+// Package imports:
 import 'package:loading_indicator/loading_indicator.dart';
 
 Widget loadingWidget(BuildContext context) {

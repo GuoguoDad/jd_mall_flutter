@@ -1,7 +1,10 @@
+// Flutter imports:
 import 'package:flutter/material.dart';
 
+// Package imports:
 import 'package:webview_flutter/webview_flutter.dart';
 
+// Project imports:
 import 'package:jd_mall_flutter/common/util/screen_util.dart';
 import 'package:jd_mall_flutter/component/loading_widget.dart';
 import 'package:jd_mall_flutter/view/vebview/type.dart';

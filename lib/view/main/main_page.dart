@@ -1,6 +1,8 @@
+// Flutter imports:
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
+// Project imports:
 import 'package:jd_mall_flutter/common/style/common_style.dart';
 import 'package:jd_mall_flutter/component/image/asset_image.dart';
 import 'package:jd_mall_flutter/generated/l10n.dart';

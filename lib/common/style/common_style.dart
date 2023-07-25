@@ -1,3 +1,4 @@
+// Project imports:
 import 'package:jd_mall_flutter/common/util/color_util.dart';
 
 class CommonStyle {

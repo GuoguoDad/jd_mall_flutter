@@ -1,7 +1,10 @@
+// Flutter imports:
 import 'package:flutter/material.dart';
 
+// Package imports:
 import 'package:flutter_redux/flutter_redux.dart';
 
+// Project imports:
 import 'package:jd_mall_flutter/component/loading_widget.dart';
 import 'package:jd_mall_flutter/store/app_state.dart';
 import 'package:jd_mall_flutter/view/page/category/redux/category_page_action.dart';
