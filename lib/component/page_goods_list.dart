@@ -47,7 +47,8 @@ class _PageGoodsListState extends State<PageGoodsList> {
     CommonServiceApi.queryGoodsListByPage(widget.code, currentPage, pageSize).then((value) {
       if (value != null) {
         List<GoodsList> goods = goodsPageInfo.goodsList ?? [];
-        List<GoodsList>? goodsList = [...goods, ...value.goodsList];
+        List<GoodsList> newGoods = value.goodsList ?? [];
+        List<GoodsList>? goodsList = [...goods, ...newGoods];
 
         setState(() {
           pageNum = currentPage;

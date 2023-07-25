@@ -69,7 +69,7 @@ class _DetailPageState extends State<DetailPage> {
     return StoreBuilder<AppState>(
       onInit: (store) async {
         await store.dispatch(InitPageAction());
-        Future.delayed(const Duration(milliseconds: 500), () => cacheChildrenOffset());
+        Future.delayed(const Duration(milliseconds: 100), () => cacheChildrenOffset());
       },
       onDispose: (store) {
         store.dispatch(ChangeTopTabIndexAction(0));
@@ -162,9 +162,11 @@ class _DetailPageState extends State<DetailPage> {
 
   //根据index滚动页面至相应模块位置
   void scroll2PositionByTabIndex(int index) {
-    double offsetY = itemsOffsetMap[index]! - 42 - getStatusHeight(context);
-    if (offsetY < 0) offsetY = 0;
-    _scrollController.animateTo(offsetY, duration: const Duration(milliseconds: 300), curve: Curves.linear).then((value) => isTabClicked = false);
+    if (itemsOffsetMap[index] != null) {
+      double offsetY = itemsOffsetMap[index]! - 42 - getStatusHeight(context);
+      if (offsetY < 0) offsetY = 0;
+      _scrollController.animateTo(offsetY, duration: const Duration(milliseconds: 300), curve: Curves.linear).then((value) => isTabClicked = false);
+    }
   }
 
   //找到当前页面第一个可见的item的索引

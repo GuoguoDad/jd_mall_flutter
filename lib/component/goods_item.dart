@@ -16,7 +16,7 @@ Widget goodsItem(BuildContext context, GoodsList item, double width) {
   return GestureDetector(
     onTap: () {
       if (item.type == '1') Navigator.of(context).pushNamed(DetailPage.name);
-      if (item.type == '2') Navigator.of(context).pushNamed(WebViewPage.name, arguments: WebViewPageArguments(item.h5url!));
+      if (item.type == '2') Navigator.of(context).pushNamed(WebViewPage.name, arguments: WebViewPageArguments(item.h5url ?? ""));
     },
     child: Container(
       padding: const EdgeInsets.only(bottom: 10),

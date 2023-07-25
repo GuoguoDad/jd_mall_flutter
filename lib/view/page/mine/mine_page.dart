@@ -110,7 +110,7 @@ class _MinePageState extends State<MinePage> {
                       if (isTabClick) return;
                       store.dispatch(SetCurrentTab(tabs[index].code!));
                     },
-                    children: tabs.map((e) => PageGoodsList(e.code!, physics)).toList(),
+                    children: tabs.map((e) => PageGoodsList("mine_tab_${e.code!}", physics)).toList(),
                   ),
                 ),
                 floatingActionButton: backTop(showTop, _scrollController),

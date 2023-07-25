@@ -112,7 +112,7 @@ class _HomePageState extends State<HomePage> {
                       if (isTabClick) return;
                       store.dispatch(SetCurrentTab(tabs[index].code!));
                     },
-                    children: tabs.map((e) => PageGoodsList(e.code!, physics)).toList(),
+                    children: tabs.map((e) => PageGoodsList("home_tab_${e.code!}", physics)).toList(),
                   ),
                 ),
                 floatingActionButton: backTop(showTop, _scrollController),

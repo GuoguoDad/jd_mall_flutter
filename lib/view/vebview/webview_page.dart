@@ -45,7 +45,7 @@ class _WebViewPageState extends State<WebViewPage> {
           onPageStarted: (String url) {},
           onPageFinished: (String url) {
             controller.getTitle().then((value) => setState(() {
-                  title = value!.replaceAll("京东", "");
+                  title = (value ?? "").replaceAll("京东", "");
                 }));
             controller.runJavaScript(
               '''
