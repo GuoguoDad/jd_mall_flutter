@@ -10,7 +10,6 @@
 // ignore_for_file:unused_import, file_names, avoid_escaping_inner_quotes
 // ignore_for_file:unnecessary_string_interpolations, unnecessary_string_escapes
 
-// Package imports:
 import 'package:intl/intl.dart';
 import 'package:intl/message_lookup_by_library.dart';
 
@@ -46,6 +45,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "detail": MessageLookupByLibrary.simpleMessage("详情"),
         "evaluate": MessageLookupByLibrary.simpleMessage("评价"),
         "filter": MessageLookupByLibrary.simpleMessage("筛选"),
+        "homeSearchTip": MessageLookupByLibrary.simpleMessage("跑步鞋"),
         "integral": MessageLookupByLibrary.simpleMessage("积分"),
         "loadMoreNot": MessageLookupByLibrary.simpleMessage("没有更多了"),
         "loadMoreText": MessageLookupByLibrary.simpleMessage("加载中"),

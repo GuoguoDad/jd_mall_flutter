@@ -161,3 +161,5 @@ flutter_intl:
 import_sorter:
   emojis: false # Optional, defaults to false
   comments: true # Optional, defaults to true
+  ignored_files: # Optional, defaults to []
+    - \/lib\/generated\/*

@@ -1,12 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
-
-// Flutter imports:
 import 'package:flutter/material.dart';
-
-// Package imports:
 import 'package:intl/intl.dart';
-
-// Project imports:
 import 'intl/messages_all.dart';
 
 // **************************************************************************
@@ -561,6 +555,16 @@ class S {
     return Intl.message(
       'recommend',
       name: 'recommend',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `running shoes`
+  String get homeSearchTip {
+    return Intl.message(
+      'running shoes',
+      name: 'homeSearchTip',
       desc: '',
       args: [],
     );

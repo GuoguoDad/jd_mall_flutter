@@ -9,6 +9,7 @@ import 'package:jd_mall_flutter/common/style/common_style.dart';
 import 'package:jd_mall_flutter/common/util/screen_util.dart';
 import 'package:jd_mall_flutter/component/image/asset_image.dart';
 import 'package:jd_mall_flutter/component/persistentHeader/sliver_header_builder.dart';
+import 'package:jd_mall_flutter/generated/l10n.dart';
 import 'package:jd_mall_flutter/store/app_state.dart';
 import 'package:jd_mall_flutter/view/page/home/redux/home_page_state.dart';
 import 'package:jd_mall_flutter/view/page/home/util.dart';
@@ -67,7 +68,7 @@ Widget searchHeader(BuildContext context) {
                             height: 34.0,
                             alignment: Alignment.centerLeft,
                             child: Text(
-                              '跑步鞋',
+                              S.of(context).homeSearchTip,
                               style: TextStyle(
                                 fontSize: 14,
                                 color: CommonStyle.placeholderColor,

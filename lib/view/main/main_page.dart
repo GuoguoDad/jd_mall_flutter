@@ -10,6 +10,7 @@ import 'package:jd_mall_flutter/view/page/cart/cart_page.dart';
 import 'package:jd_mall_flutter/view/page/category/category.dart';
 import 'package:jd_mall_flutter/view/page/home/home_page.dart';
 import 'package:jd_mall_flutter/view/page/mine/mine_page.dart';
+import 'package:jd_mall_flutter/component/lazy_load_indexed_stack.dart';
 
 class MainPage extends StatefulWidget {
   const MainPage({super.key});
@@ -45,7 +46,7 @@ class _MainPageState extends State<MainPage> {
       value: [0, 1].contains(_selectedIndex) ? SystemUiOverlayStyle.light : SystemUiOverlayStyle.dark,
       child: Material(
         child: Scaffold(
-          body: IndexedStack(
+          body: LazyLoadIndexedStack(
             index: _selectedIndex,
             children: pages,
           ),
