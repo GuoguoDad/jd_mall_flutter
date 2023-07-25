@@ -69,6 +69,10 @@ Flutter框架具有如下的一些特点：
 
       flutter run --profile lib/main_prd.dart
 
+## 排序import语句
+
+      dart run import_sorter:main
+
 # 效果
 
 ## 首页

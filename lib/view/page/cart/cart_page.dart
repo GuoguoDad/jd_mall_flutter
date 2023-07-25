@@ -1,18 +1,20 @@
 import 'package:flutter/material.dart';
+
 import 'package:flutter_redux/flutter_redux.dart';
+import 'package:pull_to_refresh/pull_to_refresh.dart';
+
 import 'package:jd_mall_flutter/common/style/common_style.dart';
+import 'package:jd_mall_flutter/common/util/refresh_util.dart';
+import 'package:jd_mall_flutter/component/back_to_top.dart';
+import 'package:jd_mall_flutter/component/loading_widget.dart';
+import 'package:jd_mall_flutter/store/app_state.dart';
 import 'package:jd_mall_flutter/view/page/cart/redux/cart_page_action.dart';
 import 'package:jd_mall_flutter/view/page/cart/widget/cart_goods.dart';
 import 'package:jd_mall_flutter/view/page/cart/widget/cart_header.dart';
 import 'package:jd_mall_flutter/view/page/cart/widget/condition.dart';
+import 'package:jd_mall_flutter/view/page/cart/widget/goods_list.dart';
 import 'package:jd_mall_flutter/view/page/cart/widget/probably_like.dart';
 import 'package:jd_mall_flutter/view/page/cart/widget/total_settlement.dart';
-import 'package:pull_to_refresh/pull_to_refresh.dart';
-import 'package:jd_mall_flutter/common/util/refresh_util.dart';
-import 'package:jd_mall_flutter/component/back_to_top.dart';
-import 'package:jd_mall_flutter/store/app_state.dart';
-import 'package:jd_mall_flutter/view/page/cart/widget/goods_list.dart';
-import 'package:jd_mall_flutter/component/loading_widget.dart';
 
 class CartPage extends StatefulWidget {
   const CartPage({super.key});

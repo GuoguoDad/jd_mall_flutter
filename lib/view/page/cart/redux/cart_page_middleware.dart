@@ -1,8 +1,9 @@
 import 'package:redux/redux.dart';
+
+import 'package:jd_mall_flutter/common/constant/index.dart';
 import 'package:jd_mall_flutter/models/cart_goods.dart';
 import 'package:jd_mall_flutter/view/page/cart/redux/cart_page_action.dart';
 import 'package:jd_mall_flutter/view/page/cart/service.dart';
-import 'package:jd_mall_flutter/common/constant/index.dart';
 
 Future initData = Future.wait([CartApi.queryCartGoods(), CartApi.queryGoodsListByPage(1, pageSize)]);
 

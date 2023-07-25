@@ -1,16 +1,18 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_redux/flutter_redux.dart';
-import 'package:jd_mall_flutter/component/image/asset_image.dart';
-import 'package:jd_mall_flutter/store/app_state.dart';
-import 'package:jd_mall_flutter/view/page/home/redux/home_page_state.dart';
-import 'package:jd_mall_flutter/common/style/common_style.dart';
+
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:flutter_redux/flutter_redux.dart';
+
+import 'package:jd_mall_flutter/common/style/common_style.dart';
+import 'package:jd_mall_flutter/common/util/screen_util.dart';
 import 'package:jd_mall_flutter/component/carousel/carousel_widget.dart';
 import 'package:jd_mall_flutter/component/carousel/helpers/flutter_carousel_options.dart';
 import 'package:jd_mall_flutter/component/carousel/indicators/circular_wave_slide_indicator.dart';
-import 'package:jd_mall_flutter/common/util/screen_util.dart';
-import 'package:jd_mall_flutter/view/page/detail/detail_page.dart';
+import 'package:jd_mall_flutter/component/image/asset_image.dart';
 import 'package:jd_mall_flutter/component/nil.dart';
+import 'package:jd_mall_flutter/store/app_state.dart';
+import 'package:jd_mall_flutter/view/page/detail/detail_page.dart';
+import 'package:jd_mall_flutter/view/page/home/redux/home_page_state.dart';
 
 Widget galleryList(BuildContext context) {
   double carouselWidth = getScreenWidth(context) - 24;

@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+
 import 'package:shimmer/shimmer.dart';
+
 import 'package:jd_mall_flutter/component/skeleton/placeholders.dart';
 
 Widget homeSkeleton(BuildContext context) {

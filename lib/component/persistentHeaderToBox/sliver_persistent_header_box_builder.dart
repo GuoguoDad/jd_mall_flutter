@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/rendering.dart';
+
 import 'package:jd_mall_flutter/component/persistentHeaderToBox/extra_info_constraints.dart';
 
 typedef SliverPersistentHeaderToBoxBuilder = Widget Function(

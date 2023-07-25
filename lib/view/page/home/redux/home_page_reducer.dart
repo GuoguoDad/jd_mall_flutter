@@ -1,4 +1,5 @@
 import 'package:redux/redux.dart';
+
 import 'package:jd_mall_flutter/view/page/home/redux/home_page_action.dart';
 import 'package:jd_mall_flutter/view/page/home/redux/home_page_state.dart';
 

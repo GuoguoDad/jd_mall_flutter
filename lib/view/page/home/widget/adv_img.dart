@@ -1,13 +1,14 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_redux/flutter_redux.dart';
-import 'package:cached_network_image/cached_network_image.dart';
-import 'package:jd_mall_flutter/store/app_state.dart';
-import 'package:jd_mall_flutter/component/image/asset_image.dart';
-import 'package:jd_mall_flutter/view/page/home/redux/home_page_state.dart';
-import 'package:jd_mall_flutter/common/util/screen_util.dart';
 
-import 'package:jd_mall_flutter/view/vebview/webview_page.dart';
+import 'package:cached_network_image/cached_network_image.dart';
+import 'package:flutter_redux/flutter_redux.dart';
+
+import 'package:jd_mall_flutter/common/util/screen_util.dart';
+import 'package:jd_mall_flutter/component/image/asset_image.dart';
+import 'package:jd_mall_flutter/store/app_state.dart';
+import 'package:jd_mall_flutter/view/page/home/redux/home_page_state.dart';
 import 'package:jd_mall_flutter/view/vebview/type.dart';
+import 'package:jd_mall_flutter/view/vebview/webview_page.dart';
 
 Widget advBanner(BuildContext context) {
   return StoreConnector<AppState, HomePageState>(

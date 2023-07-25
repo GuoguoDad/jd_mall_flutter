@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
+
+import 'package:jd_mall_flutter/common/util/color_util.dart';
 import 'package:jd_mall_flutter/common/util/screen_util.dart';
 import 'package:jd_mall_flutter/component/image/asset_image.dart';
-import 'package:jd_mall_flutter/common/util/color_util.dart';
 import 'package:jd_mall_flutter/component/linear_button.dart';
 import 'package:jd_mall_flutter/generated/l10n.dart';
 

@@ -1,5 +1,5 @@
-import 'package:jd_mall_flutter/models/home_page_info.dart';
 import 'package:jd_mall_flutter/models/goods_page_info.dart';
+import 'package:jd_mall_flutter/models/home_page_info.dart';
 
 class HomePageState {
   bool showBackTop = false;

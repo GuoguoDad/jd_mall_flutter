@@ -1,7 +1,8 @@
 import 'package:redux/redux.dart';
+
+import 'package:jd_mall_flutter/common/constant/index.dart';
 import 'package:jd_mall_flutter/view/page/detail/redux/detail_page_action.dart';
 import 'package:jd_mall_flutter/view/page/detail/service.dart';
-import 'package:jd_mall_flutter/common/constant/index.dart';
 
 Future initData = Future.wait([DetailApi.queryDetailInfo(), DetailApi.queryStoreGoodsListByPage(1, pageSize)]);
 

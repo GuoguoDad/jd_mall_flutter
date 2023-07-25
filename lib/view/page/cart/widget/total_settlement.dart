@@ -1,14 +1,16 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_redux/flutter_redux.dart';
+
 import 'package:flutter_easyloading/flutter_easyloading.dart';
-import 'package:jd_mall_flutter/common/util/screen_util.dart';
+import 'package:flutter_redux/flutter_redux.dart';
+
 import 'package:jd_mall_flutter/common/style/common_style.dart';
+import 'package:jd_mall_flutter/common/util/screen_util.dart';
+import 'package:jd_mall_flutter/component/linear_button.dart';
+import 'package:jd_mall_flutter/generated/l10n.dart';
 import 'package:jd_mall_flutter/models/cart_goods.dart';
 import 'package:jd_mall_flutter/store/app_state.dart';
 import 'package:jd_mall_flutter/view/page/cart/redux/cart_page_action.dart';
-import 'package:jd_mall_flutter/component/linear_button.dart';
 import 'package:jd_mall_flutter/view/page/order/generate/generate_order.dart';
-import 'package:jd_mall_flutter/generated/l10n.dart';
 
 Widget totalSettlement(BuildContext context) {
   return StoreBuilder<AppState>(

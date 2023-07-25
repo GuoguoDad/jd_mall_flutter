@@ -1,6 +1,9 @@
 import 'dart:collection';
-import 'package:dio/dio.dart';
+
 import 'package:flutter/foundation.dart';
+
+import 'package:dio/dio.dart';
+
 import 'package:jd_mall_flutter/http/base_response.dart';
 import 'package:jd_mall_flutter/http/code.dart';
 import 'package:jd_mall_flutter/http/interceptors/error_interceptor.dart';

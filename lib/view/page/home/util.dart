@@ -1,5 +1,6 @@
-import 'package:easy_refresh/easy_refresh.dart';
 import 'package:flutter/cupertino.dart';
+
+import 'package:easy_refresh/easy_refresh.dart';
 
 double calc2Top(double scrollY) {
   double result = 45;

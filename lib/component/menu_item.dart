@@ -1,9 +1,11 @@
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-import 'package:jd_mall_flutter/models/mine_menu_tab_info.dart';
+
+import 'package:cached_network_image/cached_network_image.dart';
+
 import 'package:jd_mall_flutter/component/image/asset_image.dart';
-import 'package:jd_mall_flutter/view/vebview/webview_page.dart';
+import 'package:jd_mall_flutter/models/mine_menu_tab_info.dart';
 import 'package:jd_mall_flutter/view/vebview/type.dart';
+import 'package:jd_mall_flutter/view/vebview/webview_page.dart';
 
 class MenuItem extends StatelessWidget {
   const MenuItem(

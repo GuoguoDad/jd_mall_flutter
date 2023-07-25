@@ -1,14 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
-import 'package:flutter_redux/flutter_redux.dart';
+
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:flutter_redux/flutter_redux.dart';
+
 import 'package:jd_mall_flutter/common/style/common_style.dart';
 import 'package:jd_mall_flutter/common/util/screen_util.dart';
-import 'package:jd_mall_flutter/view/page/category/redux/category_page_action.dart';
 import 'package:jd_mall_flutter/component/group_grid_view.dart';
 import 'package:jd_mall_flutter/component/image/asset_image.dart';
 import 'package:jd_mall_flutter/models/second_group_category_info.dart';
 import 'package:jd_mall_flutter/store/app_state.dart';
+import 'package:jd_mall_flutter/view/page/category/redux/category_page_action.dart';
 
 late double rWidth, bWidth;
 //gridview的item宽和高一样

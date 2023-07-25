@@ -1,5 +1,6 @@
-import 'package:easy_refresh/easy_refresh.dart';
 import 'package:flutter/cupertino.dart';
+
+import 'package:easy_refresh/easy_refresh.dart';
 
 Header classicHeader = const ClassicHeader(
   clamping: true,

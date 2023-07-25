@@ -1,21 +1,23 @@
 import 'package:flutter/material.dart';
-import 'package:redux/redux.dart';
+
 import 'package:easy_refresh/easy_refresh.dart';
 import 'package:flutter_redux/flutter_redux.dart';
+import 'package:redux/redux.dart';
+
+import 'package:jd_mall_flutter/common/util/easy_refresh_util.dart';
+import 'package:jd_mall_flutter/common/util/refresh_util.dart';
 import 'package:jd_mall_flutter/common/util/screen_util.dart';
-import 'package:jd_mall_flutter/view/page/home/widget/tab_list.dart';
+import 'package:jd_mall_flutter/component/back_top.dart';
+import 'package:jd_mall_flutter/component/loading_widget.dart';
+import 'package:jd_mall_flutter/component/page_goods_list.dart';
+import 'package:jd_mall_flutter/models/home_page_info.dart';
+import 'package:jd_mall_flutter/store/app_state.dart';
+import 'package:jd_mall_flutter/view/page/home/redux/home_page_action.dart';
 import 'package:jd_mall_flutter/view/page/home/widget/adv_img.dart';
 import 'package:jd_mall_flutter/view/page/home/widget/gallery_list.dart';
 import 'package:jd_mall_flutter/view/page/home/widget/menu_slider.dart';
 import 'package:jd_mall_flutter/view/page/home/widget/search_header.dart';
-import 'package:jd_mall_flutter/view/page/home/redux/home_page_action.dart';
-import 'package:jd_mall_flutter/store/app_state.dart';
-import 'package:jd_mall_flutter/common/util/refresh_util.dart';
-import 'package:jd_mall_flutter/models/home_page_info.dart';
-import 'package:jd_mall_flutter/component/page_goods_list.dart';
-import 'package:jd_mall_flutter/common/util/easy_refresh_util.dart';
-import 'package:jd_mall_flutter/component/back_top.dart';
-import 'package:jd_mall_flutter/component/loading_widget.dart';
+import 'package:jd_mall_flutter/view/page/home/widget/tab_list.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});

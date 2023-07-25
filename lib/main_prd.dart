@@ -1,16 +1,19 @@
 import 'dart:async';
 import 'dart:io';
+
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+
 import 'package:flutter_redux/flutter_redux.dart';
-import 'package:jd_mall_flutter/store/app_state.dart';
-import 'package:jd_mall_flutter/store/app_store.dart';
-import 'package:jd_mall_flutter/app.dart';
-import 'package:jd_mall_flutter/config/global_configs.dart';
-import 'package:flutter/foundation.dart';
 import 'package:sentry_flutter/sentry_flutter.dart';
+
+import 'package:jd_mall_flutter/app.dart';
 import 'package:jd_mall_flutter/common/constant/index.dart';
 import 'package:jd_mall_flutter/config/env_config.dart' as configs;
+import 'package:jd_mall_flutter/config/global_configs.dart';
+import 'package:jd_mall_flutter/store/app_state.dart';
+import 'package:jd_mall_flutter/store/app_store.dart';
 
 void initApp(Map<String, dynamic> envMap) {
   GlobalConfigs().loadFromMap(envMap);

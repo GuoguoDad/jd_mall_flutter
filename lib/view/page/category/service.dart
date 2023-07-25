@@ -1,8 +1,8 @@
-import 'package:jd_mall_flutter/http/http.dart';
-import 'package:jd_mall_flutter/models/second_group_category_info.dart';
-import 'package:jd_mall_flutter/config/global_configs.dart';
-import 'package:jd_mall_flutter/models/primary_category_list.dart';
 import 'package:jd_mall_flutter/config/env_config.dart';
+import 'package:jd_mall_flutter/config/global_configs.dart';
+import 'package:jd_mall_flutter/http/http.dart';
+import 'package:jd_mall_flutter/models/primary_category_list.dart';
+import 'package:jd_mall_flutter/models/second_group_category_info.dart';
 
 class CategoryApi {
   static Future queryCategoryInfo() async {

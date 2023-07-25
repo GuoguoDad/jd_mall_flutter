@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:jd_mall_flutter/view/page/order/generate/widget/default_address.dart';
-import 'package:jd_mall_flutter/view/page/order/generate/widget/bottom.dart';
+
 import 'package:jd_mall_flutter/common/style/common_style.dart';
 import 'package:jd_mall_flutter/component/common_header.dart';
+import 'package:jd_mall_flutter/view/page/order/generate/widget/bottom.dart';
+import 'package:jd_mall_flutter/view/page/order/generate/widget/default_address.dart';
 
 class GenerateOrder extends StatefulWidget {
   const GenerateOrder({super.key});

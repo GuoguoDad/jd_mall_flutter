@@ -19,7 +19,7 @@ publish_to: 'none' # Remove this line if you wish to publish to pub.dev
 version: 1.0.0+1
 
 environment:
-  sdk: '>=2.19.6 <3.10.0'
+  sdk: '>=2.19.6 <3.10.6'
 
 # Dependencies specify other packages that your package needs in order to work.
 # To automatically upgrade your package dependencies to the latest versions
@@ -68,6 +68,7 @@ dev_dependencies:
   flutter_lints: ^2.0.0
   build_runner: ^2.1.5
   json_serializable: ^6.1.2
+  import_sorter: ^4.6.0
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
@@ -156,3 +157,7 @@ flutter:
   # see https://flutter.dev/custom-fonts/#from-packages
 flutter_intl:
   enabled: true
+
+import_sorter:
+  emojis: true # Optional, defaults to false
+  comments: false # Optional, defaults to true

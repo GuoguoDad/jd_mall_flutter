@@ -1,7 +1,8 @@
 import 'package:redux/redux.dart';
+
+import 'package:jd_mall_flutter/models/goods_page_info.dart';
 import 'package:jd_mall_flutter/view/page/detail/redux/detail_page_action.dart';
 import 'package:jd_mall_flutter/view/page/detail/redux/detail_page_state.dart';
-import 'package:jd_mall_flutter/models/goods_page_info.dart';
 
 final detailPageReducer = combineReducers<DetailPageState>([
   //记录页面滚动距离

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+
 import 'package:jd_mall_flutter/component/image/asset_image.dart';
 
 Widget backTop(bool showBackTop, ScrollController controller) {

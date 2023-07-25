@@ -1,14 +1,16 @@
 import 'package:flutter/material.dart';
+
 import 'package:flutter_redux/flutter_redux.dart';
+
 import 'package:jd_mall_flutter/common/util/screen_util.dart';
 import 'package:jd_mall_flutter/component/image/asset_image.dart';
-import 'package:jd_mall_flutter/store/app_state.dart';
 import 'package:jd_mall_flutter/component/persistentHeader/sliver_header_builder.dart';
-import 'package:jd_mall_flutter/view/page/mine/redux/mine_page_state.dart';
+import 'package:jd_mall_flutter/generated/l10n.dart';
+import 'package:jd_mall_flutter/store/app_state.dart';
 import 'package:jd_mall_flutter/view/page/example/Interlaced_animation.dart';
 import 'package:jd_mall_flutter/view/page/example/breathing_method.dart';
-import 'package:jd_mall_flutter/generated/l10n.dart';
 import 'package:jd_mall_flutter/view/page/example/snow_man.dart';
+import 'package:jd_mall_flutter/view/page/mine/redux/mine_page_state.dart';
 
 Widget infoHeader(BuildContext context) {
   return StoreConnector<AppState, MinePageState>(
