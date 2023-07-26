@@ -20,6 +20,7 @@ import 'package:jd_mall_flutter/view/page/mine/widget/info_header.dart';
 import 'package:jd_mall_flutter/view/page/mine/widget/order_card.dart';
 import 'package:jd_mall_flutter/view/page/mine/widget/single_line_menu.dart';
 import 'package:jd_mall_flutter/view/page/mine/widget/tab_list.dart';
+import 'package:jd_mall_flutter/component/keep_alive_wrapper.dart';
 
 class MinePage extends StatefulWidget {
   const MinePage({super.key});
@@ -110,7 +111,7 @@ class _MinePageState extends State<MinePage> {
                       if (isTabClick) return;
                       store.dispatch(SetCurrentTab(tabs[index].code!));
                     },
-                    children: tabs.map((e) => PageGoodsList("mine_tab_${e.code!}", physics)).toList(),
+                    children: tabs.map((e) => KeepAliveWrapper(child: PageGoodsList("mine_tab_${e.code!}", physics))).toList(),
                   ),
                 ),
                 floatingActionButton: backTop(showTop, _scrollController),

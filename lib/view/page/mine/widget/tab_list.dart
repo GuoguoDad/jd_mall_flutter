@@ -19,7 +19,7 @@ Widget tabList(BuildContext context, {required ValueCallback<String> onTabChange
     pinned: true,
     delegate: SliverHeaderDelegate.fixedHeight(
       //固定高度
-      height: 58,
+      height: 54,
       child: Container(
         color: CommonStyle.greyBgColor,
         child: StoreBuilder<AppState>(

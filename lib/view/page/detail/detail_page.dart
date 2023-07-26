@@ -69,7 +69,9 @@ class _DetailPageState extends State<DetailPage> {
     return StoreBuilder<AppState>(
       onInit: (store) async {
         await store.dispatch(InitPageAction());
-        Future.delayed(const Duration(milliseconds: 100), () => cacheChildrenOffset());
+      },
+      onInitialBuild: (store) {
+        Future.delayed(const Duration(milliseconds: 1000), () => cacheChildrenOffset());
       },
       onDispose: (store) {
         store.dispatch(ChangeTopTabIndexAction(0));

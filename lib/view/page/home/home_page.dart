@@ -21,6 +21,7 @@ import 'package:jd_mall_flutter/view/page/home/widget/gallery_list.dart';
 import 'package:jd_mall_flutter/view/page/home/widget/menu_slider.dart';
 import 'package:jd_mall_flutter/view/page/home/widget/search_header.dart';
 import 'package:jd_mall_flutter/view/page/home/widget/tab_list.dart';
+import 'package:jd_mall_flutter/component/keep_alive_wrapper.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -112,7 +113,7 @@ class _HomePageState extends State<HomePage> {
                       if (isTabClick) return;
                       store.dispatch(SetCurrentTab(tabs[index].code!));
                     },
-                    children: tabs.map((e) => PageGoodsList("home_tab_${e.code!}", physics)).toList(),
+                    children: tabs.map((e) => KeepAliveWrapper(child: PageGoodsList("home_tab_${e.code!}", physics))).toList(),
                   ),
                 ),
                 floatingActionButton: backTop(showTop, _scrollController),
