@@ -114,7 +114,7 @@ Widget infoHeader(BuildContext context) {
                   right: 116,
                   child: GestureDetector(
                     onTap: () => Navigator.of(context).pushNamed(SnowManDemo.name),
-                    child: assetImage('images/ic_friend.png', 24, 24),
+                    child: assetImage('images/ic_friend.png', 23, 23),
                   ),
                 ),
                 Positioned(
