@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 
 // Package imports:
 import 'package:easy_refresh/easy_refresh.dart';
+import 'package:extended_nested_scroll_view/extended_nested_scroll_view.dart';
 import 'package:flutter_redux/flutter_redux.dart';
 import 'package:redux/redux.dart';
 
@@ -56,6 +57,8 @@ class _MinePageState extends State<MinePage> {
 
   @override
   Widget build(BuildContext context) {
+    double statusHeight = getStatusHeight(context);
+
     return StoreBuilder<AppState>(
       onInit: (store) {
         store.dispatch(InitPageAction());
@@ -86,9 +89,11 @@ class _MinePageState extends State<MinePage> {
             },
             childBuilder: (context, physics) {
               return Scaffold(
-                body: NestedScrollView(
+                body: ExtendedNestedScrollView(
                   controller: _scrollController,
-                  physics: physics,
+                  pinnedHeaderSliverHeightBuilder: () {
+                    return statusHeight + 48 + 54;
+                  },
                   headerSliverBuilder: (BuildContext context, bool innerBoxIsScrolled) {
                     return [
                       const HeaderLocator.sliver(clearExtent: false),
@@ -98,6 +103,7 @@ class _MinePageState extends State<MinePage> {
                       tabList(context, onTabChange: (code) => handleTabChange(store, code, tabs))
                     ];
                   },
+                  onlyOneScrollInBody: true,
                   body: PageView(
                     controller: _pageController,
                     onPageChanged: (index) {

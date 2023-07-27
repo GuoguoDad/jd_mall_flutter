@@ -55,6 +55,7 @@ dependencies:
   webview_flutter: ^4.2.2
   loading_indicator: ^3.1.0
   flutter_easyloading: ^3.0.5
+  extended_nested_scroll_view: ^6.1.0
 
 dev_dependencies:
   flutter_test:
