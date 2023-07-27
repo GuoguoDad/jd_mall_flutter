@@ -2,14 +2,14 @@
 import 'package:flutter/material.dart';
 
 // Project imports:
-import 'package:jd_mall_flutter/common/util/color_util.dart';
+import 'package:jd_mall_flutter/common/extension/extensions.dart';
 import 'package:jd_mall_flutter/common/util/screen_util.dart';
 import 'package:jd_mall_flutter/component/image/asset_image.dart';
 import 'package:jd_mall_flutter/generated/l10n.dart';
 
 Widget header(BuildContext context) {
   return Container(
-    color: ColorUtil.hex2Color('#FE0F22'),
+    color: '#FE0F22'.toColor(),
     height: 50 + getStatusHeight(context),
     padding: EdgeInsets.only(top: getStatusHeight(context)),
     child: Stack(
@@ -49,7 +49,7 @@ Widget header(BuildContext context) {
               width: getScreenWidth(context) - 120,
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(14),
-                color: ColorUtil.hex2Color("#F0F1ED"),
+                color: "#F0F1ED".toColor(),
               ),
               child: Row(
                 crossAxisAlignment: CrossAxisAlignment.center,
@@ -70,7 +70,7 @@ Widget header(BuildContext context) {
                         S.of(context).searchInputTip,
                         style: TextStyle(
                           fontSize: 14,
-                          color: ColorUtil.hex2Color('#818286'),
+                          color: '#818286'.toColor(),
                         ),
                       ),
                     ),

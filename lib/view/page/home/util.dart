@@ -1,9 +1,3 @@
-// Flutter imports:
-import 'package:flutter/cupertino.dart';
-
-// Package imports:
-import 'package:easy_refresh/easy_refresh.dart';
-
 double calc2Top(double scrollY) {
   double result = 45;
   if (scrollY > 0 && scrollY <= 45) {

@@ -14,14 +14,14 @@ import 'package:jd_mall_flutter/view/page/category/redux/category_page_state.dar
 
 double itemHeight = 62.0;
 
-Widget leftCate(BuildContext context, ScrollController _scrollController) {
+Widget leftCate(BuildContext context, ScrollController scrollController) {
   return StoreBuilder<AppState>(
     builder: (context, store) {
       SelectedCategoryInfo? selectedCategoryInfo = store.state.categoryPageState.selectedCategoryInfo;
       List<CategoryInfo> list = store.state.categoryPageState.categoryList ?? [];
 
       Widget scrollTabList = ListView.builder(
-        controller: _scrollController,
+        controller: scrollController,
         itemCount: list.length,
         shrinkWrap: true,
         padding: EdgeInsets.zero,
@@ -34,7 +34,7 @@ Widget leftCate(BuildContext context, ScrollController _scrollController) {
             onTap: () {
               store.dispatch(SelectCategoryAction(
                   SelectedCategoryInfo(index - 1 >= 0 ? list[index - 1] : null, list[index], index + 1 <= list.length - 1 ? list[index + 1] : null)));
-              _scrollController.animateTo(calc2Top(context, index, list.length), duration: const Duration(milliseconds: 200), curve: Curves.linear);
+              scrollController.animateTo(calc2Top(context, index, list.length), duration: const Duration(milliseconds: 200), curve: Curves.linear);
             },
             child: Container(
               height: itemHeight,

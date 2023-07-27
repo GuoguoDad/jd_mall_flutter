@@ -2,7 +2,7 @@
 import 'package:flutter/material.dart';
 
 // Project imports:
-import 'package:jd_mall_flutter/common/util/color_util.dart';
+import 'package:jd_mall_flutter/common/extension/extensions.dart';
 import 'package:jd_mall_flutter/common/util/screen_util.dart';
 import 'package:jd_mall_flutter/component/linear_button.dart';
 
@@ -23,13 +23,10 @@ Widget fixedBottom(BuildContext context) {
               children: [
                 Container(
                   margin: const EdgeInsets.only(left: 12),
-                  child: const Text("￥",
-                      style: TextStyle(fontSize: 20, color: Colors.red, fontWeight: FontWeight.w600, decoration: TextDecoration.none)),
+                  child: const Text("￥", style: TextStyle(fontSize: 20, color: Colors.red, fontWeight: FontWeight.w600, decoration: TextDecoration.none)),
                 ),
-                const Text("1899",
-                    style: TextStyle(fontSize: 30, fontWeight: FontWeight.w600, color: Colors.red, decoration: TextDecoration.none)),
-                const Text(".20",
-                    style: TextStyle(fontSize: 20, fontWeight: FontWeight.w600, color: Colors.red, decoration: TextDecoration.none)),
+                const Text("1899", style: TextStyle(fontSize: 30, fontWeight: FontWeight.w600, color: Colors.red, decoration: TextDecoration.none)),
+                const Text(".20", style: TextStyle(fontSize: 20, fontWeight: FontWeight.w600, color: Colors.red, decoration: TextDecoration.none)),
               ],
             )),
         Expanded(
@@ -43,7 +40,7 @@ Widget fixedBottom(BuildContext context) {
                     height: 48,
                     btnName: "帮我付",
                     highlightColor: Colors.yellow,
-                    colors: [ColorUtil.hex2Color("#F2CD4A"), ColorUtil.hex2Color("#F2C54B")],
+                    colors: ["#F2CD4A".toColor(), "#F2C54B".toColor()],
                     borderRadius: const BorderRadius.all(Radius.circular(50)),
                     onTap: () => print("=======")),
                 LinearButton(
@@ -51,7 +48,7 @@ Widget fixedBottom(BuildContext context) {
                     height: 48,
                     btnName: "自己付",
                     highlightColor: Colors.red,
-                    colors: [ColorUtil.hex2Color("#E54B4E"), ColorUtil.hex2Color("#E34439")],
+                    colors: ["#E54B4E".toColor(), "#E34439".toColor()],
                     borderRadius: const BorderRadius.all(Radius.circular(50)),
                     onTap: () => print("======="))
               ],

@@ -1,3 +1,4 @@
+// Flutter imports:
 import 'package:flutter/widgets.dart';
 
 /// An extended IndexedStack that builds the required widget only when it is needed, and returns the pre-built widget when it is needed again.

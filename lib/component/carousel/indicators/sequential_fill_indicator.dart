@@ -2,7 +2,7 @@
 import 'package:flutter/material.dart';
 
 // Project imports:
-import 'slide_indicator.dart';
+import 'package:jd_mall_flutter/component/carousel/indicators/slide_indicator.dart';
 
 class SequentialFillIndicator extends SlideIndicator {
   SequentialFillIndicator({

@@ -19,7 +19,7 @@ class ResponseInterceptors extends InterceptorsWrapper {
       }
     } catch (e) {
       print(e.toString() + option.path);
-      value = BaseResponse(code: response.statusCode.toString() ?? "", msg: '', data: response.data);
+      value = BaseResponse(code: response.statusCode.toString(), msg: '', data: response.data);
     }
     response.data = value;
     return handler.next(response);

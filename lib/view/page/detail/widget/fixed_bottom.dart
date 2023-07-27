@@ -2,7 +2,7 @@
 import 'package:flutter/material.dart';
 
 // Project imports:
-import 'package:jd_mall_flutter/common/util/color_util.dart';
+import 'package:jd_mall_flutter/common/extension/extensions.dart';
 import 'package:jd_mall_flutter/common/util/screen_util.dart';
 import 'package:jd_mall_flutter/component/image/asset_image.dart';
 import 'package:jd_mall_flutter/component/linear_button.dart';
@@ -40,7 +40,7 @@ Widget fixedBottom(BuildContext context) {
                 height: 42,
                 btnName: S.of(context).add2Cart,
                 highlightColor: Colors.yellow,
-                colors: [ColorUtil.hex2Color("#F2CD4A"), ColorUtil.hex2Color("#F2C54B")],
+                colors: ["#F2CD4A".toColor(), "#F2C54B".toColor()],
                 borderRadius: const BorderRadius.all(Radius.circular(50)),
                 onTap: () => print("======="),
               ),
@@ -49,7 +49,7 @@ Widget fixedBottom(BuildContext context) {
                 height: 42,
                 btnName: S.of(context).couponPurchase,
                 highlightColor: Colors.red,
-                colors: [ColorUtil.hex2Color("#E54B4E"), ColorUtil.hex2Color("#E34439")],
+                colors: ["#E54B4E".toColor(), "#E34439".toColor()],
                 borderRadius: const BorderRadius.all(Radius.circular(50)),
                 onTap: () => print("======="),
               )

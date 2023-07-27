@@ -11,6 +11,7 @@ import 'package:jd_mall_flutter/common/util/easy_refresh_util.dart';
 import 'package:jd_mall_flutter/common/util/refresh_util.dart';
 import 'package:jd_mall_flutter/common/util/screen_util.dart';
 import 'package:jd_mall_flutter/component/back_top.dart';
+import 'package:jd_mall_flutter/component/keep_alive_wrapper.dart';
 import 'package:jd_mall_flutter/component/loading_widget.dart';
 import 'package:jd_mall_flutter/component/page_goods_list.dart';
 import 'package:jd_mall_flutter/models/mine_menu_tab_info.dart';
@@ -20,7 +21,6 @@ import 'package:jd_mall_flutter/view/page/mine/widget/info_header.dart';
 import 'package:jd_mall_flutter/view/page/mine/widget/order_card.dart';
 import 'package:jd_mall_flutter/view/page/mine/widget/single_line_menu.dart';
 import 'package:jd_mall_flutter/view/page/mine/widget/tab_list.dart';
-import 'package:jd_mall_flutter/component/keep_alive_wrapper.dart';
 
 class MinePage extends StatefulWidget {
   const MinePage({super.key});

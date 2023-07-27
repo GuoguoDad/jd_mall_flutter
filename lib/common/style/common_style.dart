@@ -1,31 +1,34 @@
+// Dart imports:
+import 'dart:ui';
+
 // Project imports:
-import 'package:jd_mall_flutter/common/util/color_util.dart';
+import 'package:jd_mall_flutter/common/extension/extensions.dart';
 
 class CommonStyle {
-  static ColorUtil themeColor = ColorUtil.hex2Color("#FF1520");
-  static ColorUtil placeholderColor = ColorUtil.hex2Color("#818286");
+  static Color themeColor = "#FF1520".toColor();
+  static Color placeholderColor = "#818286".toColor();
 
-  static ColorUtil selectedTabColor = ColorUtil.hex2Color("#CC3250");
-  static ColorUtil unSelectedTabColor = ColorUtil.hex2Color("#433D33");
+  static Color selectedTabColor = "#CC3250".toColor();
+  static Color unSelectedTabColor = "#433D33".toColor();
 
-  static ColorUtil greyBgColor = ColorUtil.hex2Color("#F5F5F4");
-  static ColorUtil greyBgColor2 = ColorUtil.hex2Color("#F1F1F2");
-  static ColorUtil greyBgColor3 = ColorUtil.hex2Color("#EAEDEE");
+  static Color greyBgColor = "#F5F5F4".toColor();
+  static Color greyBgColor2 = "#F1F1F2".toColor();
+  static Color greyBgColor3 = "#EAEDEE".toColor();
 
-  static ColorUtil selectBgColor = ColorUtil.hex2Color("#F2E9E2");
+  static Color selectBgColor = "#F2E9E2".toColor();
 
-  static ColorUtil primaryColor = ColorUtil.hex2Color("#3E3F40");
+  static Color primaryColor = "#3E3F40".toColor();
 
-  static ColorUtil color777677 = ColorUtil.hex2Color("#777677");
-  static ColorUtil colorF3F3F3 = ColorUtil.hex2Color("#F3F3F3");
-  static ColorUtil colorF1F1F1 = ColorUtil.hex2Color("#F1F1F1");
-  static ColorUtil color8B8C8A = ColorUtil.hex2Color("#8B8C8A");
-  static ColorUtil colorF5F5F5 = ColorUtil.hex2Color("#F5F5F5");
-  static ColorUtil colorECEDEC = ColorUtil.hex2Color("#ECEDEC");
-  static ColorUtil colorE6E6E6 = ColorUtil.hex2Color("#E6E6E6");
-  static ColorUtil colorD0D0D0 = ColorUtil.hex2Color("#D0D0D0");
-  static ColorUtil color969798 = ColorUtil.hex2Color("#969798");
-  static ColorUtil color545454 = ColorUtil.hex2Color("#545454");
-  static ColorUtil colorF2C54B = ColorUtil.hex2Color("#F2C54B");
-  static ColorUtil color2A2A2A = ColorUtil.hex2Color("#2A2A2A");
+  static Color color777677 = "#777677".toColor();
+  static Color colorF3F3F3 = "#F3F3F3".toColor();
+  static Color colorF1F1F1 = "#F1F1F1".toColor();
+  static Color color8B8C8A = "#8B8C8A".toColor();
+  static Color colorF5F5F5 = "#F5F5F5".toColor();
+  static Color colorECEDEC = "#ECEDEC".toColor();
+  static Color colorE6E6E6 = "#E6E6E6".toColor();
+  static Color colorD0D0D0 = "#D0D0D0".toColor();
+  static Color color969798 = "#969798".toColor();
+  static Color color545454 = "#545454".toColor();
+  static Color colorF2C54B = "#F2C54B".toColor();
+  static Color color2A2A2A = "#2A2A2A".toColor();
 }
