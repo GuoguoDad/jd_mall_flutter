@@ -18,34 +18,36 @@ Widget orderCard(BuildContext context) {
       return store.state.minePageState;
     },
     builder: (context, state) {
-      return Container(
-        height: 142,
-        width: getScreenWidth(context) - 20,
-        margin: const EdgeInsets.all(10),
-        decoration: const BoxDecoration(color: Colors.white, borderRadius: BorderRadius.all(Radius.circular(10))),
-        child: Column(
-          children: [
-            Flex(
-              direction: Axis.horizontal,
-              children: [
-                horizontalItem("images/ic_goods_star.png", "${S.of(context).productCollection}0"),
-                line(1, 12),
-                horizontalItem("images/ic_store_focus.png", "${S.of(context).storeFollow}16"),
-                line(1, 12),
-                horizontalItem("images/ic_look_history.png", "${S.of(context).browsingHistory}20")
-              ],
-            ),
-            line(getScreenWidth(context) - 50, 1),
-            Flex(
-              direction: Axis.horizontal,
-              children: [
-                verticalItem("images/ic_todo_pay.png", S.of(context).unpaid),
-                verticalItem("images/ic_todo_get.png", S.of(context).toBeReceived),
-                verticalItem("images/ic_todo_evaluate.png", S.of(context).toBeEvaluated),
-                verticalItem("images/ic_todo_exchange.png", S.of(context).returnAfterSales)
-              ],
-            )
-          ],
+      return SliverToBoxAdapter(
+        child: Container(
+          height: 142,
+          width: getScreenWidth(context) - 20,
+          margin: const EdgeInsets.all(10),
+          decoration: const BoxDecoration(color: Colors.white, borderRadius: BorderRadius.all(Radius.circular(10))),
+          child: Column(
+            children: [
+              Flex(
+                direction: Axis.horizontal,
+                children: [
+                  horizontalItem("images/ic_goods_star.png", "${S.of(context).productCollection}0"),
+                  line(1, 12),
+                  horizontalItem("images/ic_store_focus.png", "${S.of(context).storeFollow}16"),
+                  line(1, 12),
+                  horizontalItem("images/ic_look_history.png", "${S.of(context).browsingHistory}20")
+                ],
+              ),
+              line(getScreenWidth(context) - 50, 1),
+              Flex(
+                direction: Axis.horizontal,
+                children: [
+                  verticalItem("images/ic_todo_pay.png", S.of(context).unpaid),
+                  verticalItem("images/ic_todo_get.png", S.of(context).toBeReceived),
+                  verticalItem("images/ic_todo_evaluate.png", S.of(context).toBeEvaluated),
+                  verticalItem("images/ic_todo_exchange.png", S.of(context).returnAfterSales)
+                ],
+              )
+            ],
+          ),
         ),
       );
     },

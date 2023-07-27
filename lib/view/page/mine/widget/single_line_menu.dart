@@ -14,7 +14,9 @@ Widget singleLineMenu(BuildContext context) {
     builder: (context, store) {
       List<FunctionInfo> menuData = store.state.minePageState.menuTabInfo.functionList ?? [];
 
-      return PageMenu(menuDataList: menuData);
+      return SliverToBoxAdapter(
+        child: PageMenu(menuDataList: menuData),
+      );
     },
   );
 }

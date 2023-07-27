@@ -93,16 +93,9 @@ class _MinePageState extends State<MinePage> {
                     return [
                       const HeaderLocator.sliver(clearExtent: false),
                       infoHeader(context),
-                      SliverList(
-                        delegate: SliverChildListDelegate([
-                          orderCard(context),
-                          singleLineMenu(context),
-                        ]),
-                      ),
-                      tabList(
-                        context,
-                        onTabChange: (code) => handleTabChange(store, code, tabs),
-                      )
+                      orderCard(context),
+                      singleLineMenu(context),
+                      tabList(context, onTabChange: (code) => handleTabChange(store, code, tabs))
                     ];
                   },
                   body: PageView(

@@ -27,9 +27,11 @@ Widget menuSlider(BuildContext context) {
               ))
           .toList();
 
-      return PageMenu(
-        menuDataList: menuData,
-        rowCount: 2,
+      return SliverToBoxAdapter(
+        child: PageMenu(
+          menuDataList: menuData,
+          rowCount: 2,
+        ),
       );
     },
   );
