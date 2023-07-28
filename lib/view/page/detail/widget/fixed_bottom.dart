@@ -16,45 +16,29 @@ Widget fixedBottom(BuildContext context) {
     padding: EdgeInsets.only(bottom: space),
     decoration: BoxDecoration(color: Colors.white, border: Border.all(color: Colors.grey.shade300, width: 0.2)),
     child: Row(
+      mainAxisAlignment: MainAxisAlignment.spaceAround,
+      crossAxisAlignment: CrossAxisAlignment.center,
       children: [
-        Expanded(
-          flex: 3,
-          child: Row(
-            crossAxisAlignment: CrossAxisAlignment.center,
-            mainAxisAlignment: MainAxisAlignment.spaceAround,
-            children: [
-              columnItem("images/detail/ic_store_red.png", S.of(context).store),
-              columnItem("images/detail/ic_customer_service.png", S.of(context).customerService),
-              columnItem("images/detail/ic_cart.png", S.of(context).tabMainCart)
-            ],
-          ),
+        columnItem("images/detail/ic_store_red.png", S.of(context).store),
+        columnItem("images/detail/ic_customer_service.png", S.of(context).customerService),
+        columnItem("images/detail/ic_cart.png", S.of(context).tabMainCart),
+        LinearButton(
+          width: 100,
+          height: 42,
+          btnName: S.of(context).add2Cart,
+          highlightColor: Colors.yellow,
+          colors: ["#F2CD4A".toColor(), "#F2C54B".toColor()],
+          borderRadius: const BorderRadius.all(Radius.circular(50)),
+          onTap: () => print("======="),
         ),
-        Expanded(
-          flex: 4,
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceAround,
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              LinearButton(
-                width: 110,
-                height: 42,
-                btnName: S.of(context).add2Cart,
-                highlightColor: Colors.yellow,
-                colors: ["#F2CD4A".toColor(), "#F2C54B".toColor()],
-                borderRadius: const BorderRadius.all(Radius.circular(50)),
-                onTap: () => print("======="),
-              ),
-              LinearButton(
-                width: 110,
-                height: 42,
-                btnName: S.of(context).couponPurchase,
-                highlightColor: Colors.red,
-                colors: ["#E54B4E".toColor(), "#E34439".toColor()],
-                borderRadius: const BorderRadius.all(Radius.circular(50)),
-                onTap: () => print("======="),
-              )
-            ],
-          ),
+        LinearButton(
+          width: 100,
+          height: 42,
+          btnName: S.of(context).couponPurchase,
+          highlightColor: Colors.red,
+          colors: ["#E54B4E".toColor(), "#E34439".toColor()],
+          borderRadius: const BorderRadius.all(Radius.circular(50)),
+          onTap: () => print("======="),
         )
       ],
     ),
@@ -64,7 +48,7 @@ Widget fixedBottom(BuildContext context) {
 Widget columnItem(String icon, String name) {
   return SizedBox(
     height: 54,
-    width: 56,
+    width: 50,
     child: Column(
       mainAxisAlignment: MainAxisAlignment.center,
       crossAxisAlignment: CrossAxisAlignment.center,
