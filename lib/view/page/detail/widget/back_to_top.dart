@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 // Project imports:
 import 'package:jd_mall_flutter/common/util/screen_util.dart';
 import 'package:jd_mall_flutter/component/image/asset_image.dart';
-import 'package:jd_mall_flutter/component/extend_scroll/extended_scroll_controller.dart';
+import 'package:extended_scroll/extended_scroll.dart';
 
 class BackToTop extends StatefulWidget {
   final ExtendedScrollController controller;

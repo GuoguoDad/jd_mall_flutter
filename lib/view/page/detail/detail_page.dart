@@ -6,6 +6,7 @@ import 'package:flutter/services.dart';
 // Package imports:
 import 'package:flutter_redux/flutter_redux.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
+import 'package:extended_scroll/extended_scroll.dart';
 
 // Project imports:
 import 'package:jd_mall_flutter/common/style/common_style.dart';
@@ -22,8 +23,6 @@ import 'package:jd_mall_flutter/view/page/detail/widget/store_goods.dart';
 import 'package:jd_mall_flutter/view/page/detail/widget/store_goods_header.dart';
 import 'package:jd_mall_flutter/view/page/detail/widget/tab_header.dart';
 import 'package:jd_mall_flutter/view/page/detail/widget/back_to_top.dart';
-import 'package:jd_mall_flutter/component/extend_scroll/extended_scroll_view.dart';
-import 'package:jd_mall_flutter/component/extend_scroll/extended_scroll_controller.dart';
 
 class DetailPage extends StatefulWidget {
   const DetailPage({super.key});
@@ -158,12 +157,7 @@ class _DetailPageState extends State<DetailPage> {
     RenderSliverToBoxAdapter? keyRenderObject = cardKeys[index].currentContext?.findAncestorRenderObjectOfType<RenderSliverToBoxAdapter>();
     if (keyRenderObject != null) {
       _scrollController.position
-          .ensureVisible(
-            keyRenderObject,
-            offsetTop: 42 + getStatusHeight(context),
-            duration: const Duration(milliseconds: 300),
-            curve: Curves.linear,
-          )
+          .ensureVisible(keyRenderObject, offsetTop: 42 + getStatusHeight(context), duration: const Duration(milliseconds: 300), curve: Curves.linear)
           .then((value) => isTabClicked = false);
     }
   }

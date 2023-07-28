@@ -257,6 +257,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "6.1.2"
+  extended_scroll:
+    dependency: "direct main"
+    description:
+      name: extended_scroll
+      sha256: bc7c627edefd3e75e7a8d55deb9b3860afa7a4e3a54317da950d9ed30b7bfca1
+      url: "https://pub.dev"
+    source: hosted
+    version: "3.0.0"
   fake_async:
     dependency: transitive
     description:
@@ -1035,5 +1043,5 @@ packages:
     source: hosted
     version: "3.1.2"
 sdks:
-  dart: ">=3.0.0 <3.10.6"
+  dart: ">=3.0.6 <3.10.6"
   flutter: ">=3.10.0"
