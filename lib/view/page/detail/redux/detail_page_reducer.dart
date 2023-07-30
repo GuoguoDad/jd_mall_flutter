@@ -14,17 +14,21 @@ final detailPageReducer = combineReducers<DetailPageState>([
   //
   TypedReducer<DetailPageState, ChangeTopTabIndexAction>((state, action) => state..index = action.index),
   //商品详情
-  TypedReducer<DetailPageState, InitCurrentGoodsInfoAction>((state, action) => state
-    ..selectInfo = action.selectInfo
-    ..goodsDetailRes = action.goodsDetailRes),
+  TypedReducer<DetailPageState, InitCurrentGoodsInfoAction>(
+    (state, action) => state
+      ..selectInfo = action.selectInfo
+      ..goodsDetailRes = action.goodsDetailRes,
+  ),
 
   //
   TypedReducer<DetailPageState, ChangeCurrentInfoAction>((state, action) => state..selectInfo = action.selectInfo),
 
   //初始化商品数据
-  TypedReducer<DetailPageState, InitGoodsPageAction>((state, action) => state
-    ..pageNum = action.pageNum
-    ..goodsPageInfo = action.value),
+  TypedReducer<DetailPageState, InitGoodsPageAction>(
+    (state, action) => state
+      ..pageNum = action.pageNum
+      ..goodsPageInfo = action.value,
+  ),
   //加载更多
   TypedReducer<DetailPageState, MoreGoodsPageAction>((state, action) {
     List<GoodsList> goods = state.goodsPageInfo.goodsList ?? [];
@@ -33,6 +37,9 @@ final detailPageReducer = combineReducers<DetailPageState>([
     return state
       ..pageNum = action.pageNum
       ..goodsPageInfo = GoodsPageInfo(
-          goodsList: goodsList, totalCount: state.goodsPageInfo.totalCount, totalPageCount: state.goodsPageInfo.totalPageCount);
+        goodsList: goodsList,
+        totalCount: state.goodsPageInfo.totalCount,
+        totalPageCount: state.goodsPageInfo.totalPageCount,
+      );
   }),
 ]);

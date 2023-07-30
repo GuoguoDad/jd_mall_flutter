@@ -4,9 +4,9 @@ import 'package:flutter/rendering.dart';
 import 'package:flutter/services.dart';
 
 // Package imports:
+import 'package:extended_scroll/extended_scroll.dart';
 import 'package:flutter_redux/flutter_redux.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
-import 'package:extended_scroll/extended_scroll.dart';
 
 // Project imports:
 import 'package:jd_mall_flutter/common/style/common_style.dart';
@@ -16,13 +16,13 @@ import 'package:jd_mall_flutter/component/loading_widget.dart';
 import 'package:jd_mall_flutter/store/app_state.dart';
 import 'package:jd_mall_flutter/view/page/detail/redux/detail_page_action.dart';
 import 'package:jd_mall_flutter/view/page/detail/widget/appraise_info.dart';
+import 'package:jd_mall_flutter/view/page/detail/widget/back_to_top.dart';
 import 'package:jd_mall_flutter/view/page/detail/widget/detail_card.dart';
 import 'package:jd_mall_flutter/view/page/detail/widget/fixed_bottom.dart';
 import 'package:jd_mall_flutter/view/page/detail/widget/goods_info.dart';
 import 'package:jd_mall_flutter/view/page/detail/widget/store_goods.dart';
 import 'package:jd_mall_flutter/view/page/detail/widget/store_goods_header.dart';
 import 'package:jd_mall_flutter/view/page/detail/widget/tab_header.dart';
-import 'package:jd_mall_flutter/view/page/detail/widget/back_to_top.dart';
 
 class DetailPage extends StatefulWidget {
   const DetailPage({super.key});

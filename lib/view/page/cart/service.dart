@@ -8,18 +8,20 @@ import 'package:jd_mall_flutter/models/goods_page_info.dart';
 class CartApi {
   static Future queryCartGoods() async {
     var res = await httpManager.post('${GlobalConfigs().get(EnvEnum.host.value)}/cart/queryCartGoodsList');
-    if (res?.code != '0') {
+    if (res.code != '0') {
       return null;
     }
-    return (res?.data as List<dynamic>?)?.map((e) => CartGoods.fromJson(e as Map<String, dynamic>)).toList() ?? [];
+    return (res.data as List<dynamic>?)?.map((e) => CartGoods.fromJson(e as Map<String, dynamic>)).toList() ?? [];
   }
 
   static Future queryGoodsListByPage(int currentPage, int pageSize) async {
-    var res = await httpManager
-        .post('${GlobalConfigs().get(EnvEnum.host.value)}/cart/queryMaybeLikeList', params: {"currentPage": currentPage, "pageSize": pageSize});
-    if (res?.code != '0') {
+    var res = await httpManager.post(
+      '${GlobalConfigs().get(EnvEnum.host.value)}/cart/queryMaybeLikeList',
+      params: {"currentPage": currentPage, "pageSize": pageSize},
+    );
+    if (res.code != '0') {
       return null;
     }
-    return GoodsPageInfo.fromJson(res?.data ?? {});
+    return GoodsPageInfo.fromJson(res.data ?? {});
   }
 }

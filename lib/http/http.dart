@@ -31,7 +31,7 @@ class HttpManager {
     _dio.interceptors.add(ResponseInterceptors());
   }
 
-  Future<BaseResponse?> request<T>(String url, params, Options option, bool? noTip) async {
+  Future<BaseResponse> request(String url, params, Options option, bool? noTip) async {
     noTip ??= false;
     option.headers ??= HashMap();
     option.headers!['content-type'] = CONTENT_TYPE_JSON;
@@ -50,9 +50,10 @@ class HttpManager {
         errResponse!.statusCode = Code.NETWORK_TIMEOUT;
       }
       return BaseResponse(
-          code: Code.errorHandleFunction(errResponse?.statusCode, err.response?.toString() ?? err.error.toString(), false),
-          msg: err.message,
-          data: null);
+        code: Code.errorHandleFunction(errResponse?.statusCode, err.response?.toString() ?? err.error.toString(), false),
+        msg: err.message,
+        data: null,
+      );
     }
 
     Response response;
@@ -64,27 +65,27 @@ class HttpManager {
     if (response.data is DioError) {
       return exceptionHandler(response.data as DioError);
     }
-    return BaseResponse<T>.fromJson(response.data?.data as Map<String, dynamic>);
+    return BaseResponse.fromJson(response.data?.data as Map<String, dynamic>);
   }
 
   ///get发起网络请求
   ///[ url] 请求url
   ///[ params] 请求参数
   ///[ option] 配置
-  Future<BaseResponse?> get<T>(String url, {Object? params, Options? option, bool? noTip}) async {
+  Future<BaseResponse> get(String url, {Object? params, Options? option, bool? noTip}) async {
     option ??= Options();
     option.method = "get";
-    return await request<T>(url, params, option, noTip);
+    return await request(url, params, option, noTip);
   }
 
   ///post发起网络请求
   ///[ url] 请求url
   ///[ params] 请求参数
   ///[ option] 配置
-  Future<BaseResponse?> post<T>(String url, {Object? params, Options? option, bool? noTip}) async {
+  Future<BaseResponse> post(String url, {Object? params, Options? option, bool? noTip}) async {
     option ??= Options();
     option.method = "post";
-    return await request<T>(url, params, option, noTip);
+    return await request(url, params, option, noTip);
   }
 }
 

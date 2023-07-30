@@ -8,18 +8,20 @@ import 'package:jd_mall_flutter/models/goods_page_info.dart';
 class DetailApi {
   static Future queryDetailInfo() async {
     var res = await httpManager.get('${GlobalConfigs().get(EnvEnum.host.value)}/detail/queryGoodsDetail');
-    if (res?.code != '0') {
+    if (res.code != '0') {
       return null;
     }
-    return GoodsDetailRes.fromJson(res?.data ?? {});
+    return GoodsDetailRes.fromJson(res.data ?? {});
   }
 
   static Future queryStoreGoodsListByPage(int currentPage, int pageSize) async {
-    var res = await httpManager
-        .post('${GlobalConfigs().get(EnvEnum.host.value)}/detail/queryStoreGoodsList', params: {"currentPage": currentPage, "pageSize": pageSize});
-    if (res?.code != '0') {
+    var res = await httpManager.post(
+      '${GlobalConfigs().get(EnvEnum.host.value)}/detail/queryStoreGoodsList',
+      params: {"currentPage": currentPage, "pageSize": pageSize},
+    );
+    if (res.code != '0') {
       return null;
     }
-    return GoodsPageInfo.fromJson(res?.data ?? {});
+    return GoodsPageInfo.fromJson(res.data ?? {});
   }
 }

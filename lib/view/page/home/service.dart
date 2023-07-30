@@ -8,10 +8,10 @@ import 'package:jd_mall_flutter/models/home_page_info.dart';
 class HomeApi {
   static Future queryHomeInfo() async {
     var res = await httpManager.get('${GlobalConfigs().get(EnvEnum.host.value)}/home/queryHomePageInfo');
-    if (res?.code != '0') {
+    if (res.code != '0') {
       return null;
     }
-    return HomePageInfo.fromJson(res?.data ?? {});
+    return HomePageInfo.fromJson(res.data ?? {});
   }
 
   static Future queryGoodsListByPage(String code, int currentPage, int pageSize) async {
@@ -19,9 +19,9 @@ class HomeApi {
       '${GlobalConfigs().get(EnvEnum.host.value)}/home/queryGoodsListByPage',
       params: {"code": code, "currentPage": currentPage, "pageSize": pageSize},
     );
-    if (res?.code != '0') {
+    if (res.code != '0') {
       return null;
     }
-    return GoodsPageInfo.fromJson(res?.data ?? {});
+    return GoodsPageInfo.fromJson(res.data ?? {});
   }
 }
