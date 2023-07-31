@@ -80,7 +80,7 @@ class _CartPageState extends State<CartPage> {
                         slivers: [
                           condition(context),
                           cartGoods(context),
-                          probablyLikeImage(context),
+                          probablyLike(context),
                           goodsList(context),
                         ],
                       ),

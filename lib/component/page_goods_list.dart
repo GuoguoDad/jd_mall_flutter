@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 
 // Package imports:
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
+import 'package:jd_mall_flutter/component/page_goods_list_skeleton.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
 
 // Project imports:
@@ -15,8 +16,9 @@ import 'package:jd_mall_flutter/models/goods_page_info.dart';
 class PageGoodsList extends StatefulWidget {
   final String code;
   final ScrollPhysics physics;
+  final String currentCode;
 
-  const PageGoodsList(this.code, this.physics, {super.key});
+  const PageGoodsList(this.code, this.currentCode, this.physics, {super.key});
 
   @override
   State<StatefulWidget> createState() => _PageGoodsListState();
@@ -26,6 +28,7 @@ class _PageGoodsListState extends State<PageGoodsList> {
   late final RefreshController _refreshController;
 
   int pageNum = 1;
+  bool isLoading = true;
 
   //商品数据
   GoodsPageInfo goodsPageInfo = GoodsPageInfo.fromJson({});
@@ -35,6 +38,15 @@ class _PageGoodsListState extends State<PageGoodsList> {
     _refreshController = RefreshController();
     super.initState();
     queryGoodsListByPage(1);
+  }
+
+  @override
+  void didUpdateWidget(PageGoodsList oldWidget) {
+    List<GoodsList> goods = goodsPageInfo.goodsList ?? [];
+    if (oldWidget.code == "home_tab_${widget.currentCode}" && goods.isEmpty) {
+      queryGoodsListByPage(1);
+    }
+    super.didUpdateWidget(oldWidget);
   }
 
   @override
@@ -51,6 +63,7 @@ class _PageGoodsListState extends State<PageGoodsList> {
         List<GoodsList>? goodsList = [...goods, ...newGoods];
 
         setState(() {
+          isLoading = false;
           pageNum = currentPage;
           goodsPageInfo = GoodsPageInfo(goodsList: goodsList, totalCount: value.totalCount, totalPageCount: value.totalPageCount);
         });
@@ -61,8 +74,16 @@ class _PageGoodsListState extends State<PageGoodsList> {
           _refreshController.loadNoData();
         }
       } else {
+        setState(() {
+          isLoading = false;
+        });
         _refreshController.loadFailed();
+        Future.delayed(const Duration(milliseconds: 1000), () => _refreshController.resetNoData());
       }
+    }).catchError((err) {
+      setState(() {
+        isLoading = false;
+      });
     });
   }
 
@@ -70,6 +91,10 @@ class _PageGoodsListState extends State<PageGoodsList> {
   Widget build(BuildContext context) {
     double width = (getScreenWidth(context) - 20) / 2;
     List<GoodsList> goodsList = goodsPageInfo.goodsList ?? [];
+
+    if ((isLoading || goodsList.isEmpty) && pageNum == 1) {
+      return pageGoodsListSkeleton(context);
+    }
 
     return SmartRefresher(
       key: Key("MasonryGridView_${widget.code}"),

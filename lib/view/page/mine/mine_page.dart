@@ -65,6 +65,7 @@ class _MinePageState extends State<MinePage> {
       },
       builder: (context, store) {
         List<TabInfo> tabs = store.state.minePageState.menuTabInfo.tabList ?? [];
+        String currentTab = store.state.minePageState.currentTab;
         bool showTop = store.state.minePageState.showBackTop;
         bool isLoading = store.state.minePageState.isLoading;
 
@@ -110,7 +111,7 @@ class _MinePageState extends State<MinePage> {
                       if (isTabClick) return;
                       store.dispatch(SetCurrentTab(tabs[index].code!));
                     },
-                    children: tabs.map((e) => KeepAliveWrapper(child: PageGoodsList("mine_tab_${e.code!}", physics))).toList(),
+                    children: tabs.map((e) => KeepAliveWrapper(child: PageGoodsList("mine_tab_${e.code!}", currentTab, physics))).toList(),
                   ),
                 ),
                 floatingActionButton: backTop(showTop, _scrollController),

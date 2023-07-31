@@ -157,7 +157,11 @@ Widget rightGroupList(BuildContext context, ScrollController scrollController, S
             child: GroupGridView(
               controller: gridViewController,
               padding: EdgeInsets.zero,
-              gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 3, mainAxisSpacing: 0, crossAxisSpacing: 0),
+              gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                crossAxisCount: 3,
+                mainAxisSpacing: 0,
+                crossAxisSpacing: 0,
+              ),
               sectionCount: secondCateList.length,
               itemInSectionCount: (int section) => secondCateList[section].cateList!.length,
               itemInSectionBuilder: (BuildContext context, IndexPath indexPath) {

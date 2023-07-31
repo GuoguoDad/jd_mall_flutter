@@ -66,6 +66,7 @@ class _HomePageState extends State<HomePage> {
       },
       builder: (context, store) {
         List<TabList> tabs = store.state.homePageState.homePageInfo.tabList ?? [];
+        String currentTab = store.state.homePageState.currentTab;
         bool showTop = store.state.homePageState.showBackTop;
         bool isLoading = store.state.homePageState.isLoading;
 
@@ -112,7 +113,7 @@ class _HomePageState extends State<HomePage> {
                       if (isTabClick) return;
                       store.dispatch(SetCurrentTab(tabs[index].code!));
                     },
-                    children: tabs.map((e) => KeepAliveWrapper(child: PageGoodsList("home_tab_${e.code!}", physics))).toList(),
+                    children: tabs.map((e) => KeepAliveWrapper(child: PageGoodsList("home_tab_${e.code!}", currentTab, physics))).toList(),
                   ),
                 ),
                 floatingActionButton: backTop(showTop, _scrollController),
