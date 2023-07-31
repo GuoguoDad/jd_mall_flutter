@@ -39,14 +39,14 @@ class HttpManager {
     option.headers!['connectTimeout'] = 30000;
     option.headers!['receiveTimeout'] = 30000;
 
-    exceptionHandler(DioError err) {
+    exceptionHandler(DioException err) {
       Response? errResponse;
       if (err.response != null) {
         errResponse = err.response;
       } else {
         errResponse = Response(statusCode: err.response?.statusCode, requestOptions: RequestOptions(path: url));
       }
-      if (err.type == DioErrorType.connectionTimeout || err.type == DioErrorType.receiveTimeout) {
+      if (err.type == DioExceptionType.connectionTimeout || err.type == DioExceptionType.receiveTimeout) {
         errResponse!.statusCode = Code.NETWORK_TIMEOUT;
       }
       String errMsg = err.response?.toString() ?? err.error.toString();
@@ -60,11 +60,11 @@ class HttpManager {
     Response<BaseResponse> response;
     try {
       response = await _dio.request<BaseResponse>(url, data: params, options: option);
-    } on DioError catch (e) {
+    } on DioException catch (e) {
       return exceptionHandler(e);
     }
-    if (response.data is DioError) {
-      return exceptionHandler(response.data as DioError);
+    if (response.data is DioException) {
+      return exceptionHandler(response.data as DioException);
     }
     return BaseResponse.fromJson(response.data?.data as Map<String, dynamic>);
   }

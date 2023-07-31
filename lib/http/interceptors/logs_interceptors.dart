@@ -77,7 +77,7 @@ class LogsInterceptors extends InterceptorsWrapper {
   }
 
   @override
-  onError(DioError err, handler) async {
+  onError(DioException err, handler) async {
     print('请求异常: $err');
     print('请求异常信息: ${err.response?.toString() ?? err.error.toString()}');
     try {
