@@ -20,6 +20,8 @@ Widget goodsItem(BuildContext context, GoodsList item, double width) {
     ClipRRect(
       borderRadius: const BorderRadius.only(topLeft: Radius.circular(10.0), topRight: Radius.circular(10.0)),
       child: CachedNetworkImage(
+        width: width,
+        height: width,
         imageUrl: item.imgUrl ?? "",
         placeholder: (context, url) => assetImage("images/default.png", width, width),
         errorWidget: (context, url, error) => assetImage("images/default.png", width, width),

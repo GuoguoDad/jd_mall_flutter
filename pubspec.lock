@@ -237,10 +237,10 @@ packages:
     dependency: "direct main"
     description:
       name: dio
-      sha256: "347d56c26d63519552ef9a569f2a593dda99a81fdbdff13c584b7197cfe05059"
+      sha256: "3866d67f93523161b643187af65f5ac08bc991a5bcdaf41a2d587fe4ccb49993"
       url: "https://pub.dev"
     source: hosted
-    version: "5.1.2"
+    version: "5.3.0"
   easy_refresh:
     dependency: "direct main"
     description:
@@ -261,10 +261,10 @@ packages:
     dependency: "direct main"
     description:
       name: extended_scroll
-      sha256: bc7c627edefd3e75e7a8d55deb9b3860afa7a4e3a54317da950d9ed30b7bfca1
+      sha256: "409c5e1235858a2b6550e66c37d80d965ba1650f80d4fce10a73a2337e5a2338"
       url: "https://pub.dev"
     source: hosted
-    version: "3.0.0"
+    version: "3.0.2"
   fake_async:
     dependency: transitive
     description:

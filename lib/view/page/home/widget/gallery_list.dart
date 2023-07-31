@@ -19,6 +19,7 @@ import 'package:jd_mall_flutter/view/page/home/redux/home_page_state.dart';
 
 Widget galleryList(BuildContext context) {
   double carouselWidth = getScreenWidth(context) - 24;
+  double carouselHeight = 160;
 
   return SliverToBoxAdapter(
     child: Container(
@@ -43,7 +44,7 @@ Widget galleryList(BuildContext context) {
 
             return Carousel(
               options: CarouselOptions(
-                height: 160,
+                height: carouselHeight,
                 viewportFraction: 1.0,
                 enlargeCenterPage: false,
                 autoPlay: true,
@@ -66,10 +67,12 @@ Widget galleryList(BuildContext context) {
                       child: ClipRRect(
                         borderRadius: const BorderRadius.all(Radius.circular(6)),
                         child: CachedNetworkImage(
+                          width: carouselWidth,
+                          height: carouselHeight,
                           imageUrl: item.imgUrl!,
                           fit: BoxFit.fill,
-                          placeholder: (context, url) => assetImage("images/default.png", carouselWidth, 168),
-                          errorWidget: (context, url, error) => assetImage("images/default.png", carouselWidth, 168),
+                          placeholder: (context, url) => assetImage("images/default.png", carouselWidth, carouselHeight),
+                          errorWidget: (context, url, error) => assetImage("images/default.png", carouselWidth, carouselHeight),
                         ),
                       ),
                     ),

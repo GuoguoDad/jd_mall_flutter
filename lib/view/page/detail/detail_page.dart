@@ -76,44 +76,48 @@ class _DetailPageState extends State<DetailPage> {
 
         List<Widget> stackWidgets = [];
         if (isLoading) {
-          stackWidgets.add(loadingWidget(context));
+          stackWidgets.add(
+            loadingWidget(context),
+          );
         } else {
-          stackWidgets.add(NotificationListener<ScrollNotification>(
-            onNotification: (ScrollNotification notification) {
-              double distance = notification.metrics.pixels;
-              store.dispatch(ChangePageScrollYAction(distance));
-              //监听滚动，选中对应的tab
-              if (isTabClicked) return false;
-              int newIndex = findFirstVisibleItemIndex(cardKeys, context);
-              store.dispatch(ChangeTopTabIndexAction(newIndex));
-              return false;
-            },
-            child: Container(
-              color: CommonStyle.colorF5F5F5,
-              child: SmartRefresher(
-                controller: _refreshController,
-                enablePullUp: true,
-                enablePullDown: false,
-                onLoading: () async {
-                  store.dispatch(LoadMoreAction(
-                    store.state.detailPageState.pageNum + 1,
-                    () => loadMoreSuccess(_refreshController),
-                    () => loadMoreFail(_refreshController),
-                  ));
-                },
-                child: ExtendedCustomScrollView(
-                  controller: _scrollController,
-                  slivers: [
-                    goodsInfo(context, cardKeys[0]),
-                    appraiseInfo(context, cardKeys[1]),
-                    detailCard(context, cardKeys[2]),
-                    storeGoodsHeader(context, cardKeys[3]),
-                    storeGoods(context)
-                  ],
+          stackWidgets.add(
+            NotificationListener<ScrollNotification>(
+              onNotification: (ScrollNotification notification) {
+                double distance = notification.metrics.pixels;
+                store.dispatch(ChangePageScrollYAction(distance));
+                //监听滚动，选中对应的tab
+                if (isTabClicked) return false;
+                int newIndex = findFirstVisibleItemIndex(cardKeys, context);
+                store.dispatch(ChangeTopTabIndexAction(newIndex));
+                return false;
+              },
+              child: Container(
+                color: CommonStyle.colorF5F5F5,
+                child: SmartRefresher(
+                  controller: _refreshController,
+                  enablePullUp: true,
+                  enablePullDown: false,
+                  onLoading: () async {
+                    store.dispatch(LoadMoreAction(
+                      store.state.detailPageState.pageNum + 1,
+                      () => loadMoreSuccess(_refreshController),
+                      () => loadMoreFail(_refreshController),
+                    ));
+                  },
+                  child: ExtendedCustomScrollView(
+                    controller: _scrollController,
+                    slivers: [
+                      goodsInfo(context, cardKeys[0]),
+                      appraiseInfo(context, cardKeys[1]),
+                      detailCard(context, cardKeys[2]),
+                      storeGoodsHeader(context, cardKeys[3]),
+                      storeGoods(context)
+                    ],
+                  ),
                 ),
               ),
             ),
-          ));
+          );
         }
 
         stackWidgets.add(

@@ -10,7 +10,11 @@ Widget goodsInfo(BuildContext context, Key key) {
   return SliverToBoxAdapter(
     child: Column(
       key: key,
-      children: [imgSlider(context), skuInfo(context), addressInfo(context)],
+      children: [
+        imgSlider(context),
+        skuInfo(context),
+        addressInfo(context),
+      ],
     ),
   );
 }

@@ -25,14 +25,14 @@ Widget floatingHeader(BuildContext context, {required String title, Color? bgCol
                   child: Container(
                     alignment: Alignment.centerLeft,
                     padding: const EdgeInsets.only(left: 16),
-                    child: assetImage("images/ic_back_black.png", 38, 38),
+                    child: assetImage("images/ic_back_black.png", 32, 32),
                   )),
             ),
             Expanded(
               flex: 2,
               child: Container(
                 alignment: Alignment.center,
-                child: Text(title, style: const TextStyle(color: Colors.black, fontSize: 22)),
+                child: Text(title, textAlign: TextAlign.center, style: const TextStyle(color: Colors.black, fontSize: 20)),
               ),
             ),
             Expanded(
@@ -40,10 +40,10 @@ Widget floatingHeader(BuildContext context, {required String title, Color? bgCol
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    assetImage("images/ic_share_black.png", 28, 28),
+                    assetImage("images/ic_share_black.png", 24, 24),
                     Container(
                       margin: const EdgeInsets.only(left: 14),
-                      child: assetImage("images/ic_ellipsis_black.png", 28, 28),
+                      child: assetImage("images/ic_ellipsis_black.png", 24, 24),
                     )
                   ],
                 ))

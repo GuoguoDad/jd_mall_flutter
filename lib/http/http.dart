@@ -49,16 +49,17 @@ class HttpManager {
       if (err.type == DioErrorType.connectionTimeout || err.type == DioErrorType.receiveTimeout) {
         errResponse!.statusCode = Code.NETWORK_TIMEOUT;
       }
+      String errMsg = err.response?.toString() ?? err.error.toString();
       return BaseResponse(
-        code: Code.errorHandleFunction(errResponse?.statusCode, err.response?.toString() ?? err.error.toString(), false),
-        msg: err.message,
+        code: Code.errorHandleFunction(errResponse?.statusCode, errMsg, false),
+        msg: errMsg,
         data: null,
       );
     }
 
-    Response response;
+    Response<BaseResponse> response;
     try {
-      response = await _dio.request(url, data: params, options: option);
+      response = await _dio.request<BaseResponse>(url, data: params, options: option);
     } on DioError catch (e) {
       return exceptionHandler(e);
     }

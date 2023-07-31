@@ -27,7 +27,7 @@ class MenuItem extends StatelessWidget {
         }
       },
       child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
+        mainAxisAlignment: MainAxisAlignment.start,
         children: [
           CachedNetworkImage(
             width: 40,
@@ -38,6 +38,7 @@ class MenuItem extends StatelessWidget {
             errorWidget: (context, url, error) => assetImage("images/default.png", 40, 40),
           ),
           Container(
+            alignment: Alignment.center,
             margin: const EdgeInsets.only(top: 4),
             child: Text(
               menuData.menuName.toString(),

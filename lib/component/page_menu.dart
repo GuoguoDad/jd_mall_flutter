@@ -42,10 +42,9 @@ class _PageMenuState extends State<PageMenu> {
     int pageCount = (menuLength % pageItemCount) > 0 ? (menuLength ~/ pageItemCount) + 1 : (menuLength ~/ pageItemCount);
 
     return Container(
-      height: rowCount * 74 + 20,
+      height: rowCount * 86 + 10,
       padding: const EdgeInsets.only(bottom: 10),
-      margin: const EdgeInsets.only(left: 10, right: 10),
-      decoration: const BoxDecoration(color: Colors.white, borderRadius: BorderRadius.all(Radius.circular(20))),
+      decoration: const BoxDecoration(color: Colors.white),
       child: Column(
         children: [
           Expanded(
@@ -66,7 +65,7 @@ class _PageMenuState extends State<PageMenu> {
                   itemCount: gridViewItemCount,
                   gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                     crossAxisCount: rowNum,
-                    crossAxisSpacing: 10,
+                    crossAxisSpacing: 8,
                     mainAxisSpacing: 2,
                   ),
                   itemBuilder: (context, position) {
