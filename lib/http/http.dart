@@ -16,9 +16,9 @@ import 'package:jd_mall_flutter/http/interceptors/response_interceptor.dart';
 import 'package:jd_mall_flutter/http/interceptors/token_Interceptor.dart';
 
 class HttpManager {
-  static const CONTENT_TYPE_JSON = "application/json";
-  static const CONTENT_TYPE_FORMDATA = "multipart/form-data";
-  static const CONTENT_TYPE_FORM = "application/x-www-form-urlencoded";
+  static const contentTypeJson = "application/json";
+  static const contentTypeFormData = "multipart/form-data";
+  static const contentTypeForm = "application/x-www-form-urlencoded";
 
   final Dio _dio = Dio(); // 使用默认配置
 
@@ -34,8 +34,8 @@ class HttpManager {
   Future<BaseResponse> request(String url, params, Options option, bool? noTip) async {
     noTip ??= false;
     option.headers ??= HashMap();
-    option.headers!['content-type'] = CONTENT_TYPE_JSON;
-    option.headers!['accept'] = CONTENT_TYPE_JSON;
+    option.headers!['content-type'] = contentTypeJson;
+    option.headers!['accept'] = contentTypeJson;
     option.headers!['connectTimeout'] = 30000;
     option.headers!['receiveTimeout'] = 30000;
 
