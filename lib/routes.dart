@@ -15,7 +15,7 @@ Map<String, WidgetBuilder> routesMap = {
   InterlacedAnimationDemo.name: (context) => const InterlacedAnimationDemo(),
   BreathingMethod.name: (context) => const BreathingMethod(),
   SnowManDemo.name: (context) => const SnowManDemo(),
-  //
+  //pages
   MainPage.name: (context) => const MainPage(),
   DetailPage.name: (context) => const DetailPage(),
   GenerateOrder.name: (context) => const GenerateOrder(),

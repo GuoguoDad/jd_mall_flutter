@@ -118,22 +118,22 @@ class _DetailPageState extends State<DetailPage> {
               ),
             ),
           );
-        }
 
-        stackWidgets.add(
-          Positioned(
-            top: 0,
-            left: 0,
-            child: tabHeader(
-              context,
-              onChange: (index) {
-                isTabClicked = true;
-                store.dispatch(ChangeTopTabIndexAction(index));
-                scroll2PositionByTabIndex(index);
-              },
+          stackWidgets.add(
+            Positioned(
+              top: 0,
+              left: 0,
+              child: tabHeader(
+                context,
+                onChange: (index) {
+                  isTabClicked = true;
+                  store.dispatch(ChangeTopTabIndexAction(index));
+                  scroll2PositionByTabIndex(index);
+                },
+              ),
             ),
-          ),
-        );
+          );
+        }
 
         return AnnotatedRegion<SystemUiOverlayStyle>(
           value: SystemUiOverlayStyle.dark,

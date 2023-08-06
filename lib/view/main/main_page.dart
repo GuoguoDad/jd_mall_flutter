@@ -44,32 +44,30 @@ class _MainPageState extends State<MainPage> {
 
     return AnnotatedRegion<SystemUiOverlayStyle>(
       value: [0, 1].contains(_selectedIndex) ? SystemUiOverlayStyle.light : SystemUiOverlayStyle.dark,
-      child: Material(
-        child: Scaffold(
-          body: LazyLoadIndexedStack(
-            index: _selectedIndex,
-            children: pages,
-          ),
-          bottomNavigationBar: BottomNavigationBar(
-            iconSize: 24,
-            enableFeedback: false,
-            showUnselectedLabels: true,
-            backgroundColor: Colors.white,
-            type: BottomNavigationBarType.fixed,
-            unselectedItemColor: Colors.black87,
-            selectedItemColor: CommonStyle.themeColor,
-            selectedLabelStyle: const TextStyle(fontSize: 12),
-            unselectedLabelStyle: const TextStyle(fontSize: 12),
-            currentIndex: _selectedIndex,
-            onTap: _onItemTapped,
-            items: barItems
-                .map((item) => BottomNavigationBarItem(
-                      icon: assetImage(item["iconPath"], iconSize, iconSize),
-                      activeIcon: assetImage(item["activeIconPath"], iconSize, iconSize),
-                      label: item["label"],
-                    ))
-                .toList(),
-          ),
+      child: Scaffold(
+        body: LazyLoadIndexedStack(
+          index: _selectedIndex,
+          children: pages,
+        ),
+        bottomNavigationBar: BottomNavigationBar(
+          iconSize: 24,
+          enableFeedback: false,
+          showUnselectedLabels: true,
+          backgroundColor: Colors.white,
+          type: BottomNavigationBarType.fixed,
+          unselectedItemColor: Colors.black87,
+          selectedItemColor: CommonStyle.themeColor,
+          selectedLabelStyle: const TextStyle(fontSize: 12),
+          unselectedLabelStyle: const TextStyle(fontSize: 12),
+          currentIndex: _selectedIndex,
+          onTap: _onItemTapped,
+          items: barItems
+              .map((item) => BottomNavigationBarItem(
+                    icon: assetImage(item["iconPath"], iconSize, iconSize),
+                    activeIcon: assetImage(item["activeIconPath"], iconSize, iconSize),
+                    label: item["label"],
+                  ))
+              .toList(),
         ),
       ),
     );
