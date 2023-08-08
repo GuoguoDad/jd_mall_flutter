@@ -41,6 +41,7 @@ class _HomePageState extends State<HomePage> {
   bool isTabClick = false;
   final ValueNotifier<bool> _showBackTop = ValueNotifier<bool>(false);
   final ValueNotifier<double> _pageScrollY = ValueNotifier<double>(0);
+  final ValueNotifier<String> _currentTab = ValueNotifier<String>("");
 
   @override
   void initState() {
@@ -57,6 +58,7 @@ class _HomePageState extends State<HomePage> {
     _pageController.dispose();
     _showBackTop.dispose();
     _pageScrollY.dispose();
+    _currentTab.dispose();
     super.dispose();
   }
 
@@ -82,7 +84,11 @@ class _HomePageState extends State<HomePage> {
         },
         builder: (context, store) {
           List<TabList> tabs = store.state.homePageState.homePageInfo.tabList ?? [];
-          String currentTab = store.state.homePageState.currentTab;
+          String currentTab = _currentTab.value.isNotEmpty
+              ? _currentTab.value
+              : tabs.isNotEmpty
+                  ? tabs[0].code!
+                  : "";
           bool isLoading = store.state.homePageState.isLoading;
 
           if (isLoading) return loadingWidget(context);
@@ -106,7 +112,7 @@ class _HomePageState extends State<HomePage> {
                       galleryList(context),
                       advBanner(context),
                       menuSlider(context),
-                      tabList(context, onTabChange: (code) => handleTabChange(store, code, tabs))
+                      tabList(context, _currentTab, onTabChange: (code) => handleTabChange(code, tabs))
                     ];
                   },
                   onlyOneScrollInBody: true,
@@ -114,7 +120,7 @@ class _HomePageState extends State<HomePage> {
                     controller: _pageController,
                     onPageChanged: (index) {
                       if (isTabClick) return;
-                      store.dispatch(SetCurrentTab(tabs[index].code!));
+                      _currentTab.value = tabs[index].code!;
                     },
                     children: tabs.map((e) => KeepAliveWrapper(child: PageGoodsList("home_tab_${e.code!}", currentTab, physics))).toList(),
                   ),
@@ -133,9 +139,9 @@ class _HomePageState extends State<HomePage> {
     );
   }
 
-  void handleTabChange(Store<AppState> store, String code, List<TabList> tabs) {
+  void handleTabChange(String code, List<TabList> tabs) {
     isTabClick = true;
-    store.dispatch(SetCurrentTab(code));
+    _currentTab.value = code;
 
     int tabIndex = tabs.indexWhere((element) => element.code == code);
     _pageController.animateToPage(tabIndex, duration: const Duration(milliseconds: 200), curve: Curves.linear).then((value) => isTabClick = false);

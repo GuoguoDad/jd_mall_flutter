@@ -23,12 +23,12 @@ import 'package:jd_mall_flutter/view/page/mine/redux/mine_page_state.dart';
 
 final store = Store<AppState>(reducers,
     initialState: AppState(
-      HomePageState(false, true, 0, 0, "1", HomePageInfo.fromJson({})),
+      HomePageState(true, 0, HomePageInfo.fromJson({})),
       CategoryPageState(true, false, SelectedCategoryInfo(CategoryInfo.fromJson({}), CategoryInfo.fromJson({}), CategoryInfo.fromJson({})),
           PrimaryCategoryList.fromJson({}).categoryList, SecondGroupCategoryInfo.fromJson({}), SecondCateList.fromJson({})),
       CartPageState(true, [], 1, GoodsPageInfo.fromJson({}), []),
-      MinePageState(true, false, 0, 0, "1", MineMenuTabInfo.fromJson({})),
-      DetailPageState(true, 0, 0, GoodsDetailRes.fromJson({}), BannerInfo.fromJson({}), 1, GoodsPageInfo.fromJson({})),
+      MinePageState(true, 0, "1", MineMenuTabInfo.fromJson({})),
+      DetailPageState(true, GoodsDetailRes.fromJson({}), BannerInfo.fromJson({}), 1, GoodsPageInfo.fromJson({})),
     ),
     middleware: [
       HomePageMiddleware(),

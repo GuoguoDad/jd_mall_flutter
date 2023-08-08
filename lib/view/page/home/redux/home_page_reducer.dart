@@ -10,8 +10,6 @@ final homePageReducer = combineReducers<HomePageState>([
   TypedReducer<HomePageState, SetLoadingAction>((state, action) => state..isLoading = action.value),
   //记录九宫格菜单滚动index
   TypedReducer<HomePageState, SetMenuSliderIndex>((state, action) => state..menuSliderIndex = action.value),
-  //记录滚动图片index
-  TypedReducer<HomePageState, SetCurrentTab>((state, action) => state..currentTab = action.value),
   //设置页面数据
   TypedReducer<HomePageState, SetHomePageInfoAction>((state, action) => state..homePageInfo = action.value),
 ]);
