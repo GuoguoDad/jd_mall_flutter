@@ -14,7 +14,7 @@ import 'package:jd_mall_flutter/store/app_state.dart';
 import 'package:jd_mall_flutter/view/page/home/redux/home_page_state.dart';
 import 'package:jd_mall_flutter/view/page/home/util.dart';
 
-Widget searchHeader(BuildContext context) {
+Widget searchHeader(BuildContext context, ValueNotifier<double> pageScrollY) {
   return SliverPersistentHeader(
     pinned: true,
     delegate: SliverHeaderDelegate(
@@ -38,57 +38,56 @@ Widget searchHeader(BuildContext context) {
               right: 18,
               child: assetImage('images/ic_scan.png', 28, 28),
             ),
-            StoreConnector<AppState, HomePageState>(
-              converter: (store) {
-                return store.state.homePageState;
-              },
-              builder: (context, state) {
+            ValueListenableBuilder<double>(
+              builder: (BuildContext context, double value, Widget? child) {
                 return Positioned(
-                  top: calc2Top(state.pageScrollY),
+                  top: calc2Top(value),
                   child: Container(
                     height: 34,
-                    width: MediaQuery.of(context).size.width - calcWidth(state.pageScrollY),
+                    width: MediaQuery.of(context).size.width - calcWidth(value),
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(12),
                       color: Colors.white,
                     ),
-                    child: Row(
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: <Widget>[
-                        SizedBox(
-                          width: 40,
-                          height: 34,
-                          child: UnconstrainedBox(
-                            child: assetImage('images/ic_search.png', 20, 20),
-                          ),
-                        ),
-                        Expanded(
-                          flex: 1,
-                          child: Container(
-                            height: 34.0,
-                            alignment: Alignment.centerLeft,
-                            child: Text(
-                              S.of(context).homeSearchTip,
-                              style: TextStyle(
-                                fontSize: 14,
-                                color: CommonStyle.placeholderColor,
-                              ),
-                            ),
-                          ),
-                        ),
-                        SizedBox(
-                          width: 40,
-                          height: 34,
-                          child: UnconstrainedBox(
-                            child: assetImage('images/ic_camera.png', 20, 20),
-                          ),
-                        )
-                      ],
-                    ),
+                    child: child,
                   ),
                 );
               },
-            )
+              valueListenable: pageScrollY,
+              child: Row(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: <Widget>[
+                  SizedBox(
+                    width: 40,
+                    height: 34,
+                    child: UnconstrainedBox(
+                      child: assetImage('images/ic_search.png', 20, 20),
+                    ),
+                  ),
+                  Expanded(
+                    flex: 1,
+                    child: Container(
+                      height: 34.0,
+                      alignment: Alignment.centerLeft,
+                      child: Text(
+                        S.of(context).homeSearchTip,
+                        style: TextStyle(
+                          fontSize: 14,
+                          color: CommonStyle.placeholderColor,
+                        ),
+                      ),
+                    ),
+                  ),
+                  SizedBox(
+                    width: 40,
+                    height: 34,
+                    child: UnconstrainedBox(
+                      child: assetImage('images/ic_camera.png', 20, 20),
+                    ),
+                  )
+                ],
+              ),
+            ),
           ],
         ),
       ),

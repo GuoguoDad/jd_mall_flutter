@@ -9,20 +9,6 @@ class SetLoadingAction {
   SetLoadingAction(this.value);
 }
 
-//是否显示返回顶部
-class ChangeBackTopAction {
-  final bool value;
-
-  ChangeBackTopAction(this.value);
-}
-
-//记录页面滚动距离
-class ChangePageScrollYAction {
-  final double value;
-
-  ChangePageScrollYAction(this.value);
-}
-
 //滚动菜单滚动页面索引
 class ChangeSliderIndexAction {
   final int menuIndex;

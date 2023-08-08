@@ -7,12 +7,8 @@ import 'package:jd_mall_flutter/view/page/detail/redux/detail_page_action.dart';
 import 'package:jd_mall_flutter/view/page/detail/redux/detail_page_state.dart';
 
 final detailPageReducer = combineReducers<DetailPageState>([
-  //记录页面滚动距离
-  TypedReducer<DetailPageState, ChangePageScrollYAction>((state, action) => state..pageScrollY = action.value),
   //修改loading状态
   TypedReducer<DetailPageState, SetLoadingAction>((state, action) => state..isLoading = action.value),
-  //
-  TypedReducer<DetailPageState, ChangeTopTabIndexAction>((state, action) => state..index = action.index),
   //商品详情
   TypedReducer<DetailPageState, InitCurrentGoodsInfoAction>(
     (state, action) => state

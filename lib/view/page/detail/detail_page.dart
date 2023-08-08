@@ -39,6 +39,8 @@ class _DetailPageState extends State<DetailPage> {
 
   //是否是floatingHeader中的tab点击
   bool isTabClicked = false;
+  final ValueNotifier<double> _pageScrollY = ValueNotifier<double>(0);
+  final ValueNotifier<int> _index = ValueNotifier<int>(0);
 
   //商品、评论、详情、同店好货锚点key
   final cardKeys = <GlobalKey>[
@@ -59,6 +61,8 @@ class _DetailPageState extends State<DetailPage> {
   void dispose() {
     _scrollController.dispose();
     _refreshController.dispose();
+    _pageScrollY.dispose();
+    _index.dispose();
     super.dispose();
   }
 
@@ -67,9 +71,6 @@ class _DetailPageState extends State<DetailPage> {
     return StoreBuilder<AppState>(
       onInit: (store) async {
         await store.dispatch(InitPageAction());
-      },
-      onDispose: (store) {
-        store.dispatch(ChangeTopTabIndexAction(0));
       },
       builder: (context, store) {
         bool isLoading = store.state.detailPageState.isLoading;
@@ -83,12 +84,12 @@ class _DetailPageState extends State<DetailPage> {
           stackWidgets.add(
             NotificationListener<ScrollNotification>(
               onNotification: (ScrollNotification notification) {
-                double distance = notification.metrics.pixels;
-                store.dispatch(ChangePageScrollYAction(distance));
+                _pageScrollY.value = notification.metrics.pixels;
+
                 //监听滚动，选中对应的tab
                 if (isTabClicked) return false;
                 int newIndex = findFirstVisibleItemIndex(cardKeys, context);
-                store.dispatch(ChangeTopTabIndexAction(newIndex));
+                _index.value = newIndex;
                 return false;
               },
               child: Container(
@@ -125,10 +126,14 @@ class _DetailPageState extends State<DetailPage> {
               left: 0,
               child: tabHeader(
                 context,
+                _pageScrollY,
+                _index,
                 onChange: (index) {
-                  isTabClicked = true;
-                  store.dispatch(ChangeTopTabIndexAction(index));
-                  scroll2PositionByTabIndex(index);
+                  if (_index.value != index) {
+                    isTabClicked = true;
+                    _index.value = index;
+                    scroll2PositionByTabIndex(index);
+                  }
                 },
               ),
             ),

@@ -38,6 +38,8 @@ class _MinePageState extends State<MinePage> {
   late final PageController _pageController;
 
   bool isTabClick = false;
+  final ValueNotifier<bool> _showBackTop = ValueNotifier<bool>(false);
+  final ValueNotifier<double> _pageScrollY = ValueNotifier<double>(0);
 
   @override
   void initState() {
@@ -52,6 +54,8 @@ class _MinePageState extends State<MinePage> {
     _freshController.dispose();
     _scrollController.dispose();
     _pageController.dispose();
+    _showBackTop.dispose();
+    _pageScrollY.dispose();
     super.dispose();
   }
 
@@ -59,30 +63,29 @@ class _MinePageState extends State<MinePage> {
   Widget build(BuildContext context) {
     double statusHeight = getStatusHeight(context);
 
-    return StoreBuilder<AppState>(
-      onInit: (store) {
-        store.dispatch(InitPageAction());
+    return NotificationListener<ScrollNotification>(
+      onNotification: (ScrollNotification notification) {
+        double distance = notification.metrics.pixels;
+        if (notification.depth == 0) {
+          _pageScrollY.value = distance;
+        }
+        if (notification.depth == 2) {
+          _showBackTop.value = distance > getScreenHeight(context);
+        }
+        return false;
       },
-      builder: (context, store) {
-        List<TabInfo> tabs = store.state.minePageState.menuTabInfo.tabList ?? [];
-        String currentTab = store.state.minePageState.currentTab;
-        bool showTop = store.state.minePageState.showBackTop;
-        bool isLoading = store.state.minePageState.isLoading;
+      child: StoreBuilder<AppState>(
+        onInit: (store) {
+          store.dispatch(InitPageAction());
+        },
+        builder: (context, store) {
+          List<TabInfo> tabs = store.state.minePageState.menuTabInfo.tabList ?? [];
+          String currentTab = store.state.minePageState.currentTab;
+          bool isLoading = store.state.minePageState.isLoading;
 
-        if (isLoading) return loadingWidget(context);
+          if (isLoading) return loadingWidget(context);
 
-        return NotificationListener<ScrollNotification>(
-          onNotification: (ScrollNotification notification) {
-            double distance = notification.metrics.pixels;
-            if (notification.depth == 0) {
-              store.dispatch(ChangePageScrollYAction(distance));
-            }
-            if (notification.depth == 2) {
-              store.dispatch(ChangeBackTopAction(distance > getScreenHeight(context)));
-            }
-            return false;
-          },
-          child: EasyRefresh.builder(
+          return EasyRefresh.builder(
             controller: _freshController,
             header: classicHeader,
             onRefresh: () async {
@@ -98,7 +101,7 @@ class _MinePageState extends State<MinePage> {
                   headerSliverBuilder: (BuildContext context, bool innerBoxIsScrolled) {
                     return [
                       const HeaderLocator.sliver(clearExtent: false),
-                      infoHeader(context),
+                      infoHeader(context, _pageScrollY),
                       orderCard(context),
                       singleLineMenu(context),
                       tabList(context, onTabChange: (code) => handleTabChange(store, code, tabs))
@@ -114,12 +117,17 @@ class _MinePageState extends State<MinePage> {
                     children: tabs.map((e) => KeepAliveWrapper(child: PageGoodsList("mine_tab_${e.code!}", currentTab, physics))).toList(),
                   ),
                 ),
-                floatingActionButton: backTop(showTop, _scrollController),
+                floatingActionButton: ValueListenableBuilder<bool>(
+                  builder: (BuildContext context, bool value, Widget? child) {
+                    return backTop(value, _scrollController);
+                  },
+                  valueListenable: _showBackTop,
+                ),
               );
             },
-          ),
-        );
-      },
+          );
+        },
+      ),
     );
   }
 

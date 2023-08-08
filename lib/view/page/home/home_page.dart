@@ -39,6 +39,8 @@ class _HomePageState extends State<HomePage> {
   late final PageController _pageController;
 
   bool isTabClick = false;
+  final ValueNotifier<bool> _showBackTop = ValueNotifier<bool>(false);
+  final ValueNotifier<double> _pageScrollY = ValueNotifier<double>(0);
 
   @override
   void initState() {
@@ -53,6 +55,8 @@ class _HomePageState extends State<HomePage> {
     _freshController.dispose();
     _scrollController.dispose();
     _pageController.dispose();
+    _showBackTop.dispose();
+    _pageScrollY.dispose();
     super.dispose();
   }
 
@@ -60,31 +64,30 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     double statusHeight = getStatusHeight(context);
 
-    return StoreBuilder<AppState>(
-      onInit: (store) {
-        store.dispatch(InitDataAction());
+    return NotificationListener<ScrollNotification>(
+      onNotification: (ScrollNotification notification) {
+        int depth = notification.depth;
+        double distance = notification.metrics.pixels;
+        if (depth == 0) {
+          _pageScrollY.value = distance;
+        }
+        if (depth == 2) {
+          _showBackTop.value = distance > getScreenHeight(context);
+        }
+        return false;
       },
-      builder: (context, store) {
-        List<TabList> tabs = store.state.homePageState.homePageInfo.tabList ?? [];
-        String currentTab = store.state.homePageState.currentTab;
-        bool showTop = store.state.homePageState.showBackTop;
-        bool isLoading = store.state.homePageState.isLoading;
+      child: StoreBuilder<AppState>(
+        onInit: (store) {
+          store.dispatch(InitDataAction());
+        },
+        builder: (context, store) {
+          List<TabList> tabs = store.state.homePageState.homePageInfo.tabList ?? [];
+          String currentTab = store.state.homePageState.currentTab;
+          bool isLoading = store.state.homePageState.isLoading;
 
-        if (isLoading) return loadingWidget(context);
+          if (isLoading) return loadingWidget(context);
 
-        return NotificationListener<ScrollNotification>(
-          onNotification: (ScrollNotification notification) {
-            int depth = notification.depth;
-            double distance = notification.metrics.pixels;
-            if (depth == 0) {
-              store.dispatch(ChangePageScrollYAction(distance));
-            }
-            if (depth == 2) {
-              store.dispatch(ChangeBackTopAction(distance > getScreenHeight(context)));
-            }
-            return false;
-          },
-          child: EasyRefresh.builder(
+          return EasyRefresh.builder(
             controller: _freshController,
             header: classicHeader,
             clipBehavior: Clip.none,
@@ -99,7 +102,7 @@ class _HomePageState extends State<HomePage> {
                   headerSliverBuilder: (BuildContext context, bool innerBoxIsScrolled) {
                     return [
                       const HeaderLocator.sliver(clearExtent: false),
-                      searchHeader(context),
+                      searchHeader(context, _pageScrollY),
                       galleryList(context),
                       advBanner(context),
                       menuSlider(context),
@@ -116,12 +119,17 @@ class _HomePageState extends State<HomePage> {
                     children: tabs.map((e) => KeepAliveWrapper(child: PageGoodsList("home_tab_${e.code!}", currentTab, physics))).toList(),
                   ),
                 ),
-                floatingActionButton: backTop(showTop, _scrollController),
+                floatingActionButton: ValueListenableBuilder<bool>(
+                  builder: (BuildContext context, bool value, Widget? child) {
+                    return backTop(value, _scrollController);
+                  },
+                  valueListenable: _showBackTop,
+                ),
               );
             },
-          ),
-        );
-      },
+          );
+        },
+      ),
     );
   }
 
