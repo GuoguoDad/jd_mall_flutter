@@ -18,7 +18,6 @@ Widget searchHeader(BuildContext context, ValueNotifier<double> pageScrollY) {
   return SliverPersistentHeader(
     pinned: true,
     delegate: SliverHeaderDelegate(
-      //有最大和最小高度
       maxHeight: 88 + getStatusHeight(context),
       minHeight: 44 + getStatusHeight(context),
       child: Container(
@@ -44,7 +43,7 @@ Widget searchHeader(BuildContext context, ValueNotifier<double> pageScrollY) {
                   top: calc2Top(value),
                   child: Container(
                     height: 34,
-                    width: MediaQuery.of(context).size.width - calcWidth(value),
+                    width: getScreenWidth(context) - calcWidth(value),
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(12),
                       color: Colors.white,

@@ -84,12 +84,14 @@ class _DetailPageState extends State<DetailPage> {
           stackWidgets.add(
             NotificationListener<ScrollNotification>(
               onNotification: (ScrollNotification notification) {
-                _pageScrollY.value = notification.metrics.pixels;
+                if (notification.depth == 1) {
+                  _pageScrollY.value = notification.metrics.pixels;
 
-                //监听滚动，选中对应的tab
-                if (isTabClicked) return false;
-                int newIndex = findFirstVisibleItemIndex(cardKeys, context);
-                _index.value = newIndex;
+                  //监听滚动，选中对应的tab
+                  if (isTabClicked) return false;
+                  int newIndex = findFirstVisibleItemIndex(cardKeys, context);
+                  _index.value = newIndex;
+                }
                 return false;
               },
               child: Container(
