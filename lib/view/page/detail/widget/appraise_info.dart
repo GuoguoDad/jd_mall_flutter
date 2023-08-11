@@ -157,12 +157,11 @@ Widget itemCard(String title, String url, double imgHeight) {
           ),
         ),
         CachedNetworkImage(
-          height: imgHeight,
           width: screenWidth - 40,
           imageUrl: url,
           placeholder: (context, url) => assetImage("images/default.png", imgWidth, imgWidth),
           errorWidget: (context, url, error) => assetImage("images/default.png", imgWidth, imgWidth),
-          fit: BoxFit.fill,
+          fit: BoxFit.fitWidth,
         )
       ],
     ),

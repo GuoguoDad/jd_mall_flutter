@@ -1,3 +1,4 @@
+// Flutter imports:
 import 'package:flutter/material.dart';
 
 typedef PageIndicatorItemBuilder = Widget Function(bool isSelected, Size itemSize);

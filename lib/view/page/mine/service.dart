@@ -13,13 +13,4 @@ class MineApi {
     }
     return MineMenuTabInfo.fromJson(res.data ?? {});
   }
-
-  static Future queryRecommendList(int currentPage, int pageSize) async {
-    var res = await httpManager
-        .post('${GlobalConfigs().get(EnvEnum.host.value)}/mine/queryRecommendList', params: {"currentPage": currentPage, "pageSize": pageSize});
-    if (res.code != '0') {
-      return null;
-    }
-    return GoodsPageInfo.fromJson(res.data ?? {});
-  }
 }

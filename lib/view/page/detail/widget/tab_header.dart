@@ -83,8 +83,8 @@ Widget tabHeader(BuildContext context, ValueNotifier<double> pageScrollY, ValueN
             onTap: () => Navigator.of(context).pop(),
             child: Container(
               alignment: Alignment.centerLeft,
-              padding: const EdgeInsets.only(left: 16),
-              child: assetImage("images/ic_back_black.png", 32, 32),
+              padding: const EdgeInsets.only(left: 14),
+              child: assetImage("images/ic_back_black.png", 28, 28),
             ),
           ),
         ),
@@ -110,10 +110,10 @@ Widget tabHeader(BuildContext context, ValueNotifier<double> pageScrollY, ValueN
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              assetImage("images/ic_share_black.png", 22, 22),
+              assetImage("images/ic_share_black.png", 20, 20),
               Container(
                 margin: const EdgeInsets.only(left: 10, right: 5),
-                child: assetImage("images/ic_ellipsis_black.png", 22, 22),
+                child: assetImage("images/ic_ellipsis_black.png", 20, 20),
               )
             ],
           ),

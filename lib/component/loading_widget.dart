@@ -8,15 +8,15 @@ Widget loadingWidget(BuildContext context) {
   return Container(
     width: double.infinity,
     height: double.infinity,
-    color: Colors.white,
+    color: Colors.transparent,
     child: const Center(
       child: SizedBox(
-        width: 120,
-        height: 120,
+        width: 98,
+        height: 98,
         child: LoadingIndicator(
           indicatorType: Indicator.ballClipRotateMultiple,
           colors: [Colors.grey],
-          strokeWidth: 3,
+          strokeWidth: 2,
           backgroundColor: Colors.transparent,
         ),
       ),

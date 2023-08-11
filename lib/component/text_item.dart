@@ -13,7 +13,7 @@ Widget textItem({
   double? fSize = 14,
 }) {
   return Container(
-    margin: EdgeInsets.only(top: marginTop),
+    margin: EdgeInsets.only(top: marginTop, left: 5, right: 5),
     padding: EdgeInsets.only(left: paddingLeft, right: paddingRight),
     decoration: BoxDecoration(
       color: bgColor,

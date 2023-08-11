@@ -15,7 +15,7 @@ import 'package:jd_mall_flutter/store/app_state.dart';
 import 'package:jd_mall_flutter/view/page/detail/redux/detail_page_action.dart';
 
 Widget skuInfo(BuildContext context) {
-  double thumbWidth = 78;
+  double thumbWidth = 68;
 
   return StoreBuilder<AppState>(
     builder: (context, store) {
@@ -41,7 +41,7 @@ Widget skuInfo(BuildContext context) {
                 children: [
                   Text(
                     "${bannerList.length}${S.of(context).colorToChoose}",
-                    style: TextStyle(color: CommonStyle.color545454, fontSize: 18),
+                    style: TextStyle(color: CommonStyle.color545454, fontSize: 16),
                   ),
                   Expanded(
                     flex: 1,
@@ -83,7 +83,7 @@ Widget skuInfo(BuildContext context) {
                 textAlign: TextAlign.left,
                 style: const TextStyle(
                   color: Colors.red,
-                  fontSize: 28,
+                  fontSize: 26,
                   fontWeight: FontWeight.bold,
                 ),
               ),
@@ -94,7 +94,7 @@ Widget skuInfo(BuildContext context) {
               textAlign: TextAlign.left,
               overflow: TextOverflow.ellipsis,
               style: const TextStyle(
-                fontSize: 18,
+                fontSize: 16,
                 fontWeight: FontWeight.bold,
               ),
             )

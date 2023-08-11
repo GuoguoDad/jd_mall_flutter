@@ -36,14 +36,11 @@ Widget addressInfo(BuildContext context) {
             rowItem(S.of(context).select, "已选：${selectInfo.colorName}, 42, 1件", 1, true, null),
             rowItem(S.of(context).sendTo, "江苏省南京市江宁区东山街道丰泽路118号中粮鸿云", 1, true, "今天17:00前完成下单，预计明天送达"),
             rowItem(S.of(context).carriage, "店铺单笔订单不满199元，收费5元(请以提交订单时为准)", 2, false, null),
-            SizedBox(
-              height: 30,
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: tagList.map((e) => tagLabel(e)).toList(),
-              ),
-            )
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: tagList.map((e) => tagLabel(e)).toList(),
+            ),
           ],
         ),
       );
@@ -62,7 +59,7 @@ Widget rowItem(String label, String text, int line, bool showArrow, String? des)
             Row(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text(label, style: TextStyle(color: CommonStyle.color8B8C8A, fontSize: 18)),
+                Text(label, style: TextStyle(color: CommonStyle.color8B8C8A, fontSize: 16)),
                 Container(
                   width: screenWidth - 110,
                   margin: const EdgeInsets.only(left: 10),
@@ -70,7 +67,7 @@ Widget rowItem(String label, String text, int line, bool showArrow, String? des)
                     text,
                     maxLines: line,
                     overflow: TextOverflow.ellipsis,
-                    style: const TextStyle(fontSize: 18),
+                    style: const TextStyle(fontSize: 16),
                   ),
                 ),
               ],
@@ -83,7 +80,7 @@ Widget rowItem(String label, String text, int line, bool showArrow, String? des)
                 margin: const EdgeInsets.only(left: 10),
                 child: Text(
                   des,
-                  style: const TextStyle(fontSize: 18),
+                  style: const TextStyle(fontSize: 16),
                 ),
               )
             : Container()
@@ -93,5 +90,5 @@ Widget rowItem(String label, String text, int line, bool showArrow, String? des)
 }
 
 Widget tagLabel(String label) {
-  return Text(label, style: TextStyle(fontSize: 16, color: CommonStyle.color8B8C8A));
+  return Text(label, style: TextStyle(fontSize: 14, color: CommonStyle.color8B8C8A));
 }

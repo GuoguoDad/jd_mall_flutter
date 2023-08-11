@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 
 // Package imports:
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
-import 'package:jd_mall_flutter/component/page_goods_list_skeleton.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
 
 // Project imports:
@@ -11,6 +10,7 @@ import 'package:jd_mall_flutter/common/constant/index.dart';
 import 'package:jd_mall_flutter/common/util/screen_util.dart';
 import 'package:jd_mall_flutter/component/common_service.dart';
 import 'package:jd_mall_flutter/component/goods_item.dart';
+import 'package:jd_mall_flutter/component/page_goods_list_skeleton.dart';
 import 'package:jd_mall_flutter/models/goods_page_info.dart';
 
 class PageGoodsList extends StatefulWidget {
@@ -84,6 +84,7 @@ class _PageGoodsListState extends State<PageGoodsList> {
       setState(() {
         isLoading = false;
       });
+      _refreshController.loadFailed();
     });
   }
 

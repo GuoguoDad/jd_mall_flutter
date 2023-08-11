@@ -15,10 +15,10 @@ import 'package:jd_mall_flutter/component/stepper/style.dart';
 import 'package:jd_mall_flutter/generated/l10n.dart';
 import 'package:jd_mall_flutter/models/cart_goods.dart';
 import 'package:jd_mall_flutter/store/app_state.dart';
+import 'package:jd_mall_flutter/types/common.dart';
 import 'package:jd_mall_flutter/view/page/cart/redux/cart_page_action.dart';
 import 'package:jd_mall_flutter/view/vebview/type.dart';
 import 'package:jd_mall_flutter/view/vebview/webview_page.dart';
-import 'package:jd_mall_flutter/types/common.dart';
 
 double thumbnailWidth = 80;
 

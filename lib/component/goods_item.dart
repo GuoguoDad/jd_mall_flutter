@@ -82,7 +82,7 @@ Widget goodsItem(BuildContext context, GoodsList item, double width) {
     widgets.add(
       lineTwo(
         txt: item.description.toString(),
-        fColor: '#737473'.toColor(),
+        fColor: "#737473".toColor(),
       ),
     );
 
@@ -95,6 +95,7 @@ Widget goodsItem(BuildContext context, GoodsList item, double width) {
             lineTwo(
               txt: "￥${item.price.toString()}",
               fColor: '#ED4637'.toColor(),
+              fontWeight: FontWeight.bold,
             ),
             textItem(
               marginTop: 2,

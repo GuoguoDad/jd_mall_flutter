@@ -33,9 +33,9 @@ Widget searchHeader(BuildContext context, ValueNotifier<double> pageScrollY) {
               child: assetImage('images/ic_pet.png', 36, 36),
             ),
             Positioned(
-              top: 7,
+              top: 5,
               right: 18,
-              child: assetImage('images/ic_scan.png', 28, 28),
+              child: assetImage('images/ic_scan.png', 32, 32),
             ),
             ValueListenableBuilder<double>(
               builder: (BuildContext context, double value, Widget? child) {

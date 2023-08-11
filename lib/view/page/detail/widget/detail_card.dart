@@ -48,7 +48,7 @@ Widget detailCard(BuildContext context, Key key) {
                           imageUrl: url,
                           placeholder: (context, url) => assetImage("images/default.png", screenWidth - 40, 100),
                           errorWidget: (context, url, error) => assetImage("images/default.png", screenWidth - 40, 100),
-                          fit: BoxFit.fill,
+                          fit: BoxFit.fitWidth,
                         ))
                     .toList(),
               )
