@@ -10,10 +10,11 @@ import 'package:jd_mall_flutter/common/style/common_style.dart';
 import 'package:jd_mall_flutter/common/util/screen_util.dart';
 import 'package:jd_mall_flutter/component/carousel/carousel_widget.dart';
 import 'package:jd_mall_flutter/component/carousel/helpers/flutter_carousel_options.dart';
-import 'package:jd_mall_flutter/component/carousel/indicators/circular_wave_slide_indicator.dart';
 import 'package:jd_mall_flutter/component/image/asset_image.dart';
+import 'package:jd_mall_flutter/component/photo_gallery/photo_gallery_dialog.dart';
 import 'package:jd_mall_flutter/store/app_state.dart';
 import 'package:jd_mall_flutter/view/page/detail/redux/detail_page_state.dart';
+import 'package:jd_mall_flutter/component/carousel/indicators/circular_wave_slide_indicator.dart';
 
 Widget imgSlider(BuildContext context) {
   double statusHeight = getStatusHeight(context);
@@ -48,13 +49,16 @@ Widget imgSlider(BuildContext context) {
             ),
           ),
           items: imgList
-              .map((url) => CachedNetworkImage(
-                    height: imgHeight,
-                    width: screenWidth,
-                    imageUrl: url,
-                    placeholder: (context, url) => assetImage("images/default.png", screenWidth, imgHeight),
-                    errorWidget: (context, url, error) => assetImage("images/default.png", screenWidth, imgHeight),
-                    fit: BoxFit.fill,
+              .map((url) => GestureDetector(
+                    onTap: () => openPhotoGalleryDialog(context, imgList, imgList.lastIndexWhere((v) => v == url)),
+                    child: CachedNetworkImage(
+                      height: imgHeight,
+                      width: screenWidth,
+                      imageUrl: url,
+                      placeholder: (context, url) => assetImage("images/default.png", screenWidth, imgHeight),
+                      errorWidget: (context, url, error) => assetImage("images/default.png", screenWidth, imgHeight),
+                      fit: BoxFit.fill,
+                    ),
                   ))
               .toList(),
         ),

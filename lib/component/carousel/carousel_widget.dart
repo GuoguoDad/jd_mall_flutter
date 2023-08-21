@@ -111,8 +111,7 @@ class FlutterCarouselState extends State<Carousel> with TickerProviderStateMixin
     _carouselState!.itemCount = widget.itemCount;
     carouselController.state = _carouselState;
     _carouselState!.initialPage = widget.options.initialPage;
-    _carouselState!.realPage =
-        options.enableInfiniteScroll ? _carouselState!.realPage + _carouselState!.initialPage : _carouselState!.initialPage;
+    _carouselState!.realPage = options.enableInfiniteScroll ? _carouselState!.realPage + _carouselState!.initialPage : _carouselState!.initialPage;
 
     /// For Indicator
     _currentPage = widget.options.initialPage;
@@ -135,9 +134,8 @@ class FlutterCarouselState extends State<Carousel> with TickerProviderStateMixin
     });
   }
 
-  CarouselControllerImpl get carouselController => widget.options.controller != null
-      ? widget.options.controller as CarouselControllerImpl
-      : CarouselController() as CarouselControllerImpl;
+  CarouselControllerImpl get carouselController =>
+      widget.options.controller != null ? widget.options.controller as CarouselControllerImpl : CarouselController() as CarouselControllerImpl;
 
   CarouselOptions get options => widget.options;
 
@@ -239,8 +237,8 @@ class FlutterCarouselState extends State<Carousel> with TickerProviderStateMixin
 
     return RawGestureDetector(
       gestures: {
-        _MultipleGestureRecognizer: GestureRecognizerFactoryWithHandlers<_MultipleGestureRecognizer>(_MultipleGestureRecognizer.new,
-            (_MultipleGestureRecognizer instance) {
+        _MultipleGestureRecognizer:
+            GestureRecognizerFactoryWithHandlers<_MultipleGestureRecognizer>(_MultipleGestureRecognizer.new, (_MultipleGestureRecognizer instance) {
           instance.onStart = (_) {
             _onStart();
           };
@@ -329,9 +327,7 @@ class FlutterCarouselState extends State<Carousel> with TickerProviderStateMixin
 
         return AnimatedBuilder(
           animation: _carouselState!.pageController!,
-          child: (widget.items != null)
-              ? (widget.items!.isNotEmpty ? widget.items![index] : const SizedBox())
-              : widget.itemBuilder!(context, index, idx),
+          child: (widget.items != null) ? (widget.items!.isNotEmpty ? widget.items![index] : const SizedBox()) : widget.itemBuilder!(context, index, idx),
           builder: (BuildContext context, Widget? child) {
             var distortionValue = 1.0;
 

@@ -57,6 +57,10 @@ dependencies:
   flutter_easyloading: ^3.0.5
   extended_nested_scroll_view: ^6.1.0
   extended_scroll: ^3.0.2
+  url_launcher: ^6.1.12
+  photo_view: ^0.14.0
+  image_gallery_saver: ^2.0.3
+  flutter_svg: ^2.0.7
 
 dev_dependencies:
   flutter_test:
@@ -132,6 +136,7 @@ flutter:
     - images/detail/ic_customer_service.png
     - images/detail/ic_store_red.png
     - images/ic_arrow_right_grey.png
+    - images/black_bg_close.png
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware
 

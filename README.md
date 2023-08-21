@@ -39,7 +39,7 @@ Flutter框架具有如下的一些特点：
 5. 接受与更新
 6. 触发
 
-# 启动mock_server
+# 启动本地mock_server(main_dev 走本地mock， main_prd 走远程mock服务)
 
 1. cd mock_server
 2. 执行 npm i 安装依赖
@@ -107,18 +107,18 @@ Flutter框架具有如下的一些特点：
 
 # 第三方框架
 
-| 库                          | 功能       |
-| -------------------------- |----------|
-| **dio**                    | **网络框架** |
-| **shared_preferences**     | **本地数据缓存** |
-| **flutter_redux**          | **redux** |
-| **device_info**            | **设备信息** |
-| **connectivity**           | **网络链接** |
-| **json_annotation**        | **json模板** |
-| **json_serializable**      | **json模板** |
-| **photo_view**             | **图片预览** |
-| **path_provider**          | **本地路径** |
-| **cached_network_image**   | **图片显示** |
+| 库                        | 功能         |
+|--------------------------|------------|
+| **dio**                  | **网络框架**   |
+| **shared_preferences**   | **本地数据缓存** |
+| **flutter_redux**        | **redux**  |
+| **device_info**          | **设备信息**   |
+| **connectivity**         | **网络链接**   |
+| **json_annotation**      | **json模板** |
+| **json_serializable**    | **json模板** |
+| **photo_view**           | **图片预览**   |
+| **path_provider**        | **本地路径**   |
+| **cached_network_image** | **图片显示**   |
 
 # 声明
 

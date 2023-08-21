@@ -16,43 +16,47 @@ Widget fixedBottom(BuildContext context) {
     child: Row(
       children: [
         Expanded(
-            flex: 3,
-            child: Row(
-              crossAxisAlignment: CrossAxisAlignment.end,
-              mainAxisAlignment: MainAxisAlignment.start,
-              children: [
-                Container(
-                  margin: const EdgeInsets.only(left: 12),
-                  child: const Text("￥", style: TextStyle(fontSize: 20, color: Colors.red, fontWeight: FontWeight.w600, decoration: TextDecoration.none)),
-                ),
-                const Text("1899", style: TextStyle(fontSize: 30, fontWeight: FontWeight.w600, color: Colors.red, decoration: TextDecoration.none)),
-                const Text(".20", style: TextStyle(fontSize: 20, fontWeight: FontWeight.w600, color: Colors.red, decoration: TextDecoration.none)),
-              ],
-            )),
+          flex: 3,
+          child: Row(
+            crossAxisAlignment: CrossAxisAlignment.end,
+            mainAxisAlignment: MainAxisAlignment.start,
+            children: [
+              Container(
+                margin: const EdgeInsets.only(left: 12),
+                child: const Text("￥", style: TextStyle(fontSize: 20, color: Colors.red, fontWeight: FontWeight.w600, decoration: TextDecoration.none)),
+              ),
+              const Text("1899", style: TextStyle(fontSize: 30, fontWeight: FontWeight.w600, color: Colors.red, decoration: TextDecoration.none)),
+              const Text(".20", style: TextStyle(fontSize: 20, fontWeight: FontWeight.w600, color: Colors.red, decoration: TextDecoration.none)),
+            ],
+          ),
+        ),
         Expanded(
-            flex: 4,
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceAround,
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                LinearButton(
-                    width: 100,
-                    height: 48,
-                    btnName: "帮我付",
-                    highlightColor: Colors.yellow,
-                    colors: ["#F2CD4A".toColor(), "#F2C54B".toColor()],
-                    borderRadius: const BorderRadius.all(Radius.circular(50)),
-                    onTap: () => print("=======")),
-                LinearButton(
-                    width: 100,
-                    height: 48,
-                    btnName: "自己付",
-                    highlightColor: Colors.red,
-                    colors: ["#E54B4E".toColor(), "#E34439".toColor()],
-                    borderRadius: const BorderRadius.all(Radius.circular(50)),
-                    onTap: () => print("======="))
-              ],
-            ))
+          flex: 4,
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceAround,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              LinearButton(
+                width: 100,
+                height: 48,
+                btnName: "帮我付",
+                highlightColor: Colors.yellow,
+                colors: ["#F2CD4A".toColor(), "#F2C54B".toColor()],
+                borderRadius: const BorderRadius.all(Radius.circular(50)),
+                onTap: () => print("======="),
+              ),
+              LinearButton(
+                width: 100,
+                height: 48,
+                btnName: "自己付",
+                highlightColor: Colors.red,
+                colors: ["#E54B4E".toColor(), "#E34439".toColor()],
+                borderRadius: const BorderRadius.all(Radius.circular(50)),
+                onTap: () => print("======="),
+              )
+            ],
+          ),
+        )
       ],
     ),
   );
