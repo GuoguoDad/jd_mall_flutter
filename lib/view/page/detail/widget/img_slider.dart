@@ -3,18 +3,16 @@ import 'package:flutter/material.dart';
 
 // Package imports:
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:flutter_carousel_widget/flutter_carousel_widget.dart';
 import 'package:flutter_redux/flutter_redux.dart';
 
 // Project imports:
 import 'package:jd_mall_flutter/common/style/common_style.dart';
 import 'package:jd_mall_flutter/common/util/screen_util.dart';
-import 'package:jd_mall_flutter/component/carousel/carousel_widget.dart';
-import 'package:jd_mall_flutter/component/carousel/helpers/flutter_carousel_options.dart';
 import 'package:jd_mall_flutter/component/image/asset_image.dart';
 import 'package:jd_mall_flutter/component/photo_gallery/photo_gallery_dialog.dart';
 import 'package:jd_mall_flutter/store/app_state.dart';
 import 'package:jd_mall_flutter/view/page/detail/redux/detail_page_state.dart';
-import 'package:jd_mall_flutter/component/carousel/indicators/circular_wave_slide_indicator.dart';
 
 Widget imgSlider(BuildContext context) {
   double statusHeight = getStatusHeight(context);
@@ -32,7 +30,7 @@ Widget imgSlider(BuildContext context) {
         height: imgHeight,
         width: getScreenWidth(context),
         margin: EdgeInsets.only(top: statusHeight),
-        child: Carousel(
+        child: FlutterCarousel(
           options: CarouselOptions(
             height: imgHeight,
             viewportFraction: 1.0,

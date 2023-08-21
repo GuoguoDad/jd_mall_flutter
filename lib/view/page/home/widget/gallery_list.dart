@@ -3,14 +3,12 @@ import 'package:flutter/material.dart';
 
 // Package imports:
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:flutter_carousel_widget/flutter_carousel_widget.dart';
 import 'package:flutter_redux/flutter_redux.dart';
 
 // Project imports:
 import 'package:jd_mall_flutter/common/style/common_style.dart';
 import 'package:jd_mall_flutter/common/util/screen_util.dart';
-import 'package:jd_mall_flutter/component/carousel/carousel_widget.dart';
-import 'package:jd_mall_flutter/component/carousel/helpers/flutter_carousel_options.dart';
-import 'package:jd_mall_flutter/component/carousel/indicators/circular_wave_slide_indicator.dart';
 import 'package:jd_mall_flutter/component/image/asset_image.dart';
 import 'package:jd_mall_flutter/component/nil.dart';
 import 'package:jd_mall_flutter/store/app_state.dart';
@@ -42,14 +40,14 @@ Widget galleryList(BuildContext context) {
               return nil;
             }
 
-            return Carousel(
+            return FlutterCarousel(
               options: CarouselOptions(
                 height: carouselHeight,
-                viewportFraction: 1.0,
-                enlargeCenterPage: false,
                 autoPlay: true,
-                enableInfiniteScroll: true,
                 autoPlayInterval: const Duration(seconds: 8),
+                disableCenter: true,
+                viewportFraction: 1.0,
+                enableInfiniteScroll: true,
                 slideIndicator: CircularWaveSlideIndicator(
                   itemSpacing: 12,
                   indicatorRadius: 3.6,
