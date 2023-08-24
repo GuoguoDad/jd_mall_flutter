@@ -17,23 +17,24 @@ Widget commonHeader(BuildContext context, {required String title}) {
     child: Row(
       children: [
         GestureDetector(
-            onTap: () => Navigator.of(context).pop(),
-            child: Container(
-              height: 42,
-              width: 60,
-              alignment: Alignment.center,
-              child: assetFillImage("images/ic_back_black.png", 24, 30),
-            )),
+          onTap: () => Navigator.of(context).pop(),
+          child: Container(
+            height: 42,
+            width: 60,
+            alignment: Alignment.center,
+            child: assetFillImage("images/ic_back_black.png", 24, 30),
+          ),
+        ),
         Expanded(
-            flex: 1,
-            child: Container(
-              alignment: Alignment.center,
-              child: Text(
-                title,
-                style:
-                    TextStyle(color: CommonStyle.color2A2A2A, fontWeight: FontWeight.w500, fontSize: 20, decoration: TextDecoration.none),
-              ),
-            )),
+          flex: 1,
+          child: Container(
+            alignment: Alignment.center,
+            child: Text(
+              title,
+              style: TextStyle(color: CommonStyle.color2A2A2A, fontWeight: FontWeight.w500, fontSize: 20, decoration: TextDecoration.none),
+            ),
+          ),
+        ),
         const SizedBox(height: 42, width: 60)
       ],
     ),

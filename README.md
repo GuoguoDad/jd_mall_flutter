@@ -62,8 +62,8 @@ Flutter框架具有如下的一些特点：
 
 ## 打包生产环境应用程序
 
-      flutter build apk -t lib/main_prd.dart
-      flutter build ios -t lib/main_prd.dart
+      flutter build apk --release -t lib/main_prd.dart
+      flutter build ios --release -t lib/main_prd.dart
 
 ## 性能分析
 

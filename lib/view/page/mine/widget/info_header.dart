@@ -15,6 +15,8 @@ import 'package:jd_mall_flutter/view/page/example/breathing_method.dart';
 import 'package:jd_mall_flutter/view/page/example/snow_man.dart';
 import 'package:jd_mall_flutter/view/page/mine/redux/mine_page_state.dart';
 
+import '../../example/sample_list.dart';
+
 Widget infoHeader(BuildContext context, ValueNotifier<double> pageScrollY) {
   Widget title = Positioned(
     top: 0,
@@ -125,7 +127,7 @@ Widget infoHeader(BuildContext context, ValueNotifier<double> pageScrollY) {
               top: 4,
               right: 116,
               child: GestureDetector(
-                onTap: () => Navigator.of(context).pushNamed(SnowManDemo.name),
+                onTap: () => {},
                 child: assetImage('images/ic_friend.png', 23, 23),
               ),
             ),
@@ -133,7 +135,7 @@ Widget infoHeader(BuildContext context, ValueNotifier<double> pageScrollY) {
               top: 4,
               right: 66,
               child: GestureDetector(
-                onTap: () => Navigator.of(context).pushNamed(InterlacedAnimationDemo.name),
+                onTap: () => Navigator.of(context).pushNamed(SampleList.name),
                 child: assetImage('images/ic_setting.png', 26, 26),
               ),
             ),
@@ -141,7 +143,7 @@ Widget infoHeader(BuildContext context, ValueNotifier<double> pageScrollY) {
               top: 4,
               right: 18,
               child: GestureDetector(
-                onTap: () => Navigator.of(context).pushNamed(BreathingMethod.name),
+                onTap: () => {},
                 child: assetImage('images/ic_message.png', 26, 26),
               ),
             ),
