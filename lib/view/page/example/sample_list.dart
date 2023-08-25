@@ -5,6 +5,8 @@ import 'package:jd_mall_flutter/view/page/example/Interlaced_animation.dart';
 import 'package:jd_mall_flutter/view/page/example/breathing_method.dart';
 import 'package:jd_mall_flutter/component/common_header.dart';
 
+import 'complete_form.dart';
+
 class SampleList extends StatefulWidget {
   const SampleList({Key? key}) : super(key: key);
   static const String name = "/sampleList";
@@ -42,6 +44,12 @@ class _SampleListState extends State<SampleList> {
                   subtitle: '【动画】之478呼吸法',
                   icon: Icons.tab_rounded,
                   onTap: () => Navigator.of(context).pushNamed(BreathingMethod.name),
+                ),
+                ListItem(
+                  title: 'form表单验证',
+                  subtitle: 'form表单验证',
+                  icon: Icons.tab_rounded,
+                  onTap: () => Navigator.of(context).pushNamed(CompleteForm.name),
                 )
               ],
             ),

@@ -7,6 +7,7 @@ import 'package:flutter/material.dart';
 // Package imports:
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:form_builder_validators/localization/l10n.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
 
 // Project imports:
@@ -53,11 +54,12 @@ class _FlutterReduxMallApp extends State<MallApp> with HttpErrorListener {
         routes: routesMap,
         debugShowCheckedModeBanner: false,
         localizationsDelegates: const [
-          S.delegate,
-          RefreshLocalizations.delegate,
           GlobalWidgetsLocalizations.delegate,
           GlobalMaterialLocalizations.delegate,
-          GlobalCupertinoLocalizations.delegate
+          GlobalCupertinoLocalizations.delegate,
+          FormBuilderLocalizations.delegate,
+          RefreshLocalizations.delegate,
+          S.delegate,
         ],
         locale: const Locale('zh', 'CN'),
         supportedLocales: const [
