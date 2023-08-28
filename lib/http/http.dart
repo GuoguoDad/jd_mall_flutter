@@ -10,7 +10,7 @@ import 'package:dio/dio.dart';
 // Project imports:
 import 'package:jd_mall_flutter/http/base_response.dart';
 import 'package:jd_mall_flutter/http/code.dart';
-import 'package:jd_mall_flutter/http/interceptors/error_interceptor.dart';
+import 'package:jd_mall_flutter/http/interceptors/network_interceptor.dart';
 import 'package:jd_mall_flutter/http/interceptors/logs_interceptors.dart';
 import 'package:jd_mall_flutter/http/interceptors/response_interceptor.dart';
 import 'package:jd_mall_flutter/http/interceptors/token_Interceptor.dart';
@@ -24,10 +24,10 @@ class HttpManager {
 
   HttpManager() {
     _dio.interceptors.add(TokenInterceptors());
+    _dio.interceptors.add(NetworkInterceptors());
     if (kDebugMode) {
       _dio.interceptors.add(LogsInterceptors());
     }
-    _dio.interceptors.add(ErrorInterceptors());
     _dio.interceptors.add(ResponseInterceptors());
   }
 

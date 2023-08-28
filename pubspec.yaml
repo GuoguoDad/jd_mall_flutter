@@ -42,7 +42,7 @@ dependencies:
   redux: ^5.0.0
   flutter_redux: ^0.10.0
   json_annotation: ^4.8.1
-  connectivity: ^3.0.6
+  connectivity_plus: ^4.0.2
   shared_preferences: ^2.0.10
   pull_to_refresh: ^2.0.0
   path_provider: ^2.0.15

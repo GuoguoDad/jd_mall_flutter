@@ -5,7 +5,6 @@ import 'package:flutter/material.dart';
 import 'package:easy_refresh/easy_refresh.dart';
 import 'package:extended_nested_scroll_view/extended_nested_scroll_view.dart';
 import 'package:flutter_redux/flutter_redux.dart';
-import 'package:redux/redux.dart';
 
 // Project imports:
 import 'package:jd_mall_flutter/common/util/easy_refresh_util.dart';
