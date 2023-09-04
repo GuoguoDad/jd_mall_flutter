@@ -27,6 +27,7 @@ class _GestureSpringState extends State<GestureSpring> with SingleTickerProvider
 
   @override
   void initState() {
+    super.initState();
     _controller = AnimationController(vsync: this, duration: const Duration(milliseconds: 400))
       ..addListener(() {
         //滑动结束，400毫秒animation.value值从0变为1， height逐渐变为原始值
