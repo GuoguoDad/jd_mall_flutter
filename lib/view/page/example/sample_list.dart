@@ -4,8 +4,8 @@ import 'package:jd_mall_flutter/view/page/example/widget/list_item.dart';
 import 'package:jd_mall_flutter/view/page/example/Interlaced_animation.dart';
 import 'package:jd_mall_flutter/view/page/example/breathing_method.dart';
 import 'package:jd_mall_flutter/component/common_header.dart';
-
-import 'complete_form.dart';
+import 'package:jd_mall_flutter/view/page/example/complete_form.dart';
+import 'package:jd_mall_flutter/view/page/example/gesture_spring.dart';
 
 class SampleList extends StatefulWidget {
   const SampleList({Key? key}) : super(key: key);
@@ -50,6 +50,12 @@ class _SampleListState extends State<SampleList> {
                   subtitle: 'form表单验证',
                   icon: Icons.tab_rounded,
                   onTap: () => Navigator.of(context).pushNamed(CompleteForm.name),
+                ),
+                ListItem(
+                  title: '【手势】之弹簧',
+                  subtitle: '【手势】之弹簧',
+                  icon: Icons.tab_rounded,
+                  onTap: () => Navigator.of(context).pushNamed(GestureSpring.name),
                 )
               ],
             ),
