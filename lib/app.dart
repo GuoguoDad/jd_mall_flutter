@@ -18,6 +18,7 @@ import 'package:jd_mall_flutter/generated/l10n.dart';
 import 'package:jd_mall_flutter/http/code.dart';
 import 'package:jd_mall_flutter/routes.dart';
 import 'package:jd_mall_flutter/view/main/main_page.dart';
+import 'package:jd_mall_flutter/observer/navigator_change_observer.dart';
 
 class MallApp extends StatefulWidget {
   const MallApp({super.key});
@@ -44,6 +45,7 @@ class _FlutterReduxMallApp extends State<MallApp> with HttpErrorListener {
       enableBallisticLoad: true,
       child: MaterialApp(
         navigatorKey: navKey,
+        navigatorObservers: [NavigatorChangeObserver()],
         theme: ThemeData(
           brightness: Brightness.light,
           splashColor: Colors.transparent,

@@ -1,11 +1,14 @@
+// Flutter imports:
 import 'package:flutter/material.dart';
-import 'package:jd_mall_flutter/view/page/example/snow_man.dart';
-import 'package:jd_mall_flutter/view/page/example/widget/list_item.dart';
+
+// Project imports:
+import 'package:jd_mall_flutter/component/common_header.dart';
 import 'package:jd_mall_flutter/view/page/example/Interlaced_animation.dart';
 import 'package:jd_mall_flutter/view/page/example/breathing_method.dart';
-import 'package:jd_mall_flutter/component/common_header.dart';
 import 'package:jd_mall_flutter/view/page/example/complete_form.dart';
 import 'package:jd_mall_flutter/view/page/example/gesture_spring.dart';
+import 'package:jd_mall_flutter/view/page/example/snow_man.dart';
+import 'package:jd_mall_flutter/view/page/example/widget/list_item.dart';
 
 class SampleList extends StatefulWidget {
   const SampleList({Key? key}) : super(key: key);

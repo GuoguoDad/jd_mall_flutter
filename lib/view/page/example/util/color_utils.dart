@@ -1,5 +1,8 @@
-import 'package:convert/convert.dart';
+// Flutter imports:
 import 'package:flutter/material.dart';
+
+// Package imports:
+import 'package:convert/convert.dart';
 
 class ColorUtils {
   /// Generate background color from string.

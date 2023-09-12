@@ -1,5 +1,10 @@
+// Flutter imports:
 import 'package:flutter/material.dart';
+
+// Package imports:
 import 'package:easy_refresh/src/painter/paths_painter.dart';
+
+// Project imports:
 import 'package:jd_mall_flutter/view/page/example/util/color_utils.dart';
 
 /// List item.

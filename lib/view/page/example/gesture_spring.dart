@@ -1,5 +1,8 @@
+// Flutter imports:
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+
+// Project imports:
 import 'package:jd_mall_flutter/component/common_header.dart';
 
 class GestureSpring extends StatefulWidget {
@@ -21,7 +24,7 @@ class _GestureSpringState extends State<GestureSpring> with SingleTickerProvider
   ValueNotifier<double> height = ValueNotifier<double>(_defaultSpringHeight);
 
   double offsetY = 0; //位移
-  double lastMoveDistance = 0;
+  double lastMoveY = 0;
 
   double get distanceY => -offsetY / _rateOfMove;
 
@@ -63,7 +66,7 @@ class _GestureSpringState extends State<GestureSpring> with SingleTickerProvider
                   }
                 },
                 onVerticalDragEnd: (dragEndDetails) {
-                  lastMoveDistance = offsetY;
+                  lastMoveY = offsetY;
                   _controller.forward(from: 0); //滑动结束触发弹簧归位动画
                 },
                 child: SizedBox(

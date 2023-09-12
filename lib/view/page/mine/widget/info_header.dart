@@ -14,7 +14,6 @@ import 'package:jd_mall_flutter/view/page/example/Interlaced_animation.dart';
 import 'package:jd_mall_flutter/view/page/example/breathing_method.dart';
 import 'package:jd_mall_flutter/view/page/example/snow_man.dart';
 import 'package:jd_mall_flutter/view/page/mine/redux/mine_page_state.dart';
-
 import '../../example/sample_list.dart';
 
 Widget infoHeader(BuildContext context, ValueNotifier<double> pageScrollY) {

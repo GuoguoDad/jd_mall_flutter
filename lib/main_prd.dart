@@ -20,6 +20,7 @@ import 'package:jd_mall_flutter/store/app_state.dart';
 import 'package:jd_mall_flutter/store/app_store.dart';
 
 void initApp(Map<String, dynamic> envMap) {
+  WidgetsFlutterBinding.ensureInitialized();
   GlobalConfigs().loadFromMap(envMap);
 
   runApp(
