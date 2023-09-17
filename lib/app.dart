@@ -16,9 +16,9 @@ import 'package:jd_mall_flutter/common/event/index.dart';
 import 'package:jd_mall_flutter/common/util/screen_util.dart';
 import 'package:jd_mall_flutter/generated/l10n.dart';
 import 'package:jd_mall_flutter/http/code.dart';
+import 'package:jd_mall_flutter/observer/navigator_change_observer.dart';
 import 'package:jd_mall_flutter/routes.dart';
 import 'package:jd_mall_flutter/view/main/main_page.dart';
-import 'package:jd_mall_flutter/observer/navigator_change_observer.dart';
 
 class MallApp extends StatefulWidget {
   const MallApp({super.key});

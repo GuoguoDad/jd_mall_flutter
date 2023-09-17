@@ -6,6 +6,9 @@ import 'package:jd_mall_flutter/common/style/common_style.dart';
 import 'package:jd_mall_flutter/component/common_header.dart';
 import 'package:jd_mall_flutter/view/page/order/generate/widget/bottom.dart';
 import 'package:jd_mall_flutter/view/page/order/generate/widget/default_address.dart';
+import 'package:jd_mall_flutter/view/page/order/generate/widget/order_goods.dart';
+import 'package:jd_mall_flutter/view/page/order/generate/widget/order_invoice.dart';
+import 'package:jd_mall_flutter/view/page/order/generate/widget/order_summation.dart';
 
 class GenerateOrder extends StatefulWidget {
   const GenerateOrder({super.key});
@@ -34,6 +37,9 @@ class _GenerateOrderState extends State<GenerateOrder> {
             child: CustomScrollView(
               slivers: [
                 defaultAddress(context),
+                orderGoods(context),
+                orderSummation(context),
+                orderInvoice(context),
               ],
             ),
           ),
