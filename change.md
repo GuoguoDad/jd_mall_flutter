@@ -10,7 +10,6 @@ Locale locale = View.of(context).platformDispatcher.locale;
 double width =
 MediaQueryData.fromView(View.of(context)).size.width;
 
-
 /// 3.10 之前
 MediaQueryData.fromWindow(WidgetsBinding.instance.window)
 /// 3.10 之后
