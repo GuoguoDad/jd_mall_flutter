@@ -27,8 +27,6 @@ import 'package:jd_mall_flutter/view/page/detail/widget/tab_header.dart';
 class DetailPage extends StatefulWidget {
   const DetailPage({super.key});
 
-  static const String name = "/detailPage";
-
   @override
   State<DetailPage> createState() => _DetailPageState();
 }

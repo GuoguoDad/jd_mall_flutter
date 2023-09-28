@@ -1,8 +1,8 @@
 // Flutter imports:
 import 'package:flutter/material.dart';
-import 'package:jd_mall_flutter/common/extension/extensions.dart';
 
 // Project imports:
+import 'package:jd_mall_flutter/common/extension/extensions.dart';
 import 'package:jd_mall_flutter/common/util/screen_util.dart';
 import 'package:jd_mall_flutter/component/image/asset_image.dart';
 

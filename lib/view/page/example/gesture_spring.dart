@@ -8,8 +8,6 @@ import 'package:jd_mall_flutter/component/common_header.dart';
 class GestureSpring extends StatefulWidget {
   const GestureSpring({super.key});
 
-  static const String name = "/gestureSpring";
-
   @override
   State<GestureSpring> createState() => _GestureSpringState();
 }

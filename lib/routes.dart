@@ -13,17 +13,36 @@ import 'package:jd_mall_flutter/view/page/example/snow_man.dart';
 import 'package:jd_mall_flutter/view/page/order/generate/generate_order.dart';
 import 'package:jd_mall_flutter/view/vebview/webview_page.dart';
 
+enum PageRouteEnum {
+  //example
+  sampleList("/sampleList"),
+  completeForm("/completeForm"),
+  interlacedAnimation("/interlacedAnimation"),
+  breathingMethod("/breathingMethod"),
+  snowMan("/snowMan"),
+  gestureSpring("gestureSpring"),
+  //pages
+  mainPage("/mainPage"),
+  detailPage("/detailPage"),
+  generateOrder("/generateOrder"),
+  webViewPage("/webViewPage");
+
+  const PageRouteEnum(this.path);
+
+  final String path;
+}
+
 Map<String, WidgetBuilder> routesMap = {
   //example
-  SampleList.name: (context) => const SampleList(),
-  CompleteForm.name: (context) => const CompleteForm(),
-  InterlacedAnimationDemo.name: (context) => const InterlacedAnimationDemo(),
-  BreathingMethod.name: (context) => const BreathingMethod(),
-  SnowManDemo.name: (context) => const SnowManDemo(),
-  GestureSpring.name: (context) => const GestureSpring(),
+  PageRouteEnum.sampleList.path: (context) => const SampleList(),
+  PageRouteEnum.completeForm.path: (context) => const CompleteForm(),
+  PageRouteEnum.interlacedAnimation.path: (context) => const InterlacedAnimationDemo(),
+  PageRouteEnum.breathingMethod.path: (context) => const BreathingMethod(),
+  PageRouteEnum.snowMan.path: (context) => const SnowManDemo(),
+  PageRouteEnum.gestureSpring.path: (context) => const GestureSpring(),
   //pages
-  MainPage.name: (context) => const MainPage(),
-  DetailPage.name: (context) => const DetailPage(),
-  GenerateOrder.name: (context) => const GenerateOrder(),
-  WebViewPage.name: (context) => const WebViewPage(),
+  PageRouteEnum.mainPage.path: (context) => const MainPage(),
+  PageRouteEnum.detailPage.path: (context) => const DetailPage(),
+  PageRouteEnum.generateOrder.path: (context) => const GenerateOrder(),
+  PageRouteEnum.webViewPage.path: (context) => const WebViewPage(),
 };

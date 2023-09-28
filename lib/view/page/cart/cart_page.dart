@@ -22,8 +22,6 @@ import 'package:jd_mall_flutter/view/page/cart/widget/total_settlement.dart';
 class CartPage extends StatefulWidget {
   const CartPage({super.key});
 
-  static const String name = "/cart";
-
   @override
   State<CartPage> createState() => _CartPageState();
 }

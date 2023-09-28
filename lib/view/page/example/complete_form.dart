@@ -12,7 +12,6 @@ import 'package:jd_mall_flutter/component/common_header.dart';
 
 class CompleteForm extends StatefulWidget {
   const CompleteForm({Key? key}) : super(key: key);
-  static const String name = "/completeForm";
 
   @override
   State<CompleteForm> createState() {

@@ -26,8 +26,6 @@ import 'package:jd_mall_flutter/view/page/mine/widget/tab_list.dart';
 class MinePage extends StatefulWidget {
   const MinePage({super.key});
 
-  static const String name = "/mine";
-
   @override
   State<MinePage> createState() => _MinePageState();
 }

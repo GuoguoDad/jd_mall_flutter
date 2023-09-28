@@ -13,8 +13,6 @@ import 'package:jd_mall_flutter/view/page/order/generate/widget/order_summation.
 class GenerateOrder extends StatefulWidget {
   const GenerateOrder({super.key});
 
-  static const String name = "/generateOrder";
-
   @override
   State<StatefulWidget> createState() => _GenerateOrderState();
 }

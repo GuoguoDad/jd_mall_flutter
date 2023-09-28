@@ -11,8 +11,6 @@ import 'package:jd_mall_flutter/component/common_header.dart';
 class SnowManDemo extends StatefulWidget {
   const SnowManDemo({super.key});
 
-  static const String name = "/snowManDemo";
-
   @override
   State<SnowManDemo> createState() => _SnowManDemoState();
 }

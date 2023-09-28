@@ -71,6 +71,7 @@ Widget rightGroupList(BuildContext context, ScrollController scrollController, S
       }
 
       List<Widget> widgets = [];
+      //二级分类上面的图片
       if (headUrl != "") {
         widgets.add(
           CachedNetworkImage(
@@ -84,6 +85,7 @@ Widget rightGroupList(BuildContext context, ScrollController scrollController, S
         );
       }
 
+      //二级分类滚动列表
       widgets.add(
         Container(
           width: bWidth,
@@ -98,6 +100,7 @@ Widget rightGroupList(BuildContext context, ScrollController scrollController, S
               bool isSelect = selectSecondCategoryInfo?.categoryCode == secondCateList[index].categoryCode;
 
               return GestureDetector(
+                behavior: HitTestBehavior.translucent,
                 onTap: () {
                   //如果不是当前选中的二级分类
                   if (selectSecondCategoryInfo?.categoryCode != secondCateList[index].categoryCode) {
@@ -137,6 +140,7 @@ Widget rightGroupList(BuildContext context, ScrollController scrollController, S
         ),
       );
 
+      //三级分组Gridview列表
       widgets.add(
         Expanded(
           child: NotificationListener<ScrollNotification>(

@@ -7,8 +7,6 @@ import 'package:jd_mall_flutter/component/common_header.dart';
 class BreathingMethod extends StatefulWidget {
   const BreathingMethod({super.key});
 
-  static const String name = "/breathingMethod";
-
   @override
   State<BreathingMethod> createState() => _BreathingMethodState();
 }

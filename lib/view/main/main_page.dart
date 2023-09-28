@@ -15,8 +15,6 @@ import 'package:jd_mall_flutter/view/page/mine/mine_page.dart';
 class MainPage extends StatefulWidget {
   const MainPage({super.key});
 
-  static const String name = "/mainPage";
-
   @override
   State<MainPage> createState() => _MainPageState();
 }

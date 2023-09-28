@@ -8,8 +8,6 @@ import 'package:jd_mall_flutter/component/common_header.dart';
 class InterlacedAnimationDemo extends StatefulWidget {
   const InterlacedAnimationDemo({super.key});
 
-  static const String name = "/interlacedAnimationDemo";
-
   @override
   State<InterlacedAnimationDemo> createState() => _State();
 }

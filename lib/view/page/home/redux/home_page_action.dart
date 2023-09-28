@@ -1,6 +1,6 @@
 // Project imports:
 import 'package:jd_mall_flutter/models/home_page_info.dart';
-import 'package:jd_mall_flutter/types/common.dart';
+import 'package:jd_mall_flutter/common/types/common.dart';
 
 class SetLoadingAction {
   final bool value;

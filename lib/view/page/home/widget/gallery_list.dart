@@ -11,8 +11,8 @@ import 'package:jd_mall_flutter/common/style/common_style.dart';
 import 'package:jd_mall_flutter/common/util/screen_util.dart';
 import 'package:jd_mall_flutter/component/image/asset_image.dart';
 import 'package:jd_mall_flutter/component/nil.dart';
+import 'package:jd_mall_flutter/routes.dart';
 import 'package:jd_mall_flutter/store/app_state.dart';
-import 'package:jd_mall_flutter/view/page/detail/detail_page.dart';
 import 'package:jd_mall_flutter/view/page/home/redux/home_page_state.dart';
 
 Widget galleryList(BuildContext context) {
@@ -59,7 +59,7 @@ Widget galleryList(BuildContext context) {
               items: bannerList.map(
                 (item) {
                   return GestureDetector(
-                    onTap: () => Navigator.of(context).pushNamed(DetailPage.name),
+                    onTap: () => Navigator.of(context).pushNamed(PageRouteEnum.detailPage.path),
                     child: Container(
                       margin: const EdgeInsets.fromLTRB(10, 10, 10, 2),
                       child: ClipRRect(

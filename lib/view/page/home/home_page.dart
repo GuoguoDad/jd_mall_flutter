@@ -26,8 +26,6 @@ import 'package:jd_mall_flutter/view/page/home/widget/tab_list.dart';
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
 
-  static const String name = "/homePage";
-
   @override
   State<HomePage> createState() => _HomePageState();
 }

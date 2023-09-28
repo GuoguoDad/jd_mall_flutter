@@ -7,8 +7,8 @@ import 'package:cached_network_image/cached_network_image.dart';
 // Project imports:
 import 'package:jd_mall_flutter/component/image/asset_image.dart';
 import 'package:jd_mall_flutter/models/mine_menu_tab_info.dart';
+import 'package:jd_mall_flutter/routes.dart';
 import 'package:jd_mall_flutter/view/vebview/type.dart';
-import 'package:jd_mall_flutter/view/vebview/webview_page.dart';
 
 class MenuItem extends StatelessWidget {
   const MenuItem(
@@ -23,7 +23,7 @@ class MenuItem extends StatelessWidget {
     return GestureDetector(
       onTap: () {
         if ((menuData.h5url ?? "").isNotEmpty) {
-          Navigator.of(context).pushNamed(WebViewPage.name, arguments: WebViewPageArguments(menuData.h5url.toString()));
+          Navigator.of(context).pushNamed(PageRouteEnum.webViewPage.path, arguments: WebViewPageArguments(menuData.h5url.toString()));
         }
       },
       child: Column(

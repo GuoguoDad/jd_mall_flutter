@@ -1,20 +1,12 @@
 // Flutter imports:
 import 'package:flutter/material.dart';
 
-// Package imports:
-import 'package:flutter_redux/flutter_redux.dart';
-
 // Project imports:
 import 'package:jd_mall_flutter/common/util/screen_util.dart';
 import 'package:jd_mall_flutter/component/image/asset_image.dart';
 import 'package:jd_mall_flutter/component/persistentHeader/sliver_header_builder.dart';
 import 'package:jd_mall_flutter/generated/l10n.dart';
-import 'package:jd_mall_flutter/store/app_state.dart';
-import 'package:jd_mall_flutter/view/page/example/Interlaced_animation.dart';
-import 'package:jd_mall_flutter/view/page/example/breathing_method.dart';
-import 'package:jd_mall_flutter/view/page/example/snow_man.dart';
-import 'package:jd_mall_flutter/view/page/mine/redux/mine_page_state.dart';
-import '../../example/sample_list.dart';
+import 'package:jd_mall_flutter/routes.dart';
 
 Widget infoHeader(BuildContext context, ValueNotifier<double> pageScrollY) {
   Widget title = Positioned(
@@ -134,7 +126,7 @@ Widget infoHeader(BuildContext context, ValueNotifier<double> pageScrollY) {
               top: 4,
               right: 66,
               child: GestureDetector(
-                onTap: () => Navigator.of(context).pushNamed(SampleList.name),
+                onTap: () => Navigator.of(context).pushNamed(PageRouteEnum.sampleList.path),
                 child: assetImage('images/ic_setting.png', 26, 26),
               ),
             ),

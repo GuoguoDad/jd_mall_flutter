@@ -10,7 +10,7 @@ import 'package:jd_mall_flutter/common/util/screen_util.dart';
 import 'package:jd_mall_flutter/component/image/asset_image.dart';
 import 'package:jd_mall_flutter/generated/l10n.dart';
 import 'package:jd_mall_flutter/store/app_state.dart';
-import 'package:jd_mall_flutter/types/common.dart';
+import 'package:jd_mall_flutter/common/types/common.dart';
 
 Widget tabHeader(BuildContext context, ValueNotifier<double> pageScrollY, ValueNotifier<int> currentIndex, {required ValueCallback<int> onChange}) {
   double statusHeight = getStatusHeight(context);

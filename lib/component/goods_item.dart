@@ -10,9 +10,8 @@ import 'package:jd_mall_flutter/component/image/asset_image.dart';
 import 'package:jd_mall_flutter/component/line_two.dart';
 import 'package:jd_mall_flutter/component/text_item.dart';
 import 'package:jd_mall_flutter/models/goods_page_info.dart';
-import 'package:jd_mall_flutter/view/page/detail/detail_page.dart';
+import 'package:jd_mall_flutter/routes.dart';
 import 'package:jd_mall_flutter/view/vebview/type.dart';
-import 'package:jd_mall_flutter/view/vebview/webview_page.dart';
 
 Widget goodsItem(BuildContext context, GoodsList item, double width) {
   //
@@ -115,8 +114,8 @@ Widget goodsItem(BuildContext context, GoodsList item, double width) {
 
   return GestureDetector(
     onTap: () {
-      if (item.type == '1') Navigator.of(context).pushNamed(DetailPage.name);
-      if (item.type == '2') Navigator.of(context).pushNamed(WebViewPage.name, arguments: WebViewPageArguments(item.h5url ?? ""));
+      if (item.type == '1') Navigator.of(context).pushNamed(PageRouteEnum.detailPage.path);
+      if (item.type == '2') Navigator.of(context).pushNamed(PageRouteEnum.webViewPage.path, arguments: WebViewPageArguments(item.h5url ?? ""));
     },
     child: Container(
       padding: const EdgeInsets.only(bottom: 10),

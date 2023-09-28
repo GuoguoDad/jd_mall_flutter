@@ -15,8 +15,6 @@ import 'package:jd_mall_flutter/view/page/category/widget/right_group.dart';
 class CategoryPage extends StatefulWidget {
   const CategoryPage({super.key});
 
-  static const String name = "/category";
-
   @override
   State<CategoryPage> createState() => _CategoryPageState();
 }

@@ -9,7 +9,7 @@ import 'package:jd_mall_flutter/common/style/common_style.dart';
 import 'package:jd_mall_flutter/common/util/screen_util.dart';
 import 'package:jd_mall_flutter/component/persistentHeader/sliver_header_builder.dart';
 import 'package:jd_mall_flutter/store/app_state.dart';
-import 'package:jd_mall_flutter/types/common.dart';
+import 'package:jd_mall_flutter/common/types/common.dart';
 
 Widget tabList(BuildContext context, {required ValueCallback<String> onTabChange}) {
   ScrollController controller = ScrollController();

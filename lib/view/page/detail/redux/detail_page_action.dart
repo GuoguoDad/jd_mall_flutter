@@ -1,7 +1,7 @@
 // Project imports:
 import 'package:jd_mall_flutter/models/goods_detail_res.dart';
 import 'package:jd_mall_flutter/models/goods_page_info.dart';
-import 'package:jd_mall_flutter/types/common.dart';
+import 'package:jd_mall_flutter/common/types/common.dart';
 
 class InitPageAction {
   InitPageAction();

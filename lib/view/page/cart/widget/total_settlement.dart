@@ -11,9 +11,9 @@ import 'package:jd_mall_flutter/common/util/screen_util.dart';
 import 'package:jd_mall_flutter/component/linear_button.dart';
 import 'package:jd_mall_flutter/generated/l10n.dart';
 import 'package:jd_mall_flutter/models/cart_goods.dart';
+import 'package:jd_mall_flutter/routes.dart';
 import 'package:jd_mall_flutter/store/app_state.dart';
 import 'package:jd_mall_flutter/view/page/cart/redux/cart_page_action.dart';
-import 'package:jd_mall_flutter/view/page/order/generate/generate_order.dart';
 
 Widget totalSettlement(BuildContext context) {
   return StoreBuilder<AppState>(
@@ -77,7 +77,7 @@ Widget totalSettlement(BuildContext context) {
                     EasyLoading.showInfo("您还没有选择商品哦", duration: const Duration(seconds: 2));
                     return;
                   }
-                  Navigator.of(context).pushNamed(GenerateOrder.name);
+                  Navigator.of(context).pushNamed(PageRouteEnum.generateOrder.path);
                 },
               ),
             )
