@@ -77,7 +77,7 @@ Widget totalSettlement(BuildContext context) {
                     EasyLoading.showInfo("您还没有选择商品哦", duration: const Duration(seconds: 2));
                     return;
                   }
-                  Navigator.of(context).pushNamed(PageRouteEnum.generateOrder.path);
+                  Navigator.of(context).pushNamed(RouteEnum.generateOrder.path);
                 },
               ),
             )

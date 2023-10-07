@@ -118,7 +118,7 @@ class HeaderSection extends StatelessWidget {
           GestureDetector(
             onTap: () {
               if (url != "") {
-                Navigator.of(context).pushNamed(PageRouteEnum.webViewPage.path, arguments: WebViewPageArguments(url));
+                Navigator.of(context).pushNamed(RouteEnum.webViewPage.path, arguments: WebViewPageArguments(url));
               }
             },
             child: assetImage("images/ic_arrow_right.png", 20, 20),

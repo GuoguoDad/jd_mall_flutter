@@ -126,7 +126,7 @@ Widget infoHeader(BuildContext context, ValueNotifier<double> pageScrollY) {
               top: 4,
               right: 66,
               child: GestureDetector(
-                onTap: () => Navigator.of(context).pushNamed(PageRouteEnum.sampleList.path),
+                onTap: () => Navigator.of(context).pushNamed(RouteEnum.sampleList.path),
                 child: assetImage('images/ic_setting.png', 26, 26),
               ),
             ),

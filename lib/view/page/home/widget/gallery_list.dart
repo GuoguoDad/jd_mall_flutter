@@ -59,7 +59,7 @@ Widget galleryList(BuildContext context) {
               items: bannerList.map(
                 (item) {
                   return GestureDetector(
-                    onTap: () => Navigator.of(context).pushNamed(PageRouteEnum.detailPage.path),
+                    onTap: () => Navigator.of(context).pushNamed(RouteEnum.detailPage.path),
                     child: Container(
                       margin: const EdgeInsets.fromLTRB(10, 10, 10, 2),
                       child: ClipRRect(

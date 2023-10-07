@@ -21,7 +21,7 @@ Widget advBanner(BuildContext context) {
     builder: (context, state) {
       return SliverToBoxAdapter(
         child: GestureDetector(
-          onTap: () => Navigator.of(context).pushNamed(PageRouteEnum.webViewPage.path,
+          onTap: () => Navigator.of(context).pushNamed(RouteEnum.webViewPage.path,
               arguments: WebViewPageArguments("https://pro.m.jd.com/mall/active/2WrXYwmYpiy7EpWjDETSVyhXfLCb/index.html")),
           child: Container(
             color: Colors.white,

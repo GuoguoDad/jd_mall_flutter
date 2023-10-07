@@ -50,7 +50,7 @@ class _FlutterReduxMallApp extends State<MallApp> with HttpErrorListener {
           splashColor: Colors.transparent,
           highlightColor: Colors.transparent,
         ),
-        initialRoute: PageRouteEnum.mainPage.path,
+        initialRoute: RouteEnum.mainPage.path,
         builder: EasyLoading.init(),
         routes: routesMap,
         debugShowCheckedModeBanner: false,
