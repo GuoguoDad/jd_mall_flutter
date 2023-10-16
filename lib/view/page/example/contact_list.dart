@@ -220,10 +220,8 @@ class _ContactListState extends State<ContactList> {
 
   @override
   void initState() {
+    initKeys();
     _scrollController = ScrollController();
-    for (var value in list) {
-      keys[value["groupName"]] = GlobalKey(debugLabel: 'contact_${value["groupName"]}');
-    }
     super.initState();
   }
 
@@ -290,11 +288,11 @@ class _ContactListState extends State<ContactList> {
                   ),
                   child: GestureDetector(
                     onVerticalDragUpdate: (DragUpdateDetails details) {
-                      String indexBar = getIndexString(context, details.localPosition);
+                      String indexBar = getIndexStr(context, details.localPosition);
                       scroll2PositionBySlide(indexBar);
                     },
                     onVerticalDragDown: (DragDownDetails details) {
-                      String indexBar = getIndexString(context, details.localPosition);
+                      String indexBar = getIndexStr(context, details.localPosition);
                       scroll2PositionBySlide(indexBar);
                     },
                     child: Column(
@@ -326,13 +324,17 @@ class _ContactListState extends State<ContactList> {
       _scrollController.position.ensureVisible(keyRenderObject, duration: const Duration(milliseconds: 200), curve: Curves.ease);
     }
   }
+
+  void initKeys() {
+    for (var value in list) {
+      keys[value["groupName"]] = GlobalKey(debugLabel: 'contact_${value["groupName"]}');
+    }
+  }
 }
 
-String getIndexString(BuildContext context, Offset localPosition) {
-  // 点击的坐标点在当前部件中的y坐标
-  double y = localPosition.dy;
-  // 计算是第几个字符
-  int index = (y ~/ sideBarItemHeight).clamp(0, list.length - 1);
+String getIndexStr(BuildContext context, Offset localPosition) {
+  // 计算是第几个字符(localPosition.dy 点击的坐标点在当前部件中的y坐标)
+  int index = (localPosition.dy ~/ sideBarItemHeight).clamp(0, list.length - 1);
   // 当前选中的字符
   String str = list[index]["groupName"];
   return str;
