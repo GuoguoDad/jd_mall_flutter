@@ -7,6 +7,7 @@ import 'package:jd_mall_flutter/view/page/detail/detail_page.dart';
 import 'package:jd_mall_flutter/view/page/example/Interlaced_animation.dart';
 import 'package:jd_mall_flutter/view/page/example/breathing_method.dart';
 import 'package:jd_mall_flutter/view/page/example/complete_form.dart';
+import 'package:jd_mall_flutter/view/page/example/contact_list.dart';
 import 'package:jd_mall_flutter/view/page/example/gesture_spring.dart';
 import 'package:jd_mall_flutter/view/page/example/sample_list.dart';
 import 'package:jd_mall_flutter/view/page/example/snow_man.dart';
@@ -21,6 +22,7 @@ enum RouteEnum {
   breathingMethod("/breathingMethod"),
   snowMan("/snowMan"),
   gestureSpring("/gestureSpring"),
+  contactList("/contactList"),
   //pages
   mainPage("/mainPage"),
   detailPage("/detailPage"),
@@ -40,6 +42,7 @@ Map<String, WidgetBuilder> routesMap = {
   RouteEnum.breathingMethod.path: (context) => const BreathingMethod(),
   RouteEnum.snowMan.path: (context) => const SnowManDemo(),
   RouteEnum.gestureSpring.path: (context) => const GestureSpring(),
+  RouteEnum.contactList.path: (context) => const ContactList(),
   //pages
   RouteEnum.mainPage.path: (context) => const MainPage(),
   RouteEnum.detailPage.path: (context) => const DetailPage(),

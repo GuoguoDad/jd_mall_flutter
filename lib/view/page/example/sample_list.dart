@@ -54,6 +54,12 @@ class _SampleListState extends State<SampleList> {
                   subtitle: '【手势】之弹簧',
                   icon: Icons.tab_rounded,
                   onTap: () => Navigator.of(context).pushNamed(RouteEnum.gestureSpring.path),
+                ),
+                ListItem(
+                  title: '通讯录',
+                  subtitle: '通讯录',
+                  icon: Icons.tab_rounded,
+                  onTap: () => Navigator.of(context).pushNamed(RouteEnum.contactList.path),
                 )
               ],
             ),

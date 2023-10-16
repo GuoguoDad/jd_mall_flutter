@@ -8,6 +8,7 @@ import 'package:flutter_redux/flutter_redux.dart';
 
 // Project imports:
 import 'package:jd_mall_flutter/common/style/common_style.dart';
+import 'package:jd_mall_flutter/common/types/common.dart';
 import 'package:jd_mall_flutter/component/image/asset_image.dart';
 import 'package:jd_mall_flutter/component/stepper/stepper.dart';
 import 'package:jd_mall_flutter/component/stepper/style.dart';
@@ -15,7 +16,6 @@ import 'package:jd_mall_flutter/generated/l10n.dart';
 import 'package:jd_mall_flutter/models/cart_goods.dart';
 import 'package:jd_mall_flutter/routes.dart';
 import 'package:jd_mall_flutter/store/app_state.dart';
-import 'package:jd_mall_flutter/common/types/common.dart';
 import 'package:jd_mall_flutter/view/page/cart/redux/cart_page_action.dart';
 import 'package:jd_mall_flutter/view/vebview/type.dart';
 

@@ -1,0 +1,16 @@
+{
+  "code": "0",
+  "msg": null,
+  "data": {
+    "contactList|10": [
+      {
+        "groupName": "分组@increment",
+        "groupList|8": [
+          {
+            "name": "@cname"
+          }
+        ]
+      }
+    ]
+  }
+}

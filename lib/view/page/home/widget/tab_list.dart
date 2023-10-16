@@ -6,9 +6,9 @@ import 'package:flutter_redux/flutter_redux.dart';
 
 // Project imports:
 import 'package:jd_mall_flutter/common/style/common_style.dart';
+import 'package:jd_mall_flutter/common/types/common.dart';
 import 'package:jd_mall_flutter/component/persistentHeader/sliver_header_builder.dart';
 import 'package:jd_mall_flutter/store/app_state.dart';
-import 'package:jd_mall_flutter/common/types/common.dart';
 import 'package:jd_mall_flutter/view/page/home/redux/home_page_state.dart';
 
 Widget tabList(BuildContext context, ValueNotifier<String> currentTabNot, {required ValueCallback<String> onTabChange}) {
