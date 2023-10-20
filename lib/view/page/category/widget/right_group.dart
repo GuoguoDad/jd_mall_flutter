@@ -14,6 +14,7 @@ import 'package:jd_mall_flutter/component/image/asset_image.dart';
 import 'package:jd_mall_flutter/models/second_group_category_info.dart';
 import 'package:jd_mall_flutter/store/app_state.dart';
 import 'package:jd_mall_flutter/view/page/category/redux/category_page_action.dart';
+import 'package:jd_mall_flutter/component/no_shadow_scroll_behavior.dart';
 
 late double rWidth, bWidth;
 //gridview的item宽和高一样
@@ -161,6 +162,7 @@ Widget rightGroupList(BuildContext context, ScrollController scrollController, S
             child: GroupGridView(
               controller: gridViewController,
               padding: EdgeInsets.zero,
+              scrollBehavior: NoShadowScrollBehavior(),
               gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                 crossAxisCount: 3,
                 mainAxisSpacing: 0,

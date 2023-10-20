@@ -15,6 +15,7 @@ class GroupGridView extends StatefulWidget {
     this.controller,
     this.primary,
     this.physics,
+    this.scrollBehavior,
     this.shrinkWrap = false,
     this.padding,
     this.findChildIndexCallback,
@@ -42,6 +43,7 @@ class GroupGridView extends StatefulWidget {
   final ScrollController? controller;
   final bool? primary;
   final ScrollPhysics? physics;
+  final ScrollBehavior? scrollBehavior;
   final bool shrinkWrap;
   final EdgeInsetsGeometry? padding;
   final IndexPath? Function(Key)? findChildIndexCallback;
@@ -65,6 +67,7 @@ class _GroupGridViewState extends State<GroupGridView> {
       padding: widget.padding ?? EdgeInsets.zero,
       child: CustomScrollView(
         scrollDirection: widget.scrollDirection,
+        scrollBehavior: widget.scrollBehavior,
         reverse: widget.reverse,
         controller: widget.controller,
         primary: widget.primary,

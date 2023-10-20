@@ -6,6 +6,7 @@ import 'package:flutter/rendering.dart';
 import 'package:jd_mall_flutter/common/util/screen_util.dart';
 import 'package:jd_mall_flutter/component/common_header.dart';
 import 'package:jd_mall_flutter/component/persistentHeader/sliver_header_builder.dart';
+import 'package:jd_mall_flutter/component/no_shadow_scroll_behavior.dart';
 
 List list = [
   {
@@ -243,6 +244,7 @@ class _ContactListState extends State<ContactList> {
                 flex: 1,
                 child: CustomScrollView(
                   controller: _scrollController,
+                  scrollBehavior: NoShadowScrollBehavior(),
                   slivers: list.map((e) {
                     return SliverMainAxisGroup(
                       slivers: [
@@ -286,19 +288,20 @@ class _ContactListState extends State<ContactList> {
                     borderRadius: BorderRadius.circular(24),
                     color: Colors.grey.shade500,
                   ),
-                  child: GestureDetector(
-                    onVerticalDragUpdate: (DragUpdateDetails details) {
-                      String indexBar = getIndexStr(context, details.localPosition);
+                  child: Listener(
+                    onPointerDown: (PointerDownEvent e) {
+                      String indexBar = getIndexStr(context, e.localPosition);
                       scroll2PositionBySlide(indexBar);
                     },
-                    onVerticalDragDown: (DragDownDetails details) {
-                      String indexBar = getIndexStr(context, details.localPosition);
+                    onPointerMove: (PointerMoveEvent e) {
+                      String indexBar = getIndexStr(context, e.localPosition);
                       scroll2PositionBySlide(indexBar);
                     },
                     child: Column(
                       children: list.map((e) {
                         return SizedBox(
                           height: 30,
+                          width: 34,
                           child: Center(
                             child: Text(
                               e["groupName"],
