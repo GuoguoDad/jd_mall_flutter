@@ -2,7 +2,7 @@
 import 'dart:ui';
 
 // Project imports:
-import 'package:jd_mall_flutter/common/extension/extensions.dart';
+import 'package:jd_mall_flutter/common/extension/color_ext.dart';
 
 class CommonStyle {
   static Color themeColor = "#FF1520".toColor();

@@ -64,6 +64,10 @@ dependencies:
   flutter_carousel_widget: ^2.1.0
   flutter_form_builder: ^9.1.0
   form_builder_validators: ^9.0.0
+  image_picker: ^1.0.3
+  flutter_image_compress: ^2.0.4
+  image_cropper: ^5.0.0
+  wechat_assets_picker: ^8.7.1
 
 dev_dependencies:
   flutter_test:
@@ -92,54 +96,8 @@ flutter:
 
   # To add assets to your application, add an assets section, like this:
   assets:
-    - images/ic_home.png
-    - images/ic_home_active.png
-    - images/ic_category.png
-    - images/ic_cart.png
-    - images/ic_mine.png
-    - images/ic_category_active.png
-    - images/ic_cart_active.png
-    - images/ic_mine_active.png
-    - images/ic_message_white.png
-    - images/ic_pet.png
-    - images/ic_scan.png
-    - images/ic_camera.png
-    - images/ic_search.png
-    - images/default.png
-    - images/ic_back_top.png
-    - images/scan.png
-    - images/message.png
-    - images/ic_address.png
-    - images/ic_ellipsis.png
-    - images/ic_store.png
-    - images/probably_like.png
-    - images/selector_check_false.png
-    - images/selector_check_true.png
-    - images/ic_arrow_right.png
-    - images/ic_friend.png
-    - images/ic_message.png
-    - images/ic_setting.png
-    - images/ic_goods_star.png
-    - images/ic_look_history.png
-    - images/ic_store_focus.png
-    - images/ic_todo_evaluate.png
-    - images/ic_todo_exchange.png
-    - images/ic_todo_get.png
-    - images/ic_todo_pay.png
-    - images/mine_top_bg.png
-    - images/header.png
-    - images/ic_back_black.png
-    - images/ic_back_grey.png
-    - images/ic_ellipsis_black.png
-    - images/ic_ellipsis_grey.png
-    - images/ic_share_black.png
-    - images/ic_share_grey.png
-    - images/detail/ic_arrow_right.png
-    - images/detail/ic_cart.png
-    - images/detail/ic_customer_service.png
-    - images/detail/ic_store_red.png
-    - images/ic_arrow_right_grey.png
-    - images/black_bg_close.png
+    - images/
+    - images/detail/
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware
 

@@ -12,6 +12,7 @@ import 'package:jd_mall_flutter/view/page/example/gesture_spring.dart';
 import 'package:jd_mall_flutter/view/page/example/sample_list.dart';
 import 'package:jd_mall_flutter/view/page/example/snow_man.dart';
 import 'package:jd_mall_flutter/view/page/order/generate/generate_order.dart';
+import 'package:jd_mall_flutter/view/page/personal/personal_info.dart';
 import 'package:jd_mall_flutter/view/vebview/webview_page.dart';
 
 enum RouteEnum {
@@ -27,7 +28,8 @@ enum RouteEnum {
   mainPage("/mainPage"),
   detailPage("/detailPage"),
   generateOrder("/generateOrder"),
-  webViewPage("/webViewPage");
+  webViewPage("/webViewPage"),
+  personalInfo("/personalInfo");
 
   const RouteEnum(this.path);
 
@@ -48,4 +50,5 @@ Map<String, WidgetBuilder> routesMap = {
   RouteEnum.detailPage.path: (context) => const DetailPage(),
   RouteEnum.generateOrder.path: (context) => const GenerateOrder(),
   RouteEnum.webViewPage.path: (context) => const WebViewPage(),
+  RouteEnum.personalInfo.path: (context) => const PersonalInfo(),
 };

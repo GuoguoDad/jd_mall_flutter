@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 
 // Project imports:
-import 'package:jd_mall_flutter/common/extension/extensions.dart';
+import 'package:jd_mall_flutter/common/extension/color_ext.dart';
 import 'package:jd_mall_flutter/component/image/asset_image.dart';
 import 'package:jd_mall_flutter/component/line_two.dart';
 import 'package:jd_mall_flutter/component/text_item.dart';

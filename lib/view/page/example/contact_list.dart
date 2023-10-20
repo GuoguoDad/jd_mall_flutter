@@ -256,13 +256,13 @@ class _ContactListState extends State<ContactList> {
                         ),
                         SliverList(
                           delegate: SliverChildBuilderDelegate(
-                            childCount: (e["groupList"] as List).length,
                             (BuildContext context, int index) {
                               return UserItem(
                                 data: e,
                                 index: index,
                               );
                             },
+                            childCount: (e["groupList"] as List).length,
                           ),
                         )
                       ],

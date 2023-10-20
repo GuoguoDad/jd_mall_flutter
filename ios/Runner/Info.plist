@@ -56,5 +56,13 @@
       <string>tel</string>
     </array>
 
+    <key>NSAppTransportSecurity</key>
+    <dict>
+    	<key>NSAllowsArbitraryLoads</key>
+    	<true/>
+    </dict>
+    <key>NSPhotoLibraryUsageDescription</key>
+    <string>获取相册使用权限</string>
+
 </dict>
 </plist>

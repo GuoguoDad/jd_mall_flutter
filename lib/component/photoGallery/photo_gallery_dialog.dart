@@ -2,7 +2,7 @@
 import 'package:flutter/material.dart';
 
 // Project imports:
-import 'package:jd_mall_flutter/component/photo_gallery/photo_gallery.dart';
+import 'package:jd_mall_flutter/component/photoGallery/photo_gallery.dart';
 
 void openPhotoGalleryDialog(BuildContext context, List<String> items, int index) => showDialog(
       context: context,
