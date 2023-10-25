@@ -1,4 +1,6 @@
 // Flutter imports:
+import 'dart:ffi';
+
 import 'package:flutter/material.dart';
 
 // Project imports:
@@ -16,29 +18,55 @@ Widget fixedBottom(BuildContext context) {
     padding: EdgeInsets.only(bottom: space),
     decoration: BoxDecoration(color: Colors.white, border: Border.all(color: Colors.grey.shade300, width: 0.2)),
     child: Row(
-      mainAxisAlignment: MainAxisAlignment.spaceAround,
-      crossAxisAlignment: CrossAxisAlignment.center,
       children: [
-        columnItem("images/detail/ic_store_red.png", S.of(context).store),
-        columnItem("images/detail/ic_customer_service.png", S.of(context).customerService),
-        columnItem("images/detail/ic_cart.png", S.of(context).tabMainCart),
-        LinearButton(
-          width: 100,
-          height: 42,
-          btnName: S.of(context).add2Cart,
-          highlightColor: Colors.yellow,
-          colors: ["#F2CD4A".toColor(), "#F2C54B".toColor()],
-          borderRadius: const BorderRadius.all(Radius.circular(50)),
-          onTap: () => print("======="),
+        Flexible(
+          flex: 3,
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceAround,
+            children: [
+              columnItem("images/detail/ic_store_red.png", S.of(context).store),
+              columnItem("images/detail/ic_customer_service.png", S.of(context).customerService),
+              columnItem("images/detail/ic_cart.png", S.of(context).tabMainCart),
+            ],
+          ),
         ),
-        LinearButton(
-          width: 100,
-          height: 42,
-          btnName: S.of(context).couponPurchase,
-          highlightColor: Colors.red,
-          colors: ["#E54B4E".toColor(), "#E34439".toColor()],
-          borderRadius: const BorderRadius.all(Radius.circular(50)),
-          onTap: () => print("======="),
+        Flexible(
+          flex: 2,
+          child: Center(
+            child: FractionallySizedBox(
+              widthFactor: 0.9,
+              heightFactor: 0.6,
+              child: LinearButton(
+                width: double.infinity,
+                height: double.infinity,
+                btnName: S.of(context).add2Cart,
+                fontSize: 14,
+                highlightColor: Colors.yellow,
+                colors: ["#F2CD4A".toColor(), "#F2C54B".toColor()],
+                borderRadius: const BorderRadius.all(Radius.circular(50)),
+                onTap: () => print("======="),
+              ),
+            ),
+          ),
+        ),
+        Flexible(
+          flex: 2,
+          child: Center(
+            child: FractionallySizedBox(
+              widthFactor: 0.9,
+              heightFactor: 0.6,
+              child: LinearButton(
+                width: double.infinity,
+                height: double.infinity,
+                btnName: S.of(context).couponPurchase,
+                fontSize: 14,
+                highlightColor: Colors.red,
+                colors: ["#E54B4E".toColor(), "#E34439".toColor()],
+                borderRadius: const BorderRadius.all(Radius.circular(50)),
+                onTap: () => print("======="),
+              ),
+            ),
+          ),
         )
       ],
     ),
@@ -47,13 +75,13 @@ Widget fixedBottom(BuildContext context) {
 
 Widget columnItem(String icon, String name) {
   return SizedBox(
-    height: 54,
-    width: 50,
+    height: 50,
+    width: 48,
     child: Column(
       mainAxisAlignment: MainAxisAlignment.center,
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [
-        assetImage(icon, 28, 28),
+        assetImage(icon, 26, 26),
         Text(
           name,
           style: const TextStyle(fontSize: 12, color: Colors.black54, decoration: TextDecoration.none),

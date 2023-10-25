@@ -61,6 +61,7 @@ class _CartPageState extends State<CartPage> {
                     backgroundColor: CommonStyle.colorF3F3F3,
                     body: SmartRefresher(
                       controller: _refreshController,
+                      physics: const BouncingScrollPhysics(),
                       enablePullUp: true,
                       header: const ClassicHeader(
                         spacing: 10,

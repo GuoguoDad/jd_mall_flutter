@@ -38,8 +38,9 @@ Widget fixedBottom(BuildContext context) {
             children: [
               LinearButton(
                 width: 100,
-                height: 48,
+                height: 42,
                 btnName: "帮我付",
+                fontSize: 14,
                 highlightColor: Colors.yellow,
                 colors: ["#F2CD4A".toColor(), "#F2C54B".toColor()],
                 borderRadius: const BorderRadius.all(Radius.circular(50)),
@@ -47,8 +48,9 @@ Widget fixedBottom(BuildContext context) {
               ),
               LinearButton(
                 width: 100,
-                height: 48,
+                height: 42,
                 btnName: "自己付",
+                fontSize: 14,
                 highlightColor: Colors.red,
                 colors: ["#E54B4E".toColor(), "#E34439".toColor()],
                 borderRadius: const BorderRadius.all(Radius.circular(50)),

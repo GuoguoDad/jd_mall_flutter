@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 // Project imports:
 import 'package:jd_mall_flutter/common/style/common_style.dart';
 import 'package:jd_mall_flutter/component/common_header.dart';
+import 'package:jd_mall_flutter/component/no_shadow_scroll_behavior.dart';
 import 'package:jd_mall_flutter/view/page/order/generate/widget/bottom.dart';
 import 'package:jd_mall_flutter/view/page/order/generate/widget/default_address.dart';
 import 'package:jd_mall_flutter/view/page/order/generate/widget/order_goods.dart';
@@ -33,6 +34,7 @@ class _GenerateOrderState extends State<GenerateOrder> {
           child: Container(
             color: CommonStyle.colorF5F5F5,
             child: CustomScrollView(
+              scrollBehavior: NoShadowScrollBehavior(),
               slivers: [
                 defaultAddress(context),
                 orderGoods(context),

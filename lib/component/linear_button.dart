@@ -10,6 +10,7 @@ class LinearButton extends StatefulWidget {
   final double width;
   final double height;
   final String btnName;
+  final double? fontSize;
   final Color? highlightColor;
   final AlignmentGeometry linearBegin;
   final AlignmentGeometry linearEnd;
@@ -25,6 +26,7 @@ class LinearButton extends StatefulWidget {
     this.highlightColor,
     this.linearBegin = Alignment.topLeft,
     this.linearEnd = Alignment.bottomRight,
+    this.fontSize = 16,
     this.colors,
     this.borderRadius,
     this.onTap,
@@ -51,11 +53,11 @@ class _LinearButtonState extends State<LinearButton> {
           borderRadius: bRadius,
           highlightColor: widget.highlightColor ?? CommonStyle.themeColor,
           onTap: widget.onTap,
-          child: Container(
-            alignment: Alignment.center,
+          child: Center(
             child: Text(
               widget.btnName,
-              style: const TextStyle(color: Colors.white, fontSize: 14, fontWeight: FontWeight.bold),
+              textAlign: TextAlign.center,
+              style: TextStyle(color: Colors.white, fontSize: widget.fontSize, fontWeight: FontWeight.bold),
             ),
           ),
         ),
