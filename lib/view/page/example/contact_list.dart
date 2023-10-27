@@ -5,8 +5,8 @@ import 'package:flutter/rendering.dart';
 // Project imports:
 import 'package:jd_mall_flutter/common/util/screen_util.dart';
 import 'package:jd_mall_flutter/component/common_header.dart';
-import 'package:jd_mall_flutter/component/persistentHeader/sliver_header_builder.dart';
 import 'package:jd_mall_flutter/component/no_shadow_scroll_behavior.dart';
+import 'package:jd_mall_flutter/component/persistentHeader/sliver_header_builder.dart';
 
 List list = [
   {

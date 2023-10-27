@@ -1,10 +1,13 @@
+// Flutter imports:
 import 'package:flutter/material.dart';
-import 'package:flutter_easyloading/flutter_easyloading.dart';
-import 'package:jd_mall_flutter/common/extension/color_ext.dart';
 
+// Package imports:
+import 'package:flutter_easyloading/flutter_easyloading.dart';
+
+// Project imports:
+import 'package:jd_mall_flutter/common/extension/color_ext.dart';
 import 'package:jd_mall_flutter/component/common_header.dart';
 import 'package:jd_mall_flutter/component/image/asset_image.dart';
-
 import 'package:jd_mall_flutter/mixin/image_picker_mixin.dart';
 
 class PersonalInfo extends StatefulWidget {

@@ -1,8 +1,14 @@
-// Flutter imports:
+// Dart imports:
 import 'dart:io';
+
+// Flutter imports:
 import 'package:flutter/material.dart';
+
+// Package imports:
 import 'package:flutter_image_compress/flutter_image_compress.dart';
 import 'package:image_cropper/image_cropper.dart';
+
+// Project imports:
 import 'package:jd_mall_flutter/common/cache/cache_asset_service.dart';
 import 'package:jd_mall_flutter/common/extension/num_ext.dart';
 

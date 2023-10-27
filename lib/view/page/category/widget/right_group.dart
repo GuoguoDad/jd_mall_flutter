@@ -11,10 +11,10 @@ import 'package:jd_mall_flutter/common/style/common_style.dart';
 import 'package:jd_mall_flutter/common/util/screen_util.dart';
 import 'package:jd_mall_flutter/component/group_grid_view.dart';
 import 'package:jd_mall_flutter/component/image/asset_image.dart';
+import 'package:jd_mall_flutter/component/no_shadow_scroll_behavior.dart';
 import 'package:jd_mall_flutter/models/second_group_category_info.dart';
 import 'package:jd_mall_flutter/store/app_state.dart';
 import 'package:jd_mall_flutter/view/page/category/redux/category_page_action.dart';
-import 'package:jd_mall_flutter/component/no_shadow_scroll_behavior.dart';
 
 late double rWidth, bWidth;
 //gridview的item宽和高一样
