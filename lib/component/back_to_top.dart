@@ -45,6 +45,7 @@ class _BackToTopState extends State<BackToTop> {
         child: FloatingActionButton(
           onPressed: () => widget.controller.animateTo(0, duration: const Duration(milliseconds: 500), curve: Curves.linear),
           backgroundColor: Colors.white,
+          shape: const CircleBorder(),
           child: assetImage('images/ic_back_top.png', 28, 28),
         ),
       ),

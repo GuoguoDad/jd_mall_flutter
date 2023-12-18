@@ -253,10 +253,10 @@ packages:
     dependency: "direct main"
     description:
       name: easy_refresh
-      sha256: a3b33b60a97e4931c3923e8b80e2f2869a080001c8742213d484c37db0d15164
+      sha256: "9465065e86ce4993c3a9c825295cd1cbcdeffaa6903fe2575b30565b5b39a1f4"
       url: "https://pub.dev"
     source: hosted
-    version: "3.3.2+4"
+    version: "3.3.3+1"
   extended_image:
     dependency: transitive
     description:

@@ -13,6 +13,7 @@ Widget backTop(bool showBackTop, ScrollController controller) {
       child: FloatingActionButton(
         onPressed: () => controller.animateTo(0, duration: const Duration(milliseconds: 200), curve: Curves.linear),
         backgroundColor: Colors.white,
+        shape: const CircleBorder(),
         child: assetImage('images/ic_back_top.png', 28, 28),
       ),
     ),
