@@ -54,7 +54,7 @@ mixin ImagePickerMixin<T extends StatefulWidget> on State<T> {
   }) async {
     final file = await _takePhoto();
     if (file == null) {
-      EasyLoading.showToast('请重新拍摄');
+      // EasyLoading.showToast('请重新拍摄');
       return null;
     }
 
@@ -79,9 +79,9 @@ mixin ImagePickerMixin<T extends StatefulWidget> on State<T> {
   }) async {
     final file = await _chooseAvatarByWechatPicker();
     if (file == null) {
-      EasyLoading.showToast(
-        '请重新选择',
-      );
+      // EasyLoading.showToast(
+      //   '请重新选择',
+      // );
       return null;
     }
     // NOverlay.showLoading(context, message: "图片处理中...");
