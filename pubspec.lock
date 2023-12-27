@@ -277,10 +277,10 @@ packages:
     dependency: "direct main"
     description:
       name: extended_nested_scroll_view
-      sha256: "444a6f883e6e07effc7639e69a309e1fb491b6c19b095e9281714a51ace2b384"
+      sha256: "835580d40c2c62b448bd14adecd316acba469ba61f1510ef559d17668a85e777"
       url: "https://pub.dev"
     source: hosted
-    version: "6.1.2"
+    version: "6.2.1"
   extended_scroll:
     dependency: "direct main"
     description:
