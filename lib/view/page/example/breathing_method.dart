@@ -76,6 +76,7 @@ class _BreathingMethodState extends State<BreathingMethod> with TickerProviderSt
           _extendController.reverse();
         },
         backgroundColor: Colors.white,
+        shape: const CircleBorder(),
         child: const Text(
           "开始",
           style: TextStyle(color: Colors.black, fontWeight: FontWeight.w500),

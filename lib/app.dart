@@ -52,7 +52,7 @@ class _FlutterReduxMallApp extends State<MallApp> with HttpErrorListener {
         ),
         initialRoute: RouteEnum.mainPage.path,
         builder: EasyLoading.init(),
-        routes: routesMap,
+        onGenerateRoute: onGenerateRoute,
         debugShowCheckedModeBanner: false,
         localizationsDelegates: const [
           GlobalWidgetsLocalizations.delegate,

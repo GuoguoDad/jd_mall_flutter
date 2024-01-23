@@ -1,5 +1,5 @@
 // Flutter imports:
-import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 
 // Project imports:
 import 'package:jd_mall_flutter/view/main/main_page.dart';
@@ -11,6 +11,7 @@ import 'package:jd_mall_flutter/view/page/example/contact_list.dart';
 import 'package:jd_mall_flutter/view/page/example/gesture_spring.dart';
 import 'package:jd_mall_flutter/view/page/example/sample_list.dart';
 import 'package:jd_mall_flutter/view/page/example/snow_man.dart';
+import 'package:jd_mall_flutter/view/page/example/file_preview.dart';
 import 'package:jd_mall_flutter/view/page/order/generate/generate_order.dart';
 import 'package:jd_mall_flutter/view/page/personal/personal_info.dart';
 import 'package:jd_mall_flutter/view/vebview/webview_page.dart';
@@ -24,6 +25,7 @@ enum RouteEnum {
   snowMan("/snowMan"),
   gestureSpring("/gestureSpring"),
   contactList("/contactList"),
+  filePreview("/filePreview"),
   //pages
   mainPage("/mainPage"),
   detailPage("/detailPage"),
@@ -45,10 +47,20 @@ Map<String, WidgetBuilder> routesMap = {
   RouteEnum.snowMan.path: (context) => const SnowManDemo(),
   RouteEnum.gestureSpring.path: (context) => const GestureSpring(),
   RouteEnum.contactList.path: (context) => const ContactList(),
+  RouteEnum.filePreview.path: (context, {arguments}) => FilePreviewPage(arguments: arguments),
   //pages
   RouteEnum.mainPage.path: (context) => const MainPage(),
   RouteEnum.detailPage.path: (context) => const DetailPage(),
   RouteEnum.generateOrder.path: (context) => const GenerateOrder(),
   RouteEnum.webViewPage.path: (context) => const WebViewPage(),
   RouteEnum.personalInfo.path: (context) => const PersonalInfo(),
+};
+
+var onGenerateRoute = (RouteSettings settings) {
+  final String? name = settings.name;
+  if (routesMap[name] != null) {
+    final Function pageContentBuilder = routesMap[name] as Function;
+    return MaterialPageRoute(
+        builder: (context) => settings.arguments != null ? pageContentBuilder(context, arguments: settings.arguments) : pageContentBuilder(context));
+  }
 };

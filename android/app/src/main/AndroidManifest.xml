@@ -27,6 +27,7 @@
     <application
         android:label="mall"
         android:name="${applicationName}"
+        android:networkSecurityConfig="@xml/network_config"
         android:icon="@mipmap/ic_launcher">
         <activity
             android:name=".MainActivity"

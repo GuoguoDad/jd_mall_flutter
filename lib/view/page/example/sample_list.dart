@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:jd_mall_flutter/component/common_header.dart';
 import 'package:jd_mall_flutter/routes.dart';
 import 'package:jd_mall_flutter/view/page/example/widget/list_item.dart';
+import 'package:file_preview/file_preview.dart';
 
 class SampleList extends StatefulWidget {
   const SampleList({Key? key}) : super(key: key);
@@ -14,6 +15,20 @@ class SampleList extends StatefulWidget {
 }
 
 class _SampleListState extends State<SampleList> {
+  bool isInit = false;
+  String? version;
+
+  @override
+  void initState() {
+    _initTBS();
+    super.initState();
+  }
+
+  void _initTBS() async {
+    isInit = await FilePreview.initTBS(license: "your license");
+    version = await FilePreview.tbsVersion();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -60,6 +75,12 @@ class _SampleListState extends State<SampleList> {
                   subtitle: '通讯录',
                   icon: Icons.tab_rounded,
                   onTap: () => Navigator.of(context).pushNamed(RouteEnum.contactList.path),
+                ),
+                ListItem(
+                  title: '文件预览',
+                  subtitle: '文件预览',
+                  icon: Icons.tab_rounded,
+                  onTap: () => Navigator.of(context).pushNamed(RouteEnum.filePreview.path, arguments: {"path": "https://gstory.vercel.app/ceshi/ceshi.pdf"}),
                 )
               ],
             ),
