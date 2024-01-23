@@ -21,7 +21,7 @@ class _FilePreviewPageState extends State<FilePreviewPage> {
     return Scaffold(
       body: Column(
         children: [
-          commonHeader(context, title: "CustomPointer Demo"),
+          commonHeader(context, title: "文件预览"),
           Expanded(
             flex: 1,
             child: Column(
