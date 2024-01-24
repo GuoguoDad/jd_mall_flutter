@@ -1,8 +1,12 @@
+// Flutter imports:
 import 'package:flutter/material.dart';
-import 'package:jd_mall_flutter/common/util/screen_util.dart';
 
-import 'package:jd_mall_flutter/component/common_header.dart';
+// Package imports:
 import 'package:file_preview/file_preview.dart';
+
+// Project imports:
+import 'package:jd_mall_flutter/common/util/screen_util.dart';
+import 'package:jd_mall_flutter/component/common_header.dart';
 
 class FilePreviewPage extends StatefulWidget {
   final Map arguments;

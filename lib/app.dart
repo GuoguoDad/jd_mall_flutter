@@ -17,7 +17,8 @@ import 'package:jd_mall_flutter/common/observer/navigator_change_observer.dart';
 import 'package:jd_mall_flutter/common/util/screen_util.dart';
 import 'package:jd_mall_flutter/generated/l10n.dart';
 import 'package:jd_mall_flutter/http/code.dart';
-import 'package:jd_mall_flutter/routes.dart';
+import 'package:jd_mall_flutter/routes_login_no_require.dart';
+import 'package:jd_mall_flutter/routes_login_required.dart';
 
 class MallApp extends StatefulWidget {
   const MallApp({super.key});
@@ -50,7 +51,7 @@ class _FlutterReduxMallApp extends State<MallApp> with HttpErrorListener {
           splashColor: Colors.transparent,
           highlightColor: Colors.transparent,
         ),
-        initialRoute: RouteEnum.mainPage.path,
+        initialRoute: NoLoginRequiredRouteEnum.mainPage.path,
         builder: EasyLoading.init(),
         onGenerateRoute: onGenerateRoute,
         debugShowCheckedModeBanner: false,
@@ -128,3 +129,18 @@ mixin HttpErrorListener on State<MallApp> {
     EasyLoading.showInfo(message, duration: const Duration(seconds: 3));
   }
 }
+
+var onGenerateRoute = (RouteSettings settings) {
+  final String? name = settings.name;
+  Function pageBuilder;
+  if (noLoginRequiredRoutesMap[name] != null) {
+    pageBuilder = noLoginRequiredRoutesMap[name] as Function;
+  } else if (loginRequiredRoutesMap[name] != null) {
+    // todo check login
+    bool isLogin = true;
+    pageBuilder = isLogin ? loginRequiredRoutesMap[name] as Function : noLoginRequiredRoutesMap[NoLoginRequiredRouteEnum.loginPage.path] as Function;
+  } else {
+    pageBuilder = noLoginRequiredRoutesMap[NoLoginRequiredRouteEnum.notFound.path] as Function;
+  }
+  return MaterialPageRoute(builder: (context) => settings.arguments != null ? pageBuilder(context, arguments: settings.arguments) : pageBuilder(context));
+};

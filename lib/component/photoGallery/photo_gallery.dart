@@ -3,9 +3,9 @@ import 'package:flutter/material.dart';
 
 // Package imports:
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:loading_indicator/loading_indicator.dart';
 import 'package:photo_view/photo_view.dart';
 import 'package:photo_view/photo_view_gallery.dart';
-import 'package:loading_indicator/loading_indicator.dart';
 
 // Project imports:
 import 'package:jd_mall_flutter/common/util/screen_util.dart';
