@@ -12,8 +12,10 @@ import 'package:jd_mall_flutter/view/page/example/gesture_spring.dart';
 import 'package:jd_mall_flutter/view/page/example/sample_list.dart';
 import 'package:jd_mall_flutter/view/page/example/snow_man.dart';
 import 'package:jd_mall_flutter/view/page/example/file_preview.dart';
+import 'package:jd_mall_flutter/view/page/login/login_page.dart';
 import 'package:jd_mall_flutter/view/page/order/generate/generate_order.dart';
 import 'package:jd_mall_flutter/view/page/personal/personal_info.dart';
+import 'package:jd_mall_flutter/view/system/page404.dart';
 import 'package:jd_mall_flutter/view/vebview/webview_page.dart';
 
 enum RouteEnum {
@@ -31,14 +33,21 @@ enum RouteEnum {
   detailPage("/detailPage"),
   generateOrder("/generateOrder"),
   webViewPage("/webViewPage"),
-  personalInfo("/personalInfo");
+  personalInfo("/personalInfo"),
+  loginPage("/loginPage"),
+  notFound("/notFound");
 
   const RouteEnum(this.path);
 
   final String path;
 }
 
-Map<String, WidgetBuilder> routesMap = {
+Map<String, WidgetBuilder> loginRequiredRoutesMap = {
+  RouteEnum.generateOrder.path: (context) => const GenerateOrder(),
+  RouteEnum.personalInfo.path: (context) => const PersonalInfo(),
+};
+
+Map<String, WidgetBuilder> noLoginRequiredRoutesMap = {
   //example
   RouteEnum.sampleList.path: (context) => const SampleList(),
   RouteEnum.completeForm.path: (context) => const CompleteForm(),
@@ -51,16 +60,22 @@ Map<String, WidgetBuilder> routesMap = {
   //pages
   RouteEnum.mainPage.path: (context) => const MainPage(),
   RouteEnum.detailPage.path: (context) => const DetailPage(),
-  RouteEnum.generateOrder.path: (context) => const GenerateOrder(),
   RouteEnum.webViewPage.path: (context) => const WebViewPage(),
-  RouteEnum.personalInfo.path: (context) => const PersonalInfo(),
+  RouteEnum.loginPage.path: (context) => const LoginPage(),
+  RouteEnum.notFound.path: (context) => const Page404(),
 };
 
 var onGenerateRoute = (RouteSettings settings) {
   final String? name = settings.name;
-  if (routesMap[name] != null) {
-    final Function pageContentBuilder = routesMap[name] as Function;
-    return MaterialPageRoute(
-        builder: (context) => settings.arguments != null ? pageContentBuilder(context, arguments: settings.arguments) : pageContentBuilder(context));
+  Function pageBuilder;
+  if (noLoginRequiredRoutesMap[name] != null) {
+    pageBuilder = noLoginRequiredRoutesMap[name] as Function;
+  } else if (loginRequiredRoutesMap[name] != null) {
+    // todo check login
+    bool isLogin = true;
+    pageBuilder = isLogin ? loginRequiredRoutesMap[name] as Function : noLoginRequiredRoutesMap[RouteEnum.loginPage.path] as Function;
+  } else {
+    pageBuilder = noLoginRequiredRoutesMap[RouteEnum.notFound.path] as Function;
   }
+  return MaterialPageRoute(builder: (context) => settings.arguments != null ? pageBuilder(context, arguments: settings.arguments) : pageBuilder(context));
 };

@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:photo_view/photo_view.dart';
 import 'package:photo_view/photo_view_gallery.dart';
+import 'package:loading_indicator/loading_indicator.dart';
 
 // Project imports:
 import 'package:jd_mall_flutter/common/util/screen_util.dart';
@@ -68,13 +69,15 @@ class _PhotoGalleryState extends State<PhotoGallery> {
                   );
                 },
                 scrollPhysics: const ClampingScrollPhysics(),
-                loadingBuilder: (context, event) => Center(
-                  child: Container(
-                    width: 20.0,
-                    height: 20.0,
-                    color: Colors.transparent,
-                    child: const CircularProgressIndicator(
-                      value: 1,
+                loadingBuilder: (context, event) => const Center(
+                  child: SizedBox(
+                    width: 98,
+                    height: 98,
+                    child: LoadingIndicator(
+                      indicatorType: Indicator.ballClipRotateMultiple,
+                      colors: [Colors.grey],
+                      strokeWidth: 2,
+                      backgroundColor: Colors.transparent,
                     ),
                   ),
                 ),
