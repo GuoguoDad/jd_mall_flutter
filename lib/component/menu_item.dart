@@ -6,8 +6,8 @@ import 'package:cached_network_image/cached_network_image.dart';
 
 // Project imports:
 import 'package:jd_mall_flutter/component/image/asset_image.dart';
-import 'package:jd_mall_flutter/routes.dart';
 import 'package:jd_mall_flutter/models/mine_menu_tab_info.dart';
+import 'package:jd_mall_flutter/routes.dart';
 import 'package:jd_mall_flutter/view/vebview/type.dart';
 
 class MenuItem extends StatelessWidget {

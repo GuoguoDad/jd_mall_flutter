@@ -1,10 +1,11 @@
 // Flutter imports:
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
-import 'package:jd_mall_flutter/routes.dart';
 
+// Project imports:
 import 'package:jd_mall_flutter/common/router/Router.dart';
 import 'package:jd_mall_flutter/common/util/local_storage_util.dart';
+import 'package:jd_mall_flutter/routes.dart';
 
 class NavigatorChangeObserver<R extends Route<dynamic>> extends RouteObserver<R> {
   @override

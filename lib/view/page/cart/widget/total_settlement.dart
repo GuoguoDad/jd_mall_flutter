@@ -11,10 +11,9 @@ import 'package:jd_mall_flutter/common/util/screen_util.dart';
 import 'package:jd_mall_flutter/component/linear_button.dart';
 import 'package:jd_mall_flutter/generated/l10n.dart';
 import 'package:jd_mall_flutter/models/cart_goods.dart';
+import 'package:jd_mall_flutter/routes.dart';
 import 'package:jd_mall_flutter/store/app_state.dart';
 import 'package:jd_mall_flutter/view/page/cart/redux/cart_page_action.dart';
-
-import 'package:jd_mall_flutter/routes.dart';
 
 Widget totalSettlement(BuildContext context) {
   return StoreBuilder<AppState>(
