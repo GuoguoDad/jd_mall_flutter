@@ -6,13 +6,17 @@ part of 'goods_page_info.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-GoodsPageInfo _$GoodsPageInfoFromJson(Map<String, dynamic> json) => GoodsPageInfo(
-      goodsList: (json['goodsList'] as List<dynamic>?)?.map((e) => GoodsList.fromJson(e as Map<String, dynamic>)).toList(),
+GoodsPageInfo _$GoodsPageInfoFromJson(Map<String, dynamic> json) =>
+    GoodsPageInfo(
+      goodsList: (json['goodsList'] as List<dynamic>?)
+          ?.map((e) => GoodsList.fromJson(e as Map<String, dynamic>))
+          .toList(),
       totalCount: json['totalCount'] as int?,
       totalPageCount: json['totalPageCount'] as int?,
     );
 
-Map<String, dynamic> _$GoodsPageInfoToJson(GoodsPageInfo instance) => <String, dynamic>{
+Map<String, dynamic> _$GoodsPageInfoToJson(GoodsPageInfo instance) =>
+    <String, dynamic>{
       'goodsList': instance.goodsList,
       'totalCount': instance.totalCount,
       'totalPageCount': instance.totalPageCount,

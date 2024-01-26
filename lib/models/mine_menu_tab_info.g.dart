@@ -6,12 +6,18 @@ part of 'mine_menu_tab_info.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-MineMenuTabInfo _$MineMenuTabInfoFromJson(Map<String, dynamic> json) => MineMenuTabInfo(
-      functionList: (json['functionList'] as List<dynamic>?)?.map((e) => FunctionInfo.fromJson(e as Map<String, dynamic>)).toList(),
-      tabList: (json['tabList'] as List<dynamic>?)?.map((e) => TabInfo.fromJson(e as Map<String, dynamic>)).toList(),
+MineMenuTabInfo _$MineMenuTabInfoFromJson(Map<String, dynamic> json) =>
+    MineMenuTabInfo(
+      functionList: (json['functionList'] as List<dynamic>?)
+          ?.map((e) => FunctionInfo.fromJson(e as Map<String, dynamic>))
+          .toList(),
+      tabList: (json['tabList'] as List<dynamic>?)
+          ?.map((e) => TabInfo.fromJson(e as Map<String, dynamic>))
+          .toList(),
     );
 
-Map<String, dynamic> _$MineMenuTabInfoToJson(MineMenuTabInfo instance) => <String, dynamic>{
+Map<String, dynamic> _$MineMenuTabInfoToJson(MineMenuTabInfo instance) =>
+    <String, dynamic>{
       'functionList': instance.functionList,
       'tabList': instance.tabList,
     };
@@ -23,7 +29,8 @@ FunctionInfo _$FunctionInfoFromJson(Map<String, dynamic> json) => FunctionInfo(
       h5url: json['h5url'] as String?,
     );
 
-Map<String, dynamic> _$FunctionInfoToJson(FunctionInfo instance) => <String, dynamic>{
+Map<String, dynamic> _$FunctionInfoToJson(FunctionInfo instance) =>
+    <String, dynamic>{
       'menuIcon': instance.menuIcon,
       'menuName': instance.menuName,
       'menuCode': instance.menuCode,

@@ -6,8 +6,7 @@ import 'package:jd_mall_flutter/common/util/screen_util.dart';
 import 'package:jd_mall_flutter/component/image/asset_image.dart';
 import 'package:jd_mall_flutter/component/persistentHeader/sliver_header_builder.dart';
 import 'package:jd_mall_flutter/generated/l10n.dart';
-import 'package:jd_mall_flutter/routes_login_no_require.dart';
-import 'package:jd_mall_flutter/routes_login_required.dart';
+import 'package:jd_mall_flutter/routes.dart';
 
 Widget infoHeader(BuildContext context, ValueNotifier<double> pageScrollY) {
   Widget title = Positioned(
@@ -127,7 +126,7 @@ Widget infoHeader(BuildContext context, ValueNotifier<double> pageScrollY) {
               top: 4,
               right: 66,
               child: GestureDetector(
-                onTap: () => Navigator.of(context).pushNamed(LoginRequiredRouteEnum.personalInfo.path),
+                onTap: () => Navigator.of(context).pushNamed(RoutesEnum.personalInfo.path),
                 child: assetImage('images/ic_setting.png', 26, 26),
               ),
             ),
@@ -135,7 +134,7 @@ Widget infoHeader(BuildContext context, ValueNotifier<double> pageScrollY) {
               top: 4,
               right: 18,
               child: GestureDetector(
-                onTap: () => Navigator.of(context).pushNamed(NoLoginRequiredRouteEnum.sampleList.path),
+                onTap: () => Navigator.of(context).pushNamed(RoutesEnum.sampleList.path),
                 child: assetImage('images/ic_message.png', 26, 26),
               ),
             ),

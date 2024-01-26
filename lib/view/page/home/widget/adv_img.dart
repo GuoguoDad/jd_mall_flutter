@@ -8,7 +8,7 @@ import 'package:flutter_redux/flutter_redux.dart';
 // Project imports:
 import 'package:jd_mall_flutter/common/util/screen_util.dart';
 import 'package:jd_mall_flutter/component/image/asset_image.dart';
-import 'package:jd_mall_flutter/routes_login_no_require.dart';
+import 'package:jd_mall_flutter/routes.dart';
 import 'package:jd_mall_flutter/store/app_state.dart';
 import 'package:jd_mall_flutter/view/page/home/redux/home_page_state.dart';
 import 'package:jd_mall_flutter/view/vebview/type.dart';
@@ -21,7 +21,7 @@ Widget advBanner(BuildContext context) {
     builder: (context, state) {
       return SliverToBoxAdapter(
         child: GestureDetector(
-          onTap: () => Navigator.of(context).pushNamed(NoLoginRequiredRouteEnum.webViewPage.path,
+          onTap: () => Navigator.of(context).pushNamed(RoutesEnum.webViewPage.path,
               arguments: WebViewPageArguments("https://pro.m.jd.com/mall/active/2WrXYwmYpiy7EpWjDETSVyhXfLCb/index.html")),
           child: Container(
             color: Colors.white,

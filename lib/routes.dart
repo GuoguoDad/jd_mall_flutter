@@ -13,10 +13,12 @@ import 'package:jd_mall_flutter/view/page/example/gesture_spring.dart';
 import 'package:jd_mall_flutter/view/page/example/sample_list.dart';
 import 'package:jd_mall_flutter/view/page/example/snow_man.dart';
 import 'package:jd_mall_flutter/view/page/login/login_page.dart';
+import 'package:jd_mall_flutter/view/page/order/generate/generate_order.dart';
+import 'package:jd_mall_flutter/view/page/personal/personal_info.dart';
 import 'package:jd_mall_flutter/view/system/page404.dart';
 import 'package:jd_mall_flutter/view/vebview/webview_page.dart';
 
-enum NoLoginRequiredRouteEnum {
+enum RoutesEnum {
   //example
   sampleList("/sampleList"),
   completeForm("/completeForm"),
@@ -31,27 +33,33 @@ enum NoLoginRequiredRouteEnum {
   detailPage("/detailPage"),
   webViewPage("/webViewPage"),
   loginPage("/loginPage"),
+  generateOrder("/generateOrder"),
+  personalInfo("/personalInfo"),
   notFound("/notFound");
 
-  const NoLoginRequiredRouteEnum(this.path);
+  const RoutesEnum(this.path);
 
   final String path;
 }
 
-Map<String, WidgetBuilder> noLoginRequiredRoutesMap = {
+var loginRequiredRoutes = [RoutesEnum.personalInfo.path, RoutesEnum.generateOrder.path];
+
+Map<String, WidgetBuilder> routesMap = {
   //example
-  NoLoginRequiredRouteEnum.sampleList.path: (context) => const SampleList(),
-  NoLoginRequiredRouteEnum.completeForm.path: (context) => const CompleteForm(),
-  NoLoginRequiredRouteEnum.interlacedAnimation.path: (context) => const InterlacedAnimationDemo(),
-  NoLoginRequiredRouteEnum.breathingMethod.path: (context) => const BreathingMethod(),
-  NoLoginRequiredRouteEnum.snowMan.path: (context) => const SnowManDemo(),
-  NoLoginRequiredRouteEnum.gestureSpring.path: (context) => const GestureSpring(),
-  NoLoginRequiredRouteEnum.contactList.path: (context) => const ContactList(),
-  NoLoginRequiredRouteEnum.filePreview.path: (context, {arguments}) => FilePreviewPage(arguments: arguments),
+  RoutesEnum.sampleList.path: (context) => const SampleList(),
+  RoutesEnum.completeForm.path: (context) => const CompleteForm(),
+  RoutesEnum.interlacedAnimation.path: (context) => const InterlacedAnimationDemo(),
+  RoutesEnum.breathingMethod.path: (context) => const BreathingMethod(),
+  RoutesEnum.snowMan.path: (context) => const SnowManDemo(),
+  RoutesEnum.gestureSpring.path: (context) => const GestureSpring(),
+  RoutesEnum.contactList.path: (context) => const ContactList(),
+  RoutesEnum.filePreview.path: (context, {arguments}) => FilePreviewPage(arguments: arguments),
   //pages
-  NoLoginRequiredRouteEnum.mainPage.path: (context) => const MainPage(),
-  NoLoginRequiredRouteEnum.detailPage.path: (context) => const DetailPage(),
-  NoLoginRequiredRouteEnum.webViewPage.path: (context) => const WebViewPage(),
-  NoLoginRequiredRouteEnum.loginPage.path: (context) => const LoginPage(),
-  NoLoginRequiredRouteEnum.notFound.path: (context) => const Page404(),
+  RoutesEnum.mainPage.path: (context) => const MainPage(),
+  RoutesEnum.detailPage.path: (context) => const DetailPage(),
+  RoutesEnum.webViewPage.path: (context) => const WebViewPage(),
+  RoutesEnum.generateOrder.path: (context) => const GenerateOrder(),
+  RoutesEnum.personalInfo.path: (context) => const PersonalInfo(),
+  RoutesEnum.loginPage.path: (context) => const LoginPage(),
+  RoutesEnum.notFound.path: (context) => const Page404(),
 };

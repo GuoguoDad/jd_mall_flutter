@@ -9,7 +9,7 @@ import 'package:jd_mall_flutter/common/extension/color_ext.dart';
 import 'package:jd_mall_flutter/component/image/asset_image.dart';
 import 'package:jd_mall_flutter/component/line_two.dart';
 import 'package:jd_mall_flutter/component/text_item.dart';
-import 'package:jd_mall_flutter/routes_login_no_require.dart';
+import 'package:jd_mall_flutter/routes.dart';
 import 'package:jd_mall_flutter/models/goods_page_info.dart';
 import 'package:jd_mall_flutter/view/vebview/type.dart';
 
@@ -114,8 +114,8 @@ Widget goodsItem(BuildContext context, GoodsList item, double width) {
 
   return GestureDetector(
     onTap: () {
-      if (item.type == '1') Navigator.of(context).pushNamed(NoLoginRequiredRouteEnum.detailPage.path);
-      if (item.type == '2') Navigator.of(context).pushNamed(NoLoginRequiredRouteEnum.webViewPage.path, arguments: WebViewPageArguments(item.h5url ?? ""));
+      if (item.type == '1') Navigator.of(context).pushNamed(RoutesEnum.detailPage.path);
+      if (item.type == '2') Navigator.of(context).pushNamed(RoutesEnum.webViewPage.path, arguments: WebViewPageArguments(item.h5url ?? ""));
     },
     child: Container(
       padding: const EdgeInsets.only(bottom: 10),

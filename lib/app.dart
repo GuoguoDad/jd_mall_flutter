@@ -17,8 +17,9 @@ import 'package:jd_mall_flutter/common/observer/navigator_change_observer.dart';
 import 'package:jd_mall_flutter/common/util/screen_util.dart';
 import 'package:jd_mall_flutter/generated/l10n.dart';
 import 'package:jd_mall_flutter/http/code.dart';
-import 'package:jd_mall_flutter/routes_login_no_require.dart';
-import 'package:jd_mall_flutter/routes_login_required.dart';
+import 'package:jd_mall_flutter/routes.dart';
+
+import 'common/router/Router.dart';
 
 class MallApp extends StatefulWidget {
   const MallApp({super.key});
@@ -44,14 +45,14 @@ class _FlutterReduxMallApp extends State<MallApp> with HttpErrorListener {
       enableLoadMoreVibrate: false,
       enableBallisticLoad: true,
       child: MaterialApp(
-        navigatorKey: navKey,
+        navigatorKey: GlobalRouter.navigatorKey,
         navigatorObservers: [NavigatorChangeObserver()],
         theme: ThemeData(
           brightness: Brightness.light,
           splashColor: Colors.transparent,
           highlightColor: Colors.transparent,
         ),
-        initialRoute: NoLoginRequiredRouteEnum.mainPage.path,
+        initialRoute: RoutesEnum.mainPage.path,
         builder: EasyLoading.init(),
         onGenerateRoute: onGenerateRoute,
         debugShowCheckedModeBanner: false,
@@ -76,8 +77,6 @@ class _FlutterReduxMallApp extends State<MallApp> with HttpErrorListener {
 mixin HttpErrorListener on State<MallApp> {
   StreamSubscription? stream;
 
-  GlobalKey<NavigatorState> navKey = GlobalKey();
-
   @override
   void initState() {
     super.initState();
@@ -96,7 +95,7 @@ mixin HttpErrorListener on State<MallApp> {
   }
 
   errorHandleFunction(int? code, message) {
-    var context = navKey.currentContext!;
+    var context = GlobalRouter.navigatorKey.currentContext!;
     switch (code) {
       case Code.NETWORK_ERROR:
         showToast(S.of(context).networkError);
@@ -132,15 +131,16 @@ mixin HttpErrorListener on State<MallApp> {
 
 var onGenerateRoute = (RouteSettings settings) {
   final String? name = settings.name;
+  final Object? arguments = settings.arguments;
+
   Function pageBuilder;
-  if (noLoginRequiredRoutesMap[name] != null) {
-    pageBuilder = noLoginRequiredRoutesMap[name] as Function;
-  } else if (loginRequiredRoutesMap[name] != null) {
-    // todo check login
-    bool isLogin = true;
-    pageBuilder = isLogin ? loginRequiredRoutesMap[name] as Function : noLoginRequiredRoutesMap[NoLoginRequiredRouteEnum.loginPage.path] as Function;
+  if (routesMap[name] != null) {
+    pageBuilder = routesMap[name] as Function;
   } else {
-    pageBuilder = noLoginRequiredRoutesMap[NoLoginRequiredRouteEnum.notFound.path] as Function;
+    pageBuilder = routesMap[RoutesEnum.notFound.path] as Function;
   }
-  return MaterialPageRoute(builder: (context) => settings.arguments != null ? pageBuilder(context, arguments: settings.arguments) : pageBuilder(context));
+  return MaterialPageRoute(
+    settings: arguments != null ? RouteSettings(name: name, arguments: arguments) : RouteSettings(name: name),
+    builder: (context) => arguments != null ? pageBuilder(context, arguments: arguments) : pageBuilder(context),
+  );
 };
