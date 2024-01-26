@@ -12,14 +12,16 @@ import 'package:form_builder_validators/form_builder_validators.dart';
 // Project imports:
 import 'package:jd_mall_flutter/common/style/common_style.dart';
 import 'package:jd_mall_flutter/common/types/common.dart';
-import 'package:jd_mall_flutter/common/util/local_storage_util.dart';
 import 'package:jd_mall_flutter/common/util/screen_util.dart';
 import 'package:jd_mall_flutter/component/linear_button.dart';
 import 'package:jd_mall_flutter/routes.dart';
 import 'package:jd_mall_flutter/view/page/login/service.dart';
+import 'package:jd_mall_flutter/common/global/Global.dart';
 
 class LoginPage extends StatefulWidget {
-  const LoginPage({super.key});
+  final Map? arguments;
+
+  const LoginPage({super.key, this.arguments});
 
   @override
   State<LoginPage> createState() => _LoginPageState();
@@ -33,6 +35,7 @@ class _LoginPageState extends State<LoginPage> {
   @override
   Widget build(BuildContext context) {
     return pageContainer(
+      context,
       child: SizedBox(
         height: 300,
         width: getScreenHeight(context) - 24,
@@ -82,13 +85,23 @@ class _LoginPageState extends State<LoginPage> {
                   width: getScreenWidth(context) - 24,
                   borderRadius: BorderRadius.circular(50),
                   onTap: () async {
-                    _formKey.currentState?.saveAndValidate();
-                    if (_formKey.currentState!.validate()) {
-                      var value = await LoginApi.login(_formKey.currentState?.value['userName'], _formKey.currentState?.value['password']);
-                      await LocalStorageUtil.save("token", value.token);
+                    if (_formKey.currentState!.saveAndValidate()) {
+                      var userName = _formKey.currentState?.value['userName'];
+                      var password = _formKey.currentState?.value['password'];
 
-                      if (Navigator.of(context).canPop()) {
-                        Navigator.of(context).pop();
+                      var res = await LoginApi.login(userName, password);
+                      await Global.preferences!.setString("token", res.token);
+
+                      if (widget.arguments != null) {
+                        var from = widget.arguments!["from"];
+                        var args = widget.arguments!["args"];
+                        args != null
+                            ? Navigator.of(Global.navigatorKey.currentContext!).pushReplacementNamed(from, arguments: args)
+                            : Navigator.of(Global.navigatorKey.currentContext!).pushReplacementNamed(from);
+                      } else if (Navigator.of(Global.navigatorKey.currentContext!).canPop()) {
+                        Navigator.of(Global.navigatorKey.currentContext!).pop();
+                      } else {
+                        Navigator.of(Global.navigatorKey.currentContext!).pushReplacementNamed(RoutesEnum.mainPage.path);
                       }
                     }
                   },
@@ -101,7 +114,7 @@ class _LoginPageState extends State<LoginPage> {
     );
   }
 
-  Widget pageContainer({required Widget child}) {
+  Widget pageContainer(BuildContext context, {required Widget child}) {
     return AnnotatedRegion(
       value: SystemUiOverlayStyle.light,
       child: Container(
@@ -109,8 +122,36 @@ class _LoginPageState extends State<LoginPage> {
         height: getScreenHeight(context),
         color: Colors.white,
         padding: const EdgeInsets.only(left: 12, right: 12),
-        child: Center(
-          child: child,
+        child: Column(
+          children: [
+            Container(
+                padding: EdgeInsets.only(top: getStatusHeight(context)),
+                height: 54 + getStatusHeight(context),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    IconButton(
+                      onPressed: () {
+                        if (Navigator.of(context).canPop()) {
+                          Navigator.of(context).pop();
+                        }
+                      },
+                      icon: const Icon(Icons.close),
+                      color: Colors.black,
+                    ),
+                    Text(
+                      "帮助",
+                      style: TextStyle(color: CommonStyle.color777777, fontSize: 20, fontWeight: FontWeight.w500),
+                    )
+                  ],
+                )),
+            Expanded(
+              flex: 1,
+              child: Center(
+                child: child,
+              ),
+            )
+          ],
         ),
       ),
     );

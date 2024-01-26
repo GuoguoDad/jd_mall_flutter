@@ -10,7 +10,7 @@ import 'package:jd_mall_flutter/routes.dart';
 import 'package:jd_mall_flutter/view/page/example/widget/list_item.dart';
 
 class SampleList extends StatefulWidget {
-  const SampleList({Key? key}) : super(key: key);
+  const SampleList({super.key});
 
   @override
   State<SampleList> createState() => _SampleListState();

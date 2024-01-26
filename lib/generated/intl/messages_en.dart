@@ -54,6 +54,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "integral": MessageLookupByLibrary.simpleMessage("integral"),
         "loadMoreNot": MessageLookupByLibrary.simpleMessage("nothing"),
         "loadMoreText": MessageLookupByLibrary.simpleMessage("loading"),
+        "loginHelp": MessageLookupByLibrary.simpleMessage("help"),
         "message": MessageLookupByLibrary.simpleMessage("message"),
         "networkError": MessageLookupByLibrary.simpleMessage("network error"),
         "networkError401": MessageLookupByLibrary.simpleMessage("Http 401"),

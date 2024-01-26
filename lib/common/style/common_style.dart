@@ -32,4 +32,5 @@ class CommonStyle {
   static Color colorF2C54B = "#F2C54B".toColor();
   static Color color2A2A2A = "#2A2A2A".toColor();
   static Color color828282 = "#828282".toColor();
+  static Color color777777 = "#777777".toColor();
 }

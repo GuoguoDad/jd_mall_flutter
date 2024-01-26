@@ -14,11 +14,12 @@ import 'package:pull_to_refresh/pull_to_refresh.dart';
 import 'package:jd_mall_flutter/common/event/http_error_event.dart';
 import 'package:jd_mall_flutter/common/event/index.dart';
 import 'package:jd_mall_flutter/common/observer/navigator_change_observer.dart';
-import 'package:jd_mall_flutter/common/router/Router.dart';
 import 'package:jd_mall_flutter/common/util/screen_util.dart';
 import 'package:jd_mall_flutter/generated/l10n.dart';
 import 'package:jd_mall_flutter/http/code.dart';
 import 'package:jd_mall_flutter/routes.dart';
+import 'package:jd_mall_flutter/common/global/Global.dart';
+import 'package:jd_mall_flutter/models/page_args.dart';
 
 class MallApp extends StatefulWidget {
   const MallApp({super.key});
@@ -44,7 +45,7 @@ class _FlutterReduxMallApp extends State<MallApp> with HttpErrorListener {
       enableLoadMoreVibrate: false,
       enableBallisticLoad: true,
       child: MaterialApp(
-        navigatorKey: GlobalRouter.navigatorKey,
+        navigatorKey: Global.navigatorKey,
         navigatorObservers: [NavigatorChangeObserver()],
         theme: ThemeData(
           brightness: Brightness.light,
@@ -94,7 +95,7 @@ mixin HttpErrorListener on State<MallApp> {
   }
 
   errorHandleFunction(int? code, message) {
-    var context = GlobalRouter.navigatorKey.currentContext!;
+    var context = Global.navigatorKey.currentContext!;
     switch (code) {
       case Code.NETWORK_ERROR:
         showToast(S.of(context).networkError);
@@ -130,16 +131,32 @@ mixin HttpErrorListener on State<MallApp> {
 
 var onGenerateRoute = (RouteSettings settings) {
   final String? name = settings.name;
-  final Object? arguments = settings.arguments;
+  Object? arguments = settings.arguments;
 
   Function pageBuilder;
-  if (routesMap[name] != null) {
-    pageBuilder = routesMap[name] as Function;
+  bool toLogin = false;
+
+  if (loginRequiredRoutes.contains(name)) {
+    var token = Global.preferences!.getString("token");
+    if (token == null || token.isEmpty) {
+      toLogin = true;
+    }
+  }
+
+  Object? params;
+  if (toLogin) {
+    pageBuilder = routesMap[RoutesEnum.loginPage.path] as Function;
+    params = {"from": name!, "args": arguments};
   } else {
-    pageBuilder = routesMap[RoutesEnum.notFound.path] as Function;
+    params = arguments;
+    if (routesMap[name] != null) {
+      pageBuilder = routesMap[name] as Function;
+    } else {
+      pageBuilder = routesMap[RoutesEnum.notFound.path] as Function;
+    }
   }
   return MaterialPageRoute(
-    settings: arguments != null ? RouteSettings(name: name, arguments: arguments) : RouteSettings(name: name),
-    builder: (context) => arguments != null ? pageBuilder(context, arguments: arguments) : pageBuilder(context),
+    settings: params != null ? RouteSettings(name: name, arguments: params) : RouteSettings(name: name),
+    builder: (context) => params != null ? pageBuilder(context, arguments: params) : pageBuilder(context),
   );
 };

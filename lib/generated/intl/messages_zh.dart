@@ -49,6 +49,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "integral": MessageLookupByLibrary.simpleMessage("积分"),
         "loadMoreNot": MessageLookupByLibrary.simpleMessage("没有更多了"),
         "loadMoreText": MessageLookupByLibrary.simpleMessage("加载中"),
+        "loginHelp": MessageLookupByLibrary.simpleMessage("帮助"),
         "message": MessageLookupByLibrary.simpleMessage("消息"),
         "networkError": MessageLookupByLibrary.simpleMessage("网络错误"),
         "networkError401": MessageLookupByLibrary.simpleMessage(

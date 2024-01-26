@@ -51,5 +51,6 @@
   "commodity": "commodity",
   "detail": "detail",
   "recommend": "recommend",
-  "homeSearchTip": "running shoes"
+  "homeSearchTip": "running shoes",
+  "loginHelp": "help"
 }
