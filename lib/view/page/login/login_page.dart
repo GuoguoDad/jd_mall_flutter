@@ -17,6 +17,7 @@ import 'package:jd_mall_flutter/component/linear_button.dart';
 import 'package:jd_mall_flutter/routes.dart';
 import 'package:jd_mall_flutter/view/page/login/service.dart';
 import 'package:jd_mall_flutter/common/global/Global.dart';
+import 'package:jd_mall_flutter/generated/l10n.dart';
 
 class LoginPage extends StatefulWidget {
   final Map? arguments;
@@ -88,20 +89,22 @@ class _LoginPageState extends State<LoginPage> {
                     if (_formKey.currentState!.saveAndValidate()) {
                       var userName = _formKey.currentState?.value['userName'];
                       var password = _formKey.currentState?.value['password'];
+                      bool canPop = Navigator.of(Global.navigatorKey.currentContext!).canPop();
 
                       var res = await LoginApi.login(userName, password);
-                      await Global.preferences!.setString("token", res.token);
 
-                      if (widget.arguments != null) {
-                        var from = widget.arguments!["from"];
-                        var args = widget.arguments!["args"];
-                        args != null
-                            ? Navigator.of(Global.navigatorKey.currentContext!).pushReplacementNamed(from, arguments: args)
-                            : Navigator.of(Global.navigatorKey.currentContext!).pushReplacementNamed(from);
-                      } else if (Navigator.of(Global.navigatorKey.currentContext!).canPop()) {
-                        Navigator.of(Global.navigatorKey.currentContext!).pop();
-                      } else {
-                        Navigator.of(Global.navigatorKey.currentContext!).pushReplacementNamed(RoutesEnum.mainPage.path);
+                      if (res != null) {
+                        await Global.preferences!.setString("token", res.token);
+
+                        if (widget.arguments != null) {
+                          var from = widget.arguments!["from"];
+                          var args = widget.arguments!["args"];
+                          Navigator.of(Global.navigatorKey.currentContext!).pushReplacementNamed(from, arguments: args);
+                        } else if (canPop) {
+                          Navigator.of(Global.navigatorKey.currentContext!).pop();
+                        } else {
+                          Navigator.of(Global.navigatorKey.currentContext!).pushReplacementNamed(RoutesEnum.mainPage.path);
+                        }
                       }
                     }
                   },
@@ -140,7 +143,7 @@ class _LoginPageState extends State<LoginPage> {
                       color: Colors.black,
                     ),
                     Text(
-                      "帮助",
+                      S.of(context).loginHelp,
                       style: TextStyle(color: CommonStyle.color777777, fontSize: 20, fontWeight: FontWeight.w500),
                     )
                   ],
