@@ -19,7 +19,6 @@ import 'package:jd_mall_flutter/generated/l10n.dart';
 import 'package:jd_mall_flutter/http/code.dart';
 import 'package:jd_mall_flutter/routes.dart';
 import 'package:jd_mall_flutter/common/global/Global.dart';
-import 'package:jd_mall_flutter/models/page_args.dart';
 
 class MallApp extends StatefulWidget {
   const MallApp({super.key});
@@ -31,19 +30,7 @@ class MallApp extends StatefulWidget {
 class _FlutterReduxMallApp extends State<MallApp> with HttpErrorListener {
   @override
   Widget build(BuildContext context) {
-    return RefreshConfiguration(
-      footerTriggerDistance: 15,
-      dragSpeedRatio: 0.91,
-      headerTriggerDistance: 88 + getStatusHeight(context),
-      headerBuilder: () => ClassicHeader(
-        spacing: 10,
-        height: 68 + getStatusHeight(context),
-      ),
-      footerBuilder: () => const ClassicFooter(),
-      enableLoadingWhenNoData: false,
-      enableRefreshVibrate: false,
-      enableLoadMoreVibrate: false,
-      enableBallisticLoad: true,
+    return refreshConfig(
       child: MaterialApp(
         navigatorKey: Global.navigatorKey,
         navigatorObservers: [NavigatorChangeObserver()],
@@ -70,6 +57,24 @@ class _FlutterReduxMallApp extends State<MallApp> with HttpErrorListener {
           Locale('zh', 'CN'), // 中文简体
         ],
       ),
+    );
+  }
+
+  Widget refreshConfig({required Widget child}) {
+    return RefreshConfiguration(
+      footerTriggerDistance: 15,
+      dragSpeedRatio: 0.91,
+      headerTriggerDistance: 88 + getStatusHeight(context),
+      headerBuilder: () => ClassicHeader(
+        spacing: 10,
+        height: 68 + getStatusHeight(context),
+      ),
+      footerBuilder: () => const ClassicFooter(),
+      enableLoadingWhenNoData: false,
+      enableRefreshVibrate: false,
+      enableLoadMoreVibrate: false,
+      enableBallisticLoad: true,
+      child: child,
     );
   }
 }
