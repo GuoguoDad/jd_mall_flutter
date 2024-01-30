@@ -142,8 +142,8 @@ var onGenerateRoute = (RouteSettings settings) {
   bool toLogin = false;
 
   if (loginRequiredRoutes.contains(name)) {
-    var token = Global.preferences!.getString("token");
-    if (token == null || token.isEmpty) {
+    var loginFlag = Global.preferences!.getString("loginFlag");
+    if (loginFlag == null || loginFlag.isEmpty) {
       toLogin = true;
     }
   }
@@ -161,7 +161,7 @@ var onGenerateRoute = (RouteSettings settings) {
     }
   }
   return MaterialPageRoute(
-    settings: params != null ? RouteSettings(name: name, arguments: params) : RouteSettings(name: name),
+    settings: RouteSettings(name: name, arguments: params),
     builder: (context) => params != null ? pageBuilder(context, arguments: params) : pageBuilder(context),
   );
 };

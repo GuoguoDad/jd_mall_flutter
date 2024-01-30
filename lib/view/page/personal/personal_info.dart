@@ -6,9 +6,14 @@ import 'package:flutter_easyloading/flutter_easyloading.dart';
 
 // Project imports:
 import 'package:jd_mall_flutter/common/extension/color_ext.dart';
+import 'package:jd_mall_flutter/common/util/screen_util.dart';
 import 'package:jd_mall_flutter/component/common_header.dart';
 import 'package:jd_mall_flutter/component/image/asset_image.dart';
 import 'package:jd_mall_flutter/mixin/image_picker_mixin.dart';
+
+import '../../../common/global/Global.dart';
+import '../../../component/linear_button.dart';
+import '../../../routes.dart';
 
 class PersonalInfo extends StatefulWidget {
   const PersonalInfo({super.key});
@@ -45,6 +50,28 @@ class _PersonalInfoState extends State<PersonalInfo> with ImagePickerMixin {
                 )
               ],
             ),
+          ),
+        ),
+        Container(
+          width: getScreenWidth(context),
+          height: 60 + getBottomSpace(context),
+          padding: EdgeInsets.only(bottom: getBottomSpace(context)),
+          alignment: Alignment.center,
+          child: LinearButton(
+            width: getScreenWidth(context) - 24,
+            height: 50,
+            btnName: '退出登录',
+            onTap: () async {
+              await Global.preferences?.remove("loginFlag");
+              await Global.preferences?.remove("token");
+              await Global.preferences?.remove("userId");
+              await Global.preferences?.remove("userName");
+              await Global.preferences?.remove("headerImg");
+              await Global.preferences?.remove("integral");
+              await Global.preferences?.remove("creditValue");
+
+              Navigator.of(Global.navigatorKey.currentContext!).pushReplacementNamed(RoutesEnum.loginPage.path);
+            },
           ),
         )
       ],

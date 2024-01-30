@@ -8,6 +8,8 @@ import 'package:jd_mall_flutter/component/persistentHeader/sliver_header_builder
 import 'package:jd_mall_flutter/generated/l10n.dart';
 import 'package:jd_mall_flutter/routes.dart';
 
+import 'package:jd_mall_flutter/common/util/util.dart';
+
 Widget infoHeader(BuildContext context, ValueNotifier<double> pageScrollY) {
   Widget title = Positioned(
     top: 0,
@@ -42,11 +44,11 @@ Widget infoHeader(BuildContext context, ValueNotifier<double> pageScrollY) {
           width: headerSize.size,
           height: headerSize.size,
           margin: const EdgeInsets.only(left: 16),
-          decoration: const ShapeDecoration(
-            shape: CircleBorder(),
+          decoration: ShapeDecoration(
+            shape: const CircleBorder(),
             image: DecorationImage(
               fit: BoxFit.contain,
-              image: AssetImage("images/header.png"),
+              image: AssetImage(isLogin() ? "images/header.png" : "images/ic_default_header.png"),
             ),
           ),
         ),
@@ -72,28 +74,42 @@ Widget infoHeader(BuildContext context, ValueNotifier<double> pageScrollY) {
       );
     },
     valueListenable: pageScrollY,
-    child: Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      mainAxisAlignment: MainAxisAlignment.spaceAround,
-      children: [
-        Text(
-          S.of(context).author,
-          style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
-        ),
-        Row(
-          children: [
-            Text("${S.of(context).integral}: 200", style: const TextStyle(fontSize: 14)),
-            Container(
-              margin: const EdgeInsets.only(left: 20),
-              child: Text(
-                "${S.of(context).creditValue}: 1200",
-                style: const TextStyle(fontSize: 14),
+    child: isLogin()
+        ? Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            mainAxisAlignment: MainAxisAlignment.spaceAround,
+            children: [
+              Text(
+                S.of(context).author,
+                style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
               ),
-            )
-          ],
-        )
-      ],
-    ),
+              Row(
+                children: [
+                  Text("${S.of(context).integral}: 200", style: const TextStyle(fontSize: 14)),
+                  Container(
+                    margin: const EdgeInsets.only(left: 20),
+                    child: Text(
+                      "${S.of(context).creditValue}: 1200",
+                      style: const TextStyle(fontSize: 14),
+                    ),
+                  )
+                ],
+              )
+            ],
+          )
+        : GestureDetector(
+            onTap: () => Navigator.of(context).pushReplacementNamed(RoutesEnum.loginPage.path),
+            child: Row(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                const Text("登录/注册", style: TextStyle(fontSize: 24, fontWeight: FontWeight.w600)),
+                Container(
+                  margin: const EdgeInsets.only(top: 1, left: 1),
+                  child: assetImage("images/arrow_right_black.png", 24, 24),
+                ),
+              ],
+            ),
+          ),
   );
 
   return SliverPersistentHeader(

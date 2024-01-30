@@ -19,6 +19,9 @@ import 'package:jd_mall_flutter/view/page/login/service.dart';
 import 'package:jd_mall_flutter/common/global/Global.dart';
 import 'package:jd_mall_flutter/generated/l10n.dart';
 
+import '../../../common/event/index.dart';
+import '../../../common/event/msg_event.dart';
+
 class LoginPage extends StatefulWidget {
   final Map? arguments;
 
@@ -94,7 +97,13 @@ class _LoginPageState extends State<LoginPage> {
                       var res = await LoginApi.login(userName, password);
 
                       if (res != null) {
+                        await Global.preferences!.setString("loginFlag", "LoggedIn");
                         await Global.preferences!.setString("token", res.token);
+                        await Global.preferences!.setString("userId", res.userId);
+                        await Global.preferences!.setString("userName", res.userName);
+                        await Global.preferences!.setString("headerImg", res.headerImg);
+                        await Global.preferences!.setString("integral", res.integral.toString());
+                        await Global.preferences!.setString("creditValue", res.creditValue.toString());
 
                         if (widget.arguments != null) {
                           var from = widget.arguments!["from"];
