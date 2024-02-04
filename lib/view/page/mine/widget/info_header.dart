@@ -3,12 +3,12 @@ import 'package:flutter/material.dart';
 
 // Project imports:
 import 'package:jd_mall_flutter/common/util/screen_util.dart';
+import 'package:jd_mall_flutter/common/util/util.dart';
 import 'package:jd_mall_flutter/component/image/asset_image.dart';
 import 'package:jd_mall_flutter/component/persistentHeader/sliver_header_builder.dart';
+import 'package:jd_mall_flutter/generated/assets.dart';
 import 'package:jd_mall_flutter/generated/l10n.dart';
 import 'package:jd_mall_flutter/routes.dart';
-
-import 'package:jd_mall_flutter/common/util/util.dart';
 
 Widget infoHeader(BuildContext context, ValueNotifier<double> pageScrollY) {
   Widget title = Positioned(
@@ -48,7 +48,7 @@ Widget infoHeader(BuildContext context, ValueNotifier<double> pageScrollY) {
             shape: const CircleBorder(),
             image: DecorationImage(
               fit: BoxFit.contain,
-              image: AssetImage(isLogin() ? "images/header.png" : "images/ic_default_header.png"),
+              image: AssetImage(isLogin() ? Assets.imagesHeader : Assets.imagesIcDefaultHeader),
             ),
           ),
         ),
@@ -105,7 +105,7 @@ Widget infoHeader(BuildContext context, ValueNotifier<double> pageScrollY) {
                 const Text("登录/注册", style: TextStyle(fontSize: 24, fontWeight: FontWeight.w600)),
                 Container(
                   margin: const EdgeInsets.only(top: 1, left: 1),
-                  child: assetImage("images/arrow_right_black.png", 24, 24),
+                  child: assetImage(Assets.imagesArrowRightBlack, 24, 24),
                 ),
               ],
             ),
@@ -123,7 +123,7 @@ Widget infoHeader(BuildContext context, ValueNotifier<double> pageScrollY) {
         decoration: const BoxDecoration(
           image: DecorationImage(
             fit: BoxFit.cover,
-            image: AssetImage("images/mine_top_bg.png"),
+            image: AssetImage(Assets.imagesMineTopBg),
           ),
         ),
         child: Stack(
@@ -135,7 +135,7 @@ Widget infoHeader(BuildContext context, ValueNotifier<double> pageScrollY) {
               right: 116,
               child: GestureDetector(
                 onTap: () => {},
-                child: assetImage('images/ic_friend.png', 23, 23),
+                child: assetImage(Assets.imagesIcFriend, 23, 23),
               ),
             ),
             Positioned(
@@ -143,7 +143,7 @@ Widget infoHeader(BuildContext context, ValueNotifier<double> pageScrollY) {
               right: 66,
               child: GestureDetector(
                 onTap: () => Navigator.of(context).pushNamed(RoutesEnum.personalInfo.path),
-                child: assetImage('images/ic_setting.png', 26, 26),
+                child: assetImage(Assets.imagesIcSetting, 26, 26),
               ),
             ),
             Positioned(
@@ -151,7 +151,7 @@ Widget infoHeader(BuildContext context, ValueNotifier<double> pageScrollY) {
               right: 18,
               child: GestureDetector(
                 onTap: () => Navigator.of(context).pushNamed(RoutesEnum.sampleList.path),
-                child: assetImage('images/ic_message.png', 26, 26),
+                child: assetImage(Assets.imagesIcMessage, 26, 26),
               ),
             ),
             title,

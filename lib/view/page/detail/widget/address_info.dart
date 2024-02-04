@@ -8,6 +8,7 @@ import 'package:flutter_redux/flutter_redux.dart';
 import 'package:jd_mall_flutter/common/style/common_style.dart';
 import 'package:jd_mall_flutter/common/util/screen_util.dart';
 import 'package:jd_mall_flutter/component/image/asset_image.dart';
+import 'package:jd_mall_flutter/generated/assets.dart';
 import 'package:jd_mall_flutter/generated/l10n.dart';
 import 'package:jd_mall_flutter/models/goods_detail_res.dart';
 import 'package:jd_mall_flutter/store/app_state.dart';
@@ -72,7 +73,7 @@ Widget rowItem(String label, String text, int line, bool showArrow, String? des)
                 ),
               ],
             ),
-            showArrow ? assetImage("images/detail/ic_arrow_right.png", 8, 24) : Container()
+            showArrow ? assetImage(Assets.detailIcArrowRight, 8, 24) : Container()
           ],
         ),
         des != null

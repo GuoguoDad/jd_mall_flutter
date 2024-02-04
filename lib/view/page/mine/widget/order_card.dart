@@ -8,6 +8,7 @@ import 'package:flutter_redux/flutter_redux.dart';
 import 'package:jd_mall_flutter/common/style/common_style.dart';
 import 'package:jd_mall_flutter/common/util/screen_util.dart';
 import 'package:jd_mall_flutter/component/image/asset_image.dart';
+import 'package:jd_mall_flutter/generated/assets.dart';
 import 'package:jd_mall_flutter/generated/l10n.dart';
 import 'package:jd_mall_flutter/store/app_state.dart';
 import 'package:jd_mall_flutter/view/page/mine/redux/mine_page_state.dart';
@@ -29,21 +30,21 @@ Widget orderCard(BuildContext context) {
               Flex(
                 direction: Axis.horizontal,
                 children: [
-                  horizontalItem("images/ic_goods_star.png", "${S.of(context).productCollection}0"),
+                  horizontalItem(Assets.imagesIcGoodsStar, "${S.of(context).productCollection}0"),
                   line(1, 12),
-                  horizontalItem("images/ic_store_focus.png", "${S.of(context).storeFollow}16"),
+                  horizontalItem(Assets.imagesIcStoreFocus, "${S.of(context).storeFollow}16"),
                   line(1, 12),
-                  horizontalItem("images/ic_look_history.png", "${S.of(context).browsingHistory}20")
+                  horizontalItem(Assets.imagesIcLookHistory, "${S.of(context).browsingHistory}20")
                 ],
               ),
               line(getScreenWidth(context) - 50, 1),
               Flex(
                 direction: Axis.horizontal,
                 children: [
-                  verticalItem("images/ic_todo_pay.png", S.of(context).unpaid),
-                  verticalItem("images/ic_todo_get.png", S.of(context).toBeReceived),
-                  verticalItem("images/ic_todo_evaluate.png", S.of(context).toBeEvaluated),
-                  verticalItem("images/ic_todo_exchange.png", S.of(context).returnAfterSales)
+                  verticalItem(Assets.imagesIcTodoPay, S.of(context).unpaid),
+                  verticalItem(Assets.imagesIcTodoGet, S.of(context).toBeReceived),
+                  verticalItem(Assets.imagesIcTodoEvaluate, S.of(context).toBeEvaluated),
+                  verticalItem(Assets.imagesIcTodoExchange, S.of(context).returnAfterSales)
                 ],
               )
             ],

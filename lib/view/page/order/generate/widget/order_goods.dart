@@ -7,6 +7,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 // Project imports:
 import 'package:jd_mall_flutter/common/util/screen_util.dart';
 import 'package:jd_mall_flutter/component/image/asset_image.dart';
+import 'package:jd_mall_flutter/generated/assets.dart';
 
 double width = 80;
 
@@ -24,7 +25,7 @@ Widget orderGoods(BuildContext context) {
         children: [
           Row(
             children: [
-              Container(child: assetImage("images/ic_store.png", 24, 24)),
+              Container(child: assetImage(Assets.imagesIcStore, 24, 24)),
               Container(margin: const EdgeInsets.only(left: 4), child: const Text("ASICS旗舰店", style: TextStyle(fontSize: 16))),
             ],
           ),
@@ -79,8 +80,8 @@ Widget goodsImg(String url) {
         width: width,
         height: width,
         imageUrl: url,
-        placeholder: (context, url) => assetImage("images/default.png", width, width),
-        errorWidget: (context, url, error) => assetImage("images/default.png", width, width),
+        placeholder: (context, url) => assetImage(Assets.imagesDefault, width, width),
+        errorWidget: (context, url, error) => assetImage(Assets.imagesDefault, width, width),
         fit: BoxFit.fill,
       ),
     ),
@@ -147,4 +148,4 @@ Widget messageInput(BuildContext context) {
   );
 }
 
-Widget arrow = assetFillImage("images/ic_arrow_right_grey.png", 10, 14);
+Widget arrow = assetFillImage(Assets.imagesIcArrowRightGrey, 10, 14);

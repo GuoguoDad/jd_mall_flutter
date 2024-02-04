@@ -13,6 +13,7 @@ import 'package:jd_mall_flutter/generated/l10n.dart';
 import 'package:jd_mall_flutter/models/goods_detail_res.dart';
 import 'package:jd_mall_flutter/store/app_state.dart';
 import 'package:jd_mall_flutter/view/page/detail/redux/detail_page_action.dart';
+import '../../../../generated/assets.dart';
 
 Widget skuInfo(BuildContext context) {
   double thumbWidth = 68;
@@ -64,8 +65,8 @@ Widget skuInfo(BuildContext context) {
                               height: thumbWidth,
                               width: thumbWidth,
                               imageUrl: bannerList[index].thumb!,
-                              placeholder: (context, url) => assetImage("images/default.png", thumbWidth, thumbWidth),
-                              errorWidget: (context, url, error) => assetImage("images/default.png", thumbWidth, thumbWidth),
+                              placeholder: (context, url) => assetImage(Assets.imagesDefault, thumbWidth, thumbWidth),
+                              errorWidget: (context, url, error) => assetImage(Assets.imagesDefault, thumbWidth, thumbWidth),
                               fit: BoxFit.fill,
                             ),
                           ),

@@ -6,6 +6,7 @@ import 'package:flutter/services.dart';
 import 'package:jd_mall_flutter/common/style/common_style.dart';
 import 'package:jd_mall_flutter/component/image/asset_image.dart';
 import 'package:jd_mall_flutter/component/lazy_load_indexed_stack.dart';
+import 'package:jd_mall_flutter/generated/assets.dart';
 import 'package:jd_mall_flutter/generated/l10n.dart';
 import 'package:jd_mall_flutter/view/page/cart/cart_page.dart';
 import 'package:jd_mall_flutter/view/page/category/category.dart';
@@ -34,10 +35,10 @@ class _MainPageState extends State<MainPage> {
   @override
   Widget build(BuildContext context) {
     List<Map> barItems = [
-      {"iconPath": "images/ic_home.png", "activeIconPath": "images/ic_home_active.png", "label": S.of(context).tabMainHome},
-      {"iconPath": "images/ic_category.png", "activeIconPath": "images/ic_category_active.png", "label": S.of(context).tabMainCategory},
-      {"iconPath": "images/ic_cart.png", "activeIconPath": "images/ic_cart_active.png", "label": S.of(context).tabMainCart},
-      {"iconPath": "images/ic_mine.png", "activeIconPath": "images/ic_mine_active.png", "label": S.of(context).tabMainMine},
+      {"iconPath": Assets.imagesIcHome, "activeIconPath": Assets.imagesIcHomeActive, "label": S.of(context).tabMainHome},
+      {"iconPath": Assets.imagesIcCategory, "activeIconPath": Assets.imagesIcCategoryActive, "label": S.of(context).tabMainCategory},
+      {"iconPath": Assets.imagesIcCart, "activeIconPath": Assets.imagesIcCartActive, "label": S.of(context).tabMainCart},
+      {"iconPath": Assets.imagesIcMine, "activeIconPath": Assets.imagesIcMineActive, "label": S.of(context).tabMainMine},
     ];
 
     return AnnotatedRegion<SystemUiOverlayStyle>(

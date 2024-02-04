@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:jd_mall_flutter/common/style/common_style.dart';
 import 'package:jd_mall_flutter/common/util/screen_util.dart';
 import 'package:jd_mall_flutter/component/image/asset_image.dart';
+import 'package:jd_mall_flutter/generated/assets.dart';
 
 Widget commonHeader(BuildContext context, {required String title}) {
   double statusHeight = getStatusHeight(context);
@@ -22,7 +23,7 @@ Widget commonHeader(BuildContext context, {required String title}) {
             height: 42,
             width: 60,
             alignment: Alignment.center,
-            child: assetFillImage("images/ic_back_black.png", 24, 30),
+            child: assetFillImage(Assets.imagesIcBackBlack, 24, 30),
           ),
         ),
         Expanded(

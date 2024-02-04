@@ -10,17 +10,14 @@ import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:form_builder_validators/form_builder_validators.dart';
 
 // Project imports:
+import 'package:jd_mall_flutter/common/global/Global.dart';
 import 'package:jd_mall_flutter/common/style/common_style.dart';
 import 'package:jd_mall_flutter/common/types/common.dart';
 import 'package:jd_mall_flutter/common/util/screen_util.dart';
 import 'package:jd_mall_flutter/component/linear_button.dart';
+import 'package:jd_mall_flutter/generated/l10n.dart';
 import 'package:jd_mall_flutter/routes.dart';
 import 'package:jd_mall_flutter/view/page/login/service.dart';
-import 'package:jd_mall_flutter/common/global/Global.dart';
-import 'package:jd_mall_flutter/generated/l10n.dart';
-
-import '../../../common/event/index.dart';
-import '../../../common/event/msg_event.dart';
 
 class LoginPage extends StatefulWidget {
   final Map? arguments;

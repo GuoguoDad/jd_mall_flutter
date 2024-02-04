@@ -1,6 +1,7 @@
-// Flutter imports:
+// Dart imports:
 import 'dart:async';
 
+// Flutter imports:
 import 'package:flutter/material.dart';
 
 // Package imports:
@@ -24,7 +25,6 @@ import 'package:jd_mall_flutter/view/page/mine/widget/info_header.dart';
 import 'package:jd_mall_flutter/view/page/mine/widget/order_card.dart';
 import 'package:jd_mall_flutter/view/page/mine/widget/single_line_menu.dart';
 import 'package:jd_mall_flutter/view/page/mine/widget/tab_list.dart';
-
 import '../../../common/event/index.dart';
 import '../../../common/event/msg_event.dart';
 

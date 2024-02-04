@@ -12,6 +12,7 @@ import 'package:jd_mall_flutter/common/types/common.dart';
 import 'package:jd_mall_flutter/component/image/asset_image.dart';
 import 'package:jd_mall_flutter/component/stepper/stepper.dart';
 import 'package:jd_mall_flutter/component/stepper/style.dart';
+import 'package:jd_mall_flutter/generated/assets.dart';
 import 'package:jd_mall_flutter/generated/l10n.dart';
 import 'package:jd_mall_flutter/models/cart_goods.dart';
 import 'package:jd_mall_flutter/routes.dart';
@@ -113,7 +114,7 @@ class HeaderSection extends StatelessWidget {
               onChanged: (bool? va) => onCheckChange(va),
             ),
           ),
-          Container(margin: const EdgeInsets.only(left: 5), child: assetImage("images/ic_store.png", 24, 24)),
+          Container(margin: const EdgeInsets.only(left: 5), child: assetImage(Assets.imagesIcStore, 24, 24)),
           Container(margin: const EdgeInsets.only(left: 4), child: Text(storeName, style: const TextStyle(fontSize: 16))),
           GestureDetector(
             onTap: () {
@@ -172,8 +173,8 @@ class ItemSection extends StatelessWidget {
               width: thumbnailWidth,
               height: thumbnailWidth,
               imageUrl: cartGoods[indexPath.section].goodsList![indexPath.index].imgUrl!,
-              placeholder: (context, url) => assetImage("images/default.png", thumbnailWidth, thumbnailWidth),
-              errorWidget: (context, url, error) => assetImage("images/default.png", thumbnailWidth, thumbnailWidth),
+              placeholder: (context, url) => assetImage(Assets.imagesDefault, thumbnailWidth, thumbnailWidth),
+              errorWidget: (context, url, error) => assetImage(Assets.imagesDefault, thumbnailWidth, thumbnailWidth),
               fit: BoxFit.fill,
             ),
           ),

@@ -10,6 +10,7 @@ import 'package:jd_mall_flutter/common/style/common_style.dart';
 import 'package:jd_mall_flutter/common/util/screen_util.dart';
 import 'package:jd_mall_flutter/component/group_grid_view.dart';
 import 'package:jd_mall_flutter/component/image/asset_image.dart';
+import 'package:jd_mall_flutter/generated/assets.dart';
 import 'package:jd_mall_flutter/generated/l10n.dart';
 import 'package:jd_mall_flutter/models/goods_detail_res.dart';
 import 'package:jd_mall_flutter/store/app_state.dart';
@@ -44,8 +45,8 @@ Widget appraiseInfo(BuildContext context, Key key) {
                     height: headWidth,
                     width: headWidth,
                     imageUrl: list[section].headerUrl!,
-                    placeholder: (context, url) => assetImage("images/default.png", headWidth, headWidth),
-                    errorWidget: (context, url, error) => assetImage("images/default.png", headWidth, headWidth),
+                    placeholder: (context, url) => assetImage(Assets.imagesDefault, headWidth, headWidth),
+                    errorWidget: (context, url, error) => assetImage(Assets.imagesDefault, headWidth, headWidth),
                     fit: BoxFit.fill,
                   ),
                 ),
@@ -71,8 +72,8 @@ Widget appraiseInfo(BuildContext context, Key key) {
             height: imgWidth,
             width: imgWidth,
             imageUrl: list[indexPath.section].imgList![indexPath.index],
-            placeholder: (context, url) => assetImage("images/default.png", imgWidth, imgWidth),
-            errorWidget: (context, url, error) => assetImage("images/default.png", imgWidth, imgWidth),
+            placeholder: (context, url) => assetImage(Assets.imagesDefault, imgWidth, imgWidth),
+            errorWidget: (context, url, error) => assetImage(Assets.imagesDefault, imgWidth, imgWidth),
             fit: BoxFit.fill,
           ),
         );
@@ -159,8 +160,8 @@ Widget itemCard(String title, String url, double imgHeight) {
         CachedNetworkImage(
           width: screenWidth - 40,
           imageUrl: url,
-          placeholder: (context, url) => assetImage("images/default.png", imgWidth, imgWidth),
-          errorWidget: (context, url, error) => assetImage("images/default.png", imgWidth, imgWidth),
+          placeholder: (context, url) => assetImage(Assets.imagesDefault, imgWidth, imgWidth),
+          errorWidget: (context, url, error) => assetImage(Assets.imagesDefault, imgWidth, imgWidth),
           fit: BoxFit.fitWidth,
         )
       ],

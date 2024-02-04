@@ -13,6 +13,7 @@ import 'package:jd_mall_flutter/generated/l10n.dart';
 import 'package:jd_mall_flutter/store/app_state.dart';
 import 'package:jd_mall_flutter/view/page/home/redux/home_page_state.dart';
 import 'package:jd_mall_flutter/view/page/home/util.dart';
+import '../../../../generated/assets.dart';
 
 Widget searchHeader(BuildContext context, ValueNotifier<double> pageScrollY) {
   return SliverPersistentHeader(
@@ -30,12 +31,12 @@ Widget searchHeader(BuildContext context, ValueNotifier<double> pageScrollY) {
             Positioned(
               top: 0,
               left: 16,
-              child: assetImage('images/ic_pet.png', 36, 36),
+              child: assetImage(Assets.imagesIcPet, 36, 36),
             ),
             Positioned(
               top: 5,
               right: 18,
-              child: assetImage('images/ic_scan.png', 32, 32),
+              child: assetImage(Assets.imagesIcScan, 32, 32),
             ),
             ValueListenableBuilder<double>(
               builder: (BuildContext context, double value, Widget? child) {
@@ -60,7 +61,7 @@ Widget searchHeader(BuildContext context, ValueNotifier<double> pageScrollY) {
                     width: 40,
                     height: 34,
                     child: UnconstrainedBox(
-                      child: assetImage('images/ic_search.png', 20, 20),
+                      child: assetImage(Assets.imagesIcSearch, 20, 20),
                     ),
                   ),
                   Expanded(
@@ -81,7 +82,7 @@ Widget searchHeader(BuildContext context, ValueNotifier<double> pageScrollY) {
                     width: 40,
                     height: 34,
                     child: UnconstrainedBox(
-                      child: assetImage('images/ic_camera.png', 20, 20),
+                      child: assetImage(Assets.imagesIcCamera, 20, 20),
                     ),
                   )
                 ],

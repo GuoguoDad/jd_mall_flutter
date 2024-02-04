@@ -2,9 +2,9 @@
 import 'package:flutter/material.dart';
 
 // Project imports:
-import 'package:jd_mall_flutter/common/extension/color_ext.dart';
 import 'package:jd_mall_flutter/common/util/screen_util.dart';
 import 'package:jd_mall_flutter/component/image/asset_image.dart';
+import 'package:jd_mall_flutter/generated/assets.dart';
 
 Widget defaultAddress(BuildContext context) {
   return SliverToBoxAdapter(
@@ -71,4 +71,4 @@ Widget tag(String text, Color bg) {
   );
 }
 
-Widget arrow = assetFillImage("images/ic_arrow_right_grey.png", 10, 14);
+Widget arrow = assetFillImage(Assets.imagesIcArrowRightGrey, 10, 14);

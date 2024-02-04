@@ -8,6 +8,7 @@ import 'package:flutter_redux/flutter_redux.dart';
 // Project imports:
 import 'package:jd_mall_flutter/common/util/screen_util.dart';
 import 'package:jd_mall_flutter/component/image/asset_image.dart';
+import 'package:jd_mall_flutter/generated/assets.dart';
 import 'package:jd_mall_flutter/routes.dart';
 import 'package:jd_mall_flutter/store/app_state.dart';
 import 'package:jd_mall_flutter/view/page/home/redux/home_page_state.dart';
@@ -29,8 +30,8 @@ Widget advBanner(BuildContext context) {
             child: CachedNetworkImage(
               height: 90,
               imageUrl: state.homePageInfo.adUrl ?? "",
-              placeholder: (context, url) => assetImage("images/default.png", getScreenWidth(context) - 24, 90),
-              errorWidget: (context, url, error) => assetImage("images/default.png", getScreenWidth(context) - 24, 90),
+              placeholder: (context, url) => assetImage(Assets.imagesDefault, getScreenWidth(context) - 24, 90),
+              errorWidget: (context, url, error) => assetImage(Assets.imagesDefault, getScreenWidth(context) - 24, 90),
               fit: BoxFit.fill,
             ),
           ),

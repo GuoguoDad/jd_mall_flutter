@@ -12,6 +12,7 @@ import 'package:jd_mall_flutter/common/util/screen_util.dart';
 import 'package:jd_mall_flutter/component/group_grid_view.dart';
 import 'package:jd_mall_flutter/component/image/asset_image.dart';
 import 'package:jd_mall_flutter/component/no_shadow_scroll_behavior.dart';
+import 'package:jd_mall_flutter/generated/assets.dart';
 import 'package:jd_mall_flutter/models/second_group_category_info.dart';
 import 'package:jd_mall_flutter/store/app_state.dart';
 import 'package:jd_mall_flutter/view/page/category/redux/category_page_action.dart';
@@ -79,8 +80,8 @@ Widget rightGroupList(BuildContext context, ScrollController scrollController, S
             width: bWidth,
             height: 100,
             imageUrl: headUrl,
-            placeholder: (context, url) => assetImage("images/default.png", bWidth, 100),
-            errorWidget: (context, url, error) => assetImage("images/default.png", bWidth, 100),
+            placeholder: (context, url) => assetImage(Assets.imagesDefault, bWidth, 100),
+            errorWidget: (context, url, error) => assetImage(Assets.imagesDefault, bWidth, 100),
             fit: BoxFit.cover,
           ),
         );
@@ -180,8 +181,8 @@ Widget rightGroupList(BuildContext context, ScrollController scrollController, S
                         width: 58,
                         height: 58,
                         imageUrl: secondCateList[indexPath.section].cateList![indexPath.index].iconUrl!,
-                        placeholder: (context, url) => assetImage("images/default.png", 58, 58),
-                        errorWidget: (context, url, error) => assetImage("images/default.png", 58, 58),
+                        placeholder: (context, url) => assetImage(Assets.imagesDefault, 58, 58),
+                        errorWidget: (context, url, error) => assetImage(Assets.imagesDefault, 58, 58),
                         fit: BoxFit.fill,
                       ),
                       Container(

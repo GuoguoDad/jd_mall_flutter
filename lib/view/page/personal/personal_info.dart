@@ -6,14 +6,14 @@ import 'package:flutter_easyloading/flutter_easyloading.dart';
 
 // Project imports:
 import 'package:jd_mall_flutter/common/extension/color_ext.dart';
+import 'package:jd_mall_flutter/common/global/Global.dart';
 import 'package:jd_mall_flutter/common/util/screen_util.dart';
 import 'package:jd_mall_flutter/component/common_header.dart';
 import 'package:jd_mall_flutter/component/image/asset_image.dart';
+import 'package:jd_mall_flutter/component/linear_button.dart';
+import 'package:jd_mall_flutter/generated/assets.dart';
 import 'package:jd_mall_flutter/mixin/image_picker_mixin.dart';
-
-import '../../../common/global/Global.dart';
-import '../../../component/linear_button.dart';
-import '../../../routes.dart';
+import 'package:jd_mall_flutter/routes.dart';
 
 class PersonalInfo extends StatefulWidget {
   const PersonalInfo({super.key});
@@ -121,7 +121,7 @@ class UserInfoItem extends StatelessWidget {
                           shape: CircleBorder(),
                           image: DecorationImage(
                             fit: BoxFit.contain,
-                            image: AssetImage("images/header.png"),
+                            image: AssetImage(Assets.imagesHeader),
                           ),
                         ),
                       )
@@ -132,7 +132,7 @@ class UserInfoItem extends StatelessWidget {
                           style: TextStyle(color: "#808080".toColor()),
                         ),
                       ),
-                assetImage("images/arrow_right_grey100.png", 8, 16)
+                assetImage(Assets.imagesArrowRightGrey100, 8, 16)
               ],
             )
           ],

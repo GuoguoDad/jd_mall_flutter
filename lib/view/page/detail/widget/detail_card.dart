@@ -9,6 +9,7 @@ import 'package:flutter_redux/flutter_redux.dart';
 import 'package:jd_mall_flutter/common/style/common_style.dart';
 import 'package:jd_mall_flutter/common/util/screen_util.dart';
 import 'package:jd_mall_flutter/component/image/asset_image.dart';
+import 'package:jd_mall_flutter/generated/assets.dart';
 import 'package:jd_mall_flutter/store/app_state.dart';
 import 'package:jd_mall_flutter/view/page/detail/redux/detail_page_state.dart';
 
@@ -46,8 +47,8 @@ Widget detailCard(BuildContext context, Key key) {
                     .map((url) => CachedNetworkImage(
                           width: screenWidth - 40,
                           imageUrl: url,
-                          placeholder: (context, url) => assetImage("images/default.png", screenWidth - 40, 100),
-                          errorWidget: (context, url, error) => assetImage("images/default.png", screenWidth - 40, 100),
+                          placeholder: (context, url) => assetImage(Assets.imagesDefault, screenWidth - 40, 100),
+                          errorWidget: (context, url, error) => assetImage(Assets.imagesDefault, screenWidth - 40, 100),
                           fit: BoxFit.fitWidth,
                         ))
                     .toList(),

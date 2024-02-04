@@ -53,6 +53,7 @@ class _CategoryPageState extends State<CategoryPage> {
           children: [
             header(context),
             Expanded(
+              flex: 1,
               child: isLoading
                   ? loadingWidget(context)
                   : Flex(

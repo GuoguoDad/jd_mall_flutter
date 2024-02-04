@@ -11,6 +11,7 @@ import 'package:jd_mall_flutter/common/style/common_style.dart';
 import 'package:jd_mall_flutter/common/util/screen_util.dart';
 import 'package:jd_mall_flutter/component/image/asset_image.dart';
 import 'package:jd_mall_flutter/component/nil.dart';
+import 'package:jd_mall_flutter/generated/assets.dart';
 import 'package:jd_mall_flutter/routes.dart';
 import 'package:jd_mall_flutter/store/app_state.dart';
 import 'package:jd_mall_flutter/view/page/home/redux/home_page_state.dart';
@@ -69,8 +70,8 @@ Widget galleryList(BuildContext context) {
                           height: carouselHeight,
                           imageUrl: item.imgUrl!,
                           fit: BoxFit.fill,
-                          placeholder: (context, url) => assetImage("images/default.png", carouselWidth, carouselHeight),
-                          errorWidget: (context, url, error) => assetImage("images/default.png", carouselWidth, carouselHeight),
+                          placeholder: (context, url) => assetImage(Assets.imagesDefault, carouselWidth, carouselHeight),
+                          errorWidget: (context, url, error) => assetImage(Assets.imagesDefault, carouselWidth, carouselHeight),
                         ),
                       ),
                     ),
