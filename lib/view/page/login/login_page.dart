@@ -7,6 +7,7 @@ import 'package:flutter/services.dart';
 
 // Package imports:
 import 'package:flutter_form_builder/flutter_form_builder.dart';
+import 'package:flutter_redux/flutter_redux.dart';
 import 'package:form_builder_validators/form_builder_validators.dart';
 
 // Project imports:
@@ -17,6 +18,8 @@ import 'package:jd_mall_flutter/common/util/screen_util.dart';
 import 'package:jd_mall_flutter/component/linear_button.dart';
 import 'package:jd_mall_flutter/generated/l10n.dart';
 import 'package:jd_mall_flutter/routes.dart';
+import 'package:jd_mall_flutter/store/app_state.dart';
+import 'package:jd_mall_flutter/view/page/login/redux/login_page_action.dart';
 import 'package:jd_mall_flutter/view/page/login/service.dart';
 
 class LoginPage extends StatefulWidget {
@@ -79,43 +82,48 @@ class _LoginPageState extends State<LoginPage> {
                   ]),
                 ),
               ),
-              btnContainer(
-                child: LinearButton(
-                  btnName: '登录',
-                  height: 58,
-                  width: getScreenWidth(context) - 24,
-                  borderRadius: BorderRadius.circular(50),
-                  onTap: () async {
-                    if (_formKey.currentState!.saveAndValidate()) {
-                      var userName = _formKey.currentState?.value['userName'];
-                      var password = _formKey.currentState?.value['password'];
-                      bool canPop = Navigator.of(Global.navigatorKey.currentContext!).canPop();
+              StoreBuilder<AppState>(
+                builder: (context, store) {
+                  return btnContainer(
+                    child: LinearButton(
+                      btnName: '登录',
+                      height: 58,
+                      width: getScreenWidth(context) - 24,
+                      borderRadius: BorderRadius.circular(50),
+                      onTap: () async {
+                        if (_formKey.currentState!.saveAndValidate()) {
+                          var userName = _formKey.currentState?.value['userName'];
+                          var password = _formKey.currentState?.value['password'];
+                          bool canPop = Navigator.of(Global.navigatorKey.currentContext!).canPop();
 
-                      var res = await LoginApi.login(userName, password);
+                          var res = await LoginApi.login(userName, password);
 
-                      if (res != null) {
-                        await Global.preferences!.setString("loginFlag", "LoggedIn");
-                        await Global.preferences!.setString("token", res.token);
-                        await Global.preferences!.setString("userId", res.userId);
-                        await Global.preferences!.setString("userName", res.userName);
-                        await Global.preferences!.setString("headerImg", res.headerImg);
-                        await Global.preferences!.setString("integral", res.integral.toString());
-                        await Global.preferences!.setString("creditValue", res.creditValue.toString());
+                          if (res != null) {
+                            await Global.preferences!.setString("loginFlag", "LoggedIn");
+                            await Global.preferences!.setString("token", res.token);
+                            await Global.preferences!.setString("userId", res.userId);
+                            await Global.preferences!.setString("userName", res.userName);
+                            await Global.preferences!.setString("headerImg", res.headerImg);
+                            await Global.preferences!.setString("integral", res.integral.toString());
+                            await Global.preferences!.setString("creditValue", res.creditValue.toString());
+                            store.dispatch(SetLoginInfo(true));
 
-                        if (widget.arguments != null) {
-                          var from = widget.arguments!["from"];
-                          var args = widget.arguments!["args"];
-                          Navigator.of(Global.navigatorKey.currentContext!).pushReplacementNamed(from, arguments: args);
-                        } else if (canPop) {
-                          Navigator.of(Global.navigatorKey.currentContext!).pop();
-                        } else {
-                          Navigator.of(Global.navigatorKey.currentContext!).pushReplacementNamed(RoutesEnum.mainPage.path);
+                            if (widget.arguments != null) {
+                              var from = widget.arguments!["from"];
+                              var args = widget.arguments!["args"];
+                              Navigator.of(Global.navigatorKey.currentContext!).pushReplacementNamed(from, arguments: args);
+                            } else if (canPop) {
+                              Navigator.of(Global.navigatorKey.currentContext!).pop();
+                            } else {
+                              Navigator.of(Global.navigatorKey.currentContext!).pushReplacementNamed(RoutesEnum.mainPage.path);
+                            }
+                          }
                         }
-                      }
-                    }
-                  },
-                ),
-              )
+                      },
+                    ),
+                  );
+                },
+              ),
             ],
           ),
         ),

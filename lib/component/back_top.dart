@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 
 // Project imports:
 import 'package:jd_mall_flutter/component/image/asset_image.dart';
-
 import 'package:jd_mall_flutter/generated/assets.dart';
 
 Widget backTop(bool showBackTop, ScrollController controller) {

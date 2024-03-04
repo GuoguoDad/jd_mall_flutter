@@ -4,7 +4,6 @@ import 'package:flutter/material.dart';
 // Project imports:
 import 'package:jd_mall_flutter/common/util/screen_util.dart';
 import 'package:jd_mall_flutter/component/image/asset_image.dart';
-
 import 'package:jd_mall_flutter/generated/assets.dart';
 
 class BackToTop extends StatefulWidget {
