@@ -21,6 +21,7 @@ import 'package:jd_mall_flutter/routes.dart';
 import 'package:jd_mall_flutter/store/app_state.dart';
 import 'package:jd_mall_flutter/view/page/login/redux/login_page_action.dart';
 import 'package:jd_mall_flutter/view/page/login/service.dart';
+import 'package:redux/src/store.dart';
 
 class LoginPage extends StatefulWidget {
   final Map? arguments;
@@ -91,34 +92,7 @@ class _LoginPageState extends State<LoginPage> {
                       width: getScreenWidth(context) - 24,
                       borderRadius: BorderRadius.circular(50),
                       onTap: () async {
-                        if (_formKey.currentState!.saveAndValidate()) {
-                          var userName = _formKey.currentState?.value['userName'];
-                          var password = _formKey.currentState?.value['password'];
-                          bool canPop = Navigator.of(Global.navigatorKey.currentContext!).canPop();
-
-                          var res = await LoginApi.login(userName, password);
-
-                          if (res != null) {
-                            await Global.preferences!.setString("loginFlag", "LoggedIn");
-                            await Global.preferences!.setString("token", res.token);
-                            await Global.preferences!.setString("userId", res.userId);
-                            await Global.preferences!.setString("userName", res.userName);
-                            await Global.preferences!.setString("headerImg", res.headerImg);
-                            await Global.preferences!.setString("integral", res.integral.toString());
-                            await Global.preferences!.setString("creditValue", res.creditValue.toString());
-                            store.dispatch(SetLoginInfo(true));
-
-                            if (widget.arguments != null) {
-                              var from = widget.arguments!["from"];
-                              var args = widget.arguments!["args"];
-                              Navigator.of(Global.navigatorKey.currentContext!).pushReplacementNamed(from, arguments: args);
-                            } else if (canPop) {
-                              Navigator.of(Global.navigatorKey.currentContext!).pop();
-                            } else {
-                              Navigator.of(Global.navigatorKey.currentContext!).pushReplacementNamed(RoutesEnum.mainPage.path);
-                            }
-                          }
-                        }
+                        await login(store);
                       },
                     ),
                   );
@@ -129,6 +103,37 @@ class _LoginPageState extends State<LoginPage> {
         ),
       ),
     );
+  }
+
+  Future<void> login(Store<AppState> store) async {
+    if (_formKey.currentState!.saveAndValidate()) {
+      var userName = _formKey.currentState?.value['userName'];
+      var password = _formKey.currentState?.value['password'];
+      bool canPop = Navigator.of(Global.navigatorKey.currentContext!).canPop();
+
+      var res = await LoginApi.login(userName, password);
+
+      if (res != null) {
+        await Global.preferences!.setString("loginFlag", "LoggedIn");
+        await Global.preferences!.setString("token", res.token);
+        await Global.preferences!.setString("userId", res.userId);
+        await Global.preferences!.setString("userName", res.userName);
+        await Global.preferences!.setString("headerImg", res.headerImg);
+        await Global.preferences!.setString("integral", res.integral.toString());
+        await Global.preferences!.setString("creditValue", res.creditValue.toString());
+        store.dispatch(SetLoginInfo(true));
+
+        if (widget.arguments != null) {
+          var from = widget.arguments!["from"];
+          var args = widget.arguments!["args"];
+          Navigator.of(Global.navigatorKey.currentContext!).pushReplacementNamed(from, arguments: args);
+        } else if (canPop) {
+          Navigator.of(Global.navigatorKey.currentContext!).pop();
+        } else {
+          Navigator.of(Global.navigatorKey.currentContext!).pushReplacementNamed(RoutesEnum.mainPage.path);
+        }
+      }
+    }
   }
 
   Widget pageContainer(BuildContext context, {required Widget child}) {

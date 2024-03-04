@@ -9,7 +9,7 @@ class Global {
 
   static SharedPreferences? preferences;
 
-  static void initPreferences() async {
+  static Future<void> initPreferences() async {
     preferences = await SharedPreferences.getInstance();
   }
 }

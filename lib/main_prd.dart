@@ -20,9 +20,10 @@ import 'package:jd_mall_flutter/config/global_configs.dart';
 import 'package:jd_mall_flutter/store/app_state.dart';
 import 'package:jd_mall_flutter/store/app_store.dart';
 
-void initApp(Map<String, dynamic> envMap) {
+void initApp(Map<String, dynamic> envMap) async {
   WidgetsFlutterBinding.ensureInitialized();
   GlobalConfigs().loadFromMap(envMap);
+  await Global.initPreferences();
 
   runApp(
     StoreProvider<AppState>(
@@ -30,7 +31,7 @@ void initApp(Map<String, dynamic> envMap) {
       child: const MallApp(),
     ),
   );
-  Global.initPreferences();
+
   if (Platform.isAndroid) {
     // 以下两行 设置android状态栏为透明的沉浸。写在组件渲染之后，是为了在渲染后进行set赋值，覆盖状态栏，写在渲染之前MaterialApp组件会覆盖掉这个值。
     SystemUiOverlayStyle systemUiOverlayStyle = const SystemUiOverlayStyle(statusBarColor: Colors.transparent);
