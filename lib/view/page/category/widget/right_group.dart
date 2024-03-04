@@ -120,22 +120,7 @@ Widget rightGroupList(BuildContext context, ScrollController scrollController, S
                     }
                   }
                 },
-                child: Container(
-                  height: 32,
-                  key: secondKeys[index],
-                  alignment: Alignment.center,
-                  padding: const EdgeInsets.only(left: 15, right: 15),
-                  margin: EdgeInsets.only(right: index + 1 != secondCateList.length ? 8 : 0),
-                  decoration: BoxDecoration(
-                    color: isSelect ? CommonStyle.selectBgColor : CommonStyle.greyBgColor2,
-                    borderRadius: const BorderRadius.all(Radius.circular(14)),
-                    border: Border.all(color: isSelect ? CommonStyle.themeColor : CommonStyle.greyBgColor2, width: 1),
-                  ),
-                  child: Text(
-                    secondCateList[index].categoryName!,
-                    style: TextStyle(color: isSelect ? CommonStyle.themeColor : CommonStyle.primaryColor),
-                  ),
-                ),
+                child: SecondCategoryItem(secondKeys: secondKeys, secondCateList: secondCateList, isSelect: isSelect, index: index),
               );
             },
           ),
@@ -171,42 +156,9 @@ Widget rightGroupList(BuildContext context, ScrollController scrollController, S
               ),
               sectionCount: secondCateList.length,
               itemInSectionCount: (int section) => secondCateList[section].cateList!.length,
-              itemInSectionBuilder: (BuildContext context, IndexPath indexPath) {
-                return SizedBox(
-                  width: thirdCateItemWidth,
-                  height: thirdCateItemHeight,
-                  child: Column(
-                    children: [
-                      CachedNetworkImage(
-                        width: 58,
-                        height: 58,
-                        imageUrl: secondCateList[indexPath.section].cateList![indexPath.index].iconUrl!,
-                        placeholder: (context, url) => assetImage(Assets.imagesDefault, 58, 58),
-                        errorWidget: (context, url, error) => assetImage(Assets.imagesDefault, 58, 58),
-                        fit: BoxFit.fill,
-                      ),
-                      Container(
-                        height: 24,
-                        margin: const EdgeInsets.only(top: 4),
-                        child: Text(
-                          secondCateList[indexPath.section].cateList![indexPath.index].categoryName!,
-                          style: TextStyle(fontSize: 12, color: CommonStyle.color777677),
-                        ),
-                      )
-                    ],
-                  ),
-                );
-              },
-              headerForSection: (section) => Container(
-                key: keys[section],
-                height: 30,
-                alignment: Alignment.centerLeft,
-                padding: const EdgeInsets.only(left: 16),
-                child: Text(
-                  secondCateList[section].categoryName!,
-                  style: const TextStyle(fontSize: 16, fontWeight: FontWeight.w600),
-                ),
-              ),
+              itemInSectionBuilder: (BuildContext context, IndexPath indexPath) =>
+                  ThirdCategoryItem(thirdCateItemWidth: thirdCateItemWidth, secondCateList: secondCateList, indexPath: indexPath),
+              headerForSection: (section) => GroupHeader(keys: keys, secondCateList: secondCateList, section: section),
             ),
           ),
         ),
@@ -224,6 +176,93 @@ Widget rightGroupList(BuildContext context, ScrollController scrollController, S
       );
     },
   );
+}
+
+class SecondCategoryItem extends StatelessWidget {
+  const SecondCategoryItem({super.key, required this.secondKeys, required this.secondCateList, required this.isSelect, required this.index});
+
+  final List<GlobalKey<State<StatefulWidget>>> secondKeys;
+  final List<SecondCateList> secondCateList;
+  final bool isSelect;
+  final int index;
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      height: 32,
+      key: secondKeys[index],
+      alignment: Alignment.center,
+      padding: const EdgeInsets.only(left: 15, right: 15),
+      margin: EdgeInsets.only(right: index + 1 != secondCateList.length ? 8 : 0),
+      decoration: BoxDecoration(
+        color: isSelect ? CommonStyle.selectBgColor : CommonStyle.greyBgColor2,
+        borderRadius: const BorderRadius.all(Radius.circular(14)),
+        border: Border.all(color: isSelect ? CommonStyle.themeColor : CommonStyle.greyBgColor2, width: 1),
+      ),
+      child: Text(
+        secondCateList[index].categoryName!,
+        style: TextStyle(color: isSelect ? CommonStyle.themeColor : CommonStyle.primaryColor),
+      ),
+    );
+  }
+}
+
+class GroupHeader extends StatelessWidget {
+  const GroupHeader({super.key, required this.keys, required this.secondCateList, required this.section});
+
+  final List<GlobalKey<State<StatefulWidget>>> keys;
+  final List<SecondCateList> secondCateList;
+  final int section;
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      key: keys[section],
+      height: 30,
+      alignment: Alignment.centerLeft,
+      padding: const EdgeInsets.only(left: 16),
+      child: Text(
+        secondCateList[section].categoryName!,
+        style: const TextStyle(fontSize: 16, fontWeight: FontWeight.w600),
+      ),
+    );
+  }
+}
+
+class ThirdCategoryItem extends StatelessWidget {
+  const ThirdCategoryItem({super.key, required this.thirdCateItemWidth, required this.secondCateList, required this.indexPath});
+
+  final IndexPath indexPath;
+  final double thirdCateItemWidth;
+  final List<SecondCateList> secondCateList;
+
+  @override
+  Widget build(BuildContext context) {
+    return SizedBox(
+      width: thirdCateItemWidth,
+      height: thirdCateItemHeight,
+      child: Column(
+        children: [
+          CachedNetworkImage(
+            width: 58,
+            height: 58,
+            imageUrl: secondCateList[indexPath.section].cateList![indexPath.index].iconUrl!,
+            placeholder: (context, url) => assetImage(Assets.imagesDefault, 58, 58),
+            errorWidget: (context, url, error) => assetImage(Assets.imagesDefault, 58, 58),
+            fit: BoxFit.fill,
+          ),
+          Container(
+            height: 24,
+            margin: const EdgeInsets.only(top: 4),
+            child: Text(
+              secondCateList[indexPath.section].cateList![indexPath.index].categoryName!,
+              style: TextStyle(fontSize: 12, color: CommonStyle.color777677),
+            ),
+          )
+        ],
+      ),
+    );
+  }
 }
 
 int findFirstVisibleItemIndex(List<GlobalKey<State<StatefulWidget>>> keys) {

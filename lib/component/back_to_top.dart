@@ -5,6 +5,8 @@ import 'package:flutter/material.dart';
 import 'package:jd_mall_flutter/common/util/screen_util.dart';
 import 'package:jd_mall_flutter/component/image/asset_image.dart';
 
+import 'package:jd_mall_flutter/generated/assets.dart';
+
 class BackToTop extends StatefulWidget {
   final ScrollController controller;
 
@@ -46,7 +48,7 @@ class _BackToTopState extends State<BackToTop> {
           onPressed: () => widget.controller.animateTo(0, duration: const Duration(milliseconds: 500), curve: Curves.linear),
           backgroundColor: Colors.white,
           shape: const CircleBorder(),
-          child: assetImage('images/ic_back_top.png', 28, 28),
+          child: assetImage(Assets.imagesIcBackTop, 28, 28),
         ),
       ),
     );

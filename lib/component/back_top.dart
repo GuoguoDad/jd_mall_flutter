@@ -4,6 +4,8 @@ import 'package:flutter/material.dart';
 // Project imports:
 import 'package:jd_mall_flutter/component/image/asset_image.dart';
 
+import 'package:jd_mall_flutter/generated/assets.dart';
+
 Widget backTop(bool showBackTop, ScrollController controller) {
   return Visibility(
     visible: showBackTop,
@@ -14,7 +16,7 @@ Widget backTop(bool showBackTop, ScrollController controller) {
         onPressed: () => controller.animateTo(0, duration: const Duration(milliseconds: 200), curve: Curves.linear),
         backgroundColor: Colors.white,
         shape: const CircleBorder(),
-        child: assetImage('images/ic_back_top.png', 28, 28),
+        child: assetImage(Assets.imagesIcBackTop, 28, 28),
       ),
     ),
   );

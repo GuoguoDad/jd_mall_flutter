@@ -56,7 +56,7 @@ dependencies:
   loading_indicator: ^3.1.1
   flutter_easyloading: ^3.0.5
   extended_nested_scroll_view: ^6.2.1
-  extended_scroll: ^3.1.0
+  extended_scroll: ^3.2.0
   url_launcher: ^6.1.12
   photo_view: ^0.14.0
   image_gallery_saver: ^2.0.3
@@ -71,6 +71,8 @@ dependencies:
   flutter_native_splash: ^2.3.8
   file_preview: ^1.1.8
   flutter_slidable: ^3.0.1
+  share_plus: ^7.2.2
+  syncfusion_flutter_datepicker: ^24.2.3
 
 dev_dependencies:
   flutter_test:
@@ -98,6 +100,7 @@ flutter:
   uses-material-design: true
 
   # To add assets to your application, add an assets section, like this:
+  # FlutterAssetsGenerator 插件自动生成 generated/assets 文件
   assets:
     - images/
     - images/detail/
