@@ -83,7 +83,13 @@ class _SampleListState extends State<SampleList> {
                   subtitle: '文件预览',
                   icon: Icons.tab_rounded,
                   onTap: () => Navigator.of(context).pushNamed(RoutesEnum.filePreview.path, arguments: {"path": "https://gstory.vercel.app/ceshi/ceshi.pdf"}),
-                )
+                ),
+                ListItem(
+                  title: '视频播放',
+                  subtitle: '视频播放',
+                  icon: Icons.tab_rounded,
+                  onTap: () => Navigator.of(context).pushNamed(RoutesEnum.videoPlayer.path),
+                ),
               ],
             ),
           )

@@ -19,7 +19,7 @@ Future<bool> makePhoneCall(String phoneNumber) async {
 
 bool isLogin() {
   bool isLogin = true;
-  var loginFlag = Global.preferences?.getString("loginFlag");
+  var loginFlag = Global.preferences!.getString("loginFlag");
   if (loginFlag == null || loginFlag.isEmpty) {
     isLogin = false;
   }

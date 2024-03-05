@@ -91,9 +91,7 @@ class _LoginPageState extends State<LoginPage> {
                       height: 58,
                       width: getScreenWidth(context) - 24,
                       borderRadius: BorderRadius.circular(50),
-                      onTap: () async {
-                        await login(store);
-                      },
+                      onTap: () => login(store),
                     ),
                   );
                 },

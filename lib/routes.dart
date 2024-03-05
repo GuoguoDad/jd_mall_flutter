@@ -12,6 +12,7 @@ import 'package:jd_mall_flutter/view/page/example/file_preview.dart';
 import 'package:jd_mall_flutter/view/page/example/gesture_spring.dart';
 import 'package:jd_mall_flutter/view/page/example/sample_list.dart';
 import 'package:jd_mall_flutter/view/page/example/snow_man.dart';
+import 'package:jd_mall_flutter/view/page/example/video_simple.dart';
 import 'package:jd_mall_flutter/view/page/login/login_page.dart';
 import 'package:jd_mall_flutter/view/page/order/generate/generate_order.dart';
 import 'package:jd_mall_flutter/view/page/personal/personal_info.dart';
@@ -28,6 +29,7 @@ enum RoutesEnum {
   gestureSpring("/gestureSpring"),
   contactList("/contactList"),
   filePreview("/filePreview"),
+  videoPlayer('videoPlayer'),
   //pages
   mainPage("/mainPage"),
   detailPage("/detailPage"),
@@ -54,6 +56,7 @@ Map<String, WidgetBuilder> routesMap = {
   RoutesEnum.gestureSpring.path: (context) => const GestureSpring(),
   RoutesEnum.contactList.path: (context) => const ContactList(),
   RoutesEnum.filePreview.path: (context, {arguments}) => FilePreviewPage(arguments: arguments),
+  RoutesEnum.videoPlayer.path: (context) => const VideoPlayerDemo(),
   //pages
   RoutesEnum.mainPage.path: (context) => const MainPage(),
   RoutesEnum.detailPage.path: (context) => const DetailPage(),
