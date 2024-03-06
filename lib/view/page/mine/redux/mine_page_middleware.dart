@@ -12,12 +12,16 @@ class MinePageMiddleware<MinePageState> implements MiddlewareClass<MinePageState
   call(Store<MinePageState> store, action, NextDispatcher next) {
     if (action is InitPageAction) {
       store.dispatch(SetLoadingAction(true));
-      initData.then((res) => {
-            if (res[0] != null) {store.dispatch(SetLoadingAction(false)), store.dispatch(InitMineMenuTabInfoAction(res[0]))}
-          });
+      initData.then(
+        (res) => {
+          if (res[0] != null) {store.dispatch(SetLoadingAction(false)), store.dispatch(InitMineMenuTabInfoAction(res[0]))}
+        },
+      );
     }
     if (action is RefreshAction) {
-      initData.then((res) => {store.dispatch(InitMineMenuTabInfoAction(res[0])), action.freshSuccess()});
+      initData.then(
+        (res) => {store.dispatch(InitMineMenuTabInfoAction(res[0])), action.freshSuccess()},
+      );
     }
     next(action);
   }

@@ -60,7 +60,7 @@ Map<String, WidgetBuilder> routesMap = {
   //pages
   RoutesEnum.mainPage.path: (context) => const MainPage(),
   RoutesEnum.detailPage.path: (context) => const DetailPage(),
-  RoutesEnum.webViewPage.path: (context) => const WebViewPage(),
+  RoutesEnum.webViewPage.path: (context, {arguments}) => WebViewPage(arguments: arguments),
   RoutesEnum.generateOrder.path: (context) => const GenerateOrder(),
   RoutesEnum.personalInfo.path: (context) => const PersonalInfo(),
   RoutesEnum.loginPage.path: (context, {arguments}) => LoginPage(arguments: arguments),

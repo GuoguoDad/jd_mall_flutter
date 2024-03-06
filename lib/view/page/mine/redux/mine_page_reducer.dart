@@ -7,11 +7,11 @@ import 'package:jd_mall_flutter/view/page/mine/redux/mine_page_state.dart';
 
 final minePageReducer = combineReducers<MinePageState>([
   //修改loading状态
-  TypedReducer<MinePageState, SetLoadingAction>((state, action) => state..isLoading = action.value),
+  TypedReducer<MinePageState, SetLoadingAction>((state, action) => state..isLoading = action.value).call,
   //记录九宫格菜单滚动index
-  TypedReducer<MinePageState, ChangeSliderIndexAction>((state, action) => state..menuIndex = action.menuIndex),
+  TypedReducer<MinePageState, ChangeSliderIndexAction>((state, action) => state..menuIndex = action.menuIndex).call,
   //记录滚动tab index
-  TypedReducer<MinePageState, SetCurrentTab>((state, action) => state..currentTab = action.value),
+  TypedReducer<MinePageState, SetCurrentTab>((state, action) => state..currentTab = action.value).call,
   //
-  TypedReducer<MinePageState, InitMineMenuTabInfoAction>((state, action) => state..menuTabInfo = action.menuTabInfo),
+  TypedReducer<MinePageState, InitMineMenuTabInfoAction>((state, action) => state..menuTabInfo = action.menuTabInfo).call,
 ]);

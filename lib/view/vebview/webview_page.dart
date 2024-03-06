@@ -11,7 +11,9 @@ import 'package:jd_mall_flutter/view/vebview/type.dart';
 import 'package:jd_mall_flutter/view/vebview/widget/floating_header.dart';
 
 class WebViewPage extends StatefulWidget {
-  const WebViewPage({super.key});
+  final Map arguments;
+
+  const WebViewPage({super.key, required this.arguments});
 
   @override
   State<StatefulWidget> createState() => _WebViewPageState();
@@ -25,7 +27,6 @@ class _WebViewPageState extends State<WebViewPage> {
   String title = '';
 
   void initView() {
-    WebViewPageArguments params = ModalRoute.of(context)?.settings.arguments as WebViewPageArguments;
     if (isInit) return;
 
     controller = WebViewController()
@@ -70,7 +71,7 @@ class _WebViewPageState extends State<WebViewPage> {
           },
         ),
       )
-      ..loadRequest(Uri.parse(params.url));
+      ..loadRequest(Uri.parse(widget.arguments['url']));
     isInit = true;
   }
 

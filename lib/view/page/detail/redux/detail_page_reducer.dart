@@ -14,17 +14,17 @@ final detailPageReducer = combineReducers<DetailPageState>([
     (state, action) => state
       ..selectInfo = action.selectInfo
       ..goodsDetailRes = action.goodsDetailRes,
-  ),
+  ).call,
 
   //
-  TypedReducer<DetailPageState, ChangeCurrentInfoAction>((state, action) => state..selectInfo = action.selectInfo),
+  TypedReducer<DetailPageState, ChangeCurrentInfoAction>((state, action) => state..selectInfo = action.selectInfo).call,
 
   //初始化商品数据
   TypedReducer<DetailPageState, InitGoodsPageAction>(
     (state, action) => state
       ..pageNum = action.pageNum
       ..goodsPageInfo = action.value,
-  ),
+  ).call,
   //加载更多
   TypedReducer<DetailPageState, MoreGoodsPageAction>((state, action) {
     List<GoodsList> goods = state.goodsPageInfo.goodsList ?? [];
@@ -37,5 +37,5 @@ final detailPageReducer = combineReducers<DetailPageState>([
         totalCount: state.goodsPageInfo.totalCount,
         totalPageCount: state.goodsPageInfo.totalPageCount,
       );
-  }),
+  }).call,
 ]);

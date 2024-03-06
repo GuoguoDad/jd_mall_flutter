@@ -9,13 +9,13 @@ import 'package:jd_mall_flutter/view/page/cart/redux/cart_page_state.dart';
 
 final cartPageReducer = combineReducers<CartPageState>([
   //修改loading状态
-  TypedReducer<CartPageState, SetLoadingAction>((state, action) => state..isLoading = action.value),
+  TypedReducer<CartPageState, SetLoadingAction>((state, action) => state..isLoading = action.value).call,
   //初始化购物车商品数据
-  TypedReducer<CartPageState, InitCartGoodsAction>((state, action) => state..cartGoods = action.cartGoods),
+  TypedReducer<CartPageState, InitCartGoodsAction>((state, action) => state..cartGoods = action.cartGoods).call,
   //初始化商品数据
   TypedReducer<CartPageState, InitGoodsPageAction>((state, action) => state
     ..pageNum = action.pageNum
-    ..goodsPageInfo = action.value),
+    ..goodsPageInfo = action.value).call,
   //加载更多
   TypedReducer<CartPageState, MoreGoodsPageAction>((state, action) {
     List<GoodsList> goods = state.goodsPageInfo.goodsList ?? [];
@@ -23,9 +23,8 @@ final cartPageReducer = combineReducers<CartPageState>([
 
     return state
       ..pageNum = action.pageNum
-      ..goodsPageInfo = GoodsPageInfo(
-          goodsList: goodsList, totalCount: state.goodsPageInfo.totalCount, totalPageCount: state.goodsPageInfo.totalPageCount);
-  }),
+      ..goodsPageInfo = GoodsPageInfo(goodsList: goodsList, totalCount: state.goodsPageInfo.totalCount, totalPageCount: state.goodsPageInfo.totalPageCount);
+  }).call,
   //单选购物车中的商品
   TypedReducer<CartPageState, SelectCartGoodsAction>((state, action) {
     List<String> selectList = state.selectCartGoodsList;
@@ -35,7 +34,7 @@ final cartPageReducer = combineReducers<CartPageState>([
       selectList.removeAt(selectList.indexOf(action.goodsCode));
     }
     return state..selectCartGoodsList = selectList;
-  }),
+  }).call,
   //店铺维度全选
   TypedReducer<CartPageState, SelectStoreGoodsAction>((state, action) {
     List<String> selectList = state.selectCartGoodsList;
@@ -50,7 +49,7 @@ final cartPageReducer = combineReducers<CartPageState>([
       }
     });
     return state..selectCartGoodsList = selectList;
-  }),
+  }).call,
   //全选
   TypedReducer<CartPageState, SelectAllAction>((state, action) {
     List<String> selectList = [];
@@ -62,7 +61,7 @@ final cartPageReducer = combineReducers<CartPageState>([
       }
     }
     return state..selectCartGoodsList = selectList;
-  }),
+  }).call,
   //修改购物车商品数量
   TypedReducer<CartPageState, ChangeCartGoodsNumAction>((state, action) {
     List<CartGoods> cartGoods = state.cartGoods;
@@ -77,5 +76,5 @@ final cartPageReducer = combineReducers<CartPageState>([
     }).toList();
 
     return state..cartGoods = list;
-  }),
+  }).call,
 ]);

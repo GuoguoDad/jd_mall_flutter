@@ -23,7 +23,7 @@ class MenuItem extends StatelessWidget {
     return GestureDetector(
       onTap: () {
         if ((menuData.h5url ?? "").isNotEmpty) {
-          Navigator.of(context).pushNamed(RoutesEnum.webViewPage.path, arguments: WebViewPageArguments(menuData.h5url.toString()));
+          Navigator.of(context).pushNamed(RoutesEnum.webViewPage.path, arguments: {"url": menuData.h5url.toString()});
         }
       },
       child: Column(
