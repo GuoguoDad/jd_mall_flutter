@@ -4,7 +4,7 @@ import 'package:jd_mall_flutter/view/page/category/redux/category_page_state.dar
 import 'package:jd_mall_flutter/view/page/detail/redux/detail_page_state.dart';
 import 'package:jd_mall_flutter/view/page/home/redux/home_page_state.dart';
 import 'package:jd_mall_flutter/view/page/mine/redux/mine_page_state.dart';
-import '../view/page/login/redux/login_page_state.dart';
+import 'package:jd_mall_flutter/view/page/login/redux/login_page_state.dart';
 
 class AppState {
   final HomePageState homePageState;

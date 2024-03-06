@@ -22,9 +22,7 @@ class SetCurrentTab {
   SetCurrentTab(this.value);
 }
 
-class InitPageAction {
-  InitPageAction();
-}
+class InitPageAction {}
 
 class InitMineMenuTabInfoAction {
   final MineMenuTabInfo menuTabInfo;

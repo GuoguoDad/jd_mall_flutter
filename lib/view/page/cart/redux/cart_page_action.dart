@@ -3,9 +3,7 @@ import 'package:jd_mall_flutter/common/types/common.dart';
 import 'package:jd_mall_flutter/models/cart_goods.dart';
 import 'package:jd_mall_flutter/models/goods_page_info.dart';
 
-class InitAction {
-  InitAction();
-}
+class InitAction {}
 
 //记录页面滚动距离
 class SetLoadingAction {

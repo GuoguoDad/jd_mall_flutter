@@ -2,6 +2,9 @@
 import 'package:jd_mall_flutter/common/types/common.dart';
 import 'package:jd_mall_flutter/models/home_page_info.dart';
 
+//页面初始化
+class InitDataAction {}
+
 class SetLoadingAction {
   final bool value;
 
@@ -13,18 +16,6 @@ class SetMenuSliderIndex {
   final int value;
 
   SetMenuSliderIndex(this.value);
-}
-
-//滚动tab当前选中项
-class SetCurrentTab {
-  final String value;
-
-  SetCurrentTab(this.value);
-}
-
-//页面初始化
-class InitDataAction {
-  InitDataAction();
 }
 
 //页面刷新

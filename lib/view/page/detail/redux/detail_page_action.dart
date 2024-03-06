@@ -3,9 +3,7 @@ import 'package:jd_mall_flutter/common/types/common.dart';
 import 'package:jd_mall_flutter/models/goods_detail_res.dart';
 import 'package:jd_mall_flutter/models/goods_page_info.dart';
 
-class InitPageAction {
-  InitPageAction();
-}
+class InitPageAction {}
 
 class SetLoadingAction {
   final bool value;
