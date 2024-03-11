@@ -4,7 +4,8 @@ import 'package:flutter/material.dart';
 // Package imports:
 import 'package:easy_refresh/easy_refresh.dart';
 import 'package:extended_nested_scroll_view/extended_nested_scroll_view.dart';
-import 'package:flutter_redux/flutter_redux.dart';
+import 'package:get/get_state_manager/src/rx_flutter/rx_obx_widget.dart';
+import 'package:get/instance_manager.dart';
 
 // Project imports:
 import 'package:jd_mall_flutter/common/util/easy_refresh_util.dart';
@@ -14,9 +15,7 @@ import 'package:jd_mall_flutter/component/back_top.dart';
 import 'package:jd_mall_flutter/component/keep_alive_wrapper.dart';
 import 'package:jd_mall_flutter/component/loading_widget.dart';
 import 'package:jd_mall_flutter/component/page_goods_list.dart';
-import 'package:jd_mall_flutter/models/home_page_info.dart';
-import 'package:jd_mall_flutter/store/app_state.dart';
-import 'package:jd_mall_flutter/view/page/home/redux/home_page_action.dart';
+import 'package:jd_mall_flutter/view/page/home/home_controller.dart';
 import 'package:jd_mall_flutter/view/page/home/widget/adv_img.dart';
 import 'package:jd_mall_flutter/view/page/home/widget/gallery_list.dart';
 import 'package:jd_mall_flutter/view/page/home/widget/menu_slider.dart';
@@ -61,6 +60,7 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
+    final HomeController c = Get.put(HomeController());
     double statusHeight = getStatusHeight(context);
 
     return NotificationListener<ScrollNotification>(
@@ -75,72 +75,63 @@ class _HomePageState extends State<HomePage> {
         }
         return false;
       },
-      child: StoreBuilder<AppState>(
-        onInit: (store) {
-          store.dispatch(InitDataAction());
-        },
-        builder: (context, store) {
-          List<TabList> tabs = store.state.homePageState.homePageInfo.tabList ?? [];
-          String currentTab = _currentTab.value.isNotEmpty
-              ? _currentTab.value
-              : tabs.isNotEmpty
-                  ? tabs[0].code!
-                  : "";
-          bool isLoading = store.state.homePageState.isLoading;
-
-          if (isLoading) return loadingWidget(context);
-
-          return EasyRefresh.builder(
-            controller: _freshController,
-            header: classicHeader,
-            clipBehavior: Clip.none,
-            onRefresh: () async => store.dispatch(RefreshAction(() => easyRefreshSuccess(_freshController), () => easyRefreshFail(_freshController))),
-            childBuilder: (context, physics) {
-              return Scaffold(
-                body: ExtendedNestedScrollView(
-                  controller: _scrollController,
-                  pinnedHeaderSliverHeightBuilder: () {
-                    return statusHeight + 44 + 54;
+      child: EasyRefresh.builder(
+        controller: _freshController,
+        header: classicHeader,
+        clipBehavior: Clip.none,
+        onRefresh: () => c.refreshPage(() => easyRefreshSuccess(_freshController), () => easyRefreshFail(_freshController)),
+        childBuilder: (context, physics) {
+          return Scaffold(
+            body: ExtendedNestedScrollView(
+              controller: _scrollController,
+              pinnedHeaderSliverHeightBuilder: () {
+                return statusHeight + 44 + 54;
+              },
+              headerSliverBuilder: (BuildContext context, bool innerBoxIsScrolled) {
+                return [
+                  const HeaderLocator.sliver(clearExtent: false),
+                  searchHeader(context, _pageScrollY),
+                  galleryList(context, c),
+                  advBanner(context, c),
+                  menuSlider(context, c),
+                  tabList(context, _currentTab, c, onTabChange: (obj) => handleTabChange(obj))
+                ];
+              },
+              onlyOneScrollInBody: true,
+              body: Obx(() {
+                var tabs = c.homePageInfo.value.tabList ?? [];
+                String currentTab = _currentTab.value.isNotEmpty
+                    ? _currentTab.value
+                    : tabs.isNotEmpty
+                        ? tabs[0].code!
+                        : "";
+                return PageView(
+                  controller: _pageController,
+                  onPageChanged: (index) {
+                    if (isTabClick) return;
+                    _currentTab.value = tabs[index].code!;
                   },
-                  headerSliverBuilder: (BuildContext context, bool innerBoxIsScrolled) {
-                    return [
-                      const HeaderLocator.sliver(clearExtent: false),
-                      searchHeader(context, _pageScrollY),
-                      galleryList(context),
-                      advBanner(context),
-                      menuSlider(context),
-                      tabList(context, _currentTab, onTabChange: (code) => handleTabChange(code, tabs))
-                    ];
-                  },
-                  onlyOneScrollInBody: true,
-                  body: PageView(
-                    controller: _pageController,
-                    onPageChanged: (index) {
-                      if (isTabClick) return;
-                      _currentTab.value = tabs[index].code!;
-                    },
-                    children: tabs.map((e) => KeepAliveWrapper(child: PageGoodsList("home_tab_${e.code!}", currentTab, physics))).toList(),
-                  ),
-                ),
-                floatingActionButton: ValueListenableBuilder<bool>(
-                  builder: (BuildContext context, bool value, Widget? child) {
-                    return backTop(value, _scrollController);
-                  },
-                  valueListenable: _showBackTop,
-                ),
-              );
-            },
+                  children: tabs.map((e) => KeepAliveWrapper(child: PageGoodsList("home_tab_${e.code!}", currentTab, physics))).toList(),
+                );
+              }),
+            ),
+            floatingActionButton: ValueListenableBuilder<bool>(
+              builder: (BuildContext context, bool value, Widget? child) {
+                return backTop(value, _scrollController);
+              },
+              valueListenable: _showBackTop,
+            ),
           );
         },
       ),
     );
   }
 
-  void handleTabChange(String code, List<TabList> tabs) {
+  void handleTabChange(Map obj) {
     isTabClick = true;
-    _currentTab.value = code;
+    _currentTab.value = obj["code"];
 
-    int tabIndex = tabs.indexWhere((element) => element.code == code);
+    int tabIndex = obj["tabs"].indexWhere((element) => element.code == obj["code"]);
     _pageController.animateToPage(tabIndex, duration: const Duration(milliseconds: 200), curve: Curves.linear).then((value) => isTabClick = false);
   }
 }

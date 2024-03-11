@@ -1,23 +1,19 @@
 // Flutter imports:
 import 'package:flutter/material.dart';
 
-// Package imports:
-import 'package:flutter_redux/flutter_redux.dart';
+import 'package:get/get_state_manager/src/rx_flutter/rx_obx_widget.dart';
 
 // Project imports:
 import 'package:jd_mall_flutter/component/page_menu.dart';
 import 'package:jd_mall_flutter/models/home_page_info.dart';
 import 'package:jd_mall_flutter/models/mine_menu_tab_info.dart';
-import 'package:jd_mall_flutter/store/app_state.dart';
-import 'package:jd_mall_flutter/view/page/home/redux/home_page_state.dart';
 
-Widget menuSlider(BuildContext context) {
-  return StoreConnector<AppState, HomePageState>(
-    converter: (store) {
-      return store.state.homePageState;
-    },
-    builder: (context, state) {
-      List<NineMenuList> nineMenuList = state.homePageInfo.nineMenuList ?? [];
+import '../home_controller.dart';
+
+Widget menuSlider(BuildContext context, HomeController c) {
+  return SliverToBoxAdapter(
+    child: Obx(() {
+      List<NineMenuList> nineMenuList = c.homePageInfo.value.nineMenuList ?? [];
       List<FunctionInfo> menuData = nineMenuList
           .map((e) => FunctionInfo(
                 menuIcon: e.menuIcon,
@@ -27,12 +23,10 @@ Widget menuSlider(BuildContext context) {
               ))
           .toList();
 
-      return SliverToBoxAdapter(
-        child: PageMenu(
-          menuDataList: menuData,
-          rowCount: 2,
-        ),
+      return PageMenu(
+        menuDataList: menuData,
+        rowCount: 2,
       );
-    },
+    }),
   );
 }

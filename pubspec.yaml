@@ -74,6 +74,7 @@ dependencies:
   share_plus: ^7.2.2
   syncfusion_flutter_datepicker: ^24.2.3
   video_player: ^2.8.2
+  get: ^4.6.6
 
 dev_dependencies:
   flutter_test:
