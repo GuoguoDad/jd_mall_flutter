@@ -1,39 +1,43 @@
 // Flutter imports:
+import 'dart:ffi';
+
 import 'package:flutter/material.dart';
 
 // Package imports:
-import 'package:flutter_redux/flutter_redux.dart';
+import 'package:get/get_state_manager/src/rx_flutter/rx_obx_widget.dart';
+import 'package:jd_mall_flutter/view/page/category/category_controller.dart';
 
 // Project imports:
 import 'package:jd_mall_flutter/common/style/common_style.dart';
 import 'package:jd_mall_flutter/common/util/screen_util.dart';
 import 'package:jd_mall_flutter/models/primary_category_list.dart';
-import 'package:jd_mall_flutter/store/app_state.dart';
-import 'package:jd_mall_flutter/view/page/category/redux/category_page_action.dart';
-import 'package:jd_mall_flutter/view/page/category/redux/category_page_state.dart';
 
 double itemHeight = 62.0;
 
-Widget leftCate(BuildContext context, ScrollController scrollController) {
-  return StoreBuilder<AppState>(
-    builder: (context, store) {
-      SelectedCategoryInfo? selectedCategoryInfo = store.state.categoryPageState.selectedCategoryInfo;
-      List<CategoryInfo> list = store.state.categoryPageState.categoryList ?? [];
+Widget leftCate(BuildContext context, ScrollController scrollController, CategoryController c) {
+  return Expanded(
+    flex: 1,
+    child: Obx(() {
+      List<CategoryInfo> list = c.categoryList;
+      String prevCode = c.previous.value.code ?? "";
+      String currCode = c.current.value.code ?? "";
+      String nextCode = c.next.value.code ?? "";
 
-      Widget scrollTabList = ListView.builder(
+      return ListView.builder(
         controller: scrollController,
         itemCount: list.length,
         shrinkWrap: true,
         padding: EdgeInsets.zero,
         itemBuilder: (BuildContext context, int index) {
-          bool isPrev = selectedCategoryInfo?.previous?.code == list[index].code;
-          bool isSelect = selectedCategoryInfo?.current?.code == list[index].code;
-          bool isNext = selectedCategoryInfo?.next?.code == list[index].code;
+          bool isPrev = prevCode == list[index].code;
+          bool isSelect = currCode == list[index].code;
+          bool isNext = nextCode == list[index].code;
 
           return GestureDetector(
             onTap: () {
-              store.dispatch(SelectCategoryAction(
-                  SelectedCategoryInfo(index - 1 >= 0 ? list[index - 1] : null, list[index], index + 1 <= list.length - 1 ? list[index + 1] : null)));
+              c.selectLeftCategory(index - 1 >= 0 ? list[index - 1] : CategoryInfo.fromJson({}), list[index],
+                  index + 1 <= list.length - 1 ? list[index + 1] : CategoryInfo.fromJson({}));
+
               scrollController.animateTo(calc2Top(context, index, list.length), duration: const Duration(milliseconds: 200), curve: Curves.linear);
             },
             child: Container(
@@ -49,9 +53,7 @@ Widget leftCate(BuildContext context, ScrollController scrollController) {
           );
         },
       );
-
-      return Expanded(flex: 1, child: scrollTabList);
-    },
+    }),
   );
 }
 

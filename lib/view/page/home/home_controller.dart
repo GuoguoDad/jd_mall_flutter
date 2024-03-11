@@ -22,7 +22,7 @@ class HomeController extends GetxController {
     super.onReady();
   }
 
-  setLoading(RxBool va) => isLoading = va;
+  setLoading(bool va) => isLoading.value = va;
 
   initPageData() async {
     isLoading.value = true;

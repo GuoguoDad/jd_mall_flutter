@@ -2,12 +2,12 @@
 import 'package:flutter/material.dart';
 
 // Package imports:
-import 'package:flutter_redux/flutter_redux.dart';
+import 'package:get/get_state_manager/src/rx_flutter/rx_obx_widget.dart';
+import 'package:get/instance_manager.dart';
 
 // Project imports:
 import 'package:jd_mall_flutter/component/loading_widget.dart';
-import 'package:jd_mall_flutter/store/app_state.dart';
-import 'package:jd_mall_flutter/view/page/category/redux/category_page_action.dart';
+import 'package:jd_mall_flutter/view/page/category/category_controller.dart';
 import 'package:jd_mall_flutter/view/page/category/widget/header.dart';
 import 'package:jd_mall_flutter/view/page/category/widget/left_cate.dart';
 import 'package:jd_mall_flutter/view/page/category/widget/right_group.dart';
@@ -42,31 +42,28 @@ class _CategoryPageState extends State<CategoryPage> {
 
   @override
   Widget build(BuildContext context) {
-    return StoreBuilder<AppState>(
-      onInit: (store) {
-        store.dispatch(InitDataAction());
-      },
-      builder: (context, store) {
-        bool isLoading = store.state.categoryPageState.isLoading;
+    final CategoryController c = Get.put(CategoryController());
 
-        return Column(
-          children: [
-            header(context),
-            Expanded(
-              flex: 1,
-              child: isLoading
-                  ? loadingWidget(context)
-                  : Flex(
-                      direction: Axis.horizontal,
-                      children: [
-                        leftCate(context, _scrollController),
-                        rightGroupList(context, _rightScrollController, _gridViewController),
-                      ],
-                    ),
-            ),
-          ],
-        );
-      },
+    return Column(
+      children: [
+        header(context),
+        Expanded(
+          flex: 1,
+          child: Obx(() {
+            bool isLoading = c.isLoading.value;
+
+            return isLoading
+                ? loadingWidget(context)
+                : Flex(
+                    direction: Axis.horizontal,
+                    children: [
+                      leftCate(context, _scrollController, c),
+                      rightGroupList(context, _rightScrollController, _gridViewController, c),
+                    ],
+                  );
+          }),
+        ),
+      ],
     );
   }
 }

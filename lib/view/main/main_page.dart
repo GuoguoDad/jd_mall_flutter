@@ -9,7 +9,7 @@ import 'package:jd_mall_flutter/component/lazy_load_indexed_stack.dart';
 import 'package:jd_mall_flutter/generated/assets.dart';
 import 'package:jd_mall_flutter/generated/l10n.dart';
 import 'package:jd_mall_flutter/view/page/cart/cart_page.dart';
-import 'package:jd_mall_flutter/view/page/category/category.dart';
+import 'package:jd_mall_flutter/view/page/category/category_page.dart';
 import 'package:jd_mall_flutter/view/page/home/home_page.dart';
 import 'package:jd_mall_flutter/view/page/mine/mine_page.dart';
 
