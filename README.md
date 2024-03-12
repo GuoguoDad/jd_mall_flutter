@@ -2,7 +2,7 @@
 
 高仿京东商城flutter版本，个人学习flutter项目
 
-1. 使用flutter_redux状态管理
+1. 使用getx状态管理
 2. 网络使用dio进行封装
 3. 使用node项目mock服务端接口(mock_server目录)
 4. 目前实现了首页、分类、购物车、我的，商品详情、webview加载模块...
@@ -28,7 +28,7 @@ Flutter框架具有如下的一些特点：
 6. 提供了丰富的 UI 组件和插件，使得开发者可以更快速地构建应用程序。社区插件也非常丰富
    ，pub.dev，基本上你能想到的所有插件他都有，就是算没有，自己懂Android和iOS开发，封装一个也非常简单，都有套路模版。
 
-# flutter_redux
+# flutter_redux  main 分支状态管理器已切换成 getx ,redux分支备份flutter_redux的写法
 
 <img src="images/shot/f_redux.png" title="" alt="image" width="450">
 
