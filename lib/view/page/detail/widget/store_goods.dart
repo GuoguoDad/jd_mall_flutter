@@ -2,24 +2,24 @@
 import 'package:flutter/material.dart';
 
 // Package imports:
-import 'package:flutter_redux/flutter_redux.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
+import 'package:get/get_state_manager/src/rx_flutter/rx_obx_widget.dart';
 
 // Project imports:
 import 'package:jd_mall_flutter/common/util/screen_util.dart';
 import 'package:jd_mall_flutter/component/goods_item.dart';
 import 'package:jd_mall_flutter/models/goods_page_info.dart';
-import 'package:jd_mall_flutter/store/app_state.dart';
+import 'package:jd_mall_flutter/view/page/detail/detail_controller.dart';
 
 double screenWidth = 0;
 
-Widget storeGoods(BuildContext context) {
+Widget storeGoods(BuildContext context, DetailController c) {
   screenWidth = getScreenWidth(context);
 
-  return StoreBuilder<AppState>(
-    builder: (context, store) {
+  return Obx(
+    () {
       double width = (getScreenWidth(context) - 20) / 2;
-      List<GoodsList>? goodsList = store.state.detailPageState.goodsPageInfo.goodsList ?? [];
+      List<GoodsList>? goodsList = c.goodsPageInfo.value.goodsList ?? [];
 
       return SliverMasonryGrid.count(
         childCount: goodsList.length,

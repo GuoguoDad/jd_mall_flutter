@@ -3,26 +3,22 @@ import 'package:flutter/material.dart';
 
 // Package imports:
 import 'package:cached_network_image/cached_network_image.dart';
-import 'package:flutter_redux/flutter_redux.dart';
+import 'package:get/get_state_manager/src/rx_flutter/rx_obx_widget.dart';
 
 // Project imports:
 import 'package:jd_mall_flutter/common/style/common_style.dart';
 import 'package:jd_mall_flutter/common/util/screen_util.dart';
 import 'package:jd_mall_flutter/component/image/asset_image.dart';
 import 'package:jd_mall_flutter/generated/assets.dart';
-import 'package:jd_mall_flutter/store/app_state.dart';
-import 'package:jd_mall_flutter/view/page/detail/redux/detail_page_state.dart';
+import 'package:jd_mall_flutter/view/page/detail/detail_controller.dart';
 
-Widget detailCard(BuildContext context, Key key) {
+Widget detailCard(BuildContext context, Key key, DetailController c) {
   double screenWidth = getScreenWidth(context);
 
   return SliverToBoxAdapter(
-    child: StoreConnector<AppState, DetailPageState>(
-      converter: (store) {
-        return store.state.detailPageState;
-      },
-      builder: (context, state) {
-        List<String>? introductionList = state.goodsDetailRes.detailInfo?.introductionList ?? [];
+    child: Obx(
+      () {
+        List<String>? introductionList = c.goodsDetailRes.value.detailInfo?.introductionList ?? [];
 
         return Container(
           key: key,

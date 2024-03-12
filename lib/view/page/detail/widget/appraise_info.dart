@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 
 // Package imports:
 import 'package:cached_network_image/cached_network_image.dart';
-import 'package:flutter_redux/flutter_redux.dart';
+import 'package:get/get_state_manager/src/rx_flutter/rx_obx_widget.dart';
 
 // Project imports:
 import 'package:jd_mall_flutter/common/style/common_style.dart';
@@ -13,18 +13,18 @@ import 'package:jd_mall_flutter/component/image/asset_image.dart';
 import 'package:jd_mall_flutter/generated/assets.dart';
 import 'package:jd_mall_flutter/generated/l10n.dart';
 import 'package:jd_mall_flutter/models/goods_detail_res.dart';
-import 'package:jd_mall_flutter/store/app_state.dart';
+import 'package:jd_mall_flutter/view/page/detail/detail_controller.dart';
 
 double imgWidth = 60;
 double headWidth = 40;
 double screenWidth = 0;
 
-Widget appraiseInfo(BuildContext context, Key key) {
+Widget appraiseInfo(BuildContext context, Key key, DetailController c) {
   screenWidth = getScreenWidth(context);
 
-  return StoreBuilder<AppState>(builder: (context, store) {
-    List<AppraiseInfo> list = store.state.detailPageState.goodsDetailRes.goodsInfo?.appraiseList ?? [];
-    DetailInfo? detailInfo = store.state.detailPageState.goodsDetailRes.detailInfo;
+  return Obx(() {
+    List<AppraiseInfo> list = c.goodsDetailRes.value.goodsInfo?.appraiseList ?? [];
+    DetailInfo? detailInfo = c.goodsDetailRes.value.detailInfo;
 
     Widget appraiseList = GroupGridView(
       padding: EdgeInsets.zero,

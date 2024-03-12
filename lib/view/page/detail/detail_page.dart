@@ -5,16 +5,15 @@ import 'package:flutter/services.dart';
 
 // Package imports:
 import 'package:extended_scroll/extended_scroll.dart';
-import 'package:flutter_redux/flutter_redux.dart';
+import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
+import 'package:jd_mall_flutter/view/page/detail/detail_controller.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
 
 // Project imports:
 import 'package:jd_mall_flutter/common/style/common_style.dart';
 import 'package:jd_mall_flutter/common/util/refresh_util.dart';
 import 'package:jd_mall_flutter/common/util/screen_util.dart';
-import 'package:jd_mall_flutter/component/loading_widget.dart';
-import 'package:jd_mall_flutter/store/app_state.dart';
-import 'package:jd_mall_flutter/view/page/detail/redux/detail_page_action.dart';
 import 'package:jd_mall_flutter/view/page/detail/widget/appraise_info.dart';
 import 'package:jd_mall_flutter/view/page/detail/widget/back_to_top.dart';
 import 'package:jd_mall_flutter/view/page/detail/widget/detail_card.dart';
@@ -32,6 +31,7 @@ class DetailPage extends StatefulWidget {
 }
 
 class _DetailPageState extends State<DetailPage> {
+  final DetailController controller = Get.put(DetailController());
   late final ExtendedScrollController _scrollController;
   late final RefreshController _refreshController;
 
@@ -66,98 +66,79 @@ class _DetailPageState extends State<DetailPage> {
 
   @override
   Widget build(BuildContext context) {
-    return StoreBuilder<AppState>(
-      onInit: (store) async {
-        await store.dispatch(InitPageAction());
-      },
-      builder: (context, store) {
-        bool isLoading = store.state.detailPageState.isLoading;
+    return AnnotatedRegion<SystemUiOverlayStyle>(
+      value: SystemUiOverlayStyle.dark,
+      child: Column(
+        children: [
+          Expanded(
+            flex: 1,
+            child: Scaffold(
+              body: Stack(
+                children: [
+                  NotificationListener<ScrollNotification>(
+                    onNotification: (ScrollNotification notification) {
+                      if (notification.depth == 1) {
+                        _pageScrollY.value = notification.metrics.pixels;
 
-        List<Widget> stackWidgets = [];
-        if (isLoading) {
-          stackWidgets.add(
-            loadingWidget(context),
-          );
-        } else {
-          stackWidgets.add(
-            NotificationListener<ScrollNotification>(
-              onNotification: (ScrollNotification notification) {
-                if (notification.depth == 1) {
-                  _pageScrollY.value = notification.metrics.pixels;
-
-                  //监听滚动，选中对应的tab
-                  if (isTabClicked) return false;
-                  int newIndex = findFirstVisibleItemIndex(cardKeys, context);
-                  _index.value = newIndex;
-                }
-                return false;
-              },
-              child: Container(
-                color: CommonStyle.colorF5F5F5,
-                child: SmartRefresher(
-                  controller: _refreshController,
-                  enablePullUp: true,
-                  enablePullDown: false,
-                  onLoading: () async {
-                    store.dispatch(LoadMoreAction(
-                      store.state.detailPageState.pageNum + 1,
-                      () => loadMoreSuccess(_refreshController),
-                      () => loadMoreFail(_refreshController),
-                    ));
-                  },
-                  child: ExtendedCustomScrollView(
-                    controller: _scrollController,
-                    slivers: [
-                      goodsInfo(context, cardKeys[0]),
-                      appraiseInfo(context, cardKeys[1]),
-                      detailCard(context, cardKeys[2]),
-                      storeGoodsHeader(context, cardKeys[3]),
-                      storeGoods(context)
-                    ],
+                        //监听滚动，选中对应的tab
+                        if (isTabClicked) return false;
+                        int newIndex = findFirstVisibleItemIndex(cardKeys, context);
+                        _index.value = newIndex;
+                      }
+                      return false;
+                    },
+                    child: Container(
+                      color: CommonStyle.colorF5F5F5,
+                      child: Obx(() {
+                        return SmartRefresher(
+                          controller: _refreshController,
+                          enablePullUp: true,
+                          enablePullDown: false,
+                          onLoading: () async {
+                            controller.loadNextPage(
+                              controller.pageNum.value + 1,
+                              () => loadMoreSuccess(_refreshController),
+                              () => loadMoreFail(_refreshController),
+                            );
+                          },
+                          child: ExtendedCustomScrollView(
+                            controller: _scrollController,
+                            slivers: [
+                              goodsInfo(context, cardKeys[0], controller),
+                              appraiseInfo(context, cardKeys[1], controller),
+                              detailCard(context, cardKeys[2], controller),
+                              storeGoodsHeader(context, cardKeys[3]),
+                              storeGoods(context, controller)
+                            ],
+                          ),
+                        );
+                      }),
+                    ),
                   ),
-                ),
+                  Positioned(
+                    top: 0,
+                    left: 0,
+                    child: tabHeader(
+                      context,
+                      _pageScrollY,
+                      _index,
+                      onChange: (index) {
+                        if (_index.value != index) {
+                          isTabClicked = true;
+                          _index.value = index;
+                          scroll2PositionByTabIndex(index);
+                        }
+                      },
+                    ),
+                  )
+                ],
               ),
+              floatingActionButton: BackToTop(_scrollController),
             ),
-          );
-
-          stackWidgets.add(
-            Positioned(
-              top: 0,
-              left: 0,
-              child: tabHeader(
-                context,
-                _pageScrollY,
-                _index,
-                onChange: (index) {
-                  if (_index.value != index) {
-                    isTabClicked = true;
-                    _index.value = index;
-                    scroll2PositionByTabIndex(index);
-                  }
-                },
-              ),
-            ),
-          );
-        }
-
-        return AnnotatedRegion<SystemUiOverlayStyle>(
-          value: SystemUiOverlayStyle.dark,
-          child: Column(
-            children: [
-              Expanded(
-                flex: 1,
-                child: Scaffold(
-                  body: Stack(
-                    children: stackWidgets,
-                  ),
-                  floatingActionButton: BackToTop(_scrollController),
-                ),
-              ),
-              fixedBottom(context)
-            ],
           ),
-        );
-      },
+          fixedBottom(context)
+        ],
+      ),
     );
   }
 
