@@ -7,7 +7,6 @@ import 'package:flutter/services.dart';
 
 // Package imports:
 import 'package:flutter_form_builder/flutter_form_builder.dart';
-import 'package:flutter_redux/flutter_redux.dart';
 import 'package:form_builder_validators/form_builder_validators.dart';
 
 // Project imports:
@@ -18,10 +17,7 @@ import 'package:jd_mall_flutter/common/util/screen_util.dart';
 import 'package:jd_mall_flutter/component/linear_button.dart';
 import 'package:jd_mall_flutter/generated/l10n.dart';
 import 'package:jd_mall_flutter/routes.dart';
-import 'package:jd_mall_flutter/store/app_state.dart';
-import 'package:jd_mall_flutter/view/page/login/redux/login_page_action.dart';
 import 'package:jd_mall_flutter/view/page/login/service.dart';
-import 'package:redux/src/store.dart';
 
 class LoginPage extends StatefulWidget {
   final Map? arguments;
@@ -83,19 +79,15 @@ class _LoginPageState extends State<LoginPage> {
                   ]),
                 ),
               ),
-              StoreBuilder<AppState>(
-                builder: (context, store) {
-                  return btnContainer(
-                    child: LinearButton(
-                      btnName: '登录',
-                      height: 58,
-                      width: getScreenWidth(context) - 24,
-                      borderRadius: BorderRadius.circular(50),
-                      onTap: () => login(store),
-                    ),
-                  );
-                },
-              ),
+              btnContainer(
+                child: LinearButton(
+                  btnName: '登录',
+                  height: 58,
+                  width: getScreenWidth(context) - 24,
+                  borderRadius: BorderRadius.circular(50),
+                  onTap: () => login(),
+                ),
+              )
             ],
           ),
         ),
@@ -103,7 +95,7 @@ class _LoginPageState extends State<LoginPage> {
     );
   }
 
-  Future<void> login(Store<AppState> store) async {
+  Future<void> login() async {
     if (_formKey.currentState!.saveAndValidate()) {
       var userName = _formKey.currentState?.value['userName'];
       var password = _formKey.currentState?.value['password'];
@@ -119,7 +111,6 @@ class _LoginPageState extends State<LoginPage> {
         await Global.preferences!.setString("headerImg", res.headerImg);
         await Global.preferences!.setString("integral", res.integral.toString());
         await Global.preferences!.setString("creditValue", res.creditValue.toString());
-        store.dispatch(SetLoginInfo(true));
 
         if (widget.arguments != null) {
           var from = widget.arguments!["from"];

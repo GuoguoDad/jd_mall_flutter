@@ -39,8 +39,6 @@ dependencies:
   cupertino_icons: ^1.0.2
   dio: ^5.4.0
   shimmer: ^3.0.0
-  redux: ^5.0.0
-  flutter_redux: ^0.10.0
   json_annotation: ^4.8.1
   connectivity_plus: ^5.0.0
   shared_preferences: ^2.0.10

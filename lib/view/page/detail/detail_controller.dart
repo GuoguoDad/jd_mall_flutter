@@ -40,7 +40,8 @@ class DetailController extends GetxController {
   }
 
   //加载商品列表下一页
-  loadNextPage(int currentPage, VoidCallback loadMoreSuccess, VoidCallback loadMoreFail) {
+  loadNextPage(VoidCallback loadMoreSuccess, VoidCallback loadMoreFail) {
+    int currentPage = pageNum.value + 1;
     DetailApi.queryStoreGoodsListByPage(currentPage, pageSize).then((res) {
       var totalPage = res.totalPageCount;
 

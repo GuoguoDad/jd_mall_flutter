@@ -66,6 +66,47 @@ class _DetailPageState extends State<DetailPage> {
 
   @override
   Widget build(BuildContext context) {
+    return pageContainer(
+      children: [
+        NotificationListener<ScrollNotification>(
+          onNotification: (ScrollNotification notification) {
+            if (notification.depth == 1) {
+              _pageScrollY.value = notification.metrics.pixels;
+
+              //监听滚动，选中对应的tab
+              if (isTabClicked) return false;
+              int newIndex = findFirstVisibleItemIndex(cardKeys, context);
+              _index.value = newIndex;
+            }
+            return false;
+          },
+          child: Container(
+            color: CommonStyle.colorF5F5F5,
+            child: SmartRefresher(
+              controller: _refreshController,
+              enablePullUp: true,
+              enablePullDown: false,
+              onLoading: () => controller.loadNextPage(() => loadMoreSuccess(_refreshController), () => loadMoreFail(_refreshController)),
+              child: ExtendedCustomScrollView(
+                controller: _scrollController,
+                slivers: [
+                  goodsInfo(context, cardKeys[0], controller),
+                  appraiseInfo(context, cardKeys[1], controller),
+                  detailCard(context, cardKeys[2], controller),
+                  storeGoodsHeader(context, cardKeys[3]),
+                  storeGoods(context, controller)
+                ],
+              ),
+            ),
+          ),
+        ),
+        floatingHeader()
+      ],
+    );
+  }
+
+  //页面框架
+  Widget pageContainer({required List<Widget> children}) {
     return AnnotatedRegion<SystemUiOverlayStyle>(
       value: SystemUiOverlayStyle.dark,
       child: Column(
@@ -74,70 +115,33 @@ class _DetailPageState extends State<DetailPage> {
             flex: 1,
             child: Scaffold(
               body: Stack(
-                children: [
-                  NotificationListener<ScrollNotification>(
-                    onNotification: (ScrollNotification notification) {
-                      if (notification.depth == 1) {
-                        _pageScrollY.value = notification.metrics.pixels;
-
-                        //监听滚动，选中对应的tab
-                        if (isTabClicked) return false;
-                        int newIndex = findFirstVisibleItemIndex(cardKeys, context);
-                        _index.value = newIndex;
-                      }
-                      return false;
-                    },
-                    child: Container(
-                      color: CommonStyle.colorF5F5F5,
-                      child: Obx(() {
-                        return SmartRefresher(
-                          controller: _refreshController,
-                          enablePullUp: true,
-                          enablePullDown: false,
-                          onLoading: () async {
-                            controller.loadNextPage(
-                              controller.pageNum.value + 1,
-                              () => loadMoreSuccess(_refreshController),
-                              () => loadMoreFail(_refreshController),
-                            );
-                          },
-                          child: ExtendedCustomScrollView(
-                            controller: _scrollController,
-                            slivers: [
-                              goodsInfo(context, cardKeys[0], controller),
-                              appraiseInfo(context, cardKeys[1], controller),
-                              detailCard(context, cardKeys[2], controller),
-                              storeGoodsHeader(context, cardKeys[3]),
-                              storeGoods(context, controller)
-                            ],
-                          ),
-                        );
-                      }),
-                    ),
-                  ),
-                  Positioned(
-                    top: 0,
-                    left: 0,
-                    child: tabHeader(
-                      context,
-                      _pageScrollY,
-                      _index,
-                      onChange: (index) {
-                        if (_index.value != index) {
-                          isTabClicked = true;
-                          _index.value = index;
-                          scroll2PositionByTabIndex(index);
-                        }
-                      },
-                    ),
-                  )
-                ],
+                children: children,
               ),
               floatingActionButton: BackToTop(_scrollController),
             ),
           ),
           fixedBottom(context)
         ],
+      ),
+    );
+  }
+
+  //顶部商品、评价、详情、推荐浮动tab
+  Widget floatingHeader() {
+    return Positioned(
+      top: 0,
+      left: 0,
+      child: tabHeader(
+        context,
+        _pageScrollY,
+        _index,
+        onChange: (index) {
+          if (_index.value != index) {
+            isTabClicked = true;
+            _index.value = index;
+            scroll2PositionByTabIndex(index);
+          }
+        },
       ),
     );
   }

@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 
 // Package imports:
 import 'package:flutter_easyloading/flutter_easyloading.dart';
-import 'package:flutter_redux/flutter_redux.dart';
 
 // Project imports:
 import 'package:jd_mall_flutter/common/extension/color_ext.dart';
@@ -15,8 +14,6 @@ import 'package:jd_mall_flutter/component/linear_button.dart';
 import 'package:jd_mall_flutter/generated/assets.dart';
 import 'package:jd_mall_flutter/mixin/image_picker_mixin.dart';
 import 'package:jd_mall_flutter/routes.dart';
-import 'package:jd_mall_flutter/store/app_state.dart';
-import 'package:jd_mall_flutter/view/page/login/redux/login_page_action.dart';
 
 class PersonalInfo extends StatefulWidget {
   const PersonalInfo({super.key});
@@ -60,25 +57,20 @@ class _PersonalInfoState extends State<PersonalInfo> with ImagePickerMixin {
           height: 60 + getBottomSpace(context),
           padding: EdgeInsets.only(bottom: getBottomSpace(context)),
           alignment: Alignment.center,
-          child: StoreBuilder<AppState>(
-            builder: (context, store) {
-              return LinearButton(
-                width: getScreenWidth(context) - 24,
-                height: 50,
-                btnName: '退出登录',
-                onTap: () async {
-                  store.dispatch(SetLoginInfo(false));
-                  await Global.preferences?.remove("loginFlag");
-                  await Global.preferences?.remove("token");
-                  await Global.preferences?.remove("userId");
-                  await Global.preferences?.remove("userName");
-                  await Global.preferences?.remove("headerImg");
-                  await Global.preferences?.remove("integral");
-                  await Global.preferences?.remove("creditValue");
+          child: LinearButton(
+            width: getScreenWidth(context) - 24,
+            height: 50,
+            btnName: '退出登录',
+            onTap: () async {
+              await Global.preferences?.remove("loginFlag");
+              await Global.preferences?.remove("token");
+              await Global.preferences?.remove("userId");
+              await Global.preferences?.remove("userName");
+              await Global.preferences?.remove("headerImg");
+              await Global.preferences?.remove("integral");
+              await Global.preferences?.remove("creditValue");
 
-                  Navigator.of(Global.navigatorKey.currentContext!).pushReplacementNamed(RoutesEnum.loginPage.path);
-                },
-              );
+              Navigator.of(Global.navigatorKey.currentContext!).pushReplacementNamed(RoutesEnum.loginPage.path);
             },
           ),
         )

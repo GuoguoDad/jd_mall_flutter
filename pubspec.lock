@@ -491,14 +491,6 @@ packages:
       url: "https://pub.flutter-io.cn"
     source: hosted
     version: "2.0.17"
-  flutter_redux:
-    dependency: "direct main"
-    description:
-      name: flutter_redux
-      sha256: "3b20be9e08d0038e1452fbfa1fdb1ea0a7c3738c997734530b3c6d0bb5fcdbdc"
-      url: "https://pub.flutter-io.cn"
-    source: hosted
-    version: "0.10.0"
   flutter_slidable:
     dependency: "direct main"
     description:
@@ -1077,14 +1069,6 @@ packages:
       url: "https://pub.flutter-io.cn"
     source: hosted
     version: "2.0.0"
-  redux:
-    dependency: "direct main"
-    description:
-      name: redux
-      sha256: "1e86ed5b1a9a717922d0a0ca41f9bf49c1a587d50050e9426fc65b14e85ec4d7"
-      url: "https://pub.flutter-io.cn"
-    source: hosted
-    version: "5.0.0"
   rxdart:
     dependency: transitive
     description:
