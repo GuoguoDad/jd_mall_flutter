@@ -100,7 +100,9 @@ main 分支状态管理器已切换成 getx ,redux分支备份flutter_redux的�
 5. 接受与更新
 6. 触发
 
-# 启动本地mock_server(main_dev 走本地mock， main_prd 走远程mock服务)
+# 启动本地mock_server
+
+main_dev 走本地mock， main_prd 走远程mock服务
 
 1. cd mock_server
 2. 执行 npm i 安装依赖
