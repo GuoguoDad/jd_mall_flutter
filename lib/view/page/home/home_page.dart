@@ -30,6 +30,7 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+  final HomeController c = Get.put(HomeController());
   late final EasyRefreshController _freshController;
   late final ScrollController _scrollController;
   late final PageController _pageController;
@@ -60,7 +61,6 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
-    final HomeController c = Get.put(HomeController());
     double statusHeight = getStatusHeight(context);
 
     return NotificationListener<ScrollNotification>(

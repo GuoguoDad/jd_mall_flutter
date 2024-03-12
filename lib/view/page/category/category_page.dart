@@ -20,6 +20,7 @@ class CategoryPage extends StatefulWidget {
 }
 
 class _CategoryPageState extends State<CategoryPage> {
+  final CategoryController c = Get.put(CategoryController());
   late ScrollController _scrollController;
   late ScrollController _rightScrollController;
   late ScrollController _gridViewController;
@@ -42,8 +43,6 @@ class _CategoryPageState extends State<CategoryPage> {
 
   @override
   Widget build(BuildContext context) {
-    final CategoryController c = Get.put(CategoryController());
-
     return Column(
       children: [
         header(context),

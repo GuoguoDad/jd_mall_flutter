@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 // Package imports:
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter_group_list_view/flutter_group_list_view.dart';
-import 'package:flutter_redux/flutter_redux.dart';
+import 'package:get/get_state_manager/src/rx_flutter/rx_obx_widget.dart';
 
 // Project imports:
 import 'package:jd_mall_flutter/common/style/common_style.dart';
@@ -16,47 +16,24 @@ import 'package:jd_mall_flutter/generated/assets.dart';
 import 'package:jd_mall_flutter/generated/l10n.dart';
 import 'package:jd_mall_flutter/models/cart_goods.dart';
 import 'package:jd_mall_flutter/routes.dart';
-import 'package:jd_mall_flutter/store/app_state.dart';
-import 'package:jd_mall_flutter/view/page/cart/redux/cart_page_action.dart';
 import 'package:jd_mall_flutter/view/vebview/type.dart';
+import 'package:jd_mall_flutter/view/page/cart/cart_controller.dart';
 
 double thumbnailWidth = 80;
 
-Widget cartGoods(BuildContext context) {
-  return StoreBuilder<AppState>(
-    builder: (context, store) {
-      List<CartGoods> cartGoods = store.state.cartPageState.cartGoods;
-      List<String> selectList = store.state.cartPageState.selectCartGoodsList;
+Widget cartGoods(BuildContext context, CartController c) {
+  return Obx(
+    () {
+      List<CartGoods> cartGoods = c.cartGoods;
 
       return GroupSliverListView(
         sectionCount: cartGoods.length,
         itemInSectionCount: (int section) => cartGoods[section].goodsList?.length ?? 0,
         headerForSectionBuilder: (int section) {
-          List<String> sList = selectList.where((element) => element.contains(cartGoods[section].storeCode!)).toList();
-          bool isSelectAll = sList.length == cartGoods[section].goodsList?.length;
-
-          return HeaderSection(
-            storeName: cartGoods[section].storeName!,
-            url: cartGoods[section].h5url ?? "",
-            isSelectAll: isSelectAll,
-            cartGoods: cartGoods,
-            onCheckChange: (bool? va) {
-              store.dispatch(SelectStoreGoodsAction(cartGoods[section].storeCode!, !isSelectAll));
-            },
-          );
+          return buildHeader(context, c, section);
         },
         itemInSectionBuilder: (BuildContext context, IndexPath indexPath) {
-          return ItemSection(
-            selectList: selectList,
-            cartGoods: cartGoods,
-            indexPath: indexPath,
-            onCheckChange: (bool? va) {
-              store.dispatch(SelectCartGoodsAction(cartGoods[indexPath.section].goodsList![indexPath.index].code!));
-            },
-            onCountChange: (int value) {
-              store.dispatch(ChangeCartGoodsNumAction(cartGoods[indexPath.section].goodsList![indexPath.index].code!, value));
-            },
-          );
+          return buildItem(context, c, indexPath);
         },
         separatorBuilder: (IndexPath indexPath) {
           return Container(
@@ -65,42 +42,29 @@ Widget cartGoods(BuildContext context) {
           );
         },
         footerForSectionBuilder: (int section) {
-          double marginBottom = section + 1 != cartGoods.length ? 10 : 0.0;
-          return FooterSection(
-            marginBottom: marginBottom,
-          );
+          return buildFooter(context, marginBottom: section + 1 != cartGoods.length ? 10 : 0.0);
         },
       );
     },
   );
 }
 
-class HeaderSection extends StatelessWidget {
-  const HeaderSection({
-    super.key,
-    required this.storeName,
-    required this.url,
-    required this.isSelectAll,
-    required this.cartGoods,
-    required this.onCheckChange,
-  });
+Widget buildHeader(BuildContext context, CartController c, int section) {
+  return Container(
+    height: 50,
+    margin: const EdgeInsets.only(left: 12, right: 12),
+    decoration: const BoxDecoration(
+      borderRadius: BorderRadius.only(topLeft: Radius.circular(10), topRight: Radius.circular(10)),
+      color: Colors.white,
+    ),
+    child: Obx(() {
+      List<CartGoods> cartGoods = c.cartGoods;
+      List<String> selectList = c.selectCartGoodsList;
+      List<String> sList = selectList.where((element) => element.contains(cartGoods[section].storeCode!)).toList();
+      bool isSelectAll = sList.length == cartGoods[section].goodsList?.length;
+      String url = cartGoods[section].h5url ?? "";
 
-  final String storeName;
-  final String url;
-  final bool isSelectAll;
-  final List<CartGoods> cartGoods;
-  final ValueCallback<bool?> onCheckChange;
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      height: 50,
-      margin: const EdgeInsets.only(left: 12, right: 12),
-      decoration: const BoxDecoration(
-        borderRadius: BorderRadius.only(topLeft: Radius.circular(10), topRight: Radius.circular(10)),
-        color: Colors.white,
-      ),
-      child: Row(
+      return Row(
         crossAxisAlignment: CrossAxisAlignment.center,
         mainAxisAlignment: MainAxisAlignment.start,
         children: [
@@ -111,11 +75,11 @@ class HeaderSection extends StatelessWidget {
               value: isSelectAll,
               shape: const CircleBorder(),
               activeColor: Colors.red,
-              onChanged: (bool? va) => onCheckChange(va),
+              onChanged: (bool? va) => c.selectStoreGoods(cartGoods[section].storeCode!, !isSelectAll),
             ),
           ),
           Container(margin: const EdgeInsets.only(left: 5), child: assetImage(Assets.imagesIcStore, 24, 24)),
-          Container(margin: const EdgeInsets.only(left: 4), child: Text(storeName, style: const TextStyle(fontSize: 16))),
+          Container(margin: const EdgeInsets.only(left: 4), child: Text(cartGoods[section].storeName!, style: const TextStyle(fontSize: 16))),
           GestureDetector(
             onTap: () {
               if (url != "") {
@@ -125,33 +89,20 @@ class HeaderSection extends StatelessWidget {
             child: assetImage("images/ic_arrow_right.png", 20, 20),
           )
         ],
-      ),
-    );
-  }
+      );
+    }),
+  );
 }
 
-class ItemSection extends StatelessWidget {
-  const ItemSection({
-    super.key,
-    required this.selectList,
-    required this.cartGoods,
-    required this.indexPath,
-    required this.onCheckChange,
-    required this.onCountChange,
-  });
+Widget buildItem(BuildContext context, CartController c, IndexPath indexPath) {
+  return Container(
+    margin: const EdgeInsets.only(left: 12, right: 12),
+    color: Colors.white,
+    child: Obx(() {
+      List<CartGoods> cartGoods = c.cartGoods;
+      List<String> selectList = c.selectCartGoodsList;
 
-  final List<String> selectList;
-  final List<CartGoods> cartGoods;
-  final IndexPath indexPath;
-  final ValueCallback<bool?> onCheckChange;
-  final ValueCallback<int> onCountChange;
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      margin: const EdgeInsets.only(left: 12, right: 12),
-      color: Colors.white,
-      child: Row(
+      return Row(
         crossAxisAlignment: CrossAxisAlignment.center,
         mainAxisAlignment: MainAxisAlignment.start,
         children: [
@@ -162,7 +113,7 @@ class ItemSection extends StatelessWidget {
               value: selectList.contains(cartGoods[indexPath.section].goodsList![indexPath.index].code!),
               shape: const CircleBorder(),
               activeColor: Colors.red,
-              onChanged: (bool? va) => onCheckChange(va),
+              onChanged: (bool? va) => c.selectCartGoods(cartGoods[indexPath.section].goodsList![indexPath.index].code!),
             ),
           ),
           Container(
@@ -222,7 +173,7 @@ class ItemSection extends StatelessWidget {
                             elevation: 0,
                             buttonAspectRatio: 1.4,
                           ),
-                          didChangeCount: (int value) => onCountChange(value),
+                          didChangeCount: (int value) => c.changeCartGoodsNum(cartGoods[indexPath.section].goodsList![indexPath.index].code!, value),
                         )
                       ],
                     ),
@@ -232,28 +183,18 @@ class ItemSection extends StatelessWidget {
             ),
           )
         ],
-      ),
-    );
-  }
+      );
+    }),
+  );
 }
 
-class FooterSection extends StatelessWidget {
-  const FooterSection({
-    super.key,
-    required this.marginBottom,
-  });
-
-  final double marginBottom;
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      height: 10,
-      margin: EdgeInsets.only(left: 12, right: 12, bottom: marginBottom),
-      decoration: const BoxDecoration(
-        color: Colors.white,
-        borderRadius: BorderRadius.only(bottomLeft: Radius.circular(10), bottomRight: Radius.circular(10)),
-      ),
-    );
-  }
+Widget buildFooter(BuildContext context, {required double marginBottom}) {
+  return Container(
+    height: 10,
+    margin: EdgeInsets.only(left: 12, right: 12, bottom: marginBottom),
+    decoration: const BoxDecoration(
+      color: Colors.white,
+      borderRadius: BorderRadius.only(bottomLeft: Radius.circular(10), bottomRight: Radius.circular(10)),
+    ),
+  );
 }

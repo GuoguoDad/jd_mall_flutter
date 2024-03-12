@@ -2,7 +2,9 @@
 import 'package:flutter/material.dart';
 
 // Package imports:
-import 'package:flutter_redux/flutter_redux.dart';
+import 'package:get/get_state_manager/src/rx_flutter/rx_obx_widget.dart';
+import 'package:get/instance_manager.dart';
+import 'package:jd_mall_flutter/view/page/cart/cart_controller.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
 
 // Project imports:
@@ -10,8 +12,6 @@ import 'package:jd_mall_flutter/common/style/common_style.dart';
 import 'package:jd_mall_flutter/common/util/refresh_util.dart';
 import 'package:jd_mall_flutter/component/back_to_top.dart';
 import 'package:jd_mall_flutter/component/loading_widget.dart';
-import 'package:jd_mall_flutter/store/app_state.dart';
-import 'package:jd_mall_flutter/view/page/cart/redux/cart_page_action.dart';
 import 'package:jd_mall_flutter/view/page/cart/widget/cart_goods.dart';
 import 'package:jd_mall_flutter/view/page/cart/widget/cart_header.dart';
 import 'package:jd_mall_flutter/view/page/cart/widget/condition.dart';
@@ -27,6 +27,7 @@ class CartPage extends StatefulWidget {
 }
 
 class _CartPageState extends State<CartPage> {
+  final CartController c = Get.put(CartController());
   late final ScrollController _scrollController;
   late final RefreshController _refreshController;
 
@@ -46,16 +47,14 @@ class _CartPageState extends State<CartPage> {
 
   @override
   Widget build(BuildContext context) {
-    return StoreBuilder<AppState>(onInit: (store) {
-      store.dispatch(InitAction());
-    }, builder: (context, store) {
-      bool isLoading = store.state.cartPageState.isLoading;
+    return Column(
+      children: [
+        cartHeader(context),
+        Expanded(
+          child: Obx(() {
+            bool isLoading = c.isLoading.value;
 
-      return Column(
-        children: [
-          cartHeader(context),
-          Expanded(
-            child: isLoading
+            return isLoading
                 ? loadingWidget(context)
                 : Scaffold(
                     backgroundColor: CommonStyle.colorF3F3F3,
@@ -68,28 +67,27 @@ class _CartPageState extends State<CartPage> {
                         height: 58,
                       ),
                       onRefresh: () async {
-                        store.dispatch(RefreshAction(() => refreshSuccess(_refreshController), () => refreshFail(_refreshController)));
+                        c.refreshPage(() => refreshSuccess(_refreshController), () => refreshFail(_refreshController));
                       },
                       onLoading: () async {
-                        store.dispatch(LoadMoreAction(
-                            store.state.cartPageState.pageNum + 1, () => loadMoreSuccess(_refreshController), () => loadMoreFail(_refreshController)));
+                        c.loadNextPage(c.pageNum.value + 1, () => loadMoreSuccess(_refreshController), () => loadMoreFail(_refreshController));
                       },
                       child: CustomScrollView(
                         controller: _scrollController,
                         slivers: [
                           condition(context),
-                          cartGoods(context),
+                          cartGoods(context, c),
                           probablyLike(context),
-                          goodsList(context),
+                          goodsList(context, c),
                         ],
                       ),
                     ),
                     floatingActionButton: BackToTop(_scrollController),
-                  ),
-          ),
-          totalSettlement(context)
-        ],
-      );
-    });
+                  );
+          }),
+        ),
+        totalSettlement(context, c)
+      ],
+    );
   }
 }
