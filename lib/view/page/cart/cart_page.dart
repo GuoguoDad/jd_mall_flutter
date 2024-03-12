@@ -19,31 +19,12 @@ import 'package:jd_mall_flutter/view/page/cart/widget/goods_list.dart';
 import 'package:jd_mall_flutter/view/page/cart/widget/probably_like.dart';
 import 'package:jd_mall_flutter/view/page/cart/widget/total_settlement.dart';
 
-class CartPage extends StatefulWidget {
-  const CartPage({super.key});
+class CartPage extends StatelessWidget {
+  CartPage({super.key});
 
-  @override
-  State<CartPage> createState() => _CartPageState();
-}
-
-class _CartPageState extends State<CartPage> {
   final CartController c = Get.put(CartController());
-  late final ScrollController _scrollController;
-  late final RefreshController _refreshController;
-
-  @override
-  void initState() {
-    _scrollController = ScrollController();
-    _refreshController = RefreshController();
-    super.initState();
-  }
-
-  @override
-  void dispose() {
-    _scrollController.dispose();
-    _refreshController.dispose();
-    super.dispose();
-  }
+  final ScrollController _scrollController = ScrollController();
+  final RefreshController _refreshController = RefreshController();
 
   @override
   Widget build(BuildContext context) {
@@ -69,9 +50,9 @@ class _CartPageState extends State<CartPage> {
                         controller: _scrollController,
                         slivers: [
                           condition(context),
-                          cartGoods(context, c),
+                          cartGoods(context),
                           probablyLike(context),
-                          goodsList(context, c),
+                          goodsList(context),
                         ],
                       ),
                     ),

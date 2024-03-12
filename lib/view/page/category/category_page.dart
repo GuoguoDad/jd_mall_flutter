@@ -12,34 +12,13 @@ import 'package:jd_mall_flutter/view/page/category/widget/header.dart';
 import 'package:jd_mall_flutter/view/page/category/widget/left_cate.dart';
 import 'package:jd_mall_flutter/view/page/category/widget/right_group.dart';
 
-class CategoryPage extends StatefulWidget {
-  const CategoryPage({super.key});
+class CategoryPage extends StatelessWidget {
+  CategoryPage({super.key});
 
-  @override
-  State<CategoryPage> createState() => _CategoryPageState();
-}
-
-class _CategoryPageState extends State<CategoryPage> {
   final CategoryController c = Get.put(CategoryController());
-  late ScrollController _scrollController;
-  late ScrollController _rightScrollController;
-  late ScrollController _gridViewController;
-
-  @override
-  void initState() {
-    _scrollController = ScrollController();
-    _rightScrollController = ScrollController();
-    _gridViewController = ScrollController();
-    super.initState();
-  }
-
-  @override
-  void dispose() {
-    _scrollController.dispose();
-    _rightScrollController.dispose();
-    _gridViewController.dispose();
-    super.dispose();
-  }
+  final ScrollController _scrollController = ScrollController();
+  final ScrollController _rightScrollController = ScrollController();
+  final ScrollController _gridViewController = ScrollController();
 
   @override
   Widget build(BuildContext context) {
@@ -56,8 +35,8 @@ class _CategoryPageState extends State<CategoryPage> {
                 : Flex(
                     direction: Axis.horizontal,
                     children: [
-                      leftCate(context, _scrollController, c),
-                      rightGroupList(context, _rightScrollController, _gridViewController, c),
+                      leftCate(context, _scrollController),
+                      rightGroupList(context, _rightScrollController, _gridViewController),
                     ],
                   );
           }),

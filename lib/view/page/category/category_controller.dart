@@ -8,6 +8,8 @@ import 'package:jd_mall_flutter/models/second_group_category_info.dart';
 import 'package:jd_mall_flutter/view/page/category/service.dart';
 
 class CategoryController extends GetxController {
+  static CategoryController get to => Get.find();
+
   //左侧一级分类默认选中信息
   Rx<CategoryInfo> previous = CategoryInfo.fromJson({}).obs;
   Rx<CategoryInfo> current = CategoryInfo.fromJson({}).obs;

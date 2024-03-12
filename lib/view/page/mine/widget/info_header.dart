@@ -6,19 +6,17 @@ import 'package:get/get.dart';
 
 // Project imports:
 import 'package:jd_mall_flutter/common/util/screen_util.dart';
-import 'package:jd_mall_flutter/common/util/util.dart';
 import 'package:jd_mall_flutter/component/image/asset_image.dart';
 import 'package:jd_mall_flutter/component/persistentHeader/sliver_header_builder.dart';
 import 'package:jd_mall_flutter/generated/assets.dart';
 import 'package:jd_mall_flutter/generated/l10n.dart';
 import 'package:jd_mall_flutter/routes.dart';
-import '../../login/login_controller.dart';
+import 'package:jd_mall_flutter/view/page/mine/mine_controller.dart';
+import 'package:jd_mall_flutter/view/page/login/login_controller.dart';
 
 // Package imports:
 
-
-
-Widget infoHeader(BuildContext context, ValueNotifier<double> pageScrollY, LoginController loginController) {
+Widget infoHeader(BuildContext context) {
   Widget title = Positioned(
     top: 0,
     left: (getScreenWidth(context) - 100) / 2,
@@ -26,103 +24,94 @@ Widget infoHeader(BuildContext context, ValueNotifier<double> pageScrollY, Login
       width: 100,
       height: 36,
       alignment: Alignment.center,
-      child: ValueListenableBuilder<double>(
-        builder: (BuildContext context, double value, Widget? child) {
-          HeaderSize headerSize = calcSize(value);
-          return Opacity(
-            opacity: headerSize.opacity,
-            child: Text(
-              S.of(context).tabMainMine,
-              style: const TextStyle(color: Colors.black, fontSize: 20),
-            ),
-          );
-        },
-        valueListenable: pageScrollY,
-      ),
+      child: Obx(() {
+        HeaderSize headerSize = calcSize(MineController.to.pageScrollY.value);
+        return Opacity(
+          opacity: headerSize.opacity,
+          child: Text(
+            S.of(context).tabMainMine,
+            style: const TextStyle(color: Colors.black, fontSize: 20),
+          ),
+        );
+      }),
     ),
   );
 
-  Widget header = ValueListenableBuilder<double>(
-    builder: (BuildContext context, double value, Widget? child) {
-      HeaderSize headerSize = calcSize(value);
-      return Positioned(
-        top: headerSize.top,
-        left: 0,
-        child: Obx(
-          () => Container(
-            width: headerSize.size,
-            height: headerSize.size,
-            margin: const EdgeInsets.only(left: 16),
-            decoration: ShapeDecoration(
-              shape: const CircleBorder(),
-              image: DecorationImage(
-                fit: BoxFit.contain,
-                image: AssetImage(loginController.hasLogin.value ? Assets.imagesHeader : Assets.imagesIcDefaultHeader),
-              ),
+  Widget header = Obx(() {
+    HeaderSize headerSize = calcSize(MineController.to.pageScrollY.value);
+    return Positioned(
+      top: headerSize.top,
+      left: 0,
+      child: Obx(
+        () => Container(
+          width: headerSize.size,
+          height: headerSize.size,
+          margin: const EdgeInsets.only(left: 16),
+          decoration: ShapeDecoration(
+            shape: const CircleBorder(),
+            image: DecorationImage(
+              fit: BoxFit.contain,
+              image: AssetImage(LoginController.to.hasLogin.value ? Assets.imagesHeader : Assets.imagesIcDefaultHeader),
             ),
           ),
         ),
-      );
-    },
-    valueListenable: pageScrollY,
-  );
+      ),
+    );
+  });
 
-  Widget userInfo = ValueListenableBuilder<double>(
-    builder: (BuildContext context, double value, Widget? child) {
-      HeaderSize headerSize = calcSize(value);
-      return Positioned(
-        top: headerSize.name2Top,
-        left: 100,
-        child: SizedBox(
-          width: getScreenWidth(context) - 100,
-          height: 60,
-          child: Opacity(
-            opacity: 1 - headerSize.opacity,
-            child: child,
-          ),
-        ),
-      );
-    },
-    valueListenable: pageScrollY,
-    child: Obx(() {
-      return loginController.hasLogin.value
-          ? Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              mainAxisAlignment: MainAxisAlignment.spaceAround,
-              children: [
-                Text(
-                  S.of(context).author,
-                  style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
-                ),
-                Row(
-                  children: [
-                    Text("${S.of(context).integral}: 200", style: const TextStyle(fontSize: 14)),
-                    Container(
-                      margin: const EdgeInsets.only(left: 20),
-                      child: Text(
-                        "${S.of(context).creditValue}: 1200",
-                        style: const TextStyle(fontSize: 14),
+  Widget userInfo = Obx(() {
+    HeaderSize headerSize = calcSize(MineController.to.pageScrollY.value);
+
+    return Positioned(
+      top: headerSize.name2Top,
+      left: 100,
+      child: SizedBox(
+        width: getScreenWidth(context) - 100,
+        height: 60,
+        child: Opacity(
+          opacity: 1 - headerSize.opacity,
+          child: Obx(() {
+            return LoginController.to.hasLogin.value
+                ? Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    mainAxisAlignment: MainAxisAlignment.spaceAround,
+                    children: [
+                      Text(
+                        S.of(context).author,
+                        style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
                       ),
-                    )
-                  ],
-                )
-              ],
-            )
-          : GestureDetector(
-              onTap: () => Navigator.of(context).pushNamed(RoutesEnum.loginPage.path),
-              child: Row(
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  const Text("登录/注册", style: TextStyle(fontSize: 24, fontWeight: FontWeight.w600)),
-                  Container(
-                    margin: const EdgeInsets.only(top: 1, left: 1),
-                    child: assetImage(Assets.imagesArrowRightBlack, 24, 24),
-                  ),
-                ],
-              ),
-            );
-    }),
-  );
+                      Row(
+                        children: [
+                          Text("${S.of(context).integral}: 200", style: const TextStyle(fontSize: 14)),
+                          Container(
+                            margin: const EdgeInsets.only(left: 20),
+                            child: Text(
+                              "${S.of(context).creditValue}: 1200",
+                              style: const TextStyle(fontSize: 14),
+                            ),
+                          )
+                        ],
+                      )
+                    ],
+                  )
+                : GestureDetector(
+                    onTap: () => Navigator.of(context).pushNamed(RoutesEnum.loginPage.path),
+                    child: Row(
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        const Text("登录/注册", style: TextStyle(fontSize: 24, fontWeight: FontWeight.w600)),
+                        Container(
+                          margin: const EdgeInsets.only(top: 1, left: 1),
+                          child: assetImage(Assets.imagesArrowRightBlack, 24, 24),
+                        ),
+                      ],
+                    ),
+                  );
+          }),
+        ),
+      ),
+    );
+  });
 
   return SliverPersistentHeader(
     pinned: true,

@@ -1,3 +1,5 @@
+import 'package:flutter/cupertino.dart';
+
 double calc2Top(double scrollY) {
   double result = 45;
   if (scrollY > 0 && scrollY <= 45) {
@@ -21,3 +23,11 @@ double calcWidth(double scrollY) {
   }
   return result;
 }
+
+//商品、评论、详情、同店好货锚点key
+final cardKeys = <GlobalKey>[
+  GlobalKey(debugLabel: 'detail_card_0'),
+  GlobalKey(debugLabel: 'detail_card_1'),
+  GlobalKey(debugLabel: 'detail_card_2'),
+  GlobalKey(debugLabel: 'detail_card_3')
+];

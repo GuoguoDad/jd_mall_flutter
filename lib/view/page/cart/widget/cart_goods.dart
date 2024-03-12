@@ -8,7 +8,6 @@ import 'package:get/get_state_manager/src/rx_flutter/rx_obx_widget.dart';
 
 // Project imports:
 import 'package:jd_mall_flutter/common/style/common_style.dart';
-import 'package:jd_mall_flutter/common/types/common.dart';
 import 'package:jd_mall_flutter/component/image/asset_image.dart';
 import 'package:jd_mall_flutter/component/stepper/stepper.dart';
 import 'package:jd_mall_flutter/component/stepper/style.dart';
@@ -21,19 +20,19 @@ import 'package:jd_mall_flutter/view/vebview/type.dart';
 
 double thumbnailWidth = 80;
 
-Widget cartGoods(BuildContext context, CartController c) {
+Widget cartGoods(BuildContext context) {
   return Obx(
     () {
-      List<CartGoods> cartGoods = c.cartGoods;
+      List<CartGoods> cartGoods = CartController.to.cartGoods;
 
       return GroupSliverListView(
         sectionCount: cartGoods.length,
         itemInSectionCount: (int section) => cartGoods[section].goodsList?.length ?? 0,
         headerForSectionBuilder: (int section) {
-          return buildHeader(context, c, section);
+          return buildHeader(context, CartController.to, section);
         },
         itemInSectionBuilder: (BuildContext context, IndexPath indexPath) {
-          return buildItem(context, c, indexPath);
+          return buildItem(context, CartController.to, indexPath);
         },
         separatorBuilder: (IndexPath indexPath) {
           return Container(
@@ -59,7 +58,7 @@ Widget buildHeader(BuildContext context, CartController c, int section) {
     ),
     child: Obx(() {
       List<CartGoods> cartGoods = c.cartGoods;
-      List<String> selectList = c.selectCartGoodsList ?? [];
+      List<String> selectList = c.selectCartGoodsList;
       List<String> sList = selectList.where((element) => element.contains(cartGoods[section].storeCode!)).toList();
       bool isSelectAll = sList.length == cartGoods[section].goodsList?.length;
       String url = cartGoods[section].h5url ?? "";

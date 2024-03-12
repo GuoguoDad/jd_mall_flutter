@@ -14,7 +14,7 @@ import 'package:jd_mall_flutter/generated/assets.dart';
 import 'package:jd_mall_flutter/routes.dart';
 import 'package:jd_mall_flutter/view/page/home/home_controller.dart';
 
-Widget galleryList(BuildContext context, HomeController c) {
+Widget galleryList(BuildContext context) {
   double carouselWidth = getScreenWidth(context) - 24;
   double carouselHeight = 160;
 
@@ -29,7 +29,7 @@ Widget galleryList(BuildContext context, HomeController c) {
           borderRadius: BorderRadius.only(topLeft: Radius.circular(8), topRight: Radius.circular(8)),
         ),
         child: Obx(() {
-          var bannerList = c.homePageInfo.value.bannerList ?? [];
+          var bannerList = HomeController.to.homePageInfo.value.bannerList ?? [];
           return FlutterCarousel(
             options: CarouselOptions(
               height: carouselHeight,

@@ -12,11 +12,11 @@ import 'package:jd_mall_flutter/view/page/cart/cart_controller.dart';
 
 double width = 0;
 
-Widget goodsList(BuildContext context, CartController c) {
+Widget goodsList(BuildContext context) {
   width = (getScreenWidth(context) - 20) / 2;
 
   return Obx(() {
-    var goodsList = c.goodsPageInfo.value.goodsList ?? [];
+    var goodsList = CartController.to.goodsPageInfo.value.goodsList ?? [];
 
     return SliverMasonryGrid.count(
       childCount: goodsList.length,

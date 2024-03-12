@@ -14,7 +14,7 @@ import 'package:jd_mall_flutter/component/photoGallery/photo_gallery_dialog.dart
 import 'package:jd_mall_flutter/generated/assets.dart';
 import 'package:jd_mall_flutter/view/page/detail/detail_controller.dart';
 
-Widget imgSlider(BuildContext context, DetailController c) {
+Widget imgSlider(BuildContext context) {
   double statusHeight = getStatusHeight(context);
   double imgHeight = getScreenHeight(context) / 2 - statusHeight - getBottomSpace(context);
   double screenWidth = getScreenWidth(context);
@@ -24,7 +24,7 @@ Widget imgSlider(BuildContext context, DetailController c) {
     width: getScreenWidth(context),
     margin: EdgeInsets.only(top: statusHeight),
     child: Obx(() {
-      List<String> imgList = c.selectInfo.value.imgList ?? [];
+      List<String> imgList = DetailController.to.selectInfo.value.imgList ?? [];
 
       return FlutterCarousel(
         options: CarouselOptions(

@@ -11,6 +11,8 @@ import 'package:jd_mall_flutter/models/goods_page_info.dart';
 import 'package:jd_mall_flutter/view/page/cart/service.dart';
 
 class CartController extends GetxController {
+  static CartController get to => Get.find();
+
   RxBool isLoading = true.obs;
 
   RxList<CartGoods> cartGoods = <CartGoods>[].obs;

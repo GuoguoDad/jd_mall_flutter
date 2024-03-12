@@ -11,17 +11,18 @@ import 'package:jd_mall_flutter/common/util/screen_util.dart';
 import 'package:jd_mall_flutter/component/image/asset_image.dart';
 import 'package:jd_mall_flutter/generated/assets.dart';
 import 'package:jd_mall_flutter/view/page/detail/detail_controller.dart';
+import 'package:jd_mall_flutter/view/page/home/util.dart';
 
-Widget detailCard(BuildContext context, Key key, DetailController c) {
+Widget detailCard(BuildContext context) {
   double screenWidth = getScreenWidth(context);
 
   return SliverToBoxAdapter(
     child: Obx(
       () {
-        List<String>? introductionList = c.goodsDetailRes.value.detailInfo?.introductionList ?? [];
+        List<String>? introductionList = DetailController.to.goodsDetailRes.value.detailInfo?.introductionList ?? [];
 
         return Container(
-          key: key,
+          key: cardKeys[2],
           margin: const EdgeInsets.only(left: 10, top: 10, right: 10),
           padding: const EdgeInsets.all(10),
           decoration: const BoxDecoration(

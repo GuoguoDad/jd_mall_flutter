@@ -11,7 +11,18 @@ import 'package:jd_mall_flutter/models/home_page_info.dart';
 import 'package:jd_mall_flutter/view/page/home/service.dart';
 
 class HomeController extends GetxController {
+  static HomeController get to => Get.find();
+
   RxBool isLoading = true.obs;
+
+  RxDouble pageScrollY = 0.0.obs;
+
+  //是否显示返回顶部
+  RxBool showBackTop = false.obs;
+
+  RxBool isTabClick = false.obs;
+
+  RxString currentTab = "".obs;
 
   //横向滚动菜单PageView索引
   RxInt menuSliderIndex = 0.obs;
@@ -26,6 +37,14 @@ class HomeController extends GetxController {
   }
 
   setLoading(bool va) => isLoading.value = va;
+
+  recordPageY(double y) => pageScrollY.value = y;
+
+  setShowBackTop(bool va) => showBackTop.value = va;
+
+  setIsTabClick(bool va) => isTabClick.value = va;
+
+  changeCurrentTab(String va) => currentTab.value = va;
 
   initPageData() async {
     isLoading.value = true;

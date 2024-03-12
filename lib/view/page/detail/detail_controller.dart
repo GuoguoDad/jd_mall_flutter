@@ -9,7 +9,16 @@ import 'package:jd_mall_flutter/models/goods_page_info.dart';
 import 'package:jd_mall_flutter/view/page/detail/service.dart';
 
 class DetailController extends GetxController {
+  static DetailController get to => Get.find();
+
   RxBool isLoading = true.obs;
+
+  RxDouble pageScrollY = 0.0.obs;
+
+  //是否是floatingHeader中的tab点击
+  RxBool isTabClick = false.obs;
+
+  RxInt index = 0.obs;
 
   Rx<GoodsDetailRes> goodsDetailRes = GoodsDetailRes.fromJson({}).obs;
 
@@ -27,6 +36,12 @@ class DetailController extends GetxController {
   }
 
   setLoading(bool va) => isLoading.value = va;
+
+  recordPageY(double y) => pageScrollY.value = y;
+
+  setIsTabClick(bool va) => isTabClick.value = va;
+
+  setIndex(int i) => index.value = i;
 
   selectBanner(BannerInfo info) => selectInfo.value = info;
 

@@ -15,7 +15,7 @@ import 'package:jd_mall_flutter/view/page/detail/detail_controller.dart';
 
 double screenWidth = 0;
 
-Widget addressInfo(BuildContext context, DetailController c) {
+Widget addressInfo(BuildContext context) {
   screenWidth = getScreenWidth(context);
 
   return Container(
@@ -27,8 +27,8 @@ Widget addressInfo(BuildContext context, DetailController c) {
       borderRadius: BorderRadius.all(Radius.circular(8)),
     ),
     child: Obx(() {
-      BannerInfo selectInfo = c.selectInfo.value;
-      List<String> tagList = c.goodsDetailRes.value.goodsInfo?.tagList ?? [];
+      BannerInfo selectInfo = DetailController.to.selectInfo.value;
+      List<String> tagList = DetailController.to.goodsDetailRes.value.goodsInfo?.tagList ?? [];
 
       return Column(
         crossAxisAlignment: CrossAxisAlignment.start,

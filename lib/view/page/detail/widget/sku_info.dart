@@ -14,7 +14,7 @@ import 'package:jd_mall_flutter/generated/l10n.dart';
 import 'package:jd_mall_flutter/models/goods_detail_res.dart';
 import 'package:jd_mall_flutter/view/page/detail/detail_controller.dart';
 
-Widget skuInfo(BuildContext context, DetailController c) {
+Widget skuInfo(BuildContext context) {
   double thumbWidth = 68;
 
   return Container(
@@ -26,9 +26,9 @@ Widget skuInfo(BuildContext context, DetailController c) {
       borderRadius: BorderRadius.all(Radius.circular(8)),
     ),
     child: Obx(() {
-      List<BannerInfo> bannerList = c.goodsDetailRes.value.bannerList ?? [];
-      BannerInfo selectInfo = c.selectInfo.value;
-      GoodsInfo? goodsInfo = c.goodsDetailRes.value.goodsInfo;
+      List<BannerInfo> bannerList = DetailController.to.goodsDetailRes.value.bannerList ?? [];
+      BannerInfo selectInfo = DetailController.to.selectInfo.value;
+      GoodsInfo? goodsInfo = DetailController.to.goodsDetailRes.value.goodsInfo;
 
       return Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -51,7 +51,7 @@ Widget skuInfo(BuildContext context, DetailController c) {
                       bool isSelect = bannerList[index].colorId == selectInfo.colorId;
 
                       return GestureDetector(
-                        onTap: () => c.selectBanner(bannerList[index]),
+                        onTap: () => DetailController.to.selectBanner(bannerList[index]),
                         child: Container(
                           width: thumbWidth,
                           height: thumbWidth,

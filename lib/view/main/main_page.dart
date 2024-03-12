@@ -30,7 +30,7 @@ class _MainPageState extends State<MainPage> {
     });
   }
 
-  List<Widget> pages = [const HomePage(), const CategoryPage(), const CartPage(), const MinePage()];
+  List<Widget> pages = [HomePage(), CategoryPage(), CartPage(), MinePage()];
 
   @override
   Widget build(BuildContext context) {

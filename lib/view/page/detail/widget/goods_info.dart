@@ -7,14 +7,16 @@ import 'package:jd_mall_flutter/view/page/detail/widget/address_info.dart';
 import 'package:jd_mall_flutter/view/page/detail/widget/img_slider.dart';
 import 'package:jd_mall_flutter/view/page/detail/widget/sku_info.dart';
 
-Widget goodsInfo(BuildContext context, Key key, DetailController c) {
+import '../../home/util.dart';
+
+Widget goodsInfo(BuildContext context) {
   return SliverToBoxAdapter(
     child: Column(
-      key: key,
+      key: cardKeys[0],
       children: [
-        imgSlider(context, c),
-        skuInfo(context, c),
-        addressInfo(context, c),
+        imgSlider(context),
+        skuInfo(context),
+        addressInfo(context),
       ],
     ),
   );

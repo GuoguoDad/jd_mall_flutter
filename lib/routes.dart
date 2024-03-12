@@ -59,7 +59,7 @@ Map<String, WidgetBuilder> routesMap = {
   RoutesEnum.videoPlayer.path: (context) => const VideoPlayerDemo(),
   //pages
   RoutesEnum.mainPage.path: (context) => const MainPage(),
-  RoutesEnum.detailPage.path: (context) => const DetailPage(),
+  RoutesEnum.detailPage.path: (context) => DetailPage(),
   RoutesEnum.webViewPage.path: (context, {arguments}) => WebViewPage(arguments: arguments),
   RoutesEnum.generateOrder.path: (context) => const GenerateOrder(),
   RoutesEnum.personalInfo.path: (context) => const PersonalInfo(),

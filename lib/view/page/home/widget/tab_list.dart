@@ -10,7 +10,7 @@ import 'package:jd_mall_flutter/common/types/common.dart';
 import 'package:jd_mall_flutter/component/persistentHeader/sliver_header_builder.dart';
 import 'package:jd_mall_flutter/view/page/home/home_controller.dart';
 
-Widget tabList(BuildContext context, ValueNotifier<String> currentTabNot, HomeController c, {required ValueCallback<Map> onTabChange}) {
+Widget tabList(BuildContext context, PageController pageController) {
   return SliverPersistentHeader(
     pinned: true,
     delegate: SliverHeaderDelegate.fixedHeight(
@@ -19,7 +19,7 @@ Widget tabList(BuildContext context, ValueNotifier<String> currentTabNot, HomeCo
       child: Container(
         color: CommonStyle.greyBgColor,
         child: Obx(() {
-          var tabs = c.homePageInfo.value.tabList ?? [];
+          var tabs = HomeController.to.homePageInfo.value.tabList ?? [];
           int totalCount = tabs.length;
 
           return ListView.builder(
@@ -28,51 +28,53 @@ Widget tabList(BuildContext context, ValueNotifier<String> currentTabNot, HomeCo
             itemExtent: 84.0,
             itemBuilder: (BuildContext context, int index) {
               return GestureDetector(
-                onTap: () => onTabChange({"code": tabs[index].code!, "tabs": tabs}),
-                child: ValueListenableBuilder<String>(
-                  builder: (BuildContext context, String value, Widget? child) {
-                    String currentTab = currentTabNot.value.isNotEmpty
-                        ? currentTabNot.value
-                        : tabs.isNotEmpty
-                            ? tabs[0].code!
-                            : "";
+                onTap: () => {
+                  HomeController.to.setIsTabClick(true),
+                  HomeController.to.currentTab(tabs[index].code!),
+                  pageController
+                      .animateToPage(index, duration: const Duration(milliseconds: 200), curve: Curves.linear)
+                      .then((value) => HomeController.to.setIsTabClick(false))
+                },
+                child: Obx(() {
+                  String currentTab = HomeController.to.currentTab.value.isNotEmpty
+                      ? HomeController.to.currentTab.value
+                      : tabs.isNotEmpty
+                          ? tabs[0].code!
+                          : "";
+                  bool isSelect = currentTab == tabs[index].code;
 
-                    bool isSelect = currentTab == tabs[index].code;
-
-                    return Flex(
-                      direction: Axis.vertical,
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: [
-                        Expanded(
-                          flex: 1,
-                          child: Container(
-                            width: 84,
-                            color: CommonStyle.greyBgColor,
-                            alignment: Alignment.bottomCenter,
-                            padding: const EdgeInsets.only(bottom: 6),
-                            child: Text(
-                              tabs[index].name ?? "",
-                              style: TextStyle(
-                                fontSize: 14,
-                                color: isSelect ? CommonStyle.selectedTabColor : CommonStyle.unSelectedTabColor,
-                              ),
+                  return Flex(
+                    direction: Axis.vertical,
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      Expanded(
+                        flex: 1,
+                        child: Container(
+                          width: 84,
+                          color: CommonStyle.greyBgColor,
+                          alignment: Alignment.bottomCenter,
+                          padding: const EdgeInsets.only(bottom: 6),
+                          child: Text(
+                            tabs[index].name ?? "",
+                            style: TextStyle(
+                              fontSize: 14,
+                              color: isSelect ? CommonStyle.selectedTabColor : CommonStyle.unSelectedTabColor,
                             ),
                           ),
                         ),
-                        Container(
-                          width: 20,
-                          height: 2,
-                          decoration: BoxDecoration(
-                            color: isSelect ? CommonStyle.selectedTabColor : CommonStyle.greyBgColor,
-                            borderRadius: const BorderRadius.all(Radius.circular(8)),
-                          ),
+                      ),
+                      Container(
+                        width: 20,
+                        height: 2,
+                        decoration: BoxDecoration(
+                          color: isSelect ? CommonStyle.selectedTabColor : CommonStyle.greyBgColor,
+                          borderRadius: const BorderRadius.all(Radius.circular(8)),
                         ),
-                        Container(width: 20, height: 12, color: Colors.transparent),
-                      ],
-                    );
-                  },
-                  valueListenable: currentTabNot,
-                ),
+                      ),
+                      Container(width: 20, height: 12, color: Colors.transparent),
+                    ],
+                  );
+                }),
               );
             },
           );

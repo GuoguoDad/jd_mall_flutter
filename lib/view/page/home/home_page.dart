@@ -22,42 +22,13 @@ import 'package:jd_mall_flutter/view/page/home/widget/menu_slider.dart';
 import 'package:jd_mall_flutter/view/page/home/widget/search_header.dart';
 import 'package:jd_mall_flutter/view/page/home/widget/tab_list.dart';
 
-class HomePage extends StatefulWidget {
-  const HomePage({super.key});
+class HomePage extends StatelessWidget {
+  HomePage({super.key});
 
-  @override
-  State<HomePage> createState() => _HomePageState();
-}
-
-class _HomePageState extends State<HomePage> {
   final HomeController c = Get.put(HomeController());
-  late final EasyRefreshController _freshController;
-  late final ScrollController _scrollController;
-  late final PageController _pageController;
-
-  bool isTabClick = false;
-  final ValueNotifier<bool> _showBackTop = ValueNotifier<bool>(false);
-  final ValueNotifier<double> _pageScrollY = ValueNotifier<double>(0);
-  final ValueNotifier<String> _currentTab = ValueNotifier<String>("");
-
-  @override
-  void initState() {
-    _freshController = EasyRefreshController(controlFinishRefresh: true);
-    _scrollController = ScrollController();
-    _pageController = PageController();
-    super.initState();
-  }
-
-  @override
-  void dispose() {
-    _freshController.dispose();
-    _scrollController.dispose();
-    _pageController.dispose();
-    _showBackTop.dispose();
-    _pageScrollY.dispose();
-    _currentTab.dispose();
-    super.dispose();
-  }
+  final EasyRefreshController _freshController = EasyRefreshController(controlFinishRefresh: true);
+  final ScrollController _scrollController = ScrollController();
+  final PageController _pageController = PageController();
 
   @override
   Widget build(BuildContext context) {
@@ -68,10 +39,10 @@ class _HomePageState extends State<HomePage> {
         int depth = notification.depth;
         double distance = notification.metrics.pixels;
         if (depth == 0) {
-          _pageScrollY.value = distance;
+          HomeController.to.recordPageY(distance);
         }
         if (depth == 2) {
-          _showBackTop.value = distance > getScreenHeight(context);
+          HomeController.to.setShowBackTop(distance > getScreenHeight(context));
         }
         return false;
       },
@@ -79,7 +50,7 @@ class _HomePageState extends State<HomePage> {
         controller: _freshController,
         header: classicHeader,
         clipBehavior: Clip.none,
-        onRefresh: () => c.refreshPage(() => easyRefreshSuccess(_freshController), () => easyRefreshFail(_freshController)),
+        onRefresh: () => HomeController.to.refreshPage(() => easyRefreshSuccess(_freshController), () => easyRefreshFail(_freshController)),
         childBuilder: (context, physics) {
           return Scaffold(
             body: ExtendedNestedScrollView(
@@ -90,48 +61,37 @@ class _HomePageState extends State<HomePage> {
               headerSliverBuilder: (BuildContext context, bool innerBoxIsScrolled) {
                 return [
                   const HeaderLocator.sliver(clearExtent: false),
-                  searchHeader(context, _pageScrollY),
-                  galleryList(context, c),
-                  advBanner(context, c),
-                  menuSlider(context, c),
-                  tabList(context, _currentTab, c, onTabChange: (obj) => handleTabChange(obj))
+                  searchHeader(context),
+                  galleryList(context),
+                  advBanner(context),
+                  menuSlider(context),
+                  tabList(context, _pageController)
                 ];
               },
               onlyOneScrollInBody: true,
               body: Obx(() {
-                var tabs = c.homePageInfo.value.tabList ?? [];
-                String currentTab = _currentTab.value.isNotEmpty
-                    ? _currentTab.value
+                var tabs = HomeController.to.homePageInfo.value.tabList ?? [];
+                String getCurrentTabValue = HomeController.to.currentTab.value;
+                String currentTab = getCurrentTabValue.isNotEmpty
+                    ? getCurrentTabValue
                     : tabs.isNotEmpty
                         ? tabs[0].code!
                         : "";
+
                 return PageView(
                   controller: _pageController,
                   onPageChanged: (index) {
-                    if (isTabClick) return;
-                    _currentTab.value = tabs[index].code!;
+                    if (HomeController.to.isTabClick.value) return;
+                    HomeController.to.currentTab(tabs[index].code!);
                   },
                   children: tabs.map((e) => KeepAliveWrapper(child: PageGoodsList("home_tab_${e.code!}", currentTab, physics))).toList(),
                 );
               }),
             ),
-            floatingActionButton: ValueListenableBuilder<bool>(
-              builder: (BuildContext context, bool value, Widget? child) {
-                return backTop(value, _scrollController);
-              },
-              valueListenable: _showBackTop,
-            ),
+            floatingActionButton: Obx(() => backTop(HomeController.to.showBackTop.value, _scrollController)),
           );
         },
       ),
     );
-  }
-
-  void handleTabChange(Map obj) {
-    isTabClick = true;
-    _currentTab.value = obj["code"];
-
-    int tabIndex = obj["tabs"].indexWhere((element) => element.code == obj["code"]);
-    _pageController.animateToPage(tabIndex, duration: const Duration(milliseconds: 200), curve: Curves.linear).then((value) => isTabClick = false);
   }
 }

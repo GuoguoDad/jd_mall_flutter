@@ -11,7 +11,7 @@ import 'package:jd_mall_flutter/common/util/screen_util.dart';
 import 'package:jd_mall_flutter/component/persistentHeader/sliver_header_builder.dart';
 import 'package:jd_mall_flutter/view/page/mine/mine_controller.dart';
 
-Widget tabList(BuildContext context, MineController c, {required ValueCallback<Map> onTabChange}) {
+Widget tabList(BuildContext context, PageController pageController) {
   ScrollController controller = ScrollController();
   double screenWidth = getScreenWidth(context);
 
@@ -24,8 +24,8 @@ Widget tabList(BuildContext context, MineController c, {required ValueCallback<M
         color: CommonStyle.greyBgColor,
         child: Obx(
           () {
-            var tabs = c.menuTabInfo.value.tabList ?? [];
-            String currentTab = c.currentTab.value;
+            var tabs = MineController.to.menuTabInfo.value.tabList ?? [];
+            String currentTab = MineController.to.currentTab.value;
             int totalCount = tabs.length;
 
             final keys = <GlobalKey>[];
@@ -69,7 +69,11 @@ Widget tabList(BuildContext context, MineController c, {required ValueCallback<M
                 return GestureDetector(
                   key: keys[index],
                   onTap: () {
-                    onTabChange({"code": tabs[index].code!, "tabs": tabs});
+                    MineController.to.setIsTabClick(true);
+                    MineController.to.currentTab(tabs[index].code!);
+                    pageController
+                        .animateToPage(index, duration: const Duration(milliseconds: 200), curve: Curves.linear)
+                        .then((value) => MineController.to.setIsTabClick(false));
                     tabScrollToMiddle(index);
                   },
                   child: Flex(

@@ -13,13 +13,13 @@ import 'package:jd_mall_flutter/view/page/detail/detail_controller.dart';
 
 double screenWidth = 0;
 
-Widget storeGoods(BuildContext context, DetailController c) {
+Widget storeGoods(BuildContext context) {
   screenWidth = getScreenWidth(context);
 
   return Obx(
     () {
       double width = (getScreenWidth(context) - 20) / 2;
-      List<GoodsList>? goodsList = c.goodsPageInfo.value.goodsList ?? [];
+      List<GoodsList>? goodsList = DetailController.to.goodsPageInfo.value.goodsList ?? [];
 
       return SliverMasonryGrid.count(
         childCount: goodsList.length,

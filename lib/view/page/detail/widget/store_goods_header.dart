@@ -4,11 +4,12 @@ import 'package:flutter/material.dart';
 // Project imports:
 import 'package:jd_mall_flutter/common/style/common_style.dart';
 import 'package:jd_mall_flutter/common/util/screen_util.dart';
+import 'package:jd_mall_flutter/view/page/home/util.dart';
 
-Widget storeGoodsHeader(BuildContext context, Key key) {
+Widget storeGoodsHeader(BuildContext context) {
   return SliverToBoxAdapter(
     child: Container(
-      key: key,
+      key: cardKeys[3],
       height: 48,
       width: getScreenWidth(context) - 10,
       margin: const EdgeInsets.only(left: 5, top: 10),

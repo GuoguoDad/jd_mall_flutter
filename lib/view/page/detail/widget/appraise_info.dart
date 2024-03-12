@@ -14,17 +14,18 @@ import 'package:jd_mall_flutter/generated/assets.dart';
 import 'package:jd_mall_flutter/generated/l10n.dart';
 import 'package:jd_mall_flutter/models/goods_detail_res.dart';
 import 'package:jd_mall_flutter/view/page/detail/detail_controller.dart';
+import 'package:jd_mall_flutter/view/page/home/util.dart';
 
 double imgWidth = 60;
 double headWidth = 40;
 double screenWidth = 0;
 
-Widget appraiseInfo(BuildContext context, Key key, DetailController c) {
+Widget appraiseInfo(BuildContext context) {
   screenWidth = getScreenWidth(context);
 
   return Obx(() {
-    List<AppraiseInfo> list = c.goodsDetailRes.value.goodsInfo?.appraiseList ?? [];
-    DetailInfo? detailInfo = c.goodsDetailRes.value.detailInfo;
+    List<AppraiseInfo> list = DetailController.to.goodsDetailRes.value.goodsInfo?.appraiseList ?? [];
+    DetailInfo? detailInfo = DetailController.to.goodsDetailRes.value.detailInfo;
 
     Widget appraiseList = GroupGridView(
       padding: EdgeInsets.zero,
@@ -100,7 +101,7 @@ Widget appraiseInfo(BuildContext context, Key key, DetailController c) {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Container(
-                  key: key,
+                  key: cardKeys[1],
                   margin: const EdgeInsets.only(bottom: 10),
                   child: Text(
                     S.of(context).evaluate,
