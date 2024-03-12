@@ -6,9 +6,9 @@ import 'package:jd_mall_flutter/common/style/common_style.dart';
 import 'package:jd_mall_flutter/common/util/screen_util.dart';
 import 'package:jd_mall_flutter/component/image/asset_image.dart';
 import 'package:jd_mall_flutter/component/persistentHeader/sliver_header_builder.dart';
+import 'package:jd_mall_flutter/generated/assets.dart';
 import 'package:jd_mall_flutter/generated/l10n.dart';
 import 'package:jd_mall_flutter/view/page/home/util.dart';
-import 'package:jd_mall_flutter/generated/assets.dart';
 
 Widget searchHeader(BuildContext context, ValueNotifier<double> pageScrollY) {
   return SliverPersistentHeader(

@@ -1,16 +1,17 @@
-// Flutter imports:
+// Dart imports:
 import 'dart:ffi';
 
+// Flutter imports:
 import 'package:flutter/material.dart';
 
 // Package imports:
 import 'package:get/get_state_manager/src/rx_flutter/rx_obx_widget.dart';
-import 'package:jd_mall_flutter/view/page/category/category_controller.dart';
 
 // Project imports:
 import 'package:jd_mall_flutter/common/style/common_style.dart';
 import 'package:jd_mall_flutter/common/util/screen_util.dart';
 import 'package:jd_mall_flutter/models/primary_category_list.dart';
+import 'package:jd_mall_flutter/view/page/category/category_controller.dart';
 
 double itemHeight = 62.0;
 

@@ -1,8 +1,11 @@
+// Package imports:
 import 'package:get/get.dart';
 import 'package:get/get_rx/get_rx.dart';
-import 'package:jd_mall_flutter/view/page/mine/service.dart';
-import 'package:jd_mall_flutter/models/mine_menu_tab_info.dart';
+
+// Project imports:
 import 'package:jd_mall_flutter/common/types/common.dart';
+import 'package:jd_mall_flutter/models/mine_menu_tab_info.dart';
+import 'package:jd_mall_flutter/view/page/mine/service.dart';
 
 class MineController extends GetxController {
   RxBool isLoading = true.obs;

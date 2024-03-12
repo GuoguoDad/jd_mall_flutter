@@ -16,8 +16,8 @@ import 'package:jd_mall_flutter/generated/assets.dart';
 import 'package:jd_mall_flutter/generated/l10n.dart';
 import 'package:jd_mall_flutter/models/cart_goods.dart';
 import 'package:jd_mall_flutter/routes.dart';
-import 'package:jd_mall_flutter/view/vebview/type.dart';
 import 'package:jd_mall_flutter/view/page/cart/cart_controller.dart';
+import 'package:jd_mall_flutter/view/vebview/type.dart';
 
 double thumbnailWidth = 80;
 

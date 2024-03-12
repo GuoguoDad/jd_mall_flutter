@@ -1,6 +1,8 @@
+// Package imports:
 import 'package:get/get.dart';
 import 'package:get/get_rx/get_rx.dart';
 
+// Project imports:
 import 'package:jd_mall_flutter/models/primary_category_list.dart';
 import 'package:jd_mall_flutter/models/second_group_category_info.dart';
 import 'package:jd_mall_flutter/view/page/category/service.dart';

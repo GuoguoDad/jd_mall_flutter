@@ -4,7 +4,6 @@ import 'package:flutter/material.dart';
 // Package imports:
 import 'package:get/get_state_manager/src/rx_flutter/rx_obx_widget.dart';
 import 'package:get/instance_manager.dart';
-import 'package:jd_mall_flutter/view/page/cart/cart_controller.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
 
 // Project imports:
@@ -12,6 +11,7 @@ import 'package:jd_mall_flutter/common/style/common_style.dart';
 import 'package:jd_mall_flutter/common/util/refresh_util.dart';
 import 'package:jd_mall_flutter/component/back_to_top.dart';
 import 'package:jd_mall_flutter/component/loading_widget.dart';
+import 'package:jd_mall_flutter/view/page/cart/cart_controller.dart';
 import 'package:jd_mall_flutter/view/page/cart/widget/cart_goods.dart';
 import 'package:jd_mall_flutter/view/page/cart/widget/cart_header.dart';
 import 'package:jd_mall_flutter/view/page/cart/widget/condition.dart';

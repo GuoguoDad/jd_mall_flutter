@@ -12,7 +12,6 @@ import 'package:jd_mall_flutter/common/util/screen_util.dart';
 import 'package:jd_mall_flutter/component/image/asset_image.dart';
 import 'package:jd_mall_flutter/component/photoGallery/photo_gallery_dialog.dart';
 import 'package:jd_mall_flutter/generated/assets.dart';
-
 import 'package:jd_mall_flutter/view/page/detail/detail_controller.dart';
 
 Widget imgSlider(BuildContext context, DetailController c) {

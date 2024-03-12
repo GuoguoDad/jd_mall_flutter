@@ -1,11 +1,14 @@
+// Package imports:
 import 'package:get/get.dart';
 import 'package:get/get_rx/get_rx.dart';
 import 'package:get/get_rx/src/rx_types/rx_types.dart';
+
+// Project imports:
+import 'package:jd_mall_flutter/common/constant/index.dart';
+import 'package:jd_mall_flutter/common/types/common.dart';
 import 'package:jd_mall_flutter/models/cart_goods.dart';
 import 'package:jd_mall_flutter/models/goods_page_info.dart';
 import 'package:jd_mall_flutter/view/page/cart/service.dart';
-import 'package:jd_mall_flutter/common/constant/index.dart';
-import 'package:jd_mall_flutter/common/types/common.dart';
 
 class CartController extends GetxController {
   RxBool isLoading = true.obs;

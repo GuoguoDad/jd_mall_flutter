@@ -1,11 +1,14 @@
+// Package imports:
 import 'package:get/get.dart';
 import 'package:get/get_rx/get_rx.dart';
 import 'package:get/get_rx/src/rx_types/rx_types.dart';
 import 'package:get/get_state_manager/src/simple/get_controllers.dart';
 import 'package:get/state_manager.dart';
+
+// Project imports:
+import 'package:jd_mall_flutter/common/types/common.dart';
 import 'package:jd_mall_flutter/models/home_page_info.dart';
 import 'package:jd_mall_flutter/view/page/home/service.dart';
-import 'package:jd_mall_flutter/common/types/common.dart';
 
 class HomeController extends GetxController {
   RxBool isLoading = true.obs;

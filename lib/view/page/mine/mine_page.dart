@@ -9,8 +9,6 @@ import 'package:easy_refresh/easy_refresh.dart';
 import 'package:extended_nested_scroll_view/extended_nested_scroll_view.dart';
 import 'package:get/get_state_manager/src/rx_flutter/rx_obx_widget.dart';
 import 'package:get/instance_manager.dart';
-import 'package:jd_mall_flutter/view/page/login/login_controller.dart';
-import 'package:jd_mall_flutter/view/page/mine/mine_controller.dart';
 
 // Project imports:
 import 'package:jd_mall_flutter/common/util/easy_refresh_util.dart';
@@ -21,6 +19,8 @@ import 'package:jd_mall_flutter/component/keep_alive_wrapper.dart';
 import 'package:jd_mall_flutter/component/loading_widget.dart';
 import 'package:jd_mall_flutter/component/page_goods_list.dart';
 import 'package:jd_mall_flutter/models/mine_menu_tab_info.dart';
+import 'package:jd_mall_flutter/view/page/login/login_controller.dart';
+import 'package:jd_mall_flutter/view/page/mine/mine_controller.dart';
 import 'package:jd_mall_flutter/view/page/mine/widget/info_header.dart';
 import 'package:jd_mall_flutter/view/page/mine/widget/order_card.dart';
 import 'package:jd_mall_flutter/view/page/mine/widget/single_line_menu.dart';

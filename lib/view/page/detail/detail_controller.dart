@@ -1,9 +1,12 @@
+// Package imports:
 import 'package:get/get.dart';
-import 'package:jd_mall_flutter/view/page/detail/service.dart';
+
+// Project imports:
 import 'package:jd_mall_flutter/common/constant/index.dart';
+import 'package:jd_mall_flutter/common/types/common.dart';
 import 'package:jd_mall_flutter/models/goods_detail_res.dart';
 import 'package:jd_mall_flutter/models/goods_page_info.dart';
-import 'package:jd_mall_flutter/common/types/common.dart';
+import 'package:jd_mall_flutter/view/page/detail/service.dart';
 
 class DetailController extends GetxController {
   RxBool isLoading = true.obs;

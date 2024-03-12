@@ -1,8 +1,8 @@
 // Flutter imports:
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 
 // Package imports:
+import 'package:get/get.dart';
 
 // Project imports:
 import 'package:jd_mall_flutter/common/util/screen_util.dart';
@@ -12,8 +12,11 @@ import 'package:jd_mall_flutter/component/persistentHeader/sliver_header_builder
 import 'package:jd_mall_flutter/generated/assets.dart';
 import 'package:jd_mall_flutter/generated/l10n.dart';
 import 'package:jd_mall_flutter/routes.dart';
-
 import '../../login/login_controller.dart';
+
+// Package imports:
+
+
 
 Widget infoHeader(BuildContext context, ValueNotifier<double> pageScrollY, LoginController loginController) {
   Widget title = Positioned(
