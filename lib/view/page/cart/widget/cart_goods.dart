@@ -59,7 +59,7 @@ Widget buildHeader(BuildContext context, CartController c, int section) {
     ),
     child: Obx(() {
       List<CartGoods> cartGoods = c.cartGoods;
-      List<String> selectList = c.selectCartGoodsList;
+      List<String> selectList = c.selectCartGoodsList ?? [];
       List<String> sList = selectList.where((element) => element.contains(cartGoods[section].storeCode!)).toList();
       bool isSelectAll = sList.length == cartGoods[section].goodsList?.length;
       String url = cartGoods[section].h5url ?? "";

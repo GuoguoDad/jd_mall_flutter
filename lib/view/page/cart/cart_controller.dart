@@ -94,8 +94,7 @@ class CartController extends GetxController {
         selectList.removeAt(selectList.indexOf(element.code!));
       }
     });
-    print('==============selectList:${selectList}');
-    selectCartGoodsList.value = selectList;
+    selectCartGoodsList = RxList(selectList);
   }
 
   //全选
