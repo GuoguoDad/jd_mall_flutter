@@ -28,6 +28,66 @@ Flutter框架具有如下的一些特点：
 6. 提供了丰富的 UI 组件和插件，使得开发者可以更快速地构建应用程序。社区插件也非常丰富
    ，pub.dev，基本上你能想到的所有插件他都有，就是算没有，自己懂Android和iOS开发，封装一个也非常简单，都有套路模版。
 
+# GetX
+
+GetX 是 Flutter 上的一个轻量且强大的解决方案：高性能的状态管理、智能的依赖注入和便捷的路由管理。
+
+- GetX 有3个基本原则：
+
+    - **性能：** GetX 专注于性能和最小资源消耗。GetX
+      打包后的apk占用大小和运行时的内存占用与其他状态管理插件不相上下。如果你感兴趣，这里有一个[性能测试](https://github.com/jonataslaw/benchmarks)。
+    - **效率：** GetX 的语法非常简捷，并保持了极高的性能，能极大缩短你的开发时长。
+    - **结构：** GetX 可以将界面、逻辑、依赖和路由完全解耦，用起来更清爽，逻辑更清晰，代码更容易维护。
+
+## 简单示例
+
+GetX 写一个"计数器版"，实现：
+
+- 每次点击都能改变状态
+- 在不同页面之间切换
+- 在不同页面之间共享状态
+- 将业务逻辑与界面分离
+
+```dart
+class Controller extends GetxController {
+  var count = 0.obs;
+
+  increment() => count++;
+}
+```
+
+```dart
+class Home extends StatelessWidget {
+
+  @override
+  Widget build(context) {
+    // 使用Get.put()实例化你的类，使其对当下的所有子路由可用。
+    final Controller c = Get.put(Controller());
+
+    return Scaffold(
+      // 使用Obx(()=>每当改变计数时，就更新Text()。
+        appBar: AppBar(title: Obx(() => Text("Clicks: ${c.count}"))),
+
+        // 用一个简单的Get.to()即可代替Navigator.push那8行，无需上下文！
+        body: Center(child: ElevatedButton(
+            child: Text("Go to Other"), onPressed: () => Get.to(Other()))),
+        floatingActionButton:
+        FloatingActionButton(child: Icon(Icons.add), onPressed: c.increment));
+  }
+}
+
+class Other extends StatelessWidget {
+  // 你可以让Get找到一个正在被其他页面使用的Controller，并将它返回给你。
+  final Controller c = Get.find();
+
+  @override
+  Widget build(context) {
+    // 访问更新后的计数变量
+    return Scaffold(body: Center(child: Text("${c.count}")));
+  }
+}
+```
+
 # flutter_redux
 
 main 分支状态管理器已切换成 getx ,redux分支备份flutter_redux的写法
