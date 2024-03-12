@@ -2,16 +2,16 @@
 import 'package:flutter/material.dart';
 
 // Package imports:
-import 'package:flutter_redux/flutter_redux.dart';
+import 'package:get/get_state_manager/src/rx_flutter/rx_obx_widget.dart';
 
 // Project imports:
 import 'package:jd_mall_flutter/common/style/common_style.dart';
 import 'package:jd_mall_flutter/common/types/common.dart';
 import 'package:jd_mall_flutter/common/util/screen_util.dart';
 import 'package:jd_mall_flutter/component/persistentHeader/sliver_header_builder.dart';
-import 'package:jd_mall_flutter/store/app_state.dart';
+import 'package:jd_mall_flutter/view/page/mine/mine_controller.dart';
 
-Widget tabList(BuildContext context, {required ValueCallback<String> onTabChange}) {
+Widget tabList(BuildContext context, MineController c, {required ValueCallback<Map> onTabChange}) {
   ScrollController controller = ScrollController();
   double screenWidth = getScreenWidth(context);
 
@@ -22,10 +22,10 @@ Widget tabList(BuildContext context, {required ValueCallback<String> onTabChange
       height: 54,
       child: Container(
         color: CommonStyle.greyBgColor,
-        child: StoreBuilder<AppState>(
-          builder: (context, store) {
-            var tabs = store.state.minePageState.menuTabInfo.tabList ?? [];
-            String currentTab = store.state.minePageState.currentTab;
+        child: Obx(
+          () {
+            var tabs = c.menuTabInfo.value.tabList ?? [];
+            String currentTab = c.currentTab.value;
             int totalCount = tabs.length;
 
             final keys = <GlobalKey>[];
@@ -69,7 +69,7 @@ Widget tabList(BuildContext context, {required ValueCallback<String> onTabChange
                 return GestureDetector(
                   key: keys[index],
                   onTap: () {
-                    onTabChange(tabs[index].code!);
+                    onTabChange({"code": tabs[index].code!, "tabs": tabs});
                     tabScrollToMiddle(index);
                   },
                   child: Flex(

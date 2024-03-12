@@ -2,7 +2,6 @@
 import 'package:flutter/material.dart';
 
 // Package imports:
-import 'package:flutter_redux/flutter_redux.dart';
 
 // Project imports:
 import 'package:jd_mall_flutter/common/util/screen_util.dart';
@@ -12,8 +11,6 @@ import 'package:jd_mall_flutter/component/persistentHeader/sliver_header_builder
 import 'package:jd_mall_flutter/generated/assets.dart';
 import 'package:jd_mall_flutter/generated/l10n.dart';
 import 'package:jd_mall_flutter/routes.dart';
-import 'package:jd_mall_flutter/view/page/login/redux/login_page_state.dart';
-import '../../../../store/app_state.dart';
 
 Widget infoHeader(BuildContext context, ValueNotifier<double> pageScrollY) {
   Widget title = Positioned(
@@ -39,93 +36,82 @@ Widget infoHeader(BuildContext context, ValueNotifier<double> pageScrollY) {
     ),
   );
 
-  Widget header = StoreConnector<AppState, LoginPageState>(converter: (store) {
-    return store.state.loginPageState;
-  }, builder: (context, state) {
-    return ValueListenableBuilder<double>(
-      builder: (BuildContext context, double value, Widget? child) {
-        HeaderSize headerSize = calcSize(value);
-        return Positioned(
-          top: headerSize.top,
-          left: 0,
-          child: Container(
-            width: headerSize.size,
-            height: headerSize.size,
-            margin: const EdgeInsets.only(left: 16),
-            decoration: ShapeDecoration(
-              shape: const CircleBorder(),
-              image: DecorationImage(
-                fit: BoxFit.contain,
-                image: AssetImage(state.isLogin ? Assets.imagesHeader : Assets.imagesIcDefaultHeader),
-              ),
+  Widget header = ValueListenableBuilder<double>(
+    builder: (BuildContext context, double value, Widget? child) {
+      HeaderSize headerSize = calcSize(value);
+      return Positioned(
+        top: headerSize.top,
+        left: 0,
+        child: Container(
+          width: headerSize.size,
+          height: headerSize.size,
+          margin: const EdgeInsets.only(left: 16),
+          decoration: ShapeDecoration(
+            shape: const CircleBorder(),
+            image: DecorationImage(
+              fit: BoxFit.contain,
+              image: AssetImage(isLogin() ? Assets.imagesHeader : Assets.imagesIcDefaultHeader),
             ),
           ),
-        );
-      },
-      valueListenable: pageScrollY,
-    );
-  });
-
-  Widget userInfo = StoreConnector<AppState, LoginPageState>(
-    converter: (store) {
-      return store.state.loginPageState;
+        ),
+      );
     },
-    builder: (context, state) {
-      return ValueListenableBuilder<double>(
-        builder: (BuildContext context, double value, Widget? child) {
-          HeaderSize headerSize = calcSize(value);
-          return Positioned(
-            top: headerSize.name2Top,
-            left: 100,
-            child: SizedBox(
-              width: getScreenWidth(context) - 100,
-              height: 60,
-              child: Opacity(
-                opacity: 1 - headerSize.opacity,
-                child: child,
+    valueListenable: pageScrollY,
+  );
+
+  Widget userInfo = ValueListenableBuilder<double>(
+    builder: (BuildContext context, double value, Widget? child) {
+      HeaderSize headerSize = calcSize(value);
+      return Positioned(
+        top: headerSize.name2Top,
+        left: 100,
+        child: SizedBox(
+          width: getScreenWidth(context) - 100,
+          height: 60,
+          child: Opacity(
+            opacity: 1 - headerSize.opacity,
+            child: child,
+          ),
+        ),
+      );
+    },
+    valueListenable: pageScrollY,
+    child: isLogin()
+        ? Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            mainAxisAlignment: MainAxisAlignment.spaceAround,
+            children: [
+              Text(
+                S.of(context).author,
+                style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
               ),
-            ),
-          );
-        },
-        valueListenable: pageScrollY,
-        child: state.isLogin
-            ? Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                mainAxisAlignment: MainAxisAlignment.spaceAround,
+              Row(
                 children: [
-                  Text(
-                    S.of(context).author,
-                    style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
-                  ),
-                  Row(
-                    children: [
-                      Text("${S.of(context).integral}: 200", style: const TextStyle(fontSize: 14)),
-                      Container(
-                        margin: const EdgeInsets.only(left: 20),
-                        child: Text(
-                          "${S.of(context).creditValue}: 1200",
-                          style: const TextStyle(fontSize: 14),
-                        ),
-                      )
-                    ],
+                  Text("${S.of(context).integral}: 200", style: const TextStyle(fontSize: 14)),
+                  Container(
+                    margin: const EdgeInsets.only(left: 20),
+                    child: Text(
+                      "${S.of(context).creditValue}: 1200",
+                      style: const TextStyle(fontSize: 14),
+                    ),
                   )
                 ],
               )
-            : GestureDetector(
-                onTap: () => Navigator.of(context).pushNamed(RoutesEnum.loginPage.path),
-                child: Row(
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                    const Text("登录/注册", style: TextStyle(fontSize: 24, fontWeight: FontWeight.w600)),
-                    Container(
-                      margin: const EdgeInsets.only(top: 1, left: 1),
-                      child: assetImage(Assets.imagesArrowRightBlack, 24, 24),
-                    ),
-                  ],
+            ],
+          )
+        : GestureDetector(
+            onTap: () => Navigator.of(context).pushNamed(RoutesEnum.loginPage.path),
+            child: Row(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                const Text("登录/注册", style: TextStyle(fontSize: 24, fontWeight: FontWeight.w600)),
+                Container(
+                  margin: const EdgeInsets.only(top: 1, left: 1),
+                  child: assetImage(Assets.imagesArrowRightBlack, 24, 24),
                 ),
-              ),
-      );
-    },
+              ],
+            ),
+          ),
   );
 
   return SliverPersistentHeader(
