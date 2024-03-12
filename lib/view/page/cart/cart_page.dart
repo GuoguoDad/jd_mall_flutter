@@ -62,16 +62,9 @@ class _CartPageState extends State<CartPage> {
                       controller: _refreshController,
                       physics: const BouncingScrollPhysics(),
                       enablePullUp: true,
-                      header: const ClassicHeader(
-                        spacing: 10,
-                        height: 58,
-                      ),
-                      onRefresh: () async {
-                        c.refreshPage(() => refreshSuccess(_refreshController), () => refreshFail(_refreshController));
-                      },
-                      onLoading: () async {
-                        c.loadNextPage(c.pageNum.value + 1, () => loadMoreSuccess(_refreshController), () => loadMoreFail(_refreshController));
-                      },
+                      header: const ClassicHeader(spacing: 10, height: 58),
+                      onRefresh: () => c.refreshPage(() => refreshSuccess(_refreshController), () => refreshFail(_refreshController)),
+                      onLoading: () => c.loadNextPage(() => loadMoreSuccess(_refreshController), () => loadMoreFail(_refreshController)),
                       child: CustomScrollView(
                         controller: _scrollController,
                         slivers: [

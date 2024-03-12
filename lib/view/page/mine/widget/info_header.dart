@@ -1,5 +1,6 @@
 // Flutter imports:
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 // Package imports:
 
@@ -12,7 +13,9 @@ import 'package:jd_mall_flutter/generated/assets.dart';
 import 'package:jd_mall_flutter/generated/l10n.dart';
 import 'package:jd_mall_flutter/routes.dart';
 
-Widget infoHeader(BuildContext context, ValueNotifier<double> pageScrollY) {
+import '../../login/login_controller.dart';
+
+Widget infoHeader(BuildContext context, ValueNotifier<double> pageScrollY, LoginController loginController) {
   Widget title = Positioned(
     top: 0,
     left: (getScreenWidth(context) - 100) / 2,
@@ -42,15 +45,17 @@ Widget infoHeader(BuildContext context, ValueNotifier<double> pageScrollY) {
       return Positioned(
         top: headerSize.top,
         left: 0,
-        child: Container(
-          width: headerSize.size,
-          height: headerSize.size,
-          margin: const EdgeInsets.only(left: 16),
-          decoration: ShapeDecoration(
-            shape: const CircleBorder(),
-            image: DecorationImage(
-              fit: BoxFit.contain,
-              image: AssetImage(isLogin() ? Assets.imagesHeader : Assets.imagesIcDefaultHeader),
+        child: Obx(
+          () => Container(
+            width: headerSize.size,
+            height: headerSize.size,
+            margin: const EdgeInsets.only(left: 16),
+            decoration: ShapeDecoration(
+              shape: const CircleBorder(),
+              image: DecorationImage(
+                fit: BoxFit.contain,
+                image: AssetImage(loginController.hasLogin.value ? Assets.imagesHeader : Assets.imagesIcDefaultHeader),
+              ),
             ),
           ),
         ),
@@ -76,42 +81,44 @@ Widget infoHeader(BuildContext context, ValueNotifier<double> pageScrollY) {
       );
     },
     valueListenable: pageScrollY,
-    child: isLogin()
-        ? Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            mainAxisAlignment: MainAxisAlignment.spaceAround,
-            children: [
-              Text(
-                S.of(context).author,
-                style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
-              ),
-              Row(
-                children: [
-                  Text("${S.of(context).integral}: 200", style: const TextStyle(fontSize: 14)),
-                  Container(
-                    margin: const EdgeInsets.only(left: 20),
-                    child: Text(
-                      "${S.of(context).creditValue}: 1200",
-                      style: const TextStyle(fontSize: 14),
-                    ),
-                  )
-                ],
-              )
-            ],
-          )
-        : GestureDetector(
-            onTap: () => Navigator.of(context).pushNamed(RoutesEnum.loginPage.path),
-            child: Row(
-              crossAxisAlignment: CrossAxisAlignment.center,
+    child: Obx(() {
+      return loginController.hasLogin.value
+          ? Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
-                const Text("登录/注册", style: TextStyle(fontSize: 24, fontWeight: FontWeight.w600)),
-                Container(
-                  margin: const EdgeInsets.only(top: 1, left: 1),
-                  child: assetImage(Assets.imagesArrowRightBlack, 24, 24),
+                Text(
+                  S.of(context).author,
+                  style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
                 ),
+                Row(
+                  children: [
+                    Text("${S.of(context).integral}: 200", style: const TextStyle(fontSize: 14)),
+                    Container(
+                      margin: const EdgeInsets.only(left: 20),
+                      child: Text(
+                        "${S.of(context).creditValue}: 1200",
+                        style: const TextStyle(fontSize: 14),
+                      ),
+                    )
+                  ],
+                )
               ],
-            ),
-          ),
+            )
+          : GestureDetector(
+              onTap: () => Navigator.of(context).pushNamed(RoutesEnum.loginPage.path),
+              child: Row(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  const Text("登录/注册", style: TextStyle(fontSize: 24, fontWeight: FontWeight.w600)),
+                  Container(
+                    margin: const EdgeInsets.only(top: 1, left: 1),
+                    child: assetImage(Assets.imagesArrowRightBlack, 24, 24),
+                  ),
+                ],
+              ),
+            );
+    }),
   );
 
   return SliverPersistentHeader(

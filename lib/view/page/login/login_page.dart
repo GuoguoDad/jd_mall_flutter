@@ -8,6 +8,8 @@ import 'package:flutter/services.dart';
 // Package imports:
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:form_builder_validators/form_builder_validators.dart';
+import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
 
 // Project imports:
 import 'package:jd_mall_flutter/common/global/Global.dart';
@@ -17,6 +19,7 @@ import 'package:jd_mall_flutter/common/util/screen_util.dart';
 import 'package:jd_mall_flutter/component/linear_button.dart';
 import 'package:jd_mall_flutter/generated/l10n.dart';
 import 'package:jd_mall_flutter/routes.dart';
+import 'package:jd_mall_flutter/view/page/login/login_controller.dart';
 import 'package:jd_mall_flutter/view/page/login/service.dart';
 
 class LoginPage extends StatefulWidget {
@@ -29,6 +32,7 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<LoginPage> {
+  final LoginController controller = Get.put(LoginController());
   final _formKey = GlobalKey<FormBuilderState>();
 
   bool showPassword = false;
@@ -104,6 +108,7 @@ class _LoginPageState extends State<LoginPage> {
       var res = await LoginApi.login(userName, password);
 
       if (res != null) {
+        controller.setLogin(true);
         await Global.preferences!.setString("loginFlag", "LoggedIn");
         await Global.preferences!.setString("token", res.token);
         await Global.preferences!.setString("userId", res.userId);

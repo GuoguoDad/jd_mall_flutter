@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 
 // Package imports:
 import 'package:flutter_easyloading/flutter_easyloading.dart';
+import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
 
 // Project imports:
 import 'package:jd_mall_flutter/common/extension/color_ext.dart';
@@ -14,6 +16,7 @@ import 'package:jd_mall_flutter/component/linear_button.dart';
 import 'package:jd_mall_flutter/generated/assets.dart';
 import 'package:jd_mall_flutter/mixin/image_picker_mixin.dart';
 import 'package:jd_mall_flutter/routes.dart';
+import 'package:jd_mall_flutter/view/page/login/login_controller.dart';
 
 class PersonalInfo extends StatefulWidget {
   const PersonalInfo({super.key});
@@ -23,6 +26,8 @@ class PersonalInfo extends StatefulWidget {
 }
 
 class _PersonalInfoState extends State<PersonalInfo> with ImagePickerMixin {
+  final LoginController loginController = Get.put(LoginController());
+
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -69,6 +74,7 @@ class _PersonalInfoState extends State<PersonalInfo> with ImagePickerMixin {
               await Global.preferences?.remove("headerImg");
               await Global.preferences?.remove("integral");
               await Global.preferences?.remove("creditValue");
+              loginController.setLogin(false);
 
               Navigator.of(Global.navigatorKey.currentContext!).pushReplacementNamed(RoutesEnum.loginPage.path);
             },

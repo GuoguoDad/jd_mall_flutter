@@ -9,6 +9,7 @@ import 'package:easy_refresh/easy_refresh.dart';
 import 'package:extended_nested_scroll_view/extended_nested_scroll_view.dart';
 import 'package:get/get_state_manager/src/rx_flutter/rx_obx_widget.dart';
 import 'package:get/instance_manager.dart';
+import 'package:jd_mall_flutter/view/page/login/login_controller.dart';
 import 'package:jd_mall_flutter/view/page/mine/mine_controller.dart';
 
 // Project imports:
@@ -34,6 +35,7 @@ class MinePage extends StatefulWidget {
 
 class _MinePageState extends State<MinePage> {
   final MineController c = Get.put(MineController());
+  final LoginController loginController = Get.put(LoginController());
   late final EasyRefreshController _freshController;
   late final ScrollController _scrollController;
   late final PageController _pageController;
@@ -78,9 +80,7 @@ class _MinePageState extends State<MinePage> {
       child: EasyRefresh.builder(
         controller: _freshController,
         header: classicHeader,
-        onRefresh: () async {
-          c.refreshPage(() => easyRefreshSuccess(_freshController), () => easyRefreshFail(_freshController));
-        },
+        onRefresh: () => c.refreshPage(() => easyRefreshSuccess(_freshController), () => easyRefreshFail(_freshController)),
         childBuilder: (context, physics) {
           return Scaffold(
             body: ExtendedNestedScrollView(
@@ -91,7 +91,7 @@ class _MinePageState extends State<MinePage> {
               headerSliverBuilder: (BuildContext context, bool innerBoxIsScrolled) {
                 return [
                   const HeaderLocator.sliver(clearExtent: false),
-                  infoHeader(context, _pageScrollY),
+                  infoHeader(context, _pageScrollY, loginController),
                   orderCard(context),
                   singleLineMenu(context, c),
                   tabList(context, c, onTabChange: (obj) => handleTabChange(obj))

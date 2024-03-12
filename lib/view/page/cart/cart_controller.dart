@@ -52,7 +52,8 @@ class CartController extends GetxController {
   }
 
   //加载可能喜欢商品列表下一页
-  loadNextPage(int currentPage, VoidCallback loadMoreSuccess, VoidCallback loadMoreFail) {
+  loadNextPage(VoidCallback loadMoreSuccess, VoidCallback loadMoreFail) {
+    int currentPage = pageNum.value + 1;
     CartApi.queryGoodsListByPage(currentPage, pageSize).then((res) {
       var totalPage = res.totalPageCount;
 
