@@ -9,7 +9,11 @@ class LoginController extends GetxController {
 
   RxBool hasLogin = false.obs;
 
+  RxBool showPassword = false.obs;
+
   setLogin(bool va) => hasLogin.value = va;
+
+  setShowPassword(bool va) => showPassword.value = va;
 
   @override
   void onInit() {

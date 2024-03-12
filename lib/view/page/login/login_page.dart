@@ -1,6 +1,3 @@
-// Dart imports:
-import 'dart:ffi';
-
 // Flutter imports:
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -22,20 +19,13 @@ import 'package:jd_mall_flutter/routes.dart';
 import 'package:jd_mall_flutter/view/page/login/login_controller.dart';
 import 'package:jd_mall_flutter/view/page/login/service.dart';
 
-class LoginPage extends StatefulWidget {
+class LoginPage extends StatelessWidget {
   final Map? arguments;
 
-  const LoginPage({super.key, this.arguments});
+  LoginPage({super.key, this.arguments});
 
-  @override
-  State<LoginPage> createState() => _LoginPageState();
-}
-
-class _LoginPageState extends State<LoginPage> {
   final LoginController controller = Get.put(LoginController());
   final _formKey = GlobalKey<FormBuilderState>();
-
-  bool showPassword = false;
 
   @override
   Widget build(BuildContext context) {
@@ -64,23 +54,23 @@ class _LoginPageState extends State<LoginPage> {
                 ),
               ),
               itemContainer(
-                child: FormBuilderTextField(
-                  name: 'password',
-                  decoration: passwordInputDecoration(
-                    hintText: '请输入密码',
-                    visibility: showPassword,
-                    onPress: (va) {
-                      setState(() {
-                        showPassword = va;
-                      });
-                    },
+                child: Obx(
+                  () => FormBuilderTextField(
+                    name: 'password',
+                    decoration: passwordInputDecoration(
+                      hintText: '请输入密码',
+                      visibility: controller.showPassword.value,
+                      onPress: (va) {
+                        controller.setShowPassword(va);
+                      },
+                    ),
+                    obscureText: !controller.showPassword.value,
+                    validator: FormBuilderValidators.compose([
+                      FormBuilderValidators.required(),
+                      FormBuilderValidators.minLength(6),
+                      FormBuilderValidators.maxLength(16),
+                    ]),
                   ),
-                  obscureText: !showPassword,
-                  validator: FormBuilderValidators.compose([
-                    FormBuilderValidators.required(),
-                    FormBuilderValidators.minLength(6),
-                    FormBuilderValidators.maxLength(16),
-                  ]),
                 ),
               ),
               btnContainer(
@@ -117,9 +107,9 @@ class _LoginPageState extends State<LoginPage> {
         await Global.preferences!.setString("integral", res.integral.toString());
         await Global.preferences!.setString("creditValue", res.creditValue.toString());
 
-        if (widget.arguments != null) {
-          var from = widget.arguments!["from"];
-          var args = widget.arguments!["args"];
+        if (arguments != null) {
+          var from = arguments!["from"];
+          var args = arguments!["args"];
           Navigator.of(Global.navigatorKey.currentContext!).pushReplacementNamed(from, arguments: args);
         } else if (canPop) {
           Navigator.of(Global.navigatorKey.currentContext!).pop();
