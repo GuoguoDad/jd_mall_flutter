@@ -19,15 +19,16 @@ import 'package:jd_mall_flutter/common/util/screen_util.dart';
 import 'package:jd_mall_flutter/generated/l10n.dart';
 import 'package:jd_mall_flutter/http/code.dart';
 import 'package:jd_mall_flutter/routes.dart';
+import 'package:jd_mall_flutter/common/util/util.dart';
 
 class MallApp extends StatefulWidget {
   const MallApp({super.key});
 
   @override
-  State<StatefulWidget> createState() => _FlutterReduxMallApp();
+  State<StatefulWidget> createState() => _FlutterMallApp();
 }
 
-class _FlutterReduxMallApp extends State<MallApp> with HttpErrorListener {
+class _FlutterMallApp extends State<MallApp> with HttpErrorListener {
   @override
   Widget build(BuildContext context) {
     return refreshConfig(
@@ -141,11 +142,8 @@ var onGenerateRoute = (RouteSettings settings) {
   Function pageBuilder;
   bool toLogin = false;
 
-  if (loginRequiredRoutes.contains(name)) {
-    var loginFlag = Global.preferences!.getString("loginFlag");
-    if (loginFlag == null || loginFlag.isEmpty) {
-      toLogin = true;
-    }
+  if (loginRequiredRoutes.contains(name) && !isLogin()) {
+    toLogin = true;
   }
 
   Object? params;

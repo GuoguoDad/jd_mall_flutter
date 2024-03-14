@@ -11,18 +11,8 @@ import 'package:jd_mall_flutter/view/page/order/generate/widget/order_goods.dart
 import 'package:jd_mall_flutter/view/page/order/generate/widget/order_invoice.dart';
 import 'package:jd_mall_flutter/view/page/order/generate/widget/order_summation.dart';
 
-class GenerateOrder extends StatefulWidget {
+class GenerateOrder extends StatelessWidget {
   const GenerateOrder({super.key});
-
-  @override
-  State<StatefulWidget> createState() => _GenerateOrderState();
-}
-
-class _GenerateOrderState extends State<GenerateOrder> {
-  @override
-  void initState() {
-    super.initState();
-  }
 
   @override
   Widget build(BuildContext context) {

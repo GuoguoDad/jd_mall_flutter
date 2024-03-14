@@ -71,9 +71,9 @@ class HomePage extends StatelessWidget {
               onlyOneScrollInBody: true,
               body: Obx(() {
                 var tabs = HomeController.to.homePageInfo.value.tabList ?? [];
-                String getCurrentTabValue = HomeController.to.currentTab.value;
-                String currentTab = getCurrentTabValue.isNotEmpty
-                    ? getCurrentTabValue
+                String selectTab = HomeController.to.currentTab.value;
+                String currentTab = selectTab.isNotEmpty
+                    ? selectTab
                     : tabs.isNotEmpty
                         ? tabs[0].code!
                         : "";
@@ -82,7 +82,7 @@ class HomePage extends StatelessWidget {
                   controller: _pageController,
                   onPageChanged: (index) {
                     if (HomeController.to.isTabClick.value) return;
-                    HomeController.to.currentTab(tabs[index].code!);
+                    HomeController.to.changeCurrentTab(tabs[index].code!);
                   },
                   children: tabs.map((e) => KeepAliveWrapper(child: PageGoodsList("home_tab_${e.code!}", currentTab, physics))).toList(),
                 );
