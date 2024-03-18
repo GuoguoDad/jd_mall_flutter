@@ -26,9 +26,6 @@ class HomePage extends StatelessWidget {
   HomePage({super.key});
 
   final HomeController c = Get.put(HomeController());
-  final EasyRefreshController _freshController = EasyRefreshController(controlFinishRefresh: true);
-  final ScrollController _scrollController = ScrollController();
-  final PageController _pageController = PageController();
 
   @override
   Widget build(BuildContext context) {
@@ -47,14 +44,14 @@ class HomePage extends StatelessWidget {
         return false;
       },
       child: EasyRefresh.builder(
-        controller: _freshController,
+        controller: c.freshController,
         header: classicHeader,
         clipBehavior: Clip.none,
-        onRefresh: () => HomeController.to.refreshPage(() => easyRefreshSuccess(_freshController), () => easyRefreshFail(_freshController)),
+        onRefresh: () => c.refreshPage(() => easyRefreshSuccess(c.freshController), () => easyRefreshFail(c.freshController)),
         childBuilder: (context, physics) {
           return Scaffold(
             body: ExtendedNestedScrollView(
-              controller: _scrollController,
+              controller: c.scrollController,
               pinnedHeaderSliverHeightBuilder: () {
                 return statusHeight + 44 + 54;
               },
@@ -65,13 +62,13 @@ class HomePage extends StatelessWidget {
                   galleryList(context),
                   advBanner(context),
                   menuSlider(context),
-                  tabList(context, _pageController)
+                  tabList(context)
                 ];
               },
               onlyOneScrollInBody: true,
               body: Obx(() {
-                var tabs = HomeController.to.homePageInfo.value.tabList ?? [];
-                String selectTab = HomeController.to.currentTab.value;
+                var tabs = c.homePageInfo.value.tabList ?? [];
+                String selectTab = c.currentTab.value;
                 String currentTab = selectTab.isNotEmpty
                     ? selectTab
                     : tabs.isNotEmpty
@@ -79,16 +76,16 @@ class HomePage extends StatelessWidget {
                         : "";
 
                 return PageView(
-                  controller: _pageController,
+                  controller: c.pageController,
                   onPageChanged: (index) {
-                    if (HomeController.to.isTabClick.value) return;
-                    HomeController.to.changeCurrentTab(tabs[index].code!);
+                    if (c.isTabClick.value) return;
+                    c.changeCurrentTab(tabs[index].code!);
                   },
                   children: tabs.map((e) => KeepAliveWrapper(child: PageGoodsList("home_tab_${e.code!}", currentTab, physics))).toList(),
                 );
               }),
             ),
-            floatingActionButton: Obx(() => backTop(HomeController.to.showBackTop.value, _scrollController)),
+            floatingActionButton: Obx(() => backTop(c.showBackTop.value, c.scrollController)),
           );
         },
       ),

@@ -29,8 +29,6 @@ class DetailPage extends StatelessWidget {
   DetailPage({super.key});
 
   final DetailController controller = Get.put(DetailController());
-  final ExtendedScrollController _scrollController = ExtendedScrollController();
-  final RefreshController _refreshController = RefreshController();
 
   @override
   Widget build(BuildContext context) {
@@ -46,7 +44,7 @@ class DetailPage extends StatelessWidget {
                 body: Stack(
                   children: children,
                 ),
-                floatingActionButton: BackToTop(_scrollController),
+                floatingActionButton: BackToTop(controller.scrollController),
               ),
             ),
             fixedBottom(context)
@@ -72,12 +70,12 @@ class DetailPage extends StatelessWidget {
           child: Container(
             color: CommonStyle.colorF5F5F5,
             child: SmartRefresher(
-              controller: _refreshController,
+              controller: controller.refreshController,
               enablePullUp: true,
               enablePullDown: false,
-              onLoading: () => controller.loadNextPage(() => loadMoreSuccess(_refreshController), () => loadMoreFail(_refreshController)),
+              onLoading: () => controller.loadNextPage(() => loadMoreSuccess(controller.refreshController), () => loadMoreFail(controller.refreshController)),
               child: ExtendedCustomScrollView(
-                controller: _scrollController,
+                controller: controller.scrollController,
                 slivers: [
                   goodsInfo(context),
                   appraiseInfo(context),
@@ -92,7 +90,7 @@ class DetailPage extends StatelessWidget {
         Positioned(
           top: 0,
           left: 0,
-          child: tabHeader(context, _scrollController),
+          child: tabHeader(context),
         )
       ],
     );

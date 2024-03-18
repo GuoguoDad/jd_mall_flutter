@@ -14,7 +14,7 @@ import 'package:jd_mall_flutter/view/page/home/util.dart';
 
 // Package imports:
 
-Widget tabHeader(BuildContext context, ExtendedScrollController scrollController) {
+Widget tabHeader(BuildContext context) {
   double statusHeight = getStatusHeight(context);
 
   Widget tabItem(String name, int index) {
@@ -28,7 +28,7 @@ Widget tabHeader(BuildContext context, ExtendedScrollController scrollController
             //根据index滚动页面至相应模块位置
             RenderSliverToBoxAdapter? keyRenderObject = cardKeys[index].currentContext?.findAncestorRenderObjectOfType<RenderSliverToBoxAdapter>();
             if (keyRenderObject != null) {
-              scrollController.position
+              DetailController.to.scrollController.position
                   .ensureVisible(keyRenderObject, offsetTop: 42 + getStatusHeight(context), duration: const Duration(milliseconds: 300), curve: Curves.linear)
                   .then((value) => DetailController.to.setIsTabClick(false));
             }

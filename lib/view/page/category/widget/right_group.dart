@@ -20,7 +20,7 @@ late double rWidth, bWidth;
 //gridview的item宽和高一样
 double thirdCateItemHeight = 0;
 
-Widget rightGroupList(BuildContext context, ScrollController scrollController, ScrollController gridViewController) {
+Widget rightGroupList(BuildContext context) {
   //右侧占屏幕三分之二
   rWidth = getScreenWidth(context) * 2 / 3;
 
@@ -67,7 +67,7 @@ Widget rightGroupList(BuildContext context, ScrollController scrollController, S
         if (toLeft < 0) toLeft = 0;
         if (toLeft > total - bWidth) toLeft = total - bWidth;
       }
-      scrollController.animateTo(toLeft, duration: const Duration(milliseconds: 300), curve: Curves.linear);
+      CategoryController.to.scrollController.animateTo(toLeft, duration: const Duration(milliseconds: 300), curve: Curves.linear);
     }
 
     List<Widget> widgets = [];
@@ -92,7 +92,7 @@ Widget rightGroupList(BuildContext context, ScrollController scrollController, S
         height: 32,
         margin: const EdgeInsets.only(top: 10, bottom: 10),
         child: ListView.builder(
-          controller: scrollController,
+          controller: CategoryController.to.scrollController,
           itemCount: secondCateList.length,
           scrollDirection: Axis.horizontal,
           shrinkWrap: true,
@@ -112,7 +112,7 @@ Widget rightGroupList(BuildContext context, ScrollController scrollController, S
                   //滚动三级分类
                   RenderSliverToBoxAdapter? keyRenderObject = keys[index].currentContext?.findAncestorRenderObjectOfType<RenderSliverToBoxAdapter>();
                   if (keyRenderObject != null) {
-                    gridViewController.position
+                    CategoryController.to.gridViewController.position
                         .ensureVisible(keyRenderObject, duration: const Duration(milliseconds: 300), curve: Curves.linear)
                         .then((value) => CategoryController.to.setTabClicked(false));
                   }
@@ -144,7 +144,7 @@ Widget rightGroupList(BuildContext context, ScrollController scrollController, S
             return false;
           },
           child: GroupGridView(
-            controller: gridViewController,
+            controller: CategoryController.to.gridViewController,
             padding: EdgeInsets.zero,
             scrollBehavior: NoShadowScrollBehavior(),
             gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(

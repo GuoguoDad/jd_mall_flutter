@@ -1,4 +1,6 @@
 // Package imports:
+import 'package:easy_refresh/easy_refresh.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 import 'package:get/get_rx/get_rx.dart';
 import 'package:get/get_rx/src/rx_types/rx_types.dart';
@@ -12,6 +14,10 @@ import 'package:jd_mall_flutter/view/page/home/service.dart';
 
 class HomeController extends GetxController {
   static HomeController get to => Get.find();
+
+  final EasyRefreshController freshController = EasyRefreshController(controlFinishRefresh: true);
+  final ScrollController scrollController = ScrollController();
+  final PageController pageController = PageController();
 
   RxBool isLoading = true.obs;
 
@@ -31,9 +37,17 @@ class HomeController extends GetxController {
   Rx<HomePageInfo> homePageInfo = HomePageInfo.fromJson({}).obs;
 
   @override
-  void onReady() {
+  void onInit() {
     initPageData();
-    super.onReady();
+    super.onInit();
+  }
+
+  @override
+  void onClose() {
+    freshController.dispose();
+    scrollController.dispose();
+    pageController.dispose();
+    super.onClose();
   }
 
   setLoading(bool va) => isLoading.value = va;

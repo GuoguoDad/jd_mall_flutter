@@ -23,8 +23,6 @@ class CartPage extends StatelessWidget {
   CartPage({super.key});
 
   final CartController c = Get.put(CartController());
-  final ScrollController _scrollController = ScrollController();
-  final RefreshController _refreshController = RefreshController();
 
   @override
   Widget build(BuildContext context) {
@@ -40,14 +38,14 @@ class CartPage extends StatelessWidget {
                 : Scaffold(
                     backgroundColor: CommonStyle.colorF3F3F3,
                     body: SmartRefresher(
-                      controller: _refreshController,
+                      controller: c.refreshController,
                       physics: const BouncingScrollPhysics(),
                       enablePullUp: true,
                       header: const ClassicHeader(spacing: 10, height: 58),
-                      onRefresh: () => c.refreshPage(() => refreshSuccess(_refreshController), () => refreshFail(_refreshController)),
-                      onLoading: () => c.loadNextPage(() => loadMoreSuccess(_refreshController), () => loadMoreFail(_refreshController)),
+                      onRefresh: () => c.refreshPage(() => refreshSuccess(c.refreshController), () => refreshFail(c.refreshController)),
+                      onLoading: () => c.loadNextPage(() => loadMoreSuccess(c.refreshController), () => loadMoreFail(c.refreshController)),
                       child: CustomScrollView(
-                        controller: _scrollController,
+                        controller: c.scrollController,
                         slivers: [
                           condition(context),
                           cartGoods(context),
@@ -56,7 +54,7 @@ class CartPage extends StatelessWidget {
                         ],
                       ),
                     ),
-                    floatingActionButton: BackToTop(_scrollController),
+                    floatingActionButton: BackToTop(c.scrollController),
                   );
           }),
         ),

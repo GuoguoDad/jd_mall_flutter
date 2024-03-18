@@ -15,7 +15,7 @@ import 'package:jd_mall_flutter/view/page/category/category_controller.dart';
 
 double itemHeight = 62.0;
 
-Widget leftCate(BuildContext context, ScrollController scrollController) {
+Widget leftCate(BuildContext context) {
   return Expanded(
     flex: 1,
     child: Obx(() {
@@ -25,7 +25,7 @@ Widget leftCate(BuildContext context, ScrollController scrollController) {
       String nextCode = CategoryController.to.next.value.code ?? "";
 
       return ListView.builder(
-        controller: scrollController,
+        controller: CategoryController.to.scrollController,
         itemCount: list.length,
         shrinkWrap: true,
         padding: EdgeInsets.zero,
@@ -39,7 +39,8 @@ Widget leftCate(BuildContext context, ScrollController scrollController) {
               CategoryController.to.selectLeftCategory(index - 1 >= 0 ? list[index - 1] : CategoryInfo.fromJson({}), list[index],
                   index + 1 <= list.length - 1 ? list[index + 1] : CategoryInfo.fromJson({}));
 
-              scrollController.animateTo(calc2Top(context, index, list.length), duration: const Duration(milliseconds: 200), curve: Curves.linear);
+              CategoryController.to.scrollController
+                  .animateTo(calc2Top(context, index, list.length), duration: const Duration(milliseconds: 200), curve: Curves.linear);
             },
             child: Container(
               height: itemHeight,

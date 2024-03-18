@@ -1,4 +1,5 @@
 // Package imports:
+import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 import 'package:get/get_rx/get_rx.dart';
 import 'package:get/get_rx/src/rx_types/rx_types.dart';
@@ -9,9 +10,13 @@ import 'package:jd_mall_flutter/common/types/common.dart';
 import 'package:jd_mall_flutter/models/cart_goods.dart';
 import 'package:jd_mall_flutter/models/goods_page_info.dart';
 import 'package:jd_mall_flutter/view/page/cart/service.dart';
+import 'package:pull_to_refresh/pull_to_refresh.dart';
 
 class CartController extends GetxController {
   static CartController get to => Get.find();
+
+  final ScrollController scrollController = ScrollController();
+  final RefreshController refreshController = RefreshController();
 
   RxBool isLoading = true.obs;
 
@@ -25,9 +30,16 @@ class CartController extends GetxController {
   Rx<GoodsPageInfo> goodsPageInfo = GoodsPageInfo.fromJson({}).obs;
 
   @override
-  void onReady() {
+  void onInit() {
     initCartGoodsData();
-    super.onReady();
+    super.onInit();
+  }
+
+  @override
+  void onClose() {
+    scrollController.dispose();
+    refreshController.dispose();
+    super.onClose();
   }
 
   setLoading(bool va) => isLoading.value = va;

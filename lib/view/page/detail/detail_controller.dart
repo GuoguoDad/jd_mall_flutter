@@ -1,4 +1,5 @@
 // Package imports:
+import 'package:extended_scroll/extended_scroll.dart';
 import 'package:get/get.dart';
 
 // Project imports:
@@ -7,9 +8,13 @@ import 'package:jd_mall_flutter/common/types/common.dart';
 import 'package:jd_mall_flutter/models/goods_detail_res.dart';
 import 'package:jd_mall_flutter/models/goods_page_info.dart';
 import 'package:jd_mall_flutter/view/page/detail/service.dart';
+import 'package:pull_to_refresh/pull_to_refresh.dart';
 
 class DetailController extends GetxController {
   static DetailController get to => Get.find();
+
+  final ExtendedScrollController scrollController = ExtendedScrollController();
+  final RefreshController refreshController = RefreshController();
 
   RxBool isLoading = true.obs;
 
@@ -30,9 +35,16 @@ class DetailController extends GetxController {
   Rx<GoodsPageInfo> goodsPageInfo = GoodsPageInfo.fromJson({}).obs;
 
   @override
-  void onReady() {
+  void onInit() {
     initPageData();
-    super.onReady();
+    super.onInit();
+  }
+
+  @override
+  void onClose() {
+    scrollController.dispose();
+    refreshController.dispose();
+    super.onClose();
   }
 
   setLoading(bool va) => isLoading.value = va;

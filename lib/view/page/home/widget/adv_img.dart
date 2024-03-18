@@ -15,18 +15,22 @@ import 'package:jd_mall_flutter/view/page/home/home_controller.dart';
 Widget advBanner(BuildContext context) {
   return SliverToBoxAdapter(
     child: GestureDetector(
-      onTap: () => Navigator.of(context)
-          .pushNamed(RoutesEnum.webViewPage.path, arguments: {"url": "https://pro.m.jd.com/mall/active/2WrXYwmYpiy7EpWjDETSVyhXfLCb/index.html"}),
+      onTap: () => Navigator.of(context).pushNamed(
+        RoutesEnum.webViewPage.path,
+        arguments: {"url": "https://pro.m.jd.com/mall/active/2WrXYwmYpiy7EpWjDETSVyhXfLCb/index.html"},
+      ),
       child: Container(
         color: Colors.white,
         padding: const EdgeInsets.all(0),
-        child: Obx(() => CachedNetworkImage(
-              height: 90,
-              imageUrl: HomeController.to.homePageInfo.value.adUrl ?? "",
-              placeholder: (context, url) => assetImage(Assets.imagesDefault, getScreenWidth(context) - 24, 90),
-              errorWidget: (context, url, error) => assetImage(Assets.imagesDefault, getScreenWidth(context) - 24, 90),
-              fit: BoxFit.fill,
-            )),
+        child: Obx(
+          () => CachedNetworkImage(
+            height: 90,
+            imageUrl: HomeController.to.homePageInfo.value.adUrl ?? "",
+            placeholder: (context, url) => assetImage(Assets.imagesDefault, getScreenWidth(context) - 24, 90),
+            errorWidget: (context, url, error) => assetImage(Assets.imagesDefault, getScreenWidth(context) - 24, 90),
+            fit: BoxFit.fill,
+          ),
+        ),
       ),
     ),
   );

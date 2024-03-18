@@ -32,10 +32,6 @@ class MinePage extends StatelessWidget {
   final MineController c = Get.put(MineController());
   final LoginController lc = Get.put(LoginController());
 
-  late final EasyRefreshController _freshController = EasyRefreshController(controlFinishRefresh: true);
-  late final ScrollController _scrollController = ScrollController();
-  late final PageController _pageController = PageController();
-
   @override
   Widget build(BuildContext context) {
     double statusHeight = getStatusHeight(context);
@@ -52,24 +48,18 @@ class MinePage extends StatelessWidget {
         return false;
       },
       child: EasyRefresh.builder(
-        controller: _freshController,
+        controller: c.freshController,
         header: classicHeader,
-        onRefresh: () => c.refreshPage(() => easyRefreshSuccess(_freshController), () => easyRefreshFail(_freshController)),
+        onRefresh: () => c.refreshPage(() => easyRefreshSuccess(c.freshController), () => easyRefreshFail(c.freshController)),
         childBuilder: (context, physics) {
           return Scaffold(
             body: ExtendedNestedScrollView(
-              controller: _scrollController,
+              controller: c.scrollController,
               pinnedHeaderSliverHeightBuilder: () {
                 return statusHeight + 48 + 54;
               },
               headerSliverBuilder: (BuildContext context, bool innerBoxIsScrolled) {
-                return [
-                  const HeaderLocator.sliver(clearExtent: false),
-                  infoHeader(context),
-                  orderCard(context),
-                  singleLineMenu(context),
-                  tabList(context, _pageController)
-                ];
+                return [const HeaderLocator.sliver(clearExtent: false), infoHeader(context), orderCard(context), singleLineMenu(context), tabList(context)];
               },
               onlyOneScrollInBody: true,
               body: Obx(() {
@@ -77,7 +67,7 @@ class MinePage extends StatelessWidget {
                 String currentTab = c.currentTab.value;
 
                 return PageView(
-                  controller: _pageController,
+                  controller: c.pageController,
                   onPageChanged: (index) {
                     if (c.isTabClick.value) return;
                     c.changeCurrentTab(tabs[index].code!);
@@ -86,7 +76,7 @@ class MinePage extends StatelessWidget {
                 );
               }),
             ),
-            floatingActionButton: Obx(() => backTop(c.showBackTop.value, _scrollController)),
+            floatingActionButton: Obx(() => backTop(c.showBackTop.value, c.scrollController)),
           );
         },
       ),

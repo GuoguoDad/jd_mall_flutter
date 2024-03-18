@@ -1,4 +1,5 @@
 // Package imports:
+import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 import 'package:get/get_rx/get_rx.dart';
 
@@ -9,6 +10,10 @@ import 'package:jd_mall_flutter/view/page/category/service.dart';
 
 class CategoryController extends GetxController {
   static CategoryController get to => Get.find();
+
+  final ScrollController scrollController = ScrollController();
+  final ScrollController rightScrollController = ScrollController();
+  final ScrollController gridViewController = ScrollController();
 
   //左侧一级分类默认选中信息
   Rx<CategoryInfo> previous = CategoryInfo.fromJson({}).obs;
@@ -29,9 +34,17 @@ class CategoryController extends GetxController {
   Rx<SecondCateList> selectSecondCategoryInfo = SecondCateList.fromJson({}).obs;
 
   @override
-  void onReady() {
+  void onInit() {
     initPageData();
-    super.onReady();
+    super.onInit();
+  }
+
+  @override
+  void onClose() {
+    scrollController.dispose();
+    rightScrollController.dispose();
+    gridViewController.dispose();
+    super.onClose();
   }
 
   setLoading(bool va) => isLoading.value = va;

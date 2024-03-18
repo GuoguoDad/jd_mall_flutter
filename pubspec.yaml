@@ -73,6 +73,7 @@ dependencies:
   syncfusion_flutter_datepicker: ^24.2.3
   video_player: ^2.8.2
   get: ^4.6.6
+  scrollview_observer: ^1.19.1
 
 dev_dependencies:
   flutter_test:

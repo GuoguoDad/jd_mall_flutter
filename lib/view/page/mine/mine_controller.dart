@@ -1,4 +1,6 @@
 // Package imports:
+import 'package:easy_refresh/easy_refresh.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 import 'package:get/get_rx/get_rx.dart';
 
@@ -9,6 +11,10 @@ import 'package:jd_mall_flutter/view/page/mine/service.dart';
 
 class MineController extends GetxController {
   static MineController get to => Get.find();
+
+  late final EasyRefreshController freshController = EasyRefreshController(controlFinishRefresh: true);
+  late final ScrollController scrollController = ScrollController();
+  late final PageController pageController = PageController();
 
   RxBool isLoading = true.obs;
 
@@ -26,9 +32,17 @@ class MineController extends GetxController {
   Rx<MineMenuTabInfo> menuTabInfo = MineMenuTabInfo.fromJson({}).obs;
 
   @override
-  void onReady() {
+  void onInit() {
     initPageData();
-    super.onReady();
+    super.onInit();
+  }
+
+  @override
+  void onClose() {
+    freshController.dispose();
+    scrollController.dispose();
+    pageController.dispose();
+    super.onClose();
   }
 
   setLoading(bool va) => isLoading.value = va;

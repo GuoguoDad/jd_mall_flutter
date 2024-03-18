@@ -6,12 +6,11 @@ import 'package:get/get_state_manager/src/rx_flutter/rx_obx_widget.dart';
 
 // Project imports:
 import 'package:jd_mall_flutter/common/style/common_style.dart';
-import 'package:jd_mall_flutter/common/types/common.dart';
 import 'package:jd_mall_flutter/common/util/screen_util.dart';
 import 'package:jd_mall_flutter/component/persistentHeader/sliver_header_builder.dart';
 import 'package:jd_mall_flutter/view/page/mine/mine_controller.dart';
 
-Widget tabList(BuildContext context, PageController pageController) {
+Widget tabList(BuildContext context) {
   ScrollController controller = ScrollController();
   double screenWidth = getScreenWidth(context);
 
@@ -71,7 +70,7 @@ Widget tabList(BuildContext context, PageController pageController) {
                   onTap: () {
                     MineController.to.setIsTabClick(true);
                     MineController.to.currentTab(tabs[index].code!);
-                    pageController
+                    MineController.to.pageController
                         .animateToPage(index, duration: const Duration(milliseconds: 200), curve: Curves.linear)
                         .then((value) => MineController.to.setIsTabClick(false));
                     tabScrollToMiddle(index);

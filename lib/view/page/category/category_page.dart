@@ -16,9 +16,6 @@ class CategoryPage extends StatelessWidget {
   CategoryPage({super.key});
 
   final CategoryController c = Get.put(CategoryController());
-  final ScrollController _scrollController = ScrollController();
-  final ScrollController _rightScrollController = ScrollController();
-  final ScrollController _gridViewController = ScrollController();
 
   @override
   Widget build(BuildContext context) {
@@ -35,8 +32,8 @@ class CategoryPage extends StatelessWidget {
                 : Flex(
                     direction: Axis.horizontal,
                     children: [
-                      leftCate(context, _scrollController),
-                      rightGroupList(context, _rightScrollController, _gridViewController),
+                      leftCate(context),
+                      rightGroupList(context),
                     ],
                   );
           }),

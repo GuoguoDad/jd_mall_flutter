@@ -10,7 +10,7 @@ import 'package:jd_mall_flutter/common/types/common.dart';
 import 'package:jd_mall_flutter/component/persistentHeader/sliver_header_builder.dart';
 import 'package:jd_mall_flutter/view/page/home/home_controller.dart';
 
-Widget tabList(BuildContext context, PageController pageController) {
+Widget tabList(BuildContext context) {
   return SliverPersistentHeader(
     pinned: true,
     delegate: SliverHeaderDelegate.fixedHeight(
@@ -31,7 +31,7 @@ Widget tabList(BuildContext context, PageController pageController) {
                 onTap: () => {
                   HomeController.to.setIsTabClick(true),
                   HomeController.to.currentTab(tabs[index].code!),
-                  pageController
+                  HomeController.to.pageController
                       .animateToPage(index, duration: const Duration(milliseconds: 200), curve: Curves.linear)
                       .then((value) => HomeController.to.setIsTabClick(false))
                 },
