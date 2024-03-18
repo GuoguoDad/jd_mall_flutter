@@ -20,7 +20,6 @@ import 'package:jd_mall_flutter/view/page/login/service.dart';
 class LoginPage extends StatelessWidget {
   LoginPage({super.key});
 
-  final LoginController controller = Get.put(LoginController());
   final _formKey = GlobalKey<FormBuilderState>();
 
   @override
@@ -55,12 +54,12 @@ class LoginPage extends StatelessWidget {
                     name: 'password',
                     decoration: passwordInputDecoration(
                       hintText: '请输入密码',
-                      visibility: controller.showPassword.value,
+                      visibility: LoginController.to.showPassword.value,
                       onPress: (va) {
-                        controller.setShowPassword(va);
+                        LoginController.to.setShowPassword(va);
                       },
                     ),
-                    obscureText: !controller.showPassword.value,
+                    obscureText: !LoginController.to.showPassword.value,
                     validator: FormBuilderValidators.compose([
                       FormBuilderValidators.required(),
                       FormBuilderValidators.minLength(6),
@@ -94,7 +93,7 @@ class LoginPage extends StatelessWidget {
       var res = await LoginApi.login(userName, password);
 
       if (res != null) {
-        controller.setLogin(true);
+        LoginController.to.setLogin(true);
         await Global.preferences!.setString("loginFlag", "LoggedIn");
         await Global.preferences!.setString("token", res.token);
         await Global.preferences!.setString("userId", res.userId);

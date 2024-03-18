@@ -84,6 +84,10 @@ List<GetPage> appPages = [
   GetPage(name: RoutesEnum.webViewPage.path, page: () => const WebViewPage()),
   GetPage(name: RoutesEnum.generateOrder.path, page: () => const GenerateOrder()),
   GetPage(name: RoutesEnum.personalInfo.path, page: () => const PersonalInfo()),
-  GetPage(name: RoutesEnum.loginPage.path, page: () => LoginPage()),
+  GetPage(
+    name: RoutesEnum.loginPage.path,
+    page: () => LoginPage(),
+    binding: BindingsBuilder(() => Get.lazyPut<LoginController>(() => LoginController())),
+  ),
   GetPage(name: RoutesEnum.notFound.path, page: () => const Page404()),
 ];
