@@ -88,7 +88,6 @@ class LoginPage extends StatelessWidget {
     if (_formKey.currentState!.saveAndValidate()) {
       var userName = _formKey.currentState?.value['userName'];
       var password = _formKey.currentState?.value['password'];
-      bool canPop = Navigator.of(Global.navigatorKey.currentContext!).canPop();
 
       var res = await LoginApi.login(userName, password);
 
@@ -105,9 +104,7 @@ class LoginPage extends StatelessWidget {
         if (Get.arguments != null) {
           var from = Get.arguments["from"] ?? RoutesEnum.mainPage.path;
           var args = Get.arguments["args"] ?? {};
-          Get.offAllNamed(from, arguments: args);
-        } else if (canPop) {
-          Get.back();
+          Get.offAndToNamed(from, arguments: args);
         } else {
           Get.offAllNamed(RoutesEnum.mainPage.path);
         }
