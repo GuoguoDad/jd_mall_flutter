@@ -10,6 +10,7 @@ import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:form_builder_validators/localization/l10n.dart';
 import 'package:get/get.dart';
 import 'package:jd_mall_flutter/translation/messages.dart';
+import 'package:jd_mall_flutter/view/system/page404.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
 
 // Project imports:
@@ -41,8 +42,9 @@ class _FlutterMallApp extends State<MallApp> with HttpErrorListener {
           splashColor: Colors.transparent,
           highlightColor: Colors.transparent,
         ),
-        initialRoute: RoutesEnum.mainPage.path,
         getPages: appPages,
+        initialRoute: RoutesEnum.mainPage.path,
+        unknownRoute: GetPage(name: RoutesEnum.notFound.path, page: () => const Page404()),
         builder: EasyLoading.init(),
         debugShowCheckedModeBanner: false,
         localizationsDelegates: const [

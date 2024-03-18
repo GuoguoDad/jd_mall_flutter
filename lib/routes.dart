@@ -28,6 +28,8 @@ import 'package:jd_mall_flutter/view/page/personal/personal_info.dart';
 import 'package:jd_mall_flutter/view/system/page404.dart';
 import 'package:jd_mall_flutter/view/vebview/webview_page.dart';
 
+import 'middleware/auth_middleware.dart';
+
 enum RoutesEnum {
   //example
   sampleList("/sampleList"),
@@ -82,12 +84,20 @@ List<GetPage> appPages = [
     binding: BindingsBuilder(() => Get.lazyPut<DetailController>(() => DetailController())),
   ),
   GetPage(name: RoutesEnum.webViewPage.path, page: () => const WebViewPage()),
-  GetPage(name: RoutesEnum.generateOrder.path, page: () => const GenerateOrder()),
-  GetPage(name: RoutesEnum.personalInfo.path, page: () => const PersonalInfo()),
+  GetPage(
+    name: RoutesEnum.generateOrder.path,
+    page: () => const GenerateOrder(),
+    middlewares: [EnsureAuthMiddleware()],
+  ),
+  GetPage(
+    name: RoutesEnum.personalInfo.path,
+    page: () => const PersonalInfo(),
+    binding: BindingsBuilder(() => Get.lazyPut<LoginController>(() => LoginController())),
+    middlewares: [EnsureAuthMiddleware()],
+  ),
   GetPage(
     name: RoutesEnum.loginPage.path,
     page: () => LoginPage(),
     binding: BindingsBuilder(() => Get.lazyPut<LoginController>(() => LoginController())),
   ),
-  GetPage(name: RoutesEnum.notFound.path, page: () => const Page404()),
 ];

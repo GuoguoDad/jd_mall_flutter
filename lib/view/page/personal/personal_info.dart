@@ -26,8 +26,6 @@ class PersonalInfo extends StatefulWidget {
 }
 
 class _PersonalInfoState extends State<PersonalInfo> with ImagePickerMixin {
-  final LoginController loginController = Get.put(LoginController());
-
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -74,7 +72,7 @@ class _PersonalInfoState extends State<PersonalInfo> with ImagePickerMixin {
               await Global.preferences?.remove("headerImg");
               await Global.preferences?.remove("integral");
               await Global.preferences?.remove("creditValue");
-              loginController.setLogin(false);
+              LoginController.to.setLogin(false);
 
               Get.offNamed(RoutesEnum.loginPage.path);
             },
