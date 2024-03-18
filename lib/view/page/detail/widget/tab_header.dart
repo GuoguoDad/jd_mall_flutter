@@ -1,15 +1,12 @@
 // Flutter imports:
-import 'package:extended_scroll/extended_scroll.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:get/get.dart';
-import 'package:get/get_state_manager/src/rx_flutter/rx_obx_widget.dart';
 
 // Project imports:
 import 'package:jd_mall_flutter/common/style/common_style.dart';
 import 'package:jd_mall_flutter/common/util/screen_util.dart';
 import 'package:jd_mall_flutter/component/image/asset_image.dart';
-import 'package:jd_mall_flutter/generated/l10n.dart';
 import 'package:jd_mall_flutter/view/page/detail/detail_controller.dart';
 import 'package:jd_mall_flutter/view/page/home/util.dart';
 
@@ -96,10 +93,10 @@ Widget tabHeader(BuildContext context) {
                 shrinkWrap: true,
                 scrollDirection: Axis.horizontal,
                 children: <Widget>[
-                  tabItem(S.of(context).commodity, 0),
-                  tabItem(S.of(context).evaluate, 1),
-                  tabItem(S.of(context).detail, 2),
-                  tabItem(S.of(context).recommend, 3),
+                  tabItem("commodity".tr, 0),
+                  tabItem("evaluate".tr, 1),
+                  tabItem("detail".tr, 2),
+                  tabItem("recommend".tr, 3),
                 ],
               ),
             ),

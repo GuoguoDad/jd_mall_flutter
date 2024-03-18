@@ -13,7 +13,6 @@ import 'package:jd_mall_flutter/common/style/common_style.dart';
 import 'package:jd_mall_flutter/common/types/common.dart';
 import 'package:jd_mall_flutter/common/util/screen_util.dart';
 import 'package:jd_mall_flutter/component/linear_button.dart';
-import 'package:jd_mall_flutter/generated/l10n.dart';
 import 'package:jd_mall_flutter/routes.dart';
 import 'package:jd_mall_flutter/view/page/login/login_controller.dart';
 import 'package:jd_mall_flutter/view/page/login/service.dart';
@@ -104,8 +103,8 @@ class LoginPage extends StatelessWidget {
         await Global.preferences!.setString("integral", res.integral.toString());
         await Global.preferences!.setString("creditValue", res.creditValue.toString());
 
-        if (Get.arguments["from"] != null) {
-          var from = Get.arguments["from"] ?? "";
+        if (Get.arguments != null) {
+          var from = Get.arguments["from"] ?? RoutesEnum.mainPage.path;
           var args = Get.arguments["args"] ?? {};
           Get.offAllNamed(from, arguments: args);
         } else if (canPop) {
@@ -139,7 +138,7 @@ class LoginPage extends StatelessWidget {
                       color: Colors.black,
                     ),
                     Text(
-                      S.of(context).loginHelp,
+                      "loginHelp".tr,
                       style: TextStyle(color: CommonStyle.color777777, fontSize: 20, fontWeight: FontWeight.w500),
                     )
                   ],

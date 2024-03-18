@@ -1,13 +1,13 @@
 // Flutter imports:
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:get/get.dart';
 
 // Project imports:
 import 'package:jd_mall_flutter/common/style/common_style.dart';
 import 'package:jd_mall_flutter/component/image/asset_image.dart';
 import 'package:jd_mall_flutter/component/lazy_load_indexed_stack.dart';
 import 'package:jd_mall_flutter/generated/assets.dart';
-import 'package:jd_mall_flutter/generated/l10n.dart';
 import 'package:jd_mall_flutter/view/page/cart/cart_page.dart';
 import 'package:jd_mall_flutter/view/page/category/category_page.dart';
 import 'package:jd_mall_flutter/view/page/home/home_page.dart';
@@ -30,15 +30,15 @@ class _MainPageState extends State<MainPage> {
     });
   }
 
-  List<Widget> pages = [HomePage(), CategoryPage(), CartPage(), MinePage()];
+  List<Widget> pages = [const HomePage(), const CategoryPage(), const CartPage(), const MinePage()];
 
   @override
   Widget build(BuildContext context) {
     List<Map> barItems = [
-      {"iconPath": Assets.imagesIcHome, "activeIconPath": Assets.imagesIcHomeActive, "label": S.of(context).tabMainHome},
-      {"iconPath": Assets.imagesIcCategory, "activeIconPath": Assets.imagesIcCategoryActive, "label": S.of(context).tabMainCategory},
-      {"iconPath": Assets.imagesIcCart, "activeIconPath": Assets.imagesIcCartActive, "label": S.of(context).tabMainCart},
-      {"iconPath": Assets.imagesIcMine, "activeIconPath": Assets.imagesIcMineActive, "label": S.of(context).tabMainMine},
+      {"iconPath": Assets.imagesIcHome, "activeIconPath": Assets.imagesIcHomeActive, "label": "tabMainHome".tr},
+      {"iconPath": Assets.imagesIcCategory, "activeIconPath": Assets.imagesIcCategoryActive, "label": "tabMainCategory".tr},
+      {"iconPath": Assets.imagesIcCart, "activeIconPath": Assets.imagesIcCartActive, "label": "tabMainCart".tr},
+      {"iconPath": Assets.imagesIcMine, "activeIconPath": Assets.imagesIcMineActive, "label": "tabMainMine".tr},
     ];
 
     return AnnotatedRegion<SystemUiOverlayStyle>(

@@ -9,7 +9,6 @@ import 'package:jd_mall_flutter/common/util/screen_util.dart';
 import 'package:jd_mall_flutter/component/image/asset_image.dart';
 import 'package:jd_mall_flutter/component/persistentHeader/sliver_header_builder.dart';
 import 'package:jd_mall_flutter/generated/assets.dart';
-import 'package:jd_mall_flutter/generated/l10n.dart';
 import 'package:jd_mall_flutter/routes.dart';
 import 'package:jd_mall_flutter/view/page/mine/mine_controller.dart';
 import 'package:jd_mall_flutter/view/page/login/login_controller.dart';
@@ -29,7 +28,7 @@ Widget infoHeader(BuildContext context) {
         return Opacity(
           opacity: headerSize.opacity,
           child: Text(
-            S.of(context).tabMainMine,
+            "tabMainMine".tr,
             style: const TextStyle(color: Colors.black, fontSize: 20),
           ),
         );
@@ -77,16 +76,16 @@ Widget infoHeader(BuildContext context) {
                     mainAxisAlignment: MainAxisAlignment.spaceAround,
                     children: [
                       Text(
-                        S.of(context).author,
+                        "author".tr,
                         style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
                       ),
                       Row(
                         children: [
-                          Text("${S.of(context).integral}: 200", style: const TextStyle(fontSize: 14)),
+                          Text("${"integral".tr}: 200", style: const TextStyle(fontSize: 14)),
                           Container(
                             margin: const EdgeInsets.only(left: 20),
                             child: Text(
-                              "${S.of(context).creditValue}: 1200",
+                              "${"creditValue".tr}: 1200",
                               style: const TextStyle(fontSize: 14),
                             ),
                           )

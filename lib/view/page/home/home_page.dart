@@ -23,7 +23,7 @@ import 'package:jd_mall_flutter/view/page/home/widget/search_header.dart';
 import 'package:jd_mall_flutter/view/page/home/widget/tab_list.dart';
 
 class HomePage extends StatelessWidget {
-  HomePage({super.key});
+  const HomePage({super.key});
 
   @override
   Widget build(BuildContext context) {

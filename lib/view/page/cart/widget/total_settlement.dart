@@ -9,7 +9,6 @@ import 'package:get/get.dart';
 import 'package:jd_mall_flutter/common/style/common_style.dart';
 import 'package:jd_mall_flutter/common/util/screen_util.dart';
 import 'package:jd_mall_flutter/component/linear_button.dart';
-import 'package:jd_mall_flutter/generated/l10n.dart';
 import 'package:jd_mall_flutter/models/cart_goods.dart';
 import 'package:jd_mall_flutter/routes.dart';
 import 'package:jd_mall_flutter/view/page/cart/cart_controller.dart';
@@ -50,13 +49,13 @@ Widget totalSettlement(BuildContext context) {
                     },
                   ),
                 ),
-                Text(S.of(context).selectAll, style: const TextStyle(fontSize: 13)),
+                Text("selectAll".tr, style: const TextStyle(fontSize: 13)),
                 Container(
                   margin: const EdgeInsets.only(left: 5),
-                  child: Text("${S.of(context).amountTo}:", style: const TextStyle(fontSize: 13)),
+                  child: Text("amountTo".tr, style: const TextStyle(fontSize: 13)),
                 ),
                 Text(
-                  "￥${totalInfo.price}",
+                  ": ￥${totalInfo.price}",
                   style: const TextStyle(fontSize: 14, fontWeight: FontWeight.bold),
                 )
               ],
@@ -69,7 +68,7 @@ Widget totalSettlement(BuildContext context) {
             child: LinearButton(
               width: 130,
               height: 42,
-              btnName: '${S.of(context).toSettle}(${totalInfo.num})',
+              btnName: '${"toSettle".tr}(${totalInfo.num})',
               onTap: () {
                 if (selectList.isEmpty) {
                   EasyLoading.showInfo("您还没有选择商品哦", duration: const Duration(seconds: 2));

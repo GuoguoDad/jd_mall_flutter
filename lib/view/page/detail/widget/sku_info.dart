@@ -3,14 +3,13 @@ import 'package:flutter/material.dart';
 
 // Package imports:
 import 'package:cached_network_image/cached_network_image.dart';
-import 'package:get/get_state_manager/src/rx_flutter/rx_obx_widget.dart';
+import 'package:get/get.dart';
 
 // Project imports:
 import 'package:jd_mall_flutter/common/style/common_style.dart';
 import 'package:jd_mall_flutter/common/util/screen_util.dart';
 import 'package:jd_mall_flutter/component/image/asset_image.dart';
 import 'package:jd_mall_flutter/generated/assets.dart';
-import 'package:jd_mall_flutter/generated/l10n.dart';
 import 'package:jd_mall_flutter/models/goods_detail_res.dart';
 import 'package:jd_mall_flutter/view/page/detail/detail_controller.dart';
 
@@ -39,7 +38,7 @@ Widget skuInfo(BuildContext context) {
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 Text(
-                  "${bannerList.length}${S.of(context).colorToChoose}",
+                  "${bannerList.length}${"colorToChoose".tr}",
                   style: TextStyle(color: CommonStyle.color545454, fontSize: 16),
                 ),
                 Expanded(

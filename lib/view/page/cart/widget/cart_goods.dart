@@ -5,7 +5,6 @@ import 'package:flutter/material.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter_group_list_view/flutter_group_list_view.dart';
 import 'package:get/get.dart';
-import 'package:get/get_state_manager/src/rx_flutter/rx_obx_widget.dart';
 
 // Project imports:
 import 'package:jd_mall_flutter/common/style/common_style.dart';
@@ -13,7 +12,6 @@ import 'package:jd_mall_flutter/component/image/asset_image.dart';
 import 'package:jd_mall_flutter/component/stepper/stepper.dart';
 import 'package:jd_mall_flutter/component/stepper/style.dart';
 import 'package:jd_mall_flutter/generated/assets.dart';
-import 'package:jd_mall_flutter/generated/l10n.dart';
 import 'package:jd_mall_flutter/models/cart_goods.dart';
 import 'package:jd_mall_flutter/routes.dart';
 import 'package:jd_mall_flutter/view/page/cart/cart_controller.dart';
@@ -149,7 +147,7 @@ Widget buildItem(BuildContext context, CartController c, IndexPath indexPath) {
                       borderRadius: const BorderRadius.all(Radius.circular(6)),
                     ),
                     child: Text(
-                      S.of(context).defaultSpecifications,
+                      "defaultSpecifications".tr,
                       style: TextStyle(fontSize: 12, color: CommonStyle.color969798),
                     ),
                   ),

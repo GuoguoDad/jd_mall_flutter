@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 
 // Package imports:
 import 'package:cached_network_image/cached_network_image.dart';
-import 'package:get/get_state_manager/src/rx_flutter/rx_obx_widget.dart';
+import 'package:get/get.dart';
 
 // Project imports:
 import 'package:jd_mall_flutter/common/style/common_style.dart';
@@ -11,7 +11,6 @@ import 'package:jd_mall_flutter/common/util/screen_util.dart';
 import 'package:jd_mall_flutter/component/group_grid_view.dart';
 import 'package:jd_mall_flutter/component/image/asset_image.dart';
 import 'package:jd_mall_flutter/generated/assets.dart';
-import 'package:jd_mall_flutter/generated/l10n.dart';
 import 'package:jd_mall_flutter/models/goods_detail_res.dart';
 import 'package:jd_mall_flutter/view/page/detail/detail_controller.dart';
 import 'package:jd_mall_flutter/view/page/home/util.dart';
@@ -104,7 +103,7 @@ Widget appraiseInfo(BuildContext context) {
                   key: cardKeys[1],
                   margin: const EdgeInsets.only(bottom: 10),
                   child: Text(
-                    S.of(context).evaluate,
+                    "evaluate".tr,
                     style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
                   ),
                 ),
@@ -122,18 +121,18 @@ Widget appraiseInfo(BuildContext context) {
                     borderRadius: const BorderRadius.all(Radius.circular(30)),
                     border: Border.all(color: Colors.grey, width: 1),
                   ),
-                  child: Text(S.of(context).allEvaluations),
+                  child: Text("allEvaluations".tr),
                 )
               ],
             ),
           ),
-          itemCard(S.of(context).activityZone, detailInfo?.hdzq ?? "", 260),
+          itemCard("activityZone".tr, detailInfo?.hdzq ?? "", 260),
           Container(
             height: 10,
             width: screenWidth,
             color: CommonStyle.colorF5F5F5,
           ),
-          itemCard(S.of(context).storeSelection, detailInfo?.dnyx ?? "", 500)
+          itemCard("storeSelection".tr, detailInfo?.dnyx ?? "", 500)
         ]),
       ),
     );

@@ -20,7 +20,7 @@ import 'package:jd_mall_flutter/view/page/cart/widget/probably_like.dart';
 import 'package:jd_mall_flutter/view/page/cart/widget/total_settlement.dart';
 
 class CartPage extends StatelessWidget {
-  CartPage({super.key});
+  const CartPage({super.key});
 
   @override
   Widget build(BuildContext context) {

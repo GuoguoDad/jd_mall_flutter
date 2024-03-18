@@ -7,7 +7,7 @@ class NavigatorChangeObserver<R extends Route<dynamic>> extends RouteObserver<R>
   void didPush(Route route, Route? previousRoute) {
     super.didPush(route, previousRoute);
     if (kDebugMode) {
-      print('didPush route: ${route.settings.name},  previousRoute:${previousRoute?.settings.name}');
+      // print('didPush route: ${route.settings.name},  previousRoute:${previousRoute?.settings.name}');
     }
   }
 
@@ -15,7 +15,7 @@ class NavigatorChangeObserver<R extends Route<dynamic>> extends RouteObserver<R>
   void didPop(Route route, Route? previousRoute) {
     super.didPop(route, previousRoute);
     if (kDebugMode) {
-      print('didPop route: ${route.settings.name},  previousRoute:${previousRoute?.settings.name}');
+      // print('didPop route: ${route.settings.name},  previousRoute:${previousRoute?.settings.name}');
     }
   }
 
@@ -23,7 +23,7 @@ class NavigatorChangeObserver<R extends Route<dynamic>> extends RouteObserver<R>
   void didReplace({Route? newRoute, Route? oldRoute}) {
     super.didReplace(newRoute: newRoute, oldRoute: oldRoute);
     if (kDebugMode) {
-      print('didReplace newRoute: $newRoute,oldRoute:$oldRoute');
+      // print('didReplace newRoute: $newRoute,oldRoute:$oldRoute');
     }
   }
 
@@ -31,7 +31,7 @@ class NavigatorChangeObserver<R extends Route<dynamic>> extends RouteObserver<R>
   void didRemove(Route route, Route? previousRoute) {
     super.didRemove(route, previousRoute);
     if (kDebugMode) {
-      print('didRemove route: $route,previousRoute:$previousRoute');
+      // print('didRemove route: $route,previousRoute:$previousRoute');
     }
   }
 
@@ -39,7 +39,7 @@ class NavigatorChangeObserver<R extends Route<dynamic>> extends RouteObserver<R>
   void didStartUserGesture(Route route, Route? previousRoute) {
     super.didStartUserGesture(route, previousRoute);
     if (kDebugMode) {
-      print('didStartUserGesture route: $route,previousRoute:$previousRoute');
+      // print('didStartUserGesture route: $route,previousRoute:$previousRoute');
     }
   }
 
@@ -47,7 +47,7 @@ class NavigatorChangeObserver<R extends Route<dynamic>> extends RouteObserver<R>
   void didStopUserGesture() {
     super.didStopUserGesture();
     if (kDebugMode) {
-      print('didStopUserGesture');
+      // print('didStopUserGesture');
     }
   }
 }

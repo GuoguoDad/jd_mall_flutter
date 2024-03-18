@@ -1,6 +1,6 @@
 // Flutter imports:
 import 'package:flutter/material.dart';
-import 'package:get/get_state_manager/src/rx_flutter/rx_obx_widget.dart';
+import 'package:get/get.dart';
 
 // Project imports:
 import 'package:jd_mall_flutter/common/style/common_style.dart';
@@ -8,7 +8,6 @@ import 'package:jd_mall_flutter/common/util/screen_util.dart';
 import 'package:jd_mall_flutter/component/image/asset_image.dart';
 import 'package:jd_mall_flutter/component/persistentHeader/sliver_header_builder.dart';
 import 'package:jd_mall_flutter/generated/assets.dart';
-import 'package:jd_mall_flutter/generated/l10n.dart';
 import 'package:jd_mall_flutter/view/page/home/home_controller.dart';
 import 'package:jd_mall_flutter/view/page/home/util.dart';
 
@@ -61,7 +60,7 @@ Widget searchHeader(BuildContext context) {
                           height: 34.0,
                           alignment: Alignment.centerLeft,
                           child: Text(
-                            S.of(context).homeSearchTip,
+                            "homeSearchTip".tr,
                             style: TextStyle(
                               fontSize: 14,
                               color: CommonStyle.placeholderColor,

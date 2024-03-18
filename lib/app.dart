@@ -8,7 +8,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:form_builder_validators/localization/l10n.dart';
-import 'package:get/get_navigation/src/root/get_material_app.dart';
+import 'package:get/get.dart';
+import 'package:jd_mall_flutter/translation/messages.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
 
 // Project imports:
@@ -17,10 +18,8 @@ import 'package:jd_mall_flutter/common/event/index.dart';
 import 'package:jd_mall_flutter/common/global/Global.dart';
 import 'package:jd_mall_flutter/common/observer/navigator_change_observer.dart';
 import 'package:jd_mall_flutter/common/util/screen_util.dart';
-import 'package:jd_mall_flutter/generated/l10n.dart';
 import 'package:jd_mall_flutter/http/code.dart';
 import 'package:jd_mall_flutter/routes.dart';
-import 'package:jd_mall_flutter/common/util/util.dart';
 
 class MallApp extends StatefulWidget {
   const MallApp({super.key});
@@ -34,6 +33,7 @@ class _FlutterMallApp extends State<MallApp> with HttpErrorListener {
   Widget build(BuildContext context) {
     return refreshConfig(
       child: GetMaterialApp(
+        translations: Messages(),
         navigatorKey: Global.navigatorKey,
         navigatorObservers: [NavigatorChangeObserver()],
         theme: ThemeData(
@@ -50,10 +50,10 @@ class _FlutterMallApp extends State<MallApp> with HttpErrorListener {
           GlobalMaterialLocalizations.delegate,
           GlobalCupertinoLocalizations.delegate,
           FormBuilderLocalizations.delegate,
-          RefreshLocalizations.delegate,
-          S.delegate,
+          RefreshLocalizations.delegate
         ],
         locale: const Locale('zh', 'CN'),
+        fallbackLocale: const Locale('en', 'US'),
         supportedLocales: const [
           Locale('en', 'US'), // 美国英语
           Locale('zh', 'CN'), // 中文简体
@@ -102,31 +102,30 @@ mixin HttpErrorListener on State<MallApp> {
   }
 
   errorHandleFunction(int? code, message) {
-    var context = Global.navigatorKey.currentContext!;
     switch (code) {
       case Code.NETWORK_ERROR:
-        showToast(S.of(context).networkError);
+        showToast("networkError".tr);
         break;
       case 401:
-        showToast(S.of(context).networkError401);
+        showToast("networkError401".tr);
         break;
       case 403:
-        showToast(S.of(context).networkError403);
+        showToast("networkError403".tr);
         break;
       case 404:
-        showToast(S.of(context).networkError404);
+        showToast("networkError404".tr);
         break;
       case 422:
-        showToast(S.of(context).networkError422);
+        showToast("networkError422".tr);
         break;
       case Code.NETWORK_TIMEOUT:
-        showToast(S.of(context).networkErrorTimeout);
+        showToast("networkErrorTimeout".tr);
         break;
       case Code.CONNECTION_REFUSED:
-        showToast(S.of(context).connectRefused);
+        showToast("connectRefused".tr);
         break;
       default:
-        showToast("${S.of(context).networkErrorUnknown} $message");
+        showToast("${"networkErrorUnknown".tr} $message");
         break;
     }
   }

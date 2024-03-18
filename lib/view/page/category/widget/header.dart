@@ -1,11 +1,11 @@
 // Flutter imports:
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 // Project imports:
 import 'package:jd_mall_flutter/common/extension/color_ext.dart';
 import 'package:jd_mall_flutter/common/util/screen_util.dart';
 import 'package:jd_mall_flutter/component/image/asset_image.dart';
-import 'package:jd_mall_flutter/generated/l10n.dart';
 
 Widget header(BuildContext context) {
   return Container(
@@ -23,7 +23,7 @@ Widget header(BuildContext context) {
             children: [
               assetImage('images/scan.png', 24, 24),
               Text(
-                S.of(context).scan,
+                "scan".tr,
                 style: const TextStyle(color: Colors.white, fontSize: 11),
               )
             ],
@@ -36,7 +36,7 @@ Widget header(BuildContext context) {
             children: [
               assetImage('images/message.png', 24, 24),
               Text(
-                S.of(context).message,
+                "message".tr,
                 style: const TextStyle(color: Colors.white, fontSize: 11),
               )
             ],
@@ -67,7 +67,7 @@ Widget header(BuildContext context) {
                     height: 36.0,
                     alignment: Alignment.centerLeft,
                     child: Text(
-                      S.of(context).searchInputTip,
+                      "searchInputTip".tr,
                       style: TextStyle(
                         fontSize: 14,
                         color: '#818286'.toColor(),
