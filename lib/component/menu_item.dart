@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 
 // Package imports:
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:get/get.dart';
 
 // Project imports:
 import 'package:jd_mall_flutter/component/image/asset_image.dart';
@@ -23,7 +24,7 @@ class MenuItem extends StatelessWidget {
     return GestureDetector(
       onTap: () {
         if ((menuData.h5url ?? "").isNotEmpty) {
-          Navigator.of(context).pushNamed(RoutesEnum.webViewPage.path, arguments: {"url": menuData.h5url.toString()});
+          Get.toNamed(RoutesEnum.webViewPage.path, arguments: {"url": menuData.h5url.toString()});
         }
       },
       child: Column(

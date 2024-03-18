@@ -6,7 +6,6 @@ import 'package:flutter/services.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:form_builder_validators/form_builder_validators.dart';
 import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
 
 // Project imports:
 import 'package:jd_mall_flutter/common/global/Global.dart';
@@ -20,9 +19,7 @@ import 'package:jd_mall_flutter/view/page/login/login_controller.dart';
 import 'package:jd_mall_flutter/view/page/login/service.dart';
 
 class LoginPage extends StatelessWidget {
-  final Map? arguments;
-
-  LoginPage({super.key, this.arguments});
+  LoginPage({super.key});
 
   final LoginController controller = Get.put(LoginController());
   final _formKey = GlobalKey<FormBuilderState>();
@@ -107,14 +104,14 @@ class LoginPage extends StatelessWidget {
         await Global.preferences!.setString("integral", res.integral.toString());
         await Global.preferences!.setString("creditValue", res.creditValue.toString());
 
-        if (arguments != null) {
-          var from = arguments!["from"];
-          var args = arguments!["args"];
-          Navigator.of(Global.navigatorKey.currentContext!).pushReplacementNamed(from, arguments: args);
+        if (Get.arguments["from"] != null) {
+          var from = Get.arguments["from"] ?? "";
+          var args = Get.arguments["args"] ?? {};
+          Get.offAllNamed(from, arguments: args);
         } else if (canPop) {
-          Navigator.of(Global.navigatorKey.currentContext!).pop();
+          Get.back();
         } else {
-          Navigator.of(Global.navigatorKey.currentContext!).pushReplacementNamed(RoutesEnum.mainPage.path);
+          Get.offAllNamed(RoutesEnum.mainPage.path);
         }
       }
     }
@@ -137,11 +134,7 @@ class LoginPage extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     IconButton(
-                      onPressed: () {
-                        if (Navigator.of(context).canPop()) {
-                          Navigator.of(context).pop();
-                        }
-                      },
+                      onPressed: () => Get.back(),
                       icon: const Icon(Icons.close),
                       color: Colors.black,
                     ),

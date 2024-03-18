@@ -3,15 +3,15 @@ import 'package:flutter/material.dart';
 
 // Package imports:
 import 'package:file_preview/file_preview.dart';
+import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
 
 // Project imports:
 import 'package:jd_mall_flutter/common/util/screen_util.dart';
 import 'package:jd_mall_flutter/component/common_header.dart';
 
 class FilePreviewPage extends StatefulWidget {
-  final Map arguments;
-
-  const FilePreviewPage({super.key, required this.arguments});
+  const FilePreviewPage({super.key});
 
   @override
   State<FilePreviewPage> createState() => _FilePreviewPageState();
@@ -36,7 +36,7 @@ class _FilePreviewPageState extends State<FilePreviewPage> {
                     controller: controller,
                     width: getScreenWidth(context),
                     height: 600,
-                    path: widget.arguments['path'],
+                    path: Get.arguments['path'] ?? '',
                     callBack: FilePreviewCallBack(onShow: () {
                       print("文件打开成功");
                     }, onDownload: (progress) {

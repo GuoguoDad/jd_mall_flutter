@@ -8,6 +8,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:form_builder_validators/localization/l10n.dart';
+import 'package:get/get_navigation/src/root/get_material_app.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
 
 // Project imports:
@@ -32,7 +33,7 @@ class _FlutterMallApp extends State<MallApp> with HttpErrorListener {
   @override
   Widget build(BuildContext context) {
     return refreshConfig(
-      child: MaterialApp(
+      child: GetMaterialApp(
         navigatorKey: Global.navigatorKey,
         navigatorObservers: [NavigatorChangeObserver()],
         theme: ThemeData(
@@ -41,8 +42,8 @@ class _FlutterMallApp extends State<MallApp> with HttpErrorListener {
           highlightColor: Colors.transparent,
         ),
         initialRoute: RoutesEnum.mainPage.path,
+        getPages: appPages,
         builder: EasyLoading.init(),
-        onGenerateRoute: onGenerateRoute,
         debugShowCheckedModeBanner: false,
         localizationsDelegates: const [
           GlobalWidgetsLocalizations.delegate,
@@ -134,32 +135,3 @@ mixin HttpErrorListener on State<MallApp> {
     EasyLoading.showInfo(message, duration: const Duration(seconds: 3));
   }
 }
-
-var onGenerateRoute = (RouteSettings settings) {
-  final String? name = settings.name;
-  Object? arguments = settings.arguments;
-
-  Function pageBuilder;
-  bool toLogin = false;
-
-  if (loginRequiredRoutes.contains(name) && !isLogin()) {
-    toLogin = true;
-  }
-
-  Object? params;
-  if (toLogin) {
-    pageBuilder = routesMap[RoutesEnum.loginPage.path] as Function;
-    params = {"from": name!, "args": arguments};
-  } else {
-    params = arguments;
-    if (routesMap[name] != null) {
-      pageBuilder = routesMap[name] as Function;
-    } else {
-      pageBuilder = routesMap[RoutesEnum.notFound.path] as Function;
-    }
-  }
-  return MaterialPageRoute(
-    settings: RouteSettings(name: name, arguments: params),
-    builder: (context) => params != null ? pageBuilder(context, arguments: params) : pageBuilder(context),
-  );
-};

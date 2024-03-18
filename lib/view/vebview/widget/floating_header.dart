@@ -1,5 +1,6 @@
 // Flutter imports:
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 // Project imports:
 import 'package:jd_mall_flutter/common/util/screen_util.dart';
@@ -21,7 +22,7 @@ Widget floatingHeader(BuildContext context, {required String title, Color? bgCol
           Expanded(
             flex: 1,
             child: GestureDetector(
-              onTap: () => Navigator.of(context).pop(),
+              onTap: () => Get.back(),
               child: Container(
                 alignment: Alignment.centerLeft,
                 padding: const EdgeInsets.only(left: 16),

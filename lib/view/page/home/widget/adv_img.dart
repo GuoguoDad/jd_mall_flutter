@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 
 // Package imports:
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:get/get.dart';
 import 'package:get/get_state_manager/src/rx_flutter/rx_obx_widget.dart';
 
 // Project imports:
@@ -15,7 +16,7 @@ import 'package:jd_mall_flutter/view/page/home/home_controller.dart';
 Widget advBanner(BuildContext context) {
   return SliverToBoxAdapter(
     child: GestureDetector(
-      onTap: () => Navigator.of(context).pushNamed(
+      onTap: () => Get.toNamed(
         RoutesEnum.webViewPage.path,
         arguments: {"url": "https://pro.m.jd.com/mall/active/2WrXYwmYpiy7EpWjDETSVyhXfLCb/index.html"},
       ),

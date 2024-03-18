@@ -1,5 +1,7 @@
 // Flutter imports:
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
 
 // Package imports:
 import 'package:webview_flutter/webview_flutter.dart';
@@ -11,9 +13,7 @@ import 'package:jd_mall_flutter/view/vebview/type.dart';
 import 'package:jd_mall_flutter/view/vebview/widget/floating_header.dart';
 
 class WebViewPage extends StatefulWidget {
-  final Map arguments;
-
-  const WebViewPage({super.key, required this.arguments});
+  const WebViewPage({super.key});
 
   @override
   State<StatefulWidget> createState() => _WebViewPageState();
@@ -71,7 +71,7 @@ class _WebViewPageState extends State<WebViewPage> {
           },
         ),
       )
-      ..loadRequest(Uri.parse(widget.arguments['url']));
+      ..loadRequest(Uri.parse(Get.arguments['url'] ?? ""));
     isInit = true;
   }
 

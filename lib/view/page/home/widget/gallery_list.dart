@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 // Package imports:
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter_carousel_widget/flutter_carousel_widget.dart';
-import 'package:get/get_state_manager/src/rx_flutter/rx_obx_widget.dart';
+import 'package:get/get.dart';
 
 // Project imports:
 import 'package:jd_mall_flutter/common/style/common_style.dart';
@@ -49,7 +49,7 @@ Widget galleryList(BuildContext context) {
             items: bannerList.map(
               (item) {
                 return GestureDetector(
-                  onTap: () => Navigator.of(context).pushNamed(RoutesEnum.detailPage.path),
+                  onTap: () => Get.toNamed(RoutesEnum.detailPage.path),
                   child: Container(
                     margin: const EdgeInsets.fromLTRB(10, 10, 10, 2),
                     child: ClipRRect(

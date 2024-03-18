@@ -76,7 +76,7 @@ class _PersonalInfoState extends State<PersonalInfo> with ImagePickerMixin {
               await Global.preferences?.remove("creditValue");
               loginController.setLogin(false);
 
-              Navigator.of(Global.navigatorKey.currentContext!).pushReplacementNamed(RoutesEnum.loginPage.path);
+              Get.offNamed(RoutesEnum.loginPage.path);
             },
           ),
         )

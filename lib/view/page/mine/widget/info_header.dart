@@ -95,7 +95,7 @@ Widget infoHeader(BuildContext context) {
                     ],
                   )
                 : GestureDetector(
-                    onTap: () => Navigator.of(context).pushNamed(RoutesEnum.loginPage.path),
+                    onTap: () => Get.toNamed(RoutesEnum.loginPage.path),
                     child: Row(
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
@@ -143,7 +143,7 @@ Widget infoHeader(BuildContext context) {
               top: 4,
               right: 66,
               child: GestureDetector(
-                onTap: () => Navigator.of(context).pushNamed(RoutesEnum.personalInfo.path),
+                onTap: () => Get.toNamed(RoutesEnum.personalInfo.path),
                 child: assetImage(Assets.imagesIcSetting, 26, 26),
               ),
             ),
@@ -151,7 +151,7 @@ Widget infoHeader(BuildContext context) {
               top: 4,
               right: 18,
               child: GestureDetector(
-                onTap: () => Navigator.of(context).pushNamed(RoutesEnum.sampleList.path),
+                onTap: () => Get.toNamed(RoutesEnum.sampleList.path),
                 child: assetImage(Assets.imagesIcMessage, 26, 26),
               ),
             ),

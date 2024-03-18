@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 
 // Package imports:
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:get/get.dart';
 
 // Project imports:
 import 'package:jd_mall_flutter/common/extension/color_ext.dart';
@@ -115,8 +116,8 @@ Widget goodsItem(BuildContext context, GoodsList item, double width) {
 
   return GestureDetector(
     onTap: () {
-      if (item.type == '1') Navigator.of(context).pushNamed(RoutesEnum.detailPage.path);
-      if (item.type == '2') Navigator.of(context).pushNamed(RoutesEnum.webViewPage.path, arguments: {"url": item.h5url});
+      if (item.type == '1') Get.toNamed(RoutesEnum.detailPage.path);
+      if (item.type == '2') Get.toNamed(RoutesEnum.webViewPage.path, arguments: {"url": item.h5url});
     },
     child: Container(
       padding: const EdgeInsets.only(bottom: 10),

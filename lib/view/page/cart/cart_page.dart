@@ -22,8 +22,6 @@ import 'package:jd_mall_flutter/view/page/cart/widget/total_settlement.dart';
 class CartPage extends StatelessWidget {
   CartPage({super.key});
 
-  final CartController c = Get.put(CartController());
-
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -31,21 +29,23 @@ class CartPage extends StatelessWidget {
         cartHeader(context),
         Expanded(
           child: Obx(() {
-            bool isLoading = c.isLoading.value;
+            bool isLoading = CartController.to.isLoading.value;
 
             return isLoading
                 ? loadingWidget(context)
                 : Scaffold(
                     backgroundColor: CommonStyle.colorF3F3F3,
                     body: SmartRefresher(
-                      controller: c.refreshController,
+                      controller: CartController.to.refreshController,
                       physics: const BouncingScrollPhysics(),
                       enablePullUp: true,
                       header: const ClassicHeader(spacing: 10, height: 58),
-                      onRefresh: () => c.refreshPage(() => refreshSuccess(c.refreshController), () => refreshFail(c.refreshController)),
-                      onLoading: () => c.loadNextPage(() => loadMoreSuccess(c.refreshController), () => loadMoreFail(c.refreshController)),
+                      onRefresh: () => CartController.to
+                          .refreshPage(() => refreshSuccess(CartController.to.refreshController), () => refreshFail(CartController.to.refreshController)),
+                      onLoading: () => CartController.to
+                          .loadNextPage(() => loadMoreSuccess(CartController.to.refreshController), () => loadMoreFail(CartController.to.refreshController)),
                       child: CustomScrollView(
-                        controller: c.scrollController,
+                        controller: CartController.to.scrollController,
                         slivers: [
                           condition(context),
                           cartGoods(context),
@@ -54,11 +54,11 @@ class CartPage extends StatelessWidget {
                         ],
                       ),
                     ),
-                    floatingActionButton: BackToTop(c.scrollController),
+                    floatingActionButton: BackToTop(CartController.to.scrollController),
                   );
           }),
         ),
-        totalSettlement(context, c)
+        totalSettlement(context)
       ],
     );
   }

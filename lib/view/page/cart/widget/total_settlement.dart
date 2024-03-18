@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 
 // Package imports:
 import 'package:flutter_easyloading/flutter_easyloading.dart';
-import 'package:get/get_state_manager/src/rx_flutter/rx_obx_widget.dart';
+import 'package:get/get.dart';
 
 // Project imports:
 import 'package:jd_mall_flutter/common/style/common_style.dart';
@@ -14,7 +14,7 @@ import 'package:jd_mall_flutter/models/cart_goods.dart';
 import 'package:jd_mall_flutter/routes.dart';
 import 'package:jd_mall_flutter/view/page/cart/cart_controller.dart';
 
-Widget totalSettlement(BuildContext context, CartController c) {
+Widget totalSettlement(BuildContext context) {
   return Container(
     height: 58,
     width: getScreenWidth(context),
@@ -26,8 +26,8 @@ Widget totalSettlement(BuildContext context, CartController c) {
       ),
     ),
     child: Obx(() {
-      List<CartGoods> cartGoods = c.cartGoods;
-      List<String> selectList = c.selectCartGoodsList;
+      List<CartGoods> cartGoods = CartController.to.cartGoods;
+      List<String> selectList = CartController.to.selectCartGoodsList;
       bool isSelect = isSelectAll(cartGoods, selectList);
 
       TotalInfo totalInfo = calcPrice(cartGoods, selectList);
@@ -46,7 +46,7 @@ Widget totalSettlement(BuildContext context, CartController c) {
                     shape: const CircleBorder(),
                     activeColor: Colors.red,
                     onChanged: (bool? va) {
-                      c.selectAll(!isSelect);
+                      CartController.to.selectAll(!isSelect);
                     },
                   ),
                 ),
@@ -75,7 +75,7 @@ Widget totalSettlement(BuildContext context, CartController c) {
                   EasyLoading.showInfo("您还没有选择商品哦", duration: const Duration(seconds: 2));
                   return;
                 }
-                Navigator.of(context).pushNamed(RoutesEnum.generateOrder.path);
+                Get.toNamed(RoutesEnum.generateOrder.path);
               },
             ),
           )

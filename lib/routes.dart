@@ -1,8 +1,14 @@
 // Flutter imports:
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:get/get_instance/get_instance.dart';
+import 'package:get/get_navigation/src/routes/get_route.dart';
 
 // Project imports:
 import 'package:jd_mall_flutter/view/main/main_page.dart';
+import 'package:jd_mall_flutter/view/page/cart/cart_controller.dart';
+import 'package:jd_mall_flutter/view/page/category/category_controller.dart';
+import 'package:jd_mall_flutter/view/page/detail/detail_controller.dart';
 import 'package:jd_mall_flutter/view/page/detail/detail_page.dart';
 import 'package:jd_mall_flutter/view/page/example/Interlaced_animation.dart';
 import 'package:jd_mall_flutter/view/page/example/breathing_method.dart';
@@ -13,7 +19,10 @@ import 'package:jd_mall_flutter/view/page/example/gesture_spring.dart';
 import 'package:jd_mall_flutter/view/page/example/sample_list.dart';
 import 'package:jd_mall_flutter/view/page/example/snow_man.dart';
 import 'package:jd_mall_flutter/view/page/example/video_simple.dart';
+import 'package:jd_mall_flutter/view/page/home/home_controller.dart';
+import 'package:jd_mall_flutter/view/page/login/login_controller.dart';
 import 'package:jd_mall_flutter/view/page/login/login_page.dart';
+import 'package:jd_mall_flutter/view/page/mine/mine_controller.dart';
 import 'package:jd_mall_flutter/view/page/order/generate/generate_order.dart';
 import 'package:jd_mall_flutter/view/page/personal/personal_info.dart';
 import 'package:jd_mall_flutter/view/system/page404.dart';
@@ -29,7 +38,7 @@ enum RoutesEnum {
   gestureSpring("/gestureSpring"),
   contactList("/contactList"),
   filePreview("/filePreview"),
-  videoPlayer('videoPlayer'),
+  videoPlayer('/videoPlayer'),
   //pages
   mainPage("/mainPage"),
   detailPage("/detailPage"),
@@ -44,25 +53,37 @@ enum RoutesEnum {
   final String path;
 }
 
-var loginRequiredRoutes = [RoutesEnum.personalInfo.path, RoutesEnum.generateOrder.path];
-
-Map<String, WidgetBuilder> routesMap = {
+List<GetPage> appPages = [
   //example
-  RoutesEnum.sampleList.path: (context) => const SampleList(),
-  RoutesEnum.completeForm.path: (context) => const CompleteForm(),
-  RoutesEnum.interlacedAnimation.path: (context) => const InterlacedAnimationDemo(),
-  RoutesEnum.breathingMethod.path: (context) => const BreathingMethod(),
-  RoutesEnum.snowMan.path: (context) => const SnowManDemo(),
-  RoutesEnum.gestureSpring.path: (context) => const GestureSpring(),
-  RoutesEnum.contactList.path: (context) => const ContactList(),
-  RoutesEnum.filePreview.path: (context, {arguments}) => FilePreviewPage(arguments: arguments),
-  RoutesEnum.videoPlayer.path: (context) => const VideoPlayerDemo(),
+  GetPage(name: RoutesEnum.sampleList.path, page: () => const SampleList()),
+  GetPage(name: RoutesEnum.completeForm.path, page: () => const CompleteForm()),
+  GetPage(name: RoutesEnum.interlacedAnimation.path, page: () => const InterlacedAnimationDemo()),
+  GetPage(name: RoutesEnum.breathingMethod.path, page: () => const BreathingMethod()),
+  GetPage(name: RoutesEnum.snowMan.path, page: () => const SnowManDemo()),
+  GetPage(name: RoutesEnum.gestureSpring.path, page: () => const GestureSpring()),
+  GetPage(name: RoutesEnum.contactList.path, page: () => const ContactList()),
+  GetPage(name: RoutesEnum.filePreview.path, page: () => const FilePreviewPage()),
+  GetPage(name: RoutesEnum.videoPlayer.path, page: () => const VideoPlayerDemo()),
   //pages
-  RoutesEnum.mainPage.path: (context) => const MainPage(),
-  RoutesEnum.detailPage.path: (context) => DetailPage(),
-  RoutesEnum.webViewPage.path: (context, {arguments}) => WebViewPage(arguments: arguments),
-  RoutesEnum.generateOrder.path: (context) => const GenerateOrder(),
-  RoutesEnum.personalInfo.path: (context) => const PersonalInfo(),
-  RoutesEnum.loginPage.path: (context, {arguments}) => LoginPage(arguments: arguments),
-  RoutesEnum.notFound.path: (context) => const Page404(),
-};
+  GetPage(
+    name: RoutesEnum.mainPage.path,
+    page: () => const MainPage(),
+    binding: BindingsBuilder(() {
+      Get.lazyPut<HomeController>(() => HomeController());
+      Get.lazyPut<CategoryController>(() => CategoryController());
+      Get.lazyPut<CartController>(() => CartController());
+      Get.lazyPut<MineController>(() => MineController());
+      Get.lazyPut<LoginController>(() => LoginController());
+    }),
+  ),
+  GetPage(
+    name: RoutesEnum.detailPage.path,
+    page: () => const DetailPage(),
+    binding: BindingsBuilder(() => Get.lazyPut<DetailController>(() => DetailController())),
+  ),
+  GetPage(name: RoutesEnum.webViewPage.path, page: () => const WebViewPage()),
+  GetPage(name: RoutesEnum.generateOrder.path, page: () => const GenerateOrder()),
+  GetPage(name: RoutesEnum.personalInfo.path, page: () => const PersonalInfo()),
+  GetPage(name: RoutesEnum.loginPage.path, page: () => LoginPage()),
+  GetPage(name: RoutesEnum.notFound.path, page: () => const Page404()),
+];

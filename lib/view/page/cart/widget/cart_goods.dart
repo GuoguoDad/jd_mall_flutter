@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 // Package imports:
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter_group_list_view/flutter_group_list_view.dart';
+import 'package:get/get.dart';
 import 'package:get/get_state_manager/src/rx_flutter/rx_obx_widget.dart';
 
 // Project imports:
@@ -82,7 +83,7 @@ Widget buildHeader(BuildContext context, CartController c, int section) {
           GestureDetector(
             onTap: () {
               if (url != "") {
-                Navigator.of(context).pushNamed(RoutesEnum.webViewPage.path, arguments: WebViewPageArguments(url));
+                Get.toNamed(RoutesEnum.webViewPage.path, arguments: WebViewPageArguments(url));
               }
             },
             child: assetImage("images/ic_arrow_right.png", 20, 20),

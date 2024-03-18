@@ -2,6 +2,7 @@
 import 'package:extended_scroll/extended_scroll.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
+import 'package:get/get.dart';
 import 'package:get/get_state_manager/src/rx_flutter/rx_obx_widget.dart';
 
 // Project imports:
@@ -79,7 +80,7 @@ Widget tabHeader(BuildContext context) {
           Expanded(
             flex: 1,
             child: GestureDetector(
-              onTap: () => Navigator.of(context).pop(),
+              onTap: () => Get.back(),
               child: Container(
                 alignment: Alignment.centerLeft,
                 padding: const EdgeInsets.only(left: 14),

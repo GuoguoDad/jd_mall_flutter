@@ -6,6 +6,7 @@ import 'package:flutter/cupertino.dart';
 
 // Package imports:
 import 'package:flutter_easyloading/flutter_easyloading.dart';
+import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:wechat_assets_picker/wechat_assets_picker.dart';
 
@@ -25,7 +26,7 @@ mixin ImagePickerMixin<T extends StatefulWidget> on State<T> {
           actions: titles.map((e) {
             return CupertinoActionSheetAction(
               onPressed: () {
-                Navigator.of(context).pop();
+                Get.back();
                 if (e == titles[0]) {
                   handleImageFromCamera(needCropp: needCropp, cb: callback);
                 } else {
@@ -37,9 +38,7 @@ mixin ImagePickerMixin<T extends StatefulWidget> on State<T> {
           }).toList(),
           cancelButton: CupertinoActionSheetAction(
             isDestructiveAction: true,
-            onPressed: () {
-              Navigator.pop(context);
-            },
+            onPressed: () => Get.back(),
             child: const Text('取消'),
           ),
         );

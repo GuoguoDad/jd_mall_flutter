@@ -25,8 +25,6 @@ import 'package:jd_mall_flutter/view/page/home/widget/tab_list.dart';
 class HomePage extends StatelessWidget {
   HomePage({super.key});
 
-  final HomeController c = Get.put(HomeController());
-
   @override
   Widget build(BuildContext context) {
     double statusHeight = getStatusHeight(context);
@@ -44,14 +42,15 @@ class HomePage extends StatelessWidget {
         return false;
       },
       child: EasyRefresh.builder(
-        controller: c.freshController,
+        controller: HomeController.to.freshController,
         header: classicHeader,
         clipBehavior: Clip.none,
-        onRefresh: () => c.refreshPage(() => easyRefreshSuccess(c.freshController), () => easyRefreshFail(c.freshController)),
+        onRefresh: () => HomeController.to
+            .refreshPage(() => easyRefreshSuccess(HomeController.to.freshController), () => easyRefreshFail(HomeController.to.freshController)),
         childBuilder: (context, physics) {
           return Scaffold(
             body: ExtendedNestedScrollView(
-              controller: c.scrollController,
+              controller: HomeController.to.scrollController,
               pinnedHeaderSliverHeightBuilder: () {
                 return statusHeight + 44 + 54;
               },
@@ -67,8 +66,8 @@ class HomePage extends StatelessWidget {
               },
               onlyOneScrollInBody: true,
               body: Obx(() {
-                var tabs = c.homePageInfo.value.tabList ?? [];
-                String selectTab = c.currentTab.value;
+                var tabs = HomeController.to.homePageInfo.value.tabList ?? [];
+                String selectTab = HomeController.to.currentTab.value;
                 String currentTab = selectTab.isNotEmpty
                     ? selectTab
                     : tabs.isNotEmpty
@@ -76,16 +75,16 @@ class HomePage extends StatelessWidget {
                         : "";
 
                 return PageView(
-                  controller: c.pageController,
+                  controller: HomeController.to.pageController,
                   onPageChanged: (index) {
-                    if (c.isTabClick.value) return;
-                    c.changeCurrentTab(tabs[index].code!);
+                    if (HomeController.to.isTabClick.value) return;
+                    HomeController.to.changeCurrentTab(tabs[index].code!);
                   },
                   children: tabs.map((e) => KeepAliveWrapper(child: PageGoodsList("home_tab_${e.code!}", currentTab, physics))).toList(),
                 );
               }),
             ),
-            floatingActionButton: Obx(() => backTop(c.showBackTop.value, c.scrollController)),
+            floatingActionButton: Obx(() => backTop(HomeController.to.showBackTop.value, HomeController.to.scrollController)),
           );
         },
       ),

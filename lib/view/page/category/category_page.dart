@@ -13,9 +13,7 @@ import 'package:jd_mall_flutter/view/page/category/widget/left_cate.dart';
 import 'package:jd_mall_flutter/view/page/category/widget/right_group.dart';
 
 class CategoryPage extends StatelessWidget {
-  CategoryPage({super.key});
-
-  final CategoryController c = Get.put(CategoryController());
+  const CategoryPage({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -25,7 +23,7 @@ class CategoryPage extends StatelessWidget {
         Expanded(
           flex: 1,
           child: Obx(() {
-            bool isLoading = c.isLoading.value;
+            bool isLoading = CategoryController.to.isLoading.value;
 
             return isLoading
                 ? loadingWidget(context)

@@ -27,10 +27,7 @@ import 'package:jd_mall_flutter/view/page/mine/widget/single_line_menu.dart';
 import 'package:jd_mall_flutter/view/page/mine/widget/tab_list.dart';
 
 class MinePage extends StatelessWidget {
-  MinePage({super.key});
-
-  final MineController c = Get.put(MineController());
-  final LoginController lc = Get.put(LoginController());
+  const MinePage({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -40,21 +37,22 @@ class MinePage extends StatelessWidget {
       onNotification: (ScrollNotification notification) {
         double distance = notification.metrics.pixels;
         if (notification.depth == 0) {
-          c.recordPageY(distance);
+          MineController.to.recordPageY(distance);
         }
         if (notification.depth == 2) {
-          c.setShowBackTop(distance > getScreenHeight(context));
+          MineController.to.setShowBackTop(distance > getScreenHeight(context));
         }
         return false;
       },
       child: EasyRefresh.builder(
-        controller: c.freshController,
+        controller: MineController.to.freshController,
         header: classicHeader,
-        onRefresh: () => c.refreshPage(() => easyRefreshSuccess(c.freshController), () => easyRefreshFail(c.freshController)),
+        onRefresh: () => MineController.to
+            .refreshPage(() => easyRefreshSuccess(MineController.to.freshController), () => easyRefreshFail(MineController.to.freshController)),
         childBuilder: (context, physics) {
           return Scaffold(
             body: ExtendedNestedScrollView(
-              controller: c.scrollController,
+              controller: MineController.to.scrollController,
               pinnedHeaderSliverHeightBuilder: () {
                 return statusHeight + 48 + 54;
               },
@@ -63,20 +61,20 @@ class MinePage extends StatelessWidget {
               },
               onlyOneScrollInBody: true,
               body: Obx(() {
-                List<TabInfo> tabs = c.menuTabInfo.value.tabList ?? [];
-                String currentTab = c.currentTab.value;
+                List<TabInfo> tabs = MineController.to.menuTabInfo.value.tabList ?? [];
+                String currentTab = MineController.to.currentTab.value;
 
                 return PageView(
-                  controller: c.pageController,
+                  controller: MineController.to.pageController,
                   onPageChanged: (index) {
-                    if (c.isTabClick.value) return;
-                    c.changeCurrentTab(tabs[index].code!);
+                    if (MineController.to.isTabClick.value) return;
+                    MineController.to.changeCurrentTab(tabs[index].code!);
                   },
                   children: tabs.map((e) => KeepAliveWrapper(child: PageGoodsList("mine_tab_${e.code!}", currentTab, physics))).toList(),
                 );
               }),
             ),
-            floatingActionButton: Obx(() => backTop(c.showBackTop.value, c.scrollController)),
+            floatingActionButton: Obx(() => backTop(MineController.to.showBackTop.value, MineController.to.scrollController)),
           );
         },
       ),
