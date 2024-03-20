@@ -45,8 +45,10 @@ class HomePage extends StatelessWidget {
         controller: HomeController.to.freshController,
         header: classicHeader,
         clipBehavior: Clip.none,
-        onRefresh: () => HomeController.to
-            .refreshPage(() => easyRefreshSuccess(HomeController.to.freshController), () => easyRefreshFail(HomeController.to.freshController)),
+        onRefresh: () => HomeController.to.refreshPage(
+          () => easyRefreshSuccess(HomeController.to.freshController),
+          () => easyRefreshFail(HomeController.to.freshController),
+        ),
         childBuilder: (context, physics) {
           return Scaffold(
             body: ExtendedNestedScrollView(

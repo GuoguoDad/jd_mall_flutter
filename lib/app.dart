@@ -44,7 +44,10 @@ class _FlutterMallApp extends State<MallApp> with HttpErrorListener {
         ),
         getPages: appPages,
         initialRoute: RoutesEnum.mainPage.path,
-        unknownRoute: GetPage(name: RoutesEnum.notFound.path, page: () => const Page404()),
+        unknownRoute: GetPage(
+          name: RoutesEnum.notFound.path,
+          page: () => const Page404(),
+        ),
         builder: EasyLoading.init(),
         debugShowCheckedModeBanner: false,
         localizationsDelegates: const [

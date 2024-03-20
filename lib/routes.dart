@@ -83,7 +83,10 @@ List<GetPage> appPages = [
     page: () => const DetailPage(),
     binding: BindingsBuilder(() => Get.lazyPut<DetailController>(() => DetailController())),
   ),
-  GetPage(name: RoutesEnum.webViewPage.path, page: () => const WebViewPage()),
+  GetPage(
+    name: RoutesEnum.webViewPage.path,
+    page: () => const WebViewPage(),
+  ),
   GetPage(
     name: RoutesEnum.generateOrder.path,
     page: () => const GenerateOrder(),
