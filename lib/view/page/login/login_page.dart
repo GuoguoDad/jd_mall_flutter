@@ -8,19 +8,14 @@ import 'package:form_builder_validators/form_builder_validators.dart';
 import 'package:get/get.dart';
 
 // Project imports:
-import 'package:jd_mall_flutter/common/global/Global.dart';
 import 'package:jd_mall_flutter/common/style/common_style.dart';
 import 'package:jd_mall_flutter/common/types/common.dart';
 import 'package:jd_mall_flutter/common/util/screen_util.dart';
 import 'package:jd_mall_flutter/component/linear_button.dart';
-import 'package:jd_mall_flutter/routes.dart';
 import 'package:jd_mall_flutter/view/page/login/login_controller.dart';
-import 'package:jd_mall_flutter/view/page/login/service.dart';
 
 class LoginPage extends StatelessWidget {
-  LoginPage({super.key});
-
-  final _formKey = GlobalKey<FormBuilderState>();
+  const LoginPage({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -28,9 +23,9 @@ class LoginPage extends StatelessWidget {
       context,
       child: SizedBox(
         height: 300,
-        width: getScreenHeight(context) - 24,
+        width: getScreenWidth(context) - 24,
         child: FormBuilder(
-          key: _formKey,
+          key: LoginController.to.formKey,
           initialValue: const {
             'userName': "GuoguoDad",
             'password': "GuoguoDad",
@@ -74,7 +69,7 @@ class LoginPage extends StatelessWidget {
                   height: 58,
                   width: getScreenWidth(context) - 24,
                   borderRadius: BorderRadius.circular(50),
-                  onTap: () => login(),
+                  onTap: () => LoginController.to.login(),
                 ),
               )
             ],
@@ -82,34 +77,6 @@ class LoginPage extends StatelessWidget {
         ),
       ),
     );
-  }
-
-  Future<void> login() async {
-    if (_formKey.currentState!.saveAndValidate()) {
-      var userName = _formKey.currentState?.value['userName'];
-      var password = _formKey.currentState?.value['password'];
-
-      var res = await LoginApi.login(userName, password);
-
-      if (res != null) {
-        LoginController.to.setLogin(true);
-        await Global.preferences!.setString("loginFlag", "LoggedIn");
-        await Global.preferences!.setString("token", res.token);
-        await Global.preferences!.setString("userId", res.userId);
-        await Global.preferences!.setString("userName", res.userName);
-        await Global.preferences!.setString("headerImg", res.headerImg);
-        await Global.preferences!.setString("integral", res.integral.toString());
-        await Global.preferences!.setString("creditValue", res.creditValue.toString());
-
-        if (Get.arguments != null) {
-          var from = Get.arguments["from"] ?? RoutesEnum.mainPage.path;
-          var args = Get.arguments["args"] ?? {};
-          Get.offAndToNamed(from, arguments: args);
-        } else {
-          Get.offAllNamed(RoutesEnum.mainPage.path);
-        }
-      }
-    }
   }
 
   Widget pageContainer(BuildContext context, {required Widget child}) {
@@ -135,7 +102,7 @@ class LoginPage extends StatelessWidget {
                     ),
                     Text(
                       "loginHelp".tr,
-                      style: TextStyle(color: CommonStyle.color777777, fontSize: 20, fontWeight: FontWeight.w500),
+                      style: TextStyle(color: Colors.black, fontSize: 18, fontWeight: FontWeight.w500),
                     )
                   ],
                 )),

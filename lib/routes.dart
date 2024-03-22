@@ -100,7 +100,7 @@ List<GetPage> appPages = [
   ),
   GetPage(
     name: RoutesEnum.loginPage.path,
-    page: () => LoginPage(),
+    page: () => const LoginPage(),
     binding: BindingsBuilder(() => Get.lazyPut<LoginController>(() => LoginController())),
   ),
 ];

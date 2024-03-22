@@ -40,10 +40,14 @@ class CartPage extends StatelessWidget {
                       physics: const BouncingScrollPhysics(),
                       enablePullUp: true,
                       header: const ClassicHeader(spacing: 10, height: 58),
-                      onRefresh: () => CartController.to
-                          .refreshPage(() => refreshSuccess(CartController.to.refreshController), () => refreshFail(CartController.to.refreshController)),
-                      onLoading: () => CartController.to
-                          .loadNextPage(() => loadMoreSuccess(CartController.to.refreshController), () => loadMoreFail(CartController.to.refreshController)),
+                      onRefresh: () => CartController.to.refreshPage(
+                        () => refreshSuccess(CartController.to.refreshController),
+                        () => refreshFail(CartController.to.refreshController),
+                      ),
+                      onLoading: () => CartController.to.loadNextPage(
+                        () => loadMoreSuccess(CartController.to.refreshController),
+                        () => loadMoreFail(CartController.to.refreshController),
+                      ),
                       child: CustomScrollView(
                         controller: CartController.to.scrollController,
                         slivers: [
