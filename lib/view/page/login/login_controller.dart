@@ -1,14 +1,15 @@
-// Package imports:
+// Flutter imports:
 import 'package:flutter/cupertino.dart';
+
+// Package imports:
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:get/get.dart';
 
 // Project imports:
-import 'package:jd_mall_flutter/common/util/util.dart';
-import 'package:jd_mall_flutter/view/page/login/service.dart';
-
 import 'package:jd_mall_flutter/common/global/Global.dart';
+import 'package:jd_mall_flutter/common/util/util.dart';
 import 'package:jd_mall_flutter/routes.dart';
+import 'package:jd_mall_flutter/view/page/login/service.dart';
 
 class LoginController extends GetxController {
   static LoginController get to => Get.find();

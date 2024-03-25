@@ -50,6 +50,7 @@ class Assets {
   static const String imagesMessage = 'images/message.png';
   static const String imagesMineTopBg = 'images/mine_top_bg.png';
   static const String imagesProbablyLike = 'images/probably_like.png';
+  static const String imagesQq = 'images/qq.png';
   static const String imagesScan = 'images/scan.png';
   static const String imagesSelectorCheckFalse = 'images/selector_check_false.png';
   static const String imagesSelectorCheckTrue = 'images/selector_check_true.png';
@@ -59,6 +60,7 @@ class Assets {
   static const String imagesShotWebview = 'images/shot/webview.png';
   static const String imagesSplash = 'images/splash.jpeg';
   static const String imagesUserHeaderHead = 'images/user_header_head.png';
+  static const String imagesWechat = 'images/wechat.png';
   static const String shotCart = 'images/shot/cart.gif';
   static const String shotCategory = 'images/shot/category.png';
   static const String shotCategory2 = 'images/shot/category2.gif';
@@ -69,5 +71,4 @@ class Assets {
   static const String shotHome1 = 'images/shot/home1.gif';
   static const String shotMine = 'images/shot/mine.gif';
   static const String shotWebview = 'images/shot/webview.gif';
-
 }

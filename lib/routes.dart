@@ -1,5 +1,7 @@
 // Flutter imports:
 import 'package:flutter/material.dart';
+
+// Package imports:
 import 'package:get/get.dart';
 import 'package:get/get_instance/get_instance.dart';
 import 'package:get/get_navigation/src/routes/get_route.dart';
@@ -27,7 +29,6 @@ import 'package:jd_mall_flutter/view/page/order/generate/generate_order.dart';
 import 'package:jd_mall_flutter/view/page/personal/personal_info.dart';
 import 'package:jd_mall_flutter/view/system/page404.dart';
 import 'package:jd_mall_flutter/view/vebview/webview_page.dart';
-
 import 'middleware/auth_middleware.dart';
 
 enum RoutesEnum {

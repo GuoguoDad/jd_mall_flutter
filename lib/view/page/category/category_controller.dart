@@ -1,5 +1,7 @@
-// Package imports:
+// Flutter imports:
 import 'package:flutter/cupertino.dart';
+
+// Package imports:
 import 'package:get/get.dart';
 import 'package:get/get_rx/get_rx.dart';
 

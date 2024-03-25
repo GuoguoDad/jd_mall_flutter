@@ -10,8 +10,8 @@ import 'package:jd_mall_flutter/component/image/asset_image.dart';
 import 'package:jd_mall_flutter/component/persistentHeader/sliver_header_builder.dart';
 import 'package:jd_mall_flutter/generated/assets.dart';
 import 'package:jd_mall_flutter/routes.dart';
-import 'package:jd_mall_flutter/view/page/mine/mine_controller.dart';
 import 'package:jd_mall_flutter/view/page/login/login_controller.dart';
+import 'package:jd_mall_flutter/view/page/mine/mine_controller.dart';
 
 // Package imports:
 
