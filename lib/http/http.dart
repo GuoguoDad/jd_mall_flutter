@@ -1,6 +1,5 @@
 // Dart imports:
 import 'dart:collection';
-import 'dart:convert';
 
 // Flutter imports:
 import 'package:flutter/foundation.dart';
@@ -11,10 +10,10 @@ import 'package:dio/dio.dart';
 // Project imports:
 import 'package:jd_mall_flutter/http/base_response.dart';
 import 'package:jd_mall_flutter/http/code.dart';
-import 'package:jd_mall_flutter/http/interceptors/logs_interceptors.dart';
 import 'package:jd_mall_flutter/http/interceptors/network_interceptor.dart';
 import 'package:jd_mall_flutter/http/interceptors/response_interceptor.dart';
 import 'package:jd_mall_flutter/http/interceptors/token_Interceptor.dart';
+import 'package:pretty_dio_logger/pretty_dio_logger.dart';
 
 class HttpManager {
   static const contentTypeJson = "application/json";
@@ -27,7 +26,15 @@ class HttpManager {
     _dio.interceptors.add(TokenInterceptors());
     _dio.interceptors.add(NetworkInterceptors());
     if (kDebugMode) {
-      _dio.interceptors.add(LogsInterceptors());
+      _dio.interceptors.add(PrettyDioLogger(
+        requestHeader: false,
+        requestBody: true,
+        responseBody: true,
+        responseHeader: false,
+        error: true,
+        compact: false,
+        maxWidth: 160,
+      ));
     }
     _dio.interceptors.add(ResponseInterceptors());
   }
