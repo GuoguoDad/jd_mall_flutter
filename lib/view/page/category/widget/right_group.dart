@@ -67,7 +67,7 @@ Widget rightGroupList(BuildContext context) {
         if (toLeft < 0) toLeft = 0;
         if (toLeft > total - bWidth) toLeft = total - bWidth;
       }
-      CategoryController.to.scrollController.animateTo(toLeft, duration: const Duration(milliseconds: 300), curve: Curves.linear);
+      CategoryController.to.rightScrollController.animateTo(toLeft, duration: const Duration(milliseconds: 300), curve: Curves.linear);
     }
 
     List<Widget> widgets = [];
@@ -92,7 +92,7 @@ Widget rightGroupList(BuildContext context) {
         height: 32,
         margin: const EdgeInsets.only(top: 10, bottom: 10),
         child: ListView.builder(
-          controller: CategoryController.to.scrollController,
+          controller: CategoryController.to.rightScrollController,
           itemCount: secondCateList.length,
           scrollDirection: Axis.horizontal,
           shrinkWrap: true,

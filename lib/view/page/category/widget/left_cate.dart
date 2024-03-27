@@ -61,14 +61,14 @@ Widget leftCate(BuildContext context) {
 
 double calc2Top(BuildContext context, int index, int total) {
   //展示高度，即ListView展示高度
-  double displayHeight = getScreenHeight(context) - 50 - getStatusHeight(context) - 56 - getBottomSpace(context);
+  double displayHeight = getScreenHeight(context) - 50 - getStatusHeight(context) - 88 - getBottomSpace(context);
   //item距离ListView顶部距离
   double item2Top = itemHeight * index;
   //item总高度
   double totalItemHeight = itemHeight * total;
 
   //所需滚动距离
-  double distance = item2Top < displayHeight / 2 ? 0.0 : item2Top - displayHeight / 2 + itemHeight;
+  double distance = item2Top < displayHeight / 2 ? 0.0 : item2Top - displayHeight / 2;
   //如果滚动距离大于 ListView item总高度 减掉 展示高度，则只能滚动item总高度 减掉 展示高度
   if (distance > totalItemHeight - displayHeight) {
     distance = totalItemHeight - displayHeight;
