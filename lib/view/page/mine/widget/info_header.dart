@@ -41,17 +41,15 @@ Widget infoHeader(BuildContext context) {
     return Positioned(
       top: headerSize.top,
       left: 0,
-      child: Obx(
-        () => Container(
-          width: headerSize.size,
-          height: headerSize.size,
-          margin: const EdgeInsets.only(left: 16),
-          decoration: ShapeDecoration(
-            shape: const CircleBorder(),
-            image: DecorationImage(
-              fit: BoxFit.contain,
-              image: AssetImage(LoginController.to.hasLogin.value ? Assets.imagesHeader : Assets.imagesIcDefaultHeader),
-            ),
+      child: Container(
+        width: headerSize.size,
+        height: headerSize.size,
+        margin: const EdgeInsets.only(left: 16),
+        decoration: ShapeDecoration(
+          shape: const CircleBorder(),
+          image: DecorationImage(
+            fit: BoxFit.contain,
+            image: AssetImage(LoginController.to.hasLogin.value ? Assets.imagesHeader : Assets.imagesIcDefaultHeader),
           ),
         ),
       ),
@@ -98,7 +96,7 @@ Widget infoHeader(BuildContext context) {
                     child: Row(
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
-                        const Text("登录/注册", style: TextStyle(fontSize: 24, fontWeight: FontWeight.w600)),
+                        const Text("登录/注册", style: TextStyle(fontSize: 20, fontWeight: FontWeight.w600)),
                         Container(
                           margin: const EdgeInsets.only(top: 1, left: 1),
                           child: assetImage(Assets.imagesArrowRightBlack, 24, 24),

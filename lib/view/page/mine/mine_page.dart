@@ -47,8 +47,10 @@ class MinePage extends StatelessWidget {
       child: EasyRefresh.builder(
         controller: MineController.to.freshController,
         header: classicHeader,
-        onRefresh: () => MineController.to
-            .refreshPage(() => easyRefreshSuccess(MineController.to.freshController), () => easyRefreshFail(MineController.to.freshController)),
+        onRefresh: () => MineController.to.refreshPage(
+          () => easyRefreshSuccess(MineController.to.freshController),
+          () => easyRefreshFail(MineController.to.freshController),
+        ),
         childBuilder: (context, physics) {
           return Scaffold(
             body: ExtendedNestedScrollView(
@@ -57,7 +59,13 @@ class MinePage extends StatelessWidget {
                 return statusHeight + 48 + 54;
               },
               headerSliverBuilder: (BuildContext context, bool innerBoxIsScrolled) {
-                return [const HeaderLocator.sliver(clearExtent: false), infoHeader(context), orderCard(context), singleLineMenu(context), tabList(context)];
+                return [
+                  const HeaderLocator.sliver(clearExtent: false),
+                  infoHeader(context),
+                  orderCard(context),
+                  singleLineMenu(context),
+                  tabList(context),
+                ];
               },
               onlyOneScrollInBody: true,
               body: Obx(() {

@@ -2,6 +2,7 @@
 import 'dart:async';
 
 // Package imports:
+import 'package:logger/logger.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 // Project imports:
@@ -97,3 +98,5 @@ Function throttle(
 
   return target;
 }
+
+var logger = Logger();

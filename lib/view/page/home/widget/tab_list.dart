@@ -30,7 +30,7 @@ Widget tabList(BuildContext context) {
               return GestureDetector(
                 onTap: () => {
                   HomeController.to.setIsTabClick(true),
-                  HomeController.to.currentTab(tabs[index].code!),
+                  HomeController.to.changeCurrentTab(tabs[index].code!),
                   HomeController.to.pageController
                       .animateToPage(index, duration: const Duration(milliseconds: 200), curve: Curves.linear)
                       .then((value) => HomeController.to.setIsTabClick(false))

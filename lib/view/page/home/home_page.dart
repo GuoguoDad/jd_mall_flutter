@@ -27,8 +27,6 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    double statusHeight = getStatusHeight(context);
-
     return NotificationListener<ScrollNotification>(
       onNotification: (ScrollNotification notification) {
         int depth = notification.depth;
@@ -52,9 +50,10 @@ class HomePage extends StatelessWidget {
         childBuilder: (context, physics) {
           return Scaffold(
             body: ExtendedNestedScrollView(
+              physics: physics,
               controller: HomeController.to.scrollController,
               pinnedHeaderSliverHeightBuilder: () {
-                return statusHeight + 44 + 54;
+                return getStatusHeight(context) + 44 + 54;
               },
               headerSliverBuilder: (BuildContext context, bool innerBoxIsScrolled) {
                 return [
