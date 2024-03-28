@@ -65,21 +65,25 @@ class _PersonalInfoState extends State<PersonalInfo> with ImagePickerMixin {
             height: 50,
             btnName: '退出登录',
             onTap: () async {
-              await Global.preferences?.remove("loginFlag");
-              await Global.preferences?.remove("token");
-              await Global.preferences?.remove("userId");
-              await Global.preferences?.remove("userName");
-              await Global.preferences?.remove("headerImg");
-              await Global.preferences?.remove("integral");
-              await Global.preferences?.remove("creditValue");
-              LoginController.to.setLogin(false);
-
-              Get.offNamed(RoutesEnum.loginPage.path);
+              await logout();
             },
           ),
         )
       ],
     );
+  }
+
+  Future<void> logout() async {
+    await Global.preferences?.remove("loginFlag");
+    await Global.preferences?.remove("token");
+    await Global.preferences?.remove("userId");
+    await Global.preferences?.remove("userName");
+    await Global.preferences?.remove("headerImg");
+    await Global.preferences?.remove("integral");
+    await Global.preferences?.remove("creditValue");
+    LoginController.to.setLogin(false);
+
+    Get.offNamed(RoutesEnum.loginPage.path);
   }
 }
 

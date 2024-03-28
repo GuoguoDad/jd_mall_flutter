@@ -31,19 +31,8 @@ class MinePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    double statusHeight = getStatusHeight(context);
-
     return NotificationListener<ScrollNotification>(
-      onNotification: (ScrollNotification notification) {
-        double distance = notification.metrics.pixels;
-        if (notification.depth == 0) {
-          MineController.to.recordPageY(distance);
-        }
-        if (notification.depth == 2) {
-          MineController.to.setShowBackTop(distance > getScreenHeight(context));
-        }
-        return false;
-      },
+      onNotification: (ScrollNotification notification) => onPageScroll(notification, context),
       child: EasyRefresh.builder(
         controller: MineController.to.freshController,
         header: classicHeader,
@@ -56,7 +45,7 @@ class MinePage extends StatelessWidget {
             body: ExtendedNestedScrollView(
               controller: MineController.to.scrollController,
               pinnedHeaderSliverHeightBuilder: () {
-                return statusHeight + 48 + 54;
+                return getStatusHeight(context) + 48 + 54;
               },
               headerSliverBuilder: (BuildContext context, bool innerBoxIsScrolled) {
                 return [
@@ -87,5 +76,16 @@ class MinePage extends StatelessWidget {
         },
       ),
     );
+  }
+
+  bool onPageScroll(ScrollNotification notification, BuildContext context) {
+    double distance = notification.metrics.pixels;
+    if (notification.depth == 0) {
+      MineController.to.recordPageY(distance);
+    }
+    if (notification.depth == 2) {
+      MineController.to.setShowBackTop(distance > getScreenHeight(context));
+    }
+    return false;
   }
 }

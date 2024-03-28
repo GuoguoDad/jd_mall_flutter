@@ -28,17 +28,7 @@ class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return NotificationListener<ScrollNotification>(
-      onNotification: (ScrollNotification notification) {
-        int depth = notification.depth;
-        double distance = notification.metrics.pixels;
-        if (depth == 0) {
-          HomeController.to.recordPageY(distance);
-        }
-        if (depth == 2) {
-          HomeController.to.setShowBackTop(distance > getScreenHeight(context));
-        }
-        return false;
-      },
+      onNotification: (ScrollNotification notification) => onPageScroll(notification, context),
       child: EasyRefresh.builder(
         controller: HomeController.to.freshController,
         header: classicHeader,
@@ -52,9 +42,7 @@ class HomePage extends StatelessWidget {
             body: ExtendedNestedScrollView(
               physics: physics,
               controller: HomeController.to.scrollController,
-              pinnedHeaderSliverHeightBuilder: () {
-                return getStatusHeight(context) + 44 + 54;
-              },
+              pinnedHeaderSliverHeightBuilder: () => getStatusHeight(context) + 44 + 54,
               headerSliverBuilder: (BuildContext context, bool innerBoxIsScrolled) {
                 return [
                   const HeaderLocator.sliver(clearExtent: false),
@@ -68,12 +56,7 @@ class HomePage extends StatelessWidget {
               onlyOneScrollInBody: true,
               body: Obx(() {
                 var tabs = HomeController.to.homePageInfo.value.tabList ?? [];
-                String selectTab = HomeController.to.currentTab.value;
-                String currentTab = selectTab.isNotEmpty
-                    ? selectTab
-                    : tabs.isNotEmpty
-                        ? tabs[0].code!
-                        : "";
+                String currentTab = HomeController.to.currentTab.value;
 
                 return PageView(
                   controller: HomeController.to.pageController,
@@ -90,5 +73,17 @@ class HomePage extends StatelessWidget {
         },
       ),
     );
+  }
+
+  bool onPageScroll(ScrollNotification notification, BuildContext context) {
+    int depth = notification.depth;
+    double distance = notification.metrics.pixels;
+    if (depth == 0) {
+      HomeController.to.recordPageY(distance);
+    }
+    if (depth == 2) {
+      HomeController.to.setShowBackTop(distance > getScreenHeight(context));
+    }
+    return false;
   }
 }

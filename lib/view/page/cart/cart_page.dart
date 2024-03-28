@@ -30,36 +30,37 @@ class CartPage extends StatelessWidget {
         Expanded(
           child: Obx(() {
             bool isLoading = CartController.to.isLoading.value;
+            if (isLoading) {
+              return loadingWidget(context);
+            }
 
-            return isLoading
-                ? loadingWidget(context)
-                : Scaffold(
-                    backgroundColor: CommonStyle.colorF3F3F3,
-                    body: SmartRefresher(
-                      controller: CartController.to.refreshController,
-                      physics: const BouncingScrollPhysics(),
-                      enablePullUp: true,
-                      header: const ClassicHeader(spacing: 10, height: 58),
-                      onRefresh: () => CartController.to.refreshPage(
-                        () => refreshSuccess(CartController.to.refreshController),
-                        () => refreshFail(CartController.to.refreshController),
-                      ),
-                      onLoading: () => CartController.to.loadNextPage(
-                        () => loadMoreSuccess(CartController.to.refreshController),
-                        () => loadMoreFail(CartController.to.refreshController),
-                      ),
-                      child: CustomScrollView(
-                        controller: CartController.to.scrollController,
-                        slivers: [
-                          condition(context),
-                          cartGoods(context),
-                          probablyLike(context),
-                          goodsList(context),
-                        ],
-                      ),
-                    ),
-                    floatingActionButton: BackToTop(CartController.to.scrollController),
-                  );
+            return Scaffold(
+              backgroundColor: CommonStyle.colorF3F3F3,
+              body: SmartRefresher(
+                controller: CartController.to.refreshController,
+                physics: const BouncingScrollPhysics(),
+                enablePullUp: true,
+                header: const ClassicHeader(spacing: 10, height: 58),
+                onRefresh: () => CartController.to.refreshPage(
+                  () => refreshSuccess(CartController.to.refreshController),
+                  () => refreshFail(CartController.to.refreshController),
+                ),
+                onLoading: () => CartController.to.loadNextPage(
+                  () => loadMoreSuccess(CartController.to.refreshController),
+                  () => loadMoreFail(CartController.to.refreshController),
+                ),
+                child: CustomScrollView(
+                  controller: CartController.to.scrollController,
+                  slivers: [
+                    condition(context),
+                    cartGoods(context),
+                    probablyLike(context),
+                    goodsList(context),
+                  ],
+                ),
+              ),
+              floatingActionButton: BackToTop(CartController.to.scrollController),
+            );
           }),
         ),
         totalSettlement(context)

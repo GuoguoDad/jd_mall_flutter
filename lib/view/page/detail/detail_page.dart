@@ -27,49 +27,21 @@ class DetailPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    //页面框架
-    Widget pageContainer({required List<Widget> children}) {
-      return AnnotatedRegion<SystemUiOverlayStyle>(
-        value: SystemUiOverlayStyle.dark,
-        child: Column(
-          children: [
-            Expanded(
-              flex: 1,
-              child: Scaffold(
-                body: Stack(
-                  children: children,
-                ),
-                floatingActionButton: BackToTop(DetailController.to.scrollController),
-              ),
-            ),
-            fixedBottom(context)
-          ],
-        ),
-      );
-    }
-
     return pageContainer(
+      context,
       children: [
         NotificationListener<ScrollNotification>(
-          onNotification: (ScrollNotification notification) {
-            if (notification.depth == 1) {
-              DetailController.to.recordPageY(notification.metrics.pixels);
-
-              //监听滚动，选中对应的tab
-              if (DetailController.to.isTabClick.value) return false;
-              int newIndex = findFirstVisibleItemIndex(cardKeys, context);
-              DetailController.to.setIndex(newIndex);
-            }
-            return false;
-          },
+          onNotification: (ScrollNotification notification) => onPageScroll(notification, context),
           child: Container(
             color: CommonStyle.colorF5F5F5,
             child: SmartRefresher(
               controller: DetailController.to.refreshController,
               enablePullUp: true,
               enablePullDown: false,
-              onLoading: () => DetailController.to
-                  .loadNextPage(() => loadMoreSuccess(DetailController.to.refreshController), () => loadMoreFail(DetailController.to.refreshController)),
+              onLoading: () => DetailController.to.loadNextPage(
+                () => loadMoreSuccess(DetailController.to.refreshController),
+                () => loadMoreFail(DetailController.to.refreshController),
+              ),
               child: ExtendedCustomScrollView(
                 controller: DetailController.to.scrollController,
                 slivers: [
@@ -83,12 +55,41 @@ class DetailPage extends StatelessWidget {
             ),
           ),
         ),
-        Positioned(
-          top: 0,
-          left: 0,
-          child: tabHeader(context),
-        )
+        Positioned(top: 0, left: 0, child: tabHeader(context))
       ],
+    );
+  }
+
+  bool onPageScroll(ScrollNotification notification, BuildContext context) {
+    if (notification.depth == 1) {
+      DetailController.to.recordPageY(notification.metrics.pixels);
+
+      //监听滚动，选中对应的tab
+      if (DetailController.to.isTabClick.value) return false;
+      int newIndex = findFirstVisibleItemIndex(cardKeys, context);
+      DetailController.to.setIndex(newIndex);
+    }
+    return false;
+  }
+
+  //页面框架
+  Widget pageContainer(BuildContext context, {required List<Widget> children}) {
+    return AnnotatedRegion<SystemUiOverlayStyle>(
+      value: SystemUiOverlayStyle.dark,
+      child: Column(
+        children: [
+          Expanded(
+            flex: 1,
+            child: Scaffold(
+              body: Stack(
+                children: children,
+              ),
+              floatingActionButton: BackToTop(DetailController.to.scrollController),
+            ),
+          ),
+          fixedBottom(context)
+        ],
+      ),
     );
   }
 

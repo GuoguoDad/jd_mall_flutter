@@ -24,16 +24,17 @@ class CategoryPage extends StatelessWidget {
           flex: 1,
           child: Obx(() {
             bool isLoading = CategoryController.to.isLoading.value;
+            if (isLoading) {
+              return loadingWidget(context);
+            }
 
-            return isLoading
-                ? loadingWidget(context)
-                : Flex(
-                    direction: Axis.horizontal,
-                    children: [
-                      leftCate(context),
-                      rightGroupList(context),
-                    ],
-                  );
+            return Flex(
+              direction: Axis.horizontal,
+              children: [
+                leftCate(context),
+                rightGroupList(context),
+              ],
+            );
           }),
         ),
       ],
