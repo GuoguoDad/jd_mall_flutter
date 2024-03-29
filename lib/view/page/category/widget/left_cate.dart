@@ -1,6 +1,3 @@
-// Dart imports:
-import 'dart:ffi';
-
 // Flutter imports:
 import 'package:flutter/material.dart';
 

@@ -4,6 +4,7 @@ import 'package:flutter/cupertino.dart';
 // Package imports:
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:get/get.dart';
+import 'package:jd_mall_flutter/common/extension/get_router_navigation_ext.dart';
 
 // Project imports:
 import 'package:jd_mall_flutter/common/global/Global.dart';
@@ -50,9 +51,9 @@ class LoginController extends GetxController {
         if (Get.arguments != null) {
           var from = Get.arguments["from"] ?? RoutesEnum.mainPage.path;
           var args = Get.arguments["args"] ?? {};
-          Get.offAndToNamed(from, arguments: args);
+          Get.popNamedSingleTask(from, args, null);
         } else {
-          Get.offAndToNamed(RoutesEnum.mainPage.path);
+          Get.popNamedSingleTask(RoutesEnum.mainPage.path, null, null);
         }
       }
     }

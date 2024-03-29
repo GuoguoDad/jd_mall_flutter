@@ -1,53 +1,45 @@
 // Flutter imports:
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
+import 'package:jd_mall_flutter/common/observer/router_stack_manger.dart';
+
+import '../util/util.dart';
 
 class NavigatorChangeObserver<R extends Route<dynamic>> extends RouteObserver<R> {
   @override
   void didPush(Route route, Route? previousRoute) {
     super.didPush(route, previousRoute);
+    RouterStackManager().pushRouterByName(route.settings.name!);
     if (kDebugMode) {
-      // print('didPush route: ${route.settings.name},  previousRoute:${previousRoute?.settings.name}');
+      logger.d("after push current router stack:${RouterStackManager().routeNames.toString()}");
     }
   }
 
   @override
   void didPop(Route route, Route? previousRoute) {
     super.didPop(route, previousRoute);
+    RouterStackManager().removeRouterByName(route.settings.name!);
     if (kDebugMode) {
-      // print('didPop route: ${route.settings.name},  previousRoute:${previousRoute?.settings.name}');
+      logger.d("after pop current router stack:${RouterStackManager().routeNames.toString()}");
     }
   }
 
   @override
   void didReplace({Route? newRoute, Route? oldRoute}) {
     super.didReplace(newRoute: newRoute, oldRoute: oldRoute);
+    RouterStackManager().pushRouterByName(newRoute!.settings.name!);
+    RouterStackManager().removeRouterByName(oldRoute!.settings.name!);
     if (kDebugMode) {
-      // print('didReplace newRoute: $newRoute,oldRoute:$oldRoute');
+      logger.d("after replace current router stack:${RouterStackManager().routeNames.toString()}");
     }
   }
 
   @override
   void didRemove(Route route, Route? previousRoute) {
     super.didRemove(route, previousRoute);
+    RouterStackManager().removeRouterByName(route.settings.name!);
     if (kDebugMode) {
-      // print('didRemove route: $route,previousRoute:$previousRoute');
-    }
-  }
-
-  @override
-  void didStartUserGesture(Route route, Route? previousRoute) {
-    super.didStartUserGesture(route, previousRoute);
-    if (kDebugMode) {
-      // print('didStartUserGesture route: $route,previousRoute:$previousRoute');
-    }
-  }
-
-  @override
-  void didStopUserGesture() {
-    super.didStopUserGesture();
-    if (kDebugMode) {
-      // print('didStopUserGesture');
+      logger.d("pop后 current router stack:${RouterStackManager().routeNames.toString()}");
     }
   }
 }

@@ -115,6 +115,7 @@ main_dev 走本地mock， main_prd 走远程mock服务
 
       flutter build apk --release -t lib/main_prd.dart
       flutter build ios --release -t lib/main_prd.dart
+      flutter build web --release -t lib/main_prd.dart --web-renderer html
 
 ## 性能分析
 
