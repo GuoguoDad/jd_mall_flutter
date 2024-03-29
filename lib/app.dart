@@ -20,7 +20,6 @@ import 'package:jd_mall_flutter/common/util/screen_util.dart';
 import 'package:jd_mall_flutter/http/code.dart';
 import 'package:jd_mall_flutter/routes.dart';
 import 'package:jd_mall_flutter/translation/messages.dart';
-import 'package:jd_mall_flutter/view/system/page404.dart';
 
 class MallApp extends StatefulWidget {
   const MallApp({super.key});
@@ -44,10 +43,7 @@ class _FlutterMallApp extends State<MallApp> with HttpErrorListener {
         ),
         getPages: appPages,
         initialRoute: RoutesEnum.mainPage.path,
-        unknownRoute: GetPage(
-          name: RoutesEnum.notFound.path,
-          page: () => const Page404(),
-        ),
+        unknownRoute: unknownRoute,
         builder: EasyLoading.init(),
         debugShowCheckedModeBanner: false,
         localizationsDelegates: const [

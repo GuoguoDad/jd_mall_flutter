@@ -50,7 +50,7 @@ class HomePage extends StatelessWidget {
                   galleryList(context),
                   advBanner(context),
                   menuSlider(context),
-                  tabList(context)
+                  tabList(context),
                 ];
               },
               onlyOneScrollInBody: true,

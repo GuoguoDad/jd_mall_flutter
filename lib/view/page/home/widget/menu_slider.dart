@@ -14,17 +14,16 @@ Widget menuSlider(BuildContext context) {
   return SliverToBoxAdapter(
     child: Obx(() {
       List<NineMenuList> nineMenuList = HomeController.to.homePageInfo.value.nineMenuList ?? [];
-      List<FunctionInfo> menuData = nineMenuList
-          .map((e) => FunctionInfo(
-                menuIcon: e.menuIcon,
-                menuCode: e.menuCode,
-                menuName: e.menuName,
-                h5url: e.h5url,
-              ))
-          .toList();
 
       return PageMenu(
-        menuDataList: menuData,
+        menuDataList: nineMenuList
+            .map((e) => FunctionInfo(
+                  menuIcon: e.menuIcon,
+                  menuCode: e.menuCode,
+                  menuName: e.menuName,
+                  h5url: e.h5url,
+                ))
+            .toList(),
         rowCount: 2,
       );
     }),

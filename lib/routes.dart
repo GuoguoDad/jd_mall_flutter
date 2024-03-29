@@ -56,6 +56,8 @@ enum RoutesEnum {
   final String path;
 }
 
+final unknownRoute = GetPage(name: RoutesEnum.notFound.path, page: () => const Page404());
+
 List<GetPage> appPages = [
   //example
   GetPage(name: RoutesEnum.sampleList.path, page: () => const SampleList()),

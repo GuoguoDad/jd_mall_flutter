@@ -66,6 +66,7 @@ class HomeController extends GetxController {
     isLoading.value = true;
     var info = await HomeApi.queryHomeInfo();
     isLoading.value = false;
+    currentTab.value = info.tabList.isNotEmpty ? info.tabList[0].code : "";
     homePageInfo.value = info;
   }
 
