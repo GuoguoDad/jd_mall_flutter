@@ -49,11 +49,11 @@ class LoginController extends GetxController {
         await Global.preferences!.setString("creditValue", res.creditValue.toString());
 
         if (Get.arguments != null) {
-          var from = Get.arguments["from"] ?? RoutesEnum.mainPage.path;
-          var args = Get.arguments["args"] ?? {};
-          Get.popNamedSingleTask(from, args, null);
+          var from = Get.arguments["from"];
+          var args = Get.arguments["args"];
+          Get.popNamedSingleTask(from, arguments: args);
         } else {
-          Get.popNamedSingleTask(RoutesEnum.mainPage.path, null, null);
+          Get.popNamedSingleTask(RoutesEnum.mainPage.path);
         }
       }
     }

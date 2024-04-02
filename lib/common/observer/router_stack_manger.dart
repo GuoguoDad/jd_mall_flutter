@@ -24,4 +24,11 @@ class RouterStackManager {
   bool isRouteExist(String routeName) {
     return _routeNames.contains(routeName);
   }
+
+  bool isTopRoute(String routeName) {
+    if (_routeNames.isEmpty) {
+      return false;
+    }
+    return _routeNames.last == routeName;
+  }
 }

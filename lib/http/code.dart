@@ -16,6 +16,8 @@ class Code {
   ///Connection refused
   static const CONNECTION_REFUSED = -4;
 
+  static const NETWORK_DEBOUNCE = -5;
+
   static const SUCCESS = 200;
 
   static errorHandleFunction(code, message, hideToast) {
