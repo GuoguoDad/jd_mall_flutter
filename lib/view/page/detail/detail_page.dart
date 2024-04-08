@@ -31,7 +31,7 @@ class DetailPage extends StatelessWidget {
       context,
       children: [
         NotificationListener<ScrollNotification>(
-          onNotification: (ScrollNotification notification) => onPageScroll(notification, context),
+          onNotification: (ScrollNotification notification) => onPageScroll(notification),
           child: Container(
             color: CommonStyle.colorF5F5F5,
             child: SmartRefresher(
@@ -60,13 +60,13 @@ class DetailPage extends StatelessWidget {
     );
   }
 
-  bool onPageScroll(ScrollNotification notification, BuildContext context) {
+  bool onPageScroll(ScrollNotification notification) {
     if (notification.depth == 1) {
       DetailController.to.recordPageY(notification.metrics.pixels);
 
       //监听滚动，选中对应的tab
       if (DetailController.to.isTabClick.value) return false;
-      int newIndex = findFirstVisibleItemIndex(cardKeys, context);
+      int newIndex = findFirstVisibleItemIndex(cardKeys);
       DetailController.to.setIndex(newIndex);
     }
     return false;
@@ -94,14 +94,14 @@ class DetailPage extends StatelessWidget {
   }
 
   //找到当前页面第一个可见的item的索引
-  int findFirstVisibleItemIndex(List<GlobalKey<State<StatefulWidget>>> cardKeys, BuildContext context) {
+  int findFirstVisibleItemIndex(List<GlobalKey<State<StatefulWidget>>> cardKeys) {
     int i = 0;
     for (; i < cardKeys.length; i++) {
       RenderSliverToBoxAdapter? keyRenderObject = cardKeys[i].currentContext?.findAncestorRenderObjectOfType<RenderSliverToBoxAdapter>();
       if (keyRenderObject != null) {
         //距离CustomScrollView顶部距离， 上滚出可视区域变为0
         final dy = (keyRenderObject.parentData as SliverPhysicalParentData).paintOffset.dy;
-        if (dy > 42 + getStatusHeight(context)) {
+        if (dy > 42 + getStatusHeight()) {
           break;
         }
       }

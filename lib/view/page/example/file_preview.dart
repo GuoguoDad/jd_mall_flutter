@@ -34,7 +34,7 @@ class _FilePreviewPageState extends State<FilePreviewPage> {
                   alignment: Alignment.topLeft,
                   child: FilePreviewWidget(
                     controller: controller,
-                    width: getScreenWidth(context),
+                    width: getScreenWidth(),
                     height: 600,
                     path: Get.arguments['path'] ?? '',
                     callBack: FilePreviewCallBack(onShow: () {

@@ -17,7 +17,7 @@ Widget skuInfo(BuildContext context) {
   double thumbWidth = 68;
 
   return Container(
-    width: getScreenWidth(context) - 24,
+    width: getScreenWidth() - 24,
     margin: const EdgeInsets.only(top: 10),
     padding: const EdgeInsets.fromLTRB(10, 12, 10, 12),
     decoration: const BoxDecoration(

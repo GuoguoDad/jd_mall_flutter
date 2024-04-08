@@ -9,7 +9,7 @@ import 'package:jd_mall_flutter/generated/assets.dart';
 Widget defaultAddress(BuildContext context) {
   return SliverToBoxAdapter(
     child: Container(
-      width: getScreenWidth(context),
+      width: getScreenWidth(),
       padding: const EdgeInsets.all(20),
       decoration: const BoxDecoration(
         color: Colors.white,

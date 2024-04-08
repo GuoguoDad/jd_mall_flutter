@@ -8,8 +8,8 @@ import 'package:jd_mall_flutter/generated/assets.dart';
 
 Widget loginOtherWay(BuildContext context) {
   return SizedBox(
-    height: 100 + getBottomSpace(context),
-    width: getScreenWidth(context),
+    height: 100 + getBottomSpace(),
+    width: getScreenWidth(),
     child: Column(
       children: [
         const Text("其他登录方式", textAlign: TextAlign.center, style: TextStyle(color: Colors.grey)),

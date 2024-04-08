@@ -10,9 +10,9 @@ import 'package:jd_mall_flutter/common/util/screen_util.dart';
 import 'package:jd_mall_flutter/component/persistentHeader/sliver_header_builder.dart';
 import 'package:jd_mall_flutter/view/page/mine/mine_controller.dart';
 
-Widget tabList(BuildContext context) {
+Widget tabList() {
   ScrollController controller = ScrollController();
-  double screenWidth = getScreenWidth(context);
+  double screenWidth = getScreenWidth();
 
   return SliverPersistentHeader(
     pinned: true,

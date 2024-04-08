@@ -20,9 +20,9 @@ late double rWidth, bWidth;
 //gridview的item宽和高一样
 double thirdCateItemHeight = 0;
 
-Widget rightGroupList(BuildContext context) {
+Widget rightGroupList() {
   //右侧占屏幕三分之二
-  rWidth = getScreenWidth(context) * 2 / 3;
+  rWidth = getScreenWidth() * 2 / 3;
 
   //gridview的item宽和高一样
   double thirdCateItemWidth = rWidth / 3;

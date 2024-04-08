@@ -9,7 +9,7 @@ import 'package:jd_mall_flutter/component/page_menu.dart';
 import 'package:jd_mall_flutter/models/mine_menu_tab_info.dart';
 import 'package:jd_mall_flutter/view/page/mine/mine_controller.dart';
 
-Widget singleLineMenu(BuildContext context) {
+Widget singleLineMenu() {
   return Obx(
     () {
       List<FunctionInfo> menuData = MineController.to.menuTabInfo.value.functionList ?? [];

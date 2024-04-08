@@ -9,7 +9,7 @@ import 'package:jd_mall_flutter/component/image/asset_image.dart';
 Widget orderSummation(BuildContext context) {
   return SliverToBoxAdapter(
     child: Container(
-      width: getScreenWidth(context),
+      width: getScreenWidth(),
       padding: const EdgeInsets.only(left: 20, top: 20, right: 20, bottom: 6),
       margin: const EdgeInsets.only(top: 12),
       decoration: const BoxDecoration(

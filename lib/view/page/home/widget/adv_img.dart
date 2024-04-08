@@ -12,7 +12,7 @@ import 'package:jd_mall_flutter/generated/assets.dart';
 import 'package:jd_mall_flutter/routes.dart';
 import 'package:jd_mall_flutter/view/page/home/home_controller.dart';
 
-Widget advBanner(BuildContext context) {
+Widget advBanner() {
   return SliverToBoxAdapter(
     child: GestureDetector(
       onTap: () => Get.toNamed(
@@ -26,8 +26,8 @@ Widget advBanner(BuildContext context) {
           () => CachedNetworkImage(
             height: 90,
             imageUrl: HomeController.to.homePageInfo.value.adUrl ?? "",
-            placeholder: (context, url) => assetImage(Assets.imagesDefault, getScreenWidth(context) - 24, 90),
-            errorWidget: (context, url, error) => assetImage(Assets.imagesDefault, getScreenWidth(context) - 24, 90),
+            placeholder: (context, url) => assetImage(Assets.imagesDefault, getScreenWidth() - 24, 90),
+            errorWidget: (context, url, error) => assetImage(Assets.imagesDefault, getScreenWidth() - 24, 90),
             fit: BoxFit.fill,
           ),
         ),

@@ -9,7 +9,7 @@ import 'package:jd_mall_flutter/common/util/screen_util.dart';
 import 'package:jd_mall_flutter/component/image/asset_image.dart';
 
 Widget floatingHeader(BuildContext context, {required String title, Color? bgColor}) {
-  double statusHeight = getStatusHeight(context);
+  double statusHeight = getStatusHeight();
 
   return Positioned(
     top: 0,
@@ -17,7 +17,7 @@ Widget floatingHeader(BuildContext context, {required String title, Color? bgCol
     child: Container(
       height: 40 + statusHeight,
       color: bgColor ?? Colors.white,
-      width: getScreenWidth(context),
+      width: getScreenWidth(),
       padding: EdgeInsets.only(top: statusHeight),
       child: Row(
         children: [

@@ -11,12 +11,12 @@ import 'package:jd_mall_flutter/component/image/asset_image.dart';
 import 'package:jd_mall_flutter/generated/assets.dart';
 
 Widget commonHeader(BuildContext context, {required String title}) {
-  double statusHeight = getStatusHeight(context);
+  double statusHeight = getStatusHeight();
 
   return Container(
     height: 42 + statusHeight,
     color: Colors.white,
-    width: getScreenWidth(context),
+    width: getScreenWidth(),
     padding: EdgeInsets.only(top: statusHeight),
     child: Row(
       children: [

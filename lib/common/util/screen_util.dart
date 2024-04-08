@@ -1,31 +1,32 @@
 // Flutter imports:
 import 'package:flutter/material.dart';
+import 'package:jd_mall_flutter/common/global/Global.dart';
 
-double getScreenHeight(BuildContext context) {
-  return MediaQuery.sizeOf(context).height;
+double getScreenHeight() {
+  return MediaQuery.sizeOf(Global.navigatorKey.currentContext!).height;
 }
 
-double getScreenWidth(BuildContext context) {
-  return MediaQuery.sizeOf(context).width;
+double getScreenWidth() {
+  return MediaQuery.sizeOf(Global.navigatorKey.currentContext!).width;
 }
 
-double getStatusHeight(BuildContext context) {
-  return MediaQuery.viewPaddingOf(context).top;
+double getStatusHeight() {
+  return MediaQuery.viewPaddingOf(Global.navigatorKey.currentContext!).top;
 }
 
-double getBottomSpace(BuildContext context) {
-  return MediaQuery.viewPaddingOf(context).bottom;
+double getBottomSpace() {
+  return MediaQuery.viewPaddingOf(Global.navigatorKey.currentContext!).bottom;
 }
 
-double getKeyboardHeight(BuildContext context) {
-  return MediaQuery.viewInsetsOf(context).bottom;
+double getKeyboardHeight() {
+  return MediaQuery.viewInsetsOf(Global.navigatorKey.currentContext!).bottom;
 }
 
-double getSafeAreaHeight(BuildContext context) {
-  return getScreenHeight(context) - getStatusHeight(context) - getBottomSpace(context);
+double getSafeAreaHeight() {
+  return getScreenHeight() - getStatusHeight() - getBottomSpace();
 }
 
 /// 获取底部getBottomNavigationBarHeight高度 包含 bottomSpace
-double getBottomNavigationBarHeight(BuildContext context) {
-  return kBottomNavigationBarHeight + getBottomSpace(context);
+double getBottomNavigationBarHeight() {
+  return kBottomNavigationBarHeight + getBottomSpace();
 }

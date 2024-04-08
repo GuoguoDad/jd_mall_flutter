@@ -9,8 +9,8 @@ import 'package:jd_mall_flutter/common/util/screen_util.dart';
 
 Widget header(BuildContext context) {
   return Container(
-    padding: EdgeInsets.only(top: getStatusHeight(context)),
-    height: 54 + getStatusHeight(context),
+    padding: EdgeInsets.only(top: getStatusHeight()),
+    height: 54 + getStatusHeight(),
     child: Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [

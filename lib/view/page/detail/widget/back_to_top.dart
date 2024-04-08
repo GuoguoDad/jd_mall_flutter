@@ -34,7 +34,7 @@ class _BackToTopState extends State<BackToTop> {
 
   void onScroll() {
     setState(() {
-      show = widget.controller.offset > getScreenHeight(context);
+      show = widget.controller.offset > getScreenHeight();
     });
   }
 

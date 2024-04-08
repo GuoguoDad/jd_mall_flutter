@@ -15,10 +15,10 @@ import 'package:jd_mall_flutter/view/page/mine/mine_controller.dart';
 
 // Package imports:
 
-Widget infoHeader(BuildContext context) {
+Widget infoHeader() {
   Widget title = Positioned(
     top: 0,
-    left: (getScreenWidth(context) - 100) / 2,
+    left: (getScreenWidth() - 100) / 2,
     child: Container(
       width: 100,
       height: 36,
@@ -63,7 +63,7 @@ Widget infoHeader(BuildContext context) {
       top: headerSize.name2Top,
       left: 100,
       child: SizedBox(
-        width: getScreenWidth(context) - 100,
+        width: getScreenWidth() - 100,
         height: 60,
         child: Opacity(
           opacity: 1 - headerSize.opacity,
@@ -114,10 +114,10 @@ Widget infoHeader(BuildContext context) {
     pinned: true,
     delegate: SliverHeaderDelegate(
       //有最大和最小高度
-      maxHeight: 130 + getStatusHeight(context),
-      minHeight: 48 + getStatusHeight(context),
+      maxHeight: 130 + getStatusHeight(),
+      minHeight: 48 + getStatusHeight(),
       child: Container(
-        padding: EdgeInsets.only(top: getStatusHeight(context)),
+        padding: EdgeInsets.only(top: getStatusHeight()),
         decoration: const BoxDecoration(
           image: DecorationImage(
             fit: BoxFit.cover,

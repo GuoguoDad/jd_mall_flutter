@@ -93,7 +93,7 @@ class DebounceInterceptor extends Interceptor {
       logger.d("请求前先查询 _urlParamsMap 集合目前的数据:${_urlParamsMap.toString()} _cancelTokenMap：${_cancelTokenMap.toString()}");
       final preSerializedParams = _urlParamsMap[urlkey];
       final curSerializedParams = _serializeAllParams(params);
-      logger.d("已缓存的请求参数Value cacheedValue:${preSerializedParams.toString()} 当前正在发起的请求的参数Value:${curSerializedParams.toString()}");
+      logger.d("已缓存的请求参数Value cachedValue:${preSerializedParams.toString()} 当前正在发起的请求的参数Value:${curSerializedParams.toString()}");
 
       if (preSerializedParams == null) {
         //说明没有缓存，添加缓存

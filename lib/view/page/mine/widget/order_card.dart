@@ -10,11 +10,11 @@ import 'package:jd_mall_flutter/common/util/screen_util.dart';
 import 'package:jd_mall_flutter/component/image/asset_image.dart';
 import 'package:jd_mall_flutter/generated/assets.dart';
 
-Widget orderCard(BuildContext context) {
+Widget orderCard() {
   return SliverToBoxAdapter(
     child: Container(
       height: 142,
-      width: getScreenWidth(context) - 20,
+      width: getScreenWidth() - 20,
       margin: const EdgeInsets.all(10),
       decoration: const BoxDecoration(color: Colors.white, borderRadius: BorderRadius.all(Radius.circular(10))),
       child: Column(
@@ -29,7 +29,7 @@ Widget orderCard(BuildContext context) {
               horizontalItem(Assets.imagesIcLookHistory, "${"browsingHistory".tr}20")
             ],
           ),
-          line(getScreenWidth(context) - 50, 1),
+          line(getScreenWidth() - 50, 1),
           Flex(
             direction: Axis.horizontal,
             children: [

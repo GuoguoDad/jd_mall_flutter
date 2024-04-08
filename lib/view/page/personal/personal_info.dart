@@ -56,12 +56,12 @@ class _PersonalInfoState extends State<PersonalInfo> with ImagePickerMixin {
           ),
         ),
         Container(
-          width: getScreenWidth(context),
-          height: 60 + getBottomSpace(context),
-          padding: EdgeInsets.only(bottom: getBottomSpace(context)),
+          width: getScreenWidth(),
+          height: 60 + getBottomSpace(),
+          padding: EdgeInsets.only(bottom: getBottomSpace()),
           alignment: Alignment.center,
           child: LinearButton(
-            width: getScreenWidth(context) - 24,
+            width: getScreenWidth() - 24,
             height: 50,
             btnName: '退出登录',
             onTap: () async {

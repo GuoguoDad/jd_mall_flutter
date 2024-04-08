@@ -26,12 +26,12 @@ class CartPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        cartHeader(context),
+        cartHeader(),
         Expanded(
           child: Obx(() {
             bool isLoading = CartController.to.isLoading.value;
             if (isLoading) {
-              return loadingWidget(context);
+              return loadingWidget();
             }
 
             return Scaffold(
@@ -52,10 +52,10 @@ class CartPage extends StatelessWidget {
                 child: CustomScrollView(
                   controller: CartController.to.scrollController,
                   slivers: [
-                    condition(context),
-                    cartGoods(context),
-                    probablyLike(context),
-                    goodsList(context),
+                    condition(),
+                    cartGoods(),
+                    probablyLike(),
+                    goodsList(),
                   ],
                 ),
               ),

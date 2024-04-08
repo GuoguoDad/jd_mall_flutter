@@ -11,7 +11,7 @@ import 'package:jd_mall_flutter/component/image/asset_image.dart';
 import 'package:jd_mall_flutter/component/linear_button.dart';
 
 Widget fixedBottom(BuildContext context) {
-  double space = getBottomSpace(context);
+  double space = getBottomSpace();
 
   return Container(
     height: 64 + space,

@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 // Package imports:
 import 'package:loading_indicator/loading_indicator.dart';
 
-Widget loadingWidget(BuildContext context) {
+Widget loadingWidget() {
   return Container(
     width: double.infinity,
     height: double.infinity,

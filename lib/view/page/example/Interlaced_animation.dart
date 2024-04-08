@@ -39,8 +39,8 @@ class _State extends State<InterlacedAnimationDemo> with SingleTickerProviderSta
           Expanded(
               flex: 1,
               child: Container(
-                width: getScreenWidth(context),
-                padding: EdgeInsets.only(top: 50, left: (getScreenWidth(context) - 300) / 2),
+                width: getScreenWidth(),
+                padding: EdgeInsets.only(top: 50, left: (getScreenWidth() - 300) / 2),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [

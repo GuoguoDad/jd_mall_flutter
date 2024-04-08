@@ -20,7 +20,7 @@ double headWidth = 40;
 double screenWidth = 0;
 
 Widget appraiseInfo(BuildContext context) {
-  screenWidth = getScreenWidth(context);
+  screenWidth = getScreenWidth();
 
   return Obx(() {
     List<AppraiseInfo> list = DetailController.to.goodsDetailRes.value.goodsInfo?.appraiseList ?? [];
@@ -89,7 +89,7 @@ Widget appraiseInfo(BuildContext context) {
         color: CommonStyle.colorF5F5F5,
         child: Column(children: [
           Container(
-            width: getScreenWidth(context) - 24,
+            width: getScreenWidth() - 24,
             margin: const EdgeInsets.all(10),
             padding: const EdgeInsets.all(10),
             decoration: const BoxDecoration(
@@ -108,14 +108,14 @@ Widget appraiseInfo(BuildContext context) {
                   ),
                 ),
                 SizedBox(
-                  width: getScreenWidth(context) - 20,
+                  width: getScreenWidth() - 20,
                   height: list.length * 240,
                   child: appraiseList,
                 ),
                 Container(
                   width: 160,
                   height: 42,
-                  margin: EdgeInsets.only(left: getScreenWidth(context) / 2 - 80),
+                  margin: EdgeInsets.only(left: getScreenWidth() / 2 - 80),
                   alignment: Alignment.center,
                   decoration: BoxDecoration(
                     borderRadius: const BorderRadius.all(Radius.circular(30)),

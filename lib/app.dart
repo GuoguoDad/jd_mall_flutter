@@ -16,7 +16,6 @@ import 'package:jd_mall_flutter/common/event/http_error_event.dart';
 import 'package:jd_mall_flutter/common/event/index.dart';
 import 'package:jd_mall_flutter/common/global/Global.dart';
 import 'package:jd_mall_flutter/common/observer/navigator_change_observer.dart';
-import 'package:jd_mall_flutter/common/util/screen_util.dart';
 import 'package:jd_mall_flutter/http/code.dart';
 import 'package:jd_mall_flutter/routes.dart';
 import 'package:jd_mall_flutter/translation/messages.dart';
@@ -64,13 +63,15 @@ class _FlutterMallApp extends State<MallApp> with HttpErrorListener {
   }
 
   Widget refreshConfig({required Widget child}) {
+    double statusHeight = MediaQuery.viewPaddingOf(context).top;
+
     return RefreshConfiguration(
       footerTriggerDistance: 15,
       dragSpeedRatio: 0.91,
-      headerTriggerDistance: 88 + getStatusHeight(context),
+      headerTriggerDistance: 88 + statusHeight,
       headerBuilder: () => ClassicHeader(
         spacing: 10,
-        height: 68 + getStatusHeight(context),
+        height: 68 + statusHeight,
       ),
       footerBuilder: () => const ClassicFooter(),
       enableLoadingWhenNoData: false,

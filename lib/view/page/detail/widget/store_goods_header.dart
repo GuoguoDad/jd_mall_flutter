@@ -11,7 +11,7 @@ Widget storeGoodsHeader(BuildContext context) {
     child: Container(
       key: cardKeys[3],
       height: 48,
-      width: getScreenWidth(context) - 10,
+      width: getScreenWidth() - 10,
       margin: const EdgeInsets.only(left: 5, top: 10),
       padding: const EdgeInsets.all(10),
       alignment: Alignment.centerLeft,

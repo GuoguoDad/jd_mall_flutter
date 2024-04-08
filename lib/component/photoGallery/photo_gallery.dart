@@ -56,8 +56,8 @@ class _PhotoGalleryState extends State<PhotoGallery> {
           Positioned(
             top: 0,
             child: SizedBox(
-              width: getScreenWidth(context),
-              height: getScreenHeight(context),
+              width: getScreenWidth(),
+              height: getScreenHeight(),
               child: PhotoViewGallery.builder(
                 builder: (BuildContext context, int index) {
                   return PhotoViewGalleryPageOptions(
@@ -92,10 +92,10 @@ class _PhotoGalleryState extends State<PhotoGallery> {
             ),
           ),
           Positioned(
-            top: getStatusHeight(context),
+            top: getStatusHeight(),
             child: SizedBox(
               height: 50,
-              width: getScreenWidth(context),
+              width: getScreenWidth(),
               child: Row(
                 children: [
                   SizedBox(

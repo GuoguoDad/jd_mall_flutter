@@ -12,7 +12,7 @@ import 'package:jd_mall_flutter/view/page/category/category_controller.dart';
 
 double itemHeight = 62.0;
 
-Widget leftCate(BuildContext context) {
+Widget leftCate() {
   return Expanded(
     flex: 1,
     child: Obx(() {
@@ -36,8 +36,7 @@ Widget leftCate(BuildContext context) {
               CategoryController.to.selectLeftCategory(index - 1 >= 0 ? list[index - 1] : CategoryInfo.fromJson({}), list[index],
                   index + 1 <= list.length - 1 ? list[index + 1] : CategoryInfo.fromJson({}));
 
-              CategoryController.to.scrollController
-                  .animateTo(calc2Top(context, index, list.length), duration: const Duration(milliseconds: 200), curve: Curves.linear);
+              CategoryController.to.scrollController.animateTo(calc2Top(index, list.length), duration: const Duration(milliseconds: 200), curve: Curves.linear);
             },
             child: Container(
               height: itemHeight,
@@ -56,9 +55,9 @@ Widget leftCate(BuildContext context) {
   );
 }
 
-double calc2Top(BuildContext context, int index, int total) {
+double calc2Top(int index, int total) {
   //展示高度，即ListView展示高度
-  double displayHeight = getScreenHeight(context) - 50 - getStatusHeight(context) - 88 - getBottomSpace(context);
+  double displayHeight = getScreenHeight() - 50 - getStatusHeight() - 88 - getBottomSpace();
   //item距离ListView顶部距离
   double item2Top = itemHeight * index;
   //item总高度

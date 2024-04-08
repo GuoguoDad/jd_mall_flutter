@@ -15,7 +15,7 @@ import 'package:jd_mall_flutter/view/page/home/util.dart';
 // Package imports:
 
 Widget tabHeader(BuildContext context) {
-  double statusHeight = getStatusHeight(context);
+  double statusHeight = getStatusHeight();
 
   Widget tabItem(String name, int index) {
     return Obx(() {
@@ -29,7 +29,7 @@ Widget tabHeader(BuildContext context) {
             RenderSliverToBoxAdapter? keyRenderObject = cardKeys[index].currentContext?.findAncestorRenderObjectOfType<RenderSliverToBoxAdapter>();
             if (keyRenderObject != null) {
               DetailController.to.scrollController.position
-                  .ensureVisible(keyRenderObject, offsetTop: 42 + getStatusHeight(context), duration: const Duration(milliseconds: 300), curve: Curves.linear)
+                  .ensureVisible(keyRenderObject, offsetTop: 42 + getStatusHeight(), duration: const Duration(milliseconds: 300), curve: Curves.linear)
                   .then((value) => DetailController.to.setIsTabClick(false));
             }
           }
@@ -72,7 +72,7 @@ Widget tabHeader(BuildContext context) {
     return Container(
       height: 42 + statusHeight,
       color: opacity == 1 ? Colors.white : Colors.transparent,
-      width: getScreenWidth(context),
+      width: getScreenWidth(),
       padding: EdgeInsets.only(top: statusHeight),
       child: Row(
         children: [

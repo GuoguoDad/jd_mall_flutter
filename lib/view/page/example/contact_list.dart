@@ -278,7 +278,7 @@ class _ContactListState extends State<ContactList> {
             right: 10,
             child: SizedBox(
               width: 34,
-              height: getScreenHeight(context),
+              height: getScreenHeight(),
               child: Center(
                 child: Container(
                   width: 34,
@@ -355,7 +355,7 @@ class GroupItem extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       height: 32,
-      width: getScreenWidth(context),
+      width: getScreenWidth(),
       color: Colors.grey.shade300,
       alignment: Alignment.centerLeft,
       padding: const EdgeInsets.only(left: 24),

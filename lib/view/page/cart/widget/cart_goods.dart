@@ -19,7 +19,7 @@ import 'package:jd_mall_flutter/view/vebview/type.dart';
 
 double thumbnailWidth = 80;
 
-Widget cartGoods(BuildContext context) {
+Widget cartGoods() {
   return Obx(
     () {
       List<CartGoods> cartGoods = CartController.to.cartGoods;
@@ -28,10 +28,10 @@ Widget cartGoods(BuildContext context) {
         sectionCount: cartGoods.length,
         itemInSectionCount: (int section) => cartGoods[section].goodsList?.length ?? 0,
         headerForSectionBuilder: (int section) {
-          return buildHeader(context, CartController.to, section);
+          return buildHeader(CartController.to, section);
         },
         itemInSectionBuilder: (BuildContext context, IndexPath indexPath) {
-          return buildItem(context, CartController.to, indexPath);
+          return buildItem(CartController.to, indexPath);
         },
         separatorBuilder: (IndexPath indexPath) {
           return Container(
@@ -40,14 +40,14 @@ Widget cartGoods(BuildContext context) {
           );
         },
         footerForSectionBuilder: (int section) {
-          return buildFooter(context, marginBottom: section + 1 != cartGoods.length ? 10 : 0.0);
+          return buildFooter(marginBottom: section + 1 != cartGoods.length ? 10 : 0.0);
         },
       );
     },
   );
 }
 
-Widget buildHeader(BuildContext context, CartController c, int section) {
+Widget buildHeader(CartController c, int section) {
   return Container(
     height: 50,
     margin: const EdgeInsets.only(left: 12, right: 12),
@@ -92,7 +92,7 @@ Widget buildHeader(BuildContext context, CartController c, int section) {
   );
 }
 
-Widget buildItem(BuildContext context, CartController c, IndexPath indexPath) {
+Widget buildItem(CartController c, IndexPath indexPath) {
   return Container(
     margin: const EdgeInsets.only(left: 12, right: 12),
     color: Colors.white,
@@ -186,7 +186,7 @@ Widget buildItem(BuildContext context, CartController c, IndexPath indexPath) {
   );
 }
 
-Widget buildFooter(BuildContext context, {required double marginBottom}) {
+Widget buildFooter({required double marginBottom}) {
   return Container(
     height: 10,
     margin: EdgeInsets.only(left: 12, right: 12, bottom: marginBottom),

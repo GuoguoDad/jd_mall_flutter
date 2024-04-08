@@ -15,10 +15,10 @@ import 'package:jd_mall_flutter/view/page/detail/detail_controller.dart';
 double screenWidth = 0;
 
 Widget addressInfo(BuildContext context) {
-  screenWidth = getScreenWidth(context);
+  screenWidth = getScreenWidth();
 
   return Container(
-    width: getScreenWidth(context) - 24,
+    width: getScreenWidth() - 24,
     margin: const EdgeInsets.only(top: 10),
     padding: const EdgeInsets.all(10),
     decoration: const BoxDecoration(

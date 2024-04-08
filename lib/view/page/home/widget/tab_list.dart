@@ -11,7 +11,7 @@ import 'package:jd_mall_flutter/component/persistentHeader/sliver_header_builder
 import 'package:jd_mall_flutter/models/home_page_info.dart';
 import 'package:jd_mall_flutter/view/page/home/home_controller.dart';
 
-Widget tabList(BuildContext context) {
+Widget tabList() {
   return SliverPersistentHeader(
     pinned: true,
     delegate: SliverHeaderDelegate.fixedHeight(

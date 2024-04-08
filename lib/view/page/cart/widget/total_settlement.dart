@@ -16,7 +16,7 @@ import 'package:jd_mall_flutter/view/page/cart/cart_controller.dart';
 Widget totalSettlement(BuildContext context) {
   return Container(
     height: 58,
-    width: getScreenWidth(context),
+    width: getScreenWidth(),
     decoration: BoxDecoration(
       color: Colors.white,
       border: Border(

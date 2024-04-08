@@ -14,7 +14,7 @@ double width = 80;
 Widget orderGoods(BuildContext context) {
   return SliverToBoxAdapter(
     child: Container(
-      width: getScreenWidth(context),
+      width: getScreenWidth(),
       padding: const EdgeInsets.only(left: 20, top: 20, right: 20, bottom: 12),
       margin: const EdgeInsets.only(top: 12),
       decoration: const BoxDecoration(
@@ -134,7 +134,7 @@ Widget messageInput(BuildContext context) {
         style: TextStyle(fontSize: 16),
       ),
       SizedBox(
-        width: getScreenWidth(context) * 2 / 3,
+        width: getScreenWidth() * 2 / 3,
         child: const TextField(
           textAlign: TextAlign.right,
           cursorColor: Colors.black45,

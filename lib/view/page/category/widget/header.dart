@@ -12,8 +12,8 @@ import 'package:jd_mall_flutter/component/image/asset_image.dart';
 Widget header(BuildContext context) {
   return Container(
     color: '#FE0F22'.toColor(),
-    height: 50 + getStatusHeight(context),
-    padding: EdgeInsets.only(top: getStatusHeight(context)),
+    height: 50 + getStatusHeight(),
+    padding: EdgeInsets.only(top: getStatusHeight()),
     child: Stack(
       alignment: Alignment.center,
       fit: StackFit.expand,
@@ -48,7 +48,7 @@ Widget header(BuildContext context) {
           top: 1,
           child: Container(
             height: 36,
-            width: getScreenWidth(context) - 120,
+            width: getScreenWidth() - 120,
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(14),
               color: "#F0F1ED".toColor(),

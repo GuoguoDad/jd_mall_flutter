@@ -14,8 +14,8 @@ import 'package:jd_mall_flutter/generated/assets.dart';
 import 'package:jd_mall_flutter/routes.dart';
 import 'package:jd_mall_flutter/view/page/home/home_controller.dart';
 
-Widget galleryList(BuildContext context) {
-  double carouselWidth = getScreenWidth(context) - 24;
+Widget galleryList() {
+  double carouselWidth = getScreenWidth() - 24;
   double carouselHeight = 160;
 
   return SliverToBoxAdapter(

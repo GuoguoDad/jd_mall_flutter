@@ -12,8 +12,8 @@ import 'package:jd_mall_flutter/view/page/cart/cart_controller.dart';
 
 double width = 0;
 
-Widget goodsList(BuildContext context) {
-  width = (getScreenWidth(context) - 20) / 2;
+Widget goodsList() {
+  width = (getScreenWidth() - 20) / 2;
 
   return Obx(() {
     var goodsList = CartController.to.goodsPageInfo.value.goodsList ?? [];

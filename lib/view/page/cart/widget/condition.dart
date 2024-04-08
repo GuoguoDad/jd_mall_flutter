@@ -8,7 +8,7 @@ import 'package:get/get.dart';
 import 'package:jd_mall_flutter/common/style/common_style.dart';
 import 'package:jd_mall_flutter/component/persistentHeader/sliver_header_builder.dart';
 
-Widget condition(BuildContext context) {
+Widget condition() {
   return SliverPersistentHeader(
     pinned: false,
     delegate: SliverHeaderDelegate.fixedHeight(

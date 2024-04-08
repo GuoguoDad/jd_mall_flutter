@@ -35,8 +35,8 @@ class _SnowManDemoState extends State<SnowManDemo> with SingleTickerProviderStat
 
   @override
   Widget build(BuildContext context) {
-    screenWidth = getScreenWidth(context);
-    screenHeight = getScreenHeight(context);
+    screenWidth = getScreenWidth();
+    screenHeight = getScreenHeight();
 
     List<SnowFlake> snowflakes = List.generate(1000, (index) => SnowFlake());
 

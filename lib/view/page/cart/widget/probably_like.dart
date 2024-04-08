@@ -6,11 +6,11 @@ import 'package:jd_mall_flutter/common/style/common_style.dart';
 import 'package:jd_mall_flutter/common/util/screen_util.dart';
 import 'package:jd_mall_flutter/component/image/asset_image.dart';
 
-Widget probablyLike(BuildContext context) {
+Widget probablyLike() {
   return SliverToBoxAdapter(
     child: Container(
       color: CommonStyle.colorF3F3F3,
-      child: assetImage('images/probably_like.png', getScreenWidth(context), 50),
+      child: assetImage('images/probably_like.png', getScreenWidth(), 50),
     ),
   );
 }

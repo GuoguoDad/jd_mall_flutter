@@ -16,7 +16,7 @@ import 'package:jd_mall_flutter/view/page/login/login_controller.dart';
 Widget loginForm(BuildContext context) {
   return SizedBox(
     height: 300,
-    width: getScreenWidth(context) - 24,
+    width: getScreenWidth() - 24,
     child: FormBuilder(
       key: LoginController.to.formKey,
       initialValue: const {
@@ -59,7 +59,7 @@ Widget loginForm(BuildContext context) {
           child: LinearButton(
             btnName: '登录',
             height: 58,
-            width: getScreenWidth(context) - 24,
+            width: getScreenWidth() - 24,
             borderRadius: BorderRadius.circular(50),
             onTap: () => LoginController.to.login(),
           ),

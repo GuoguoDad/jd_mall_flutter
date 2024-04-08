@@ -90,7 +90,7 @@ class _PageGoodsListState extends State<PageGoodsList> {
 
   @override
   Widget build(BuildContext context) {
-    double width = (getScreenWidth(context) - 20) / 2;
+    double width = (getScreenWidth() - 20) / 2;
     List<GoodsList> goodsList = goodsPageInfo.goodsList ?? [];
 
     if ((isLoading || goodsList.isEmpty) && pageNum == 1) {

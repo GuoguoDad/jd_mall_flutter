@@ -39,7 +39,7 @@ class _CompleteFormState extends State<CompleteForm> {
         Expanded(
           flex: 1,
           child: SingleChildScrollView(
-            padding: EdgeInsets.only(bottom: getBottomSpace(context)),
+            padding: EdgeInsets.only(bottom: getBottomSpace()),
             child: Column(
               children: <Widget>[
                 FormBuilder(

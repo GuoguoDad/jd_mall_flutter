@@ -28,7 +28,7 @@ class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return NotificationListener<ScrollNotification>(
-      onNotification: (ScrollNotification notification) => onPageScroll(notification, context),
+      onNotification: (ScrollNotification notification) => onPageScroll(notification),
       child: EasyRefresh.builder(
         controller: HomeController.to.freshController,
         header: classicHeader,
@@ -42,15 +42,15 @@ class HomePage extends StatelessWidget {
             body: ExtendedNestedScrollView(
               physics: physics,
               controller: HomeController.to.scrollController,
-              pinnedHeaderSliverHeightBuilder: () => getStatusHeight(context) + 44 + 54,
+              pinnedHeaderSliverHeightBuilder: () => getStatusHeight() + 44 + 54,
               headerSliverBuilder: (BuildContext context, bool innerBoxIsScrolled) {
                 return [
                   const HeaderLocator.sliver(clearExtent: false),
-                  searchHeader(context),
-                  galleryList(context),
-                  advBanner(context),
-                  menuSlider(context),
-                  tabList(context),
+                  searchHeader(),
+                  galleryList(),
+                  advBanner(),
+                  menuSlider(),
+                  tabList(),
                 ];
               },
               onlyOneScrollInBody: true,
@@ -75,14 +75,14 @@ class HomePage extends StatelessWidget {
     );
   }
 
-  bool onPageScroll(ScrollNotification notification, BuildContext context) {
+  bool onPageScroll(ScrollNotification notification) {
     int depth = notification.depth;
     double distance = notification.metrics.pixels;
     if (depth == 0) {
       HomeController.to.recordPageY(distance);
     }
     if (depth == 2) {
-      HomeController.to.setShowBackTop(distance > getScreenHeight(context));
+      HomeController.to.setShowBackTop(distance > getScreenHeight());
     }
     return false;
   }

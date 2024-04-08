@@ -16,8 +16,8 @@ class LoginPage extends StatelessWidget {
     return AnnotatedRegion(
       value: SystemUiOverlayStyle.light,
       child: Container(
-        width: getScreenWidth(context),
-        height: getScreenHeight(context),
+        width: getScreenWidth(),
+        height: getScreenHeight(),
         color: Colors.white,
         padding: const EdgeInsets.only(left: 12, right: 12),
         child: Column(
@@ -27,7 +27,7 @@ class LoginPage extends StatelessWidget {
               flex: 1,
               child: Column(
                 children: [
-                  SizedBox(height: 200, width: getScreenWidth(context)),
+                  SizedBox(height: 200, width: getScreenWidth()),
                   Expanded(
                     flex: 1,
                     child: loginForm(context),

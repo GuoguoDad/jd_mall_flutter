@@ -14,7 +14,7 @@ import 'package:jd_mall_flutter/view/page/detail/detail_controller.dart';
 import 'package:jd_mall_flutter/view/page/home/util.dart';
 
 Widget detailCard(BuildContext context) {
-  double screenWidth = getScreenWidth(context);
+  double screenWidth = getScreenWidth();
 
   return SliverToBoxAdapter(
     child: Obx(

@@ -85,9 +85,9 @@ class _WebViewPageState extends State<WebViewPage> {
           top: 0,
           left: 0,
           child: SizedBox(
-            width: getScreenWidth(context),
-            height: getScreenHeight(context),
-            child: loadingWidget(context),
+            width: getScreenWidth(),
+            height: getScreenHeight(),
+            child: loadingWidget(),
           ),
         ),
         floatingHeader(context, title: title)

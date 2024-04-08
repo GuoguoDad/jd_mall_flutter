@@ -10,7 +10,7 @@ import 'package:jd_mall_flutter/models/home_page_info.dart';
 import 'package:jd_mall_flutter/models/mine_menu_tab_info.dart';
 import '../home_controller.dart';
 
-Widget menuSlider(BuildContext context) {
+Widget menuSlider() {
   return SliverToBoxAdapter(
     child: Obx(() {
       List<NineMenuList> nineMenuList = HomeController.to.homePageInfo.value.nineMenuList ?? [];

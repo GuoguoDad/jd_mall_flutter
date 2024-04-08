@@ -9,11 +9,11 @@ import 'package:jd_mall_flutter/common/style/common_style.dart';
 import 'package:jd_mall_flutter/common/util/screen_util.dart';
 import 'package:jd_mall_flutter/component/image/asset_image.dart';
 
-Widget cartHeader(BuildContext context) {
+Widget cartHeader() {
   return SizedBox(
-    height: 44 + getStatusHeight(context),
+    height: 44 + getStatusHeight(),
     child: Container(
-      padding: EdgeInsets.only(top: getStatusHeight(context)),
+      padding: EdgeInsets.only(top: getStatusHeight()),
       color: CommonStyle.colorF1F1F1,
       child: Stack(
         fit: StackFit.expand,
@@ -31,7 +31,7 @@ Widget cartHeader(BuildContext context) {
             left: 100,
             child: Container(
               height: 24,
-              width: getScreenWidth(context) - 160,
+              width: getScreenWidth() - 160,
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(12),
                 color: CommonStyle.colorECEDEC,

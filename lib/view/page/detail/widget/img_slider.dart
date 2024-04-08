@@ -15,13 +15,13 @@ import 'package:jd_mall_flutter/generated/assets.dart';
 import 'package:jd_mall_flutter/view/page/detail/detail_controller.dart';
 
 Widget imgSlider(BuildContext context) {
-  double statusHeight = getStatusHeight(context);
-  double imgHeight = getScreenHeight(context) / 2 - statusHeight - getBottomSpace(context);
-  double screenWidth = getScreenWidth(context);
+  double statusHeight = getStatusHeight();
+  double imgHeight = getScreenHeight() / 2 - statusHeight - getBottomSpace();
+  double screenWidth = getScreenWidth();
 
   return Container(
     height: imgHeight,
-    width: getScreenWidth(context),
+    width: getScreenWidth(),
     margin: EdgeInsets.only(top: statusHeight),
     child: Obx(() {
       List<String> imgList = DetailController.to.selectInfo.value.imgList ?? [];

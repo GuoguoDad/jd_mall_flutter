@@ -13,15 +13,15 @@ import 'package:jd_mall_flutter/generated/assets.dart';
 import 'package:jd_mall_flutter/view/page/home/home_controller.dart';
 import 'package:jd_mall_flutter/view/page/home/util.dart';
 
-Widget searchHeader(BuildContext context) {
+Widget searchHeader() {
   return SliverPersistentHeader(
     pinned: true,
     delegate: SliverHeaderDelegate(
-      maxHeight: 88 + getStatusHeight(context),
-      minHeight: 44 + getStatusHeight(context),
+      maxHeight: 88 + getStatusHeight(),
+      minHeight: 44 + getStatusHeight(),
       child: Container(
         color: CommonStyle.themeColor,
-        padding: EdgeInsets.only(top: getStatusHeight(context)),
+        padding: EdgeInsets.only(top: getStatusHeight()),
         child: Stack(
           alignment: Alignment.center,
           fit: StackFit.expand,
@@ -41,7 +41,7 @@ Widget searchHeader(BuildContext context) {
                 top: calc2Top(HomeController.to.pageScrollY.value),
                 child: Container(
                   height: 34,
-                  width: getScreenWidth(context) - calcWidth(HomeController.to.pageScrollY.value),
+                  width: getScreenWidth() - calcWidth(HomeController.to.pageScrollY.value),
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(12),
                     color: Colors.white,
