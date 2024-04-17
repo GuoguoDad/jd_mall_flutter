@@ -9,7 +9,6 @@ import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:form_builder_validators/localization/l10n.dart';
 import 'package:get/get.dart';
-import 'package:pull_to_refresh/pull_to_refresh.dart';
 
 // Project imports:
 import 'package:jd_mall_flutter/common/event/http_error_event.dart';
@@ -19,6 +18,7 @@ import 'package:jd_mall_flutter/common/observer/navigator_change_observer.dart';
 import 'package:jd_mall_flutter/http/code.dart';
 import 'package:jd_mall_flutter/routes.dart';
 import 'package:jd_mall_flutter/translation/messages.dart';
+import 'package:pull_to_refresh_flutter3/pull_to_refresh_flutter3.dart';
 
 class MallApp extends StatefulWidget {
   const MallApp({super.key});
