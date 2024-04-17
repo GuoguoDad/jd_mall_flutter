@@ -31,7 +31,6 @@ class HomePage extends StatelessWidget {
       child: EasyRefresh.builder(
         controller: HomeController.to.freshController,
         header: classicHeader,
-        clipBehavior: Clip.none,
         onRefresh: () => HomeController.to.refreshPage(
           () => easyRefreshSuccess(HomeController.to.freshController),
           () => easyRefreshFail(HomeController.to.freshController),
@@ -39,9 +38,10 @@ class HomePage extends StatelessWidget {
         childBuilder: (context, physics) {
           return Scaffold(
             body: ExtendedNestedScrollView(
-              physics: physics,
               controller: HomeController.to.scrollController,
-              pinnedHeaderSliverHeightBuilder: () => getStatusHeight() + 44 + 54,
+              pinnedHeaderSliverHeightBuilder: () {
+                return getStatusHeight() + 44 + 54;
+              },
               headerSliverBuilder: (BuildContext context, bool innerBoxIsScrolled) {
                 return [
                   const HeaderLocator.sliver(clearExtent: false),
