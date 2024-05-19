@@ -1,5 +1,5 @@
 // Package imports:
-import 'package:extended_scroll/extended_scroll.dart';
+import 'package:flutter_extended_scroll/flutter_extended_scroll.dart';
 import 'package:get/get.dart';
 
 // Project imports:

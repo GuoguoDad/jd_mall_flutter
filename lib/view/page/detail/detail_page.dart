@@ -4,7 +4,7 @@ import 'package:flutter/rendering.dart';
 import 'package:flutter/services.dart';
 
 // Package imports:
-import 'package:extended_scroll/extended_scroll.dart';
+import 'package:flutter_extended_scroll/flutter_extended_scroll.dart';
 
 // Project imports:
 import 'package:jd_mall_flutter/common/style/common_style.dart';

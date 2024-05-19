@@ -2,7 +2,7 @@
 import 'package:flutter/material.dart';
 
 // Package imports:
-import 'package:extended_scroll/extended_scroll.dart';
+import 'package:flutter_extended_scroll/flutter_extended_scroll.dart';
 
 // Project imports:
 import 'package:jd_mall_flutter/common/util/screen_util.dart';
