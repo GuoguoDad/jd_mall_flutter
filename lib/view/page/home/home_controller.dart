@@ -10,7 +10,6 @@ import 'package:get/get_state_manager/src/simple/get_controllers.dart';
 import 'package:get/state_manager.dart';
 
 // Project imports:
-import 'package:jd_mall_flutter/common/types/common.dart';
 import 'package:jd_mall_flutter/models/home_page_info.dart';
 import 'package:jd_mall_flutter/view/page/home/service.dart';
 

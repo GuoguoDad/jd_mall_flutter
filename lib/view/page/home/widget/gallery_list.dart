@@ -31,7 +31,7 @@ Widget galleryList() {
         child: Obx(() {
           var bannerList = HomeController.to.homePageInfo.value.bannerList ?? [];
           return FlutterCarousel(
-            options: CarouselOptions(
+            options: FlutterCarouselOptions(
               height: carouselHeight,
               autoPlay: true,
               autoPlayInterval: const Duration(seconds: 8),
@@ -39,11 +39,13 @@ Widget galleryList() {
               viewportFraction: 1.0,
               enableInfiniteScroll: true,
               slideIndicator: CircularWaveSlideIndicator(
-                itemSpacing: 12,
-                indicatorRadius: 3.6,
-                indicatorBorderWidth: 0,
-                currentIndicatorColor: CommonStyle.themeColor,
-                indicatorBackgroundColor: Colors.grey,
+                slideIndicatorOptions: SlideIndicatorOptions(
+                  itemSpacing: 12,
+                  indicatorRadius: 3.6,
+                  indicatorBorderWidth: 0,
+                  currentIndicatorColor: CommonStyle.themeColor,
+                  indicatorBackgroundColor: Colors.grey,
+                )
               ),
             ),
             items: bannerList.map(

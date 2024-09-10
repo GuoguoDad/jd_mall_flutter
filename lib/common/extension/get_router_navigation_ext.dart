@@ -15,7 +15,7 @@ extension GetRouterNavigation on GetInterface {
   //SingleTask模式pop页面，适用场景:  登录后跳转
   void popNamedSingleTask(String routerName, {dynamic arguments, void Function(dynamic value)? callback}) {
     if (isRouteExist(routerName)) {
-      Get.until((route) => route.settings.name == routerName);
+      Get.until((route) => route.name == routerName);
     } else {
       Get.offNamed(routerName, arguments: arguments)?.then(
         (value) => {
@@ -28,7 +28,7 @@ extension GetRouterNavigation on GetInterface {
   //SingleTop模式跳转页面，适用场景:  推送信息跳转
   void toNamedSingleTop(String routerName, {dynamic arguments, void Function(dynamic value)? callback}) {
     if (isTopRoute(routerName)) {
-      Get.until((route) => route.settings.name == routerName);
+      Get.until((route) => route.name == routerName);
     } else {
       Get.offNamed(routerName, arguments: arguments)?.then(
         (value) => {

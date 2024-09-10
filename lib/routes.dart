@@ -1,11 +1,10 @@
 // Package imports:
 import 'package:get/get.dart';
+import 'package:jd_mall_flutter/view/main/main_bindings.dart';
 
 // Project imports:
 import 'package:jd_mall_flutter/view/main/main_page.dart';
-import 'package:jd_mall_flutter/view/page/cart/cart_controller.dart';
-import 'package:jd_mall_flutter/view/page/category/category_controller.dart';
-import 'package:jd_mall_flutter/view/page/detail/detail_controller.dart';
+import 'package:jd_mall_flutter/view/page/detail/detail_bindings.dart';
 import 'package:jd_mall_flutter/view/page/detail/detail_page.dart';
 import 'package:jd_mall_flutter/view/page/example/Interlaced_animation.dart';
 import 'package:jd_mall_flutter/view/page/example/breathing_method.dart';
@@ -16,10 +15,8 @@ import 'package:jd_mall_flutter/view/page/example/gesture_spring.dart';
 import 'package:jd_mall_flutter/view/page/example/sample_list.dart';
 import 'package:jd_mall_flutter/view/page/example/snow_man.dart';
 import 'package:jd_mall_flutter/view/page/example/video_simple.dart';
-import 'package:jd_mall_flutter/view/page/home/home_controller.dart';
-import 'package:jd_mall_flutter/view/page/login/login_controller.dart';
+import 'package:jd_mall_flutter/view/page/login/login_bindings.dart';
 import 'package:jd_mall_flutter/view/page/login/login_page.dart';
-import 'package:jd_mall_flutter/view/page/mine/mine_controller.dart';
 import 'package:jd_mall_flutter/view/page/order/generate/generate_order.dart';
 import 'package:jd_mall_flutter/view/page/personal/personal_info.dart';
 import 'package:jd_mall_flutter/view/system/page404.dart';
@@ -68,18 +65,12 @@ List<GetPage> appPages = [
   GetPage(
     name: RoutesEnum.mainPage.path,
     page: () => const MainPage(),
-    binding: BindingsBuilder(() {
-      Get.lazyPut<HomeController>(() => HomeController());
-      Get.lazyPut<CategoryController>(() => CategoryController());
-      Get.lazyPut<CartController>(() => CartController());
-      Get.lazyPut<MineController>(() => MineController());
-      Get.lazyPut<LoginController>(() => LoginController());
-    }),
+    binding: MainBindings(),
   ),
   GetPage(
     name: RoutesEnum.detailPage.path,
     page: () => const DetailPage(),
-    binding: BindingsBuilder(() => Get.lazyPut<DetailController>(() => DetailController())),
+    binding: DetailBindings(),
   ),
   GetPage(
     name: RoutesEnum.webViewPage.path,
@@ -93,12 +84,12 @@ List<GetPage> appPages = [
   GetPage(
     name: RoutesEnum.personalInfo.path,
     page: () => const PersonalInfo(),
-    binding: BindingsBuilder(() => Get.lazyPut<LoginController>(() => LoginController())),
+    binding: LoginBindings(),
     middlewares: [EnsureAuthMiddleware()],
   ),
   GetPage(
     name: RoutesEnum.loginPage.path,
     page: () => const LoginPage(),
-    binding: BindingsBuilder(() => Get.lazyPut<LoginController>(() => LoginController())),
+    binding: LoginBindings(),
   ),
 ];

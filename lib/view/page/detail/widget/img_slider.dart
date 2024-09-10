@@ -27,7 +27,7 @@ Widget imgSlider(BuildContext context) {
       List<String> imgList = DetailController.to.selectInfo.value.imgList ?? [];
 
       return FlutterCarousel(
-        options: CarouselOptions(
+        options: FlutterCarouselOptions(
           height: imgHeight,
           viewportFraction: 1.0,
           enlargeCenterPage: false,
@@ -35,11 +35,13 @@ Widget imgSlider(BuildContext context) {
           enableInfiniteScroll: true,
           autoPlayInterval: const Duration(seconds: 12),
           slideIndicator: CircularWaveSlideIndicator(
-            itemSpacing: 14,
-            indicatorRadius: 4,
-            indicatorBorderWidth: 0,
-            currentIndicatorColor: CommonStyle.themeColor,
-            indicatorBackgroundColor: Colors.grey,
+              slideIndicatorOptions: SlideIndicatorOptions(
+                itemSpacing: 14,
+                indicatorRadius: 4,
+                indicatorBorderWidth: 0,
+                currentIndicatorColor: CommonStyle.themeColor,
+                indicatorBackgroundColor: Colors.grey,
+              )
           ),
         ),
         items: imgList
