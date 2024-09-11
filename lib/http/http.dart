@@ -6,16 +6,15 @@ import 'package:flutter/foundation.dart';
 
 // Package imports:
 import 'package:dio/dio.dart';
+import 'package:pretty_dio_logger/pretty_dio_logger.dart';
 
 // Project imports:
 import 'package:jd_mall_flutter/http/base_response.dart';
 import 'package:jd_mall_flutter/http/code.dart';
+import 'package:jd_mall_flutter/http/interceptors/debounce_Interceptor.dart';
 import 'package:jd_mall_flutter/http/interceptors/network_interceptor.dart';
 import 'package:jd_mall_flutter/http/interceptors/response_interceptor.dart';
 import 'package:jd_mall_flutter/http/interceptors/token_Interceptor.dart';
-import 'package:pretty_dio_logger/pretty_dio_logger.dart';
-
-import 'package:jd_mall_flutter/http/interceptors/debounce_Interceptor.dart';
 
 class HttpManager {
   static const contentTypeJson = "application/json";

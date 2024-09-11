@@ -5,6 +5,7 @@ import 'package:flutter/services.dart';
 
 // Package imports:
 import 'package:flutter_extended_scroll/flutter_extended_scroll.dart';
+import 'package:pull_to_refresh_flutter3/pull_to_refresh_flutter3.dart';
 
 // Project imports:
 import 'package:jd_mall_flutter/common/style/common_style.dart';
@@ -20,7 +21,6 @@ import 'package:jd_mall_flutter/view/page/detail/widget/store_goods.dart';
 import 'package:jd_mall_flutter/view/page/detail/widget/store_goods_header.dart';
 import 'package:jd_mall_flutter/view/page/detail/widget/tab_header.dart';
 import 'package:jd_mall_flutter/view/page/home/util.dart';
-import 'package:pull_to_refresh_flutter3/pull_to_refresh_flutter3.dart';
 
 class DetailPage extends StatelessWidget {
   const DetailPage({super.key});

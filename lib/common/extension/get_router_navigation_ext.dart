@@ -1,4 +1,7 @@
+// Package imports:
 import 'package:get/get.dart';
+
+// Project imports:
 import 'package:jd_mall_flutter/common/observer/router_stack_manger.dart';
 
 extension GetRouterNavigation on GetInterface {

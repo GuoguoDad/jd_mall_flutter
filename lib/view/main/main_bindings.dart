@@ -1,10 +1,12 @@
+// Package imports:
 import 'package:get/get_state_manager/src/simple/get_state.dart';
 
+// Project imports:
+import 'package:jd_mall_flutter/view/page/cart/cart_controller.dart';
+import 'package:jd_mall_flutter/view/page/category/category_controller.dart';
 import 'package:jd_mall_flutter/view/page/home/home_controller.dart';
 import 'package:jd_mall_flutter/view/page/login/login_controller.dart';
 import 'package:jd_mall_flutter/view/page/mine/mine_controller.dart';
-import 'package:jd_mall_flutter/view/page/cart/cart_controller.dart';
-import 'package:jd_mall_flutter/view/page/category/category_controller.dart';
 
 class MainBindings extends Binding {
   @override

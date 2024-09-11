@@ -33,9 +33,6 @@ extension ImageFileExt on File {
         sourcePath: sourcePath,
         maxWidth: maxWidth,
         maxHeight: maxHeight,
-        aspectRatioPresets: [
-          CropAspectRatioPreset.square,
-        ],
         uiSettings: [
           AndroidUiSettings(
             toolbarTitle: '裁剪',

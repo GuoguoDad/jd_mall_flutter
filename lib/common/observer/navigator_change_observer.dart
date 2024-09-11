@@ -1,8 +1,9 @@
 // Flutter imports:
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
-import 'package:jd_mall_flutter/common/observer/router_stack_manger.dart';
 
+// Project imports:
+import 'package:jd_mall_flutter/common/observer/router_stack_manger.dart';
 import '../util/util.dart';
 
 class NavigatorChangeObserver<R extends Route<dynamic>> extends RouteObserver<R> {

@@ -1,8 +1,9 @@
 // Package imports:
 import 'package:get/get.dart';
-import 'package:jd_mall_flutter/view/main/main_bindings.dart';
 
 // Project imports:
+import 'package:jd_mall_flutter/middleware/auth_middleware.dart';
+import 'package:jd_mall_flutter/view/main/main_bindings.dart';
 import 'package:jd_mall_flutter/view/main/main_page.dart';
 import 'package:jd_mall_flutter/view/page/detail/detail_bindings.dart';
 import 'package:jd_mall_flutter/view/page/detail/detail_page.dart';
@@ -21,7 +22,6 @@ import 'package:jd_mall_flutter/view/page/order/generate/generate_order.dart';
 import 'package:jd_mall_flutter/view/page/personal/personal_info.dart';
 import 'package:jd_mall_flutter/view/system/page404.dart';
 import 'package:jd_mall_flutter/view/vebview/webview_page.dart';
-import 'package:jd_mall_flutter/middleware/auth_middleware.dart';
 
 enum RoutesEnum {
   //example

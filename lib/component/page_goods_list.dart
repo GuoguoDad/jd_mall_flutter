@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 
 // Package imports:
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
+import 'package:pull_to_refresh_flutter3/pull_to_refresh_flutter3.dart';
 
 // Project imports:
 import 'package:jd_mall_flutter/common/constant/index.dart';
@@ -11,7 +12,6 @@ import 'package:jd_mall_flutter/component/common_service.dart';
 import 'package:jd_mall_flutter/component/goods_item.dart';
 import 'package:jd_mall_flutter/component/page_goods_list_skeleton.dart';
 import 'package:jd_mall_flutter/models/goods_page_info.dart';
-import 'package:pull_to_refresh_flutter3/pull_to_refresh_flutter3.dart';
 
 class PageGoodsList extends StatefulWidget {
   final String code;

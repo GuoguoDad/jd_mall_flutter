@@ -3,13 +3,13 @@ import 'package:flutter/cupertino.dart';
 
 // Package imports:
 import 'package:get/get.dart';
+import 'package:pull_to_refresh_flutter3/pull_to_refresh_flutter3.dart';
 
 // Project imports:
 import 'package:jd_mall_flutter/common/constant/index.dart';
 import 'package:jd_mall_flutter/models/cart_goods.dart';
 import 'package:jd_mall_flutter/models/goods_page_info.dart';
 import 'package:jd_mall_flutter/view/page/cart/service.dart';
-import 'package:pull_to_refresh_flutter3/pull_to_refresh_flutter3.dart';
 
 class CartController extends GetxController {
   static CartController get to => Get.find();

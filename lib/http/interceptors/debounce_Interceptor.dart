@@ -1,4 +1,7 @@
+// Package imports:
 import 'package:dio/dio.dart';
+
+// Project imports:
 import 'package:jd_mall_flutter/common/util/util.dart';
 import 'package:jd_mall_flutter/http/code.dart';
 
