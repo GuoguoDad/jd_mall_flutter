@@ -1,12 +1,10 @@
 // Flutter imports:
 import 'package:flutter/material.dart';
 
-// Package imports:
-import 'package:cached_network_image/cached_network_image.dart';
-
 // Project imports:
 import 'package:jd_mall_flutter/common/util/screen_util.dart';
 import 'package:jd_mall_flutter/component/image/asset_image.dart';
+import 'package:jd_mall_flutter/component/image/extend_image_network.dart';
 import 'package:jd_mall_flutter/generated/assets.dart';
 
 double width = 80;
@@ -76,12 +74,10 @@ Widget goodsImg(String url) {
     margin: const EdgeInsets.only(right: 10),
     child: ClipRRect(
       borderRadius: const BorderRadius.all(Radius.circular(6)),
-      child: CachedNetworkImage(
+      child: ExtendImageNetwork(url: url,
         width: width,
         height: width,
-        imageUrl: url,
-        placeholder: (context, url) => assetImage(Assets.imagesDefault, width, width),
-        errorWidget: (context, url, error) => assetImage(Assets.imagesDefault, width, width),
+        cache: true,
         fit: BoxFit.fill,
       ),
     ),

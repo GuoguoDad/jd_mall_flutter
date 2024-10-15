@@ -2,14 +2,12 @@
 import 'package:flutter/material.dart';
 
 // Package imports:
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:get/get_state_manager/src/rx_flutter/rx_obx_widget.dart';
 
 // Project imports:
 import 'package:jd_mall_flutter/common/style/common_style.dart';
 import 'package:jd_mall_flutter/common/util/screen_util.dart';
-import 'package:jd_mall_flutter/component/image/asset_image.dart';
-import 'package:jd_mall_flutter/generated/assets.dart';
+import 'package:jd_mall_flutter/component/image/extend_image_network.dart';
 import 'package:jd_mall_flutter/view/page/detail/detail_controller.dart';
 import 'package:jd_mall_flutter/view/page/home/util.dart';
 
@@ -41,13 +39,11 @@ Widget detailCard(BuildContext context) {
               ),
               Column(
                 children: introductionList
-                    .map((url) => CachedNetworkImage(
-                          width: screenWidth - 40,
-                          imageUrl: url,
-                          placeholder: (context, url) => assetImage(Assets.imagesDefault, screenWidth - 40, 100),
-                          errorWidget: (context, url, error) => assetImage(Assets.imagesDefault, screenWidth - 40, 100),
-                          fit: BoxFit.fitWidth,
-                        ))
+                    .map((url) => ExtendImageNetwork(url: url,
+                      width: screenWidth - 40,
+                      cache: true,
+                      fit: BoxFit.fitWidth,
+                    ))
                     .toList(),
               )
             ],

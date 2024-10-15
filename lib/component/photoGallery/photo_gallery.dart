@@ -2,7 +2,6 @@
 import 'package:flutter/material.dart';
 
 // Package imports:
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:get/get.dart';
 import 'package:loading_indicator/loading_indicator.dart';
 import 'package:photo_view/photo_view.dart';
@@ -61,9 +60,7 @@ class _PhotoGalleryState extends State<PhotoGallery> {
               child: PhotoViewGallery.builder(
                 builder: (BuildContext context, int index) {
                   return PhotoViewGalleryPageOptions(
-                    imageProvider: CachedNetworkImageProvider(
-                      widget.images[index],
-                    ),
+                    imageProvider: NetworkImage(widget.images[index]),
                     initialScale: PhotoViewComputedScale.contained * 1.0,
                     minScale: PhotoViewComputedScale.contained * widget.min,
                     maxScale: PhotoViewComputedScale.contained * widget.max,

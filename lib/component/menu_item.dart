@@ -2,14 +2,12 @@
 import 'package:flutter/material.dart';
 
 // Package imports:
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:get/get.dart';
 
 // Project imports:
-import 'package:jd_mall_flutter/component/image/asset_image.dart';
 import 'package:jd_mall_flutter/models/mine_menu_tab_info.dart';
 import 'package:jd_mall_flutter/routes.dart';
-import 'package:jd_mall_flutter/view/vebview/type.dart';
+import 'package:jd_mall_flutter/component/image/extend_image_network.dart';
 
 class MenuItem extends StatelessWidget {
   const MenuItem(
@@ -30,13 +28,11 @@ class MenuItem extends StatelessWidget {
       child: Column(
         mainAxisAlignment: MainAxisAlignment.start,
         children: [
-          CachedNetworkImage(
+          ExtendImageNetwork(url: menuData.menuIcon.toString(),
             width: 40,
             height: 40,
+            cache: true,
             fit: BoxFit.cover,
-            imageUrl: menuData.menuIcon.toString(),
-            placeholder: (context, url) => assetImage("images/default.png", 40, 40),
-            errorWidget: (context, url, error) => assetImage("images/default.png", 40, 40),
           ),
           Container(
             alignment: Alignment.center,

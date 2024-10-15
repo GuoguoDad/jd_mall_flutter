@@ -2,13 +2,13 @@
 import 'package:flutter/material.dart';
 
 // Package imports:
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter_group_list_view/flutter_group_list_view.dart';
 import 'package:get/get.dart';
 
 // Project imports:
 import 'package:jd_mall_flutter/common/style/common_style.dart';
 import 'package:jd_mall_flutter/component/image/asset_image.dart';
+import 'package:jd_mall_flutter/component/image/extend_image_network.dart';
 import 'package:jd_mall_flutter/component/stepper/stepper.dart';
 import 'package:jd_mall_flutter/component/stepper/style.dart';
 import 'package:jd_mall_flutter/generated/assets.dart';
@@ -118,12 +118,10 @@ Widget buildItem(CartController c, IndexPath indexPath) {
             width: thumbnailWidth,
             height: thumbnailWidth,
             margin: const EdgeInsets.only(left: 10),
-            child: CachedNetworkImage(
+            child: ExtendImageNetwork(url: cartGoods[indexPath.section].goodsList![indexPath.index].imgUrl!,
               width: thumbnailWidth,
               height: thumbnailWidth,
-              imageUrl: cartGoods[indexPath.section].goodsList![indexPath.index].imgUrl!,
-              placeholder: (context, url) => assetImage(Assets.imagesDefault, thumbnailWidth, thumbnailWidth),
-              errorWidget: (context, url, error) => assetImage(Assets.imagesDefault, thumbnailWidth, thumbnailWidth),
+              cache: true,
               fit: BoxFit.fill,
             ),
           ),

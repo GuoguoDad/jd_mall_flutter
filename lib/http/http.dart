@@ -27,17 +27,17 @@ class HttpManager {
     _dio.interceptors.add(TokenInterceptors());
     _dio.interceptors.add(NetworkInterceptors());
     _dio.interceptors.add(DebounceInterceptor());
-    if (kDebugMode) {
-      _dio.interceptors.add(PrettyDioLogger(
-        requestHeader: false,
-        requestBody: true,
-        responseBody: false,
-        responseHeader: false,
-        error: true,
-        compact: false,
-        maxWidth: 160,
-      ));
-    }
+    // if (kDebugMode) {
+    //   _dio.interceptors.add(PrettyDioLogger(
+    //     requestHeader: false,
+    //     requestBody: true,
+    //     responseBody: false,
+    //     responseHeader: false,
+    //     error: true,
+    //     compact: false,
+    //     maxWidth: 160,
+    //   ));
+    // }
     _dio.interceptors.add(ResponseInterceptors());
   }
 

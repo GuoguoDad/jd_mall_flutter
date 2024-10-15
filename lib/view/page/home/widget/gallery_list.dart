@@ -2,15 +2,13 @@
 import 'package:flutter/material.dart';
 
 // Package imports:
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter_carousel_widget/flutter_carousel_widget.dart';
 import 'package:get/get.dart';
 
 // Project imports:
 import 'package:jd_mall_flutter/common/style/common_style.dart';
 import 'package:jd_mall_flutter/common/util/screen_util.dart';
-import 'package:jd_mall_flutter/component/image/asset_image.dart';
-import 'package:jd_mall_flutter/generated/assets.dart';
+import 'package:jd_mall_flutter/component/image/extend_image_network.dart';
 import 'package:jd_mall_flutter/routes.dart';
 import 'package:jd_mall_flutter/view/page/home/home_controller.dart';
 
@@ -56,13 +54,11 @@ Widget galleryList() {
                     margin: const EdgeInsets.fromLTRB(10, 10, 10, 2),
                     child: ClipRRect(
                       borderRadius: const BorderRadius.all(Radius.circular(6)),
-                      child: CachedNetworkImage(
+                      child: ExtendImageNetwork(url: item.imgUrl!,
                         width: carouselWidth,
                         height: carouselHeight,
-                        imageUrl: item.imgUrl!,
+                        cache: true,
                         fit: BoxFit.fill,
-                        placeholder: (context, url) => assetImage(Assets.imagesDefault, carouselWidth, carouselHeight),
-                        errorWidget: (context, url, error) => assetImage(Assets.imagesDefault, carouselWidth, carouselHeight),
                       ),
                     ),
                   ),

@@ -45,13 +45,13 @@ dependencies:
   #  pull_to_refresh: ^2.0.0
   pull_to_refresh_flutter3: ^2.0.2
   path_provider: ^2.1.4
-  cached_network_image: ^3.4.1
+  extended_image: ^8.3.1
   flutter_staggered_grid_view: ^0.7.0
   flutter_group_list_view: ^1.0.3
   sentry_flutter: ^8.9.0
   easy_refresh: ^3.4.0
   gato: ^0.0.5+1
-  webview_flutter: ^4.9.0
+  webview_flutter: ^4.10.0
   loading_indicator: ^3.1.1
   flutter_easyloading: ^3.0.5
   extended_nested_scroll_view: ^6.2.1
@@ -60,7 +60,7 @@ dependencies:
   photo_view: ^0.15.0
   image_gallery_saver: ^2.0.3
   flutter_svg: ^2.0.10+1
-  flutter_carousel_widget: ^3.0.1
+  flutter_carousel_widget: ^3.1.0
   flutter_form_builder: ^9.4.1
   form_builder_validators: ^11.0.0
   image_picker: ^1.1.2
@@ -71,10 +71,10 @@ dependencies:
   file_preview: ^1.2.0
   flutter_slidable: ^3.1.1
   share_plus: ^10.0.2
-  syncfusion_flutter_datepicker: ^26.2.14
-  video_player: ^2.9.1
-  get: ^5.0.0-release-candidate-9.2
-  scrollview_observer: ^1.21.2
+  syncfusion_flutter_datepicker: ^27.1.52
+  video_player: ^2.9.2
+  get: ^5.0.0-release-candidate-9.2.1
+  scrollview_observer: ^1.22.0
   logger: ^2.4.0
   pretty_dio_logger: ^1.4.0
   intl: ^0.19.0
@@ -88,7 +88,7 @@ dev_dependencies:
   # activated in the `analysis_options.yaml` file located at the root of your
   # package. See that file for information about deactivating specific lint
   # rules and activating additional ones.
-  flutter_lints: ^4.0.0
+  flutter_lints: ^5.0.0
   build_runner: ^2.4.12
   json_serializable: ^6.8.0
   import_sorter: ^4.6.0

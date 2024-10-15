@@ -3,16 +3,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 
 // Package imports:
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:get/get_state_manager/src/rx_flutter/rx_obx_widget.dart';
 
 // Project imports:
 import 'package:jd_mall_flutter/common/style/common_style.dart';
 import 'package:jd_mall_flutter/common/util/screen_util.dart';
 import 'package:jd_mall_flutter/component/group_grid_view.dart';
-import 'package:jd_mall_flutter/component/image/asset_image.dart';
+import 'package:jd_mall_flutter/component/image/extend_image_network.dart';
 import 'package:jd_mall_flutter/component/no_shadow_scroll_behavior.dart';
-import 'package:jd_mall_flutter/generated/assets.dart';
 import 'package:jd_mall_flutter/models/second_group_category_info.dart';
 import 'package:jd_mall_flutter/view/page/category/category_controller.dart';
 
@@ -74,12 +72,10 @@ Widget rightGroupList() {
     //二级分类上面的图片
     if (headUrl != "") {
       widgets.add(
-        CachedNetworkImage(
+        ExtendImageNetwork(url: headUrl,
           width: bWidth,
           height: 100,
-          imageUrl: headUrl,
-          placeholder: (context, url) => assetImage(Assets.imagesDefault, bWidth, 100),
-          errorWidget: (context, url, error) => assetImage(Assets.imagesDefault, bWidth, 100),
+          cache: true,
           fit: BoxFit.cover,
         ),
       );
@@ -240,12 +236,10 @@ class ThirdCategoryItem extends StatelessWidget {
       height: thirdCateItemHeight,
       child: Column(
         children: [
-          CachedNetworkImage(
+          ExtendImageNetwork(url: secondCateList[indexPath.section].cateList![indexPath.index].iconUrl!,
             width: 58,
             height: 58,
-            imageUrl: secondCateList[indexPath.section].cateList![indexPath.index].iconUrl!,
-            placeholder: (context, url) => assetImage(Assets.imagesDefault, 58, 58),
-            errorWidget: (context, url, error) => assetImage(Assets.imagesDefault, 58, 58),
+            cache: true,
             fit: BoxFit.fill,
           ),
           Container(

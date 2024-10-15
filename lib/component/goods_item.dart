@@ -2,30 +2,26 @@
 import 'package:flutter/material.dart';
 
 // Package imports:
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:get/get.dart';
 
 // Project imports:
 import 'package:jd_mall_flutter/common/extension/color_ext.dart';
-import 'package:jd_mall_flutter/component/image/asset_image.dart';
+import 'package:jd_mall_flutter/component/image/extend_image_network.dart';
 import 'package:jd_mall_flutter/component/line_two.dart';
 import 'package:jd_mall_flutter/component/text_item.dart';
-import 'package:jd_mall_flutter/generated/assets.dart';
 import 'package:jd_mall_flutter/models/goods_page_info.dart';
 import 'package:jd_mall_flutter/routes.dart';
-import 'package:jd_mall_flutter/view/vebview/type.dart';
 
 Widget goodsItem(BuildContext context, GoodsList item, double width) {
   //
   List<Widget> widgets = [
     ClipRRect(
       borderRadius: const BorderRadius.only(topLeft: Radius.circular(10.0), topRight: Radius.circular(10.0)),
-      child: CachedNetworkImage(
+      child: ExtendImageNetwork(
+        url: item.imgUrl!,
         width: width,
         height: width,
-        imageUrl: item.imgUrl ?? "",
-        placeholder: (context, url) => assetImage(Assets.imagesDefault, width, width),
-        errorWidget: (context, url, error) => assetImage(Assets.imagesDefault, width, width),
+        cache: true,
         fit: BoxFit.fill,
       ),
     ),

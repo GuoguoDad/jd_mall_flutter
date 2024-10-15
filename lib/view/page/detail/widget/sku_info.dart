@@ -2,14 +2,12 @@
 import 'package:flutter/material.dart';
 
 // Package imports:
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:get/get.dart';
 
 // Project imports:
 import 'package:jd_mall_flutter/common/style/common_style.dart';
 import 'package:jd_mall_flutter/common/util/screen_util.dart';
-import 'package:jd_mall_flutter/component/image/asset_image.dart';
-import 'package:jd_mall_flutter/generated/assets.dart';
+import 'package:jd_mall_flutter/component/image/extend_image_network.dart';
 import 'package:jd_mall_flutter/models/goods_detail_res.dart';
 import 'package:jd_mall_flutter/view/page/detail/detail_controller.dart';
 
@@ -58,12 +56,10 @@ Widget skuInfo(BuildContext context) {
                           decoration: BoxDecoration(
                             border: Border.all(color: isSelect ? CommonStyle.themeColor : Colors.transparent, width: 0.5),
                           ),
-                          child: CachedNetworkImage(
+                          child: ExtendImageNetwork(url: bannerList[index].thumb!,
                             height: thumbWidth,
                             width: thumbWidth,
-                            imageUrl: bannerList[index].thumb!,
-                            placeholder: (context, url) => assetImage(Assets.imagesDefault, thumbWidth, thumbWidth),
-                            errorWidget: (context, url, error) => assetImage(Assets.imagesDefault, thumbWidth, thumbWidth),
+                            cache: true,
                             fit: BoxFit.fill,
                           ),
                         ),

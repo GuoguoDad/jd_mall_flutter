@@ -2,15 +2,13 @@
 import 'package:flutter/material.dart';
 
 // Package imports:
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:get/get.dart';
 
 // Project imports:
 import 'package:jd_mall_flutter/common/style/common_style.dart';
 import 'package:jd_mall_flutter/common/util/screen_util.dart';
 import 'package:jd_mall_flutter/component/group_grid_view.dart';
-import 'package:jd_mall_flutter/component/image/asset_image.dart';
-import 'package:jd_mall_flutter/generated/assets.dart';
+import 'package:jd_mall_flutter/component/image/extend_image_network.dart';
 import 'package:jd_mall_flutter/models/goods_detail_res.dart';
 import 'package:jd_mall_flutter/view/page/detail/detail_controller.dart';
 import 'package:jd_mall_flutter/view/page/home/util.dart';
@@ -41,12 +39,10 @@ Widget appraiseInfo(BuildContext context) {
               children: [
                 ClipRRect(
                   borderRadius: BorderRadius.circular(40),
-                  child: CachedNetworkImage(
+                  child: ExtendImageNetwork(url: list[section].headerUrl!,
                     height: headWidth,
                     width: headWidth,
-                    imageUrl: list[section].headerUrl!,
-                    placeholder: (context, url) => assetImage(Assets.imagesDefault, headWidth, headWidth),
-                    errorWidget: (context, url, error) => assetImage(Assets.imagesDefault, headWidth, headWidth),
+                    cache: true,
                     fit: BoxFit.fill,
                   ),
                 ),
@@ -68,12 +64,10 @@ Widget appraiseInfo(BuildContext context) {
         return SizedBox(
           width: imgWidth,
           height: imgWidth,
-          child: CachedNetworkImage(
+          child: ExtendImageNetwork(url: list[indexPath.section].imgList![indexPath.index],
             height: imgWidth,
             width: imgWidth,
-            imageUrl: list[indexPath.section].imgList![indexPath.index],
-            placeholder: (context, url) => assetImage(Assets.imagesDefault, imgWidth, imgWidth),
-            errorWidget: (context, url, error) => assetImage(Assets.imagesDefault, imgWidth, imgWidth),
+            cache: true,
             fit: BoxFit.fill,
           ),
         );
@@ -157,13 +151,12 @@ Widget itemCard(String title, String url, double imgHeight) {
             style: TextStyle(color: CommonStyle.color545454),
           ),
         ),
-        CachedNetworkImage(
+        ExtendImageNetwork(url: url,
           width: screenWidth - 40,
-          imageUrl: url,
-          placeholder: (context, url) => assetImage(Assets.imagesDefault, imgWidth, imgWidth),
-          errorWidget: (context, url, error) => assetImage(Assets.imagesDefault, imgWidth, imgWidth),
+          height: 100,
+          cache: true,
           fit: BoxFit.fitWidth,
-        )
+        ),
       ],
     ),
   );
