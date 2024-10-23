@@ -70,23 +70,23 @@ class _ExtendImageNetworkState extends State<ExtendImageNetwork> with SingleTick
             state.imageProvider.evict();
             return GestureDetector(
               child: Stack(
-                fit: StackFit.expand,
-                children: <Widget>[
-                  Image.asset(
-                    'images/ic_failed.jpg',
-                    fit: BoxFit.fill,
-                  ),
-                  const Positioned(
-                    bottom: 0.0,
-                    left: 0.0,
-                    right: 0.0,
-                    child: Text(
-                      '加载失败, 重试',
-                      textAlign: TextAlign.center,
+                  fit: StackFit.expand,
+                  children: <Widget>[
+                    Image.asset(
+                      'images/ic_failed.jpg',
+                      fit: BoxFit.fill,
                     ),
-                  )
-                ],
-              ),
+                    const Positioned(
+                      bottom: 0.0,
+                      left: 0.0,
+                      right: 0.0,
+                      child: Text(
+                        '加载失败, 重试',
+                        textAlign: TextAlign.center,
+                      ),
+                    )
+                  ],
+                ),
               onTap: () {
                 state.reLoadImage();
               },

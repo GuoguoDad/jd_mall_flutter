@@ -104,7 +104,7 @@ class _PhotoGalleryState extends State<PhotoGallery> {
                         Icons.chevron_left,
                         color: Colors.white,
                       ),
-                      onPressed: () => Get.back(),
+                      onPressed: () => Navigator.pop(context),
                     ),
                   ),
                   Expanded(

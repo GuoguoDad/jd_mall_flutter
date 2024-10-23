@@ -9,9 +9,8 @@ import 'package:get/get_state_manager/src/rx_flutter/rx_obx_widget.dart';
 import 'package:jd_mall_flutter/common/style/common_style.dart';
 import 'package:jd_mall_flutter/common/util/screen_util.dart';
 import 'package:jd_mall_flutter/component/image/extend_image_network.dart';
-import 'package:jd_mall_flutter/component/photoGallery/photo_gallery_dialog.dart';
 import 'package:jd_mall_flutter/view/page/detail/detail_controller.dart';
-import 'package:jd_mall_flutter/common/util/util.dart';
+import 'package:jd_mall_flutter/component/photoGallery/photo_gallery_dialog.dart';
 
 Widget imgSlider(BuildContext context) {
   double statusHeight = getStatusHeight();
@@ -46,12 +45,7 @@ Widget imgSlider(BuildContext context) {
         ),
         items: imgList
             .map((url) => GestureDetector(
-                  onTap: () {
-                    int lastIndex = imgList.lastIndexWhere((v) => v == url);
-                    logger.i('======lastIndex:${lastIndex}');
-                    logger.i(imgList);
-                    openPhotoGalleryDialog(context, imgList, lastIndex);
-                  },
+          onTap: () => openPhotoGalleryDialog(context, imgList, imgList.lastIndexWhere((v) => v == url)),
                   child: ExtendImageNetwork(url: url,
                     height: imgHeight,
                     width: screenWidth,
