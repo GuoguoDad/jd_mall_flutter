@@ -25,7 +25,7 @@ class HttpManager {
 
   HttpManager() {
     _dio.interceptors.add(TokenInterceptors());
-    _dio.interceptors.add(NetworkInterceptors());
+    // _dio.interceptors.add(NetworkInterceptors());
     _dio.interceptors.add(DebounceInterceptor());
     // if (kDebugMode) {
     //   _dio.interceptors.add(PrettyDioLogger(

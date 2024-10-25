@@ -40,7 +40,7 @@ dependencies:
   dio: ^5.7.0
   shimmer: ^3.0.0
   json_annotation: ^4.9.0
-  connectivity_plus: ^6.0.5
+#  connectivity_plus: ^6.0.5
   shared_preferences: ^2.3.2
   #  pull_to_refresh: ^2.0.0
   pull_to_refresh_flutter3: ^2.0.2
@@ -67,7 +67,7 @@ dependencies:
   image_picker: ^1.1.2
   flutter_image_compress: ^2.3.0
   image_cropper: ^8.0.2
-  wechat_assets_picker: ^9.2.1
+  wechat_assets_picker: ^9.3.3
   flutter_native_splash: ^2.4.1
   file_preview: ^1.2.0
   flutter_slidable: ^3.1.1
@@ -79,7 +79,6 @@ dependencies:
   logger: ^2.4.0
   pretty_dio_logger: ^1.4.0
   intl: ^0.19.0
-  easy_image_viewer: ^1.5.1
 
 dev_dependencies:
   flutter_test:
