@@ -45,11 +45,11 @@ dependencies:
   #  pull_to_refresh: ^2.0.0
   pull_to_refresh_flutter3: ^2.0.2
   path_provider: ^2.1.4
-  extended_image: ^8.3.1
+  extended_image: ^9.0.7
   cached_network_image: ^3.4.1
   flutter_staggered_grid_view: ^0.7.0
   flutter_group_list_view: ^1.0.3
-  sentry_flutter: ^8.9.0
+  sentry_flutter: ^8.10.1
   easy_refresh: ^3.4.0
   gato: ^0.0.5+1
   webview_flutter: ^4.10.0
@@ -67,16 +67,16 @@ dependencies:
   image_picker: ^1.1.2
   flutter_image_compress: ^2.3.0
   image_cropper: ^8.0.2
-  wechat_assets_picker: ^9.3.3
-  flutter_native_splash: ^2.4.1
+  wechat_assets_picker: ^9.4.1
+  flutter_native_splash: ^2.4.3
   file_preview: ^1.2.0
   flutter_slidable: ^3.1.1
   share_plus: ^10.0.2
-  syncfusion_flutter_datepicker: ^27.1.52
+  syncfusion_flutter_datepicker: ^27.2.5
   video_player: ^2.9.2
   get: ^5.0.0-release-candidate-9.2.1
-  scrollview_observer: ^1.22.0
-  logger: ^2.4.0
+  scrollview_observer: ^1.24.0
+  logger: ^2.5.0
   pretty_dio_logger: ^1.4.0
   intl: ^0.19.0
 
@@ -91,7 +91,7 @@ dev_dependencies:
   # rules and activating additional ones.
   flutter_lints: ^5.0.0
   build_runner: ^2.4.12
-  json_serializable: ^6.8.0
+  json_serializable: ^6.9.0
   import_sorter: ^4.6.0
 
 # For information on the generic Dart part of this file, see the

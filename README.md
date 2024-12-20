@@ -11,6 +11,10 @@
 * ### 同款Android Kotlin版本（ https://github.com/GuoguoDad/jd_mall.git ）
 * ### 参考学习书籍《Flutter实战·第二版》（ https://book.flutterchina.club/ ）
 
+
+# 关于运行
+  flutter版本 3.24.2  XCode 16.2 
+
 # flutter 简介
 
 Flutter 是 Google 推出的一款开源的 UI 工具包，用于构建高性能、高保真度的移动、Web 和桌面应用程序。Flutter
@@ -124,6 +128,9 @@ main_dev 走本地mock， main_prd 走远程mock服务
 ## 排序import语句
 
       dart run import_sorter:main
+
+## flutter_native_splash开屏页
+      dart run flutter_native_splash:create
 
 # 效果
 

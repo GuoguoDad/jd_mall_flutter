@@ -1,4 +1,6 @@
 // Flutter imports:
+import 'dart:ui';
+
 import 'package:flutter/material.dart';
 
 // Project imports:
@@ -14,6 +16,7 @@ double getScreenWidth() {
 
 double getStatusHeight() {
   return MediaQuery.viewPaddingOf(Global.navigatorKey.currentContext!).top;
+  // return MediaQueryData.fromView(PlatformDispatcher.instance.views.first).padding.top;
 }
 
 double getBottomSpace() {
