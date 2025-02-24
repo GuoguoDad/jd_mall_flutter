@@ -37,7 +37,7 @@ dependencies:
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.8
-  dio: ^5.7.0
+  dio: ^5.8.0+1
   shimmer: ^3.0.0
   json_annotation: ^4.9.0
 #  connectivity_plus: ^6.0.5
@@ -74,7 +74,7 @@ dependencies:
   share_plus: ^10.0.2
   syncfusion_flutter_datepicker: ^27.2.5
   video_player: ^2.9.2
-  get: ^5.0.0-release-candidate-9.2.1
+  get: ^5.0.0-release-candidate-9.3.2
   scrollview_observer: ^1.24.0
   logger: ^2.5.0
   pretty_dio_logger: ^1.4.0

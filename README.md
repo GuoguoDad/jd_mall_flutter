@@ -13,9 +13,9 @@
 
 
 # 关于运行
-  flutter版本:3.24.2     
+  flutter版本:3.29.0     
   XCode:16.2      
-  mock_server(nodejs v16.20.2)
+  mock_server(nodejs v18.20.6)
 
 # flutter 简介
 
