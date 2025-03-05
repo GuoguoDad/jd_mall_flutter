@@ -59,7 +59,7 @@ List<GetPage> appPages = [
   GetPage(name: RoutesEnum.snowMan.path, page: () => const SnowManDemo()),
   GetPage(name: RoutesEnum.gestureSpring.path, page: () => const GestureSpring()),
   GetPage(name: RoutesEnum.contactList.path, page: () => const ContactList()),
-  GetPage(name: RoutesEnum.filePreview.path, page: () => const FilePreviewPage()),
+  // GetPage(name: RoutesEnum.filePreview.path, page: () => const FilePreviewPage()),
   GetPage(name: RoutesEnum.videoPlayer.path, page: () => const VideoPlayerDemo()),
   //pages
   GetPage(

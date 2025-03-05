@@ -2,7 +2,7 @@
 import 'package:flutter/material.dart';
 
 // Package imports:
-import 'package:file_preview/file_preview.dart';
+// import 'package:file_preview/file_preview.dart';
 import 'package:get/get.dart';
 
 // Project imports:
@@ -28,8 +28,8 @@ class _SampleListState extends State<SampleList> {
   }
 
   void _initTBS() async {
-    isInit = await FilePreview.initTBS(license: "your license");
-    version = await FilePreview.tbsVersion();
+    // isInit = await FilePreview.initTBS(license: "your license");
+    // version = await FilePreview.tbsVersion();
   }
 
   @override

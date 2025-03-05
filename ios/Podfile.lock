@@ -1,6 +1,4 @@
 PODS:
-  - file_preview (0.0.1):
-    - Flutter
   - Flutter (1.0.0)
   - flutter_image_compress_common (1.0.0):
     - Flutter
@@ -12,21 +10,19 @@ PODS:
   - image_cropper (0.0.4):
     - Flutter
     - TOCropViewController (~> 2.7.4)
-  - image_gallery_saver (2.0.2):
-    - Flutter
   - image_picker_ios (0.0.1):
     - Flutter
-  - libwebp (1.3.2):
-    - libwebp/demux (= 1.3.2)
-    - libwebp/mux (= 1.3.2)
-    - libwebp/sharpyuv (= 1.3.2)
-    - libwebp/webp (= 1.3.2)
-  - libwebp/demux (1.3.2):
+  - libwebp (1.5.0):
+    - libwebp/demux (= 1.5.0)
+    - libwebp/mux (= 1.5.0)
+    - libwebp/sharpyuv (= 1.5.0)
+    - libwebp/webp (= 1.5.0)
+  - libwebp/demux (1.5.0):
     - libwebp/webp
-  - libwebp/mux (1.3.2):
+  - libwebp/mux (1.5.0):
     - libwebp/demux
-  - libwebp/sharpyuv (1.3.2)
-  - libwebp/webp (1.3.2):
+  - libwebp/sharpyuv (1.5.0)
+  - libwebp/webp (1.5.0):
     - libwebp/sharpyuv
   - Mantle (2.2.0):
     - Mantle/extobjc (= 2.2.0)
@@ -36,12 +32,9 @@ PODS:
   - path_provider_foundation (0.0.1):
     - Flutter
     - FlutterMacOS
-  - photo_manager (2.0.0):
-    - Flutter
-    - FlutterMacOS
-  - SDWebImage (5.20.0):
-    - SDWebImage/Core (= 5.20.0)
-  - SDWebImage/Core (5.20.0)
+  - SDWebImage (5.21.0):
+    - SDWebImage/Core (= 5.21.0)
+  - SDWebImage/Core (5.21.0)
   - SDWebImageWebPCoder (0.14.6):
     - libwebp (~> 1.0)
     - SDWebImage/Core (~> 5.17)
@@ -69,16 +62,13 @@ PODS:
     - FlutterMacOS
 
 DEPENDENCIES:
-  - file_preview (from `.symlinks/plugins/file_preview/ios`)
   - Flutter (from `Flutter`)
   - flutter_image_compress_common (from `.symlinks/plugins/flutter_image_compress_common/ios`)
   - flutter_native_splash (from `.symlinks/plugins/flutter_native_splash/ios`)
   - image_cropper (from `.symlinks/plugins/image_cropper/ios`)
-  - image_gallery_saver (from `.symlinks/plugins/image_gallery_saver/ios`)
   - image_picker_ios (from `.symlinks/plugins/image_picker_ios/ios`)
   - package_info_plus (from `.symlinks/plugins/package_info_plus/ios`)
   - path_provider_foundation (from `.symlinks/plugins/path_provider_foundation/darwin`)
-  - photo_manager (from `.symlinks/plugins/photo_manager/ios`)
   - sentry_flutter (from `.symlinks/plugins/sentry_flutter/ios`)
   - share_plus (from `.symlinks/plugins/share_plus/ios`)
   - shared_preferences_foundation (from `.symlinks/plugins/shared_preferences_foundation/darwin`)
@@ -97,8 +87,6 @@ SPEC REPOS:
     - TOCropViewController
 
 EXTERNAL SOURCES:
-  file_preview:
-    :path: ".symlinks/plugins/file_preview/ios"
   Flutter:
     :path: Flutter
   flutter_image_compress_common:
@@ -107,16 +95,12 @@ EXTERNAL SOURCES:
     :path: ".symlinks/plugins/flutter_native_splash/ios"
   image_cropper:
     :path: ".symlinks/plugins/image_cropper/ios"
-  image_gallery_saver:
-    :path: ".symlinks/plugins/image_gallery_saver/ios"
   image_picker_ios:
     :path: ".symlinks/plugins/image_picker_ios/ios"
   package_info_plus:
     :path: ".symlinks/plugins/package_info_plus/ios"
   path_provider_foundation:
     :path: ".symlinks/plugins/path_provider_foundation/darwin"
-  photo_manager:
-    :path: ".symlinks/plugins/photo_manager/ios"
   sentry_flutter:
     :path: ".symlinks/plugins/sentry_flutter/ios"
   share_plus:
@@ -133,19 +117,16 @@ EXTERNAL SOURCES:
     :path: ".symlinks/plugins/webview_flutter_wkwebview/darwin"
 
 SPEC CHECKSUMS:
-  file_preview: 47e5f194f461319e8b93da91f339039b0b7f3997
   Flutter: e0871f40cf51350855a761d2e70bf5af5b9b5de7
   flutter_image_compress_common: 1697a328fd72bfb335507c6bca1a65fa5ad87df1
   flutter_native_splash: 576fbd69b830a63594ae678396fa17e43abbc5f8
   image_cropper: 5f162dcf988100dc1513f9c6b7eb42cd6fbf9156
-  image_gallery_saver: 14711d79da40581063e8842a11acf1969d781ed7
   image_picker_ios: 7fe1ff8e34c1790d6fff70a32484959f563a928a
-  libwebp: 1786c9f4ff8a279e4dac1e8f385004d5fc253009
+  libwebp: 02b23773aedb6ff1fd38cec7a77b81414c6842a8
   Mantle: c5aa8794a29a022dfbbfc9799af95f477a69b62d
   package_info_plus: af8e2ca6888548050f16fa2f1938db7b5a5df499
   path_provider_foundation: 080d55be775b7414fd5a5ef3ac137b97b097e564
-  photo_manager: d2fbcc0f2d82458700ee6256a15018210a81d413
-  SDWebImage: 73c6079366fea25fa4bb9640d5fb58f0893facd8
+  SDWebImage: f84b0feeb08d2d11e6a9b843cb06d75ebf5b8868
   SDWebImageWebPCoder: e38c0a70396191361d60c092933e22c20d5b1380
   Sentry: 54d0fe6c0df448497c8ed4cce66ccf7027e1823e
   sentry_flutter: da701e19e8addb2d9e6bcc3200152175389290fe
@@ -157,6 +138,6 @@ SPEC CHECKSUMS:
   video_player_avfoundation: 2cef49524dd1f16c5300b9cd6efd9611ce03639b
   webview_flutter_wkwebview: 44d4dee7d7056d5ad185d25b38404436d56c547c
 
-PODFILE CHECKSUM: 7cee0f0492bd7b016f5a3a46186a62617eba4058
+PODFILE CHECKSUM: 4305caec6b40dde0ae97be1573c53de1882a07e5
 
 COCOAPODS: 1.16.2

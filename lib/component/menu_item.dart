@@ -5,9 +5,9 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 // Project imports:
+import 'package:jd_mall_flutter/component/image/extend_image_network.dart';
 import 'package:jd_mall_flutter/models/mine_menu_tab_info.dart';
 import 'package:jd_mall_flutter/routes.dart';
-import 'package:jd_mall_flutter/component/image/extend_image_network.dart';
 
 class MenuItem extends StatelessWidget {
   const MenuItem(

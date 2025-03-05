@@ -310,14 +310,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "7.0.1"
-  file_preview:
-    dependency: "direct main"
-    description:
-      name: file_preview
-      sha256: "4a64980523a7713767b37cd7cd8e48edd8737965c040230becc7ba21a26eeb1c"
-      url: "https://pub.dev"
-    source: hosted
-    version: "1.2.0"
   file_selector_linux:
     dependency: transitive
     description:
@@ -650,14 +642,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "7.0.0"
-  image_gallery_saver:
-    dependency: "direct main"
-    description:
-      name: image_gallery_saver
-      sha256: "0aba74216a4d9b0561510cb968015d56b701ba1bd94aace26aacdd8ae5761816"
-      url: "https://pub.dev"
-    source: hosted
-    version: "2.0.3"
   image_picker:
     dependency: "direct main"
     description:
@@ -866,14 +850,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "2.0.0"
-  nested:
-    dependency: transitive
-    description:
-      name: nested
-      sha256: "03bac4c528c64c95c722ec99280375a6f2fc708eec17c7b3f07253b626cd2a20"
-      url: "https://pub.dev"
-    source: hosted
-    version: "1.0.0"
   octo_image:
     dependency: transitive
     description:
@@ -986,22 +962,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "6.0.2"
-  photo_manager:
-    dependency: transitive
-    description:
-      name: photo_manager
-      sha256: dc26184676b26d722d656073ca8fe29203d7631ec613aed1a9679de3aa1f52c2
-      url: "https://pub.dev"
-    source: hosted
-    version: "3.6.3"
-  photo_manager_image_provider:
-    dependency: transitive
-    description:
-      name: photo_manager_image_provider
-      sha256: b6015b67b32f345f57cf32c126f871bced2501236c405aafaefa885f7c821e4f
-      url: "https://pub.dev"
-    source: hosted
-    version: "2.2.0"
   photo_view:
     dependency: "direct main"
     description:
@@ -1050,14 +1010,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.4.0"
-  provider:
-    dependency: transitive
-    description:
-      name: provider
-      sha256: c8a055ee5ce3fd98d6fc872478b03823ffdb448699c6ebdbbc71d59b596fd48c
-      url: "https://pub.dev"
-    source: hosted
-    version: "6.1.2"
   pub_semver:
     dependency: transitive
     description:
@@ -1615,22 +1567,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "3.16.3"
-  wechat_assets_picker:
-    dependency: "direct main"
-    description:
-      name: wechat_assets_picker
-      sha256: fe1dc02e68f9aabbfc63023f868f284fca3bd81d4e132a45292065e9b1de32a2
-      url: "https://pub.dev"
-    source: hosted
-    version: "9.4.2"
-  wechat_picker_library:
-    dependency: transitive
-    description:
-      name: wechat_picker_library
-      sha256: a42e09cb85b15fc9410f6a69671371cc60aa99c4a1f7967f6593a7f665f6f47a
-      url: "https://pub.dev"
-    source: hosted
-    version: "1.0.5"
   win32:
     dependency: transitive
     description:
