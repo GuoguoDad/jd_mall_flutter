@@ -26,6 +26,7 @@ class Assets {
   static const String imagesIcEllipsis = 'images/ic_ellipsis.png';
   static const String imagesIcEllipsisBlack = 'images/ic_ellipsis_black.png';
   static const String imagesIcEllipsisGrey = 'images/ic_ellipsis_grey.png';
+  static const String imagesIcFailed = 'images/ic_failed.jpg';
   static const String imagesIcFriend = 'images/ic_friend.png';
   static const String imagesIcGoodsStar = 'images/ic_goods_star.png';
   static const String imagesIcHome = 'images/ic_home.png';
@@ -71,4 +72,7 @@ class Assets {
   static const String shotHome1 = 'images/shot/home1.gif';
   static const String shotMine = 'images/shot/mine.gif';
   static const String shotWebview = 'images/shot/webview.gif';
+  static const String shotWx = 'images/shot/wx.jpg';
+  static const String shotZfb = 'images/shot/zfb.jpg';
+
 }

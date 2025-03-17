@@ -189,3 +189,9 @@ main_dev 走本地mock， main_prd 走远程mock服务
 ⚠️项目中使用的图片及字体等资源如有侵权请联系作者删除
 
 ⚠️如使用本项目代码造成侵权与作者无关
+
+## 请作者喝杯coffee
+<img src="images/shot/zfb.jpg" title="" alt="image" width="300">
+<img src="images/shot/wx.jpg" title="" alt="image" width="300">
+
+
