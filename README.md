@@ -11,7 +11,6 @@
 * ### 同款Android Kotlin版本（ https://github.com/GuoguoDad/jd_mall.git ）
 * ### 参考学习书籍《Flutter实战·第二版》（ https://book.flutterchina.club/ ）
 
-
 # 关于运行
   flutter版本:3.29.0     
   XCode:16.2      
