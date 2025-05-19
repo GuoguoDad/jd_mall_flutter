@@ -218,7 +218,7 @@ class _CompleteFormState extends State<CompleteForm> {
                             FormBuilderValidators.maxLength(3),
                           ]),
                         ),
-                        FormBuilderFilterChip<String>(
+                        FormBuilderFilterChips<String>(
                           autovalidateMode: AutovalidateMode.onUserInteraction,
                           decoration: const InputDecoration(labelText: 'The language of my people'),
                           name: 'languages_filter',
@@ -251,11 +251,11 @@ class _CompleteFormState extends State<CompleteForm> {
                             FormBuilderValidators.maxLength(3),
                           ]),
                         ),
-                        FormBuilderChoiceChip<String>(
+                        FormBuilderFilterChips<String>(
                           autovalidateMode: AutovalidateMode.onUserInteraction,
                           decoration: const InputDecoration(labelText: 'Ok, if I had to choose one language, it would be:'),
                           name: 'languages_choice',
-                          initialValue: 'Dart',
+                          initialValue: ['Dart'],
                           options: const [
                             FormBuilderChipOption(
                               value: 'Dart',

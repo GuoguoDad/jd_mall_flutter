@@ -19,7 +19,7 @@ publish_to: 'none' # Remove this line if you wish to publish to pub.dev
 version: 1.1.0
 
 environment:
-  sdk: '>=2.19.6 <4.0.0'
+  sdk: '>=3.0.0 <4.0.0'
 
 # Dependencies specify other packages that your package needs in order to work.
 # To automatically upgrade your package dependencies to the latest versions
@@ -40,19 +40,19 @@ dependencies:
   dio: ^5.8.0+1
   shimmer: ^3.0.0
   json_annotation: ^4.9.0
-#  connectivity_plus: ^6.0.5
-  shared_preferences: ^2.3.2
+  connectivity_plus: ^6.1.4
+  shared_preferences: ^2.5.3
   #  pull_to_refresh: ^2.0.0
   pull_to_refresh_flutter3: ^2.0.2
-  path_provider: ^2.1.4
-  extended_image: ^9.0.7
+  path_provider: ^2.1.5
+  extended_image: ^10.0.1
   cached_network_image: ^3.4.1
   flutter_staggered_grid_view: ^0.7.0
   flutter_group_list_view: ^1.0.3
   sentry_flutter: ^9.0.0-RC.2
   easy_refresh: ^3.4.0
   gato: ^0.0.5+1
-  webview_flutter: ^4.10.0
+  webview_flutter: ^4.12.0
   loading_indicator: ^3.1.1
   flutter_easyloading: ^3.0.5
   extended_nested_scroll_view: ^6.2.1
@@ -62,18 +62,18 @@ dependencies:
 #  image_gallery_saver: ^2.0.3
   flutter_svg: ^2.0.10+1
   flutter_carousel_widget: ^3.1.0
-  flutter_form_builder: ^9.4.1
+  flutter_form_builder: ^10.0.1
   form_builder_validators: ^11.0.0
   image_picker: ^1.1.2
   flutter_image_compress: ^2.3.0
-  image_cropper: ^8.0.2
+  image_cropper: ^8.1.0
 #  wechat_assets_picker: ^9.5.0
-  flutter_native_splash: ^2.4.3
+  flutter_native_splash: ^2.4.6
 #  file_preview: ^1.2.0
-  flutter_slidable: ^3.1.1
-  share_plus: ^10.0.2
-  syncfusion_flutter_datepicker: ^27.2.5
-  video_player: ^2.9.3
+  flutter_slidable: ^4.0.0
+  share_plus: ^11.0.0
+  syncfusion_flutter_datepicker: ^29.2.4
+  video_player: ^2.9.5
   get: ^5.0.0-release-candidate-9.3.2
   scrollview_observer: ^1.24.0
   logger: ^2.5.0

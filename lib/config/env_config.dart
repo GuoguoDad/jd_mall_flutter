@@ -7,7 +7,7 @@ enum EnvEnum {
 }
 
 final Map<String, dynamic> dev = {
-  EnvEnum.host.value: "http://localhost:8091",
+  EnvEnum.host.value: "http://192.168.1.3:8091",
 };
 
 final Map<String, dynamic> prd = {

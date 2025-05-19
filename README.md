@@ -12,8 +12,8 @@
 * ### 参考学习书籍《Flutter实战·第二版》（ https://book.flutterchina.club/ ）
 
 # 关于运行
-  flutter版本:3.29.0     
-  XCode:16.2      
+  flutter版本:3.29.3   
+  XCode:16.3
   Android Studio Ladybug Feature Drop | 2024.2.2 Patch 2   
   mock_server nodejs: v18.20.6
 
