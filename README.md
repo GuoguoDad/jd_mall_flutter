@@ -14,7 +14,7 @@
 # 关于运行
   flutter版本:3.29.3   
   XCode:16.3
-  Android Studio Ladybug Feature Drop | 2024.2.2 Patch 2   
+  JDK 17  
   mock_server nodejs: v18.20.6
 
 # flutter 简介
@@ -188,9 +188,5 @@ main_dev 走本地mock， main_prd 走远程mock服务
 ⚠️项目中使用的图片及字体等资源如有侵权请联系作者删除
 
 ⚠️如使用本项目代码造成侵权与作者无关
-
-## 请作者喝杯coffee
-<img src="images/shot/zfb.jpg" title="" alt="image" width="300">
-<img src="images/shot/wx.jpg" title="" alt="image" width="300">
 
 
