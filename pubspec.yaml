@@ -52,7 +52,7 @@ dependencies:
   sentry_flutter: ^9.0.0-RC.2
   easy_refresh: ^3.4.0
   gato: ^0.0.5+1
-  webview_flutter: ^4.12.0
+  webview_flutter: ^4.13.0
   loading_indicator: ^3.1.1
   flutter_easyloading: ^3.0.5
   extended_nested_scroll_view: ^6.2.1
@@ -66,13 +66,13 @@ dependencies:
   form_builder_validators: ^11.0.0
   image_picker: ^1.1.2
   flutter_image_compress: ^2.3.0
-  image_cropper: ^8.1.0
+  image_cropper: ^9.1.0
 #  wechat_assets_picker: ^9.5.0
   flutter_native_splash: ^2.4.6
 #  file_preview: ^1.2.0
   flutter_slidable: ^4.0.0
   share_plus: ^11.0.0
-  syncfusion_flutter_datepicker: ^29.2.4
+  syncfusion_flutter_datepicker: ^29.2.5
   video_player: ^2.9.5
   get: ^5.0.0-release-candidate-9.3.2
   scrollview_observer: ^1.24.0
