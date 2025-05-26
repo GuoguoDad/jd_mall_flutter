@@ -11,7 +11,7 @@ import 'package:jd_mall_flutter/view/page/mine/mine_controller.dart';
 class MainBindings extends Binding {
   @override
   List<Bind> dependencies() => [
-    Bind.lazyPut(() => HomeController()),
+    Bind.put(() => HomeController()),
     Bind.lazyPut(() => CategoryController()),
     Bind.lazyPut(() => CartController()),
     Bind.lazyPut(() => MineController()),

@@ -79,6 +79,7 @@ List<GetPage> appPages = [
   GetPage(
     name: RoutesEnum.generateOrder.path,
     page: () => const GenerateOrder(),
+    binding: LoginBindings(),
     middlewares: [EnsureAuthMiddleware()],
   ),
   GetPage(
