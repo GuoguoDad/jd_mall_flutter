@@ -12,8 +12,8 @@
 * ### 参考学习书籍《Flutter实战·第二版》（ https://book.flutterchina.club/ ）
 
 # 关于运行
-  flutter版本:3.29.3   
-  XCode:16.3
+  flutter版本:3.32.1   
+  XCode:16.3   
   JDK 17  
   mock_server nodejs: v18.20.6
 
