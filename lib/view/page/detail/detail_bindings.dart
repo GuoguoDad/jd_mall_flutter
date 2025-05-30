@@ -7,6 +7,6 @@ import 'package:jd_mall_flutter/view/page/detail/detail_controller.dart';
 class DetailBindings extends Binding {
   @override
   List<Bind> dependencies() => [
-    Bind.put(() => DetailController())
+    Bind.lazyPut(() => DetailController())
   ];
 }

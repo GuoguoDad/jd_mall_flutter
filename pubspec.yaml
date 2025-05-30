@@ -72,13 +72,13 @@ dependencies:
 #  file_preview: ^1.2.0
   flutter_slidable: ^4.0.0
   share_plus: ^11.0.0
-  syncfusion_flutter_datepicker: ^29.2.5
+  syncfusion_flutter_datepicker: ^29.2.7
   video_player: ^2.9.5
   get: ^5.0.0-release-candidate-9.3.2
   scrollview_observer: ^1.24.0
   logger: ^2.5.0
   pretty_dio_logger: ^1.4.0
-  intl: ^0.19.0
+  intl: ^0.20.2
 
 dev_dependencies:
   flutter_test:
@@ -89,7 +89,7 @@ dev_dependencies:
   # activated in the `analysis_options.yaml` file located at the root of your
   # package. See that file for information about deactivating specific lint
   # rules and activating additional ones.
-  flutter_lints: ^5.0.0
+  flutter_lints: ^6.0.0
   build_runner: ^2.4.12
   json_serializable: ^6.9.0
   import_sorter: ^4.6.0
