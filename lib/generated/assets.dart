@@ -48,6 +48,7 @@ class Assets {
   static const String imagesIcTodoExchange = 'images/ic_todo_exchange.png';
   static const String imagesIcTodoGet = 'images/ic_todo_get.png';
   static const String imagesIcTodoPay = 'images/ic_todo_pay.png';
+  static const String imagesLogo = 'images/logo.png';
   static const String imagesMessage = 'images/message.png';
   static const String imagesMineTopBg = 'images/mine_top_bg.png';
   static const String imagesProbablyLike = 'images/probably_like.png';
