@@ -134,6 +134,9 @@ main_dev 走本地mock， main_prd 走远程mock服务
 ## flutter_native_splash开屏页
       dart run flutter_native_splash:create
 
+## 图标
+      dart run flutter_launcher_icons
+
 # 效果
 
 ## 首页
