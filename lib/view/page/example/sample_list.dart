@@ -2,13 +2,16 @@
 import 'package:flutter/material.dart';
 
 // Package imports:
-// import 'package:file_preview/file_preview.dart';
 import 'package:get/get.dart';
 
 // Project imports:
 import 'package:jd_mall_flutter/component/common_header.dart';
 import 'package:jd_mall_flutter/routes.dart';
 import 'package:jd_mall_flutter/view/page/example/widget/list_item.dart';
+
+// Package imports:
+// import 'package:file_preview/file_preview.dart';
+
 
 class SampleList extends StatefulWidget {
   const SampleList({super.key});

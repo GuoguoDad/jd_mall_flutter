@@ -2,13 +2,12 @@
 // import 'package:connectivity_plus/connectivity_plus.dart';
 
 // Package imports:
+import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:dio/dio.dart';
 
 // Project imports:
 import 'package:jd_mall_flutter/http/base_response.dart';
 import 'package:jd_mall_flutter/http/code.dart';
-
-import 'package:connectivity_plus/connectivity_plus.dart';
 
 class NetworkInterceptors extends InterceptorsWrapper {
   @override

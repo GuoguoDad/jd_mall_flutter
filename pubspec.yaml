@@ -61,12 +61,12 @@ dependencies:
   image_gallery_saver_plus: ^4.0.1
   flutter_svg: ^2.0.10+1
   flutter_carousel_widget: ^3.1.0
-  flutter_form_builder: ^10.1.0
+  flutter_form_builder: ^10.2.0
   form_builder_validators: ^11.0.0
-  image_picker: ^1.1.2
+  image_picker: ^1.2.0
   flutter_image_compress: ^2.3.0
   image_cropper: ^9.1.0
-  wechat_assets_picker: ^9.7.0
+  wechat_assets_picker: ^9.8.0
   flutter_native_splash: ^2.4.6
   native_file_preview: ^1.0.1
   flutter_slidable: ^4.0.0

@@ -8,10 +8,12 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
-// import 'package:wechat_assets_picker/wechat_assets_picker.dart';
 
 // Project imports:
 import 'package:jd_mall_flutter/common/extension/image_file_ext.dart';
+
+// import 'package:wechat_assets_picker/wechat_assets_picker.dart';
+
 
 mixin ImagePickerMixin<T extends StatefulWidget> on State<T> {
   final ImagePicker _picker = ImagePicker();
