@@ -59,7 +59,7 @@ dependencies:
   url_launcher: ^6.3.2
   photo_view: ^0.15.0
   image_gallery_saver_plus: ^4.0.1
-  flutter_svg: ^2.0.10+1
+  flutter_svg: ^2.2.0
   flutter_carousel_widget: ^3.1.0
   flutter_form_builder: ^10.2.0
   form_builder_validators: ^11.0.0
@@ -69,15 +69,16 @@ dependencies:
   wechat_assets_picker: ^9.8.0
   flutter_native_splash: ^2.4.6
   native_file_preview: ^1.0.1
-  flutter_slidable: ^4.0.0
+  flutter_slidable: ^4.0.1
   share_plus: ^11.1.0
-  syncfusion_flutter_datepicker: ^30.2.5
+  syncfusion_flutter_datepicker: ^30.2.6
   video_player: ^2.9.5
   get: ^5.0.0-release-candidate-9.3.2
   scrollview_observer: ^1.26.2
   logger: ^2.6.1
   pretty_dio_logger: ^1.4.0
   intl: ^0.20.2
+  skeletonizer: ^2.1.0+1
 
 dev_dependencies:
   flutter_test:

@@ -92,12 +92,12 @@ class Other extends StatelessWidget {
     // 访问更新后的计数变量
     return Scaffold(body: Center(child: Text("${c.count}")));
   }
-}
+} 
 ```
 
 # 启动本地mock_server
 
-main_dev 走本地mock， main_prd 走远程mock服务
+main_dev 走本地mock， main_prd 走远程mock服务 **(用的vercel免费服务，被和谐，需要翻墙)**
 
 1. cd mock_server
 2. 执行 npm i 安装依赖

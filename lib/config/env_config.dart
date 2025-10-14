@@ -7,9 +7,9 @@ enum EnvEnum {
 }
 
 final Map<String, dynamic> dev = {
-  EnvEnum.host.value: "http://192.168.1.3:8091",
+  EnvEnum.host.value: "http://127.0.0.1:8091",
 };
 
 final Map<String, dynamic> prd = {
-  EnvEnum.host.value: "https://server.guoguodad.cn",
+  EnvEnum.host.value: "https://mock-server-rho.vercel.app",
 };
