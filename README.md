@@ -14,7 +14,7 @@
 # 关于运行
   flutter版本:3.35.1  
   XCode:16.4  
-  Java 17 
+  Java 17    
   mock_server nodejs: v18.20.6 
 
 # flutter 简介
