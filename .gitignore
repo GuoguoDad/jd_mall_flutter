@@ -48,4 +48,3 @@ app.*.map.json
 /ios/.symlinks
 
 /mock_server/node_modules
-/mock_server/package-lock.json
