@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
+import 'package:provider/provider.dart';
 
 // Project imports:
 import 'package:jd_mall_flutter/common/extension/color_ext.dart';
@@ -17,7 +18,6 @@ import 'package:jd_mall_flutter/generated/assets.dart';
 import 'package:jd_mall_flutter/mixin/image_picker_mixin.dart';
 import 'package:jd_mall_flutter/routes.dart';
 import 'package:jd_mall_flutter/view/page/login/login_provider.dart';
-import 'package:provider/provider.dart';
 
 class PersonalInfo extends StatefulWidget {
   const PersonalInfo({super.key});

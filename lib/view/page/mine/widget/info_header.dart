@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 
 // Package imports:
 import 'package:get/get.dart';
+import 'package:provider/provider.dart';
 
 // Project imports:
 import 'package:jd_mall_flutter/common/util/screen_util.dart';
@@ -12,9 +13,6 @@ import 'package:jd_mall_flutter/generated/assets.dart';
 import 'package:jd_mall_flutter/routes.dart';
 import 'package:jd_mall_flutter/view/page/login/login_provider.dart';
 import 'package:jd_mall_flutter/view/page/mine/mine_provider.dart';
-import 'package:provider/provider.dart';
-
-// Package imports:
 
 class InfoHeader extends StatelessWidget {
   InfoHeader({super.key});

@@ -1,10 +1,11 @@
 // Flutter imports:
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
-import 'package:flutter_extended_scroll/flutter_extended_scroll.dart';
 
 // Package imports:
+import 'package:flutter_extended_scroll/flutter_extended_scroll.dart';
 import 'package:get/get.dart';
+import 'package:provider/provider.dart';
 
 // Project imports:
 import 'package:jd_mall_flutter/common/style/common_style.dart';
@@ -12,7 +13,6 @@ import 'package:jd_mall_flutter/common/util/screen_util.dart';
 import 'package:jd_mall_flutter/component/image/asset_image.dart';
 import 'package:jd_mall_flutter/view/page/detail/detail_provider.dart';
 import 'package:jd_mall_flutter/view/page/home/util.dart';
-import 'package:provider/provider.dart';
 
 class TabHeader extends StatefulWidget {
   final ExtendedScrollController scrollController;

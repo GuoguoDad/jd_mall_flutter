@@ -1,12 +1,14 @@
 // Flutter imports:
 import 'package:flutter/material.dart';
 
+// Package imports:
+import 'package:provider/provider.dart';
+
 // Project imports:
 import 'package:jd_mall_flutter/common/style/common_style.dart';
 import 'package:jd_mall_flutter/common/util/screen_util.dart';
 import 'package:jd_mall_flutter/models/primary_category_list.dart';
 import 'package:jd_mall_flutter/view/page/category/category_provider.dart';
-import 'package:provider/provider.dart';
 
 double itemHeight = 62.0;
 

@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 // Package imports:
 import 'package:easy_refresh/easy_refresh.dart';
 import 'package:extended_nested_scroll_view/extended_nested_scroll_view.dart';
+import 'package:provider/provider.dart';
 
 // Project imports:
 import 'package:jd_mall_flutter/common/util/easy_refresh_util.dart';
@@ -19,7 +20,6 @@ import 'package:jd_mall_flutter/view/page/mine/widget/info_header.dart';
 import 'package:jd_mall_flutter/view/page/mine/widget/order_card.dart';
 import 'package:jd_mall_flutter/view/page/mine/widget/single_line_menu.dart';
 import 'package:jd_mall_flutter/view/page/mine/widget/tab_list.dart';
-import 'package:provider/provider.dart';
 
 class MinePage extends StatefulWidget {
   const MinePage({super.key});

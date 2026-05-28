@@ -1,11 +1,13 @@
 // Flutter imports:
 import 'package:flutter/material.dart';
 
+// Package imports:
+import 'package:provider/provider.dart';
+
 // Project imports:
 import 'package:jd_mall_flutter/common/style/common_style.dart';
 import 'package:jd_mall_flutter/component/persistentHeader/sliver_header_builder.dart';
 import 'package:jd_mall_flutter/view/page/home/home_provider.dart';
-import 'package:provider/provider.dart';
 
 class TabList extends StatefulWidget {
   final PageController pageController;

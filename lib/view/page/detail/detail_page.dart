@@ -5,7 +5,6 @@ import 'package:flutter/services.dart';
 
 // Package imports:
 import 'package:flutter_extended_scroll/flutter_extended_scroll.dart';
-import 'package:jd_mall_flutter/view/page/detail/detail_provider.dart';
 import 'package:provider/provider.dart';
 import 'package:pull_to_refresh_flutter3/pull_to_refresh_flutter3.dart';
 
@@ -13,6 +12,7 @@ import 'package:pull_to_refresh_flutter3/pull_to_refresh_flutter3.dart';
 import 'package:jd_mall_flutter/common/style/common_style.dart';
 import 'package:jd_mall_flutter/common/util/refresh_util.dart';
 import 'package:jd_mall_flutter/common/util/screen_util.dart';
+import 'package:jd_mall_flutter/view/page/detail/detail_provider.dart';
 import 'package:jd_mall_flutter/view/page/detail/widget/appraise_info.dart';
 import 'package:jd_mall_flutter/view/page/detail/widget/back_to_top.dart';
 import 'package:jd_mall_flutter/view/page/detail/widget/detail_card.dart';

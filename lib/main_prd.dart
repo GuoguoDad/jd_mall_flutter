@@ -6,15 +6,9 @@ import 'dart:io';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:jd_mall_flutter/view/page/cart/cart_provider.dart';
-import 'package:jd_mall_flutter/view/page/category/category_provider.dart';
-import 'package:jd_mall_flutter/view/page/detail/detail_provider.dart';
-import 'package:jd_mall_flutter/view/page/home/home_provider.dart';
-import 'package:jd_mall_flutter/view/page/login/login_provider.dart';
-import 'package:jd_mall_flutter/view/page/mine/mine_provider.dart';
-import 'package:provider/provider.dart';
 
 // Package imports:
+import 'package:provider/provider.dart';
 import 'package:sentry_flutter/sentry_flutter.dart';
 
 // Project imports:
@@ -23,6 +17,12 @@ import 'package:jd_mall_flutter/common/constant/index.dart';
 import 'package:jd_mall_flutter/common/global/Global.dart';
 import 'package:jd_mall_flutter/config/env_config.dart' as configs;
 import 'package:jd_mall_flutter/config/global_configs.dart';
+import 'package:jd_mall_flutter/view/page/cart/cart_provider.dart';
+import 'package:jd_mall_flutter/view/page/category/category_provider.dart';
+import 'package:jd_mall_flutter/view/page/detail/detail_provider.dart';
+import 'package:jd_mall_flutter/view/page/home/home_provider.dart';
+import 'package:jd_mall_flutter/view/page/login/login_provider.dart';
+import 'package:jd_mall_flutter/view/page/mine/mine_provider.dart';
 
 void initApp(Map<String, dynamic> envMap) async {
   WidgetsFlutterBinding.ensureInitialized();

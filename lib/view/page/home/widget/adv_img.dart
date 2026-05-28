@@ -3,12 +3,12 @@ import 'package:flutter/material.dart';
 
 // Package imports:
 import 'package:get/get.dart';
+import 'package:provider/provider.dart';
 
 // Project imports:
 import 'package:jd_mall_flutter/component/image/extend_image_network.dart';
 import 'package:jd_mall_flutter/routes.dart';
 import 'package:jd_mall_flutter/view/page/home/home_provider.dart';
-import 'package:provider/provider.dart';
 
 class AdvBanner extends StatelessWidget {
   const AdvBanner({super.key});

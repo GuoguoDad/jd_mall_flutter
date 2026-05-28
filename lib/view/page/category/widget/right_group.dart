@@ -2,6 +2,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 
+// Package imports:
+import 'package:provider/provider.dart';
+
 // Project imports:
 import 'package:jd_mall_flutter/common/style/common_style.dart';
 import 'package:jd_mall_flutter/common/util/screen_util.dart';
@@ -10,7 +13,6 @@ import 'package:jd_mall_flutter/component/image/extend_image_network.dart';
 import 'package:jd_mall_flutter/component/no_shadow_scroll_behavior.dart';
 import 'package:jd_mall_flutter/models/second_group_category_info.dart';
 import 'package:jd_mall_flutter/view/page/category/category_provider.dart';
-import 'package:provider/provider.dart';
 
 //右侧占屏幕三分之二
 double rWidth = getScreenWidth() * 2 / 3;

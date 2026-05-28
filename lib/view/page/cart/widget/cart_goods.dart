@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 // Package imports:
 import 'package:flutter_group_list_view/flutter_group_list_view.dart';
 import 'package:get/get.dart';
+import 'package:provider/provider.dart';
 
 // Project imports:
 import 'package:jd_mall_flutter/common/style/common_style.dart';
@@ -16,7 +17,6 @@ import 'package:jd_mall_flutter/models/cart_goods.dart';
 import 'package:jd_mall_flutter/routes.dart';
 import 'package:jd_mall_flutter/view/page/cart/cart_provider.dart';
 import 'package:jd_mall_flutter/view/vebview/type.dart';
-import 'package:provider/provider.dart';
 
 double thumbnailWidth = 80;
 

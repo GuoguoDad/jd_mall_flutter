@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 
 // Package imports:
 import 'package:cached_network_image_ce/cached_network_image.dart';
+import 'package:provider/provider.dart';
 
 // Project imports:
 import 'package:jd_mall_flutter/common/style/common_style.dart';
@@ -11,7 +12,6 @@ import 'package:jd_mall_flutter/component/image/asset_image.dart';
 import 'package:jd_mall_flutter/generated/assets.dart';
 import 'package:jd_mall_flutter/view/page/detail/detail_provider.dart';
 import 'package:jd_mall_flutter/view/page/home/util.dart';
-import 'package:provider/provider.dart';
 
 double screenWidth = getScreenWidth();
 

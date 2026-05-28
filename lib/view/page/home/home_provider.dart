@@ -1,5 +1,7 @@
-
+// Flutter imports:
 import 'package:flutter/cupertino.dart';
+
+// Project imports:
 import 'package:jd_mall_flutter/models/home_page_info.dart';
 import 'package:jd_mall_flutter/view/page/home/service.dart';
 

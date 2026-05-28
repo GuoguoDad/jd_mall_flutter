@@ -1,11 +1,10 @@
 // Flutter imports:
 import 'package:flutter/material.dart';
-import 'package:jd_mall_flutter/view/page/home/home_provider.dart';
-import 'package:provider/provider.dart';
 
 // Package imports:
 import 'package:easy_refresh/easy_refresh.dart';
 import 'package:extended_nested_scroll_view/extended_nested_scroll_view.dart';
+import 'package:provider/provider.dart';
 
 // Project imports:
 import 'package:jd_mall_flutter/common/util/easy_refresh_util.dart';
@@ -15,6 +14,7 @@ import 'package:jd_mall_flutter/component/back_top.dart';
 import 'package:jd_mall_flutter/component/keep_alive_wrapper.dart';
 import 'package:jd_mall_flutter/component/loading_widget.dart';
 import 'package:jd_mall_flutter/component/page_goods_list.dart';
+import 'package:jd_mall_flutter/view/page/home/home_provider.dart';
 import 'package:jd_mall_flutter/view/page/home/widget/adv_img.dart';
 import 'package:jd_mall_flutter/view/page/home/widget/gallery_list.dart';
 import 'package:jd_mall_flutter/view/page/home/widget/menu_slider.dart';

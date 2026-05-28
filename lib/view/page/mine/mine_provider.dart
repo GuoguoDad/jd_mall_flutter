@@ -1,5 +1,10 @@
-import 'package:easy_refresh/easy_refresh.dart';
+// Flutter imports:
 import 'package:flutter/material.dart';
+
+// Package imports:
+import 'package:easy_refresh/easy_refresh.dart';
+
+// Project imports:
 import 'package:jd_mall_flutter/models/mine_menu_tab_info.dart';
 import 'package:jd_mall_flutter/view/page/mine/service.dart';
 

@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 
 // Package imports:
 import 'package:get/get.dart';
+import 'package:provider/provider.dart';
 
 // Project imports:
 import 'package:jd_mall_flutter/common/style/common_style.dart';
@@ -12,7 +13,6 @@ import 'package:jd_mall_flutter/component/persistentHeader/sliver_header_builder
 import 'package:jd_mall_flutter/generated/assets.dart';
 import 'package:jd_mall_flutter/view/page/home/home_provider.dart';
 import 'package:jd_mall_flutter/view/page/home/util.dart';
-import 'package:provider/provider.dart';
 
 class SearchHeader extends StatelessWidget {
   const SearchHeader({super.key});

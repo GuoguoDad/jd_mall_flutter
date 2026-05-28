@@ -1,7 +1,12 @@
+// Flutter imports:
 import 'package:flutter/material.dart';
+
+// Package imports:
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:get/get_navigation/src/extension_navigation.dart';
+
+// Project imports:
 import 'package:jd_mall_flutter/common/extension/get_router_navigation_ext.dart';
 import 'package:jd_mall_flutter/common/global/Global.dart';
 import 'package:jd_mall_flutter/routes.dart';
