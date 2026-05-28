@@ -2,19 +2,20 @@
 
 高仿京东商城flutter版本，个人学习flutter项目
 
-1. 集成GetX解决方案(状态管理、依赖注入、路由管理、国际化)
-2. 网络使用dio进行封装
-3. 集成Sentry进行线上异常捕获
-4. 使用node项目mock服务端接口(mock_server目录)
-5. 目前实现了首页、分类、购物车、我的，商品详情、webview加载模块...
+1. 集成GetX解决方案(路由管理、国际化)
+2. 状态管理切换成Provider，业务逻辑和UI分离，解耦更彻底
+3. 网络使用dio进行封装
+4. 集成Sentry进行线上异常捕获
+5. 使用node项目mock服务端接口(mock_server目录)
+6. 目前实现了首页、分类、购物车、我的，商品详情、webview加载模块...
 
 * ### 同款Android Kotlin版本（ https://github.com/GuoguoDad/jd_mall.git ）
 * ### 鸿蒙arkTs版本（https://github.com/GuoguoDad/jdMall_Harmony）
 * ### 参考学习书籍《Flutter实战·第二版》（ https://book.flutterchina.club/ ）
 
 # 关于运行
-  flutter版本:3.38.9
-  XCode:16.4  
+  flutter版本:3.38.9   
+  XCode:16.4   
   Java 17    
   mock_server nodejs: v18.20.6 
 
@@ -45,55 +46,6 @@ GetX 是 Flutter 上的一个轻量且强大的解决方案：高性能的状态
     - **性能：** GetX 专注于性能和最小资源消耗。GetX打包后的apk占用大小和运行时的内存占用与其他状态管理插件不相上下。
     - **效率：** GetX 的语法非常简捷，并保持了极高的性能，能极大缩短你的开发时长。
     - **结构：** GetX 可以将界面、逻辑、依赖和路由完全解耦，用起来更清爽，逻辑更清晰，代码更容易维护。
-
-## 简单示例
-
-GetX 写一个计数器，实现：
-
-- 每次点击都能改变状态
-- 在不同页面之间切换
-- 在不同页面之间共享状态
-- 将业务逻辑与界面分离
-
-```dart
-class Controller extends GetxController {
-  var count = 0.obs;
-
-  increment() => count++;
-}
-```
-
-```dart
-class Home extends StatelessWidget {
-
-  @override
-  Widget build(context) {
-    // 使用Get.put()实例化你的类，使其对当下的所有子路由可用。
-    final Controller c = Get.put(Controller());
-
-    return Scaffold(
-      // 使用Obx(()=>每当改变计数时，就更新Text()。
-        appBar: AppBar(title: Obx(() => Text("Clicks: ${c.count}"))),
-
-        // 用一个简单的Get.to()即可代替Navigator.push那8行，无需上下文！
-        body: Center(child: ElevatedButton(
-            child: Text("Go to Other"), onPressed: () => Get.to(Other()))),
-        floatingActionButton:
-        FloatingActionButton(child: Icon(Icons.add), onPressed: c.increment));
-  }
-}
-
-class Other extends StatelessWidget {
-  // 你可以让Get找到一个正在被其他页面使用的Controller，并将它返回给你。
-  final Controller c = Get.find();
-
-  @override
-  Widget build(context) {
-    // 访问更新后的计数变量
-    return Scaffold(body: Center(child: Text("${c.count}")));
-  }
-} 
-```
 
 # 启动本地mock_server
 
