@@ -12,7 +12,6 @@ import 'package:jd_mall_flutter/common/util/refresh_util.dart';
 import 'package:jd_mall_flutter/common/util/screen_util.dart';
 import 'package:jd_mall_flutter/component/back_top.dart';
 import 'package:jd_mall_flutter/component/keep_alive_wrapper.dart';
-import 'package:jd_mall_flutter/component/loading_widget.dart';
 import 'package:jd_mall_flutter/component/page_goods_list.dart';
 import 'package:jd_mall_flutter/view/page/home/home_provider.dart';
 import 'package:jd_mall_flutter/view/page/home/widget/adv_img.dart';

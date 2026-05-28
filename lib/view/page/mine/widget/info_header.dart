@@ -94,8 +94,8 @@ class InfoHeader extends StatelessWidget {
     ),
   );
 
-  Widget headerWidget = Consumer<MineProvider>(
-      builder: (context, provider, child) {
+  Widget headerWidget = Consumer2<MineProvider, LoginProvider>(
+      builder: (context, provider, loginProvider, child) {
         HeaderSize headerSize = calcSize(provider.pageScrollY);
 
         return Positioned(
@@ -109,7 +109,7 @@ class InfoHeader extends StatelessWidget {
               shape: const CircleBorder(),
               image: DecorationImage(
                 fit: BoxFit.contain,
-                image: AssetImage(context.watch<LoginProvider>().hasLogin ? Assets.imagesHeader : Assets.imagesIcDefaultHeader),
+                image: AssetImage(loginProvider.hasLogin ? Assets.imagesHeader : Assets.imagesIcDefaultHeader),
               ),
             ),
           ),
@@ -117,8 +117,8 @@ class InfoHeader extends StatelessWidget {
       }
   );
 
-  Widget userInfoWidget = Consumer<MineProvider>(
-    builder: (context, provider, child) {
+  Widget userInfoWidget = Consumer2<MineProvider, LoginProvider>(
+    builder: (context, provider, loginProvider, child) {
       HeaderSize headerSize = calcSize(provider.pageScrollY);
 
       return Positioned(
@@ -129,7 +129,7 @@ class InfoHeader extends StatelessWidget {
           height: 60,
           child: Opacity(
             opacity: 1 - headerSize.opacity,
-            child: context.watch<LoginProvider>().hasLogin
+            child: loginProvider.hasLogin
                   ? Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 mainAxisAlignment: MainAxisAlignment.spaceAround,

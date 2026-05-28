@@ -5,7 +5,6 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 // Project imports:
-import 'package:jd_mall_flutter/component/loading_widget.dart';
 import 'package:jd_mall_flutter/view/page/category/category_provider.dart';
 import 'package:jd_mall_flutter/view/page/category/widget/header.dart';
 import 'package:jd_mall_flutter/view/page/category/widget/left_cate.dart';

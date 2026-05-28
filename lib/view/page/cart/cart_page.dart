@@ -9,7 +9,6 @@ import 'package:pull_to_refresh_flutter3/pull_to_refresh_flutter3.dart';
 import 'package:jd_mall_flutter/common/style/common_style.dart';
 import 'package:jd_mall_flutter/common/util/refresh_util.dart';
 import 'package:jd_mall_flutter/component/back_to_top.dart';
-import 'package:jd_mall_flutter/component/loading_widget.dart';
 import 'package:jd_mall_flutter/view/page/cart/cart_provider.dart';
 import 'package:jd_mall_flutter/view/page/cart/widget/cart_goods.dart';
 import 'package:jd_mall_flutter/view/page/cart/widget/cart_header.dart';

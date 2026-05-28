@@ -12,7 +12,6 @@ import 'package:jd_mall_flutter/common/util/refresh_util.dart';
 import 'package:jd_mall_flutter/common/util/screen_util.dart';
 import 'package:jd_mall_flutter/component/back_top.dart';
 import 'package:jd_mall_flutter/component/keep_alive_wrapper.dart';
-import 'package:jd_mall_flutter/component/loading_widget.dart';
 import 'package:jd_mall_flutter/component/page_goods_list.dart';
 import 'package:jd_mall_flutter/models/mine_menu_tab_info.dart';
 import 'package:jd_mall_flutter/view/page/mine/mine_provider.dart';
@@ -29,9 +28,9 @@ class MinePage extends StatefulWidget {
 }
 
 class MinePageState extends State<MinePage> {
-  late final EasyRefreshController freshController = EasyRefreshController(controlFinishRefresh: true);
-  late final ScrollController scrollController = ScrollController();
-  late final PageController pageController = PageController();
+  final EasyRefreshController freshController = EasyRefreshController(controlFinishRefresh: true);
+  final ScrollController scrollController = ScrollController();
+  final PageController pageController = PageController();
 
   @override
   void initState() {
