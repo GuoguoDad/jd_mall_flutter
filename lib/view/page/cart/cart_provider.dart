@@ -1,86 +1,74 @@
-// Flutter imports:
-import 'package:flutter/cupertino.dart';
 
-// Package imports:
-import 'package:get/get.dart';
-import 'package:pull_to_refresh_flutter3/pull_to_refresh_flutter3.dart';
-
-// Project imports:
+import 'package:flutter/material.dart';
 import 'package:jd_mall_flutter/common/constant/index.dart';
 import 'package:jd_mall_flutter/models/cart_goods.dart';
 import 'package:jd_mall_flutter/models/goods_page_info.dart';
 import 'package:jd_mall_flutter/view/page/cart/service.dart';
+import 'package:pull_to_refresh_flutter3/pull_to_refresh_flutter3.dart';
 
-class CartController extends GetxController {
-  static CartController get to => Get.find();
-
+class CartProvider extends ChangeNotifier {
   final ScrollController scrollController = ScrollController();
   final RefreshController refreshController = RefreshController();
 
-  RxBool isLoading = true.obs;
+  bool isLoading = true;
 
-  RxList<CartGoods> cartGoods = <CartGoods>[].obs;
+  List<CartGoods> cartGoods = <CartGoods>[];
 
-  RxList<String> selectCartGoodsList = <String>[].obs;
+  List<String> selectCartGoodsList = <String>[];
 
-  RxInt pageNum = 1.obs;
+  int pageNum = 1;
 
   //商品数据
-  Rx<GoodsPageInfo> goodsPageInfo = GoodsPageInfo.fromJson({}).obs;
+  GoodsPageInfo goodsPageInfo = GoodsPageInfo.fromJson({});
 
-  @override
-  void onInit() {
-    initCartGoodsData();
-    super.onInit();
+  void setLoading(bool va) {
+    isLoading = va;
+    notifyListeners();
   }
-
-  @override
-  void onClose() {
-    scrollController.dispose();
-    refreshController.dispose();
-    super.onClose();
-  }
-
-  setLoading(bool va) => isLoading.value = va;
 
   //加载购物车中的商品和可能喜欢的商品列表
-  initCartGoodsData() async {
-    isLoading.value = true;
+  Future<void> initCartGoodsData() async {
+    isLoading = true;
+    notifyListeners();
+
     var res = await Future.wait([CartApi.queryCartGoods(), CartApi.queryGoodsListByPage(1, pageSize)]);
-    isLoading.value = false;
+    isLoading = false;
     if (res[0] != null && res[1] != null) {
-      cartGoods.value = res[0];
-      pageNum.value = 1;
-      goodsPageInfo.value = res[1];
+      cartGoods = res[0];
+      pageNum = 1;
+      goodsPageInfo = res[1];
     }
+    notifyListeners();
   }
 
-  refreshPage(VoidCallback freshSuccess, VoidCallback freshFail) async {
+  Future<void> refreshPage(VoidCallback freshSuccess, VoidCallback freshFail) async {
     var res = await Future.wait([CartApi.queryCartGoods(), CartApi.queryGoodsListByPage(1, pageSize)]);
     if (res[0] != null && res[1] != null) {
-      cartGoods.value = res[0];
-      pageNum.value = 1;
-      goodsPageInfo.value = res[1];
+      cartGoods = res[0];
+      pageNum = 1;
+      goodsPageInfo = res[1];
       freshSuccess();
+      notifyListeners();
     } else {
       freshFail();
     }
   }
 
   //加载可能喜欢商品列表下一页
-  loadNextPage(VoidCallback loadMoreSuccess, VoidCallback loadMoreFail) {
-    int currentPage = pageNum.value + 1;
+  void loadNextPage(VoidCallback loadMoreSuccess, VoidCallback loadMoreFail) {
+    int currentPage = pageNum + 1;
     CartApi.queryGoodsListByPage(currentPage, pageSize).then((res) {
       var totalPage = res.totalPageCount;
 
       if (totalPage >= currentPage) {
-        List<GoodsList> goods = goodsPageInfo.value.goodsList ?? [];
+        List<GoodsList> goods = goodsPageInfo.goodsList ?? [];
         List<GoodsList>? goodsList = [...goods, ...res.goodsList];
 
-        pageNum.value = currentPage;
-        goodsPageInfo.value = GoodsPageInfo(goodsList: goodsList, totalCount: res.totalCount, totalPageCount: res.totalPageCount);
+        pageNum = currentPage;
+        goodsPageInfo = GoodsPageInfo(goodsList: goodsList, totalCount: res.totalCount, totalPageCount: res.totalPageCount);
 
         loadMoreSuccess();
+        notifyListeners();
       } else {
         loadMoreFail();
       }
@@ -88,18 +76,19 @@ class CartController extends GetxController {
   }
 
   //单选购物车中的商品
-  selectCartGoods(String goodsCode) {
+  void selectCartGoods(String goodsCode) {
     List<String> selectList = selectCartGoodsList;
     if (!selectList.contains(goodsCode)) {
       selectList.add(goodsCode);
     } else {
       selectList.removeAt(selectList.indexOf(goodsCode));
     }
-    selectCartGoodsList = RxList(selectList);
+    selectCartGoodsList = selectList;
+    notifyListeners();
   }
 
   //店铺维度全选
-  selectStoreGoods(String storeCode, bool value) {
+  void selectStoreGoods(String storeCode, bool value) {
     List<String> selectList = selectCartGoodsList;
     List<CartGoods> cartGoodsList = cartGoods;
     //找到相应店铺的商品信息
@@ -111,11 +100,12 @@ class CartController extends GetxController {
         selectList.removeAt(selectList.indexOf(element.code!));
       }
     });
-    selectCartGoodsList = RxList(selectList);
+    selectCartGoodsList = selectList;
+    notifyListeners();
   }
 
   //全选
-  selectAll(bool selectAll) {
+  void selectAll(bool selectAll) {
     List<String> selectList = [];
     if (selectAll) {
       for (CartGoods element in cartGoods) {
@@ -124,11 +114,12 @@ class CartController extends GetxController {
         });
       }
     }
-    selectCartGoodsList.value = selectList;
+    selectCartGoodsList = selectList;
+    notifyListeners();
   }
 
   //修改购物车商品数量
-  changeCartGoodsNum(String goodsCode, int num) {
+  void changeCartGoodsNum(String goodsCode, int num) {
     List<CartGoods> cartGoodsList = cartGoods;
     List<CartGoods> list = cartGoodsList.map((element) {
       List<GoodsInfo>? filterList = element.goodsList?.where((goods) => goods.code == goodsCode).toList();
@@ -140,6 +131,7 @@ class CartController extends GetxController {
       return element;
     }).toList();
 
-    cartGoods.value = list;
+    cartGoods = list;
+    notifyListeners();
   }
 }

@@ -14,55 +14,59 @@ import 'package:jd_mall_flutter/component/stepper/style.dart';
 import 'package:jd_mall_flutter/generated/assets.dart';
 import 'package:jd_mall_flutter/models/cart_goods.dart';
 import 'package:jd_mall_flutter/routes.dart';
-import 'package:jd_mall_flutter/view/page/cart/cart_controller.dart';
+import 'package:jd_mall_flutter/view/page/cart/cart_provider.dart';
 import 'package:jd_mall_flutter/view/vebview/type.dart';
+import 'package:provider/provider.dart';
 
 double thumbnailWidth = 80;
 
-Widget cartGoods() {
-  return Obx(
-    () {
-      List<CartGoods> cartGoods = CartController.to.cartGoods;
+class CartGoodsList extends StatelessWidget {
+  const CartGoodsList({super.key});
 
-      return GroupSliverListView(
-        sectionCount: cartGoods.length,
-        itemInSectionCount: (int section) => cartGoods[section].goodsList?.length ?? 0,
-        headerForSectionBuilder: (int section) {
-          return buildHeader(CartController.to, section);
-        },
-        itemInSectionBuilder: (BuildContext context, IndexPath indexPath) {
-          return buildItem(CartController.to, indexPath);
-        },
-        separatorBuilder: (IndexPath indexPath) {
-          return Container(
-            height: 1,
-            color: cartGoods[indexPath.section].goodsList?.length != indexPath.index + 1 ? CommonStyle.greyBgColor2 : Colors.white,
+  @override
+  Widget build(BuildContext context) {
+    return Consumer<CartProvider>(
+        builder: (context, provider, child) {
+          List<CartGoods> cartGoods = provider.cartGoods;
+
+          return GroupSliverListView(
+            sectionCount: cartGoods.length,
+            itemInSectionCount: (int section) => cartGoods[section].goodsList?.length ?? 0,
+            headerForSectionBuilder: (int section) {
+              return buildHeader(provider, section);
+            },
+            itemInSectionBuilder: (BuildContext context, IndexPath indexPath) {
+              return buildItem(provider, indexPath);
+            },
+            separatorBuilder: (IndexPath indexPath) {
+              return Container(
+                height: 1,
+                color: cartGoods[indexPath.section].goodsList?.length != indexPath.index + 1 ? CommonStyle.greyBgColor2 : Colors.white,
+              );
+            },
+            footerForSectionBuilder: (int section) {
+              return buildFooter(marginBottom: section + 1 != cartGoods.length ? 10 : 0.0);
+            },
           );
-        },
-        footerForSectionBuilder: (int section) {
-          return buildFooter(marginBottom: section + 1 != cartGoods.length ? 10 : 0.0);
-        },
-      );
-    },
-  );
-}
+        }
+    );
+  }
 
-Widget buildHeader(CartController c, int section) {
-  return Container(
-    height: 50,
-    margin: const EdgeInsets.only(left: 12, right: 12),
-    decoration: const BoxDecoration(
-      borderRadius: BorderRadius.only(topLeft: Radius.circular(10), topRight: Radius.circular(10)),
-      color: Colors.white,
-    ),
-    child: Obx(() {
-      List<CartGoods> cartGoods = c.cartGoods;
-      List<String> selectList = c.selectCartGoodsList;
-      List<String> sList = selectList.where((element) => element.contains(cartGoods[section].storeCode!)).toList();
-      bool isSelectAll = sList.length == cartGoods[section].goodsList?.length;
-      String url = cartGoods[section].h5url ?? "";
+  Widget buildHeader(CartProvider provider, int section) {
+    List<CartGoods> cartGoods = provider.cartGoods;
+    List<String> selectList = provider.selectCartGoodsList;
+    List<String> sList = selectList.where((element) => element.contains(cartGoods[section].storeCode!)).toList();
+    bool isSelectAll = sList.length == cartGoods[section].goodsList?.length;
+    String url = cartGoods[section].h5url ?? "";
 
-      return Row(
+    return Container(
+      height: 50,
+      margin: const EdgeInsets.only(left: 12, right: 12),
+      decoration: const BoxDecoration(
+        borderRadius: BorderRadius.only(topLeft: Radius.circular(10), topRight: Radius.circular(10)),
+        color: Colors.white,
+      ),
+      child: Row(
         crossAxisAlignment: CrossAxisAlignment.center,
         mainAxisAlignment: MainAxisAlignment.start,
         children: [
@@ -73,7 +77,7 @@ Widget buildHeader(CartController c, int section) {
               value: isSelectAll,
               shape: const CircleBorder(),
               activeColor: Colors.red,
-              onChanged: (bool? va) => c.selectStoreGoods(cartGoods[section].storeCode!, !isSelectAll),
+              onChanged: (bool? va) => provider.selectStoreGoods(cartGoods[section].storeCode!, !isSelectAll),
             ),
           ),
           Container(margin: const EdgeInsets.only(left: 5), child: assetImage(Assets.imagesIcStore, 24, 24)),
@@ -87,20 +91,18 @@ Widget buildHeader(CartController c, int section) {
             child: assetImage("images/ic_arrow_right.png", 20, 20),
           )
         ],
-      );
-    }),
-  );
-}
+      ),
+    );
+  }
 
-Widget buildItem(CartController c, IndexPath indexPath) {
-  return Container(
-    margin: const EdgeInsets.only(left: 12, right: 12),
-    color: Colors.white,
-    child: Obx(() {
-      List<CartGoods> cartGoods = c.cartGoods;
-      List<String> selectList = c.selectCartGoodsList;
+  Widget buildItem(CartProvider provider, IndexPath indexPath) {
+    List<CartGoods> cartGoods = provider.cartGoods;
+    List<String> selectList = provider.selectCartGoodsList;
 
-      return Row(
+    return Container(
+      margin: const EdgeInsets.only(left: 12, right: 12),
+      color: Colors.white,
+      child: Row(
         crossAxisAlignment: CrossAxisAlignment.center,
         mainAxisAlignment: MainAxisAlignment.start,
         children: [
@@ -111,7 +113,7 @@ Widget buildItem(CartController c, IndexPath indexPath) {
               value: selectList.contains(cartGoods[indexPath.section].goodsList![indexPath.index].code!),
               shape: const CircleBorder(),
               activeColor: Colors.red,
-              onChanged: (bool? va) => c.selectCartGoods(cartGoods[indexPath.section].goodsList![indexPath.index].code!),
+              onChanged: (bool? va) => provider.selectCartGoods(cartGoods[indexPath.section].goodsList![indexPath.index].code!),
             ),
           ),
           Container(
@@ -169,7 +171,7 @@ Widget buildItem(CartController c, IndexPath indexPath) {
                             elevation: 0,
                             buttonAspectRatio: 1.4,
                           ),
-                          didChangeCount: (int value) => c.changeCartGoodsNum(cartGoods[indexPath.section].goodsList![indexPath.index].code!, value),
+                          didChangeCount: (int value) => provider.changeCartGoodsNum(cartGoods[indexPath.section].goodsList![indexPath.index].code!, value),
                         )
                       ],
                     ),
@@ -179,18 +181,20 @@ Widget buildItem(CartController c, IndexPath indexPath) {
             ),
           )
         ],
-      );
-    }),
-  );
+      ),
+    );
+  }
+
+  Widget buildFooter({required double marginBottom}) {
+    return Container(
+      height: 10,
+      margin: EdgeInsets.only(left: 12, right: 12, bottom: marginBottom),
+      decoration: const BoxDecoration(
+        color: Colors.white,
+        borderRadius: BorderRadius.only(bottomLeft: Radius.circular(10), bottomRight: Radius.circular(10)),
+      ),
+    );
+  }
+
 }
 
-Widget buildFooter({required double marginBottom}) {
-  return Container(
-    height: 10,
-    margin: EdgeInsets.only(left: 12, right: 12, bottom: marginBottom),
-    decoration: const BoxDecoration(
-      color: Colors.white,
-      borderRadius: BorderRadius.only(bottomLeft: Radius.circular(10), bottomRight: Radius.circular(10)),
-    ),
-  );
-}

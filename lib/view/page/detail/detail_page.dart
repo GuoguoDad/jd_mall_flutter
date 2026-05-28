@@ -5,13 +5,14 @@ import 'package:flutter/services.dart';
 
 // Package imports:
 import 'package:flutter_extended_scroll/flutter_extended_scroll.dart';
+import 'package:jd_mall_flutter/view/page/detail/detail_provider.dart';
+import 'package:provider/provider.dart';
 import 'package:pull_to_refresh_flutter3/pull_to_refresh_flutter3.dart';
 
 // Project imports:
 import 'package:jd_mall_flutter/common/style/common_style.dart';
 import 'package:jd_mall_flutter/common/util/refresh_util.dart';
 import 'package:jd_mall_flutter/common/util/screen_util.dart';
-import 'package:jd_mall_flutter/view/page/detail/detail_controller.dart';
 import 'package:jd_mall_flutter/view/page/detail/widget/appraise_info.dart';
 import 'package:jd_mall_flutter/view/page/detail/widget/back_to_top.dart';
 import 'package:jd_mall_flutter/view/page/detail/widget/detail_card.dart';
@@ -22,8 +23,31 @@ import 'package:jd_mall_flutter/view/page/detail/widget/store_goods_header.dart'
 import 'package:jd_mall_flutter/view/page/detail/widget/tab_header.dart';
 import 'package:jd_mall_flutter/view/page/home/util.dart';
 
-class DetailPage extends StatelessWidget {
+class DetailPage extends StatefulWidget {
   const DetailPage({super.key});
+
+  @override
+  State<DetailPage> createState() => DetailPageState();
+}
+
+class DetailPageState extends State<DetailPage> {
+  final ExtendedScrollController scrollController = ExtendedScrollController();
+  final RefreshController refreshController = RefreshController();
+
+  @override
+  void initState() {
+    super.initState();
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      context.read<DetailProvider>().initPageData();
+    });
+  }
+
+  @override
+  void dispose() {
+    scrollController.dispose();
+    refreshController.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -31,43 +55,43 @@ class DetailPage extends StatelessWidget {
       context,
       children: [
         NotificationListener<ScrollNotification>(
-          onNotification: (ScrollNotification notification) => onPageScroll(notification),
+          onNotification: (ScrollNotification notification) => onPageScroll(context, notification),
           child: Container(
             color: CommonStyle.colorF5F5F5,
             child: SmartRefresher(
-              controller: DetailController.to.refreshController,
+              controller: refreshController,
               enablePullUp: true,
               enablePullDown: false,
-              onLoading: () => DetailController.to.loadNextPage(
-                () => loadMoreSuccess(DetailController.to.refreshController),
-                () => loadMoreFail(DetailController.to.refreshController),
+              onLoading: () => context.read<DetailProvider>().loadNextPage(
+                () => loadMoreSuccess(refreshController),
+                () => loadMoreFail(refreshController),
               ),
               child: ExtendedCustomScrollView(
-                controller: DetailController.to.scrollController,
+                controller: scrollController,
                 slivers: [
-                  goodsInfo(context),
-                  appraiseInfo(context),
-                  detailCard(context),
-                  storeGoodsHeader(context),
-                  storeGoods(context),
+                  GoodsInfo(),
+                  AppraiseList(),
+                  DetailImgList(),
+                  StoreGoodsHeader(),
+                  StoreGoodsList(),
                 ],
               ),
             ),
           ),
         ),
-        Positioned(top: 0, left: 0, child: tabHeader(context))
+        Positioned(top: 0, left: 0, child: TabHeader(scrollController))
       ],
     );
   }
 
-  bool onPageScroll(ScrollNotification notification) {
+  bool onPageScroll(BuildContext context, ScrollNotification notification) {
     if (notification.depth == 1) {
-      DetailController.to.recordPageY(notification.metrics.pixels);
+      context.read<DetailProvider>().recordPageY(notification.metrics.pixels);
 
       //监听滚动，选中对应的tab
-      if (DetailController.to.isTabClick.value) return false;
+      if (context.read<DetailProvider>().isTabClick) return false;
       int newIndex = findFirstVisibleItemIndex(cardKeys);
-      DetailController.to.setIndex(newIndex);
+      context.read<DetailProvider>().setIndex(newIndex);
     }
     return false;
   }
@@ -84,7 +108,7 @@ class DetailPage extends StatelessWidget {
               body: Stack(
                 children: children,
               ),
-              floatingActionButton: BackToTop(DetailController.to.scrollController),
+              floatingActionButton: BackToTop(scrollController),
             ),
           ),
           fixedBottom(context)

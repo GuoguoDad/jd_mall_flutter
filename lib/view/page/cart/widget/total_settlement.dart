@@ -11,77 +11,86 @@ import 'package:jd_mall_flutter/common/util/screen_util.dart';
 import 'package:jd_mall_flutter/component/linear_button.dart';
 import 'package:jd_mall_flutter/models/cart_goods.dart';
 import 'package:jd_mall_flutter/routes.dart';
-import 'package:jd_mall_flutter/view/page/cart/cart_controller.dart';
+import 'package:jd_mall_flutter/view/page/cart/cart_provider.dart';
+import 'package:provider/provider.dart';
 
-Widget totalSettlement(BuildContext context) {
-  return Container(
-    height: 58,
-    width: getScreenWidth(),
-    decoration: BoxDecoration(
-      color: Colors.white,
-      border: Border(
-        top: BorderSide(color: CommonStyle.colorE6E6E6, width: 0.5),
-        bottom: BorderSide(color: CommonStyle.colorE6E6E6, width: 0.5),
+
+class TotalSettlement extends StatelessWidget {
+  const TotalSettlement({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      height: 58,
+      width: getScreenWidth(),
+      decoration: BoxDecoration(
+        color: Colors.white,
+        border: Border(
+          top: BorderSide(color: CommonStyle.colorE6E6E6, width: 0.5),
+          bottom: BorderSide(color: CommonStyle.colorE6E6E6, width: 0.5),
+        ),
       ),
-    ),
-    child: Obx(() {
-      List<CartGoods> cartGoods = CartController.to.cartGoods;
-      List<String> selectList = CartController.to.selectCartGoodsList;
-      bool isSelect = isSelectAll(cartGoods, selectList);
+      child: Consumer<CartProvider>(
+          builder: (context, provider, child) {
+            List<CartGoods> cartGoods = provider.cartGoods;
+            List<String> selectList = provider.selectCartGoodsList;
+            bool isSelect = isSelectAll(cartGoods, selectList);
 
-      TotalInfo totalInfo = calcPrice(cartGoods, selectList);
+            TotalInfo totalInfo = calcPrice(cartGoods, selectList);
 
-      return Row(
-        children: [
-          Expanded(
-            flex: 1,
-            child: Row(
+            return Row(
               children: [
-                Container(
-                  width: 28,
-                  margin: const EdgeInsets.only(left: 12),
-                  child: Checkbox(
-                    value: isSelect,
-                    shape: const CircleBorder(),
-                    activeColor: Colors.red,
-                    onChanged: (bool? va) {
-                      CartController.to.selectAll(!isSelect);
-                    },
+                Expanded(
+                  flex: 1,
+                  child: Row(
+                    children: [
+                      Container(
+                        width: 28,
+                        margin: const EdgeInsets.only(left: 12),
+                        child: Checkbox(
+                          value: isSelect,
+                          shape: const CircleBorder(),
+                          activeColor: Colors.red,
+                          onChanged: (bool? va) {
+                            provider.selectAll(!isSelect);
+                          },
+                        ),
+                      ),
+                      Text("selectAll".tr, style: const TextStyle(fontSize: 13)),
+                      Container(
+                        margin: const EdgeInsets.only(left: 5),
+                        child: Text("amountTo".tr, style: const TextStyle(fontSize: 13)),
+                      ),
+                      Text(
+                        ": ￥${totalInfo.price}",
+                        style: const TextStyle(fontSize: 14, fontWeight: FontWeight.bold),
+                      )
+                    ],
                   ),
                 ),
-                Text("selectAll".tr, style: const TextStyle(fontSize: 13)),
                 Container(
-                  margin: const EdgeInsets.only(left: 5),
-                  child: Text("amountTo".tr, style: const TextStyle(fontSize: 13)),
-                ),
-                Text(
-                  ": ￥${totalInfo.price}",
-                  style: const TextStyle(fontSize: 14, fontWeight: FontWeight.bold),
+                  width: 150,
+                  height: 58,
+                  alignment: Alignment.center,
+                  child: LinearButton(
+                    width: 130,
+                    height: 42,
+                    btnName: '${"toSettle".tr}(${totalInfo.num})',
+                    onTap: () {
+                      if (selectList.isEmpty) {
+                        EasyLoading.showInfo("您还没有选择商品哦", duration: const Duration(seconds: 2));
+                        return;
+                      }
+                      Get.toNamed(RoutesEnum.generateOrder.path);
+                    },
+                  ),
                 )
               ],
-            ),
-          ),
-          Container(
-            width: 150,
-            height: 58,
-            alignment: Alignment.center,
-            child: LinearButton(
-              width: 130,
-              height: 42,
-              btnName: '${"toSettle".tr}(${totalInfo.num})',
-              onTap: () {
-                if (selectList.isEmpty) {
-                  EasyLoading.showInfo("您还没有选择商品哦", duration: const Duration(seconds: 2));
-                  return;
-                }
-                Get.toNamed(RoutesEnum.generateOrder.path);
-              },
-            ),
-          )
-        ],
-      );
-    }),
-  );
+            );
+          }
+      ),
+    );
+  }
 }
 
 bool isSelectAll(List<CartGoods> cartGoods, List<String> selectList) {

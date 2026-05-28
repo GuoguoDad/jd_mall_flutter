@@ -2,9 +2,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 
-// Package imports:
-import 'package:get/get_state_manager/src/rx_flutter/rx_obx_widget.dart';
-
 // Project imports:
 import 'package:jd_mall_flutter/common/style/common_style.dart';
 import 'package:jd_mall_flutter/common/util/screen_util.dart';
@@ -12,163 +9,163 @@ import 'package:jd_mall_flutter/component/group_grid_view.dart';
 import 'package:jd_mall_flutter/component/image/extend_image_network.dart';
 import 'package:jd_mall_flutter/component/no_shadow_scroll_behavior.dart';
 import 'package:jd_mall_flutter/models/second_group_category_info.dart';
-import 'package:jd_mall_flutter/view/page/category/category_controller.dart';
+import 'package:jd_mall_flutter/view/page/category/category_provider.dart';
+import 'package:provider/provider.dart';
 
-late double rWidth, bWidth;
+//右侧占屏幕三分之二
+double rWidth = getScreenWidth() * 2 / 3;
+
 //gridview的item宽和高一样
-double thirdCateItemHeight = 0;
+double thirdCateItemWidth = rWidth / 3;
+double thirdCateItemHeight = thirdCateItemWidth;
 
-Widget rightGroupList() {
-  //右侧占屏幕三分之二
-  rWidth = getScreenWidth() * 2 / 3;
+//右侧内容宽度
+double bWidth = rWidth - 28;
 
-  //gridview的item宽和高一样
-  double thirdCateItemWidth = rWidth / 3;
-  thirdCateItemHeight = thirdCateItemWidth;
+class RightGroupList extends StatefulWidget {
+  final ScrollController rightScrollController;
+  final ScrollController gridViewController;
+  const RightGroupList(this.rightScrollController, this.gridViewController, {super.key});
 
-  //右侧内容宽度
-  bWidth = rWidth - 28;
+  @override
+  State<RightGroupList> createState() => RightGroupListState();
+}
 
-  return Obx(() {
-    bool isTabClicked = CategoryController.to.isTabClicked.value;
-    SecondCateList? selectSecondCategoryInfo = CategoryController.to.selectSecondCategoryInfo.value;
-    SecondGroupCategoryInfo? secondGroupCategoryInfo = CategoryController.to.secondGroupCategoryInfo.value;
-    String headUrl = secondGroupCategoryInfo.bannerUrl ?? "";
-    List<SecondCateList> secondCateList = secondGroupCategoryInfo.secondCateList ?? [];
+class RightGroupListState extends State<RightGroupList> {
 
-    final secondKeys = <GlobalKey>[];
-    for (var element in secondGroupCategoryInfo.secondCateList ?? []) {
-      secondKeys.add(GlobalKey(debugLabel: 'second_${element.categoryCode}'));
-    }
-
-    final keys = <GlobalKey>[];
-    for (var element in secondCateList) {
-      keys.add(GlobalKey(debugLabel: 'section_${element.categoryCode}'));
-    }
-
-    void tabScrollToMiddle(int index) {
-      double toLeft = 0;
-      double total = 0;
-      if (index != 0) {
-        int newIndex = index - 1;
-        for (int i = 0; i < secondCateList.length; i++) {
-          RenderBox? box = secondKeys[i].currentContext?.findAncestorRenderObjectOfType<RenderBox>();
-          if (box != null) {
-            double w = box.size.width;
-            total += w;
-            if (i <= newIndex) {
-              toLeft += w;
-            }
-          }
-        }
-        toLeft = toLeft - bWidth / 2;
-        if (toLeft < 0) toLeft = 0;
-        if (toLeft > total - bWidth) toLeft = total - bWidth;
-      }
-      CategoryController.to.rightScrollController.animateTo(toLeft, duration: const Duration(milliseconds: 300), curve: Curves.linear);
-    }
-
-    List<Widget> widgets = [];
-    //二级分类上面的图片
-    if (headUrl != "") {
-      widgets.add(
-        ExtendImageNetwork(url: headUrl,
-          width: bWidth,
-          height: 100,
-          cache: true,
-          fit: BoxFit.cover,
-        ),
-      );
-    }
-
-    //二级分类滚动列表
-    widgets.add(
-      Container(
-        width: bWidth,
-        height: 32,
-        margin: const EdgeInsets.only(top: 10, bottom: 10),
-        child: ListView.builder(
-          controller: CategoryController.to.rightScrollController,
-          itemCount: secondCateList.length,
-          scrollDirection: Axis.horizontal,
-          shrinkWrap: true,
-          itemBuilder: (BuildContext context, int index) {
-            bool isSelect = selectSecondCategoryInfo.categoryCode == secondCateList[index].categoryCode;
-
-            return GestureDetector(
-              behavior: HitTestBehavior.translucent,
-              onTap: () {
-                //如果不是当前选中的二级分类
-                if (selectSecondCategoryInfo.categoryCode != secondCateList[index].categoryCode) {
-                  //滚动二级分类至中间
-                  tabScrollToMiddle(index);
-                  //选中二级分类
-                  CategoryController.to.selectSecondCategory(secondCateList[index], true);
-
-                  //滚动三级分类
-                  RenderSliverToBoxAdapter? keyRenderObject = keys[index].currentContext?.findAncestorRenderObjectOfType<RenderSliverToBoxAdapter>();
-                  if (keyRenderObject != null) {
-                    CategoryController.to.gridViewController.position
-                        .ensureVisible(keyRenderObject, duration: const Duration(milliseconds: 300), curve: Curves.linear)
-                        .then((value) => CategoryController.to.setTabClicked(false));
-                  }
-                }
-              },
-              child: SecondCategoryItem(secondKeys: secondKeys, secondCateList: secondCateList, isSelect: isSelect, index: index),
-            );
-          },
-        ),
-      ),
-    );
-
-    //三级分组Gridview列表
-    widgets.add(
-      Expanded(
-        child: NotificationListener<ScrollNotification>(
-          onNotification: (ScrollNotification notification) {
-            if (notification.depth == 0) {
-              if (isTabClicked) return false;
-
-              int newIndex = findFirstVisibleItemIndex(keys);
-              if (selectSecondCategoryInfo.categoryCode != secondCateList[newIndex].categoryCode) {
-                //滚动二级分类至中间
-                tabScrollToMiddle(newIndex);
-                //选中二级分类
-                CategoryController.to.selectSecondCategory(secondCateList[newIndex], false);
-              }
-            }
-            return false;
-          },
-          child: GroupGridView(
-            controller: CategoryController.to.gridViewController,
-            padding: EdgeInsets.zero,
-            scrollBehavior: NoShadowScrollBehavior(),
-            gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-              crossAxisCount: 3,
-              mainAxisSpacing: 0,
-              crossAxisSpacing: 0,
-            ),
-            sectionCount: secondCateList.length,
-            itemInSectionCount: (int section) => secondCateList[section].cateList!.length,
-            itemInSectionBuilder: (BuildContext context, IndexPath indexPath) =>
-                ThirdCategoryItem(thirdCateItemWidth: thirdCateItemWidth, secondCateList: secondCateList, indexPath: indexPath),
-            headerForSection: (section) => GroupHeader(keys: keys, secondCateList: secondCateList, section: section),
-          ),
-        ),
-      ),
-    );
-
+  @override
+  Widget build(BuildContext context) {
     return Expanded(
       flex: 2,
       child: Container(
         color: Colors.white,
         padding: const EdgeInsets.only(top: 10),
-        child: Column(
-          children: widgets,
+        child: Consumer<CategoryProvider>(
+            builder: (context, provider, child) {
+
+              bool isTabClicked = provider.isTabClicked;
+              SecondCateList? selectSecondCategoryInfo = provider.selectSecondCategoryInfo;
+              SecondGroupCategoryInfo? secondGroupCategoryInfo = provider.secondGroupCategoryInfo;
+              String headUrl = secondGroupCategoryInfo.bannerUrl ?? "";
+              List<SecondCateList> secondCateList = secondGroupCategoryInfo.secondCateList ?? [];
+
+              final secondKeys = <GlobalKey>[];
+              for (var element in secondGroupCategoryInfo.secondCateList ?? []) {
+                secondKeys.add(GlobalKey(debugLabel: 'second_${element.categoryCode}'));
+              }
+
+              final keys = <GlobalKey>[];
+              for (var element in secondCateList) {
+                keys.add(GlobalKey(debugLabel: 'section_${element.categoryCode}'));
+              }
+
+              void tabScrollToMiddle(int index) {
+                double toLeft = 0;
+                double total = 0;
+                if (index != 0) {
+                  int newIndex = index - 1;
+                  for (int i = 0; i < secondCateList.length; i++) {
+                    RenderBox? box = secondKeys[i].currentContext?.findAncestorRenderObjectOfType<RenderBox>();
+                    if (box != null) {
+                      double w = box.size.width;
+                      total += w;
+                      if (i <= newIndex) {
+                        toLeft += w;
+                      }
+                    }
+                  }
+                  toLeft = toLeft - bWidth / 2;
+                  if (toLeft < 0) toLeft = 0;
+                  if (toLeft > total - bWidth) toLeft = total - bWidth;
+                }
+                widget.rightScrollController.animateTo(toLeft, duration: const Duration(milliseconds: 300), curve: Curves.linear);
+              }
+
+
+              return Column(
+                children: [
+                  ExtendImageNetwork(url: headUrl,
+                    width: bWidth,
+                    height: 100,
+                    cache: true,
+                    fit: BoxFit.cover,
+                  ),
+                  Container(
+                    width: bWidth,
+                    height: 32,
+                    margin: const EdgeInsets.only(top: 10, bottom: 10),
+                    child: ListView.builder(
+                      controller: widget.rightScrollController,
+                      itemCount: secondCateList.length,
+                      scrollDirection: Axis.horizontal,
+                      shrinkWrap: true,
+                      itemBuilder: (BuildContext context, int index) {
+                        bool isSelect = selectSecondCategoryInfo.categoryCode == secondCateList[index].categoryCode;
+
+                        return GestureDetector(
+                          behavior: HitTestBehavior.translucent,
+                          onTap: () {
+                            //如果不是当前选中的二级分类
+                            if (selectSecondCategoryInfo.categoryCode != secondCateList[index].categoryCode) {
+                              //滚动二级分类至中间
+                              tabScrollToMiddle(index);
+                              //选中二级分类
+                              provider.selectSecondCategory(secondCateList[index], true);
+
+                              //滚动三级分类
+                              RenderSliverToBoxAdapter? keyRenderObject = keys[index].currentContext?.findAncestorRenderObjectOfType<RenderSliverToBoxAdapter>();
+                              if (keyRenderObject != null) {
+                                widget.gridViewController.position
+                                    .ensureVisible(keyRenderObject, duration: const Duration(milliseconds: 300), curve: Curves.linear)
+                                    .then((value) => provider.setTabClicked(false));
+                              }
+                            }
+                          },
+                          child: SecondCategoryItem(secondKeys: secondKeys, secondCateList: secondCateList, isSelect: isSelect, index: index),
+                        );
+                      },
+                    ),
+                  ),
+                  Expanded(
+                    child: NotificationListener<ScrollNotification>(
+                      onNotification: (ScrollNotification notification) {
+                        if (notification.depth == 0) {
+                          if (isTabClicked) return false;
+
+                          int newIndex = findFirstVisibleItemIndex(keys);
+                          if (selectSecondCategoryInfo.categoryCode != secondCateList[newIndex].categoryCode) {
+                            //滚动二级分类至中间
+                            tabScrollToMiddle(newIndex);
+                            //选中二级分类
+                            provider.selectSecondCategory(secondCateList[newIndex], false);
+                          }
+                        }
+                        return false;
+                      },
+                      child: GroupGridView(
+                        controller: widget.gridViewController,
+                        padding: EdgeInsets.zero,
+                        scrollBehavior: NoShadowScrollBehavior(),
+                        gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                          crossAxisCount: 3,
+                          mainAxisSpacing: 0,
+                          crossAxisSpacing: 0,
+                        ),
+                        sectionCount: secondCateList.length,
+                        itemInSectionCount: (int section) => secondCateList[section].cateList!.length,
+                        itemInSectionBuilder: (BuildContext context, IndexPath indexPath) =>
+                            ThirdCategoryItem(thirdCateItemWidth: thirdCateItemWidth, secondCateList: secondCateList, indexPath: indexPath),
+                        headerForSection: (section) => GroupHeader(keys: keys, secondCateList: secondCateList, section: section),
+                      ),
+                    ),
+                  ),
+                ],
+              );
+            }
         ),
       ),
     );
-  });
+  }
 }
 
 class SecondCategoryItem extends StatelessWidget {

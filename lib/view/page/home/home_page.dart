@@ -31,6 +31,7 @@ class HomePage extends StatefulWidget {
 class HomePageState extends State<HomePage> {
   final EasyRefreshController freshController = EasyRefreshController(controlFinishRefresh: true);
   final ScrollController scrollController = ScrollController();
+  final PageController pageController = PageController();
 
   @override
   void initState() {
@@ -44,7 +45,7 @@ class HomePageState extends State<HomePage> {
   void dispose() {
     freshController.dispose();
     scrollController.dispose();
-    context.read<HomeProvider>().pageController.dispose();
+    pageController.dispose();
     super.dispose();
   }
 
@@ -73,7 +74,7 @@ class HomePageState extends State<HomePage> {
                   GalleryList(),
                   AdvBanner(),
                   MenuSlider(),
-                  TabList(),
+                  TabList(pageController),
                 ];
               },
               onlyOneScrollInBody: true,
@@ -83,7 +84,7 @@ class HomePageState extends State<HomePage> {
                   String currentTab = provider.currentTab;
 
                   return PageView(
-                    controller: provider.pageController,
+                    controller: pageController,
                     onPageChanged: (index) {
                       if (provider.isTabClick) return;
                       provider.changeCurrentTab(tabs[index].code!);

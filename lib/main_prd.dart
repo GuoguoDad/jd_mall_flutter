@@ -6,7 +6,11 @@ import 'dart:io';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:jd_mall_flutter/view/page/cart/cart_provider.dart';
+import 'package:jd_mall_flutter/view/page/category/category_provider.dart';
+import 'package:jd_mall_flutter/view/page/detail/detail_provider.dart';
 import 'package:jd_mall_flutter/view/page/home/home_provider.dart';
+import 'package:jd_mall_flutter/view/page/mine/mine_provider.dart';
 import 'package:provider/provider.dart';
 
 // Package imports:
@@ -25,7 +29,13 @@ void initApp(Map<String, dynamic> envMap) async {
   await Global.initPreferences();
 
   runApp(MultiProvider(
-      providers: [ChangeNotifierProvider(create: (_) => HomeProvider())],
+      providers: [
+        ChangeNotifierProvider(create: (_) => HomeProvider()),
+        ChangeNotifierProvider(create: (_) => CategoryProvider()),
+        ChangeNotifierProvider(create: (_) => CartProvider()),
+        ChangeNotifierProvider(create: (_) => MineProvider()),
+        ChangeNotifierProvider(create: (_) => DetailProvider()),
+      ],
       child: const MallApp()
   ));
 

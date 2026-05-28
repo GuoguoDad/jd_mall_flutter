@@ -12,8 +12,6 @@ class HomeProvider extends ChangeNotifier {
   int menuSliderIndex = 0;
   HomePageInfo homePageInfo = HomePageInfo.fromJson({});
 
-  final PageController pageController = PageController();
-
   Future<void> initPageData() async {
     isLoading = true;
     notifyListeners();

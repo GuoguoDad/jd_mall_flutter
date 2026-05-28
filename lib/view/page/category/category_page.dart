@@ -1,19 +1,41 @@
 // Flutter imports:
 import 'package:flutter/material.dart';
 
-// Package imports:
-import 'package:get/get_state_manager/src/rx_flutter/rx_obx_widget.dart';
-import 'package:get/instance_manager.dart';
-
 // Project imports:
 import 'package:jd_mall_flutter/component/loading_widget.dart';
-import 'package:jd_mall_flutter/view/page/category/category_controller.dart';
+import 'package:jd_mall_flutter/view/page/category/category_provider.dart';
 import 'package:jd_mall_flutter/view/page/category/widget/header.dart';
 import 'package:jd_mall_flutter/view/page/category/widget/left_cate.dart';
 import 'package:jd_mall_flutter/view/page/category/widget/right_group.dart';
+import 'package:provider/provider.dart';
 
-class CategoryPage extends StatelessWidget {
+class CategoryPage extends StatefulWidget {
   const CategoryPage({super.key});
+
+  @override
+  State<CategoryPage> createState() => CategoryPageState();
+}
+
+class CategoryPageState extends State<CategoryPage> {
+  final ScrollController scrollController = ScrollController();
+  final ScrollController rightScrollController = ScrollController();
+  final ScrollController gridViewController = ScrollController();
+
+  @override
+  void initState() {
+    super.initState();
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      context.read<CategoryProvider>().initPageData();
+    });
+  }
+
+  @override
+  void dispose() {
+    scrollController.dispose();
+    rightScrollController.dispose();
+    gridViewController.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -22,20 +44,13 @@ class CategoryPage extends StatelessWidget {
         header(context),
         Expanded(
           flex: 1,
-          child: Obx(() {
-            bool isLoading = CategoryController.to.isLoading.value;
-            if (isLoading) {
-              return loadingWidget();
-            }
-
-            return Flex(
-              direction: Axis.horizontal,
-              children: [
-                leftCate(),
-                rightGroupList(),
-              ],
-            );
-          }),
+          child: Flex(
+            direction: Axis.horizontal,
+            children: [
+              LeftCategoryList(scrollController),
+              RightGroupList(rightScrollController, gridViewController),
+            ],
+          ),
         ),
       ],
     );

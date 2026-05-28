@@ -3,31 +3,34 @@ import 'package:flutter/material.dart';
 
 // Package imports:
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
-import 'package:get/get_state_manager/src/rx_flutter/rx_obx_widget.dart';
 
 // Project imports:
 import 'package:jd_mall_flutter/common/util/screen_util.dart';
 import 'package:jd_mall_flutter/component/goods_item.dart';
 import 'package:jd_mall_flutter/models/goods_page_info.dart';
-import 'package:jd_mall_flutter/view/page/detail/detail_controller.dart';
+import 'package:jd_mall_flutter/view/page/detail/detail_provider.dart';
+import 'package:provider/provider.dart';
 
-double screenWidth = 0;
+double screenWidth = getScreenWidth();
 
-Widget storeGoods(BuildContext context) {
-  screenWidth = getScreenWidth();
+class StoreGoodsList extends StatelessWidget {
+  const StoreGoodsList({super.key});
 
-  return Obx(
-    () {
-      double width = (getScreenWidth() - 20) / 2;
-      List<GoodsList>? goodsList = DetailController.to.goodsPageInfo.value.goodsList ?? [];
+  @override
+  Widget build(BuildContext context) {
+    return Consumer<DetailProvider>(
+      builder: (context, provider, child) {
+        double width = (getScreenWidth() - 20) / 2;
+        List<GoodsList>? goodsList = provider.goodsPageInfo.goodsList ?? [];
 
-      return SliverMasonryGrid.count(
-        childCount: goodsList.length,
-        crossAxisCount: 2,
-        mainAxisSpacing: 10,
-        crossAxisSpacing: 0,
-        itemBuilder: (context, index) => goodsItem(context, goodsList[index], width),
-      );
-    },
-  );
+        return SliverMasonryGrid.count(
+          childCount: goodsList.length,
+          crossAxisCount: 2,
+          mainAxisSpacing: 10,
+          crossAxisSpacing: 0,
+          itemBuilder: (context, index) => goodsItem(context, goodsList[index], width),
+        );
+      }
+    );
+  }
 }

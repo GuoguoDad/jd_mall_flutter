@@ -5,7 +5,6 @@ import 'package:get/get.dart';
 import 'package:jd_mall_flutter/middleware/auth_middleware.dart';
 import 'package:jd_mall_flutter/view/main/main_bindings.dart';
 import 'package:jd_mall_flutter/view/main/main_page.dart';
-import 'package:jd_mall_flutter/view/page/detail/detail_bindings.dart';
 import 'package:jd_mall_flutter/view/page/detail/detail_page.dart';
 import 'package:jd_mall_flutter/view/page/example/Interlaced_animation.dart';
 import 'package:jd_mall_flutter/view/page/example/breathing_method.dart';
@@ -70,7 +69,6 @@ List<GetPage> appPages = [
   GetPage(
     name: RoutesEnum.detailPage.path,
     page: () => const DetailPage(),
-    binding: DetailBindings(),
   ),
   GetPage(
     name: RoutesEnum.webViewPage.path,

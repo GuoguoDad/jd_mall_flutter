@@ -1,22 +1,25 @@
 // Flutter imports:
 import 'package:flutter/material.dart';
 
-// Package imports:
-import 'package:get/get_state_manager/src/rx_flutter/rx_obx_widget.dart';
-
 // Project imports:
 import 'package:jd_mall_flutter/component/page_menu.dart';
 import 'package:jd_mall_flutter/models/mine_menu_tab_info.dart';
-import 'package:jd_mall_flutter/view/page/mine/mine_controller.dart';
+import 'package:jd_mall_flutter/view/page/mine/mine_provider.dart';
+import 'package:provider/provider.dart';
 
-Widget singleLineMenu() {
-  return Obx(
-    () {
-      List<FunctionInfo> menuData = MineController.to.menuTabInfo.value.functionList ?? [];
+class SingleLineMenu extends StatelessWidget {
+  const SingleLineMenu({super.key});
 
-      return SliverToBoxAdapter(
-        child: PageMenu(menuDataList: menuData),
-      );
-    },
-  );
+  @override
+  Widget build(BuildContext context) {
+    return Consumer<MineProvider>(
+      builder: (context, provider, child) {
+       List<FunctionInfo> menuData = provider.menuTabInfo.functionList ?? [];
+
+       return SliverToBoxAdapter(
+         child: PageMenu(menuDataList: menuData),
+       );
+      }
+    );
+  }
 }
