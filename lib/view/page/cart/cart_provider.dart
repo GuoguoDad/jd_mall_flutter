@@ -7,9 +7,6 @@ import 'package:jd_mall_flutter/view/page/cart/service.dart';
 import 'package:pull_to_refresh_flutter3/pull_to_refresh_flutter3.dart';
 
 class CartProvider extends ChangeNotifier {
-  final ScrollController scrollController = ScrollController();
-  final RefreshController refreshController = RefreshController();
-
   bool isLoading = true;
 
   List<CartGoods> cartGoods = <CartGoods>[];

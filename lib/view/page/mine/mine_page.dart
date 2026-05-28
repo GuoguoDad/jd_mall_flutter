@@ -29,6 +29,9 @@ class MinePage extends StatefulWidget {
 }
 
 class MinePageState extends State<MinePage> {
+  late final EasyRefreshController freshController = EasyRefreshController(controlFinishRefresh: true);
+  late final ScrollController scrollController = ScrollController();
+  late final PageController pageController = PageController();
 
   @override
   void initState() {
@@ -40,9 +43,9 @@ class MinePageState extends State<MinePage> {
 
   @override
   void dispose() {
-    context.read<MineProvider>().freshController.dispose();
-    context.read<MineProvider>().scrollController.dispose();
-    context.read<MineProvider>().pageController.dispose();
+    freshController.dispose();
+    scrollController.dispose();
+    pageController.dispose();
     super.dispose();
   }
 
@@ -51,16 +54,16 @@ class MinePageState extends State<MinePage> {
     return NotificationListener<ScrollNotification>(
       onNotification: (ScrollNotification notification) => onPageScroll(context, notification),
       child: EasyRefresh.builder(
-        controller: context.read<MineProvider>().freshController,
+        controller: freshController,
         header: classicHeader,
         onRefresh: () => context.read<MineProvider>().refreshPage(
-          () => easyRefreshSuccess(context.read<MineProvider>().freshController),
-          () => easyRefreshFail(context.read<MineProvider>().freshController),
+          () => easyRefreshSuccess(freshController),
+          () => easyRefreshFail(freshController),
         ),
         childBuilder: (context, physics) {
           return Scaffold(
             body: ExtendedNestedScrollView(
-              controller: context.read<MineProvider>().scrollController,
+              controller: scrollController,
               pinnedHeaderSliverHeightBuilder: () {
                 return getStatusHeight() + 48 + 54;
               },
@@ -70,7 +73,7 @@ class MinePageState extends State<MinePage> {
                   InfoHeader(),
                   OrderCard(),
                   SingleLineMenu(),
-                  TabList(),
+                  TabList(pageController),
                 ];
               },
               onlyOneScrollInBody: true,
@@ -80,7 +83,7 @@ class MinePageState extends State<MinePage> {
                   String currentTab = provider.currentTab;
 
                   return PageView(
-                    controller: provider.pageController,
+                    controller: pageController,
                     onPageChanged: (index) {
                       if (provider.isTabClick) return;
                       provider.changeCurrentTab(tabs[index].code!);
@@ -92,7 +95,7 @@ class MinePageState extends State<MinePage> {
             ),
             floatingActionButton: Consumer<MineProvider>(
               builder: (context, provider, child) {
-                return backTop(provider.showBackTop, provider.scrollController);
+                return backTop(provider.showBackTop, scrollController);
               }
             ),
           );

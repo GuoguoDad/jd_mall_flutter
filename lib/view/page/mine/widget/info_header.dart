@@ -10,7 +10,7 @@ import 'package:jd_mall_flutter/component/image/asset_image.dart';
 import 'package:jd_mall_flutter/component/persistentHeader/sliver_header_builder.dart';
 import 'package:jd_mall_flutter/generated/assets.dart';
 import 'package:jd_mall_flutter/routes.dart';
-import 'package:jd_mall_flutter/view/page/login/login_controller.dart';
+import 'package:jd_mall_flutter/view/page/login/login_provider.dart';
 import 'package:jd_mall_flutter/view/page/mine/mine_provider.dart';
 import 'package:provider/provider.dart';
 
@@ -111,7 +111,7 @@ class InfoHeader extends StatelessWidget {
               shape: const CircleBorder(),
               image: DecorationImage(
                 fit: BoxFit.contain,
-                image: AssetImage(LoginController.to.hasLogin.value ? Assets.imagesHeader : Assets.imagesIcDefaultHeader),
+                image: AssetImage(context.watch<LoginProvider>().hasLogin ? Assets.imagesHeader : Assets.imagesIcDefaultHeader),
               ),
             ),
           ),
@@ -131,8 +131,7 @@ class InfoHeader extends StatelessWidget {
           height: 60,
           child: Opacity(
             opacity: 1 - headerSize.opacity,
-            child: Obx(() {
-              return LoginController.to.hasLogin.value
+            child: context.watch<LoginProvider>().hasLogin
                   ? Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -167,8 +166,7 @@ class InfoHeader extends StatelessWidget {
                     ),
                   ],
                 ),
-              );
-            }),
+              )
           ),
         ),
       );

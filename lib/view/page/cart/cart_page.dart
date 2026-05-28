@@ -27,6 +27,9 @@ class CartPage extends StatefulWidget {
 
 
 class CartPageState extends State<CartPage> {
+  final ScrollController scrollController = ScrollController();
+  final RefreshController refreshController = RefreshController();
+
 
   @override
   void initState() {
@@ -38,8 +41,8 @@ class CartPageState extends State<CartPage> {
 
   @override
   void dispose() {
-    context.read<CartProvider>().refreshController.dispose();
-    context.read<CartProvider>().scrollController.dispose();
+    refreshController.dispose();
+    scrollController.dispose();
     super.dispose();
   }
 
@@ -52,20 +55,20 @@ class CartPageState extends State<CartPage> {
           child: Scaffold(
             backgroundColor: CommonStyle.colorF3F3F3,
             body: SmartRefresher(
-              controller: context.read<CartProvider>().refreshController,
+              controller: refreshController,
               physics: const BouncingScrollPhysics(),
               enablePullUp: true,
               header: const ClassicHeader(spacing: 10, height: 58),
               onRefresh: () => context.read<CartProvider>().refreshPage(
-                    () => refreshSuccess(context.read<CartProvider>().refreshController),
-                    () => refreshFail(context.read<CartProvider>().refreshController),
+                    () => refreshSuccess(refreshController),
+                    () => refreshFail(refreshController),
               ),
               onLoading: () => context.read<CartProvider>().loadNextPage(
-                    () => loadMoreSuccess(context.read<CartProvider>().refreshController),
-                    () => loadMoreFail(context.read<CartProvider>().refreshController),
+                    () => loadMoreSuccess(refreshController),
+                    () => loadMoreFail(refreshController),
               ),
               child: CustomScrollView(
-                controller: context.read<CartProvider>().scrollController,
+                controller: scrollController,
                 slivers: [
                   TopCondition(),
                   CartGoodsList(),
@@ -74,7 +77,7 @@ class CartPageState extends State<CartPage> {
                 ],
               ),
             ),
-            floatingActionButton: BackToTop(context.read<CartProvider>().scrollController),
+            floatingActionButton: BackToTop(scrollController),
           ),
         ),
         TotalSettlement()

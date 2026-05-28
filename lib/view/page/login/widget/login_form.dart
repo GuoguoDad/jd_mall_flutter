@@ -11,14 +11,15 @@ import 'package:jd_mall_flutter/common/style/common_style.dart';
 import 'package:jd_mall_flutter/common/types/common.dart';
 import 'package:jd_mall_flutter/common/util/screen_util.dart';
 import 'package:jd_mall_flutter/component/linear_button.dart';
-import 'package:jd_mall_flutter/view/page/login/login_controller.dart';
+import 'package:jd_mall_flutter/view/page/login/login_provider.dart';
+import 'package:provider/provider.dart';
 
 Widget loginForm(BuildContext context) {
   return SizedBox(
     height: 300,
     width: getScreenWidth() - 24,
     child: FormBuilder(
-      key: LoginController.to.formKey,
+      key: context.read<LoginProvider>().formKey,
       initialValue: const {
         'userName': "GuoguoDad",
         'password': "GuoguoDad",
@@ -36,23 +37,26 @@ Widget loginForm(BuildContext context) {
           ),
         ),
         itemContainer(
-          child: Obx(
-            () => FormBuilderTextField(
-              name: 'password',
-              decoration: passwordInputDecoration(
-                hintText: '请输入密码',
-                visibility: LoginController.to.showPassword.value,
-                onPress: (va) {
-                  LoginController.to.setShowPassword(va);
-                },
-              ),
-              obscureText: !LoginController.to.showPassword.value,
-              validator: FormBuilderValidators.compose([
-                FormBuilderValidators.required(),
-                FormBuilderValidators.minLength(6),
-                FormBuilderValidators.maxLength(16),
-              ]),
-            ),
+          child: Consumer<LoginProvider>(
+              builder: (context, provider, child) {
+
+                return FormBuilderTextField(
+                  name: 'password',
+                  decoration: passwordInputDecoration(
+                    hintText: '请输入密码',
+                    visibility: provider.showPassword,
+                    onPress: (va) {
+                      provider.setShowPassword(va);
+                    },
+                  ),
+                  obscureText: !provider.showPassword,
+                  validator: FormBuilderValidators.compose([
+                    FormBuilderValidators.required(),
+                    FormBuilderValidators.minLength(6),
+                    FormBuilderValidators.maxLength(16),
+                  ]),
+                );
+              }
           ),
         ),
         btnContainer(
@@ -61,7 +65,7 @@ Widget loginForm(BuildContext context) {
             height: 58,
             width: getScreenWidth() - 24,
             borderRadius: BorderRadius.circular(50),
-            onTap: () => LoginController.to.login(),
+            onTap: () => context.read<LoginProvider>().login(),
           ),
         )
       ]),

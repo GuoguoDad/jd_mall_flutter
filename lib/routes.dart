@@ -3,7 +3,6 @@ import 'package:get/get.dart';
 
 // Project imports:
 import 'package:jd_mall_flutter/middleware/auth_middleware.dart';
-import 'package:jd_mall_flutter/view/main/main_bindings.dart';
 import 'package:jd_mall_flutter/view/main/main_page.dart';
 import 'package:jd_mall_flutter/view/page/detail/detail_page.dart';
 import 'package:jd_mall_flutter/view/page/example/Interlaced_animation.dart';
@@ -15,7 +14,6 @@ import 'package:jd_mall_flutter/view/page/example/gesture_spring.dart';
 import 'package:jd_mall_flutter/view/page/example/sample_list.dart';
 import 'package:jd_mall_flutter/view/page/example/snow_man.dart';
 import 'package:jd_mall_flutter/view/page/example/video_simple.dart';
-import 'package:jd_mall_flutter/view/page/login/login_bindings.dart';
 import 'package:jd_mall_flutter/view/page/login/login_page.dart';
 import 'package:jd_mall_flutter/view/page/order/generate/generate_order.dart';
 import 'package:jd_mall_flutter/view/page/personal/personal_info.dart';
@@ -64,7 +62,6 @@ List<GetPage> appPages = [
   GetPage(
     name: RoutesEnum.mainPage.path,
     page: () => const MainPage(),
-    binding: MainBindings(),
   ),
   GetPage(
     name: RoutesEnum.detailPage.path,
@@ -77,18 +74,15 @@ List<GetPage> appPages = [
   GetPage(
     name: RoutesEnum.generateOrder.path,
     page: () => const GenerateOrder(),
-    binding: LoginBindings(),
     middlewares: [EnsureAuthMiddleware()],
   ),
   GetPage(
     name: RoutesEnum.personalInfo.path,
     page: () => const PersonalInfo(),
-    binding: LoginBindings(),
     middlewares: [EnsureAuthMiddleware()],
   ),
   GetPage(
     name: RoutesEnum.loginPage.path,
     page: () => const LoginPage(),
-    binding: LoginBindings(),
   ),
 ];

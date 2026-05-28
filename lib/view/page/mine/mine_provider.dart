@@ -4,9 +4,6 @@ import 'package:jd_mall_flutter/models/mine_menu_tab_info.dart';
 import 'package:jd_mall_flutter/view/page/mine/service.dart';
 
 class MineProvider extends ChangeNotifier {
-  late final EasyRefreshController freshController = EasyRefreshController(controlFinishRefresh: true);
-  late final ScrollController scrollController = ScrollController();
-  late final PageController pageController = PageController();
 
   bool isLoading = true;
 

@@ -16,7 +16,8 @@ import 'package:jd_mall_flutter/component/linear_button.dart';
 import 'package:jd_mall_flutter/generated/assets.dart';
 import 'package:jd_mall_flutter/mixin/image_picker_mixin.dart';
 import 'package:jd_mall_flutter/routes.dart';
-import 'package:jd_mall_flutter/view/page/login/login_controller.dart';
+import 'package:jd_mall_flutter/view/page/login/login_provider.dart';
+import 'package:provider/provider.dart';
 
 class PersonalInfo extends StatefulWidget {
   const PersonalInfo({super.key});
@@ -65,6 +66,7 @@ class _PersonalInfoState extends State<PersonalInfo> with ImagePickerMixin {
             height: 50,
             btnName: '退出登录',
             onTap: () async {
+              context.read<LoginProvider>().setLogin(false);
               await logout();
             },
           ),
@@ -81,7 +83,6 @@ class _PersonalInfoState extends State<PersonalInfo> with ImagePickerMixin {
     await Global.preferences?.remove("headerImg");
     await Global.preferences?.remove("integral");
     await Global.preferences?.remove("creditValue");
-    LoginController.to.setLogin(false);
 
     Get.offNamed(RoutesEnum.loginPage.path);
   }

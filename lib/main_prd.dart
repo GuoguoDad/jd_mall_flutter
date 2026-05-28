@@ -10,6 +10,7 @@ import 'package:jd_mall_flutter/view/page/cart/cart_provider.dart';
 import 'package:jd_mall_flutter/view/page/category/category_provider.dart';
 import 'package:jd_mall_flutter/view/page/detail/detail_provider.dart';
 import 'package:jd_mall_flutter/view/page/home/home_provider.dart';
+import 'package:jd_mall_flutter/view/page/login/login_provider.dart';
 import 'package:jd_mall_flutter/view/page/mine/mine_provider.dart';
 import 'package:provider/provider.dart';
 
@@ -35,6 +36,7 @@ void initApp(Map<String, dynamic> envMap) async {
         ChangeNotifierProvider(create: (_) => CartProvider()),
         ChangeNotifierProvider(create: (_) => MineProvider()),
         ChangeNotifierProvider(create: (_) => DetailProvider()),
+        ChangeNotifierProvider(create: (_) => LoginProvider()),
       ],
       child: const MallApp()
   ));

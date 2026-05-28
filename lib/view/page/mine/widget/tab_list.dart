@@ -8,9 +8,15 @@ import 'package:jd_mall_flutter/component/persistentHeader/sliver_header_builder
 import 'package:jd_mall_flutter/view/page/mine/mine_provider.dart';
 import 'package:provider/provider.dart';
 
-class TabList extends StatelessWidget {
-  TabList({super.key});
+class TabList extends StatefulWidget {
+  final PageController pageController;
+  const TabList(this.pageController, {super.key});
 
+  @override
+  State<TabList> createState() => TabListState();
+}
+
+class TabListState extends State<TabList> {
   ScrollController controller = ScrollController();
   double screenWidth = getScreenWidth();
 
@@ -73,7 +79,7 @@ class TabList extends StatelessWidget {
                     onTap: () {
                       provider.setIsTabClick(true);
                       provider.changeCurrentTab(tabs[index].code!);
-                      provider.pageController
+                      widget.pageController
                           .animateToPage(index, duration: const Duration(milliseconds: 200), curve: Curves.linear)
                           .then((value) => provider.setIsTabClick(false));
                       tabScrollToMiddle(index);

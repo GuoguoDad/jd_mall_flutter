@@ -1,34 +1,27 @@
-// Flutter imports:
-import 'package:flutter/cupertino.dart';
-
-// Package imports:
+import 'package:flutter/material.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
-import 'package:get/get.dart';
-
-// Project imports:
+import 'package:get/get_core/src/get_main.dart';
+import 'package:get/get_navigation/src/extension_navigation.dart';
 import 'package:jd_mall_flutter/common/extension/get_router_navigation_ext.dart';
 import 'package:jd_mall_flutter/common/global/Global.dart';
-import 'package:jd_mall_flutter/common/util/util.dart';
 import 'package:jd_mall_flutter/routes.dart';
 import 'package:jd_mall_flutter/view/page/login/service.dart';
 
-class LoginController extends GetxController {
-  static LoginController get to => Get.find();
+class LoginProvider extends ChangeNotifier {
+  bool hasLogin = false;
 
-  RxBool hasLogin = false.obs;
-
-  RxBool showPassword = false.obs;
+  bool showPassword = false;
 
   final formKey = GlobalKey<FormBuilderState>();
 
-  setLogin(bool va) => hasLogin.value = va;
+  void setLogin(bool va) {
+    hasLogin = va;
+    notifyListeners();
+  }
 
-  setShowPassword(bool va) => showPassword.value = va;
-
-  @override
-  void onInit() {
-    hasLogin.value = isLogin();
-    super.onInit();
+  void setShowPassword(bool va) {
+    showPassword = va;
+    notifyListeners();
   }
 
   Future<void> login() async {
@@ -39,7 +32,7 @@ class LoginController extends GetxController {
       var res = await LoginApi.login(userName, password);
 
       if (res != null) {
-        hasLogin.value = true;
+        hasLogin = true;
         await Global.preferences!.setString("loginFlag", "LoggedIn");
         await Global.preferences!.setString("token", res.token);
         await Global.preferences!.setString("userId", res.userId);
