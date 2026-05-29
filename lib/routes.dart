@@ -2,7 +2,6 @@
 import 'package:flutter/material.dart';
 
 // Project imports:
-import 'package:jd_mall_flutter/middleware/auth_middleware.dart';
 import 'package:jd_mall_flutter/view/main/main_page.dart';
 import 'package:jd_mall_flutter/view/page/detail/detail_page.dart';
 import 'package:jd_mall_flutter/view/page/example/Interlaced_animation.dart';
@@ -47,20 +46,20 @@ enum RoutesEnum {
 
 Map<String, WidgetBuilder> routesMap = {
   //example
-  RoutesEnum.sampleList.path.toString(): (context) =>  const SampleList(),
-  RoutesEnum.completeForm.path.toString(): (context) =>  const CompleteForm(),
-  RoutesEnum.interlacedAnimation.path.toString(): (context) => const InterlacedAnimationDemo(),
-  RoutesEnum.breathingMethod.path.toString(): (context) => const BreathingMethod(),
-  RoutesEnum.snowMan.path.toString(): (context) => const SnowManDemo(),
-  RoutesEnum.gestureSpring.path.toString(): (context) => const GestureSpring(),
-  RoutesEnum.contactList.path.toString(): (context) => const ContactList(),
-  // RoutesEnum.filePreview.path.toString(): (context) => const FilePreviewPage(),
-  RoutesEnum.videoPlayer.path.toString(): (context) => const VideoPlayerDemo(),
+  RoutesEnum.sampleList.path: (context) =>  const SampleList(),
+  RoutesEnum.completeForm.path: (context) =>  const CompleteForm(),
+  RoutesEnum.interlacedAnimation.path: (context) => const InterlacedAnimationDemo(),
+  RoutesEnum.breathingMethod.path: (context) => const BreathingMethod(),
+  RoutesEnum.snowMan.path: (context) => const SnowManDemo(),
+  RoutesEnum.gestureSpring.path: (context) => const GestureSpring(),
+  RoutesEnum.contactList.path: (context) => const ContactList(),
+  // RoutesEnum.filePreview.path: (context) => const FilePreviewPage(),
+  RoutesEnum.videoPlayer.path: (context) => const VideoPlayerDemo(),
   //pages
-  RoutesEnum.mainPage.path.toString(): (context) => const MainPage(),
-  RoutesEnum.detailPage.path.toString(): (context) => const DetailPage(),
-  RoutesEnum.webViewPage.path.toString(): (context) => const WebViewPage(),
-  RoutesEnum.generateOrder.path.toString(): (context) => const GenerateOrder(),
-  RoutesEnum.personalInfo.path.toString(): (context) => const PersonalInfo(),
-  RoutesEnum.loginPage.path.toString(): (context) => const LoginPage(),
+  RoutesEnum.mainPage.path: (context) => const MainPage(),
+  RoutesEnum.detailPage.path: (context) => const DetailPage(),
+  RoutesEnum.webViewPage.path: (context) => const WebViewPage(),
+  RoutesEnum.generateOrder.path: (context) => const GenerateOrder(),
+  RoutesEnum.personalInfo.path: (context) => const PersonalInfo(),
+  RoutesEnum.loginPage.path: (context) => const LoginPage(),
 };
