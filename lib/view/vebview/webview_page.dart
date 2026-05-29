@@ -2,14 +2,11 @@
 import 'package:flutter/material.dart';
 
 // Package imports:
-import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 
 // Project imports:
 import 'package:jd_mall_flutter/common/util/screen_util.dart';
 import 'package:jd_mall_flutter/component/loading_widget.dart';
-import 'package:jd_mall_flutter/view/vebview/type.dart';
 import 'package:jd_mall_flutter/view/vebview/widget/floating_header.dart';
 
 class WebViewPage extends StatefulWidget {
@@ -28,6 +25,12 @@ class _WebViewPageState extends State<WebViewPage> {
 
   void initView() {
     if (isInit) return;
+
+    final args = ModalRoute.of(context)!.settings.arguments;
+    var url = '';
+    if(args != null) {
+      url = (args as Map<String, dynamic>)['url'];
+    }
 
     controller = WebViewController()
       ..setJavaScriptMode(JavaScriptMode.unrestricted)
@@ -71,7 +74,7 @@ class _WebViewPageState extends State<WebViewPage> {
           },
         ),
       )
-      ..loadRequest(Uri.parse(Get.arguments['url'] ?? ""));
+      ..loadRequest(Uri.parse(url));
     isInit = true;
   }
 

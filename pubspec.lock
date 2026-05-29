@@ -265,6 +265,22 @@ packages:
       url: "https://pub.flutter-io.cn"
     source: hosted
     version: "2.1.1"
+  easy_localization:
+    dependency: "direct main"
+    description:
+      name: easy_localization
+      sha256: "2ccdf9db8fe4d9c5a75c122e6275674508fd0f0d49c827354967b8afcc56bbed"
+      url: "https://pub.flutter-io.cn"
+    source: hosted
+    version: "3.0.8"
+  easy_logger:
+    dependency: transitive
+    description:
+      name: easy_logger
+      sha256: c764a6e024846f33405a2342caf91c62e357c24b02c04dbc712ef232bf30ffb7
+      url: "https://pub.flutter-io.cn"
+    source: hosted
+    version: "0.0.2"
   easy_refresh:
     dependency: "direct main"
     description:
@@ -557,14 +573,6 @@ packages:
       url: "https://pub.flutter-io.cn"
     source: hosted
     version: "0.0.5+1"
-  get:
-    dependency: "direct main"
-    description:
-      name: get
-      sha256: b3294002946e99314c341bff0b4f3094e631a1f8cf37785e93aa7c2f04b0768e
-      url: "https://pub.flutter-io.cn"
-    source: hosted
-    version: "5.0.0-release-candidate-9.3.2"
   glob:
     dependency: transitive
     description:

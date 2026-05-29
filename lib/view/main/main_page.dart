@@ -1,9 +1,7 @@
 // Flutter imports:
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-
-// Package imports:
-import 'package:get/get.dart';
 
 // Project imports:
 import 'package:jd_mall_flutter/common/style/common_style.dart';
@@ -37,10 +35,10 @@ class _MainPageState extends State<MainPage> {
   @override
   Widget build(BuildContext context) {
     List<Map> barItems = [
-      {"iconPath": Assets.imagesIcHome, "activeIconPath": Assets.imagesIcHomeActive, "label": "tabMainHome".tr},
-      {"iconPath": Assets.imagesIcCategory, "activeIconPath": Assets.imagesIcCategoryActive, "label": "tabMainCategory".tr},
-      {"iconPath": Assets.imagesIcCart, "activeIconPath": Assets.imagesIcCartActive, "label": "tabMainCart".tr},
-      {"iconPath": Assets.imagesIcMine, "activeIconPath": Assets.imagesIcMineActive, "label": "tabMainMine".tr},
+      {"iconPath": Assets.imagesIcHome, "activeIconPath": Assets.imagesIcHomeActive, "label": "tabMainHome".tr()},
+      {"iconPath": Assets.imagesIcCategory, "activeIconPath": Assets.imagesIcCategoryActive, "label": "tabMainCategory".tr()},
+      {"iconPath": Assets.imagesIcCart, "activeIconPath": Assets.imagesIcCartActive, "label": "tabMainCart".tr()},
+      {"iconPath": Assets.imagesIcMine, "activeIconPath": Assets.imagesIcMineActive, "label": "tabMainMine".tr()},
     ];
 
     return AnnotatedRegion<SystemUiOverlayStyle>(

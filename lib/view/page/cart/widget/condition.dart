@@ -1,8 +1,6 @@
 // Flutter imports:
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
-
-// Package imports:
-import 'package:get/get.dart';
 
 // Project imports:
 import 'package:jd_mall_flutter/common/style/common_style.dart';
@@ -25,11 +23,11 @@ class TopCondition extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Text(
-                "${"all".tr} 0",
+                "${"all".tr()} 0",
                 style: TextStyle(fontSize: 16, fontWeight: FontWeight.w500, color: CommonStyle.themeColor),
               ),
-              Text("${"priceReduction".tr} 0", style: TextStyle(fontSize: 16, fontWeight: FontWeight.w500, color: CommonStyle.colorD0D0D0)),
-              Text("filter".tr, style: const TextStyle(fontSize: 16, fontWeight: FontWeight.w500)),
+              Text("${"priceReduction".tr()} 0", style: TextStyle(fontSize: 16, fontWeight: FontWeight.w500, color: CommonStyle.colorD0D0D0)),
+              Text("filter".tr(), style: const TextStyle(fontSize: 16, fontWeight: FontWeight.w500)),
             ],
           ),
         ),

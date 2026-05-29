@@ -1,9 +1,6 @@
 // Flutter imports:
 import 'package:flutter/material.dart';
 
-// Package imports:
-import 'package:get/get.dart';
-
 // Project imports:
 import 'package:jd_mall_flutter/common/style/common_style.dart';
 import 'package:jd_mall_flutter/common/util/screen_util.dart';
@@ -21,7 +18,7 @@ Widget commonHeader(BuildContext context, {required String title}) {
     child: Row(
       children: [
         GestureDetector(
-          onTap: () => Get.back(),
+          onTap: () => Navigator.of(context).pop(),
           child: Container(
             height: 42,
             width: 60,

@@ -1,8 +1,6 @@
 // Flutter imports:
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
-
-// Package imports:
-import 'package:get/get.dart';
 
 // Project imports:
 import 'package:jd_mall_flutter/common/extension/color_ext.dart';
@@ -25,7 +23,7 @@ Widget header(BuildContext context) {
             children: [
               assetImage('images/scan.png', 24, 24),
               Text(
-                "scan".tr,
+                "scan".tr(),
                 style: const TextStyle(color: Colors.white, fontSize: 11),
               )
             ],
@@ -38,7 +36,7 @@ Widget header(BuildContext context) {
             children: [
               assetImage('images/message.png', 24, 24),
               Text(
-                "message".tr,
+                "message".tr(),
                 style: const TextStyle(color: Colors.white, fontSize: 11),
               )
             ],
@@ -69,7 +67,7 @@ Widget header(BuildContext context) {
                     height: 36.0,
                     alignment: Alignment.centerLeft,
                     child: Text(
-                      "searchInputTip".tr,
+                      "searchInputTip".tr(),
                       style: TextStyle(
                         fontSize: 14,
                         color: '#818286'.toColor(),

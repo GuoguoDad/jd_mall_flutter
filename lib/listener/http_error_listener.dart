@@ -2,11 +2,11 @@
 import 'dart:async';
 
 // Flutter imports:
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 
 // Package imports:
 import 'package:flutter_easyloading/flutter_easyloading.dart';
-import 'package:get/get.dart';
 
 // Project imports:
 import 'package:jd_mall_flutter/app.dart';
@@ -37,28 +37,28 @@ mixin HttpErrorListener on State<MallApp> {
   errorHandleFunction(int? code, message) {
     switch (code) {
       case Code.NETWORK_ERROR:
-        showToast("networkError".tr);
+        showToast("networkError".tr());
         break;
       case 401:
-        showToast("networkError401".tr);
+        showToast("networkError401".tr());
         break;
       case 403:
-        showToast("networkError403".tr);
+        showToast("networkError403".tr());
         break;
       case 404:
-        showToast("networkError404".tr);
+        showToast("networkError404".tr());
         break;
       case 422:
-        showToast("networkError422".tr);
+        showToast("networkError422".tr());
         break;
       case Code.NETWORK_TIMEOUT:
-        showToast("networkErrorTimeout".tr);
+        showToast("networkErrorTimeout".tr());
         break;
       case Code.CONNECTION_REFUSED:
-        showToast("connectRefused".tr);
+        showToast("connectRefused".tr());
         break;
       default:
-        showToast("${"networkErrorUnknown".tr} $message");
+        showToast("${"networkErrorUnknown".tr()} $message");
         break;
     }
   }

@@ -1,9 +1,6 @@
 // Flutter imports:
 import 'package:flutter/material.dart';
 
-// Package imports:
-import 'package:get/get.dart';
-
 // Project imports:
 import 'package:jd_mall_flutter/component/image/extend_image_network.dart';
 import 'package:jd_mall_flutter/models/mine_menu_tab_info.dart';
@@ -22,7 +19,7 @@ class MenuItem extends StatelessWidget {
     return GestureDetector(
       onTap: () {
         if ((menuData.h5url ?? "").isNotEmpty) {
-          Get.toNamed(RoutesEnum.webViewPage.path, arguments: {"url": menuData.h5url.toString()});
+          Navigator.of(context).pushNamed(RoutesEnum.webViewPage.path, arguments: {"url": menuData.h5url.toString()});
         }
       },
       child: Column(

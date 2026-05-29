@@ -2,7 +2,7 @@
 import 'package:flutter/material.dart';
 
 // Package imports:
-import 'package:get/get.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:provider/provider.dart';
 
 // Project imports:
@@ -17,7 +17,7 @@ class AdvBanner extends StatelessWidget {
   Widget build(BuildContext context) {
     return SliverToBoxAdapter(
       child: GestureDetector(
-        onTap: () => Get.toNamed(
+        onTap: () => Navigator.of(context).pushNamed(
           RoutesEnum.webViewPage.path,
           arguments: {"url": "https://pro.m.jd.com/mall/active/2WrXYwmYpiy7EpWjDETSVyhXfLCb/index.html"},
         ),

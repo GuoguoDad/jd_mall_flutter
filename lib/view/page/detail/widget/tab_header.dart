@@ -4,7 +4,7 @@ import 'package:flutter/rendering.dart';
 
 // Package imports:
 import 'package:flutter_extended_scroll/flutter_extended_scroll.dart';
-import 'package:get/get.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:provider/provider.dart';
 
 // Project imports:
@@ -42,7 +42,7 @@ class TabHeaderState extends State<TabHeader> {
                 Expanded(
                   flex: 1,
                   child: GestureDetector(
-                    onTap: () => Get.back(),
+                    onTap: () => Navigator.of(context).pop(),
                     child: Container(
                       alignment: Alignment.centerLeft,
                       padding: const EdgeInsets.only(left: 14),
@@ -58,10 +58,10 @@ class TabHeaderState extends State<TabHeader> {
                       shrinkWrap: true,
                       scrollDirection: Axis.horizontal,
                       children: <Widget>[
-                        tabItem("commodity".tr, 0, provider),
-                        tabItem("evaluate".tr, 1, provider),
-                        tabItem("detail".tr, 2, provider),
-                        tabItem("recommend".tr, 3, provider),
+                        tabItem("commodity".tr(), 0, provider),
+                        tabItem("evaluate".tr(), 1, provider),
+                        tabItem("detail".tr(), 2, provider),
+                        tabItem("recommend".tr(), 3, provider),
                       ],
                     ),
                   ),

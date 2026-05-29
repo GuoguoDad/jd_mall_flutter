@@ -1,8 +1,8 @@
 // Flutter imports:
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 
 // Package imports:
-import 'package:get/get.dart';
 import 'package:provider/provider.dart';
 
 // Project imports:
@@ -36,9 +36,9 @@ class AddressInfo extends StatelessWidget {
           return Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              rowItem("select".tr, "已选：${selectInfo.colorName}, 42, 1件", 1, true, null),
-              rowItem("sendTo".tr, "江苏省南京市江宁区东山街道丰泽路118号中粮鸿云", 1, true, "今天17:00前完成下单，预计明天送达"),
-              rowItem("carriage".tr, "店铺单笔订单不满199元，收费5元(请以提交订单时为准)", 2, false, null),
+              rowItem("select".tr(), "已选：${selectInfo.colorName}, 42, 1件", 1, true, null),
+              rowItem("sendTo".tr(), "江苏省南京市江宁区东山街道丰泽路118号中粮鸿云", 1, true, "今天17:00前完成下单，预计明天送达"),
+              rowItem("carriage".tr(), "店铺单笔订单不满199元，收费5元(请以提交订单时为准)", 2, false, null),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 crossAxisAlignment: CrossAxisAlignment.center,

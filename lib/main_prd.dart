@@ -3,6 +3,7 @@ import 'dart:async';
 import 'dart:io';
 
 // Flutter imports:
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -27,19 +28,28 @@ import 'package:jd_mall_flutter/view/page/mine/mine_provider.dart';
 void initApp(Map<String, dynamic> envMap) async {
   WidgetsFlutterBinding.ensureInitialized();
   GlobalConfigs().loadFromMap(envMap);
-  await Global.initPreferences();
 
-  runApp(MultiProvider(
-      providers: [
-        ChangeNotifierProvider(create: (_) => HomeProvider()),
-        ChangeNotifierProvider(create: (_) => CategoryProvider()),
-        ChangeNotifierProvider(create: (_) => CartProvider()),
-        ChangeNotifierProvider(create: (_) => MineProvider()),
-        ChangeNotifierProvider(create: (_) => DetailProvider()),
-        ChangeNotifierProvider(create: (_) => LoginProvider()),
-      ],
-      child: const MallApp()
-  ));
+  await Global.initPreferences();
+  await EasyLocalization.ensureInitialized();
+
+  runApp(
+    EasyLocalization(
+      supportedLocales: [Locale('en'), Locale('zh')],
+      path: 'assets/translations',
+      fallbackLocale: Locale('zh'),
+      child: MultiProvider(
+          providers: [
+            ChangeNotifierProvider(create: (_) => HomeProvider()),
+            ChangeNotifierProvider(create: (_) => CategoryProvider()),
+            ChangeNotifierProvider(create: (_) => CartProvider()),
+            ChangeNotifierProvider(create: (_) => MineProvider()),
+            ChangeNotifierProvider(create: (_) => DetailProvider()),
+            ChangeNotifierProvider(create: (_) => LoginProvider()),
+          ],
+          child: const MallApp()
+      )
+    )
+  );
 
   if (Platform.isAndroid) {
     // 以下两行 设置android状态栏为透明的沉浸。写在组件渲染之后，是为了在渲染后进行set赋值，覆盖状态栏，写在渲染之前MaterialApp组件会覆盖掉这个值。

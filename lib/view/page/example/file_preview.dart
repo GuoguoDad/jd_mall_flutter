@@ -3,7 +3,7 @@
 //
 // // Package imports:
 // // import 'package:file_preview/file_preview.dart';
-// import 'package:get/get.dart';
+// import 'package:easy_localization/easy_localization.dart';
 // import 'package:get/get_core/src/get_main.dart';
 //
 // // Project imports:

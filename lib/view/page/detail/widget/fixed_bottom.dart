@@ -2,7 +2,7 @@
 import 'package:flutter/material.dart';
 
 // Package imports:
-import 'package:get/get.dart';
+import 'package:easy_localization/easy_localization.dart';
 
 // Project imports:
 import 'package:jd_mall_flutter/common/extension/color_ext.dart';
@@ -24,9 +24,9 @@ Widget fixedBottom(BuildContext context) {
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: [
-              columnItem("images/detail/ic_store_red.png", "store".tr),
-              columnItem("images/detail/ic_customer_service.png", "customerService".tr),
-              columnItem("images/detail/ic_cart.png", "tabMainCart".tr),
+              columnItem("images/detail/ic_store_red.png", "store".tr()),
+              columnItem("images/detail/ic_customer_service.png", "customerService".tr()),
+              columnItem("images/detail/ic_cart.png", "tabMainCart".tr()),
             ],
           ),
         ),
@@ -39,7 +39,7 @@ Widget fixedBottom(BuildContext context) {
               child: LinearButton(
                 width: double.infinity,
                 height: double.infinity,
-                btnName: "add2Cart".tr,
+                btnName: "add2Cart".tr(),
                 fontSize: 14,
                 highlightColor: Colors.yellow,
                 colors: ["#F2CD4A".toColor(), "#F2C54B".toColor()],
@@ -58,7 +58,7 @@ Widget fixedBottom(BuildContext context) {
               child: LinearButton(
                 width: double.infinity,
                 height: double.infinity,
-                btnName: "couponPurchase".tr,
+                btnName: "couponPurchase".tr(),
                 fontSize: 14,
                 highlightColor: Colors.red,
                 colors: ["#E54B4E".toColor(), "#E34439".toColor()],

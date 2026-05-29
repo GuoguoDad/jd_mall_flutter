@@ -1,9 +1,9 @@
 // Flutter imports:
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 
 // Package imports:
 import 'package:flutter_group_list_view/flutter_group_list_view.dart';
-import 'package:get/get.dart';
 import 'package:provider/provider.dart';
 
 // Project imports:
@@ -33,7 +33,7 @@ class CartGoodsList extends StatelessWidget {
             sectionCount: cartGoods.length,
             itemInSectionCount: (int section) => cartGoods[section].goodsList?.length ?? 0,
             headerForSectionBuilder: (int section) {
-              return buildHeader(provider, section);
+              return buildHeader(context, provider, section);
             },
             itemInSectionBuilder: (BuildContext context, IndexPath indexPath) {
               return buildItem(provider, indexPath);
@@ -52,7 +52,7 @@ class CartGoodsList extends StatelessWidget {
     );
   }
 
-  Widget buildHeader(CartProvider provider, int section) {
+  Widget buildHeader(BuildContext context, CartProvider provider, int section) {
     List<CartGoods> cartGoods = provider.cartGoods;
     List<String> selectList = provider.selectCartGoodsList;
     List<String> sList = selectList.where((element) => element.contains(cartGoods[section].storeCode!)).toList();
@@ -85,7 +85,7 @@ class CartGoodsList extends StatelessWidget {
           GestureDetector(
             onTap: () {
               if (url != "") {
-                Get.toNamed(RoutesEnum.webViewPage.path, arguments: WebViewPageArguments(url));
+                Navigator.of(context).pushNamed(RoutesEnum.webViewPage.path, arguments: WebViewPageArguments(url));
               }
             },
             child: assetImage("images/ic_arrow_right.png", 20, 20),
@@ -147,7 +147,7 @@ class CartGoodsList extends StatelessWidget {
                       borderRadius: const BorderRadius.all(Radius.circular(6)),
                     ),
                     child: Text(
-                      "defaultSpecifications".tr,
+                      "defaultSpecifications".tr(),
                       style: TextStyle(fontSize: 12, color: CommonStyle.color969798),
                     ),
                   ),

@@ -2,7 +2,7 @@
 import 'package:flutter/material.dart';
 
 // Package imports:
-import 'package:get/get.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:provider/provider.dart';
 
 // Project imports:
@@ -68,7 +68,7 @@ class SearchHeader extends StatelessWidget {
                               height: 34.0,
                               alignment: Alignment.centerLeft,
                               child: Text(
-                                "homeSearchTip".tr,
+                                "homeSearchTip".tr(),
                                 style: TextStyle(
                                   fontSize: 14,
                                   color: CommonStyle.placeholderColor,

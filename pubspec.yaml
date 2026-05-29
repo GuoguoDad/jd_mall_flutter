@@ -74,13 +74,13 @@ dependencies:
   share_plus: ^11.1.0
   syncfusion_flutter_datepicker: ^30.2.6
   video_player: ^2.9.5
-  get: ^5.0.0-release-candidate-9.3.2
   scrollview_observer: ^1.26.2
   logger: ^2.7.0
   pretty_dio_logger: ^1.4.0
   intl: ^0.20.2
   skeletonizer: ^2.1.0+1
   expandable_page_view: ^1.3.0
+  easy_localization: ^3.0.8
 
 dev_dependencies:
   flutter_test:
@@ -111,6 +111,7 @@ flutter:
   # To add assets to your application, add an assets section, like this:
   # FlutterAssetsGenerator 插件自动生成 generated/assets 文件
   assets:
+    - assets/translations/
     - images/
     - images/detail/
   # An image asset can refer to one or more resolution-specific "variants", see

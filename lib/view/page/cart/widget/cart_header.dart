@@ -1,8 +1,6 @@
 // Flutter imports:
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
-
-// Package imports:
-import 'package:get/get.dart';
 
 // Project imports:
 import 'package:jd_mall_flutter/common/style/common_style.dart';
@@ -26,7 +24,7 @@ class CartHeader extends StatelessWidget {
               top: 0,
               left: 24,
               child: Text(
-                "tabMainCart".tr,
+                "tabMainCart".tr(),
                 style: const TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
               ),
             ),
@@ -57,7 +55,7 @@ class CartHeader extends StatelessWidget {
                         alignment: Alignment.centerLeft,
                         padding: const EdgeInsets.only(right: 2),
                         child: Text(
-                          "defaultAddress".tr,
+                          "defaultAddress".tr(),
                           maxLines: 1,
                           overflow: TextOverflow.ellipsis,
                           style: TextStyle(color: CommonStyle.placeholderColor, fontSize: 14),

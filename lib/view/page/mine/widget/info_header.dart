@@ -2,7 +2,7 @@
 import 'package:flutter/material.dart';
 
 // Package imports:
-import 'package:get/get.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:provider/provider.dart';
 
 // Project imports:
@@ -49,7 +49,7 @@ class InfoHeader extends StatelessWidget {
                 top: 4,
                 right: 66,
                 child: GestureDetector(
-                  onTap: () => Get.toNamed(RoutesEnum.personalInfo.path),
+                  onTap: () => Navigator.of(context).pushNamed(RoutesEnum.personalInfo.path),
                   child: assetImage(Assets.imagesIcSetting, 26, 26),
                 ),
               ),
@@ -57,7 +57,7 @@ class InfoHeader extends StatelessWidget {
                 top: 4,
                 right: 18,
                 child: GestureDetector(
-                  onTap: () => Get.toNamed(RoutesEnum.sampleList.path),
+                  onTap: () => Navigator.of(context).pushNamed(RoutesEnum.sampleList.path),
                   child: assetImage(Assets.imagesIcMessage, 26, 26),
                 ),
               ),
@@ -85,7 +85,7 @@ class InfoHeader extends StatelessWidget {
             return Opacity(
               opacity: headerSize.opacity,
               child: Text(
-                "tabMainMine".tr,
+                "tabMainMine".tr(),
                 style: const TextStyle(color: Colors.black, fontSize: 20),
               ),
             );
@@ -135,16 +135,16 @@ class InfoHeader extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
                   Text(
-                    "author".tr,
+                    "author".tr(),
                     style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
                   ),
                   Row(
                     children: [
-                      Text("${"integral".tr}: 200", style: const TextStyle(fontSize: 14)),
+                      Text("${"integral".tr()}: 200", style: const TextStyle(fontSize: 14)),
                       Container(
                         margin: const EdgeInsets.only(left: 20),
                         child: Text(
-                          "${"creditValue".tr}: 1200",
+                          "${"creditValue".tr()}: 1200",
                           style: const TextStyle(fontSize: 14),
                         ),
                       )
@@ -153,7 +153,7 @@ class InfoHeader extends StatelessWidget {
                 ],
               )
                   : GestureDetector(
-                onTap: () => Get.toNamed(RoutesEnum.loginPage.path),
+                onTap: () => Navigator.of(context).pushNamed(RoutesEnum.loginPage.path),
                 child: Row(
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [

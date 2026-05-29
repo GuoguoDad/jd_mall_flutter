@@ -3,8 +3,6 @@ import 'package:flutter/material.dart';
 
 // Package imports:
 import 'package:flutter_form_builder/flutter_form_builder.dart';
-import 'package:get/get_core/src/get_main.dart';
-import 'package:get/get_navigation/src/extension_navigation.dart';
 
 // Project imports:
 import 'package:jd_mall_flutter/common/extension/get_router_navigation_ext.dart';
@@ -45,14 +43,6 @@ class LoginProvider extends ChangeNotifier {
         await Global.preferences!.setString("headerImg", res.headerImg);
         await Global.preferences!.setString("integral", res.integral.toString());
         await Global.preferences!.setString("creditValue", res.creditValue.toString());
-
-        if (Get.arguments != null) {
-          var from = Get.arguments["from"];
-          var args = Get.arguments["args"];
-          Get.popNamedSingleTask(from, arguments: args);
-        } else {
-          Get.popNamedSingleTask(RoutesEnum.mainPage.path);
-        }
       }
     }
   }

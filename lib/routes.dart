@@ -1,5 +1,5 @@
 // Package imports:
-import 'package:get/get.dart';
+import 'package:flutter/material.dart';
 
 // Project imports:
 import 'package:jd_mall_flutter/middleware/auth_middleware.dart';
@@ -45,44 +45,22 @@ enum RoutesEnum {
   final String path;
 }
 
-final unknownRoute = GetPage(name: RoutesEnum.notFound.path, page: () => const Page404());
-
-List<GetPage> appPages = [
+Map<String, WidgetBuilder> routesMap = {
   //example
-  GetPage(name: RoutesEnum.sampleList.path, page: () => const SampleList()),
-  GetPage(name: RoutesEnum.completeForm.path, page: () => const CompleteForm()),
-  GetPage(name: RoutesEnum.interlacedAnimation.path, page: () => const InterlacedAnimationDemo()),
-  GetPage(name: RoutesEnum.breathingMethod.path, page: () => const BreathingMethod()),
-  GetPage(name: RoutesEnum.snowMan.path, page: () => const SnowManDemo()),
-  GetPage(name: RoutesEnum.gestureSpring.path, page: () => const GestureSpring()),
-  GetPage(name: RoutesEnum.contactList.path, page: () => const ContactList()),
-  // GetPage(name: RoutesEnum.filePreview.path, page: () => const FilePreviewPage()),
-  GetPage(name: RoutesEnum.videoPlayer.path, page: () => const VideoPlayerDemo()),
+  RoutesEnum.sampleList.path.toString(): (context) =>  const SampleList(),
+  RoutesEnum.completeForm.path.toString(): (context) =>  const CompleteForm(),
+  RoutesEnum.interlacedAnimation.path.toString(): (context) => const InterlacedAnimationDemo(),
+  RoutesEnum.breathingMethod.path.toString(): (context) => const BreathingMethod(),
+  RoutesEnum.snowMan.path.toString(): (context) => const SnowManDemo(),
+  RoutesEnum.gestureSpring.path.toString(): (context) => const GestureSpring(),
+  RoutesEnum.contactList.path.toString(): (context) => const ContactList(),
+  // RoutesEnum.filePreview.path.toString(): (context) => const FilePreviewPage(),
+  RoutesEnum.videoPlayer.path.toString(): (context) => const VideoPlayerDemo(),
   //pages
-  GetPage(
-    name: RoutesEnum.mainPage.path,
-    page: () => const MainPage(),
-  ),
-  GetPage(
-    name: RoutesEnum.detailPage.path,
-    page: () => const DetailPage(),
-  ),
-  GetPage(
-    name: RoutesEnum.webViewPage.path,
-    page: () => const WebViewPage(),
-  ),
-  GetPage(
-    name: RoutesEnum.generateOrder.path,
-    page: () => const GenerateOrder(),
-    middlewares: [EnsureAuthMiddleware()],
-  ),
-  GetPage(
-    name: RoutesEnum.personalInfo.path,
-    page: () => const PersonalInfo(),
-    middlewares: [EnsureAuthMiddleware()],
-  ),
-  GetPage(
-    name: RoutesEnum.loginPage.path,
-    page: () => const LoginPage(),
-  ),
-];
+  RoutesEnum.mainPage.path.toString(): (context) => const MainPage(),
+  RoutesEnum.detailPage.path.toString(): (context) => const DetailPage(),
+  RoutesEnum.webViewPage.path.toString(): (context) => const WebViewPage(),
+  RoutesEnum.generateOrder.path.toString(): (context) => const GenerateOrder(),
+  RoutesEnum.personalInfo.path.toString(): (context) => const PersonalInfo(),
+  RoutesEnum.loginPage.path.toString(): (context) => const LoginPage(),
+};

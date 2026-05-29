@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'dart:async';
 
 // Package imports:
-import 'package:get/get.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:jd_mall_flutter/component/indicator/common_indicator.dart';
 import 'package:jd_mall_flutter/models/home_page_info.dart';
 import 'package:provider/provider.dart';
@@ -104,7 +104,7 @@ class _CarouselSliderState extends State<CarouselSlider> {
           },
           itemBuilder: (BuildContext context, int index) {
             return GestureDetector(
-              onTap: () => Get.toNamed(RoutesEnum.detailPage.path),
+              onTap: () => Navigator.of(context).pushNamed(RoutesEnum.detailPage.path),
               child: Container(
                 margin: const EdgeInsets.fromLTRB(10, 10, 10, 2),
                 child: ClipRRect(

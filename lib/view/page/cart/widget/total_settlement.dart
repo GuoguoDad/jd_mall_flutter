@@ -1,9 +1,9 @@
 // Flutter imports:
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 
 // Package imports:
 import 'package:flutter_easyloading/flutter_easyloading.dart';
-import 'package:get/get.dart';
 import 'package:provider/provider.dart';
 
 // Project imports:
@@ -55,10 +55,10 @@ class TotalSettlement extends StatelessWidget {
                           },
                         ),
                       ),
-                      Text("selectAll".tr, style: const TextStyle(fontSize: 13)),
+                      Text("selectAll".tr(), style: const TextStyle(fontSize: 13)),
                       Container(
                         margin: const EdgeInsets.only(left: 5),
-                        child: Text("amountTo".tr, style: const TextStyle(fontSize: 13)),
+                        child: Text("amountTo".tr(), style: const TextStyle(fontSize: 13)),
                       ),
                       Text(
                         ": ￥${totalInfo.price}",
@@ -74,13 +74,13 @@ class TotalSettlement extends StatelessWidget {
                   child: LinearButton(
                     width: 130,
                     height: 42,
-                    btnName: '${"toSettle".tr}(${totalInfo.num})',
+                    btnName: '${"toSettle".tr()}(${totalInfo.num})',
                     onTap: () {
                       if (selectList.isEmpty) {
                         EasyLoading.showInfo("您还没有选择商品哦", duration: const Duration(seconds: 2));
                         return;
                       }
-                      Get.toNamed(RoutesEnum.generateOrder.path);
+                      Navigator.of(context).pushNamed(RoutesEnum.generateOrder.path);
                     },
                   ),
                 )

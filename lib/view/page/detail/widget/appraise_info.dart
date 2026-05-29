@@ -1,9 +1,9 @@
 // Flutter imports:
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 
 // Package imports:
 import 'package:cached_network_image_ce/cached_network_image.dart';
-import 'package:get/get.dart';
 import 'package:provider/provider.dart';
 
 // Project imports:
@@ -45,7 +45,7 @@ class AppraiseList extends StatelessWidget {
                   key: cardKeys[1],
                   margin: const EdgeInsets.only(bottom: 10),
                   child: Text(
-                    "evaluate".tr,
+                    "evaluate".tr(),
                     style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
                   ),
                 ),
@@ -59,7 +59,7 @@ class AppraiseList extends StatelessWidget {
                     borderRadius: const BorderRadius.all(Radius.circular(30)),
                     border: Border.all(color: Colors.grey, width: 1),
                   ),
-                  child: Text("allEvaluations".tr),
+                  child: Text("allEvaluations".tr()),
                 )
               ],
             ),
@@ -68,7 +68,7 @@ class AppraiseList extends StatelessWidget {
               builder: (context, provider, child) {
               DetailInfo? detailInfo = provider.goodsDetailRes.detailInfo;
 
-              return itemCard("activityZone".tr, detailInfo?.hdzq ?? "", 260);
+              return itemCard("activityZone".tr(), detailInfo?.hdzq ?? "", 260);
             }
           ),
           Container(
@@ -80,7 +80,7 @@ class AppraiseList extends StatelessWidget {
               builder: (context, provider, child) {
               DetailInfo? detailInfo = provider.goodsDetailRes.detailInfo;
 
-              return itemCard("storeSelection".tr, detailInfo?.dnyx ?? "", 500);
+              return itemCard("storeSelection".tr(), detailInfo?.dnyx ?? "", 500);
             }
           )
         ]),

@@ -4,7 +4,9 @@ import 'package:flutter/material.dart';
 // Package imports:
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:form_builder_validators/form_builder_validators.dart';
-import 'package:get/get.dart';
+import 'package:easy_localization/easy_localization.dart';
+import 'package:jd_mall_flutter/routes.dart';
+import 'package:jd_mall_flutter/view/main/main_page.dart';
 import 'package:provider/provider.dart';
 
 // Project imports:
@@ -15,6 +17,8 @@ import 'package:jd_mall_flutter/component/linear_button.dart';
 import 'package:jd_mall_flutter/view/page/login/login_provider.dart';
 
 Widget loginForm(BuildContext context) {
+  final args = ModalRoute.of(context)!.settings.arguments;
+
   return SizedBox(
     height: 300,
     width: getScreenWidth() - 24,
@@ -65,7 +69,16 @@ Widget loginForm(BuildContext context) {
             height: 58,
             width: getScreenWidth() - 24,
             borderRadius: BorderRadius.circular(50),
-            onTap: () => context.read<LoginProvider>().login(),
+            onTap: () async {
+              await context.read<LoginProvider>().login();
+
+              if (args != null && context.mounted ) {
+                var from = (args as Map<String, dynamic>)["from"];
+                Navigator.of(context).pushNamedAndRemoveUntil(from, (Route<dynamic> route) => false);
+              } else if(context.mounted) {
+                Navigator.of(context).pushNamedAndRemoveUntil(RoutesEnum.mainPage.path, (Route<dynamic> route) => false);
+              }
+            }
           ),
         )
       ]),

@@ -2,7 +2,7 @@
 import 'package:flutter/material.dart';
 
 // Package imports:
-import 'package:get/get.dart';
+import 'package:easy_localization/easy_localization.dart';
 
 // Project imports:
 import 'package:jd_mall_flutter/common/style/common_style.dart';
@@ -26,21 +26,21 @@ class OrderCard extends StatelessWidget {
             Flex(
               direction: Axis.horizontal,
               children: [
-                horizontalItem(Assets.imagesIcGoodsStar, "${"productCollection".tr}0"),
+                horizontalItem(Assets.imagesIcGoodsStar, "${"productCollection".tr()}0"),
                 line(1, 12),
-                horizontalItem(Assets.imagesIcStoreFocus, "${"storeFollow".tr}16"),
+                horizontalItem(Assets.imagesIcStoreFocus, "${"storeFollow".tr()}16"),
                 line(1, 12),
-                horizontalItem(Assets.imagesIcLookHistory, "${"browsingHistory".tr}20")
+                horizontalItem(Assets.imagesIcLookHistory, "${"browsingHistory".tr()}20")
               ],
             ),
             line(getScreenWidth() - 50, 1),
             Flex(
               direction: Axis.horizontal,
               children: [
-                verticalItem(Assets.imagesIcTodoPay, "unpaid".tr),
-                verticalItem(Assets.imagesIcTodoGet, "toBeReceived".tr),
-                verticalItem(Assets.imagesIcTodoEvaluate, "toBeEvaluated".tr),
-                verticalItem(Assets.imagesIcTodoExchange, "returnAfterSales".tr)
+                verticalItem(Assets.imagesIcTodoPay, "unpaid".tr()),
+                verticalItem(Assets.imagesIcTodoGet, "toBeReceived".tr()),
+                verticalItem(Assets.imagesIcTodoEvaluate, "toBeEvaluated".tr()),
+                verticalItem(Assets.imagesIcTodoExchange, "returnAfterSales".tr())
               ],
             )
           ],

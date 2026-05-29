@@ -2,7 +2,7 @@
 import 'package:flutter/material.dart';
 
 // Package imports:
-import 'package:get/get.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:provider/provider.dart';
 
 // Project imports:
@@ -41,7 +41,7 @@ class SkuInfo extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
                       Text(
-                        "${bannerList.length}${"colorToChoose".tr}",
+                        "${bannerList.length}${"colorToChoose".tr()}",
                         style: TextStyle(color: CommonStyle.color545454, fontSize: 16),
                       ),
                       Expanded(

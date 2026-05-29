@@ -3,8 +3,7 @@ import 'package:flutter/material.dart';
 
 // Package imports:
 import 'package:flutter_easyloading/flutter_easyloading.dart';
-import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:provider/provider.dart';
 
 // Project imports:
@@ -84,7 +83,8 @@ class _PersonalInfoState extends State<PersonalInfo> with ImagePickerMixin {
     await Global.preferences?.remove("integral");
     await Global.preferences?.remove("creditValue");
 
-    Get.offNamed(RoutesEnum.loginPage.path);
+    // Get.offNamed(RoutesEnum.loginPage.path);
+    // Navigator.of(context).pushNamedAndRemoveUntil(RoutesEnum.loginPage.path)
   }
 }
 
