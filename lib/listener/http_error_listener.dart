@@ -2,10 +2,10 @@
 import 'dart:async';
 
 // Flutter imports:
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 
 // Package imports:
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 
 // Project imports:

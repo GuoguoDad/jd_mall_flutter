@@ -1,18 +1,20 @@
-// Flutter imports:
-import 'package:expandable_page_view/expandable_page_view.dart';
-import 'package:flutter/material.dart';
+// Dart imports:
 import 'dart:async';
+
+// Flutter imports:
+import 'package:flutter/material.dart';
 
 // Package imports:
 import 'package:easy_localization/easy_localization.dart';
-import 'package:jd_mall_flutter/component/indicator/common_indicator.dart';
-import 'package:jd_mall_flutter/models/home_page_info.dart';
+import 'package:expandable_page_view/expandable_page_view.dart';
 import 'package:provider/provider.dart';
 
 // Project imports:
 import 'package:jd_mall_flutter/common/style/common_style.dart';
 import 'package:jd_mall_flutter/common/util/screen_util.dart';
 import 'package:jd_mall_flutter/component/image/extend_image_network.dart';
+import 'package:jd_mall_flutter/component/indicator/common_indicator.dart';
+import 'package:jd_mall_flutter/models/home_page_info.dart';
 import 'package:jd_mall_flutter/routes.dart';
 import 'package:jd_mall_flutter/view/page/home/home_provider.dart';
 

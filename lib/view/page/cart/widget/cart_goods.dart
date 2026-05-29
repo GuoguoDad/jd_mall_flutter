@@ -1,8 +1,8 @@
 // Flutter imports:
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 
 // Package imports:
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter_group_list_view/flutter_group_list_view.dart';
 import 'package:provider/provider.dart';
 
