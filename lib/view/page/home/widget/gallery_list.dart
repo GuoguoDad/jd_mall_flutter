@@ -1,9 +1,10 @@
 // Flutter imports:
+import 'package:expandable_page_view/expandable_page_view.dart';
 import 'package:flutter/material.dart';
 
 // Package imports:
-import 'package:flutter_carousel_widget/flutter_carousel_widget.dart';
 import 'package:get/get.dart';
+import 'package:jd_mall_flutter/component/indicator/common_indicator.dart';
 import 'package:provider/provider.dart';
 
 // Project imports:
@@ -23,6 +24,8 @@ class GalleryList extends StatelessWidget {
   Widget build(BuildContext context) {
     return SliverToBoxAdapter(
       child: Container(
+        width: getScreenWidth(),
+        height: 180,
         color: CommonStyle.themeColor,
         padding: const EdgeInsets.only(top: 5),
         child: Container(
@@ -35,44 +38,52 @@ class GalleryList extends StatelessWidget {
             builder: (context, provider, child) {
               var bannerList = provider.homePageInfo.bannerList ?? [];
 
-              return FlutterCarousel(
-                options: FlutterCarouselOptions(
-                  height: carouselHeight,
-                  autoPlay: true,
-                  autoPlayInterval: const Duration(seconds: 8),
-                  disableCenter: true,
-                  viewportFraction: 1.0,
-                  enableInfiniteScroll: true,
-                  slideIndicator: CircularWaveSlideIndicator(
-                      slideIndicatorOptions: SlideIndicatorOptions(
-                        itemSpacing: 12,
-                        indicatorRadius: 3.6,
-                        indicatorBorderWidth: 0,
-                        currentIndicatorColor: CommonStyle.themeColor,
-                        indicatorBackgroundColor: Colors.grey,
-                      )
-                  ),
-                ),
-                items: bannerList.map(
-                      (item) {
-                    return GestureDetector(
-                      onTap: () => Get.toNamed(RoutesEnum.detailPage.path),
-                      child: Container(
-                        margin: const EdgeInsets.fromLTRB(10, 10, 10, 2),
-                        child: ClipRRect(
-                          borderRadius: const BorderRadius.all(Radius.circular(6)),
-                          child: ExtendImageNetwork(url: item.imgUrl!,
-                            width: carouselWidth,
-                            height: carouselHeight,
-                            cache: true,
-                            fit: BoxFit.fill,
+              if(bannerList.isEmpty) return Container();
+
+              return Stack(
+                children: [
+                  ExpandablePageView.builder(
+                    loop: true,
+                    itemCount: bannerList.length,
+                    onPageChanged: (index) {
+                      provider.setImgSliderIndex(index);
+                    },
+                    itemBuilder: (BuildContext context, int index) {
+
+                      return GestureDetector(
+                        onTap: () => Get.toNamed(RoutesEnum.detailPage.path),
+                        child: Container(
+                          margin: const EdgeInsets.fromLTRB(10, 10, 10, 2),
+                          child: ClipRRect(
+                            borderRadius: const BorderRadius.all(Radius.circular(6)),
+                            child: ExtendImageNetwork(url: bannerList[index].imgUrl!,
+                              width: carouselWidth,
+                              height: carouselHeight,
+                              cache: true,
+                              fit: BoxFit.fill,
+                            ),
                           ),
                         ),
+                      );
+                    },
+                  ),
+                  Positioned(
+                    left: 0,
+                    right: 0,
+                    bottom: 8,
+                    child: Container(
+                      height: 10,
+                      width: double.infinity,
+                      alignment: Alignment.center,
+                      child: CommonIndicator(
+                        itemCount: bannerList.length,
+                        current: provider.imgSliderIndex,
                       ),
-                    );
-                  },
-                ).toList(),
+                    ),
+                  ),
+                ],
               );
+
             }
           ),
         ),

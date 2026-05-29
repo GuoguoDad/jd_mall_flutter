@@ -12,6 +12,7 @@ class HomeProvider extends ChangeNotifier {
   bool isTabClick = false;
   String currentTab = "";
   int menuSliderIndex = 0;
+  int imgSliderIndex = 0;
   HomePageInfo homePageInfo = HomePageInfo.fromJson({});
 
   Future<void> initPageData() async {
@@ -27,6 +28,11 @@ class HomeProvider extends ChangeNotifier {
 
    void setLoading(bool va){
     isLoading = va;
+    notifyListeners();
+  }
+
+  void setImgSliderIndex(int va){
+    imgSliderIndex = va;
     notifyListeners();
   }
 

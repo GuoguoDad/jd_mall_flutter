@@ -273,6 +273,14 @@ packages:
       url: "https://pub.flutter-io.cn"
     source: hosted
     version: "3.5.0"
+  expandable_page_view:
+    dependency: "direct main"
+    description:
+      name: expandable_page_view
+      sha256: a60abe49d508c9acc113c6a61416536b6c4d2dd24247a71c7f679e77b3c2cbc3
+      url: "https://pub.flutter-io.cn"
+    source: hosted
+    version: "1.3.0"
   extended_image:
     dependency: "direct main"
     description:

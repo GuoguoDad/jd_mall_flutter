@@ -21,8 +21,7 @@ class MenuSlider extends StatelessWidget {
           List<NineMenuList> nineMenuList = provider.homePageInfo.nineMenuList ?? [];
 
           return PageMenu(
-            menuDataList: nineMenuList
-                .map((e) => FunctionInfo(
+            menuDataList: nineMenuList.map((e) => FunctionInfo(
               menuIcon: e.menuIcon,
               menuCode: e.menuCode,
               menuName: e.menuName,
