@@ -71,8 +71,8 @@ class _CarouselSliderState extends State<CarouselSlider> {
         int nextPage = (activeIndex + 1) % widget.bannerList.length;
         controller.animateToPage(
           nextPage,
-          duration: const Duration(milliseconds: 300),
-          curve: Curves.easeInOut
+          duration: const Duration(milliseconds: 500),
+          curve: Curves.linear
         );
       }
     });
