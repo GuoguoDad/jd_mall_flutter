@@ -5,6 +5,7 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 
 // Package imports:
+import 'package:easy_localization/easy_localization.dart';
 import 'package:expandable_page_view/expandable_page_view.dart';
 import 'package:provider/provider.dart';
 
@@ -12,16 +13,16 @@ import 'package:provider/provider.dart';
 import 'package:jd_mall_flutter/common/style/common_style.dart';
 import 'package:jd_mall_flutter/common/util/screen_util.dart';
 import 'package:jd_mall_flutter/component/image/extend_image_network.dart';
+import 'package:jd_mall_flutter/component/indicator/common_indicator.dart';
 import 'package:jd_mall_flutter/models/home_page_info.dart';
 import 'package:jd_mall_flutter/routes.dart';
 import 'package:jd_mall_flutter/view/page/home/home_provider.dart';
-import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
 double carouselWidth = getScreenWidth() - 24;
 double carouselHeight = 160;
 
-class GalleryList extends StatelessWidget {
-  const GalleryList({super.key});
+class CarouselImg extends StatelessWidget {
+  const CarouselImg({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -61,7 +62,7 @@ class CarouselSlider extends StatefulWidget {
 }
 
 class _CarouselSliderState extends State<CarouselSlider> {
-  late final controller = ExpandablePageController(itemCount: widget.bannerList.length);
+  final CarouselController controller = CarouselController();
   late Timer _timer;
 
   int activeIndex = 0;
@@ -70,7 +71,7 @@ class _CarouselSliderState extends State<CarouselSlider> {
     _timer = Timer.periodic(const Duration(seconds: 8), (timer) {
       if (controller.hasClients) {
         int nextPage = (activeIndex + 1) % widget.bannerList.length;
-        controller.animateToPage(
+        controller.animateToItem(
           nextPage,
           duration: const Duration(milliseconds: 500),
           curve: Curves.linear
@@ -96,13 +97,13 @@ class _CarouselSliderState extends State<CarouselSlider> {
   Widget build(BuildContext context) {
     return Stack(
       children: [
-        ExpandablePageView.builder(
-          loop: true,
-          controller: controller,
+        CarouselView.weightedBuilder(
           itemCount: widget.bannerList.length,
-          onPageChanged: (index) {
-            setState(() { activeIndex = index; });
-          },
+          controller: controller,
+          itemSnapping: false,
+          shrinkExtent: 1,
+          flexWeights: [1],
+          enableSplash: false,
           itemBuilder: (BuildContext context, int index) {
             return GestureDetector(
               onTap: () => Navigator.of(context).pushNamed(RoutesEnum.detailPage.path),
@@ -129,16 +130,10 @@ class _CarouselSliderState extends State<CarouselSlider> {
             height: 10,
             width: double.infinity,
             alignment: Alignment.center,
-            child: AnimatedSmoothIndicator(
-              activeIndex: activeIndex,
-              count: widget.bannerList.length,
-              effect: WormEffect(
-                dotWidth: 8.0,
-                dotHeight: 8.0,
-                dotColor: Colors.grey,
-                activeDotColor: CommonStyle.themeColor
-              ),
-            )  ,
+            child: CommonIndicator(
+              itemCount: widget.bannerList.length,
+              current: activeIndex,
+            ),
           ),
         ),
       ],

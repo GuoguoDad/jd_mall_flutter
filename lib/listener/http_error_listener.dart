@@ -63,7 +63,7 @@ mixin HttpErrorListener on State<MallApp> {
     }
   }
 
-  showToast(String message) {
+  void showToast(String message) {
     EasyLoading.showInfo(message, duration: const Duration(seconds: 3));
   }
 }
