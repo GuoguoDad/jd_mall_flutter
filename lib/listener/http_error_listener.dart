@@ -34,7 +34,7 @@ mixin HttpErrorListener on State<MallApp> {
     }
   }
 
-  errorHandleFunction(int? code, message) {
+  void errorHandleFunction(int? code, message) {
     switch (code) {
       case Code.NETWORK_ERROR:
         showToast("networkError".tr());

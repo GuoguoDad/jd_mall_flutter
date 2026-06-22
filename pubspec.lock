@@ -109,10 +109,10 @@ packages:
     dependency: "direct main"
     description:
       name: cached_network_image_ce
-      sha256: d4701fbbdf508de831e847fd1d49c644ffa6191c6018c416ab6f66bbe1ad5fff
+      sha256: f755f124fd48da7a9f24e4ec825d6b11a60602e956ac9467e974e88554375181
       url: "https://pub.flutter-io.cn"
     source: hosted
-    version: "4.6.4"
+    version: "4.8.0"
   cached_network_image_platform_interface_ce:
     dependency: transitive
     description:
@@ -285,10 +285,10 @@ packages:
     dependency: "direct main"
     description:
       name: easy_refresh
-      sha256: "73eb6119f7275270cedc764fa22e724b62a2f110265945699c9bc3290681ee70"
+      sha256: "513a5dc82c044f8a9c9a3d600b3d5d3256070575bfd8761940533d8e209ba79b"
       url: "https://pub.flutter-io.cn"
     source: hosted
-    version: "3.5.0"
+    version: "3.5.1"
   expandable_page_view:
     dependency: "direct main"
     description:
