@@ -109,10 +109,10 @@ packages:
     dependency: "direct main"
     description:
       name: cached_network_image_ce
-      sha256: f755f124fd48da7a9f24e4ec825d6b11a60602e956ac9467e974e88554375181
+      sha256: "9c61372fecd5f6ac6aaa66fa6808b4c303b8574875e853a0916116bf2fae6840"
       url: "https://pub.flutter-io.cn"
     source: hosted
-    version: "4.8.0"
+    version: "4.9.0"
   cached_network_image_platform_interface_ce:
     dependency: transitive
     description:

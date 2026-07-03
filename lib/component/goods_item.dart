@@ -1,11 +1,13 @@
 // Flutter imports:
+import 'package:cached_network_image_ce/cached_network_image.dart';
 import 'package:flutter/material.dart';
 
 // Project imports:
 import 'package:jd_mall_flutter/common/extension/color_ext.dart';
-import 'package:jd_mall_flutter/component/image/extend_image_network.dart';
+import 'package:jd_mall_flutter/component/image/asset_image.dart';
 import 'package:jd_mall_flutter/component/line_two.dart';
 import 'package:jd_mall_flutter/component/text_item.dart';
+import 'package:jd_mall_flutter/generated/assets.dart';
 import 'package:jd_mall_flutter/models/goods_page_info.dart';
 import 'package:jd_mall_flutter/routes.dart';
 
@@ -14,11 +16,12 @@ Widget goodsItem(BuildContext context, GoodsList item, double width) {
   List<Widget> widgets = [
     ClipRRect(
       borderRadius: const BorderRadius.only(topLeft: Radius.circular(10.0), topRight: Radius.circular(10.0)),
-      child: ExtendImageNetwork(
-        url: item.imgUrl!,
+      child: CachedNetworkImage(
+        imageUrl: item.imgUrl!,
         width: width,
         height: width,
-        cache: true,
+        placeholder: (context, url) => assetImage(Assets.imagesDefault,width, width),
+        errorBuilder: (context, url, error) => assetImage(Assets.imagesDefault, width, width),
         fit: BoxFit.fill,
       ),
     ),

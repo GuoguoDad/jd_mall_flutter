@@ -49,7 +49,7 @@ class DetailImgList extends StatelessWidget {
                       width: screenWidth - 40,
                       imageUrl: url,
                       placeholder: (context, url) => assetImage(Assets.imagesDefault, screenWidth - 40, 100),
-                      errorWidget: (context, url, error) => assetImage(Assets.imagesDefault, screenWidth - 40, 100),
+                      errorBuilder: (context, url, error) => assetImage(Assets.imagesDefault, screenWidth - 40, 100),
                       fit: BoxFit.fitWidth,
                     ))
                         .toList(),
