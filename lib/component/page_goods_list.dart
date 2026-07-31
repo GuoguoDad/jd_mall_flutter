@@ -42,11 +42,14 @@ class _PageGoodsListState extends State<PageGoodsList> {
 
   @override
   void didUpdateWidget(PageGoodsList oldWidget) {
+    super.didUpdateWidget(oldWidget);
     List<GoodsList> goods = goodsPageInfo.goodsList ?? [];
-    if (oldWidget.code == "home_tab_${widget.currentCode}" && goods.isEmpty) {
+    // 只在切换到新tab且数据为空时加载
+    if (oldWidget.currentCode != widget.currentCode &&
+        widget.code == "home_tab_${widget.currentCode}" &&
+        goods.isEmpty) {
       queryGoodsListByPage(1);
     }
-    super.didUpdateWidget(oldWidget);
   }
 
   @override
@@ -112,7 +115,9 @@ class _PageGoodsListState extends State<PageGoodsList> {
         ),
         mainAxisSpacing: 10,
         crossAxisSpacing: 0,
-        itemBuilder: (BuildContext context, int index) => goodsItem(context, goodsList[index], width),
+        itemBuilder: (BuildContext context, int index) => RepaintBoundary(
+          child: goodsItem(context, goodsList[index], width),
+        ),
       ),
     );
   }
