@@ -11,8 +11,30 @@ import 'package:jd_mall_flutter/generated/assets.dart';
 import 'package:jd_mall_flutter/models/goods_page_info.dart';
 import 'package:jd_mall_flutter/routes.dart';
 
+// 列表项高频使用的颜色/渐变提升到常量，避免每个 item 每次 build 都做字符串解析
+final Color cED4637 = '#ED4637'.toColor();
+final Color c737473 = '#737473'.toColor();
+final Color cFDF4F0 = '#FDF4F0'.toColor();
+final Color cF4F4F5 = '#F4F4F5'.toColor();
+final Color cA4A5A4 = '#A4A5A4'.toColor();
+final LinearGradient tagGradient = LinearGradient(colors: ['#E44746'.toColor(), '#E3909B'.toColor()]);
+final BoxDecoration goodsCardDecoration = BoxDecoration(
+  color: Colors.white,
+  borderRadius: BorderRadius.circular(10),
+  // 阴影是瀑布流滚动时的主要 raster 开销，收敛模糊半径
+  boxShadow: const [
+    BoxShadow(
+      color: Color(0xFFE0E0E0),
+      offset: Offset(0, 1),
+      blurRadius: 4,
+    )
+  ],
+);
+
 Widget goodsItem(BuildContext context, GoodsList item, double width) {
-  //
+  // 按显示尺寸 * 设备像素比解码，减少内存占用与解码耗时
+  final int memCacheSize = (width * MediaQuery.devicePixelRatioOf(context)).round();
+
   List<Widget> widgets = [
     ClipRRect(
       borderRadius: const BorderRadius.only(topLeft: Radius.circular(10.0), topRight: Radius.circular(10.0)),
@@ -20,7 +42,10 @@ Widget goodsItem(BuildContext context, GoodsList item, double width) {
         imageUrl: item.imgUrl!,
         width: width,
         height: width,
-        placeholder: (context, url) => assetImage(Assets.imagesDefault,width, width),
+        memCacheWidth: memCacheSize,
+        memCacheHeight: memCacheSize,
+        filterQuality: FilterQuality.low,
+        placeholder: (context, url) => assetImage(Assets.imagesDefault, width, width),
         errorBuilder: (context, url, error) => assetImage(Assets.imagesDefault, width, width),
         fit: BoxFit.fill,
       ),
@@ -33,8 +58,8 @@ Widget goodsItem(BuildContext context, GoodsList item, double width) {
         marginTop: 10,
         paddingLeft: 5,
         paddingRight: 6,
-        bgColor: '#ED4637'.toColor(),
-        gradient: LinearGradient(colors: ["#E44746".toColor(), "#E3909B".toColor()]),
+        bgColor: cED4637,
+        gradient: tagGradient,
         borderRadius: const BorderRadius.all(Radius.circular(12)),
         txt: item.tag.toString(),
         fColor: Colors.white,
@@ -48,7 +73,7 @@ Widget goodsItem(BuildContext context, GoodsList item, double width) {
         paddingRight: 6,
         borderRadius: const BorderRadius.all(Radius.circular(6)),
         txt: item.des1.toString(),
-        fColor: '#ED4637'.toColor(),
+        fColor: cED4637,
         fSize: 16,
       ),
     );
@@ -59,7 +84,7 @@ Widget goodsItem(BuildContext context, GoodsList item, double width) {
         paddingRight: 6,
         borderRadius: const BorderRadius.all(Radius.circular(6)),
         txt: item.des2.toString(),
-        fColor: '#737473'.toColor(),
+        fColor: c737473,
         fSize: 14,
       ),
     );
@@ -68,10 +93,10 @@ Widget goodsItem(BuildContext context, GoodsList item, double width) {
         marginTop: 2,
         paddingLeft: 2,
         paddingRight: 2,
-        bgColor: '#FDF4F0'.toColor(),
+        bgColor: cFDF4F0,
         borderRadius: const BorderRadius.all(Radius.circular(6)),
         txt: "点击进入",
-        fColor: '#ED4637'.toColor(),
+        fColor: cED4637,
         fSize: 12,
       ),
     );
@@ -79,7 +104,7 @@ Widget goodsItem(BuildContext context, GoodsList item, double width) {
     widgets.add(
       lineTwo(
         txt: item.description.toString(),
-        fColor: "#737473".toColor(),
+        fColor: c737473,
       ),
     );
 
@@ -91,17 +116,17 @@ Widget goodsItem(BuildContext context, GoodsList item, double width) {
           children: [
             lineTwo(
               txt: "￥${item.price.toString()}",
-              fColor: '#ED4637'.toColor(),
+              fColor: cED4637,
               fontWeight: FontWeight.bold,
             ),
             textItem(
               marginTop: 2,
               paddingLeft: 2,
               paddingRight: 2,
-              bgColor: '#F4F4F5'.toColor(),
+              bgColor: cF4F4F5,
               borderRadius: const BorderRadius.only(topLeft: Radius.circular(6), bottomLeft: Radius.circular(6)),
               txt: "看相似",
-              fColor: '#A4A5A4'.toColor(),
+              fColor: cA4A5A4,
               fSize: 12,
             ),
           ],
@@ -118,17 +143,7 @@ Widget goodsItem(BuildContext context, GoodsList item, double width) {
     child: Container(
       padding: const EdgeInsets.only(bottom: 10),
       margin: const EdgeInsets.only(left: 5, right: 5),
-      decoration: BoxDecoration(
-        color: Colors.white,
-        borderRadius: BorderRadius.circular(10),
-        boxShadow: [
-          BoxShadow(
-            color: Colors.grey.shade300,
-            offset: const Offset(0, 0), // 偏移量
-            blurRadius: 10,
-          )
-        ],
-      ),
+      decoration: goodsCardDecoration,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: widgets,

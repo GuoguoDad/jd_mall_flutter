@@ -23,17 +23,20 @@ class CategoryProvider extends ChangeNotifier {
   SecondCateList selectSecondCategoryInfo = SecondCateList.fromJson({});
 
   void setLoading(bool va) {
+    if (isLoading == va) return;
     isLoading = va;
     notifyListeners();
   }
 
   void setTabClicked(bool va) {
+    if (isTabClicked == va) return;
     isTabClicked = va;
     notifyListeners();
   }
 
   //选中左侧一级分类
   void selectLeftCategory(CategoryInfo prev, CategoryInfo curr, CategoryInfo nex) {
+    if (identical(previous, prev) && identical(current, curr) && identical(next, nex)) return;
     previous = prev;
     current = curr;
     next = nex;
@@ -42,6 +45,8 @@ class CategoryProvider extends ChangeNotifier {
 
   //选中右侧二级分类
   void selectSecondCategory(SecondCateList selectSecondCateInfo, bool isClicked) {
+    // 滚动过程中会频繁调用，只有选中项或点击态真正变化时才通知，避免整页重建
+    if (identical(selectSecondCategoryInfo, selectSecondCateInfo) && isTabClicked == isClicked) return;
     selectSecondCategoryInfo = selectSecondCateInfo;
     isTabClicked = isClicked;
     notifyListeners();

@@ -37,11 +37,11 @@ class GalleryList extends StatelessWidget {
             color: Colors.white,
             borderRadius: BorderRadius.only(topLeft: Radius.circular(8), topRight: Radius.circular(8)),
           ),
-          child: Consumer<HomeProvider>(
-              builder: (context, provider, child) {
-                var bannerList = provider.homePageInfo.bannerList ?? [];
-
-                if(bannerList.isEmpty) return Container();
+          child: Selector<HomeProvider, List<BannerList>>(
+              selector: (context, provider) => provider.homePageInfo.bannerList ?? const <BannerList>[],
+              shouldRebuild: (prev, next) => !identical(prev, next),
+              builder: (context, bannerList, child) {
+                if (bannerList.isEmpty) return Container();
 
                 return CarouselSlider(bannerList);
               }
@@ -64,12 +64,13 @@ class _CarouselSliderState extends State<CarouselSlider> {
   late final controller = ExpandablePageController(itemCount: widget.bannerList.length);
   late Timer _timer;
 
-  int activeIndex = 0;
+  // 用 ValueNotifier 驱动指示器，避免 onPageChanged 时重建整个 PageView
+  final ValueNotifier<int> activeIndexNotifier = ValueNotifier<int>(0);
 
   void _startTimer() {
     _timer = Timer.periodic(const Duration(seconds: 8), (timer) {
       if (controller.hasClients) {
-        int nextPage = (activeIndex + 1) % widget.bannerList.length;
+        int nextPage = (activeIndexNotifier.value + 1) % widget.bannerList.length;
         controller.animateToPage(
           nextPage,
           duration: const Duration(milliseconds: 500),
@@ -88,6 +89,7 @@ class _CarouselSliderState extends State<CarouselSlider> {
   @override
   void dispose() {
     _timer.cancel();
+    activeIndexNotifier.dispose();
     controller.dispose();
     super.dispose();
   }
@@ -96,49 +98,54 @@ class _CarouselSliderState extends State<CarouselSlider> {
   Widget build(BuildContext context) {
     return Stack(
       children: [
-        ExpandablePageView.builder(
-          loop: true,
-          controller: controller,
-          itemCount: widget.bannerList.length,
-          onPageChanged: (index) {
-            setState(() { activeIndex = index; });
-          },
-          itemBuilder: (BuildContext context, int index) {
-            return GestureDetector(
-              onTap: () => Navigator.of(context).pushNamed(RoutesEnum.detailPage.path),
-              child: Container(
-                margin: const EdgeInsets.fromLTRB(10, 10, 10, 2),
-                child: ClipRRect(
-                  borderRadius: const BorderRadius.all(Radius.circular(6)),
-                  child: ExtendImageNetwork(url: widget.bannerList[index].imgUrl!,
-                    width: carouselWidth,
-                    height: carouselHeight,
-                    cache: true,
-                    fit: BoxFit.fill,
+        RepaintBoundary(
+          child: ExpandablePageView.builder(
+            loop: true,
+            controller: controller,
+            itemCount: widget.bannerList.length,
+            onPageChanged: (index) => activeIndexNotifier.value = index,
+            itemBuilder: (BuildContext context, int index) {
+              return GestureDetector(
+                onTap: () => Navigator.of(context).pushNamed(RoutesEnum.detailPage.path),
+                child: Container(
+                  margin: const EdgeInsets.fromLTRB(10, 10, 10, 2),
+                  child: ClipRRect(
+                    borderRadius: const BorderRadius.all(Radius.circular(6)),
+                    child: ExtendImageNetwork(url: widget.bannerList[index].imgUrl!,
+                      width: carouselWidth,
+                      height: carouselHeight,
+                      cache: true,
+                      fit: BoxFit.fill,
+                    ),
                   ),
                 ),
-              ),
-            );
-          },
+              );
+            },
+          ),
         ),
         Positioned(
           left: 0,
           right: 0,
           bottom: 8,
-          child: Container(
-            height: 10,
-            width: double.infinity,
-            alignment: Alignment.center,
-            child: AnimatedSmoothIndicator(
-              activeIndex: activeIndex,
-              count: widget.bannerList.length,
-              effect: WormEffect(
-                dotWidth: 8.0,
-                dotHeight: 8.0,
-                dotColor: Colors.grey,
-                activeDotColor: CommonStyle.themeColor
+          child: RepaintBoundary(
+            child: Container(
+              height: 10,
+              width: double.infinity,
+              alignment: Alignment.center,
+              child: ValueListenableBuilder<int>(
+                valueListenable: activeIndexNotifier,
+                builder: (context, activeIndex, child) => AnimatedSmoothIndicator(
+                  activeIndex: activeIndex,
+                  count: widget.bannerList.length,
+                  effect: WormEffect(
+                    dotWidth: 8.0,
+                    dotHeight: 8.0,
+                    dotColor: Colors.grey,
+                    activeDotColor: CommonStyle.themeColor
+                  ),
+                ),
               ),
-            )  ,
+            ),
           ),
         ),
       ],

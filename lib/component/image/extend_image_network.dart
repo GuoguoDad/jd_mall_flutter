@@ -27,12 +27,20 @@ class ExtendImageNetwork extends StatelessWidget {
       );
     }
 
+    // 按实际显示尺寸 * 设备像素比解码，避免用原图分辨率解码造成额外内存与解码耗时
+    final ratio = MediaQuery.devicePixelRatioOf(context);
+    int? cacheWidth = width != null ? (width! * ratio).round() : null;
+    int? cacheHeight = height != null ? (height! * ratio).round() : null;
+
     return ExtendedImage.network(
       url,
       width: width,
       height: height,
+      cacheWidth: cacheWidth != null && cacheWidth > 0 ? cacheWidth : null,
+      cacheHeight: cacheHeight != null && cacheHeight > 0 ? cacheHeight : null,
       cache: cache ?? true,
       fit: fit,
+      gaplessPlayback: true,
       loadStateChanged: (ExtendedImageState state) {
         switch (state.extendedImageLoadState) {
           case LoadState.loading:

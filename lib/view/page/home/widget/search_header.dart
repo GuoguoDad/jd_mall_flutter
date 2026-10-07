@@ -14,6 +14,9 @@ import 'package:jd_mall_flutter/generated/assets.dart';
 import 'package:jd_mall_flutter/view/page/home/home_provider.dart';
 import 'package:jd_mall_flutter/view/page/home/util.dart';
 
+// 屏幕宽度缓存（顶层变量惰性求值），避免每帧通过 navigatorContext 查询 MediaQuery
+final double screenWidth = getScreenWidth();
+
 class SearchHeader extends StatelessWidget {
   const SearchHeader({super.key});
 
@@ -41,13 +44,14 @@ class SearchHeader extends StatelessWidget {
                 right: 18,
                 child: assetImage(Assets.imagesIcScan, 32, 32),
               ),
-              Consumer<HomeProvider>(
-                builder: (context, provider, child) {
+              ValueListenableBuilder<double>(
+                valueListenable: context.read<HomeProvider>().scrollYNotifier,
+                builder: (context, scrollY, child) {
                   return Positioned(
-                    top: calc2Top(provider.pageScrollY),
+                    top: calc2Top(scrollY),
                     child: Container(
                       height: 34,
-                      width: getScreenWidth() - calcWidth(provider.pageScrollY),
+                      width: screenWidth - calcWidth(scrollY),
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(12),
                         color: Colors.white,

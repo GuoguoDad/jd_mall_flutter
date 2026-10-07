@@ -24,10 +24,12 @@ class AdvBanner extends StatelessWidget {
         child: Container(
           color: Colors.white,
           padding: const EdgeInsets.all(0),
-          child: Consumer<HomeProvider>(
-              builder: (context, provider, child) {
+          child: Selector<HomeProvider, String>(
+              selector: (context, provider) => provider.homePageInfo.adUrl ?? "",
+              shouldRebuild: (prev, next) => prev != next,
+              builder: (context, adUrl, child) {
                 return ExtendImageNetwork(
-                  url: provider.homePageInfo.adUrl ?? "",
+                  url: adUrl,
                   height: 90,
                   cache: true,
                   fit: BoxFit.fill,

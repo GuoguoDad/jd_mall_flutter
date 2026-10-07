@@ -39,13 +39,6 @@ class SliverHeaderDelegate extends SliverPersistentHeaderDelegate {
       bool overlapsContent,
       ) {
     Widget child = builder(context, shrinkOffset, overlapsContent);
-    //测试代码：如果在调试模式，且子组件设置了key，则打印日志
-    assert(() {
-      if (child.key != null) {
-        print('${child.key}: shrink: $shrinkOffset，overlaps:$overlapsContent');
-      }
-      return true;
-    }());
     // 让 header 尽可能充满限制的空间；宽度为 Viewport 宽度，
     // 高度随着用户滑动在[minHeight,maxHeight]之间变化。
     return SizedBox.expand(child: child);

@@ -37,7 +37,10 @@ class LeftCategoryListState extends State<LeftCategoryList> {
             return ListView.builder(
               controller: widget.scrollController,
               itemCount: list.length,
-              shrinkWrap: true,
+              // 列表已在 Expanded 提供的有界空间内，shrinkWrap 会额外做一次全量尺寸计算
+              shrinkWrap: false,
+              // item 高度固定，显式声明可跳过逐个测量
+              itemExtent: itemHeight,
               padding: EdgeInsets.zero,
               itemBuilder: (BuildContext context, int index) {
                 bool isPrev = prevCode == list[index].code;

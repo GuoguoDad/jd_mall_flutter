@@ -64,40 +64,38 @@ class AppraiseList extends StatelessWidget {
               ],
             ),
           ),
-          Consumer<DetailProvider>(
-              builder: (context, provider, child) {
-              DetailInfo? detailInfo = provider.goodsDetailRes.detailInfo;
-
-              return itemCard("activityZone".tr(), detailInfo?.hdzq ?? "", 260);
-            }
+          Selector<DetailProvider, String>(
+              selector: (context, provider) => provider.goodsDetailRes.detailInfo?.hdzq ?? "",
+              shouldRebuild: (prev, next) => prev != next,
+              builder: (context, url, child) => itemCard(context, "activityZone".tr(), url, 260),
           ),
           Container(
             height: 10,
             width: screenWidth,
             color: CommonStyle.colorF5F5F5,
           ),
-          Consumer<DetailProvider>(
-              builder: (context, provider, child) {
-              DetailInfo? detailInfo = provider.goodsDetailRes.detailInfo;
-
-              return itemCard("storeSelection".tr(), detailInfo?.dnyx ?? "", 500);
-            }
+          Selector<DetailProvider, String>(
+              selector: (context, provider) => provider.goodsDetailRes.detailInfo?.dnyx ?? "",
+              shouldRebuild: (prev, next) => prev != next,
+              builder: (context, url, child) => itemCard(context, "storeSelection".tr(), url, 500),
           )
         ]),
       ),
     );
   }
 
-  Widget appraiseList = Consumer<DetailProvider>(
-      builder: (context, provider, child) {
-        List<AppraiseInfo> list = provider.goodsDetailRes.goodsInfo?.appraiseList ?? [];
-
+  Widget appraiseList = Selector<DetailProvider, List<AppraiseInfo>>(
+      selector: (context, provider) => provider.goodsDetailRes.goodsInfo?.appraiseList ?? const <AppraiseInfo>[],
+      shouldRebuild: (prev, next) => !identical(prev, next),
+      builder: (context, list, child) {
         return SizedBox(
           width: getScreenWidth() - 20,
           height: list.length * 240,
           child: GroupGridView(
             padding: EdgeInsets.zero,
             physics: const NeverScrollableScrollPhysics(),
+            // 这里是内嵌的非滚动网格，不需要 KeepAlive，避免所有图片解码结果常驻内存
+            addAutomaticKeepAlive: false,
             gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 4, mainAxisSpacing: 5, crossAxisSpacing: 5),
             sectionCount: list.length,
             itemInSectionCount: (int section) => list[section].imgList!.length,
@@ -152,7 +150,7 @@ class AppraiseList extends StatelessWidget {
       }
   );
 
-  Widget itemCard(String title, String url, double imgHeight) {
+  Widget itemCard(BuildContext context, String title, String url, double imgHeight) {
     return Container(
       width: screenWidth - 20,
       padding: const EdgeInsets.all(10),
@@ -173,6 +171,8 @@ class AppraiseList extends StatelessWidget {
           CachedNetworkImage(
             width: screenWidth - 40,
             imageUrl: url,
+            memCacheWidth: ((screenWidth - 40) * MediaQuery.devicePixelRatioOf(context)).round(),
+            filterQuality: FilterQuality.low,
             placeholder: (context, url) => assetImage(Assets.imagesDefault, screenWidth - 40, 100),
             errorWidget: (context, url, error) => assetImage(Assets.imagesDefault, screenWidth - 40, 100),
             fit: BoxFit.fitWidth,

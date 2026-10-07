@@ -25,59 +25,72 @@ class ImgSlider extends StatefulWidget {
 }
 
 class _ImgSliderState extends State<ImgSlider> {
+  // 用 ValueNotifier 驱动指示器，避免 onPageChanged 时重建整个 PageView
+  final ValueNotifier<int> activeIndexNotifier = ValueNotifier<int>(0);
 
-  int activeIndex = 0;
+  @override
+  void dispose() {
+    activeIndexNotifier.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
     return Container(
       height: imgHeight,
-      width: getScreenWidth(),
+      width: screenWidth,
       margin: EdgeInsets.only(top: statusHeight),
-      child: Consumer<DetailProvider>(
-        builder: (context, provider, child) {
-          List<String> imgList = provider.selectInfo.imgList ?? [];
+      child: Selector<DetailProvider, List<String>?>(
+        selector: (context, provider) => provider.selectInfo.imgList,
+        shouldRebuild: (prev, next) => !identical(prev, next),
+        builder: (context, imgList, child) {
+          final list = imgList ?? const <String>[];
 
-          if(imgList.isEmpty) return Container();
+          if (list.isEmpty) return Container();
 
           return Stack(
             children: [
-              ExpandablePageView.builder(
-                loop: true,
-                itemCount: imgList.length,
-                onPageChanged: (index) {
-                  setState(() { activeIndex = index; });
-                },
-                itemBuilder: (BuildContext context, int index) {
-                  return GestureDetector(
-                    onTap: () => openPhotoGalleryDialog(context, imgList, imgList.lastIndexWhere((v) => v == imgList[index])),
-                    child: ExtendImageNetwork(url: imgList[index],
-                      height: imgHeight,
-                      width: screenWidth,
-                      cache: true,
-                      fit: BoxFit.fill,
-                    ),
-                  );
-                },
+              RepaintBoundary(
+                child: ExpandablePageView.builder(
+                  loop: true,
+                  itemCount: list.length,
+                  onPageChanged: (index) => activeIndexNotifier.value = index,
+                  itemBuilder: (BuildContext context, int index) {
+                    return GestureDetector(
+                      onTap: () => openPhotoGalleryDialog(context, list, list.lastIndexWhere((v) => v == list[index])),
+                      child: ExtendImageNetwork(url: list[index],
+                        height: imgHeight,
+                        width: screenWidth,
+                        cache: true,
+                        fit: BoxFit.fill,
+                      ),
+                    );
+                  },
+                ),
               ),
               Positioned(
                 left: 0,
                 right: 0,
                 bottom: 8,
-                child: Container(
-                  height: 10,
-                  width: double.infinity,
-                  alignment: Alignment.center,
-                  child: AnimatedSmoothIndicator(
-                    activeIndex: activeIndex,
-                    count: imgList.length,
-                    effect: WormEffect(
-                        dotWidth: 8.0,
-                        dotHeight: 8.0,
-                        dotColor: Colors.grey,
-                        activeDotColor: CommonStyle.themeColor
+                child: RepaintBoundary(
+                  child: Container(
+                    height: 10,
+                    width: double.infinity,
+                    alignment: Alignment.center,
+                    child: ValueListenableBuilder<int>(
+                      valueListenable: activeIndexNotifier,
+                      builder: (context, activeIndex, child) => AnimatedSmoothIndicator(
+                        activeIndex: activeIndex,
+                        count: list.length,
+                        effect: WormEffect(
+                            dotWidth: 8.0,
+                            dotHeight: 8.0,
+                            dotColor: Colors.grey,
+                            activeDotColor: CommonStyle.themeColor
+                        ),
+                      ),
                     ),
-                  )  ,
+                  ),
                 ),
               ),
             ],

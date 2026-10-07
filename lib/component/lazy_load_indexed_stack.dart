@@ -65,13 +65,23 @@ class LazyLoadIndexedStackState extends State<LazyLoadIndexedStack> {
 
   @override
   Widget build(final BuildContext context) {
-    return IndexedStack(
+    // 非当前页用 Offstage 跳过 layout/paint，并用 TickerMode 关闭动画。
+    // 否则首页轮播等隐藏 tab 里的动画仍会持续驱动布局，造成周期性掉帧。
+    return Stack(
       key: _stackKey,
-      index: widget.index,
       alignment: widget.alignment,
       textDirection: widget.textDirection,
-      sizing: widget.sizing,
-      children: _children,
+      fit: widget.sizing,
+      children: [
+        for (int i = 0; i < _children.length; i++)
+          TickerMode(
+            enabled: i == widget.index,
+            child: Offstage(
+              offstage: i != widget.index,
+              child: _children[i],
+            ),
+          ),
+      ],
     );
   }
 

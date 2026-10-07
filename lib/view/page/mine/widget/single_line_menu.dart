@@ -14,13 +14,13 @@ class SingleLineMenu extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Consumer<MineProvider>(
-      builder: (context, provider, child) {
-       List<FunctionInfo> menuData = provider.menuTabInfo.functionList ?? [];
-
-       return SliverToBoxAdapter(
-         child: PageMenu(menuDataList: menuData),
-       );
+    return Selector<MineProvider, List<FunctionInfo>>(
+      selector: (context, provider) => provider.menuTabInfo.functionList ?? const <FunctionInfo>[],
+      shouldRebuild: (prev, next) => !identical(prev, next),
+      builder: (context, menuData, child) {
+        return SliverToBoxAdapter(
+          child: PageMenu(menuDataList: menuData),
+        );
       }
     );
   }

@@ -8,6 +8,7 @@ import 'package:provider/provider.dart';
 import 'package:jd_mall_flutter/common/style/common_style.dart';
 import 'package:jd_mall_flutter/common/util/screen_util.dart';
 import 'package:jd_mall_flutter/component/persistentHeader/sliver_header_builder.dart';
+import 'package:jd_mall_flutter/models/mine_menu_tab_info.dart';
 import 'package:jd_mall_flutter/view/page/mine/mine_provider.dart';
 
 class TabList extends StatefulWidget {
@@ -22,6 +23,22 @@ class TabListState extends State<TabList> {
   ScrollController controller = ScrollController();
   double screenWidth = getScreenWidth();
 
+  // GlobalKey 缓存到 State 中，避免每次 build 重建导致整个 Element 树被丢弃重建
+  final List<GlobalKey> keys = [];
+
+  void ensureKeys(int count) {
+    if (keys.length == count) return;
+    keys
+      ..clear()
+      ..addAll(List.generate(count, (i) => GlobalKey(debugLabel: 'mine_tab_$i')));
+  }
+
+  @override
+  void dispose() {
+    controller.dispose();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     return SliverPersistentHeader(
@@ -31,17 +48,19 @@ class TabListState extends State<TabList> {
         height: 54,
         child: Container(
           color: CommonStyle.greyBgColor,
-          child:Consumer<MineProvider>(
-            builder: (context, provider, child) {
+          child:Selector<MineProvider, ({String currentTab, List<TabInfo> tabs})>(
+            selector: (context, provider) => (
+              currentTab: provider.currentTab,
+              tabs: provider.menuTabInfo.tabList ?? const <TabInfo>[],
+            ),
+            shouldRebuild: (prev, next) => prev.currentTab != next.currentTab || !identical(prev.tabs, next.tabs),
+            builder: (context, data, child) {
 
-              var tabs = provider.menuTabInfo.tabList ?? [];
-              String currentTab = provider.currentTab;
+              final tabs = data.tabs;
+              String currentTab = data.currentTab;
               int totalCount = tabs.length;
 
-              final keys = <GlobalKey>[];
-              for (var element in tabs) {
-                keys.add(GlobalKey(debugLabel: 'mine_tab_${element.code}'));
-              }
+              ensureKeys(totalCount);
 
               void tabScrollToMiddle(int index) {
                 double toLeft = 0;
@@ -79,6 +98,7 @@ class TabListState extends State<TabList> {
                   return GestureDetector(
                     key: keys[index],
                     onTap: () {
+                      final provider = context.read<MineProvider>();
                       provider.setIsTabClick(true);
                       provider.changeCurrentTab(tabs[index].code!);
                       widget.pageController

@@ -13,6 +13,9 @@ import 'package:jd_mall_flutter/component/goods_item.dart';
 import 'package:jd_mall_flutter/component/page_goods_list_skeleton.dart';
 import 'package:jd_mall_flutter/models/goods_page_info.dart';
 
+// 商品卡片宽度缓存（顶层变量惰性求值）
+final double itemWidth = (getScreenWidth() - 20) / 2;
+
 class PageGoodsList extends StatefulWidget {
   final String code;
   final ScrollPhysics physics;
@@ -26,6 +29,9 @@ class PageGoodsList extends StatefulWidget {
 
 class _PageGoodsListState extends State<PageGoodsList> {
   late final RefreshController _refreshController;
+
+  // 缓存 key，避免每次 build 都创建新的 Key 导致子树被判定为不同 widget
+  late final Key _refreshKey = ValueKey('MasonryGridView_${widget.code}');
 
   int pageNum = 1;
   bool isLoading = true;
@@ -93,7 +99,6 @@ class _PageGoodsListState extends State<PageGoodsList> {
 
   @override
   Widget build(BuildContext context) {
-    double width = (getScreenWidth() - 20) / 2;
     List<GoodsList> goodsList = goodsPageInfo.goodsList ?? [];
 
     if ((isLoading || goodsList.isEmpty) && pageNum == 1) {
@@ -101,7 +106,7 @@ class _PageGoodsListState extends State<PageGoodsList> {
     }
 
     return SmartRefresher(
-      key: Key("MasonryGridView_${widget.code}"),
+      key: _refreshKey,
       controller: _refreshController,
       enablePullDown: false,
       enablePullUp: true,
@@ -116,7 +121,7 @@ class _PageGoodsListState extends State<PageGoodsList> {
         mainAxisSpacing: 10,
         crossAxisSpacing: 0,
         itemBuilder: (BuildContext context, int index) => RepaintBoundary(
-          child: goodsItem(context, goodsList[index], width),
+          child: goodsItem(context, goodsList[index], itemWidth),
         ),
       ),
     );

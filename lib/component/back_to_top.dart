@@ -18,6 +18,9 @@ class BackToTop extends StatefulWidget {
 class _BackToTopState extends State<BackToTop> {
   bool show = false;
 
+  // 屏幕高度缓存：避免每次滚动回调都通过全局 navigatorKey 查询 MediaQuery
+  late final double screenHeight = getScreenHeight();
+
   @override
   void initState() {
     super.initState();
@@ -26,14 +29,16 @@ class _BackToTopState extends State<BackToTop> {
 
   @override
   void dispose() {
-    super.dispose();
     widget.controller.removeListener(onScroll);
+    super.dispose();
   }
 
   void onScroll() {
-    setState(() {
-      show = widget.controller.offset > getScreenHeight();
-    });
+    // 只有显隐状态真正翻转时才 setState，避免滚动期间每帧重建
+    final next = widget.controller.offset > screenHeight;
+    if (next == show) return;
+    if (!mounted) return;
+    setState(() => show = next);
   }
 
   @override

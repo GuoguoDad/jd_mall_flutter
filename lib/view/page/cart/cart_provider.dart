@@ -121,18 +121,16 @@ class CartProvider extends ChangeNotifier {
 
   //修改购物车商品数量
   void changeCartGoodsNum(String goodsCode, int num) {
-    List<CartGoods> cartGoodsList = cartGoods;
-    List<CartGoods> list = cartGoodsList.map((element) {
-      List<GoodsInfo>? filterList = element.goodsList?.where((goods) => goods.code == goodsCode).toList();
-      if (filterList!.isNotEmpty) {
-        int? index = element.goodsList?.indexWhere((goods) => goods.code == goodsCode);
-        filterList[0].num = num;
-        element.goodsList?[index!] = filterList[0];
+    // 直接定位修改，避免对每个店铺做 where().toList() 全量过滤
+    for (final element in cartGoods) {
+      final goodsList = element.goodsList;
+      if (goodsList == null) continue;
+      final index = goodsList.indexWhere((goods) => goods.code == goodsCode);
+      if (index >= 0) {
+        goodsList[index].num = num;
+        break;
       }
-      return element;
-    }).toList();
-
-    cartGoods = list;
+    }
     notifyListeners();
   }
 }

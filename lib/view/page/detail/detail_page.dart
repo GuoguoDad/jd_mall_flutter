@@ -34,6 +34,9 @@ class DetailPageState extends State<DetailPage> {
   final ExtendedScrollController scrollController = ExtendedScrollController();
   final RefreshController refreshController = RefreshController();
 
+  // 顶部吸顶区域高度缓存，避免滚动回调里每帧查询 MediaQuery
+  late final double topAnchor = 42 + getStatusHeight();
+
   @override
   void initState() {
     super.initState();
@@ -71,6 +74,7 @@ class DetailPageState extends State<DetailPage> {
                 slivers: [
                   GoodsInfo(),
                   AppraiseList(),
+                  DetailImgHeader(),
                   DetailImgList(),
                   StoreGoodsHeader(),
                   StoreGoodsList(),
@@ -79,7 +83,7 @@ class DetailPageState extends State<DetailPage> {
             ),
           ),
         ),
-        Positioned(top: 0, left: 0, child: TabHeader(scrollController))
+        Positioned(top: 0, left: 0, child: RepaintBoundary(child: TabHeader(scrollController)))
       ],
     );
   }
@@ -125,7 +129,7 @@ class DetailPageState extends State<DetailPage> {
       if (keyRenderObject != null) {
         //距离CustomScrollView顶部距离， 上滚出可视区域变为0
         final dy = (keyRenderObject.parentData as SliverPhysicalParentData).paintOffset.dy;
-        if (dy > 42 + getStatusHeight()) {
+        if (dy > topAnchor) {
           break;
         }
       }

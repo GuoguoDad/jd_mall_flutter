@@ -14,6 +14,9 @@ class MineProvider extends ChangeNotifier {
 
   double pageScrollY = 0.0;
 
+  /// 滚动偏移量单独用 ValueNotifier 驱动，避免滚动时 notifyListeners 导致整页重建
+  final ValueNotifier<double> scrollYNotifier = ValueNotifier<double>(0);
+
   //是否显示返回顶部
   bool showBackTop = false;
 
@@ -27,33 +30,45 @@ class MineProvider extends ChangeNotifier {
 
 
   void setLoading(bool va) {
+    if (isLoading == va) return;
     isLoading = va;
     notifyListeners();
   }
 
   void recordPageY(double y) {
+    if ((pageScrollY - y).abs() < 0.5) return;
     pageScrollY = y;
-    notifyListeners();
+    scrollYNotifier.value = y;
   }
 
   void setShowBackTop(bool va) {
+    if (showBackTop == va) return;
     showBackTop = va;
     notifyListeners();
   }
 
   void setIsTabClick(bool va) {
+    if (isTabClick == va) return;
     isTabClick = va;
     notifyListeners();
   }
 
   void changeMenuIndex(int index) {
+    if (menuIndex == index) return;
     menuIndex = index;
     notifyListeners();
   }
 
   void changeCurrentTab(String va) {
+    if (currentTab == va) return;
     currentTab = va;
     notifyListeners();
+  }
+
+  @override
+  void dispose() {
+    scrollYNotifier.dispose();
+    super.dispose();
   }
 
   Future<void> initPageData() async {

@@ -34,6 +34,24 @@ class RightGroupList extends StatefulWidget {
 }
 
 class RightGroupListState extends State<RightGroupList> {
+  // GlobalKey 缓存到 State 中：只在分类数据变化时重建，
+  // 避免每次 build 都新建 GlobalKey 导致整个 Element 树重建、定位失效
+  final List<GlobalKey> secondKeys = [];
+  final List<GlobalKey> keys = [];
+  String keySignature = '';
+
+  void ensureKeys(List<SecondCateList> secondCateList) {
+    final signature = secondCateList.map((e) => e.categoryCode).join('_');
+    if (keySignature == signature) return;
+    keySignature = signature;
+
+    secondKeys
+      ..clear()
+      ..addAll(secondCateList.map((e) => GlobalKey(debugLabel: 'second_${e.categoryCode}')));
+    keys
+      ..clear()
+      ..addAll(secondCateList.map((e) => GlobalKey(debugLabel: 'section_${e.categoryCode}')));
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -42,24 +60,27 @@ class RightGroupListState extends State<RightGroupList> {
       child: Container(
         color: Colors.white,
         padding: const EdgeInsets.only(top: 10),
-        child: Consumer<CategoryProvider>(
-            builder: (context, provider, child) {
+        // 只订阅真正影响右侧内容的三个字段，避免 Provider 其它变更牵连整块重建
+        child: Selector<CategoryProvider, ({bool isTabClicked, SecondCateList select, SecondGroupCategoryInfo info})>(
+            selector: (context, provider) => (
+              isTabClicked: provider.isTabClicked,
+              select: provider.selectSecondCategoryInfo,
+              info: provider.secondGroupCategoryInfo,
+            ),
+            shouldRebuild: (prev, next) =>
+                prev.isTabClicked != next.isTabClicked ||
+                !identical(prev.select, next.select) ||
+                !identical(prev.info, next.info),
+            builder: (context, data, child) {
+              final provider = context.read<CategoryProvider>();
 
-              bool isTabClicked = provider.isTabClicked;
-              SecondCateList? selectSecondCategoryInfo = provider.selectSecondCategoryInfo;
-              SecondGroupCategoryInfo? secondGroupCategoryInfo = provider.secondGroupCategoryInfo;
+              bool isTabClicked = data.isTabClicked;
+              SecondCateList selectSecondCategoryInfo = data.select;
+              SecondGroupCategoryInfo secondGroupCategoryInfo = data.info;
               String headUrl = secondGroupCategoryInfo.bannerUrl ?? "";
               List<SecondCateList> secondCateList = secondGroupCategoryInfo.secondCateList ?? [];
 
-              final secondKeys = <GlobalKey>[];
-              for (var element in secondGroupCategoryInfo.secondCateList ?? []) {
-                secondKeys.add(GlobalKey(debugLabel: 'second_${element.categoryCode}'));
-              }
-
-              final keys = <GlobalKey>[];
-              for (var element in secondCateList) {
-                keys.add(GlobalKey(debugLabel: 'section_${element.categoryCode}'));
-              }
+              ensureKeys(secondCateList);
 
               void tabScrollToMiddle(int index) {
                 double toLeft = 0;
@@ -129,8 +150,8 @@ class RightGroupListState extends State<RightGroupList> {
                     ),
                   ),
                   Expanded(
-                    child: NotificationListener<ScrollNotification>(
-                      onNotification: (ScrollNotification notification) {
+                    child: NotificationListener<ScrollUpdateNotification>(
+                      onNotification: (ScrollUpdateNotification notification) {
                         if (notification.depth == 0) {
                           if (isTabClicked) return false;
 
@@ -148,6 +169,8 @@ class RightGroupListState extends State<RightGroupList> {
                         controller: widget.gridViewController,
                         padding: EdgeInsets.zero,
                         scrollBehavior: NoShadowScrollBehavior(),
+                        // 三级分类网格数量多，关闭 KeepAlive 释放不可见项的解码内存
+                        addAutomaticKeepAlive: false,
                         gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                           crossAxisCount: 3,
                           mainAxisSpacing: 0,

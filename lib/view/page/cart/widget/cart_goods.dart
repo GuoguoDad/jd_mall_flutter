@@ -36,7 +36,7 @@ class CartGoodsList extends StatelessWidget {
               return buildHeader(context, provider, section);
             },
             itemInSectionBuilder: (BuildContext context, IndexPath indexPath) {
-              return buildItem(provider, indexPath);
+              return RepaintBoundary(child: buildItem(provider, indexPath));
             },
             separatorBuilder: (IndexPath indexPath) {
               return Container(

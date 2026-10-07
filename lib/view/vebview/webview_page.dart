@@ -35,10 +35,6 @@ class _WebViewPageState extends State<WebViewPage> {
     controller = WebViewController()
       ..setJavaScriptMode(JavaScriptMode.unrestricted)
       ..setBackgroundColor(const Color(0x00000000))
-      ..addJavaScriptChannel("ARTICLE_SCROLL_CHANNEL", onMessageReceived: (msg) {
-        if (double.parse(msg.message) > 100) {
-        } else {}
-      })
       ..setNavigationDelegate(
         NavigationDelegate(
           onProgress: (int progress) {
@@ -49,13 +45,6 @@ class _WebViewPageState extends State<WebViewPage> {
             controller.getTitle().then((value) => setState(() {
                   title = (value ?? "").replaceAll("京东", "");
                 }));
-            controller.runJavaScript(
-              '''
-                window.addEventListener('scroll', function() {
-                window.ARTICLE_SCROLL_CHANNEL.postMessage(this.scrollY);
-                });
-              ''',
-            );
             setState(() {
               isLoading = false;
             });

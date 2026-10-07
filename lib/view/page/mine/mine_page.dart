@@ -76,26 +76,32 @@ class MinePageState extends State<MinePage> {
                 ];
               },
               onlyOneScrollInBody: true,
-              body: Consumer<MineProvider>(
-                builder: (context, provider, child) {
-                  List<TabInfo> tabs = provider.menuTabInfo.tabList ?? [];
-                  String currentTab = provider.currentTab;
-
+              // 只在 tab 数据 / 当前 tab 变化时重建，避免滚动时重建全部商品列表
+              body: Selector<MineProvider, ({String currentTab, List<TabInfo> tabs})>(
+                selector: (context, provider) => (
+                  currentTab: provider.currentTab,
+                  tabs: provider.menuTabInfo.tabList ?? const <TabInfo>[],
+                ),
+                shouldRebuild: (prev, next) => prev.currentTab != next.currentTab || !identical(prev.tabs, next.tabs),
+                builder: (context, data, child) {
                   return PageView(
                     controller: pageController,
                     onPageChanged: (index) {
+                      final provider = context.read<MineProvider>();
                       if (provider.isTabClick) return;
-                      provider.changeCurrentTab(tabs[index].code!);
+                      provider.changeCurrentTab(data.tabs[index].code!);
                     },
-                    children: tabs.map((e) => KeepAliveWrapper(child: PageGoodsList("mine_tab_${e.code!}", currentTab, physics))).toList(),
+                    children: data.tabs
+                        .map((e) => KeepAliveWrapper(child: PageGoodsList("mine_tab_${e.code!}", data.currentTab, physics)))
+                        .toList(),
                   );
-                }
+                },
               ),
             ),
-            floatingActionButton: Consumer<MineProvider>(
-              builder: (context, provider, child) {
-                return backTop(provider.showBackTop, scrollController);
-              }
+            floatingActionButton: Selector<MineProvider, bool>(
+              selector: (context, provider) => provider.showBackTop,
+              shouldRebuild: (prev, next) => prev != next,
+              builder: (context, showBackTop, child) => backTop(showBackTop, scrollController),
             ),
           );
         },
@@ -103,13 +109,16 @@ class MinePageState extends State<MinePage> {
     );
   }
 
+  // 屏幕高度缓存，避免滚动回调里每帧通过 navigatorContext 做 MediaQuery 查询
+  late final double screenHeight = getScreenHeight();
+
   bool onPageScroll(BuildContext context, ScrollNotification notification) {
     double distance = notification.metrics.pixels;
     if (notification.depth == 0) {
       context.read<MineProvider>().recordPageY(distance);
     }
     if (notification.depth == 2) {
-      context.read<MineProvider>().setShowBackTop(distance > getScreenHeight());
+      context.read<MineProvider>().setShowBackTop(distance > screenHeight);
     }
     return false;
   }

@@ -15,10 +15,12 @@ import 'package:jd_mall_flutter/view/page/login/login_provider.dart';
 import 'package:jd_mall_flutter/view/page/mine/mine_provider.dart';
 
 class InfoHeader extends StatelessWidget {
-  InfoHeader({super.key});
+  const InfoHeader({super.key});
 
   @override
   Widget build(BuildContext context) {
+    final mineProvider = context.read<MineProvider>();
+
     return SliverPersistentHeader(
       pinned: true,
       delegate: SliverHeaderDelegate(
@@ -61,9 +63,9 @@ class InfoHeader extends StatelessWidget {
                   child: assetImage(Assets.imagesIcMessage, 26, 26),
                 ),
               ),
-              titleWidget,
-              headerWidget,
-              userInfoWidget
+              titleWidget(mineProvider),
+              headerWidget(mineProvider),
+              userInfoWidget(mineProvider)
             ],
           ),
         ),
@@ -71,106 +73,127 @@ class InfoHeader extends StatelessWidget {
     );
   }
 
-  Widget titleWidget = Positioned(
-    top: 0,
-    left: (getScreenWidth() - 100) / 2,
-    child: Container(
-      width: 100,
-      height: 36,
-      alignment: Alignment.center,
-      child: Consumer<MineProvider>(
-          builder: (context, provider, child) {
-            HeaderSize headerSize = calcSize(provider.pageScrollY);
+  // 标题：跟随滚动淡入，用文字颜色 alpha 代替 Opacity，避免每帧 saveLayer
+  Widget titleWidget(MineProvider mineProvider) {
+    return Positioned(
+      top: 0,
+      left: (screenWidth - 100) / 2,
+      child: Container(
+        width: 100,
+        height: 36,
+        alignment: Alignment.center,
+        child: ValueListenableBuilder<double>(
+          valueListenable: mineProvider.scrollYNotifier,
+          builder: (context, scrollY, child) {
+            return Text(
+              "tabMainMine".tr(),
+              style: TextStyle(color: Color.fromRGBO(0, 0, 0, calcSize(scrollY).opacity), fontSize: 20),
+            );
+          },
+        ),
+      ),
+    );
+  }
 
-            return Opacity(
-              opacity: headerSize.opacity,
-              child: Text(
-                "tabMainMine".tr(),
-                style: const TextStyle(color: Colors.black, fontSize: 20),
+  Widget headerWidget(MineProvider mineProvider) {
+    // 登录态单独订阅，头像 AssetImage 只在这里创建一次，避免每帧重建 DecorationImage
+    return Selector<LoginProvider, bool>(
+      selector: (context, p) => p.hasLogin,
+      shouldRebuild: (prev, next) => prev != next,
+      builder: (context, hasLogin, child) {
+        final headerImage = AssetImage(hasLogin ? Assets.imagesHeader : Assets.imagesIcDefaultHeader);
+
+        return ValueListenableBuilder<double>(
+          valueListenable: mineProvider.scrollYNotifier,
+          builder: (context, scrollY, child) {
+            HeaderSize headerSize = calcSize(scrollY);
+
+            return Positioned(
+              top: headerSize.top,
+              left: 0,
+              child: Container(
+                width: headerSize.size,
+                height: headerSize.size,
+                margin: const EdgeInsets.only(left: 16),
+                decoration: ShapeDecoration(
+                  shape: const CircleBorder(),
+                  image: DecorationImage(
+                    fit: BoxFit.contain,
+                    image: headerImage,
+                  ),
+                ),
               ),
             );
-          }
-      ),
-    ),
-  );
+          },
+        );
+      },
+    );
+  }
 
-  Widget headerWidget = Consumer2<MineProvider, LoginProvider>(
-      builder: (context, provider, loginProvider, child) {
-        HeaderSize headerSize = calcSize(provider.pageScrollY);
+  Widget userInfoWidget(MineProvider mineProvider) {
+    return ValueListenableBuilder<double>(
+      valueListenable: mineProvider.scrollYNotifier,
+      builder: (context, scrollY, child) {
+        HeaderSize headerSize = calcSize(scrollY);
+        final hasLogin = context.select<LoginProvider, bool>((p) => p.hasLogin);
+
+        // 用文字颜色的 alpha 代替 Opacity，避免每帧 saveLayer 离屏合成
+        final alpha = Color.fromRGBO(0, 0, 0, 1 - headerSize.opacity);
 
         return Positioned(
-          top: headerSize.top,
-          left: 0,
-          child: Container(
-            width: headerSize.size,
-            height: headerSize.size,
-            margin: const EdgeInsets.only(left: 16),
-            decoration: ShapeDecoration(
-              shape: const CircleBorder(),
-              image: DecorationImage(
-                fit: BoxFit.contain,
-                image: AssetImage(loginProvider.hasLogin ? Assets.imagesHeader : Assets.imagesIcDefaultHeader),
-              ),
-            ),
-          ),
-        );
-      }
-  );
-
-  Widget userInfoWidget = Consumer2<MineProvider, LoginProvider>(
-    builder: (context, provider, loginProvider, child) {
-      HeaderSize headerSize = calcSize(provider.pageScrollY);
-
-      return Positioned(
-        top: headerSize.name2Top,
-        left: 100,
-        child: SizedBox(
-          width: getScreenWidth() - 100,
-          height: 60,
-          child: Opacity(
-            opacity: 1 - headerSize.opacity,
-            child: loginProvider.hasLogin
-                  ? Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                mainAxisAlignment: MainAxisAlignment.spaceAround,
-                children: [
-                  Text(
-                    "author".tr(),
-                    style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
-                  ),
-                  Row(
+          top: headerSize.name2Top,
+          left: 100,
+          child: SizedBox(
+            width: screenWidth - 100,
+            height: 60,
+            child: hasLogin
+                ? Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    mainAxisAlignment: MainAxisAlignment.spaceAround,
                     children: [
-                      Text("${"integral".tr()}: 200", style: const TextStyle(fontSize: 14)),
-                      Container(
-                        margin: const EdgeInsets.only(left: 20),
-                        child: Text(
-                          "${"creditValue".tr()}: 1200",
-                          style: const TextStyle(fontSize: 14),
-                        ),
+                      Text(
+                        "author".tr(),
+                        style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold, color: alpha),
+                      ),
+                      Row(
+                        children: [
+                          Text("${"integral".tr()}: 200", style: TextStyle(fontSize: 14, color: alpha)),
+                          Container(
+                            margin: const EdgeInsets.only(left: 20),
+                            child: Text(
+                              "${"creditValue".tr()}: 1200",
+                              style: TextStyle(fontSize: 14, color: alpha),
+                            ),
+                          )
+                        ],
                       )
                     ],
                   )
-                ],
-              )
-                  : GestureDetector(
-                onTap: () => Navigator.of(context).pushNamed(RoutesEnum.loginPage.path),
-                child: Row(
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                    const Text("登录/注册", style: TextStyle(fontSize: 20, fontWeight: FontWeight.w600)),
-                    Container(
-                      margin: const EdgeInsets.only(top: 1, left: 1),
-                      child: assetImage(Assets.imagesArrowRightBlack, 24, 24),
+                : GestureDetector(
+                    onTap: () => Navigator.of(context).pushNamed(RoutesEnum.loginPage.path),
+                    child: Row(
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        Text("登录/注册", style: TextStyle(fontSize: 20, fontWeight: FontWeight.w600, color: alpha)),
+                        Container(
+                          margin: const EdgeInsets.only(top: 1, left: 1),
+                          child: Opacity(
+                            opacity: 1 - headerSize.opacity,
+                            child: assetImage(Assets.imagesArrowRightBlack, 24, 24),
+                          ),
+                        ),
+                      ],
                     ),
-                  ],
-                ),
-              )
+                  ),
           ),
-        ),
-      );
-    }
-  );
+        );
+      },
+    );
+  }
 }
+
+// 屏幕宽度缓存（顶层变量惰性求值），避免每帧通过 navigatorContext 查询 MediaQuery
+final double screenWidth = getScreenWidth();
 
 double maxTop = 40;
 double minTop = 4;

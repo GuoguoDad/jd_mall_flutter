@@ -14,6 +14,9 @@ import 'package:jd_mall_flutter/component/image/asset_image.dart';
 import 'package:jd_mall_flutter/view/page/detail/detail_provider.dart';
 import 'package:jd_mall_flutter/view/page/home/util.dart';
 
+// 屏幕宽度缓存（顶层变量惰性求值），避免每帧通过 navigatorContext 查询 MediaQuery
+final double screenWidth = getScreenWidth();
+
 class TabHeader extends StatefulWidget {
   final ExtendedScrollController scrollController;
 
@@ -24,72 +27,73 @@ class TabHeader extends StatefulWidget {
 }
 
 class TabHeaderState extends State<TabHeader> {
-
-
   @override
   Widget build(BuildContext context) {
-    return Consumer<DetailProvider>(
-        builder: (context, provider, child) {
-          double opacity = calcOpacity(provider.pageScrollY);
+    final provider = context.read<DetailProvider>();
 
-          return Container(
-            height: 42 + getStatusHeight(),
-            color: opacity == 1 ? Colors.white : Colors.transparent,
-            width: getScreenWidth(),
-            padding: EdgeInsets.only(top: getStatusHeight()),
-            child: Row(
-              children: [
-                Expanded(
-                  flex: 1,
-                  child: GestureDetector(
-                    onTap: () => Navigator.of(context).pop(),
-                    child: Container(
-                      alignment: Alignment.centerLeft,
-                      padding: const EdgeInsets.only(left: 14),
-                      child: assetImage("images/ic_back_black.png", 28, 28),
-                    ),
+    // 只监听滚动偏移，避免滚动时整页 rebuild
+    return ValueListenableBuilder<double>(
+      valueListenable: provider.scrollYNotifier,
+      builder: (context, scrollY, child) {
+        double opacity = calcOpacity(scrollY);
+
+        return Container(
+          height: 42 + getStatusHeight(),
+          color: opacity == 1 ? Colors.white : Colors.transparent,
+          width: screenWidth,
+          padding: EdgeInsets.only(top: getStatusHeight()),
+          child: Row(
+            children: [
+              Expanded(
+                flex: 1,
+                child: GestureDetector(
+                  onTap: () => Navigator.of(context).pop(),
+                  child: Container(
+                    alignment: Alignment.centerLeft,
+                    padding: const EdgeInsets.only(left: 14),
+                    child: assetImage("images/ic_back_black.png", 28, 28),
                   ),
                 ),
-                Expanded(
-                  flex: 3,
+              ),
+              Expanded(
+                flex: 3,
+                child: RepaintBoundary(
                   child: Container(
                     alignment: Alignment.center,
-                    child: ListView(
-                      shrinkWrap: true,
-                      scrollDirection: Axis.horizontal,
+                    child: Row(
+                      mainAxisSize: MainAxisSize.min,
                       children: <Widget>[
-                        tabItem("commodity".tr(), 0, provider),
-                        tabItem("evaluate".tr(), 1, provider),
-                        tabItem("detail".tr(), 2, provider),
-                        tabItem("recommend".tr(), 3, provider),
+                        tabItem("commodity".tr(), 0, provider, opacity),
+                        tabItem("evaluate".tr(), 1, provider, opacity),
+                        tabItem("detail".tr(), 2, provider, opacity),
+                        tabItem("recommend".tr(), 3, provider, opacity),
                       ],
                     ),
                   ),
                 ),
-                Expanded(
-                  flex: 1,
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: [
-                      assetImage("images/ic_share_black.png", 20, 20),
-                      Container(
-                        margin: const EdgeInsets.only(left: 10, right: 5),
-                        child: assetImage("images/ic_ellipsis_black.png", 20, 20),
-                      )
-                    ],
-                  ),
-                )
-              ],
-            ),
-          );
-        }
+              ),
+              Expanded(
+                flex: 1,
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    assetImage("images/ic_share_black.png", 20, 20),
+                    Container(
+                      margin: const EdgeInsets.only(left: 10, right: 5),
+                      child: assetImage("images/ic_ellipsis_black.png", 20, 20),
+                    )
+                  ],
+                ),
+              )
+            ],
+          ),
+        );
+      },
     );
   }
 
-  Widget tabItem(String name, int index, DetailProvider provider) {
-    double opacity = calcOpacity(provider.pageScrollY);
-
+  Widget tabItem(String name, int index, DetailProvider provider, double opacity) {
     return GestureDetector(
       onTap: () {
         if (provider.index != index) {
@@ -104,32 +108,35 @@ class TabHeaderState extends State<TabHeader> {
           }
         }
       },
-      child: Opacity(
-        opacity: opacity,
-        child: Container(
-          height: 42,
-          color: Colors.transparent,
-          padding: const EdgeInsets.only(left: 8, right: 8),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Text(
-                name,
-                style: const TextStyle(
-                  fontSize: 16,
-                  fontWeight: FontWeight.w400,
-                  color: Colors.black87,
-                  decoration: TextDecoration.none,
-                ),
+      // 用文字颜色的 alpha 代替 Opacity，避免每帧 saveLayer
+      child: Container(
+        height: 42,
+        color: Colors.transparent,
+        padding: const EdgeInsets.only(left: 8, right: 8),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Text(
+              name,
+              style: TextStyle(
+                fontSize: 16,
+                fontWeight: FontWeight.w400,
+                color: Colors.black87.withAlpha((255 * opacity).round()),
+                decoration: TextDecoration.none,
               ),
-              Container(
+            ),
+            // 只有被选中的下标变化时才重建下划线
+            Selector<DetailProvider, int>(
+              selector: (context, p) => p.index,
+              shouldRebuild: (prev, next) => prev != next,
+              builder: (context, currentIndex, child) => Container(
                 height: 3,
                 width: 30,
                 margin: const EdgeInsets.only(top: 5),
-                color: provider.index == index ? CommonStyle.themeColor : Colors.transparent,
-              )
-            ],
-          ),
+                color: currentIndex == index ? CommonStyle.themeColor : Colors.transparent,
+              ),
+            ),
+          ],
         ),
       ),
     );

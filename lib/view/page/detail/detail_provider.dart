@@ -12,6 +12,9 @@ class DetailProvider extends ChangeNotifier {
 
   double pageScrollY = 0.0;
 
+  /// 滚动偏移量单独用 ValueNotifier 驱动，避免滚动时 notifyListeners 导致整页重建
+  final ValueNotifier<double> scrollYNotifier = ValueNotifier<double>(0);
+
   //是否是floatingHeader中的tab点击
   bool isTabClick = false;
 
@@ -27,28 +30,39 @@ class DetailProvider extends ChangeNotifier {
   GoodsPageInfo goodsPageInfo = GoodsPageInfo.fromJson({});
 
   void setLoading(bool va) {
+    if (isLoading == va) return;
     isLoading = va;
     notifyListeners();
   }
 
   void recordPageY(double y) {
+    if ((pageScrollY - y).abs() < 0.5) return;
     pageScrollY = y;
-    notifyListeners();
+    scrollYNotifier.value = y;
   }
 
   void setIsTabClick(bool va) {
+    if (isTabClick == va) return;
     isTabClick = va;
     notifyListeners();
   }
 
   void setIndex(int i) {
+    if (index == i) return;
     index = i;
     notifyListeners();
   }
 
   void selectBanner(BannerInfo info) {
+    if (selectInfo == info) return;
     selectInfo = info;
     notifyListeners();
+  }
+
+  @override
+  void dispose() {
+    scrollYNotifier.dispose();
+    super.dispose();
   }
 
   Future<void> initPageData() async {

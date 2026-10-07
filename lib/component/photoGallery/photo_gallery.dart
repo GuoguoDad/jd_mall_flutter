@@ -31,18 +31,31 @@ class PhotoGallery extends StatefulWidget {
 
 class _PhotoGalleryState extends State<PhotoGallery> {
   int currentIndex = 0;
-  PageController pageController = PageController();
+  late final PageController pageController;
+  late final List<ImageProvider> imageProviders;
+  // 页码用独立通知驱动，避免翻页时重建整个 PhotoViewGallery
+  late final ValueNotifier<int> pageNotifier;
 
   @override
   void initState() {
     super.initState();
     currentIndex = widget.currentIndex;
+    pageNotifier = ValueNotifier<int>(widget.currentIndex);
+    pageController = PageController(initialPage: widget.currentIndex);
 
-    Future.delayed(Duration.zero, () {
-      setState(() {
-        if (widget.images.length > 1) pageController.jumpToPage(widget.currentIndex);
-      });
-    });
+    // 按「屏幕物理像素 × 最大缩放倍率」限制解码尺寸，避免超大原图解码占用几十 MB 内存
+    final view = WidgetsBinding.instance.platformDispatcher.views.first;
+    final maxPx = (view.physicalSize.longestSide * widget.max).round();
+    imageProviders = widget.images
+        .map((url) => ResizeImage(NetworkImage(url), width: maxPx) as ImageProvider)
+        .toList(growable: false);
+  }
+
+  @override
+  void dispose() {
+    pageNotifier.dispose();
+    pageController.dispose();
+    super.dispose();
   }
 
   @override
@@ -59,7 +72,7 @@ class _PhotoGalleryState extends State<PhotoGallery> {
               child: PhotoViewGallery.builder(
                 builder: (BuildContext context, int index) {
                   return PhotoViewGalleryPageOptions(
-                    imageProvider: NetworkImage(widget.images[index]),
+                    imageProvider: imageProviders[index],
                     initialScale: PhotoViewComputedScale.contained * 1.0,
                     minScale: PhotoViewComputedScale.contained * widget.min,
                     maxScale: PhotoViewComputedScale.contained * widget.max,
@@ -83,7 +96,7 @@ class _PhotoGalleryState extends State<PhotoGallery> {
                 backgroundDecoration: const BoxDecoration(
                   color: Colors.black,
                 ),
-                onPageChanged: (v) => setState(() => currentIndex = v),
+                onPageChanged: (v) => pageNotifier.value = v,
               ),
             ),
           ),
@@ -109,9 +122,12 @@ class _PhotoGalleryState extends State<PhotoGallery> {
                   Expanded(
                     flex: 1,
                     child: Center(
-                      child: Text(
-                        widget.showTop ? "${(currentIndex + 1) > widget.images.length ? 1 : (currentIndex + 1)}/${widget.images.length}" : '',
-                        style: const TextStyle(color: Colors.white, fontWeight: FontWeight.w500),
+                      child: ValueListenableBuilder<int>(
+                        valueListenable: pageNotifier,
+                        builder: (context, index, child) => Text(
+                          widget.showTop ? "${(index + 1) > widget.images.length ? 1 : (index + 1)}/${widget.images.length}" : '',
+                          style: const TextStyle(color: Colors.white, fontWeight: FontWeight.w500),
+                        ),
                       ),
                     ),
                   ),

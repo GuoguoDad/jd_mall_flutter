@@ -16,18 +16,19 @@ class MenuSlider extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SliverToBoxAdapter(
-      child: Consumer<HomeProvider>(
-        builder: (context, provider, child) {
-          List<NineMenuList> nineMenuList = provider.homePageInfo.nineMenuList ?? [];
-
+      child: Selector<HomeProvider, List<NineMenuList>>(
+        selector: (context, provider) => provider.homePageInfo.nineMenuList ?? const <NineMenuList>[],
+        shouldRebuild: (prev, next) => !identical(prev, next),
+        builder: (context, nineMenuList, child) {
           return PageMenu(
-            menuDataList: nineMenuList.map((e) => FunctionInfo(
-              menuIcon: e.menuIcon,
-              menuCode: e.menuCode,
-              menuName: e.menuName,
-              h5url: e.h5url,
-            ))
-                .toList(),
+            menuDataList: nineMenuList
+                .map((e) => FunctionInfo(
+                      menuIcon: e.menuIcon,
+                      menuCode: e.menuCode,
+                      menuName: e.menuName,
+                      h5url: e.h5url,
+                    ))
+                .toList(growable: false),
             rowCount: 2,
           );
         }
