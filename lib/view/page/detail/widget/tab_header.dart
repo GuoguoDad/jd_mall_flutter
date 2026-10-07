@@ -125,7 +125,7 @@ class TabHeaderState extends State<TabHeader> {
                 decoration: TextDecoration.none,
               ),
             ),
-            // 只有被选中的下标变化时才重建下划线
+            // 下划线要与文字一起随滚动淡入淡出
             Selector<DetailProvider, int>(
               selector: (context, p) => p.index,
               shouldRebuild: (prev, next) => prev != next,
@@ -133,7 +133,7 @@ class TabHeaderState extends State<TabHeader> {
                 height: 3,
                 width: 30,
                 margin: const EdgeInsets.only(top: 5),
-                color: currentIndex == index ? CommonStyle.themeColor : Colors.transparent,
+                color: currentIndex == index ? CommonStyle.themeColor.withAlpha((255 * opacity).round()) : Colors.transparent,
               ),
             ),
           ],
