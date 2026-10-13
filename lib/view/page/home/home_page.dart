@@ -56,6 +56,12 @@ class HomePageState extends State<HomePage> {
       onNotification: (ScrollNotification notification) => onPageScroll(context, notification),
       child: EasyRefresh.builder(
         controller: freshController,
+        // NestedScrollView 场景必须开启，否则 EasyRefresh 会用「内层 viewport 高度」
+        // 计算下拉阻尼：首页 header 很高，内层可视高度很小，且随 header 展开继续变小，
+        // 导致缓慢下拉时阻尼趋于 1（拉不动），永远到不了触发点。
+        isNested: true,
+        // 嵌套滚动时 position 不明确，绑定外层 controller 以便 callRefresh 等触发
+        scrollController: scrollController,
         header: classicHeader,
         onRefresh: () => context.read<HomeProvider>().refreshPage(
           () => easyRefreshSuccess(freshController),
