@@ -7,6 +7,8 @@ import 'package:provider/provider.dart';
 // Project imports:
 import 'package:jd_mall_flutter/common/style/common_style.dart';
 import 'package:jd_mall_flutter/component/persistentHeader/sliver_header_builder.dart';
+// 加前缀避免与 widget TabList 同名冲突
+import 'package:jd_mall_flutter/models/home_page_info.dart' as model;
 import 'package:jd_mall_flutter/view/page/home/home_provider.dart';
 
 class TabList extends StatefulWidget {
@@ -29,10 +31,16 @@ class TabListState extends State<TabList> {
         height: 54,
         child: Container(
           color: CommonStyle.greyBgColor,
-          child: Consumer<HomeProvider>(
-              builder: (context, provider, child) {
-                var tabs = provider.homePageInfo.tabList ?? [];
-                String currentTab = provider.currentTab;
+          child: Selector<HomeProvider, ({String currentTab, List<model.TabList> tabs})>(
+              selector: (context, provider) => (
+                currentTab: provider.currentTab,
+                tabs: provider.homePageInfo.tabList ?? const <model.TabList>[],
+              ),
+              // 只在 tab 数据 / 选中项变化时重建，避免 showBackTop 等无关状态变动触发整个 tab 栏重建
+              shouldRebuild: (prev, next) => prev.currentTab != next.currentTab || !identical(prev.tabs, next.tabs),
+              builder: (context, data, child) {
+                var tabs = data.tabs;
+                String currentTab = data.currentTab;
                 int totalCount = tabs.length;
 
                 return ListView.builder(
@@ -45,6 +53,7 @@ class TabListState extends State<TabList> {
 
                     return GestureDetector(
                       onTap: () {
+                        final provider = context.read<HomeProvider>();
                         provider.setIsTabClick(true);
                         provider.changeCurrentTab(tabs[index].code!);
                         widget.pageController

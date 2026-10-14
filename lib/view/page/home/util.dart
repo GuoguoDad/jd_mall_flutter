@@ -1,6 +1,9 @@
 // Flutter imports:
 import 'package:flutter/cupertino.dart';
 
+/// 头部搜索框收拢动画的临界滚动量：超过该值后搜索框尺寸不再变化
+const double searchCollapseOffset = 45;
+
 double calc2Top(double scrollY) {
   double result = 45;
   if (scrollY > 0 && scrollY <= 45) {

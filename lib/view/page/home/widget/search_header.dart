@@ -17,6 +17,9 @@ import 'package:jd_mall_flutter/view/page/home/util.dart';
 // 屏幕宽度缓存（顶层变量惰性求值），避免每帧通过 navigatorContext 查询 MediaQuery
 final double screenWidth = getScreenWidth();
 
+// 状态栏高度在 App 生命周期内不变，同样缓存下来，避免在每帧重建时反复查 MediaQuery
+final double statusHeight = getStatusHeight();
+
 class SearchHeader extends StatelessWidget {
   const SearchHeader({super.key});
 
@@ -25,11 +28,11 @@ class SearchHeader extends StatelessWidget {
     return SliverPersistentHeader(
       pinned: true,
       delegate: SliverHeaderDelegate(
-        maxHeight: 88 + getStatusHeight(),
-        minHeight: 44 + getStatusHeight(),
+        maxHeight: 88 + statusHeight,
+        minHeight: 44 + statusHeight,
         child: Container(
           color: CommonStyle.themeColor,
-          padding: EdgeInsets.only(top: getStatusHeight()),
+          padding: EdgeInsets.only(top: statusHeight),
           child: Stack(
             alignment: Alignment.center,
             fit: StackFit.expand,
@@ -46,49 +49,16 @@ class SearchHeader extends StatelessWidget {
               ),
               ValueListenableBuilder<double>(
                 valueListenable: context.read<HomeProvider>().scrollYNotifier,
+                // 只有位置/宽度随滚动变化，搜索框内部元素固定不变，放到 child 里只构建一次，
+                // 避免每帧重建 Text、图标子树并重复执行 tr() 取翻译
+                child: const SearchBox(),
                 builder: (context, scrollY, child) {
                   return Positioned(
                     top: calc2Top(scrollY),
-                    child: Container(
+                    child: SizedBox(
                       height: 34,
                       width: screenWidth - calcWidth(scrollY),
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(12),
-                        color: Colors.white,
-                      ),
-                      child: Row(
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        children: <Widget>[
-                          SizedBox(
-                            width: 40,
-                            height: 34,
-                            child: UnconstrainedBox(
-                              child: assetImage(Assets.imagesIcSearch, 20, 20),
-                            ),
-                          ),
-                          Expanded(
-                            flex: 1,
-                            child: Container(
-                              height: 34.0,
-                              alignment: Alignment.centerLeft,
-                              child: Text(
-                                "homeSearchTip".tr(),
-                                style: TextStyle(
-                                  fontSize: 14,
-                                  color: CommonStyle.placeholderColor,
-                                ),
-                              ),
-                            ),
-                          ),
-                          SizedBox(
-                            width: 40,
-                            height: 34,
-                            child: UnconstrainedBox(
-                              child: assetImage(Assets.imagesIcCamera, 20, 20),
-                            ),
-                          )
-                        ],
-                      ),
+                      child: child,
                     ),
                   );
                 }
@@ -99,4 +69,64 @@ class SearchHeader extends StatelessWidget {
       ),
     );
   }
+}
+
+/// 搜索框内容：不随滚动变化，独立成 const 组件后在 builder 里作为 child 复用
+class SearchBox extends StatelessWidget {
+  const SearchBox({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      height: 34,
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(12),
+        color: Colors.white,
+      ),
+      child: Row(
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: <Widget>[
+          const SizedBox(
+            width: 40,
+            height: 34,
+            child: UnconstrainedBox(
+              child: SearchBoxIcon(Assets.imagesIcSearch, 20),
+            ),
+          ),
+          Expanded(
+            flex: 1,
+            child: Container(
+              height: 34.0,
+              alignment: Alignment.centerLeft,
+              child: Text(
+                "homeSearchTip".tr(),
+                style: TextStyle(
+                  fontSize: 14,
+                  color: CommonStyle.placeholderColor,
+                ),
+              ),
+            ),
+          ),
+          const SizedBox(
+            width: 40,
+            height: 34,
+            child: UnconstrainedBox(
+              child: SearchBoxIcon(Assets.imagesIcCamera, 20),
+            ),
+          )
+        ],
+      ),
+    );
+  }
+}
+
+/// 搜索框内的图标：抽成 const 组件，避免上层重建时反复创建 AssetImage
+class SearchBoxIcon extends StatelessWidget {
+  final String asset;
+  final double size;
+
+  const SearchBoxIcon(this.asset, this.size, {super.key});
+
+  @override
+  Widget build(BuildContext context) => assetImage(asset, size, size);
 }

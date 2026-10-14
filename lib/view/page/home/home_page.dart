@@ -71,9 +71,7 @@ class HomePageState extends State<HomePage> {
           return Scaffold(
             body: ExtendedNestedScrollView(
               controller: scrollController,
-              pinnedHeaderSliverHeightBuilder: () {
-                return getStatusHeight() + 44 + 54;
-              },
+              pinnedHeaderSliverHeightBuilder: () => pinnedHeaderHeight,
               headerSliverBuilder: (BuildContext context, bool innerBoxIsScrolled) {
                 return [
                   const HeaderLocator.sliver(clearExtent: false),
@@ -120,6 +118,9 @@ class HomePageState extends State<HomePage> {
 
   // 屏幕高度缓存，避免滚动回调里每帧通过 navigatorContext 做 MediaQuery 查询
   late final double screenHeight = getScreenHeight();
+
+  // 搜索栏 44 + tab 栏 54，该值在布局回调里被反复取用，同样缓存下来
+  late final double pinnedHeaderHeight = getStatusHeight() + 44 + 54;
 
   bool onPageScroll(BuildContext context, ScrollNotification notification) {
     int depth = notification.depth;

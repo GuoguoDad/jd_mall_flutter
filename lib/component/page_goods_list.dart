@@ -120,9 +120,9 @@ class _PageGoodsListState extends State<PageGoodsList> {
         ),
         mainAxisSpacing: 10,
         crossAxisSpacing: 0,
-        itemBuilder: (BuildContext context, int index) => RepaintBoundary(
-          child: goodsItem(context, goodsList[index], itemWidth),
-        ),
+        // SliverMasonryGrid 默认已为每个 child 包了一层 RepaintBoundary，这里不需要再包，
+        // 重复嵌套会多出一倍的合成层，反而拖慢瀑布流滚动
+        itemBuilder: (BuildContext context, int index) => goodsItem(context, goodsList[index], itemWidth),
       ),
     );
   }

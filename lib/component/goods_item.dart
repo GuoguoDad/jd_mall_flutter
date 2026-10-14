@@ -42,9 +42,9 @@ Widget goodsItem(BuildContext context, GoodsList item, double width) {
         imageUrl: item.imgUrl!,
         width: width,
         height: width,
+        // 按显示尺寸解码，避免滚动时用原图分辨率解码（额外的解码 + 纹理上传开销）
         memCacheWidth: memCacheSize,
         memCacheHeight: memCacheSize,
-        filterQuality: FilterQuality.low,
         placeholder: (context, url) => assetImage(Assets.imagesDefault, width, width),
         errorBuilder: (context, url, error) => assetImage(Assets.imagesDefault, width, width),
         fit: BoxFit.fill,

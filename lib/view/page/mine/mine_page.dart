@@ -53,6 +53,7 @@ class MinePageState extends State<MinePage> {
     return NotificationListener<ScrollNotification>(
       onNotification: (ScrollNotification notification) => onPageScroll(context, notification),
       child: EasyRefresh.builder(
+        isNested: true,
         controller: freshController,
         header: classicHeader,
         onRefresh: () => context.read<MineProvider>().refreshPage(

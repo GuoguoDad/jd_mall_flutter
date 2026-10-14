@@ -5,6 +5,7 @@ import 'package:flutter/foundation.dart';
 // Project imports:
 import 'package:jd_mall_flutter/models/home_page_info.dart';
 import 'package:jd_mall_flutter/view/page/home/service.dart';
+import 'package:jd_mall_flutter/view/page/home/util.dart';
 
 class HomeProvider extends ChangeNotifier {
   bool isLoading = true;
@@ -50,8 +51,12 @@ class HomeProvider extends ChangeNotifier {
   }
 
   void recordPageY(double y) {
-    if ((pageScrollY - y).abs() < 0.5) return;
+    final double oldY = pageScrollY;
+    if ((oldY - y).abs() < 0.5) return;
     pageScrollY = y;
+    // 搜索框会在 [0, collapseOffset] 之间收拢，超过该区间后头部 UI 不再随滚动变化。
+    // 此时再通知监听器只会让吸顶区每帧重建（商品列表滚动阶段一直如此），所以跳过。
+    if (oldY > searchCollapseOffset && y > searchCollapseOffset) return;
     scrollYNotifier.value = y;
   }
 
