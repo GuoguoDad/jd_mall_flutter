@@ -10,7 +10,7 @@ import 'package:flutter/services.dart';
 // Package imports:
 import 'package:easy_localization/easy_localization.dart';
 import 'package:provider/provider.dart';
-import 'package:sentry_flutter/sentry_flutter.dart';
+// import 'package:sentry_flutter/sentry_flutter.dart';
 
 // Project imports:
 import 'package:jd_mall_flutter/app.dart';
@@ -59,18 +59,18 @@ void initApp(Map<String, dynamic> envMap) async {
 }
 
 Future<void> main() async {
-  if (kReleaseMode) {
-    runZonedGuarded(() async {
-      await SentryFlutter.init(
-        (options) {
-          options.dsn = sentryDsn;
-        },
-      );
-      initApp(configs.prd);
-    }, (exception, stackTrace) async {
-      await Sentry.captureException(exception, stackTrace: stackTrace);
-    });
-  } else {
+  // if (kReleaseMode) {
+  //   runZonedGuarded(() async {
+  //     await SentryFlutter.init(
+  //       (options) {
+  //         options.dsn = sentryDsn;
+  //       },
+  //     );
+  //     initApp(configs.prd);
+  //   }, (exception, stackTrace) async {
+  //     await Sentry.captureException(exception, stackTrace: stackTrace);
+  //   });
+  // } else {
     initApp(configs.prd);
-  }
+  // }
 }
